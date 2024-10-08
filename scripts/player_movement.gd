@@ -49,3 +49,4 @@ func _physics_process(delta):
 			$Camera2D.zoom -= Vector2(0.1, 0.1)
 			
 	$Camera2D/HUD/PlayerPosition.text = "X: " + str(int($".".position.x) / 16) + "\nY: " + str(int($".".position.y) / 16)
+	
