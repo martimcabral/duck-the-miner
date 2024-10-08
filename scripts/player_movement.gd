@@ -1,0 +1,51 @@
+extends CharacterBody2D
+
+var speed = 100
+const accel = 250
+const friction = 150
+const falling_speed = 150
+
+const zoom_max = Vector2(7, 7)
+const zoom_min = Vector2(4.5, 4.5)
+
+func player_movement(input, delta):
+	if input: 
+		if Input.is_action_pressed("Agachar"):
+			speed = 15
+			velocity = velocity.move_toward(input * speed , delta * accel)
+		elif Input.is_action_pressed("Run"):
+			speed = 100
+			velocity = velocity.move_toward(input * speed , delta * accel)
+		else:
+			speed = 60
+			velocity = velocity.move_toward(input * speed , delta * accel)
+	else: 
+		velocity = velocity.move_toward(Vector2(0,0), delta * friction)
+	velocity.y += falling_speed * delta
+
+func _physics_process(delta):
+	var player_texture = preload("res://assets/textures/duck.png")
+	var squat_texture = preload("res://assets/textures/duck_squat.png")
+	
+	var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
+	player_movement(input, delta)
+	move_and_slide()
+	
+	if Input.is_action_pressed("Agachar"):
+		$Sprite2D.texture = squat_texture
+	else:
+		$Sprite2D.texture = player_texture
+		
+	if Input.is_action_pressed("Walk_Right"):
+		$Sprite2D.flip_h = true
+	if Input.is_action_pressed("Walk_Left"):
+		$Sprite2D.flip_h = false
+	
+	if Input.is_action_just_pressed("Zoom_In") or Input.is_action_pressed("Zoom_In"):
+		if $Camera2D.zoom < zoom_max:
+			$Camera2D.zoom += Vector2(0.1, 0.1)
+	if Input.is_action_just_pressed("Zoom_Out") or Input.is_action_pressed("Zoom_Out"):
+		if $Camera2D.zoom > zoom_min:
+			$Camera2D.zoom -= Vector2(0.1, 0.1)
+			
+	$Camera2D/HUD/PlayerPosition.text = "X: " + str(int($".".position.x) / 16) + "\nY: " + str(int($".".position.y) / 16)

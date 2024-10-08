@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6nqv0wtxmg0g"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_c8nng"]
+[ext_resource type="Texture2D" uid="uid://n2kwk7luqlx8" path="res://assets/textures/duck.png" id="2_rnfmg"]
+[ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/point_light.png" id="3_jwt0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_na81u"]
+size = Vector2(13, 14.5)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_c8nng")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.0182877, 0.0193078)
+texture = ExtResource("2_rnfmg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_na81u")
+
+[node name="TextureLight" type="PointLight2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(1.27409, 1.27409)
+color = Color(1, 0.771315, 0.469466, 1)
+energy = 1.25
+texture = ExtResource("3_jwt0r")
+texture_scale = 0.61
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.5, 4.5)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
