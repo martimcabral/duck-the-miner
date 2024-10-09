@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var current_item = 1
+var window_mode = 0
 
 var speed = 100
 const accel = 250
@@ -49,7 +50,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Zoom_Out") or Input.is_action_pressed("Zoom_Out"):
 		if $Camera2D.zoom > zoom_min:
 			$Camera2D.zoom -= Vector2(0.1, 0.1)
-			
+	
+	# Mudar o Cursor dependendo do Item selecinado da Hotbar
 	if Input.is_action_just_pressed("Hotbar_1"):
 		current_item = 1
 		var cursor_texture = preload("res://assets/textures/cursors/diamond_sword.png")
@@ -67,5 +69,14 @@ func _physics_process(delta):
 		var cursor_texture = preload("res://assets/textures/cursors/flashlight_item.png")
 		Input.set_custom_mouse_cursor(cursor_texture)
 	
+	# Fullscreen
+	if Input.is_action_just_pressed("Fullscreen"):
+		if window_mode == 0:
+			window_mode = 1
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		elif window_mode == 1:
+			window_mode = 0
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		
 	$Camera2D/HUD/PlayerPosition.text = "X: " + str(int($".".position.x) / 16) + "\nY: " + str(int($".".position.y) / 16)
 	

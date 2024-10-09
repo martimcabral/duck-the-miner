@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=13 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://n2kwk7luqlx8" path="res://assets/textures/duck.png" id="2_rnfmg"]
@@ -10,8 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://b50ayerwltfkl" path="res://sounds/sound_efects/mining2.ogg" id="7_lpuh6"]
 [ext_resource type="AudioStream" uid="uid://cuxqobyy81oe0" path="res://sounds/sound_efects/mining3.ogg" id="8_avynl"]
 [ext_resource type="AudioStream" uid="uid://60jqs1f1p4qq" path="res://sounds/sound_efects/mining4.ogg" id="9_4jbyg"]
-[ext_resource type="AudioStream" uid="uid://ltpavxnuv1qa" path="res://sounds/sound_efects/mining5.ogg" id="10_jhnyl"]
-[ext_resource type="AudioStream" uid="uid://cf6a05ofbh08h" path="res://sounds/sound_efects/mining6.ogg" id="11_jh44c"]
 [ext_resource type="AudioStream" uid="uid://blhavu7sjvk3a" path="res://sounds/sound_efects/place_block.ogg" id="12_r1vvj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2sg00"]
@@ -63,7 +61,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("6_s2420")
 theme_override_font_sizes/normal_font_size = 32
-text = "prototype.0.15"
+text = "prototype.0.16"
 tab_size = 5
 
 [node name="PlayerPosition" type="RichTextLabel" parent="Camera2D/HUD"]
@@ -86,13 +84,6 @@ stream = ExtResource("8_avynl")
 
 [node name="Mining4" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("9_4jbyg")
-
-[node name="Mining5" type="AudioStreamPlayer2D" parent="Player Sounds"]
-stream = ExtResource("10_jhnyl")
-
-[node name="Mining6" type="AudioStreamPlayer2D" parent="Player Sounds"]
-position = Vector2(-1, 0)
-stream = ExtResource("11_jh44c")
 
 [node name="PlaceBlock" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("12_r1vvj")
