@@ -130,6 +130,7 @@ one_shot = true
 autostart = true
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.158472, 0.158472, 0.158472, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
