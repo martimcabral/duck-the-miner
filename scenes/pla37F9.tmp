@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://n2kwk7luqlx8" path="res://assets/textures/duck.png" id="2_rnfmg"]
+[ext_resource type="Script" path="res://scenes/select_block.gd" id="2_uf3sx"]
 [ext_resource type="Texture2D" uid="uid://b8523lkw1l4p7" path="res://assets/textures/selected_block.png" id="3_au1lm"]
 [ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/point_light.png" id="3_jwt0r"]
 [ext_resource type="Texture2D" uid="uid://cvesw4kr1dsav" path="res://assets/textures/flashlight_beam_larger.png" id="4_83sd1"]
@@ -13,20 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://60jqs1f1p4qq" path="res://sounds/sound_efects/mining4.ogg" id="9_4jbyg"]
 [ext_resource type="AudioStream" uid="uid://blhavu7sjvk3a" path="res://sounds/sound_efects/place_block.ogg" id="12_r1vvj"]
 
-[sub_resource type="GDScript" id="GDScript_ualh7"]
-script/source = "extends RayCast2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var selection_position = %RangeRayCast.target_position
-	$SelectedBlock.position = selection_position
-"
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2sg00"]
 radius = 5.0
 height = 14.0
@@ -36,18 +23,14 @@ z_index = 1
 texture_filter = 1
 script = ExtResource("1_ym5y2")
 
-[node name="RangeRayCast" type="RayCast2D" parent="."]
-unique_name_in_owner = true
-z_index = 2
-target_position = Vector2(0, 48)
-script = SubResource("GDScript_ualh7")
-
-[node name="SelectedBlock" type="TextureRect" parent="RangeRayCast"]
-visible = false
-z_index = 4
-offset_right = 16.0
-offset_bottom = 16.0
+[node name="SelectedBlock" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
 texture = ExtResource("3_au1lm")
+
+[node name="RangeRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 48)
+script = ExtResource("2_uf3sx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

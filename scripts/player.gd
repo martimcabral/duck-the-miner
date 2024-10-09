@@ -8,7 +8,7 @@ const accel = 250
 const friction = 150
 const falling_speed = 150
 
-const zoom_max = Vector2(7, 7)
+const zoom_max = Vector2(9, 9)
 const zoom_min = Vector2(4.5, 4.5)
 
 func player_movement(input, delta):
@@ -27,11 +27,8 @@ func player_movement(input, delta):
 	velocity.y += falling_speed * delta
 
 func _physics_process(delta):
-	$BlockRangeRayCast.look_at(get_global_mouse_position())
-	$BlockRangeRayCast.rotation -= deg_to_rad(90)
-	
-	if $BlockRangeRayCast.is_colliding():
-		var collider = $BlockRangeRayCast.get_collider()
+	$RangeRayCast.look_at(get_global_mouse_position())
+	$RangeRayCast.rotation -= deg_to_rad(90)
 	
 	var player_texture = preload("res://assets/textures/duck.png")
 	var squat_texture = preload("res://assets/textures/duck_squat.png")

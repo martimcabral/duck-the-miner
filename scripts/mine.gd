@@ -43,9 +43,16 @@ func _physics_process(_delta):
 		
 
 func destroy_block():
-	if $"../Player/BlockRangeRayCast".is_colliding():
-		var collision = $"../Player/BlockRangeRayCast".get_collision_point()
-		var tile_pos = collision / 16
+	if $"../Player/RangeRayCast".is_colliding():
+		var tile_pos = $CaveSystem.local_to_map($"../Player/RangeRayCast".get_collision_point())
+		print($"../Player/RangeRayCast".rotation)
+		#if $"../Player/RangeRayCast".rotation >= 6:
+			#$"../Player/RangeRayCast".rotation = 0
+		#if $"../Player/RangeRayCast".rotation <= -6:
+			#$"../Player/RangeRayCast".rotation = 0
+		#print(tile_pos)
+		# Using $CaveSystem.local_to_map($CaveSystem.get_global_mouse_position()) will break beacause,
+		# where the mouse is, is not where the raycast is
 		
 		# Data of the tile
 		var tile_data = $CaveSystem.get_cell_tile_data(tile_pos)
@@ -53,7 +60,7 @@ func destroy_block():
 		var tile_id = $CaveSystem.get_cell_atlas_coords(tile_pos)
 	
 		if player.current_item == 2:
-			# print("Data: ", used_tiles, " ", tile_id)
+			print("Data: ", used_tiles, " ", tile_id)
 			# Get health
 			var tile_health = tile_data.get_custom_data("health")
 		
