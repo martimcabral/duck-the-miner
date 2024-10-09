@@ -112,7 +112,7 @@ use_parent_material = true
 tile_set = SubResource("TileSet_60hiy")
 
 [node name="TimeToPutOres" type="Timer" parent="TileMap"]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 autostart = true
 

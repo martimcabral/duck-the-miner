@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var current_item = 1
+
 var speed = 100
 const accel = 250
 const friction = 150
@@ -40,7 +42,7 @@ func _physics_process(delta):
 		$Sprite2D.flip_h = true
 	if Input.is_action_pressed("Walk_Left"):
 		$Sprite2D.flip_h = false
-	
+		
 	if Input.is_action_just_pressed("Zoom_In") or Input.is_action_pressed("Zoom_In"):
 		if $Camera2D.zoom < zoom_max:
 			$Camera2D.zoom += Vector2(0.1, 0.1)
@@ -48,5 +50,22 @@ func _physics_process(delta):
 		if $Camera2D.zoom > zoom_min:
 			$Camera2D.zoom -= Vector2(0.1, 0.1)
 			
+	if Input.is_action_just_pressed("Hotbar_1"):
+		current_item = 1
+		var cursor_texture = preload("res://assets/textures/cursors/diamond_sword.png")
+		Input.set_custom_mouse_cursor(cursor_texture)
+	if Input.is_action_just_pressed("Hotbar_2"):
+		current_item = 2
+		var cursor_texture = preload("res://assets/textures/cursors/diamond_pickaxe.png")
+		Input.set_custom_mouse_cursor(cursor_texture)
+	if Input.is_action_just_pressed("Hotbar_3"):
+		current_item = 3
+		var cursor_texture = preload("res://assets/textures/cursors/torch.png")
+		Input.set_custom_mouse_cursor(cursor_texture)
+	if Input.is_action_just_pressed("Hotbar_4"):
+		current_item = 4
+		var cursor_texture = preload("res://assets/textures/cursors/flashlight_item.png")
+		Input.set_custom_mouse_cursor(cursor_texture)
+	
 	$Camera2D/HUD/PlayerPosition.text = "X: " + str(int($".".position.x) / 16) + "\nY: " + str(int($".".position.y) / 16)
 	
