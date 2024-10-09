@@ -27,6 +27,12 @@ func player_movement(input, delta):
 	velocity.y += falling_speed * delta
 
 func _physics_process(delta):
+	$BlockRangeRayCast.look_at(get_global_mouse_position())
+	$BlockRangeRayCast.rotation -= deg_to_rad(90)
+	
+	if $BlockRangeRayCast.is_colliding():
+		var collider = $BlockRangeRayCast.get_collider()
+	
 	var player_texture = preload("res://assets/textures/duck.png")
 	var squat_texture = preload("res://assets/textures/duck_squat.png")
 	

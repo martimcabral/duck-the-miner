@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=14 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://n2kwk7luqlx8" path="res://assets/textures/duck.png" id="2_rnfmg"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://60jqs1f1p4qq" path="res://sounds/sound_efects/mining4.ogg" id="9_4jbyg"]
 [ext_resource type="AudioStream" uid="uid://blhavu7sjvk3a" path="res://sounds/sound_efects/place_block.ogg" id="12_r1vvj"]
 
+[sub_resource type="GDScript" id="GDScript_mqukm"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2sg00"]
 radius = 5.0
 height = 14.0
@@ -23,6 +25,7 @@ script = ExtResource("1_ym5y2")
 
 [node name="BlockRangeRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, 48)
+script = SubResource("GDScript_mqukm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -67,10 +70,11 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("6_s2420")
 theme_override_font_sizes/normal_font_size = 32
-text = "prototype.0.16.3"
+text = "prototype.0.16.2"
 tab_size = 5
 
 [node name="PlayerPosition" type="RichTextLabel" parent="Camera2D/HUD"]
+visible = false
 offset_left = 8.0
 offset_top = -1.0
 offset_right = 273.0

@@ -109,6 +109,8 @@ adjustment_color_correction = SubResource("GradientTexture2D_4634m")
 script = ExtResource("1_nmwod")
 
 [node name="Player" parent="." instance=ExtResource("1_5mm4o")]
+z_index = 20
+position = Vector2(0, -179)
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -121,7 +123,6 @@ unique_name_in_owner = true
 texture_filter = 1
 use_parent_material = true
 tile_set = SubResource("TileSet_60hiy")
-collision_visibility_mode = 2
 
 [node name="TimeToPutOres" type="Timer" parent="TileMap"]
 wait_time = 0.5

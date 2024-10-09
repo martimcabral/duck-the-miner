@@ -51,13 +51,14 @@ func create_world_borders():
 
 func _ready():
 	start_music()
-	create_world_borders()
+	#create_world_borders()
 	
 	var fnl = FastNoiseLite.new()
 	
 	var asteroid_type = "Unknown"
 	var asteroid_biome = "Unknown"
 	
+	fnl.seed = randi_range(0, 200000)
 	fnl.noise_type = FastNoiseLite.TYPE_SIMPLEX   
 	fnl.fractal_octaves = 4 #4
 	fnl.fractal_lacunarity = 2.25 #2.5
@@ -110,94 +111,36 @@ func start_position():
 			%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
 			
 
+func put_ore(ore_height_min, ore_height_max, spawn_chance, atlas_coords):
+	for x in range(world_width):
+		for y in range(ore_height_min, ore_height_max):
+			if randi_range(0, spawn_chance) == 1:
+				var tile_pos = Vector2i(x, y)
+				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
+					%CaveSystem.set_cell(tile_pos, 0, atlas_coords)
+
 func put_coal():
-	# Coal Layers:
-	var coal_ore_heigh_min = 0
-	var coal_ore_height_max = 200
-	
-	for x in range(world_width):
-		for y in range(coal_ore_heigh_min, coal_ore_height_max):
-			var random = randi_range(0, 15) # Coal Spawn Chance
-			if random == 1:
-				var tile_pos = Vector2i(x, y)
-				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-					%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(1, 0))
-
+	put_ore(0, 200, 15, Vector2i(1, 0))
 func put_copper():
-	# Copper Layers: 
-	var copper_ore_height_min = 0
-	var copper_ore_height_max = 500
-	
-	for x in range(world_width):
-		for y in range(copper_ore_height_min, copper_ore_height_max):
-			var random = randi_range(0, 15) # Copper Spawn Chance
-			if random == 1:
-				var tile_pos = Vector2i(x, y)
-				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-					%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(1, 2)) 
-	
+	put_ore(0, 500, 15, Vector2i(1, 2))
 func put_iron():
-		# Iron Layers:
-	var iron_ore_height_min = 200
-	var iron_ore_height_max = 600 
-	
-	for x in range(world_width):
-		for y in range(iron_ore_height_min, iron_ore_height_max):
-			var random = randi_range(0, 30) # Iron Spawn Chance
-			if random == 1:
-				var tile_pos = Vector2i(x, y)
-				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-					%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 0))
-	
+	put_ore(200, 600, 30, Vector2i(2, 0))
 func put_gold():
-	# Gold Layers:
-	var gold_ore_height_min = 500
-	var gold_ore_height_max = 800 
-	
-	for x in range(world_width):
-		for y in range(gold_ore_height_min, gold_ore_height_max):
-			var random = randi_range(0, 100) # Gold Spawn Chance
-			if random == 1:
-				var tile_pos = Vector2i(x, y)
-				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-					%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 2))
-
+	put_ore(500, 800, 100, Vector2i(0, 2))
 func put_diamond():
-	# Diamond Layers:
-	var diamond_ore_height_min = 925
-	var diamond_ore_height_max = 1000
-	
-	for x in range(world_width):
-		for y in range(diamond_ore_height_min, diamond_ore_height_max):
-			var random = randi_range(0, 150) # Diamond Spawn Chance
-			if random == 1:
-				var tile_pos = Vector2i(x, y)
-				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-					%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(3, 0))
+	put_ore(925, 1000, 150, Vector2i(3, 0))
 
 func put_gems():
-# Gems Layers:
-	var gems_height_min = 500
-	var gems_ore_height_max = 1000
-	
 	for x in range(world_width):
-		for y in range(gems_height_min, gems_ore_height_max):
-			var random = randi_range(0, 300) # Gems Spawn Chance
-			if random == 1:
-				var random_gem = randi_range(0, 3)
-				match random_gem:
-					1:
-						var tile_pos = Vector2i(x, y)
-						if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-							%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(1, 1))
-					2:
-						var tile_pos = Vector2i(x, y)
-						if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-							%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 1))
-					3:
-						var tile_pos = Vector2i(x, y)
-						if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-							%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(3, 1))
+		for y in range(500, 1000):
+			if randi_range(0, 300) == 1:
+				var tile_pos = Vector2i(x, y)
+				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
+					var random_gem = randi_range(1, 3)
+					match random_gem:
+						1: %CaveSystem.set_cell(tile_pos, 0, Vector2i(1, 1))
+						2: %CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
+						3: %CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
 
 func _on_time_to_put_ores_timeout() -> void:
 	put_coal()
