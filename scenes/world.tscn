@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/ore_tilemap.png" id="3_ty73d"]
-[ext_resource type="Script" path="res://scripts/mine.gd" id="4_syxjy"]
+[ext_resource type="Script" path="res://scenes/place_torch.gd" id="4_ys0ii"]
 [ext_resource type="Texture2D" uid="uid://c46murw2v2n65" path="res://assets/textures/design.png" id="5_mx5dt"]
 [ext_resource type="AudioStream" uid="uid://t2ki8ixqk78s" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://bjjm88pfvbfb4" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
@@ -115,7 +115,7 @@ script = ExtResource("1_nmwod")
 texture_filter = 1
 tile_set = SubResource("TileSet_60hiy")
 format = 2
-script = ExtResource("4_syxjy")
+script = ExtResource("4_ys0ii")
 
 [node name="BlockSelection" type="Sprite2D" parent="TileMap"]
 physics_interpolation_mode = 2
@@ -133,10 +133,6 @@ collision_visibility_mode = 2
 [node name="TimeToPutOres" type="Timer" parent="TileMap"]
 wait_time = 0.5
 one_shot = true
-autostart = true
-
-[node name="MiningCooldown" type="Timer" parent="TileMap"]
-wait_time = 0.3
 autostart = true
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
@@ -165,5 +161,4 @@ wait_time = 180.0
 autostart = true
 
 [connection signal="timeout" from="TileMap/TimeToPutOres" to="." method="_on_time_to_put_ores_timeout"]
-[connection signal="timeout" from="TileMap/MiningCooldown" to="TileMap" method="_on_mining_cooldown_timeout"]
 [connection signal="timeout" from="WorldMusic/MusicTimer" to="." method="_on_music_timer_timeout"]
