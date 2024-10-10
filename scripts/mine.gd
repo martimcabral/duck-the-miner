@@ -3,8 +3,8 @@ extends TileMap
 # Dictionary to hold tile data: {position: [tile_id, health]}
 var used_tiles = {}
 
-var is_Destroy_Block_being_pressed = false
-
+@onready var block_selection = $BlockSelection
+@onready var raycast = $"../Player/RangeRayCast"
 @onready var player = $"../Player"
 
 # Called when the node enters the scene tree for the first time.
@@ -13,6 +13,23 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	if raycast.get_collision_point().x < player.position.x:
+		block_selection.position.x = ($CaveSystem.local_to_map(raycast.get_collision_point()).x * 16) - 8
+	elif raycast.get_collision_point().x > player.position.x:
+		block_selection.position.x = ($CaveSystem.local_to_map(raycast.get_collision_point()).x * 16) + 8
+		
+	if raycast.get_collision_point().y < player.position.y:
+		block_selection.position.y = ($CaveSystem.local_to_map(raycast.get_collision_point()).y * 16) - 8
+	elif raycast.get_collision_point().y > player.position.y:
+		block_selection.position.y = ($CaveSystem.local_to_map(raycast.get_collision_point()).y * 16) + 8
+	
+	print(raycast.rotation)
+	if raycast.rotation >= rad_to_deg(360):
+		raycast.rotation = 0
+	if raycast.rotation <= rad_to_deg(-360):
+		raycast.rotation = 0
+	
+		
 	var tile_pos = $CaveSystem.local_to_map($CaveSystem.get_global_mouse_position())
 	var tile_data = $CaveSystem.get_cell_tile_data(tile_pos)
 	var tile_id = $CaveSystem.get_cell_atlas_coords(tile_pos)
@@ -43,14 +60,17 @@ func _physics_process(_delta):
 		
 
 func destroy_block():
-	if $"../Player/RangeRayCast".is_colliding():
-		var tile_pos = $CaveSystem.local_to_map($"../Player/RangeRayCast".get_collision_point())
-		print($"../Player/RangeRayCast".rotation)
-		#if $"../Player/RangeRayCast".rotation >= 6:
-			#$"../Player/RangeRayCast".rotation = 0
-		#if $"../Player/RangeRayCast".rotation <= -6:
-			#$"../Player/RangeRayCast".rotation = 0
-		#print(tile_pos)
+	if raycast.is_colliding():
+		var safe_margin = 1.0
+		var tile_pos = raycast.get_collision_point() - raycast.get_collision_normal() * safe_margin
+		
+		print("Block Position: ", block_selection.position)
+		#block_selection.rotation = 0
+		tile_pos /= 16
+		tile_pos = floor(tile_pos)
+		
+		# Issue fixed by Xrayez: https://github.com/godotengine/godot/issues/35344, dont know how
+		
 		# Using $CaveSystem.local_to_map($CaveSystem.get_global_mouse_position()) will break beacause,
 		# where the mouse is, is not where the raycast is
 		
@@ -94,4 +114,4 @@ func destroy_block():
 
 func _on_mining_cooldown_timeout() -> void:
 	if Input.is_action_pressed("Destroy_Block"):
-		destroy_block() # Replace with function body.
+		destroy_block()

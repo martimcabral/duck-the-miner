@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://ur4yarmj6ihc"]
+[gd_scene load_steps=24 format=3 uid="uid://ur4yarmj6ihc"]
 
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Script" path="res://scripts/mine.gd" id="4_syxjy"]
+[ext_resource type="Texture2D" uid="uid://c46murw2v2n65" path="res://assets/textures/design.png" id="5_mx5dt"]
 [ext_resource type="AudioStream" uid="uid://t2ki8ixqk78s" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://bjjm88pfvbfb4" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
 [ext_resource type="AudioStream" uid="uid://d3o7v1blw5tgy" path="res://sounds/musics/void.ogg" id="10_7k7pq"]
@@ -116,6 +117,12 @@ tile_set = SubResource("TileSet_60hiy")
 format = 2
 script = ExtResource("4_syxjy")
 
+[node name="BlockSelection" type="Sprite2D" parent="TileMap"]
+physics_interpolation_mode = 2
+z_index = 3
+texture_filter = 1
+texture = ExtResource("5_mx5dt")
+
 [node name="CaveSystem" type="TileMapLayer" parent="TileMap"]
 unique_name_in_owner = true
 texture_filter = 1
@@ -133,7 +140,6 @@ wait_time = 0.3
 autostart = true
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.158472, 0.158472, 0.158472, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

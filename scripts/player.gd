@@ -28,7 +28,7 @@ func player_movement(input, delta):
 
 func _physics_process(delta):
 	$RangeRayCast.look_at(get_global_mouse_position())
-	$RangeRayCast.rotation -= deg_to_rad(90)
+	$RangeRayCast.rotation -= rad_to_deg(280)
 	
 	var player_texture = preload("res://assets/textures/duck.png")
 	var squat_texture = preload("res://assets/textures/duck_squat.png")
