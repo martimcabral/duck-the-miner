@@ -36,9 +36,27 @@ func _physics_process(delta):
 	var tile_data = %CaveSystem.get_cell_tile_data(tile_pos)
 	var tile_id = %CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/Player Sounds".position = tile_pos
+	
+	if Input.is_action_pressed("Destroy_Block"):
+		var mouse_pos = get_global_mouse_position()
+		var local_mouse_pos = $BlockRange.to_local(mouse_pos)
+		var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
+		var radius = (collision_shape as CircleShape2D).radius
+		
+		if local_mouse_pos.length() <= radius:
+			var offset = Vector2i(-8, -8)
+			var block_selection_position = (Vector2i(%CaveSystem.get_global_mouse_position()) - offset)
+			var tile_size = Vector2(16, 16)
+			
+			block_selection_position = block_selection_position.snapped(tile_size)
+			$"../TileMap/BlockSelection".position = block_selection_position
+		else:
+			$"../TileMap/BlockSelection".position = Vector2(-128, -128)
+	else:
+		$"../TileMap/BlockSelection".position = Vector2(-128, -128)
 		
 	if (Input.is_action_just_pressed("Place_Block")):
-				# 1. Get the global position of the mouse
+		# 1. Get the global position of the mouse
 		var mouse_pos = get_global_mouse_position()
 		
 		# 2. Convert the global mouse position to the local position of the Area2D
@@ -119,8 +137,7 @@ func _physics_process(delta):
 	"\nY: " + str(int($".".position.y / 16))
 
 func destroy_block():
-		var tile_pos = (%CaveSystem.local_to_map(%CaveSystem.get_global_mouse_position()))
-		
+		var tile_pos = %CaveSystem.local_to_map(%CaveSystem.get_global_mouse_position())
 		var tile_data = %CaveSystem.get_cell_tile_data(tile_pos)
 		var tile_id = %CaveSystem.get_cell_atlas_coords(tile_pos)
 	

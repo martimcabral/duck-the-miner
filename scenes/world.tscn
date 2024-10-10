@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Script" path="res://scenes/place_torch.gd" id="4_ys0ii"]
-[ext_resource type="Texture2D" uid="uid://c46murw2v2n65" path="res://assets/textures/design.png" id="5_mx5dt"]
+[ext_resource type="Texture2D" uid="uid://b8523lkw1l4p7" path="res://assets/textures/selected_block.png" id="5_16s1h"]
 [ext_resource type="AudioStream" uid="uid://t2ki8ixqk78s" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://bjjm88pfvbfb4" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
 [ext_resource type="AudioStream" uid="uid://d3o7v1blw5tgy" path="res://sounds/musics/void.ogg" id="10_7k7pq"]
@@ -120,8 +120,9 @@ script = ExtResource("4_ys0ii")
 [node name="BlockSelection" type="Sprite2D" parent="TileMap"]
 physics_interpolation_mode = 2
 z_index = 3
-texture_filter = 1
-texture = ExtResource("5_mx5dt")
+position = Vector2(16, 16)
+texture = ExtResource("5_16s1h")
+offset = Vector2(-8, -8)
 
 [node name="CaveSystem" type="TileMapLayer" parent="TileMap"]
 unique_name_in_owner = true
