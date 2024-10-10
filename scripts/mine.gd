@@ -2,6 +2,7 @@ extends TileMap
 
 # Dictionary to hold tile data: {position: [tile_id, health]}
 var used_tiles = {}
+var safe_margin = 1.0
 
 @onready var block_selection = $BlockSelection
 @onready var raycast = $"../Player/RangeRayCast"
@@ -13,22 +14,24 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
+	if Input.is_action_pressed("Destroy_Block"):
+		var tile_position = raycast.get_collision_point() - raycast.get_collision_normal() * safe_margin
+		$BlockSelection.position = tile_position
+	else:
+		var tile_position = Vector2(-1000, -1000)
+		$BlockSelection.position = tile_position
+		
+	'''
 	if raycast.get_collision_point().x < player.position.x:
 		block_selection.position.x = ($CaveSystem.local_to_map(raycast.get_collision_point()).x * 16) - 8
-	elif raycast.get_collision_point().x > player.position.x:
+	if raycast.get_collision_point().x > player.position.x:
 		block_selection.position.x = ($CaveSystem.local_to_map(raycast.get_collision_point()).x * 16) + 8
 		
 	if raycast.get_collision_point().y < player.position.y:
 		block_selection.position.y = ($CaveSystem.local_to_map(raycast.get_collision_point()).y * 16) - 8
-	elif raycast.get_collision_point().y > player.position.y:
+	if raycast.get_collision_point().y > player.position.y:
 		block_selection.position.y = ($CaveSystem.local_to_map(raycast.get_collision_point()).y * 16) + 8
-	
-	print(raycast.rotation)
-	if raycast.rotation >= rad_to_deg(360):
-		raycast.rotation = 0
-	if raycast.rotation <= rad_to_deg(-360):
-		raycast.rotation = 0
-	
+	'''
 		
 	var tile_pos = $CaveSystem.local_to_map($CaveSystem.get_global_mouse_position())
 	var tile_data = $CaveSystem.get_cell_tile_data(tile_pos)
@@ -61,13 +64,13 @@ func _physics_process(_delta):
 
 func destroy_block():
 	if raycast.is_colliding():
-		var safe_margin = 1.0
 		var tile_pos = raycast.get_collision_point() - raycast.get_collision_normal() * safe_margin
 		
 		print("Block Position: ", block_selection.position)
 		#block_selection.rotation = 0
 		tile_pos /= 16
 		tile_pos = floor(tile_pos)
+		$BlockSelection.position = $CaveSystem.local_to_map(raycast.get_collision_point())
 		
 		# Issue fixed by Xrayez: https://github.com/godotengine/godot/issues/35344, dont know how
 		

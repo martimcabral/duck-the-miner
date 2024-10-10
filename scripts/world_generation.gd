@@ -51,7 +51,7 @@ func create_world_borders():
 
 func _ready():
 	start_music()
-	#create_world_borders()
+	create_world_borders()
 	
 	var fnl = FastNoiseLite.new()
 	
@@ -82,8 +82,6 @@ func _ready():
 			if noise == 0:
 				%CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
 	
-	# Put "Normal Asteroid Type" Ores
-	#_on_time_to_put_ores_timeout()
 	#Create safe Cube
 	start_position()
 
