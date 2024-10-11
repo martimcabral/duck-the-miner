@@ -16,6 +16,18 @@ var used_tiles = {}
 @onready var block_selection = $"../TileMap/BlockSelection"
 @onready var player = $"../Player"
 
+var player_texture = preload("res://assets/textures/duck.png")
+var squat_texture = preload("res://assets/textures/duck_squat.png")
+var fly_texture = preload("res://assets/textures/duck_fly.png")
+
+var cursor_texture_sword = preload("res://assets/textures/cursors/diamond_sword.png")
+var cursor_texture_pickaxe = preload("res://assets/textures/cursors/diamond_pickaxe.png")
+var cursor_texture_torch = preload("res://assets/textures/cursors/torch.png")
+var cursor_texture_flashlight = preload("res://assets/textures/cursors/flashlight_item.png")
+
+var block_selection_default = preload("res://assets/textures/selected_block.png")
+var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
+
 func player_movement(input, delta):
 	if input: 
 		if Input.is_action_pressed("Agachar"):
@@ -37,23 +49,28 @@ func _physics_process(delta):
 	var tile_id = %CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/Player Sounds".position = tile_pos
 	
+		
 	if Input.is_action_pressed("Destroy_Block"):
+		var offset = Vector2i(-8, -8)
+		var block_selection_position = (Vector2i(%CaveSystem.get_global_mouse_position()) - offset)
+		
+		var tile_size = Vector2(16, 16)
 		var mouse_pos = get_global_mouse_position()
 		var local_mouse_pos = $BlockRange.to_local(mouse_pos)
+		
+		block_selection_position = block_selection_position.snapped(tile_size)
+		$"../TileMap/BlockSelection".position = block_selection_position
+		
 		var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 		var radius = (collision_shape as CircleShape2D).radius
 		
 		if local_mouse_pos.length() <= radius:
-			var offset = Vector2i(-8, -8)
-			var block_selection_position = (Vector2i(%CaveSystem.get_global_mouse_position()) - offset)
-			var tile_size = Vector2(16, 16)
-			
-			block_selection_position = block_selection_position.snapped(tile_size)
-			$"../TileMap/BlockSelection".position = block_selection_position
+			$"../TileMap/BlockSelection".texture = block_selection_default
 		else:
-			$"../TileMap/BlockSelection".position = Vector2(-128, -128)
+			$"../TileMap/BlockSelection".texture = block_selection_out
 	else:
 		$"../TileMap/BlockSelection".position = Vector2(-128, -128)
+		$"../TileMap/BlockSelection".texture = block_selection_default
 		
 	if (Input.is_action_just_pressed("Place_Block")):
 		# 1. Get the global position of the mouse
@@ -82,14 +99,13 @@ func _physics_process(delta):
 				used_tiles[tile_pos] = {"health": tile_health} 
 				used_tiles[tile_pos]["health"] = tile_health
 	
-	var player_texture = preload("res://assets/textures/duck.png")
-	var squat_texture = preload("res://assets/textures/duck_squat.png")
-	
 	var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
 	player_movement(input, delta)
 	move_and_slide()
 	
-	if Input.is_action_pressed("Agachar"):
+	if not is_on_floor():
+		$Sprite2D.texture = fly_texture
+	elif Input.is_action_pressed("Agachar"):
 		$Sprite2D.texture = squat_texture
 	else:
 		$Sprite2D.texture = player_texture
@@ -109,20 +125,16 @@ func _physics_process(delta):
 	# Mudar o Cursor dependendo do Item selecinado da Hotbar
 	if Input.is_action_just_pressed("Hotbar_1"):
 		current_item = 1
-		var cursor_texture = preload("res://assets/textures/cursors/diamond_sword.png")
-		Input.set_custom_mouse_cursor(cursor_texture)
+		Input.set_custom_mouse_cursor(cursor_texture_sword)
 	if Input.is_action_just_pressed("Hotbar_2"):
 		current_item = 2
-		var cursor_texture = preload("res://assets/textures/cursors/diamond_pickaxe.png")
-		Input.set_custom_mouse_cursor(cursor_texture)
+		Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 	if Input.is_action_just_pressed("Hotbar_3"):
 		current_item = 3
-		var cursor_texture = preload("res://assets/textures/cursors/torch.png")
-		Input.set_custom_mouse_cursor(cursor_texture)
+		Input.set_custom_mouse_cursor(cursor_texture_torch)
 	if Input.is_action_just_pressed("Hotbar_4"):
 		current_item = 4
-		var cursor_texture = preload("res://assets/textures/cursors/flashlight_item.png")
-		Input.set_custom_mouse_cursor(cursor_texture)
+		Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):
