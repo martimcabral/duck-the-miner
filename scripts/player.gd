@@ -16,6 +16,10 @@ var used_tiles = {}
 @onready var block_selection = $"../TileMap/BlockSelection"
 @onready var player = $"../Player"
 
+@onready var CaveSystem = $"../TileMap/CaveSystem"
+@onready var BreakingStages = $"../TileMap/BreakingStages"
+
+
 var player_texture = preload("res://assets/textures/duck.png")
 var squat_texture = preload("res://assets/textures/duck_squat.png")
 var fly_texture = preload("res://assets/textures/duck_fly.png")
@@ -44,15 +48,15 @@ func player_movement(input, delta):
 	velocity.y += falling_speed * delta
 
 func _physics_process(delta):
-	var tile_pos = %CaveSystem.local_to_map(%CaveSystem.get_global_mouse_position())
-	var tile_data = %CaveSystem.get_cell_tile_data(tile_pos)
-	var tile_id = %CaveSystem.get_cell_atlas_coords(tile_pos)
+	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
+	var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
+	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/Player Sounds".position = tile_pos
 	
 		
 	if Input.is_action_pressed("Destroy_Block"):
 		var offset = Vector2i(-8, -8)
-		var block_selection_position = (Vector2i(%CaveSystem.get_global_mouse_position()) - offset)
+		var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
 		
 		var tile_size = Vector2(16, 16)
 		var mouse_pos = get_global_mouse_position()
@@ -73,28 +77,20 @@ func _physics_process(delta):
 		$"../TileMap/BlockSelection".texture = block_selection_default
 		
 	if (Input.is_action_just_pressed("Place_Block")):
-		# 1. Get the global position of the mouse
 		var mouse_pos = get_global_mouse_position()
-		
-		# 2. Convert the global mouse position to the local position of the Area2D
 		var local_mouse_pos = $BlockRange.to_local(mouse_pos)
-		
-		# 3. Get the CollisionShape2D's shape
 		var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
-		
-		# 4. Get CollisionShape2D's size
 		var radius = (collision_shape as CircleShape2D).radius
 		
-		# 5. If the mouse is within the Area2D/BlockRange than start to destroy EVERYTHING
 		if local_mouse_pos.length() <= radius:
-			if (%CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
+			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 				print(tile_data, " ", tile_id)
-				%CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
+				CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 0))
 				$"../Player/Player Sounds/PlaceBlock".play()
 				print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
 				
 				# Reload Used Tiles Dictionary
-				var tile_health = 1000
+				var tile_health = 12500
 				used_tiles[tile_pos] = {"pos" : tile_pos}
 				used_tiles[tile_pos] = {"health": tile_health} 
 				used_tiles[tile_pos]["health"] = tile_health
@@ -149,9 +145,9 @@ func _physics_process(delta):
 	"\nY: " + str(int($".".position.y / 16))
 
 func destroy_block():
-		var tile_pos = %CaveSystem.local_to_map(%CaveSystem.get_global_mouse_position())
-		var tile_data = %CaveSystem.get_cell_tile_data(tile_pos)
-		var tile_id = %CaveSystem.get_cell_atlas_coords(tile_pos)
+		var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
+		var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
+		var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	
 		if player.current_item == 2:
 			#print("Data: ", used_tiles, " ", tile_id)
@@ -180,11 +176,25 @@ func destroy_block():
 				# Reduce health of the tile
 				if used_tiles[tile_pos]["health"] > 0:
 					used_tiles[tile_pos]["health"] -= 350  # Reduce health
-
+				
+				# Detect percentage of the health of the Tile here:
+				var percentage = float(used_tiles[tile_pos]["health"]) / tile_health * 100
+				print(percentage, "%")
+				if (percentage >= 76 and percentage <= 100):
+					BreakingStages.set_cell(tile_pos, 0, Vector2i(0, 0))
+				elif (percentage >= 50 and percentage <= 75):
+					BreakingStages.set_cell(tile_pos, 0, Vector2i(1, 0))
+				elif (percentage >= 25 and percentage <= 49):
+					BreakingStages.set_cell(tile_pos, 0, Vector2i(2, 0))
+				elif (percentage >= 1 and percentage <= 24):
+					BreakingStages.set_cell(tile_pos, 0, Vector2i(3, 0))
+				elif percentage < 1:
+					BreakingStages.set_cell(tile_pos, 0, Vector2i(4, 0))
+				
 				# Check if the tile's health drops to 0 or below
 				if used_tiles[tile_pos]["health"] <= 0:
 					if not used_tiles[tile_pos]["health"] == -1:
-						%CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 1))  # Destroy the tile
+						CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 1))  # Destroy the tile
 
 func _on_minning_cooldown_timeout() -> void:
 	if Input.is_action_pressed("Destroy_Block"):
