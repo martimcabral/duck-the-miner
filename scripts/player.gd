@@ -154,7 +154,7 @@ func destroy_block():
 		var tile_id = %CaveSystem.get_cell_atlas_coords(tile_pos)
 	
 		if player.current_item == 2:
-			print("Data: ", used_tiles, " ", tile_id)
+			#print("Data: ", used_tiles, " ", tile_id)
 			# Get health
 			var tile_health = tile_data.get_custom_data("health")
 		

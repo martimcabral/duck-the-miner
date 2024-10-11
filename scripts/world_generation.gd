@@ -118,20 +118,22 @@ func put_ore(ore_height_min, ore_height_max, spawn_chance, atlas_coords):
 					%CaveSystem.set_cell(tile_pos, 0, atlas_coords)
 
 func put_coal():
-	put_ore(0, 200, 15, Vector2i(1, 0))
+	put_ore(0, 200, 35, Vector2i(1, 0))
 func put_copper():
-	put_ore(0, 500, 15, Vector2i(1, 2))
+	put_ore(0, 500, 35, Vector2i(1, 2))
 func put_iron():
-	put_ore(200, 600, 30, Vector2i(2, 0))
+	put_ore(200, 600, 60, Vector2i(2, 0))
 func put_gold():
-	put_ore(500, 800, 100, Vector2i(0, 2))
+	put_ore(500, 800, 200, Vector2i(0, 2))
 func put_diamond():
-	put_ore(925, 1000, 150, Vector2i(3, 0))
+	put_ore(900, 1000, 425, Vector2i(3, 0))
+func put_ice():
+	put_ore(0, 1000, 300, Vector2i(3, 2))
 
 func put_gems():
 	for x in range(world_width):
 		for y in range(500, 1000):
-			if randi_range(0, 300) == 1:
+			if randi_range(0, 750) == 1:
 				var tile_pos = Vector2i(x, y)
 				if %CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
 					var random_gem = randi_range(1, 3)
@@ -140,7 +142,9 @@ func put_gems():
 						2: %CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
 						3: %CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
 
+
 func _on_time_to_put_ores_timeout() -> void:
+	put_ice()
 	put_coal()
 	put_copper()
 	put_iron()

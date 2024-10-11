@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ur4yarmj6ihc"]
+[gd_scene load_steps=25 format=3 uid="uid://ur4yarmj6ihc"]
 
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
@@ -37,6 +37,9 @@ polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cuhsb"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j8f3j"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iefnk"]
@@ -83,6 +86,10 @@ texture = ExtResource("3_ty73d")
 3:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_cuhsb")
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0/custom_data_0 = 10000
+3:2/0 = 0
+3:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_j8f3j")
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0/custom_data_0 = 500
 
 [sub_resource type="TileSet" id="TileSet_60hiy"]
 occlusion_layer_0/light_mask = 1
@@ -137,6 +144,7 @@ one_shot = true
 autostart = true
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.158472, 0.158472, 0.158472, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
