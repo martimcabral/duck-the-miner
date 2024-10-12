@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4b74pb4jbp36"
-path="res://.godot/imported/diamond_sword.png-f3048c243d7091c69dada04211d56dfe.ctex"
+uid="uid://c7njuvmbuaqqf"
+path="res://.godot/imported/debug_pickaxe.png-d8d0341795e9c4070f695d8796ce231c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/cursors/diamond_sword.png"
-dest_files=["res://.godot/imported/diamond_sword.png-f3048c243d7091c69dada04211d56dfe.ctex"]
+source_file="res://assets/textures/equipment/pickaxes/debug_pickaxe.png"
+dest_files=["res://.godot/imported/debug_pickaxe.png-d8d0341795e9c4070f695d8796ce231c.ctex"]
 
 [params]
 

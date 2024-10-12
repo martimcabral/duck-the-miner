@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ban7u5olbgpy4"
-path="res://.godot/imported/diamond_pickaxe.png-012bca6a6219a156bb8345cef46734e1.ctex"
+uid="uid://b0kd5s0wa7lbf"
+path="res://.godot/imported/duck_fly.png-00aa99ffa400368ea10036ab8ef3f01a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/cursors/diamond_pickaxe.png"
-dest_files=["res://.godot/imported/diamond_pickaxe.png-012bca6a6219a156bb8345cef46734e1.ctex"]
+source_file="res://assets/textures/players/duck_fly.png"
+dest_files=["res://.godot/imported/duck_fly.png-00aa99ffa400368ea10036ab8ef3f01a.ctex"]
 
 [params]
 

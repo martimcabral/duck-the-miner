@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Texture2D" uid="uid://cs5hgtiamef40" path="res://assets/textures/destroy_stages/stages.png" id="4_qexfe"]
-[ext_resource type="Script" path="res://scenes/place_torch.gd" id="4_ys0ii"]
+[ext_resource type="Script" path="res://scripts/place_light.gd" id="4_ys0ii"]
 [ext_resource type="Texture2D" uid="uid://b8523lkw1l4p7" path="res://assets/textures/selected_block.png" id="5_16s1h"]
 [ext_resource type="AudioStream" uid="uid://t2ki8ixqk78s" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://bjjm88pfvbfb4" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]

@@ -13,5 +13,5 @@ func _process(_delta: float) -> void:
 				$".".energy = 0
 				flashlight = false
 			false:
-				$".".energy = 1
+				$".".energy = 1.75
 				flashlight = true

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddu4kp3hwti45"]
+
+[ext_resource type="Texture2D" uid="uid://ccnl4eoru32e0" path="res://assets/textures/bulkhead_light.png" id="1_vjsog"]
+[ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/point_light.png" id="2_ibwq3"]
+
+[node name="BulkheadLight" type="Node2D"]
+texture_filter = 1
+scale = Vector2(0.75, 0.75)
+
+[node name="LightSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_vjsog")
+offset = Vector2(-0.5, 0)
+
+[node name="MediumLight" type="PointLight2D" parent="LightSprite"]
+color = Color(1, 0.567992, 0.381208, 1)
+texture = ExtResource("2_ibwq3")

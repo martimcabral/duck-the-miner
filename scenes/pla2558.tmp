@@ -54,7 +54,7 @@ texture_scale = 0.3
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 texture_filter = 1
-color = Color(0.630067, 0.268899, 0.999979, 1)
+color = Color(0.812231, 0.697099, 1, 1)
 energy = 0.0
 texture = ExtResource("4_83sd1")
 offset = Vector2(116, 0)
@@ -82,7 +82,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("6_s2420")
 theme_override_font_sizes/normal_font_size = 32
-text = "prototype.0.18"
+text = "prototype.0.18.2"
 tab_size = 5
 
 [node name="PlayerPosition" type="RichTextLabel" parent="Camera2D/HUD"]

@@ -20,14 +20,14 @@ var used_tiles = {}
 @onready var BreakingStages = $"../TileMap/BreakingStages"
 
 
-var player_texture = preload("res://assets/textures/duck.png")
-var squat_texture = preload("res://assets/textures/duck_squat.png")
-var fly_texture = preload("res://assets/textures/duck_fly.png")
+var player_texture = preload("res://assets/textures/players/duck.png")
+var squat_texture = preload("res://assets/textures/players/duck_squat.png")
+var fly_texture = preload("res://assets/textures/players/duck_fly.png")
 
-var cursor_texture_sword = preload("res://assets/textures/cursors/diamond_sword.png")
-var cursor_texture_pickaxe = preload("res://assets/textures/cursors/diamond_pickaxe.png")
-var cursor_texture_torch = preload("res://assets/textures/cursors/torch.png")
-var cursor_texture_flashlight = preload("res://assets/textures/cursors/flashlight_item.png")
+var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
+var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
+var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
+var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/flashlight_item.png")
 
 var block_selection_default = preload("res://assets/textures/selected_block.png")
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
@@ -89,7 +89,7 @@ func _physics_process(delta):
 				$"../Player/Player Sounds/PlaceBlock".play()
 				print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
 				
-				# Reload Used Tiles Dictionary
+				# Restart new Tile on Used Tiles Dictionary
 				var tile_health = 12500
 				used_tiles[tile_pos] = {"pos" : tile_pos}
 				used_tiles[tile_pos] = {"health": tile_health} 
@@ -124,10 +124,10 @@ func _physics_process(delta):
 		Input.set_custom_mouse_cursor(cursor_texture_sword)
 	if Input.is_action_just_pressed("Hotbar_2"):
 		current_item = 2
-		Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
+		Input.set_custom_mouse_cursor(cursor_texture_pickaxe, Input.get_current_cursor_shape(), Vector2(9, 9))
 	if Input.is_action_just_pressed("Hotbar_3"):
 		current_item = 3
-		Input.set_custom_mouse_cursor(cursor_texture_torch)
+		Input.set_custom_mouse_cursor(cursor_texture_light)
 	if Input.is_action_just_pressed("Hotbar_4"):
 		current_item = 4
 		Input.set_custom_mouse_cursor(cursor_texture_flashlight)

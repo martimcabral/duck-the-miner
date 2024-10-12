@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n2kwk7luqlx8"
-path="res://.godot/imported/duck.png-8e99192f5f0a1f08a699f7669acc68f6.ctex"
+uid="uid://coqirkcawixar"
+path="res://.godot/imported/flashlight_item.png-3a640cec8b98864264279eda528bec73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/duck.png"
-dest_files=["res://.godot/imported/duck.png-8e99192f5f0a1f08a699f7669acc68f6.ctex"]
+source_file="res://assets/textures/equipment/others/flashlight_item.png"
+dest_files=["res://.godot/imported/flashlight_item.png-3a640cec8b98864264279eda528bec73.ctex"]
 
 [params]
 
