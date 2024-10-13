@@ -5,7 +5,6 @@
 
 [node name="BulkheadLight" type="Node2D"]
 texture_filter = 1
-scale = Vector2(0.75, 0.75)
 
 [node name="LightSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -15,3 +14,4 @@ offset = Vector2(-0.5, 0)
 [node name="MediumLight" type="PointLight2D" parent="LightSprite"]
 color = Color(1, 0.567992, 0.381208, 1)
 texture = ExtResource("2_ibwq3")
+texture_scale = 1.1

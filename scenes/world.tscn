@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Texture2D" uid="uid://cs5hgtiamef40" path="res://assets/textures/destroy_stages/stages.png" id="4_qexfe"]
-[ext_resource type="Script" path="res://scripts/place_light.gd" id="4_ys0ii"]
+[ext_resource type="Script" path="res://scripts/map_management.gd" id="4_ys0ii"]
 [ext_resource type="Texture2D" uid="uid://b8523lkw1l4p7" path="res://assets/textures/selected_block.png" id="5_16s1h"]
 [ext_resource type="AudioStream" uid="uid://t2ki8ixqk78s" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://bjjm88pfvbfb4" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
@@ -130,29 +130,30 @@ script = ExtResource("1_nmwod")
 
 [node name="Player" parent="." instance=ExtResource("1_5mm4o")]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="WorldTileMap" type="TileMap" parent="."]
+unique_name_in_owner = true
 texture_filter = 1
 tile_set = SubResource("TileSet_60hiy")
 format = 2
 script = ExtResource("4_ys0ii")
 
-[node name="BlockSelection" type="Sprite2D" parent="TileMap"]
+[node name="BlockSelection" type="Sprite2D" parent="WorldTileMap"]
 physics_interpolation_mode = 2
 z_index = 3
 position = Vector2(16, 16)
 texture = ExtResource("5_16s1h")
 offset = Vector2(-8, -8)
 
-[node name="CaveSystem" type="TileMapLayer" parent="TileMap"]
+[node name="CaveSystem" type="TileMapLayer" parent="WorldTileMap"]
 texture_filter = 1
 use_parent_material = true
 tile_set = SubResource("TileSet_60hiy")
 collision_visibility_mode = 2
 
-[node name="BreakingStages" type="TileMapLayer" parent="TileMap"]
+[node name="BreakingStages" type="TileMapLayer" parent="WorldTileMap"]
 tile_set = SubResource("TileSet_inx3v")
 
-[node name="TimeToPutOres" type="Timer" parent="TileMap"]
+[node name="TimeToPutOres" type="Timer" parent="WorldTileMap"]
 wait_time = 0.5
 one_shot = true
 autostart = true
@@ -182,5 +183,5 @@ process_callback = 0
 wait_time = 180.0
 autostart = true
 
-[connection signal="timeout" from="TileMap/TimeToPutOres" to="." method="_on_time_to_put_ores_timeout"]
+[connection signal="timeout" from="WorldTileMap/TimeToPutOres" to="." method="_on_time_to_put_ores_timeout"]
 [connection signal="timeout" from="WorldMusic/MusicTimer" to="." method="_on_music_timer_timeout"]

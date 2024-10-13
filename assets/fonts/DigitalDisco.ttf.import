@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bpn3yj5q4brhr"
-path="res://.godot/imported/AfacadFlux-Regular.ttf-fd654b9fdae2939ec44aa0225143e5bb.fontdata"
+uid="uid://oo1tec15vxnj"
+path="res://.godot/imported/DigitalDisco.ttf-ae203d9ded67e9418ad6c7273dc0616a.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/AfacadFlux-Regular.ttf"
-dest_files=["res://.godot/imported/AfacadFlux-Regular.ttf-fd654b9fdae2939ec44aa0225143e5bb.fontdata"]
+source_file="res://assets/fonts/DigitalDisco.ttf"
+dest_files=["res://.godot/imported/DigitalDisco.ttf-ae203d9ded67e9418ad6c7273dc0616a.fontdata"]
 
 [params]
 

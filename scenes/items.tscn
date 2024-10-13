@@ -1,0 +1,167 @@
+[gd_scene load_steps=19 format=3 uid="uid://bt6nq358dvhmj"]
+
+[ext_resource type="Script" path="res://scripts/dropped_items_physics.gd" id="1_12pfw"]
+[ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/raw/coal.png" id="1_62rds"]
+[ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/raw/ice.png" id="2_m5k01"]
+[ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/raw/diamond.png" id="3_j7l03"]
+[ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/raw/ruby.png" id="5_hkxh7"]
+[ext_resource type="Texture2D" uid="uid://dtbodpsor8bxe" path="res://assets/textures/items/raw/emerald.png" id="6_yo33a"]
+[ext_resource type="Texture2D" uid="uid://do2s5c8qpavqr" path="res://assets/textures/items/raw/sapphire.png" id="7_8muc8"]
+[ext_resource type="Texture2D" uid="uid://crhuk630gaw4s" path="res://assets/textures/items/raw/rock_and_stone.png" id="8_6go0k"]
+[ext_resource type="Texture2D" uid="uid://c5a0cdedwujld" path="res://assets/textures/items/raw/raw_copper.png" id="9_rs22p"]
+[ext_resource type="Texture2D" uid="uid://w0jorqmk5pnh" path="res://assets/textures/items/raw/raw_gold.png" id="10_xm5o4"]
+[ext_resource type="Texture2D" uid="uid://g4baqgfsmkv6" path="res://assets/textures/items/raw/raw_iron.png" id="11_gvemx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s40fl"]
+radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bx5wy"]
+size = Vector2(4.24264, 4.24264)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4whbr"]
+size = Vector2(5.70749, 1.90593)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_en54b"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mro54"]
+radius = 2.76134
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7pjy"]
+radius = 2.60864
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
+size = Vector2(6.33902, 5.5559)
+
+[node name="Items" type="Node2D"]
+
+[node name="Coal" type="RigidBody2D" parent="."]
+disable_mode = 2
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Coal"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_62rds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coal"]
+shape = SubResource("CircleShape2D_s40fl")
+
+[node name="Ice" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+center_of_mass_mode = 1
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ice"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_m5k01")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ice"]
+rotation = -0.785398
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="Diamond" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Diamond"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_j7l03")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Diamond"]
+shape = SubResource("RectangleShape2D_4whbr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Diamond"]
+shape = SubResource("CircleShape2D_en54b")
+
+[node name="Ruby" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ruby"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_hkxh7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruby"]
+shape = SubResource("CircleShape2D_mro54")
+
+[node name="Emerald" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Emerald"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_yo33a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Emerald"]
+shape = SubResource("CircleShape2D_s7pjy")
+
+[node name="Sapphire" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sapphire"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_8muc8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sapphire"]
+shape = SubResource("CircleShape2D_s7pjy")
+
+[node name="Stone" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Stone"]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_6go0k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone"]
+shape = SubResource("RectangleShape2D_5sde2")
+
+[node name="RawCopper" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="RawCopper"]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_rs22p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawCopper"]
+position = Vector2(0, -0.00187063)
+shape = SubResource("RectangleShape2D_5sde2")
+
+[node name="RawGold" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="RawGold"]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_xm5o4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawGold"]
+position = Vector2(0, -0.00187063)
+shape = SubResource("RectangleShape2D_5sde2")
+
+[node name="RawIron" type="RigidBody2D" parent="."]
+gravity_scale = 0.05
+script = ExtResource("1_12pfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="RawIron"]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_gvemx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawIron"]
+position = Vector2(0, -0.00187063)
+shape = SubResource("RectangleShape2D_5sde2")
+
+[connection signal="body_entered" from="Coal" to="Coal" method="_on_body_entered"]

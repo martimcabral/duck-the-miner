@@ -5,7 +5,7 @@ var window_mode = 0
 
 var speed = 100
 const accel = 250
-const friction = 300
+const friction = 375
 const falling_speed = 150
 
 const zoom_max = Vector2(9, 9)
@@ -13,11 +13,11 @@ const zoom_min = Vector2(4.5, 4.5)
 
 var used_tiles = {}
 
-@onready var block_selection = $"../TileMap/BlockSelection"
+@onready var block_selection = $"../WorldTileMap/BlockSelection"
 @onready var player = $"../Player"
 
-@onready var CaveSystem = $"../TileMap/CaveSystem"
-@onready var BreakingStages = $"../TileMap/BreakingStages"
+@onready var CaveSystem = $"../WorldTileMap/CaveSystem"
+@onready var BreakingStages = $"../WorldTileMap/BreakingStages"
 
 
 var player_texture = preload("res://assets/textures/players/duck.png")
@@ -63,18 +63,18 @@ func _physics_process(delta):
 		var local_mouse_pos = $BlockRange.to_local(mouse_pos)
 		
 		block_selection_position = block_selection_position.snapped(tile_size)
-		$"../TileMap/BlockSelection".position = block_selection_position
+		$"../WorldTileMap/BlockSelection".position = block_selection_position
 		
 		var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 		var radius = (collision_shape as CircleShape2D).radius
 		
 		if local_mouse_pos.length() <= radius:
-			$"../TileMap/BlockSelection".texture = block_selection_default
+			$"../WorldTileMap/BlockSelection".texture = block_selection_default
 		else:
-			$"../TileMap/BlockSelection".texture = block_selection_out
+			$"../WorldTileMap/BlockSelection".texture = block_selection_out
 	else:
-		$"../TileMap/BlockSelection".position = Vector2(-128, -128)
-		$"../TileMap/BlockSelection".texture = block_selection_default
+		$"../WorldTileMap/BlockSelection".position = Vector2(-128, -128)
+		$"../WorldTileMap/BlockSelection".texture = block_selection_default
 		
 	if (Input.is_action_just_pressed("Place_Block")):
 		var mouse_pos = get_global_mouse_position()
@@ -98,19 +98,30 @@ func _physics_process(delta):
 	var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
 	player_movement(input, delta)
 	move_and_slide()
+	$AnimatedSprite2D.play()
 	
 	if not is_on_floor():
-		$Sprite2D.texture = fly_texture
-	elif Input.is_action_pressed("Agachar"):
-		$Sprite2D.texture = squat_texture
-	else:
-		$Sprite2D.texture = player_texture
+		$AnimatedSprite2D.animation = "flying"
+	if not is_on_floor() and Input.is_action_pressed("Walk_Right"):
+		$AnimatedSprite2D.flip_h = true
+	elif not is_on_floor() and Input.is_action_pressed("Walk_Left"):
+		$AnimatedSprite2D.flip_h = false
 		
-	if Input.is_action_pressed("Walk_Right"):
-		$Sprite2D.flip_h = true
-	if Input.is_action_pressed("Walk_Left"):
-		$Sprite2D.flip_h = false
-		
+	if is_on_floor() and Input.is_action_pressed("Agachar"):
+		$AnimatedSprite2D.animation = "squat"
+		if Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		elif Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+	elif is_on_floor():
+		$AnimatedSprite2D.animation = "walking"
+		if Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+		elif Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.stop()
+	
 	if Input.is_action_just_pressed("Zoom_In") or Input.is_action_pressed("Zoom_In"):
 		if $Camera2D.zoom < zoom_max:
 			$Camera2D.zoom += Vector2(0.1, 0.1)
@@ -145,10 +156,13 @@ func _physics_process(delta):
 	"\nY: " + str(int($".".position.y / 16))
 
 func destroy_block():
+####################################################################################################################################################
+####################################################################################################################################################
+####################################################################################################################################################
 		var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
 		var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
 		var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
-	
+
 		if player.current_item == 2:
 			#print("Data: ", used_tiles, " ", tile_id)
 			# Get health
@@ -194,8 +208,12 @@ func destroy_block():
 				# Check if the tile's health drops to 0 or below
 				if used_tiles[tile_pos]["health"] <= 0:
 					if not used_tiles[tile_pos]["health"] == -1:
+						var node_with_script = get_node("%WorldTileMap")
+						node_with_script.drop_items()
 						CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 1))  # Destroy the tile
-
+##################################################################################################################################################
+##################################################################################################################################################
+##################################################################################################################################################
 func _on_minning_cooldown_timeout() -> void:
 	if Input.is_action_pressed("Destroy_Block"):
 		# 1. Get the global position of the mouse

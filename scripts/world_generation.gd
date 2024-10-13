@@ -9,7 +9,7 @@ const world_height_border = 1020 # Always +20
 const world_border_up_and_down = 10
 const world_border_sides = 12
 
-@onready var CaveSystem = $TileMap/CaveSystem
+@onready var CaveSystem = $WorldTileMap/CaveSystem
 
 func _process(_delta: float) -> void:
 	$WorldMusic.position = $Player.position
@@ -100,7 +100,7 @@ func start_position():
 	$Player.position = player_position
 	
 	# Sets the tilemap position by getting player.P 
-	var player_at_tilemap_position = $TileMap.local_to_map(player_position)
+	var player_at_tilemap_position = $WorldTileMap.local_to_map(player_position)
 	
 	# Makes the cube and offeset' it to the center the plater location
 	for x in range(spawn_cube_size):
