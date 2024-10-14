@@ -4,6 +4,8 @@ extends TileMap
 @onready var block_range = $"../Player/BlockRange"
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 
+var packed_scene = load("res://scenes/items.tscn")
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
@@ -24,7 +26,6 @@ func _process(_delta: float) -> void:
 				print("Torch Placed: ", tile_pos)
 
 func drop_items():
-	var packed_scene = load("res://scenes/items.tscn")
 	var instance = packed_scene.instantiate()
 	add_child(instance)
 	
@@ -34,8 +35,8 @@ func drop_items():
 	
 	match block:
 		Vector2i(0, 0):
-			var target_node = instance.get_node("Stone")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			var target_node1 = instance.get_node("Stone")
+			target_node1.position = CaveSystem.map_to_local(tile_pos)
 		Vector2i(3, 0):
 			var target_node = instance.get_node("Diamond")
 			target_node.position = CaveSystem.map_to_local(tile_pos)

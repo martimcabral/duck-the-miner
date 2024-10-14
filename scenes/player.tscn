@@ -121,7 +121,7 @@ shape = SubResource("CircleShape2D_ig4b6")
 debug_color = Color(1, 0, 0, 0.203922)
 
 [node name="MiningCooldown" type="Timer" parent="BlockRange"]
-wait_time = 0.01
+wait_time = 0.3
 autostart = true
 
 [node name="ColissionShape" type="CollisionShape2D" parent="."]
@@ -165,8 +165,9 @@ offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 32
-text = "prototype.0.19"
+text = "prototype.0.20"
 tab_size = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayerPosition" type="RichTextLabel" parent="Camera2D/HUD"]
 offset_left = 11.0
@@ -176,6 +177,7 @@ offset_bottom = 109.0
 theme_override_font_sizes/normal_font_size = 32
 text = "X: 0
 Y: 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="Player Sounds" type="Node2D" parent="."]
 

@@ -19,11 +19,6 @@ var used_tiles = {}
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var BreakingStages = $"../WorldTileMap/BreakingStages"
 
-
-var player_texture = preload("res://assets/textures/players/duck.png")
-var squat_texture = preload("res://assets/textures/players/duck_squat.png")
-var fly_texture = preload("res://assets/textures/players/duck_fly.png")
-
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
@@ -47,12 +42,11 @@ func player_movement(input, delta):
 		velocity = velocity.move_toward(Vector2(0,0), delta * friction)
 	velocity.y += falling_speed * delta
 
-func _physics_process(delta):
+func _process(delta):
 	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
 	var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
 	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/Player Sounds".position = tile_pos
-	
 		
 	if Input.is_action_pressed("Destroy_Block"):
 		var offset = Vector2i(-8, -8)
@@ -155,10 +149,10 @@ func _physics_process(delta):
 	$Camera2D/HUD/PlayerPosition.text = "X: " + str(int($".".position.x / 16)) + \
 	"\nY: " + str(int($".".position.y / 16))
 
+####################################################################################################################################################
+####################################################################################################################################################
+####################################################################################################################################################
 func destroy_block():
-####################################################################################################################################################
-####################################################################################################################################################
-####################################################################################################################################################
 		var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
 		var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
 		var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
@@ -208,8 +202,8 @@ func destroy_block():
 				# Check if the tile's health drops to 0 or below
 				if used_tiles[tile_pos]["health"] <= 0:
 					if not used_tiles[tile_pos]["health"] == -1:
-						var node_with_script = get_node("%WorldTileMap")
-						node_with_script.drop_items()
+						var drop_the_item = get_node("%WorldTileMap")
+						drop_the_item.drop_items()
 						CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 1))  # Destroy the tile
 ##################################################################################################################################################
 ##################################################################################################################################################
@@ -232,4 +226,5 @@ func _on_minning_cooldown_timeout() -> void:
 		if local_mouse_pos.length() <= radius:
 			destroy_block()
 		else: 
-			print("[!] Trying to Destroy block outside BlockRange")
+			pass
+			#print("[!] Trying to Destroy block outside BlockRange")

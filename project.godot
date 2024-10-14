@@ -37,6 +37,10 @@ folder_colors={
 "res://sounds/": "yellow"
 }
 
+[global_group]
+
+Pickable=""
+
 [gui]
 
 theme/custom_font="res://assets/fonts/DigitalDisco.ttf"

@@ -1,14 +1,38 @@
-[gd_scene load_steps=28 format=3 uid="uid://ur4yarmj6ihc"]
+[gd_scene load_steps=43 format=3 uid="uid://ur4yarmj6ihc"]
 
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
+[ext_resource type="Script" path="res://scripts/mission_inventory.gd" id="2_lusrp"]
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Texture2D" uid="uid://cs5hgtiamef40" path="res://assets/textures/destroy_stages/stages.png" id="4_qexfe"]
+[ext_resource type="Script" path="res://scripts/detect_items.gd" id="4_rt7d7"]
 [ext_resource type="Script" path="res://scripts/map_management.gd" id="4_ys0ii"]
 [ext_resource type="Texture2D" uid="uid://b8523lkw1l4p7" path="res://assets/textures/selected_block.png" id="5_16s1h"]
+[ext_resource type="Texture2D" uid="uid://crhuk630gaw4s" path="res://assets/textures/items/raw/rock_and_stone.png" id="5_afg1n"]
+[ext_resource type="AudioStream" uid="uid://dtjvjmxoeugcy" path="res://sounds/sound_efects/pickup_item.ogg" id="5_j2snb"]
+[ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/raw/coal.png" id="6_ck0wk"]
+[ext_resource type="Texture2D" uid="uid://c5a0cdedwujld" path="res://assets/textures/items/raw/raw_copper.png" id="7_fenvg"]
+[ext_resource type="Texture2D" uid="uid://g4baqgfsmkv6" path="res://assets/textures/items/raw/raw_iron.png" id="8_gg1lu"]
 [ext_resource type="AudioStream" uid="uid://t2ki8ixqk78s" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://bjjm88pfvbfb4" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
+[ext_resource type="Texture2D" uid="uid://w0jorqmk5pnh" path="res://assets/textures/items/raw/raw_gold.png" id="9_ll1m0"]
 [ext_resource type="AudioStream" uid="uid://d3o7v1blw5tgy" path="res://sounds/musics/void.ogg" id="10_7k7pq"]
+[ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/raw/ice.png" id="10_sr6bu"]
+[ext_resource type="Texture2D" uid="uid://dtbodpsor8bxe" path="res://assets/textures/items/raw/emerald.png" id="11_lio1y"]
+[ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/raw/ruby.png" id="12_fbgad"]
+[ext_resource type="Texture2D" uid="uid://do2s5c8qpavqr" path="res://assets/textures/items/raw/sapphire.png" id="13_4vxl0"]
+[ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/raw/diamond.png" id="14_fsffw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_288kb"]
+radius = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3oei7"]
+bg_color = Color(1, 1, 1, 0.301961)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+corner_radius_top_left = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fbxys"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -122,13 +146,364 @@ background_mode = 3
 tonemap_mode = 3
 tonemap_exposure = 0.86
 tonemap_white = 5.58
-adjustment_enabled = true
+ssil_radius = 6.9
+ssil_intensity = 5.85
+ssil_sharpness = 0.0
+ssil_normal_rejection = 0.0
+fog_height = 417.19
 adjustment_color_correction = SubResource("GradientTexture2D_4634m")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_nmwod")
 
+[node name="MissionInventory" type="Node2D" parent="."]
+script = ExtResource("2_lusrp")
+
 [node name="Player" parent="." instance=ExtResource("1_5mm4o")]
+
+[node name="PickupItemsRange2" type="Area2D" parent="Player" groups=["Pickable"]]
+script = ExtResource("4_rt7d7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickupItemsRange2"]
+shape = SubResource("CircleShape2D_288kb")
+debug_color = Color(0.000645722, 0.218362, 1, 0.419608)
+
+[node name="PickupItem" type="AudioStreamPlayer2D" parent="Player/PickupItemsRange2"]
+stream = ExtResource("5_j2snb")
+
+[node name="HUD" type="CanvasLayer" parent="Player"]
+
+[node name="WorldMissionInventory" type="Panel" parent="Player/HUD"]
+z_index = -1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -227.0
+offset_top = 39.0
+offset_right = -1.0
+offset_bottom = 299.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3oei7")
+
+[node name="TeamInventoryLabel" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory"]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0929202
+anchor_top = 0.0116732
+anchor_right = 0.0929202
+anchor_bottom = 0.0116732
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 193.0
+offset_bottom = 51.0
+theme_override_font_sizes/normal_font_size = 24
+text = "Team Inventory"
+metadata/_edit_use_anchors_ = true
+
+[node name="Stone" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0309735
+anchor_top = -0.00673667
+anchor_right = 0.0309735
+anchor_bottom = -0.00673667
+offset_left = 10.0
+offset_top = 42.0
+offset_right = 50.0
+offset_bottom = 80.0
+tooltip_text = "    Stone"
+texture = ExtResource("5_afg1n")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/Stone"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.275
+anchor_top = 0.289474
+anchor_right = 3.225
+anchor_bottom = 0.921053
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Coal" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0309735
+anchor_top = -0.0311284
+anchor_right = 0.00442478
+anchor_bottom = -0.00389105
+offset_left = 20.0
+offset_top = 84.0
+offset_right = 60.0
+offset_bottom = 122.0
+tooltip_text = "    Coal"
+texture = ExtResource("6_ck0wk")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/Coal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.11754
+anchor_top = 0.331735
+anchor_right = 2.09831
+anchor_bottom = 0.934138
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="RawCopper" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0855272
+anchor_top = -0.170651
+anchor_right = -0.0855272
+anchor_bottom = -0.170651
+offset_left = 35.84
+offset_top = 167.36
+offset_right = 75.84
+offset_bottom = 205.36
+tooltip_text = "    Raw Copper"
+texture = ExtResource("7_fenvg")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/RawCopper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.222821
+anchor_top = 0.22971
+anchor_right = 0.222821
+anchor_bottom = 0.22971
+offset_left = 41.628
+offset_top = 0.0150013
+offset_right = 92.628
+offset_bottom = 27.0413
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="RawIron" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0805273
+anchor_top = -0.0147354
+anchor_right = -0.0805273
+anchor_bottom = -0.0147354
+offset_left = 35.84
+offset_top = 167.36
+offset_right = 75.84
+offset_bottom = 205.36
+tooltip_text = "    Raw Iron"
+texture = ExtResource("8_gg1lu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/RawIron"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.209301
+anchor_top = 0.22971
+anchor_right = 0.209301
+anchor_bottom = 0.22971
+offset_left = 41.628
+offset_top = 0.0150013
+offset_right = 92.628
+offset_bottom = 27.0413
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="RawGold" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0805273
+anchor_top = 0.152044
+anchor_right = -0.0805273
+anchor_bottom = 0.152044
+offset_left = 35.84
+offset_top = 167.36
+offset_right = 75.84
+offset_bottom = 205.36
+tooltip_text = "    Raw Gold"
+texture = ExtResource("9_ll1m0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/RawGold"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.234301
+anchor_top = 0.22971
+anchor_right = 0.234301
+anchor_bottom = 0.22971
+offset_left = 41.628
+offset_top = 0.0150013
+offset_right = 92.628
+offset_bottom = 27.0413
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Ice" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.530973
+anchor_top = 0.00100055
+anchor_right = 0.530973
+anchor_bottom = 0.00100057
+offset_left = 10.0
+offset_top = 42.0
+offset_right = 50.0
+offset_bottom = 80.0
+tooltip_text = "    Stone"
+texture = ExtResource("10_sr6bu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/Ice"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.175
+anchor_top = 0.289474
+anchor_right = 3.125
+anchor_bottom = 0.921053
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Emerald" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.464602
+anchor_top = -0.0311284
+anchor_right = 0.495575
+anchor_bottom = -0.00389105
+offset_left = 20.0
+offset_top = 84.0
+offset_right = 60.0
+offset_bottom = 122.0
+tooltip_text = "    Coal"
+texture = ExtResource("11_lio1y")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/Emerald"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.09671
+anchor_top = 0.331735
+anchor_right = 2.07748
+anchor_bottom = 0.934138
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Ruby" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.394513
+anchor_top = -0.188216
+anchor_right = 0.425487
+anchor_bottom = -0.157088
+offset_left = 35.84
+offset_top = 167.36
+offset_right = 75.84
+offset_bottom = 205.36
+tooltip_text = "    Raw Copper"
+texture = ExtResource("12_fbgad")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/Ruby"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.212714
+anchor_top = 0.294927
+anchor_right = 0.212714
+anchor_bottom = 0.294927
+offset_left = 41.628
+offset_top = 0.0150013
+offset_right = 92.628
+offset_bottom = 27.0413
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Sapphire" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.390088
+anchor_top = -0.0286831
+anchor_right = 0.425487
+anchor_bottom = 0.0102275
+offset_left = 35.84
+offset_top = 167.36
+offset_right = 75.84
+offset_bottom = 205.36
+tooltip_text = "    Raw Iron"
+texture = ExtResource("13_4vxl0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/Sapphire"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.242634
+anchor_top = 0.313043
+anchor_right = 0.242634
+anchor_bottom = 0.313043
+offset_left = 41.628
+offset_top = 0.0150013
+offset_right = 92.628
+offset_bottom = 27.0413
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Diamond" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.416637
+anchor_top = 0.154196
+anchor_right = 0.416637
+anchor_bottom = 0.154196
+offset_left = 35.84
+offset_top = 167.36
+offset_right = 75.84
+offset_bottom = 205.36
+tooltip_text = "    Raw Gold"
+texture = ExtResource("14_fsffw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Amount" type="RichTextLabel" parent="Player/HUD/WorldMissionInventory/Diamond"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109301
+anchor_top = 0.22971
+anchor_right = 0.109301
+anchor_bottom = 0.22971
+offset_left = 41.628
+offset_top = 0.0150013
+offset_right = 92.628
+offset_bottom = 27.0413
+theme_override_font_sizes/normal_font_size = 24
+text = ": 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="WorldTileMap" type="TileMap" parent="."]
 unique_name_in_owner = true
@@ -183,5 +558,6 @@ process_callback = 0
 wait_time = 180.0
 autostart = true
 
+[connection signal="body_entered" from="Player/PickupItemsRange2" to="Player/PickupItemsRange2" method="_on_body_entered"]
 [connection signal="timeout" from="WorldTileMap/TimeToPutOres" to="." method="_on_time_to_put_ores_timeout"]
 [connection signal="timeout" from="WorldMusic/MusicTimer" to="." method="_on_music_timer_timeout"]
