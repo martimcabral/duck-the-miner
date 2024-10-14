@@ -83,7 +83,7 @@ func _ready():
 			if noise == 0:
 				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
 	
-	#Create safe Cube
+	#Create safe Cube	
 	start_position()
 
 # Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024

@@ -27,40 +27,38 @@ func _process(_delta: float) -> void:
 
 func drop_items():
 	var instance = packed_scene.instantiate()
-	add_child(instance)
 	
 	var tile_pos = get_global_mouse_position() / 16
-	print(get_global_mouse_position())
 	var block = CaveSystem.get_cell_atlas_coords(tile_pos)
 	
+	var item_name = ""
 	match block:
 		Vector2i(0, 0):
-			var target_node1 = instance.get_node("Stone")
-			target_node1.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "Stone"
 		Vector2i(3, 0):
-			var target_node = instance.get_node("Diamond")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "Diamond"
 		Vector2i(3, 2):
-			var target_node = instance.get_node("Ice")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "Ice"
 		Vector2i(1, 1):
-			var target_node = instance.get_node("Emerald")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "Emerald"
 		Vector2i(2, 1):
-			var target_node = instance.get_node("Ruby")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "Ruby"
 		Vector2i(3, 1):
-			var target_node = instance.get_node("Sapphire")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "Sapphire"
 		Vector2i(1, 0):
-			var target_node = instance.get_node("Coal")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "Coal"
 		Vector2i(2, 0):
-			var target_node = instance.get_node("RawIron")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "RawIron"
 		Vector2i(0, 2):
-			var target_node = instance.get_node("RawGold")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "RawGold"
 		Vector2i(1, 2):
-			var target_node = instance.get_node("RawCopper")
-			target_node.position = CaveSystem.map_to_local(tile_pos)
+			item_name = "RawCopper"
+		
+	if item_name != "":
+		var target_node = instance.get_node(item_name)
+		target_node.get_parent().remove_child(target_node)  # Remove the item from its original parent
+		target_node.owner = null  # Unset the owner to avoid inconsistency
+		add_child(target_node)  # Add the item to the current scene
+		target_node.position = CaveSystem.map_to_local(tile_pos)
+
+# © Sr. Patinho // 2007-2024 🦆
