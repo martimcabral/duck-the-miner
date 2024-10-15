@@ -9,7 +9,7 @@ const friction = 375
 const falling_speed = 150
 
 const zoom_max = Vector2(9, 9)
-const zoom_min = Vector2(4.5, 4.5)
+const zoom_min = Vector2(3.05, 3.05)
 
 var used_tiles = {}
 
@@ -79,7 +79,7 @@ func _process(delta):
 		if local_mouse_pos.length() <= radius:
 			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 				print(tile_data, " ", tile_id)
-				CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 0))
+				CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
 				$"../Player/Player Sounds/PlaceBlock".play()
 				print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
 				

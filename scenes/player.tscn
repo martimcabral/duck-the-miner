@@ -146,7 +146,7 @@ texture_scale = 0.66
 script = ExtResource("5_2nen5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.5, 4.5)
+zoom = Vector2(3.05, 3.05)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
@@ -165,7 +165,7 @@ offset_bottom = -1.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 32
-text = "prototype.0.20"
+text = "prototype.0.21"
 tab_size = 5
 metadata/_edit_use_anchors_ = true
 
