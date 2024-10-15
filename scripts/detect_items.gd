@@ -4,28 +4,30 @@ extends Area2D
 
 func _on_body_entered(body : Node2D):
 	if body.is_in_group("Pickable"):
+		# Descriptions are used beacause objects cant share the same name but can share Descriptions
+		print(body.editor_description)
+		match body.editor_description:
+			"Stone":
+				Mission.inventory[0] += 1
+			"Coal":
+				Mission.inventory[1] += 1
+			"RawCopper":
+				Mission.inventory[2] += 1
+			"RawIron":
+				Mission.inventory[3] += 1
+			"RawGold":
+				Mission.inventory[4] += 1
+			"Emerald":
+				Mission.inventory[6] += 1
+			"Ruby":
+				Mission.inventory[7] += 1
+			"Sapphire":
+				Mission.inventory[8] += 1
+			"Diamond":
+				Mission.inventory[9] += 1
+			"Ice":
+				Mission.inventory[5] += 1
+				
 		body.collect()
 		$PickupItem.play()
-		
-	match body.name:
-		"Stone":
-			Mission.inventory[0] += 1
-		"Coal":
-			Mission.inventory[1] += 1
-		"RawCopper":
-			Mission.inventory[2] += 1
-		"RawIron":
-			Mission.inventory[3] += 1
-		"RawGold":
-			Mission.inventory[4] += 1
-		"Emerald":
-			Mission.inventory[6] += 1
-		"Ruby":
-			Mission.inventory[7] += 1
-		"Sapphire":
-			Mission.inventory[8] += 1
-		"Diamond":
-			Mission.inventory[9] += 1
-		"Ice":
-			Mission.inventory[5] += 1
 # Inventory for [Stone, Coal, RawCopper, RawIron, RawGold, Emerald, Ruby, Sapphire, Diamond, Ice]

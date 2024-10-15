@@ -43,5 +43,3 @@ func _process(_delta: float) -> void:
 		elif window_mode == 1:
 			window_mode = 0
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-# Main Menu: Continue / New Game / Join / Options / Credits / Exit
