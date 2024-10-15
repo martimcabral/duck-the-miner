@@ -4,6 +4,7 @@ var WHITE : Color = "ffffff"
 var GOLD : Color = "F9B53F"
 
 func _on_exit_button_pressed() -> void:
+	print("[!] Autodestruction Activated - Duck Rule #134 // When using weapons of destruction of simulations, make sure you are the one who is simulating!")
 	get_tree().quit()
 
 func _on_exit_button_mouse_entered() -> void:

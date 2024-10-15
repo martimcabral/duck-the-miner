@@ -146,7 +146,7 @@ texture_scale = 0.66
 script = ExtResource("5_2nen5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.05, 3.05)
+zoom = Vector2(4, 4)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 

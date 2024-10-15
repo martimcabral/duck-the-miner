@@ -6,10 +6,7 @@ var window_mode = 0
 var speed = 100
 const accel = 250
 const friction = 375
-const falling_speed = 150
-
-const zoom_max = Vector2(9, 9)
-const zoom_min = Vector2(3.05, 3.05)
+const falling_speed = 175
 
 var used_tiles = {}
 
@@ -40,7 +37,7 @@ func player_movement(input, delta):
 			velocity = velocity.move_toward(input * speed , delta * accel)
 	else: 
 		velocity = velocity.move_toward(Vector2(0,0), delta * friction)
-	velocity.y += falling_speed * delta
+	velocity.y += falling_speed * delta * 1.1
 
 func _process(delta):
 	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
@@ -84,7 +81,7 @@ func _process(delta):
 				print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
 				
 				# Restart new Tile on Used Tiles Dictionary
-				var tile_health = 12500
+				var tile_health = 1000
 				used_tiles[tile_pos] = {"pos" : tile_pos}
 				used_tiles[tile_pos] = {"health": tile_health} 
 				used_tiles[tile_pos]["health"] = tile_health
@@ -115,14 +112,7 @@ func _process(delta):
 			$AnimatedSprite2D.flip_h = false
 		else:
 			$AnimatedSprite2D.stop()
-	
-	if Input.is_action_just_pressed("Zoom_In") or Input.is_action_pressed("Zoom_In"):
-		if $Camera2D.zoom < zoom_max:
-			$Camera2D.zoom += Vector2(0.1, 0.1)
-	if Input.is_action_just_pressed("Zoom_Out") or Input.is_action_pressed("Zoom_Out"):
-		if $Camera2D.zoom > zoom_min:
-			$Camera2D.zoom -= Vector2(0.1, 0.1)
-	
+			
 	# Mudar o Cursor dependendo do Item selecinado da Hotbar
 	if Input.is_action_just_pressed("Hotbar_1"):
 		current_item = 1
@@ -158,7 +148,7 @@ func destroy_block():
 		var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 
 		if player.current_item == 2:
-			#print("Data: ", used_tiles, " ", tile_id)
+			print("Data: ", used_tiles, " ", tile_id)
 			# Get health
 			var tile_health = tile_data.get_custom_data("health")
 		
