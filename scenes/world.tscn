@@ -528,11 +528,6 @@ collision_visibility_mode = 2
 [node name="BreakingStages" type="TileMapLayer" parent="WorldTileMap"]
 tile_set = SubResource("TileSet_inx3v")
 
-[node name="TimeToPutOres" type="Timer" parent="WorldTileMap"]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
 color = Color(0.158472, 0.158472, 0.158472, 1)
 
@@ -559,5 +554,4 @@ wait_time = 180.0
 autostart = true
 
 [connection signal="body_entered" from="Player/PickupItemsRange2" to="Player/PickupItemsRange2" method="_on_body_entered"]
-[connection signal="timeout" from="WorldTileMap/TimeToPutOres" to="." method="_on_time_to_put_ores_timeout"]
 [connection signal="timeout" from="WorldMusic/MusicTimer" to="." method="_on_music_timer_timeout"]

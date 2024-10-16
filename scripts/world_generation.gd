@@ -85,7 +85,15 @@ func _ready():
 	
 	#Create safe Cube	
 	start_position()
-
+	
+	# Put Ores:
+	put_ice()
+	put_coal()
+	put_copper()
+	put_iron()
+	put_gold()
+	put_diamond()
+	put_gems()
 # Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
 
 func _on_music_timer_timeout() -> void:
@@ -142,13 +150,3 @@ func put_gems():
 						1: CaveSystem.set_cell(tile_pos, 0, Vector2i(1, 1))
 						2: CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
 						3: CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
-
-
-func _on_time_to_put_ores_timeout() -> void:
-	put_ice()
-	put_coal()
-	put_copper()
-	put_iron()
-	put_gold()
-	put_diamond()
-	put_gems()

@@ -43,7 +43,8 @@ size_flags_vertical = 6
 theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Center"]
+[node name="StartMenu" type="Panel" parent="CanvasLayer/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,14 +62,14 @@ size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
 script = ExtResource("2_y368m")
 
-[node name="Continue" type="RichTextLabel" parent="CanvasLayer/Center/Panel"]
+[node name="Continue" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -145.5
+offset_left = -143.5
 offset_top = 27.0
-offset_right = 169.5
+offset_right = 171.5
 offset_bottom = 108.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
@@ -76,7 +77,7 @@ theme_override_font_sizes/normal_font_size = 72
 text = "Continue
 "
 
-[node name="NewGame" type="RichTextLabel" parent="CanvasLayer/Center/Panel"]
+[node name="NewGame" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -89,44 +90,44 @@ grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 72
 text = "New Game"
 
-[node name="NewGameButton" type="Button" parent="CanvasLayer/Center/Panel/NewGame"]
+[node name="NewGameButton" type="Button" parent="CanvasLayer/Center/StartMenu/NewGame"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = -4.0
+offset_left = -6.0
 offset_top = 2.0
-offset_right = 358.0
+offset_right = 356.0
 offset_bottom = 94.0
 
-[node name="Join" type="RichTextLabel" parent="CanvasLayer/Center/Panel"]
+[node name="Join" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -65.5
-offset_top = 176.0
-offset_right = 77.5
-offset_bottom = 256.0
+offset_left = -63.0
+offset_top = 181.0
+offset_right = 63.0
+offset_bottom = 261.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
 text = "Join"
 
-[node name="Options" type="RichTextLabel" parent="CanvasLayer/Center/Panel"]
+[node name="Options" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -128.5
+offset_left = -123.5
 offset_top = 256.0
-offset_right = 147.5
+offset_right = 152.5
 offset_bottom = 344.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
 text = "Options"
 
-[node name="Credits" type="RichTextLabel" parent="CanvasLayer/Center/Panel"]
+[node name="Credits" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -140,7 +141,7 @@ theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
 text = "Credits"
 
-[node name="Exit" type="RichTextLabel" parent="CanvasLayer/Center/Panel"]
+[node name="Exit" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 z_index = 1
 layout_mode = 1
 anchors_preset = 5
@@ -154,12 +155,49 @@ grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 72
 text = "Exit"
 
-[node name="ExitButton" type="Button" parent="CanvasLayer/Center/Panel/Exit"]
+[node name="ExitButton" type="Button" parent="CanvasLayer/Center/StartMenu/Exit"]
 modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 layout_mode = 0
 offset_left = -11.0
 offset_right = 119.0
+offset_bottom = 64.0
+flat = true
+
+[node name="OptionsMenu" type="Panel" parent="CanvasLayer/Center"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -533.5
+offset_top = 301.0
+offset_right = 533.5
+offset_bottom = 950.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
+
+[node name="Back" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -86.5
+offset_top = 566.0
+offset_right = 85.5
+offset_bottom = 640.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 72
+text = "Back"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Center/OptionsMenu/Back"]
+modulate = Color(1, 1, 1, 0)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -11.0
+offset_right = 164.0
 offset_bottom = 64.0
 flat = true
 
@@ -170,9 +208,12 @@ volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
-[connection signal="mouse_entered" from="CanvasLayer/Center/Panel/NewGame/NewGameButton" to="CanvasLayer/Center/Panel" method="_on_new_game_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Center/Panel/NewGame/NewGameButton" to="CanvasLayer/Center/Panel" method="_on_new_game_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Center/Panel/NewGame/NewGameButton" to="CanvasLayer/Center/Panel" method="_on_new_game_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Center/Panel/Exit/ExitButton" to="CanvasLayer/Center/Panel" method="_on_exit_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Center/Panel/Exit/ExitButton" to="CanvasLayer/Center/Panel" method="_on_exit_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Center/Panel/Exit/ExitButton" to="CanvasLayer/Center/Panel" method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Center/StartMenu/NewGame/NewGameButton" to="CanvasLayer/Center/StartMenu" method="_on_new_game_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Center/StartMenu/NewGame/NewGameButton" to="CanvasLayer/Center/StartMenu" method="_on_new_game_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Center/StartMenu/NewGame/NewGameButton" to="CanvasLayer/Center/StartMenu" method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Center/StartMenu/Exit/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Center/StartMenu/Exit/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Center/StartMenu/Exit/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Center/OptionsMenu/Back/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_exit_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Center/OptionsMenu/Back/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_exit_button_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/Back/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_exit_button_pressed"]
