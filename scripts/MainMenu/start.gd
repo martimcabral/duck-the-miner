@@ -4,6 +4,9 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
+	$CanvasLayer/Center/StartMenu.visible = true
+	$CanvasLayer/Center/OptionsMenu.visible = false
+	
 	var random_player = randi_range(1, 2)
 	match random_player:
 		1:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=6 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://kinaavdbakju" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" path="res://scripts/MainMenu/main_menu_panel.gd" id="2_y368m"]
+[ext_resource type="Script" path="res://scripts/MainMenu/options_menu.gd" id="3_vt73r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
 bg_color = Color(0, 0, 0, 0.556863)
@@ -77,26 +78,25 @@ theme_override_font_sizes/normal_font_size = 72
 text = "Continue
 "
 
-[node name="NewGame" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
+[node name="NewGameButton" type="Button" parent="CanvasLayer/Center/StartMenu"]
+z_index = 1
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -168.5
-offset_top = 102.0
-offset_right = 187.5
-offset_bottom = 179.0
+anchor_bottom = 1.0
+offset_left = -177.5
+offset_top = -549.0
+offset_right = 177.5
+offset_bottom = -469.0
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 72
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
 text = "New Game"
-
-[node name="NewGameButton" type="Button" parent="CanvasLayer/Center/StartMenu/NewGame"]
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 0
-offset_left = -6.0
-offset_top = 2.0
-offset_right = 356.0
-offset_bottom = 94.0
+flat = true
 
 [node name="Join" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 layout_mode = 1
@@ -112,20 +112,25 @@ theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
 text = "Join"
 
-[node name="Options" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
+[node name="OptionsButton" type="Button" parent="CanvasLayer/Center/StartMenu"]
+z_index = 1
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -123.5
-offset_top = 256.0
-offset_right = 152.5
-offset_bottom = 344.0
+anchor_bottom = 1.0
+offset_left = -125.5
+offset_top = -397.0
+offset_right = 125.5
+offset_bottom = -317.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
-theme_override_font_sizes/normal_font_size = 72
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
 text = "Options"
+flat = true
 
 [node name="Credits" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
 layout_mode = 1
@@ -133,35 +138,31 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -116.5
-offset_top = 488.0
+offset_top = 498.0
 offset_right = 129.5
-offset_bottom = 564.0
+offset_bottom = 574.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
 text = "Credits"
 
-[node name="Exit" type="RichTextLabel" parent="CanvasLayer/Center/StartMenu"]
+[node name="ExitButton" type="Button" parent="CanvasLayer/Center/StartMenu"]
 z_index = 1
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -49.5
-offset_top = 566.0
-offset_right = 65.5
-offset_bottom = 640.0
+anchor_bottom = 1.0
+offset_left = -63.5
+offset_top = -80.0
+offset_right = 63.5
 grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 72
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
 text = "Exit"
-
-[node name="ExitButton" type="Button" parent="CanvasLayer/Center/StartMenu/Exit"]
-modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
-layout_mode = 0
-offset_left = -11.0
-offset_right = 119.0
-offset_bottom = 64.0
 flat = true
 
 [node name="OptionsMenu" type="Panel" parent="CanvasLayer/Center"]
@@ -169,51 +170,157 @@ texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -533.5
-offset_top = 301.0
-offset_right = 533.5
+offset_left = -626.0
+offset_top = 274.0
+offset_right = 630.0
 offset_bottom = 950.0
 grow_horizontal = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
+script = ExtResource("3_vt73r")
 
-[node name="Back" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu"]
+[node name="Line2D" type="Line2D" parent="CanvasLayer/Center/OptionsMenu"]
+position = Vector2(169, 0.0433655)
+scale = Vector2(0.536585, 1.00434)
+points = PackedVector2Array(225.5, 1.94818, 225.5, 672)
+
+[node name="DisplayButton" type="Button" parent="CanvasLayer/Center/OptionsMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -626.0
+offset_top = -672.0
+offset_right = -341.0
+offset_bottom = -584.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+text = "Display"
+flat = true
+
+[node name="DisplayPanel" type="Panel" parent="CanvasLayer/Center/OptionsMenu"]
+self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -86.5
-offset_top = 566.0
-offset_right = 85.5
-offset_bottom = 640.0
-grow_horizontal = 2
-theme_override_font_sizes/normal_font_size = 72
-text = "Back"
+anchors_preset = -1
+anchor_left = 0.234
+anchor_right = 0.234
+offset_left = 0.0959778
+offset_top = 2.0
+offset_right = 958.096
+offset_bottom = 668.0
 
-[node name="BackButton" type="Button" parent="CanvasLayer/Center/OptionsMenu/Back"]
-modulate = Color(1, 1, 1, 0)
-show_behind_parent = true
+[node name="WindowSizeLabel" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
-offset_left = -11.0
-offset_right = 164.0
-offset_bottom = 64.0
+offset_left = 12.0
+offset_top = 17.0
+offset_right = 333.0
+offset_bottom = 72.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Window Size"
+
+[node name="WindowsSizeDropDown" type="OptionButton" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+z_index = 1
+layout_mode = 0
+offset_left = 700.0
+offset_top = 16.0
+offset_right = 944.0
+offset_bottom = 67.0
+mouse_default_cursor_shape = 7
+theme_override_font_sizes/font_size = 24
+alignment = 1
+item_count = 13
+popup/item_0/text = "(16:9)"
+popup/item_0/separator = true
+popup/item_1/text = "2560x1440"
+popup/item_1/id = 1
+popup/item_2/text = "1920x1080"
+popup/item_2/id = 2
+popup/item_3/text = "1600x900"
+popup/item_3/id = 3
+popup/item_4/text = "1360x786"
+popup/item_4/id = 4
+popup/item_5/text = "1280x720"
+popup/item_5/id = 5
+popup/item_6/text = "1024x576"
+popup/item_6/id = 6
+popup/item_7/text = "(4:3)"
+popup/item_7/id = 7
+popup/item_7/separator = true
+popup/item_8/text = "2048x1536"
+popup/item_8/id = 8
+popup/item_9/text = "1920x1440"
+popup/item_9/id = 9
+popup/item_10/text = "1600x1200"
+popup/item_10/id = 10
+popup/item_11/text = "1280x960"
+popup/item_11/id = 11
+popup/item_12/text = "1024x768"
+popup/item_12/id = 12
+
+[node name="WindowTypeLabel" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 76.0
+offset_right = 333.0
+offset_bottom = 131.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Window Type
+"
+
+[node name="WindowsTypeDropDown" type="OptionButton" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+z_index = 1
+layout_mode = 0
+offset_left = 700.0
+offset_top = 74.0
+offset_right = 944.0
+offset_bottom = 125.0
+mouse_default_cursor_shape = 7
+theme_override_font_sizes/font_size = 24
+alignment = 1
+item_count = 2
+popup/item_0/text = "Fullscreen"
+popup/item_1/text = "Windowed"
+popup/item_1/id = 1
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Center/OptionsMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -626.0
+offset_top = -82.0
+offset_right = -338.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+text = "Back"
 flat = true
 
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(649.25, 390.55)
+position = Vector2(951, 692)
 stream = ExtResource("2_v23jq")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
-[connection signal="mouse_entered" from="CanvasLayer/Center/StartMenu/NewGame/NewGameButton" to="CanvasLayer/Center/StartMenu" method="_on_new_game_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Center/StartMenu/NewGame/NewGameButton" to="CanvasLayer/Center/StartMenu" method="_on_new_game_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Center/StartMenu/NewGame/NewGameButton" to="CanvasLayer/Center/StartMenu" method="_on_new_game_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Center/StartMenu/Exit/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Center/StartMenu/Exit/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Center/StartMenu/Exit/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_pressed"]
-[connection signal="mouse_entered" from="CanvasLayer/Center/OptionsMenu/Back/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_exit_button_mouse_entered"]
-[connection signal="mouse_exited" from="CanvasLayer/Center/OptionsMenu/Back/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_exit_button_mouse_exited"]
-[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/Back/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Center/StartMenu/NewGameButton" to="CanvasLayer/Center/StartMenu" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Center/StartMenu/OptionsButton" to="CanvasLayer/Center/StartMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Center/StartMenu/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/DisplayButton" to="CanvasLayer/Center/OptionsMenu" method="_on_display_button_pressed"]
+[connection signal="item_selected" from="CanvasLayer/Center/OptionsMenu/DisplayPanel/WindowsSizeDropDown" to="CanvasLayer/Center/OptionsMenu" method="_on_windows_size_drop_down_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/Center/OptionsMenu/DisplayPanel/WindowsTypeDropDown" to="CanvasLayer/Center/OptionsMenu" method="_on_windows_type_drop_down_item_selected"]
+[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_back_button_pressed"]

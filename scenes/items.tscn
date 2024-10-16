@@ -171,6 +171,7 @@ shape = SubResource("RectangleShape2D_4whbr")
 shape = SubResource("CircleShape2D_en54b")
 
 [node name="Ice" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Ice"
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
