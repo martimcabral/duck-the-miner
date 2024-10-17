@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu/start.gd" id="1_0o5ht"]
-[ext_resource type="Shader" path="res://scripts/Colorblindness/colorblindness_shader.gdshader" id="2_lxwsb"]
+[ext_resource type="Shader" path="res://scripts/colorblindness/colorblindness_shader.gdshader" id="2_lxwsb"]
 [ext_resource type="AudioStream" uid="uid://kinaavdbakju" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" path="res://scripts/MainMenu/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" path="res://scripts/MainMenu/options_menu.gd" id="3_vt73r"]
-[ext_resource type="Script" path="res://scripts/Colorblindness/colorblindness_color_rect.gd" id="3_xk3xp"]
+[ext_resource type="Script" path="res://scripts/colorblindness/colorblindness_color_rect.gd" id="3_xk3xp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7xo03"]
 shader = ExtResource("2_lxwsb")
@@ -519,10 +519,10 @@ offset_bottom = 668.0
 layout_mode = 0
 offset_left = 21.0
 offset_top = 19.0
-offset_right = 534.0
+offset_right = 342.0
 offset_bottom = 74.0
 theme_override_font_sizes/normal_font_size = 48
-text = "Volume (doesn't work)"
+text = "Volume"
 
 [node name="CurrentVolume" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
 layout_mode = 0
@@ -560,17 +560,9 @@ layout_mode = 0
 offset_left = 21.0
 offset_top = 19.0
 offset_right = 942.0
-offset_bottom = 622.0
+offset_bottom = 144.0
 theme_override_font_sizes/normal_font_size = 48
-text = "Controls can't be changed yet!
-
-WASD & Arrows - Move, Fly
-1, 2, 3, 4 - Hotbar
-C, Crtl - Crouch
-Shift - Run
-RMB - Place Light, Turn on UV Flashlight
-LMB - Destroy Block, Attack
-MMB - Place Block"
+text = "Controls can't be changed yet!"
 
 [node name="AccessibilityPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
 visible = false

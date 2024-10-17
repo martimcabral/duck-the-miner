@@ -94,7 +94,22 @@ func _ready():
 	put_gold()
 	put_diamond()
 	put_gems()
-# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
+	
+	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
+	
+func set_colorblindness_value(colorblindness_value): # Pega-se na Variável e faz-se shenanigans
+	match colorblindness_value:
+		0:
+			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 0)
+		1:
+			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 1)
+		2:
+			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 2)
+		3:
+			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 3)
+		4:
+			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 4)
+	
 
 func _on_music_timer_timeout() -> void:
 	start_music()
