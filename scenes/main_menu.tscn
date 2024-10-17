@@ -1,9 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=18 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu/start.gd" id="1_0o5ht"]
+[ext_resource type="Shader" path="res://scripts/shaders/colorblindness_shader.gdshader" id="2_lxwsb"]
 [ext_resource type="AudioStream" uid="uid://kinaavdbakju" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" path="res://scripts/MainMenu/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" path="res://scripts/MainMenu/options_menu.gd" id="3_vt73r"]
+[ext_resource type="Script" path="res://scripts/shaders/colorblindness_color_rect.gd" id="3_xk3xp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xo03"]
+shader = ExtResource("2_lxwsb")
+shader_parameter/mode = 0
 
 [sub_resource type="Shader" id="Shader_w1m2d"]
 code = "shader_type canvas_item;
@@ -82,6 +88,18 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 script = ExtResource("1_0o5ht")
 
 [node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ColorblindnessColorRect" type="ColorRect" parent="GUI"]
+z_index = 2
+texture_filter = 1
+material = SubResource("ShaderMaterial_7xo03")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("3_xk3xp")
 
 [node name="Center" type="Node" parent="GUI"]
 
@@ -630,4 +648,5 @@ parameters/looping = true
 [connection signal="item_selected" from="GUI/Center/OptionsMenu/DisplayPanel/FPSType" to="GUI/Center/OptionsMenu" method="_on_fps_type_item_selected"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayPanel/VsyncCheckButton" to="GUI/Center/OptionsMenu" method="_on_vsync_check_button_pressed"]
 [connection signal="toggled" from="GUI/Center/OptionsMenu/DisplayPanel/VsyncCheckButton" to="GUI/Center/OptionsMenu" method="_on_vsync_check_button_toggled"]
+[connection signal="item_selected" from="GUI/Center/OptionsMenu/AccessibilityPanel/ColorblindnessDropdown" to="GUI/ColorblindnessColorRect" method="_on_colorblindness_dropdown_item_selected"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/BackButton" to="GUI/Center/OptionsMenu" method="_on_back_button_pressed"]
