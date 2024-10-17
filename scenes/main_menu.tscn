@@ -1,9 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=15 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu/start.gd" id="1_0o5ht"]
+[ext_resource type="Shader" path="res://scenes/main_menu.gdshader" id="2_52a8l"]
 [ext_resource type="AudioStream" uid="uid://kinaavdbakju" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" path="res://scripts/MainMenu/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" path="res://scripts/MainMenu/options_menu.gd" id="3_vt73r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3hkxo"]
+shader = ExtResource("2_52a8l")
+shader_parameter/mode = null
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
 bg_color = Color(0, 0, 0, 0.556863)
@@ -41,15 +46,21 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_0o5ht")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_3hkxo")
+offset_right = 2008.0
+offset_bottom = 1139.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Background" type="TextureRect" parent="CanvasLayer"]
+[node name="Center" type="Node" parent="CanvasLayer"]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Center"]
 texture_filter = 1
 offset_right = 1921.0
 offset_bottom = 1080.0
 expand_mode = 1
-
-[node name="Center" type="Node" parent="CanvasLayer"]
 
 [node name="Title" type="RichTextLabel" parent="CanvasLayer/Center"]
 anchors_preset = 5
@@ -378,6 +389,7 @@ popup/item_1/text = "Windowed"
 popup/item_1/id = 1
 
 [node name="FPSLimiter" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+layout_mode = 0
 offset_left = 22.0
 offset_top = 184.0
 offset_right = 308.0
@@ -423,6 +435,7 @@ popup/item_12/text = "1"
 popup/item_12/id = 12
 
 [node name="Vsync" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+layout_mode = 0
 offset_left = 22.0
 offset_top = 130.0
 offset_right = 343.0
@@ -464,9 +477,10 @@ theme_override_font_sizes/normal_font_size = 48
 text = "Volume"
 
 [node name="CurrentVolume" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/AudioPanel"]
-offset_left = 571.0
+layout_mode = 0
+offset_left = 574.0
 offset_top = 17.0
-offset_right = 651.0
+offset_right = 659.0
 offset_bottom = 72.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
@@ -481,6 +495,7 @@ offset_bottom = 67.0
 mouse_default_cursor_shape = 7
 
 [node name="ControlsPanel" type="Panel" parent="CanvasLayer/Center/OptionsMenu"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -496,13 +511,12 @@ offset_bottom = 668.0
 layout_mode = 0
 offset_left = 21.0
 offset_top = 19.0
-offset_right = 342.0
-offset_bottom = 74.0
+offset_right = 942.0
+offset_bottom = 144.0
 theme_override_font_sizes/normal_font_size = 48
-text = "Info"
+text = "Controls can't be changed yet!"
 
 [node name="AccessibilityPanel" type="Panel" parent="CanvasLayer/Center/OptionsMenu"]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -514,13 +528,36 @@ offset_top = 2.0
 offset_right = 958.096
 offset_bottom = 668.0
 
-[node name="Info" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/AccessibilityPanel"]
+[node name="Colorblindness" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/AccessibilityPanel"]
+layout_mode = 0
 offset_left = 21.0
 offset_top = 19.0
-offset_right = 342.0
+offset_right = 355.0
 offset_bottom = 74.0
 theme_override_font_sizes/normal_font_size = 48
-text = "Info"
+text = "Colorblindness"
+
+[node name="ColorblindnessDropdown" type="OptionButton" parent="CanvasLayer/Center/OptionsMenu/AccessibilityPanel"]
+z_index = 1
+layout_mode = 0
+offset_left = 673.0
+offset_top = 16.0
+offset_right = 938.0
+offset_bottom = 67.0
+mouse_default_cursor_shape = 7
+theme_override_font_sizes/font_size = 24
+flat = true
+alignment = 1
+item_count = 5
+popup/item_0/text = "Disabled🦆"
+popup/item_1/text = "Deuteranopia🟢"
+popup/item_1/id = 1
+popup/item_2/text = "Protanopia🔴"
+popup/item_2/id = 2
+popup/item_3/text = "Tritanopia🔵"
+popup/item_3/id = 3
+popup/item_4/text = "Achromatopsia⚫⚪"
+popup/item_4/id = 4
 
 [node name="BackButton" type="Button" parent="CanvasLayer/Center/OptionsMenu"]
 z_index = 1

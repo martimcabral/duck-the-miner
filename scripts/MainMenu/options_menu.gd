@@ -1,5 +1,8 @@
 extends Panel
 
+func _process(_delta: float) -> void:
+	$AudioPanel/CurrentVolume.text = str($AudioPanel/VolumeSlider.ratio * 100)
+
 func _on_back_button_pressed() -> void:
 	$DisplayPanel.visible = false
 	$"../StartMenu".visible = true
