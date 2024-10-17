@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=13 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://kinaavdbakju" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
@@ -16,6 +16,27 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40bhi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev00f"]
+bg_color = Color(0.6, 0.6, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qy33"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l6o4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfy0s"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyawk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_0o5ht")
@@ -87,9 +108,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -177.5
+offset_left = -172.5
 offset_top = -549.0
-offset_right = 177.5
+offset_right = 182.5
 offset_bottom = -469.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -162,6 +183,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Exit"
 flat = true
 
@@ -201,11 +223,76 @@ offset_bottom = -584.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_ev00f")
 text = "Display"
 flat = true
 
+[node name="AudioButton" type="Button" parent="CanvasLayer/Center/OptionsMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -626.0
+offset_top = -597.0
+offset_right = -341.0
+offset_bottom = -509.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_8qy33")
+text = "Audio"
+flat = true
+
+[node name="ControlsButton" type="Button" parent="CanvasLayer/Center/OptionsMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -621.0
+offset_top = -525.0
+offset_right = -336.0
+offset_bottom = -437.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_8l6o4")
+text = "Controls"
+flat = true
+
+[node name="AccessibilityButton" type="Button" parent="CanvasLayer/Center/OptionsMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -623.0
+offset_top = -460.0
+offset_right = -341.0
+offset_bottom = -372.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_yfy0s")
+text = "Accessibility"
+flat = true
+
 [node name="DisplayPanel" type="Panel" parent="CanvasLayer/Center/OptionsMenu"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -219,19 +306,19 @@ offset_bottom = 668.0
 
 [node name="WindowSizeLabel" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 17.0
-offset_right = 333.0
-offset_bottom = 72.0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = 342.0
+offset_bottom = 74.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Window Size"
 
 [node name="WindowsSizeDropDown" type="OptionButton" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
 z_index = 1
 layout_mode = 0
-offset_left = 700.0
+offset_left = 673.0
 offset_top = 16.0
-offset_right = 944.0
+offset_right = 938.0
 offset_bottom = 67.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
@@ -267,10 +354,10 @@ popup/item_12/id = 12
 
 [node name="WindowTypeLabel" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 76.0
-offset_right = 333.0
-offset_bottom = 131.0
+offset_left = 21.0
+offset_top = 78.0
+offset_right = 342.0
+offset_bottom = 133.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Window Type
 "
@@ -278,9 +365,9 @@ text = "Window Type
 [node name="WindowsTypeDropDown" type="OptionButton" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
 z_index = 1
 layout_mode = 0
-offset_left = 700.0
+offset_left = 674.0
 offset_top = 74.0
-offset_right = 944.0
+offset_right = 939.0
 offset_bottom = 125.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
@@ -289,6 +376,151 @@ item_count = 2
 popup/item_0/text = "Fullscreen"
 popup/item_1/text = "Windowed"
 popup/item_1/id = 1
+
+[node name="FPSLimiter" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+offset_left = 22.0
+offset_top = 184.0
+offset_right = 308.0
+offset_bottom = 239.0
+theme_override_font_sizes/normal_font_size = 48
+text = "FPS Limiter"
+
+[node name="FPSType" type="OptionButton" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+z_index = 1
+layout_mode = 0
+offset_left = 746.0
+offset_top = 184.0
+offset_right = 877.0
+offset_bottom = 235.0
+mouse_default_cursor_shape = 7
+theme_override_font_sizes/font_size = 24
+alignment = 1
+item_count = 13
+popup/item_0/text = "Disabled"
+popup/item_1/text = "360"
+popup/item_1/id = 1
+popup/item_2/text = "240"
+popup/item_2/id = 2
+popup/item_3/text = "165"
+popup/item_3/id = 3
+popup/item_4/text = "144"
+popup/item_4/id = 4
+popup/item_5/text = "120"
+popup/item_5/id = 5
+popup/item_6/text = "100"
+popup/item_6/id = 6
+popup/item_7/text = "75"
+popup/item_7/id = 7
+popup/item_8/text = "60"
+popup/item_8/id = 8
+popup/item_9/text = "45"
+popup/item_9/id = 9
+popup/item_10/text = "30"
+popup/item_10/id = 10
+popup/item_11/text = "15"
+popup/item_11/id = 11
+popup/item_12/text = "1"
+popup/item_12/id = 12
+
+[node name="Vsync" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+offset_left = 22.0
+offset_top = 130.0
+offset_right = 343.0
+offset_bottom = 185.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Vsync
+"
+
+[node name="VsyncCheckButton" type="CheckButton" parent="CanvasLayer/Center/OptionsMenu/DisplayPanel"]
+z_index = 1
+layout_mode = 0
+offset_left = 765.0
+offset_top = 132.0
+offset_right = 809.0
+offset_bottom = 156.0
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
+
+[node name="AudioPanel" type="Panel" parent="CanvasLayer/Center/OptionsMenu"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.234
+anchor_right = 0.234
+offset_left = 0.0959778
+offset_top = 2.0
+offset_right = 958.096
+offset_bottom = 668.0
+
+[node name="Volume" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/AudioPanel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = 342.0
+offset_bottom = 74.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Volume"
+
+[node name="CurrentVolume" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/AudioPanel"]
+offset_left = 571.0
+offset_top = 17.0
+offset_right = 651.0
+offset_bottom = 72.0
+theme_override_font_sizes/normal_font_size = 48
+text = "n/a"
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/Center/OptionsMenu/AudioPanel"]
+z_index = 1
+layout_mode = 0
+offset_left = 657.0
+offset_top = 16.0
+offset_right = 938.0
+offset_bottom = 67.0
+mouse_default_cursor_shape = 7
+
+[node name="ControlsPanel" type="Panel" parent="CanvasLayer/Center/OptionsMenu"]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.234
+anchor_right = 0.234
+offset_left = 0.0959778
+offset_top = 2.0
+offset_right = 958.096
+offset_bottom = 668.0
+
+[node name="Info" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/ControlsPanel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = 342.0
+offset_bottom = 74.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Info"
+
+[node name="AccessibilityPanel" type="Panel" parent="CanvasLayer/Center/OptionsMenu"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.234
+anchor_right = 0.234
+offset_left = 0.0959778
+offset_top = 2.0
+offset_right = 958.096
+offset_bottom = 668.0
+
+[node name="Info" type="RichTextLabel" parent="CanvasLayer/Center/OptionsMenu/AccessibilityPanel"]
+offset_left = 21.0
+offset_top = 19.0
+offset_right = 342.0
+offset_bottom = 74.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Info"
 
 [node name="BackButton" type="Button" parent="CanvasLayer/Center/OptionsMenu"]
 z_index = 1
@@ -307,6 +539,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"
 flat = true
 
@@ -321,6 +554,12 @@ parameters/looping = true
 [connection signal="pressed" from="CanvasLayer/Center/StartMenu/OptionsButton" to="CanvasLayer/Center/StartMenu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Center/StartMenu/ExitButton" to="CanvasLayer/Center/StartMenu" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/DisplayButton" to="CanvasLayer/Center/OptionsMenu" method="_on_display_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/AudioButton" to="CanvasLayer/Center/OptionsMenu" method="_on_audio_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/ControlsButton" to="CanvasLayer/Center/OptionsMenu" method="_on_controls_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/AccessibilityButton" to="CanvasLayer/Center/OptionsMenu" method="_on_accessibility_button_pressed"]
 [connection signal="item_selected" from="CanvasLayer/Center/OptionsMenu/DisplayPanel/WindowsSizeDropDown" to="CanvasLayer/Center/OptionsMenu" method="_on_windows_size_drop_down_item_selected"]
 [connection signal="item_selected" from="CanvasLayer/Center/OptionsMenu/DisplayPanel/WindowsTypeDropDown" to="CanvasLayer/Center/OptionsMenu" method="_on_windows_type_drop_down_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/Center/OptionsMenu/DisplayPanel/FPSType" to="CanvasLayer/Center/OptionsMenu" method="_on_fps_type_item_selected"]
+[connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/DisplayPanel/VsyncCheckButton" to="CanvasLayer/Center/OptionsMenu" method="_on_vsync_check_button_pressed"]
+[connection signal="toggled" from="CanvasLayer/Center/OptionsMenu/DisplayPanel/VsyncCheckButton" to="CanvasLayer/Center/OptionsMenu" method="_on_vsync_check_button_toggled"]
 [connection signal="pressed" from="CanvasLayer/Center/OptionsMenu/BackButton" to="CanvasLayer/Center/OptionsMenu" method="_on_back_button_pressed"]
