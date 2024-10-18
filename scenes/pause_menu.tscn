@@ -1,0 +1,162 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbyiibgv0sxte"]
+
+[ext_resource type="Script" path="res://scripts/Menus/pause_menu.gd" id="1_br3yh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
+bg_color = Color(0, 0, 0, 0.556863)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhbgv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40bhi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="PauseMenu" type="Node2D"]
+script = ExtResource("1_br3yh")
+
+[node name="GUI_Pause" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GUI_Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.686275)
+
+[node name="PauseMenuTitle" type="RichTextLabel" parent="GUI_Pause"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -426.0
+offset_top = 117.0
+offset_right = 427.0
+offset_bottom = 276.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/normal_font_size = 150
+text = "Pause Menu"
+
+[node name="PauseMenuPanel" type="Panel" parent="GUI_Pause"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -323.5
+offset_top = -258.5
+offset_right = 323.5
+offset_bottom = 390.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
+
+[node name="Continue" type="Button" parent="GUI_Pause/PauseMenuPanel"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -183.5
+offset_top = -629.0
+offset_right = 193.5
+offset_bottom = -549.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_fhbgv")
+text = "Continue"
+flat = true
+
+[node name="SaveGame" type="RichTextLabel" parent="GUI_Pause/PauseMenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -179.5
+offset_top = 107.0
+offset_right = 202.5
+offset_bottom = 188.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
+theme_override_font_sizes/normal_font_size = 72
+text = "Save Game"
+
+[node name="Options" type="RichTextLabel" parent="GUI_Pause/PauseMenuPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.5
+offset_top = 181.0
+offset_right = 126.5
+offset_bottom = 261.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
+theme_override_font_sizes/normal_font_size = 72
+text = "Options"
+
+[node name="GoToMainMenuButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -160.0
+offset_right = 119.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
+text = "Exit to Main Menu"
+flat = true
+
+[node name="GoToDesktopButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.5
+offset_top = -87.0
+offset_right = 63.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
+text = "Exit to Desktop"
+flat = true
+
+[connection signal="pressed" from="GUI_Pause/PauseMenuPanel/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="GUI_Pause/PauseMenuPanel/GoToMainMenuButton" to="." method="_on_go_to_main_menu_button_pressed"]
+[connection signal="pressed" from="GUI_Pause/PauseMenuPanel/GoToDesktopButton" to="." method="_on_go_to_desktop_button_pressed"]

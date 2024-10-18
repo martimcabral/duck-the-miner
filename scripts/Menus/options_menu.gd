@@ -122,3 +122,16 @@ func _on_accessibility_button_pressed() -> void:
 	$AudioPanel.visible = false
 	$ControlsPanel.visible = false
 	$AccessibilityPanel.visible = true
+
+func _on_colorblindness_dropdown_item_selected(index: int) -> void:
+	match index:
+		0:
+			$"../../ColorblindnessColorRect".material.set_shader_parameter("mode", 0)
+		1:
+			$"../../ColorblindnessColorRect".material.set_shader_parameter("mode", 1)
+		2:
+			$"../../ColorblindnessColorRect".material.set_shader_parameter("mode", 2)
+		3:
+			$"../../ColorblindnessColorRect".material.set_shader_parameter("mode", 3)
+		4:
+			$"../../ColorblindnessColorRect".material.set_shader_parameter("mode", 4)

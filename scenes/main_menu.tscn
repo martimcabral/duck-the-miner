@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=21 format=3 uid="uid://ibqx3yfikbc2"]
 
-[ext_resource type="Script" path="res://scripts/MainMenu/start.gd" id="1_0o5ht"]
+[ext_resource type="Script" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
 [ext_resource type="Shader" path="res://scripts/Colorblindness/colorblindness_shader.gdshader" id="2_lxwsb"]
 [ext_resource type="AudioStream" uid="uid://kinaavdbakju" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
-[ext_resource type="Script" path="res://scripts/MainMenu/main_menu_panel.gd" id="2_y368m"]
-[ext_resource type="Script" path="res://scripts/MainMenu/options_menu.gd" id="3_vt73r"]
+[ext_resource type="Script" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
+[ext_resource type="Script" path="res://scripts/Menus/options_menu.gd" id="3_vt73r"]
 [ext_resource type="Script" path="res://scripts/Colorblindness/colorblindness_color_rect.gd" id="3_xk3xp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7xo03"]
@@ -63,6 +63,12 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1li2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4du8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40bhi"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -82,6 +88,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgts2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="MainMenu" type="Node2D"]
@@ -125,7 +134,6 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -175,6 +183,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_r1li2")
 text = "New Game"
 flat = true
 
@@ -209,22 +218,30 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_y4du8")
 text = "Options"
 flat = true
 
-[node name="Credits" type="RichTextLabel" parent="GUI/Center/StartMenu"]
+[node name="CreditsButton" type="Button" parent="GUI/Center/StartMenu"]
+z_index = 1
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -116.5
-offset_top = 498.0
-offset_right = 129.5
-offset_bottom = 574.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -160.0
+offset_right = 119.0
+offset_bottom = -80.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
-theme_override_font_sizes/normal_font_size = 72
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Credits"
+flat = true
 
 [node name="ExitButton" type="Button" parent="GUI/Center/StartMenu"]
 z_index = 1
@@ -236,8 +253,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -63.5
-offset_top = -80.0
+offset_top = -87.0
 offset_right = 63.5
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -247,6 +265,7 @@ text = "Exit"
 flat = true
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -603,17 +622,16 @@ offset_right = 938.0
 offset_bottom = 67.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-flat = true
 alignment = 1
 item_count = 5
-popup/item_0/text = "Disabled🦆"
-popup/item_1/text = "Deuteranopia🟢"
+popup/item_0/text = "None"
+popup/item_1/text = "Deuteranopia"
 popup/item_1/id = 1
-popup/item_2/text = "Protanopia🔴"
+popup/item_2/text = "Protanopia"
 popup/item_2/id = 2
-popup/item_3/text = "Tritanopia🔵"
+popup/item_3/text = "Tritanopia"
 popup/item_3/id = 3
-popup/item_4/text = "Achromatopsia⚫⚪"
+popup/item_4/text = "Achromatopsia"
 popup/item_4/id = 4
 
 [node name="BackButton" type="Button" parent="GUI/Center/OptionsMenu"]
@@ -637,6 +655,69 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"
 flat = true
 
+[node name="CreditsMenu" type="Panel" parent="GUI/Center"]
+visible = false
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -626.0
+offset_top = 274.0
+offset_right = 630.0
+offset_bottom = 950.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
+
+[node name="CreditsTextLabel" type="RichTextLabel" parent="GUI/Center/CreditsMenu"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -496.0
+offset_top = -221.0
+offset_right = 496.0
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_hgts2")
+bbcode_enabled = true
+text = "[center]Textures:
+Sr. Patinho
+Split
+
+Programming:
+Sr. Patinho
+
+Music:
+Gravity Sound"
+
+[node name="BackButton" type="Button" parent="GUI/Center/CreditsMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -624.0
+offset_top = -84.0
+offset_right = -398.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
+text = "Back"
+flat = true
+
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(951, 692)
 stream = ExtResource("2_v23jq")
@@ -646,6 +727,7 @@ parameters/looping = true
 
 [connection signal="pressed" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/OptionsButton" to="GUI/Center/StartMenu" method="_on_options_button_pressed"]
+[connection signal="pressed" from="GUI/Center/StartMenu/CreditsButton" to="GUI/Center/StartMenu" method="_on_credits_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/ExitButton" to="GUI/Center/StartMenu" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayButton" to="GUI/Center/OptionsMenu" method="_on_display_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/AudioButton" to="GUI/Center/OptionsMenu" method="_on_audio_button_pressed"]
@@ -656,5 +738,6 @@ parameters/looping = true
 [connection signal="item_selected" from="GUI/Center/OptionsMenu/DisplayPanel/FPSType" to="GUI/Center/OptionsMenu" method="_on_fps_type_item_selected"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayPanel/VsyncCheckButton" to="GUI/Center/OptionsMenu" method="_on_vsync_check_button_pressed"]
 [connection signal="toggled" from="GUI/Center/OptionsMenu/DisplayPanel/VsyncCheckButton" to="GUI/Center/OptionsMenu" method="_on_vsync_check_button_toggled"]
-[connection signal="item_selected" from="GUI/Center/OptionsMenu/AccessibilityPanel/ColorblindnessDropdown" to="GUI/ColorblindnessColorRect" method="_on_colorblindness_dropdown_item_selected"]
+[connection signal="item_selected" from="GUI/Center/OptionsMenu/AccessibilityPanel/ColorblindnessDropdown" to="GUI/Center/OptionsMenu" method="_on_colorblindness_dropdown_item_selected"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/BackButton" to="GUI/Center/OptionsMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="GUI/Center/CreditsMenu/BackButton" to="GUI/Center/StartMenu" method="_on_back_button_pressed"]

@@ -6,6 +6,7 @@ var agachado = 0
 func _ready() -> void:
 	$GUI/Center/StartMenu.visible = true
 	$GUI/Center/OptionsMenu.visible = false
+	$GUI/Center/CreditsMenu.visible = false
 	
 	var random_player = randi_range(1, 2)
 	match random_player:

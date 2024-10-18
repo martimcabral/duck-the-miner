@@ -40,6 +40,12 @@ func player_movement(input, delta):
 	velocity.y += falling_speed * delta * 1.1
 
 func _process(delta):
+	if Input.is_action_just_pressed("PauseMenu"):
+		if $"../PauseMenu/GUI_Pause".visible == true:
+			$"../PauseMenu/GUI_Pause".visible = false
+		elif $"../PauseMenu/GUI_Pause".visible == false:
+			$"../PauseMenu/GUI_Pause".visible = true
+		
 	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
 	var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
 	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
