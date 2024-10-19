@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/raw/ruby.png" id="12_fbgad"]
 [ext_resource type="Texture2D" uid="uid://do2s5c8qpavqr" path="res://assets/textures/items/raw/sapphire.png" id="13_4vxl0"]
 [ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/raw/diamond.png" id="14_fsffw"]
-[ext_resource type="PackedScene" uid="uid://bbyiibgv0sxte" path="res://scenes/pause_menu.tscn" id="24_dvxve"]
+[ext_resource type="PackedScene" path="res://scenes/pause_menu.tscn" id="24_dvxve"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_288kb"]
 radius = 14.0

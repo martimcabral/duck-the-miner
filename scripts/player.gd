@@ -40,6 +40,17 @@ func player_movement(input, delta):
 	velocity.y += falling_speed * delta * 1.1
 
 func _process(delta):
+	if Input.is_action_just_pressed("Quack"):
+		var random_pitch = randi_range(1, 3)
+		match random_pitch:
+			1:
+				$"Player Sounds/Quack".pitch_scale = 0.9
+			2:
+				$"Player Sounds/Quack".pitch_scale = 1
+			3:
+				$"Player Sounds/Quack".pitch_scale = 1.1
+		$"Player Sounds/Quack".play()
+		
 	if Input.is_action_just_pressed("PauseMenu"):
 		if $"../PauseMenu/GUI_Pause".visible == true:
 			$"../PauseMenu/GUI_Pause".visible = false
