@@ -4,6 +4,11 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
+	if ResourceLoader.exists("res://game_dependency.png"):
+		print("Duck Rule #13 // Never loan money to a Duck. They'll pay you back, but in small bills.")
+	else:
+		get_tree().quit()
+	
 	$GUI/Center/StartMenu.visible = true
 	$GUI/Center/OptionsMenu.visible = false
 	$GUI/Center/CreditsMenu.visible = false

@@ -1,8 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=22 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
 [ext_resource type="Shader" path="res://scripts/Colorblindness/colorblindness_shader.gdshader" id="2_lxwsb"]
-[ext_resource type="AudioStream" uid="uid://kinaavdbakju" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
+[ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" path="res://scripts/Menus/options_menu.gd" id="3_vt73r"]
 [ext_resource type="Script" path="res://scripts/Colorblindness/colorblindness_color_rect.gd" id="3_xk3xp"]
@@ -87,6 +87,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyawk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i1t7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -134,6 +137,7 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -265,7 +269,6 @@ text = "Exit"
 flat = true
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -522,7 +525,6 @@ scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="AudioPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -560,6 +562,29 @@ offset_top = 16.0
 offset_right = 938.0
 offset_bottom = 67.0
 mouse_default_cursor_shape = 7
+
+[node name="MusicToggle" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 75.0
+offset_right = 505.0
+offset_bottom = 127.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Music (doesn't work)"
+
+[node name="MusicToggleButton" type="CheckButton" parent="GUI/Center/OptionsMenu/AudioPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 279.0
+offset_top = 53.0
+offset_right = 323.0
+offset_bottom = 97.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxFlat_3i1t7")
+button_pressed = true
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
 visible = false
