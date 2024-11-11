@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nilyubfe1cx1"
-path="res://.godot/imported/game_dependency.png-c8add96620343856b8e8c9e337e5d8c6.ctex"
+path="res://.godot/imported/game_dependency.png-a31b5c1ae985491f27060cd0d4fc9d69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_dependency.png"
-dest_files=["res://.godot/imported/game_dependency.png-c8add96620343856b8e8c9e337e5d8c6.ctex"]
+source_file="res://rcedit/game_dependency.png"
+dest_files=["res://.godot/imported/game_dependency.png-a31b5c1ae985491f27060cd0d4fc9d69.ctex"]
 
 [params]
 
