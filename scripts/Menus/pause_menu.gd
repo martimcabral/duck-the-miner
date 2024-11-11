@@ -21,3 +21,6 @@ func _on_go_to_main_menu_button_pressed() -> void:
 
 func _on_go_to_desktop_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_feedback_button_pressed() -> void:
+	OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")

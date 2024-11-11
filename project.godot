@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="Duck the Miner"
-config/version="prototype.0.21"
+config/version="1.23"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.442848, 0.0427848, 0.670956, 1)
 boot_splash/image="res://assets/textures/loading_screen.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://assets/textures/icon.svg"
+config/icon="res://assets/textures/icon.png"
 
 [display]
 
@@ -37,6 +37,7 @@ enabled=PackedStringArray()
 
 folder_colors={
 "res://assets/": "red",
+"res://rcedit/": "pink",
 "res://scenes/": "purple",
 "res://scripts/": "teal",
 "res://sounds/": "yellow"

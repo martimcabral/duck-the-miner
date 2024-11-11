@@ -56,10 +56,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -323.5
-offset_top = -258.5
-offset_right = 323.5
-offset_bottom = 390.5
+offset_left = -264.0
+offset_top = -258.0
+offset_right = 269.0
+offset_bottom = 391.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -115,6 +115,27 @@ theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
 text = "Options"
 
+[node name="FeedbackButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -184.0
+offset_top = -237.0
+offset_right = 184.0
+offset_bottom = -157.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
+text = "Feedback"
+flat = true
+
 [node name="GoToMainMenuButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
 z_index = 1
 texture_filter = 1
@@ -133,7 +154,7 @@ grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
-text = "Exit to Main Menu"
+text = "Main Menu"
 flat = true
 
 [node name="GoToDesktopButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
@@ -158,5 +179,6 @@ text = "Exit to Desktop"
 flat = true
 
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="GUI_Pause/PauseMenuPanel/FeedbackButton" to="." method="_on_feedback_button_pressed"]
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/GoToMainMenuButton" to="." method="_on_go_to_main_menu_button_pressed"]
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/GoToDesktopButton" to="." method="_on_go_to_desktop_button_pressed"]
