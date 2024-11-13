@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=35 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/duck_walking.png" id="2_815s6"]
@@ -11,8 +11,17 @@
 [ext_resource type="AudioStream" uid="uid://8weydkx10qqi" path="res://sounds/sound_efects/mining2.ogg" id="7_lpuh6"]
 [ext_resource type="AudioStream" uid="uid://bwgwkvtcl6fsm" path="res://sounds/sound_efects/mining3.ogg" id="8_avynl"]
 [ext_resource type="AudioStream" uid="uid://c3kmi1pd30e6n" path="res://sounds/sound_efects/mining4.ogg" id="9_4jbyg"]
+[ext_resource type="Texture2D" uid="uid://cjtat8pahmy7l" path="res://assets/textures/player_status/health_empty.png" id="9_xk1ih"]
+[ext_resource type="Texture2D" uid="uid://dlgpxnlf8ckyo" path="res://assets/textures/player_status/temperature_empty.png" id="10_krbit"]
+[ext_resource type="Texture2D" uid="uid://cedbcgmeyqrbb" path="res://assets/textures/player_status/health_full.png" id="10_mkla5"]
+[ext_resource type="Texture2D" uid="uid://6qb1b4n54kt8" path="res://assets/textures/player_status/temperature_full.png" id="11_xclme"]
 [ext_resource type="AudioStream" uid="uid://by78b6htnt5ir" path="res://sounds/sound_efects/place_block.ogg" id="12_r1vvj"]
+[ext_resource type="Texture2D" uid="uid://cmr7nr2uf3trb" path="res://assets/textures/player_status/oxygen_empty.png" id="12_ypwfb"]
 [ext_resource type="AudioStream" uid="uid://bo14ppma24hbf" path="res://sounds/sound_efects/quack.ogg" id="13_2b2kh"]
+[ext_resource type="Texture2D" uid="uid://b0f58cyexu4f4" path="res://assets/textures/player_status/oxygen_full.png" id="13_fiy22"]
+[ext_resource type="Texture2D" uid="uid://bekjnl7clpv2l" path="res://assets/textures/player_status/uv_full.png" id="14_6fg1g"]
+[ext_resource type="Texture2D" uid="uid://cn1dcngf0i6gp" path="res://assets/textures/player_status/hunger_full.png" id="15_6ufol"]
+[ext_resource type="Texture2D" uid="uid://bjnph3brfvk2u" path="res://assets/textures/player_status/thirst_full.png" id="16_2x7od"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7eb2"]
 atlas = ExtResource("3_twhi0")
@@ -160,15 +169,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -209.0
-offset_top = -42.0
-offset_bottom = -1.0
+offset_left = -122.0
+offset_top = -41.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 32
-text = "prototype.1.23"
+text = "alpha.1.1"
 tab_size = 5
-metadata/_edit_use_anchors_ = true
 
 [node name="PlayerPosition" type="RichTextLabel" parent="Camera2D/HUD"]
 offset_left = 11.0
@@ -179,6 +186,172 @@ theme_override_font_sizes/normal_font_size = 32
 text = "X: 0
 Y: 0"
 metadata/_edit_use_anchors_ = true
+
+[node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
+
+[node name="HealthStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 69.0
+offset_top = -296.0
+offset_right = 325.0
+offset_bottom = -40.0
+grow_vertical = 0
+scale = Vector2(0.9, 0.9)
+tooltip_text = "Health"
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 127.0
+radial_fill_degrees = 285.0
+texture_under = ExtResource("9_xk1ih")
+texture_progress = ExtResource("10_mkla5")
+
+[node name="HealthText" type="RichTextLabel" parent="Camera2D/HUD/Stats/HealthStat"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 91.0
+offset_right = 159.0
+offset_bottom = 131.0
+theme_override_font_sizes/normal_font_size = 38
+bbcode_enabled = true
+text = "n/a"
+
+[node name="TemperatureStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
+editor_description = "This progress bar is not supposed to actually do any progress."
+texture_filter = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 69.0
+offset_top = -296.0
+offset_right = 325.0
+offset_bottom = -40.0
+grow_vertical = 0
+scale = Vector2(0.9, 0.9)
+tooltip_text = "Temperature"
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("10_krbit")
+texture_progress = ExtResource("11_xclme")
+
+[node name="TemperatureText" type="RichTextLabel" parent="Camera2D/HUD/Stats/TemperatureStat"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 110.0
+offset_top = 125.0
+offset_right = 167.0
+offset_bottom = 182.0
+theme_override_font_sizes/normal_font_size = 38
+bbcode_enabled = true
+text = "0ᵒ"
+
+[node name="OxygenStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 116.0
+offset_top = -417.0
+offset_right = 372.0
+offset_bottom = -161.0
+grow_vertical = 0
+scale = Vector2(0.35, 0.35)
+tooltip_text = "Health"
+max_value = 300.0
+value = 300.0
+fill_mode = 4
+texture_under = ExtResource("12_ypwfb")
+texture_progress = ExtResource("13_fiy22")
+
+[node name="OxygenText" type="RichTextLabel" parent="Camera2D/HUD/Stats/OxygenStat"]
+layout_mode = 0
+offset_left = 80.1429
+offset_top = 105.143
+offset_right = 180.143
+offset_bottom = 162.143
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "000"
+
+[node name="uvStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 231.0
+offset_top = -395.0
+offset_right = 487.0
+offset_bottom = -139.0
+grow_vertical = 0
+scale = Vector2(0.35, 0.35)
+tooltip_text = "Health"
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("12_ypwfb")
+texture_progress = ExtResource("14_6fg1g")
+
+[node name="uvText" type="RichTextLabel" parent="Camera2D/HUD/Stats/uvStat"]
+layout_mode = 0
+offset_left = 82.7141
+offset_top = 102.143
+offset_right = 185.714
+offset_bottom = 159.143
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "000"
+
+[node name="HungerStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 319.0
+offset_top = -308.0
+offset_right = 575.0
+offset_bottom = -52.0
+grow_vertical = 0
+rotation = 0.00172354
+scale = Vector2(0.35, 0.35)
+tooltip_text = "Health"
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("12_ypwfb")
+texture_progress = ExtResource("15_6ufol")
+
+[node name="HungerText" type="RichTextLabel" parent="Camera2D/HUD/Stats/HungerStat"]
+layout_mode = 0
+offset_left = 79.8571
+offset_top = 105.005
+offset_right = 182.857
+offset_bottom = 162.005
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "000"
+
+[node name="ThirstStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 327.0
+offset_top = -188.0
+offset_right = 583.0
+offset_bottom = 68.0
+grow_vertical = 0
+rotation = 0.00172354
+scale = Vector2(0.35, 0.35)
+tooltip_text = "Health"
+value = 100.0
+fill_mode = 4
+texture_under = ExtResource("12_ypwfb")
+texture_progress = ExtResource("16_2x7od")
+
+[node name="ThirstText" type="RichTextLabel" parent="Camera2D/HUD/Stats/ThirstStat"]
+layout_mode = 0
+offset_left = 79.857
+offset_top = 105.005
+offset_right = 182.857
+offset_bottom = 162.005
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "000"
 
 [node name="Player Sounds" type="Node2D" parent="."]
 
@@ -203,4 +376,23 @@ stream = ExtResource("13_2b2kh")
 volume_db = -5.0
 max_distance = 2e+06
 
+[node name="HungerConsumption" type="Timer" parent="."]
+wait_time = 20.0
+autostart = true
+
+[node name="ThirstConsumption" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="uvBatteryConsumption" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="OxygenConsumption" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="BlockRange/MiningCooldown" to="." method="_on_minning_cooldown_timeout"]
+[connection signal="timeout" from="HungerConsumption" to="." method="_on_hunger_remover_timeout"]
+[connection signal="timeout" from="ThirstConsumption" to="." method="_on_thirst_remover_timeout"]
+[connection signal="timeout" from="uvBatteryConsumption" to="." method="_on_uv_battery_consumption_timeout"]
+[connection signal="timeout" from="OxygenConsumption" to="." method="_on_oxygen_consumption_timeout"]

@@ -10,11 +10,15 @@ const falling_speed = 175
 
 var used_tiles = {}
 
+var flashlight : bool = false
+
 @onready var block_selection = $"../WorldTileMap/BlockSelection"
 @onready var player = $"../Player"
 
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var BreakingStages = $"../WorldTileMap/BreakingStages"
+
+@onready var InventoryAtWorld = $HUD/WorldMissionInventory
 
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
@@ -40,6 +44,41 @@ func player_movement(input, delta):
 	velocity.y += falling_speed * delta * 1.1
 
 func _process(delta):
+	if Input.is_action_just_pressed("Open_Feedback_Page"):
+		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
+	
+	$Camera2D/HUD/Stats/HungerStat/HungerText.text = "[center]%s[/center]" % str($Camera2D/HUD/Stats/HungerStat.value)
+	$Camera2D/HUD/Stats/ThirstStat/ThirstText.text = "[center]%s[/center]" % str($Camera2D/HUD/Stats/ThirstStat.value)
+	
+	$Flashlight.look_at(get_global_mouse_position())
+	if Input.is_action_just_pressed("Place_Torch") and self.current_item == 4:
+		match (flashlight):
+			true:
+				$Flashlight.energy = 0
+				flashlight = false
+			false:
+				$Flashlight.energy = 1.75
+				flashlight = true
+	
+	if $Camera2D/HUD/Stats/uvStat.value == 0:
+		flashlight = false
+		$Flashlight.energy = 0
+	
+	$Camera2D/HUD/Stats/uvStat/uvText.text = "[center]%s[/center]" % str(int($Camera2D/HUD/Stats/uvStat.value))
+	
+	if $Camera2D/HUD/Stats/OxygenStat.value == 0:
+		$Camera2D/HUD/Stats/OxygenStat.value = 300
+		$Camera2D/HUD/Stats/HealthStat.value -= 3
+		
+	$Camera2D/HUD/Stats/OxygenStat/OxygenText.text = "[center]%s[/center]" % str(int($Camera2D/HUD/Stats/OxygenStat.value))
+	$Camera2D/HUD/Stats/HealthStat/HealthText.text = "[center]%s[/center]" % str(int($Camera2D/HUD/Stats/HealthStat.value * 1))
+	
+	if Input.is_action_just_pressed("Hide_Show_Inventory"):
+		if InventoryAtWorld.visible == true:
+			InventoryAtWorld.visible = false
+		else:
+			InventoryAtWorld.visible = true
+	
 	if Input.is_action_just_pressed("Quack"):
 		var random_pitch = randi_range(1, 3)
 		match random_pitch:
@@ -235,3 +274,16 @@ func _on_minning_cooldown_timeout() -> void:
 		else: 
 			pass
 			#print("[!] Trying to Destroy block outside BlockRange")
+
+func _on_hunger_remover_timeout() -> void:
+	$Camera2D/HUD/Stats/HungerStat.value -= 1
+
+func _on_thirst_remover_timeout() -> void:
+	$Camera2D/HUD/Stats/ThirstStat.value -= 1
+
+func _on_uv_battery_consumption_timeout() -> void:
+	if flashlight == true:
+		$Camera2D/HUD/Stats/uvStat.value -= 1
+
+func _on_oxygen_consumption_timeout() -> void:
+	$Camera2D/HUD/Stats/OxygenStat.value -= 1

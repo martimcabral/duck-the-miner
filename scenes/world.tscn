@@ -206,16 +206,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_3oei7")
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0929202
-anchor_top = 0.0116732
-anchor_right = 0.0929202
-anchor_bottom = 0.0116732
+anchor_left = 0.0176991
+anchor_top = 0.0153846
+anchor_right = 0.137168
+anchor_bottom = 0.0153846
 offset_left = 10.0
 offset_top = 11.0
 offset_right = 193.0
 offset_bottom = 51.0
 theme_override_font_sizes/normal_font_size = 24
-text = "Team Inventory"
+text = "Duck's Big Pockets"
 metadata/_edit_use_anchors_ = true
 
 [node name="Stone" type="TextureRect" parent="Player/HUD/WorldMissionInventory"]
@@ -383,7 +383,7 @@ offset_left = 10.0
 offset_top = 42.0
 offset_right = 50.0
 offset_bottom = 80.0
-tooltip_text = "    Stone"
+tooltip_text = "ice"
 texture = ExtResource("10_sr6bu")
 metadata/_edit_use_anchors_ = true
 
@@ -411,7 +411,7 @@ offset_left = 20.0
 offset_top = 84.0
 offset_right = 60.0
 offset_bottom = 122.0
-tooltip_text = "    Coal"
+tooltip_text = "Emerald"
 texture = ExtResource("11_lio1y")
 metadata/_edit_use_anchors_ = true
 
@@ -439,7 +439,7 @@ offset_left = 35.84
 offset_top = 167.36
 offset_right = 75.84
 offset_bottom = 205.36
-tooltip_text = "    Raw Copper"
+tooltip_text = "Ruby"
 texture = ExtResource("12_fbgad")
 metadata/_edit_use_anchors_ = true
 
@@ -471,7 +471,7 @@ offset_left = 35.84
 offset_top = 167.36
 offset_right = 75.84
 offset_bottom = 205.36
-tooltip_text = "    Raw Iron"
+tooltip_text = "Sapphire"
 texture = ExtResource("13_4vxl0")
 metadata/_edit_use_anchors_ = true
 
@@ -503,7 +503,7 @@ offset_left = 35.84
 offset_top = 167.36
 offset_right = 75.84
 offset_bottom = 205.36
-tooltip_text = "    Raw Gold"
+tooltip_text = "Diamond"
 texture = ExtResource("14_fsffw")
 metadata/_edit_use_anchors_ = true
 

@@ -525,6 +525,7 @@ scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="AudioPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -587,7 +588,6 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_3i1t7")
 button_pressed = true
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -612,9 +612,11 @@ WASD & Arrows - Move, Fly
 1, 2, 3, 4 - Hotbar
 C, Crtl - Crouch
 Shift - Run
-RMB - Place Light, Turn on UV Flashlight
+RMB - Place Light, UV Flashlight
 LMB - Destroy Block, Attack
-MMB - Place Block"
+MMB - Place Block
+TAB - Hide/Show Inventory
+F9 - Open Feedback Page"
 
 [node name="AccessibilityPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
 visible = false
