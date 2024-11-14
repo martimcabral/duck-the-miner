@@ -13,6 +13,9 @@ func _ready() -> void:
 	$GUI/Center/OptionsMenu.visible = false
 	$GUI/Center/CreditsMenu.visible = false
 	
+	DiscordRPC.details = "At the Main Menu"
+	DiscordRPC.refresh()
+	
 	var random_player = randi_range(1, 2)
 	match random_player:
 		1:

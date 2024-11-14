@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=23 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
 [ext_resource type="Shader" path="res://scripts/Colorblindness/colorblindness_shader.gdshader" id="2_lxwsb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" path="res://scripts/Menus/options_menu.gd" id="3_vt73r"]
 [ext_resource type="Script" path="res://scripts/Colorblindness/colorblindness_color_rect.gd" id="3_xk3xp"]
+[ext_resource type="Script" path="res://scripts/Discord/discord_manager.gd" id="7_k8wmx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7xo03"]
 shader = ExtResource("2_lxwsb")
@@ -588,6 +589,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_3i1t7")
 button_pressed = true
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -751,6 +753,9 @@ stream = ExtResource("2_v23jq")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
+
+[node name="DiscordRP" type="Node" parent="."]
+script = ExtResource("7_k8wmx")
 
 [connection signal="pressed" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/OptionsButton" to="GUI/Center/StartMenu" method="_on_options_button_pressed"]

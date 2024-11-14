@@ -1,6 +1,6 @@
 extends Node2D
 
-var inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+@export var inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 func _process(_delta: float) -> void:
 	update_inventory()

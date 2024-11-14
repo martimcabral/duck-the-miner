@@ -44,6 +44,13 @@ func player_movement(input, delta):
 	velocity.y += falling_speed * delta * 1.1
 
 func _process(delta):
+	var pos_y = self.position.y
+	$Camera2D/HUD/Stats/TemperatureStat/TemperatureText.text = "[center]%s[/center]" % str(int(pos_y / 200) - 18) + "ᵒ"
+	
+	var temperature_color = (-abs(position.y) / 30950) + 0.5 # 38950
+	$Camera2D/HUD/Stats/TemperatureStat.tint_progress = Color.from_hsv(temperature_color, 1, 1, 1)
+	# MIN: -18 MAX: 62 VAR: 80, 12.5 # 4400ff
+	
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 	
@@ -130,7 +137,8 @@ func _process(delta):
 		var radius = (collision_shape as CircleShape2D).radius
 		
 		if local_mouse_pos.length() <= radius:
-			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
+			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1) and $"../MissionInventory".inventory[0] >= 1):
+				$"../MissionInventory".inventory[0] -= 1
 				print(tile_data, " ", tile_id)
 				CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
 				$"../Player/Player Sounds/PlaceBlock".play()

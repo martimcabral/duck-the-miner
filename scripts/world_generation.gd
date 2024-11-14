@@ -9,6 +9,10 @@ const world_height_border = 1020 # Always +20
 const world_border_up_and_down = 10
 const world_border_sides = 12
 
+var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+var vogais = ['a', 'e', 'i', 'o', 'u']
+var AsteroidField = ["Delta", "Gamma", "Omega", "Lambda", "Sigma", "Yotta"]
+
 @onready var CaveSystem = $WorldTileMap/CaveSystem
 
 func _process(_delta: float) -> void:
@@ -25,7 +29,7 @@ func start_music():
 			$WorldMusic/Void.play()
 
 func create_world_borders():
-	# Above Map Border
+# Above Map Border
 	for y in range(world_border_up_and_down):
 		y = -abs(y)
 		for x in range(world_width):
@@ -55,12 +59,15 @@ func _ready():
 	start_music()
 	create_world_borders()
 	
+	var asteroid_name = create_asteroid()
+	var asteroid_field = AsteroidField[randi() % AsteroidField.size()]
+	
 	var fnl = FastNoiseLite.new()
 	
 	var asteroid_type = "Unknown"
 	var asteroid_biome = "Unknown"
 	
-	fnl.seed = randi_range(0, 200000)
+	fnl.seed = randi_range(0, 2147483646)
 	fnl.noise_type = FastNoiseLite.TYPE_SIMPLEX   
 	fnl.fractal_octaves = 4 #4
 	fnl.fractal_lacunarity = 2.25 #2.5
@@ -70,10 +77,16 @@ func _ready():
 		print("World Procedural Generation Logs: ")
 		print("Asteroid Type: ", asteroid_type)
 		print("Asteroid Biome: ", asteroid_biome)
+		print("Asteroid Name: ", asteroid_name)
+		print("Asteroid Field: ", asteroid_field, "\n")
+		print("Seed: ", fnl.seed)
 		print("Noise Type: ", fnl.noise_type)
 		print("Octaves: ", fnl.fractal_octaves)
 		print("Lacunarity: ", fnl.fractal_lacunarity)
 		print("Gain: ", fnl.fractal_gain)
+	
+	DiscordRPC.details = "☄️: " + asteroid_name + " at " + asteroid_field + " Field"
+	DiscordRPC.refresh()
 	
 	# Make Caverns
 	for x in range(world_width):
@@ -165,3 +178,37 @@ func put_gems():
 						1: CaveSystem.set_cell(tile_pos, 0, Vector2i(1, 1))
 						2: CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
 						3: CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
+
+func create_asteroid():
+	var consoante1 = consoantes[randi() % consoantes.size()]
+	var consoante2 = consoantes[randi() % consoantes.size()]
+	var consoante3 = consoantes[randi() % consoantes.size()]
+	var consoante4 = consoantes[randi() % consoantes.size()]
+	var vogal1 = vogais[randi() % vogais.size()]
+	var vogal2 = vogais[randi() % vogais.size()]
+	var vogal3 = vogais[randi() % vogais.size()]
+	var vogal4 = vogais[randi() % vogais.size()]
+	var vogal5 = vogais[randi() % vogais.size()]
+	var vogal6 = vogais[randi() % vogais.size()]
+
+	var variante = randi() % 9 + 1
+
+	match variante: # 398,779,605
+		1:
+			return consoante1.to_upper() + vogal1 + vogal2 + consoante2 + vogal3
+		2:
+			return consoante1.to_upper() + vogal1 + vogal2 + consoante2 + vogal3 + consoante3 + vogal4
+		3:
+			return consoante1.to_upper() + vogal1 + consoante2
+		4:
+			return consoante1.to_upper() + consoante2 + vogal1 + consoante3 + vogal2 + vogal3
+		5:
+			return vogal1.to_upper() + consoante1 + consoante2 + vogal2 + "-" + consoante3.to_upper() + vogal3 + consoante4 + vogal4
+		6:
+			return vogal1.to_upper() + consoante1 + consoante2 + vogal3 + vogal3
+		7:
+			return consoante1.to_upper() + vogal1 + vogal2 + consoante2 + vogal3 + vogal4 + consoante3 + consoante4 + vogal5
+		8:
+			return consoante1.to_upper() + vogal1 + consoante2 + vogal2 + consoante3 + vogal3 + consoante3 + vogal4 + vogal5 + consoante4 + vogal6
+		9:
+			return consoante1.to_upper() + vogal1 + consoante2 + consoante3 + vogal2 + consoante4
