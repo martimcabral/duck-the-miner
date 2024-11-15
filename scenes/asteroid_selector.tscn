@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4ub8dctj6n1f"]
+
+[ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="1_cqnqo"]
+[ext_resource type="Script" path="res://scenes/asteroid_selector.gd" id="1_of40j"]
+[ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="3_ao1wk"]
+
+[node name="AsteroidSelector" type="Node2D"]
+script = ExtResource("1_of40j")
+
+[node name="UniverseBackground" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_cqnqo")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ao1wk")
+volume_db = -5.0
+autoplay = true

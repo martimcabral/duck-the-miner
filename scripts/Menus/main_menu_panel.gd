@@ -1,7 +1,6 @@
 extends Panel
 
 func _on_exit_button_pressed() -> void:
-	print("[!] Autodestruction Activated - Duck Rule #32 // When using destructive weapons in simulations, make sure you're the one simulating!")
 	get_tree().quit()
 
 func _on_options_button_pressed() -> void:

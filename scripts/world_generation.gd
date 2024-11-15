@@ -17,26 +17,13 @@ var AsteroidField = ["Delta", "Gamma", "Omega", "Lambda", "Sigma", "Yotta"]
 var asteroid_name
 var asteroid_field
 
-@onready var CaveSystem = $WorldTileMap/CaveSystem
+var previous_scene_name = ""
 
-func _enter_tree():
-	asteroid_name = create_asteroid()
-	asteroid_field = AsteroidField[randi() % AsteroidField.size()]
-	
-	if DiscordRPC.get_is_discord_working():
-		#DiscordRPC.small_image = ""
-		#DiscordRPC.small_image_text = ""
-		#DiscordRPC.details = ""
-		#DiscordRPC.refresh()
-		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Debt: 4 528 913 301 674$"
-		DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
-		DiscordRPC.refresh()
-	else:
-		print("[world_generation.gd] Discord isn't running or wasn't detected, skipping rich presence.")
+@onready var CaveSystem = $WorldTileMap/CaveSystem
 
 func _process(_delta: float) -> void:
 	$WorldMusic.position = $Player.position
+	DiscordRPC.run_callbacks()
 
 func start_music():
 	var random_music = randi_range(1, 3)
@@ -76,6 +63,17 @@ func create_world_borders():
 			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
 
 func _ready():
+	asteroid_name = create_asteroid_name()
+	asteroid_field = AsteroidField[randi() % AsteroidField.size()]
+	
+	if DiscordRPC.get_is_discord_working():
+		DiscordRPC.small_image = "diamond-512"
+		DiscordRPC.small_image_text = "Debt: 4 528 913 301 674$"
+		DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
+		DiscordRPC.refresh()
+	else:
+		print("[world_generation.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
+	
 	start_music()
 	create_world_borders()
 	
@@ -193,7 +191,7 @@ func put_gems():
 						2: CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
 						3: CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
 
-func create_asteroid():
+func create_asteroid_name():
 	var consoante1 = consoantes[randi() % consoantes.size()]
 	var consoante2 = consoantes[randi() % consoantes.size()]
 	var consoante3 = consoantes[randi() % consoantes.size()]

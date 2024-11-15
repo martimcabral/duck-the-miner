@@ -4,6 +4,13 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
+	if DiscordRPC.get_is_discord_working():
+		DiscordRPC.details = "At the Main Menu"
+		DiscordRPC.small_image = ""
+		DiscordRPC.refresh()
+	else:
+		print("[start.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
+		
 	if ResourceLoader.exists("res://rcedit/game_dependency.png"):
 		pass
 	else:
@@ -33,6 +40,8 @@ func _ready() -> void:
 		$GUI/Center/Title.text = "Miner the Duck"
 
 func _process(_delta: float) -> void:
+	DiscordRPC.run_callbacks()
+	
 	$GUI/Center/Background.size = get_viewport_rect().size
 	
 	# Agachar no Menu
@@ -52,11 +61,3 @@ func _process(_delta: float) -> void:
 		elif window_mode == 1:
 			window_mode = 0
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-func _enter_tree():
-	if DiscordRPC.get_is_discord_working():
-		DiscordRPC.details = "At the Main Menu"
-		DiscordRPC.small_image = ""
-		DiscordRPC.refresh()
-	else:
-		print("[start.gd] Discord isn't running or wasn't detected, skipping rich presence.")

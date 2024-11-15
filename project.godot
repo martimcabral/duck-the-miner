@@ -23,6 +23,7 @@ config/icon="res://assets/textures/icon.png"
 [autoload]
 
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+DiscordRp="*res://scripts/Discord/discordRP.gd"
 
 [display]
 
