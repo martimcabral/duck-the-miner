@@ -6,6 +6,7 @@ const world_width = 300
 const world_height = 1000
 const world_height_border = 1020 # Always +20
 
+
 const world_border_up_and_down = 10
 const world_border_sides = 12
 
@@ -13,7 +14,26 @@ var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q
 var vogais = ['a', 'e', 'i', 'o', 'u']
 var AsteroidField = ["Delta", "Gamma", "Omega", "Lambda", "Sigma", "Yotta"]
 
+var asteroid_name
+var asteroid_field
+
 @onready var CaveSystem = $WorldTileMap/CaveSystem
+
+func _enter_tree():
+	asteroid_name = create_asteroid()
+	asteroid_field = AsteroidField[randi() % AsteroidField.size()]
+	
+	if DiscordRPC.get_is_discord_working():
+		#DiscordRPC.small_image = ""
+		#DiscordRPC.small_image_text = ""
+		#DiscordRPC.details = ""
+		#DiscordRPC.refresh()
+		DiscordRPC.small_image = "diamond-512"
+		DiscordRPC.small_image_text = "Debt: 4 528 913 301 674$"
+		DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
+		DiscordRPC.refresh()
+	else:
+		print("[world_generation.gd] Discord isn't running or wasn't detected, skipping rich presence.")
 
 func _process(_delta: float) -> void:
 	$WorldMusic.position = $Player.position
@@ -59,9 +79,6 @@ func _ready():
 	start_music()
 	create_world_borders()
 	
-	var asteroid_name = create_asteroid()
-	var asteroid_field = AsteroidField[randi() % AsteroidField.size()]
-	
 	var fnl = FastNoiseLite.new()
 	
 	var asteroid_type = "Unknown"
@@ -84,9 +101,6 @@ func _ready():
 		print("Octaves: ", fnl.fractal_octaves)
 		print("Lacunarity: ", fnl.fractal_lacunarity)
 		print("Gain: ", fnl.fractal_gain)
-	
-	DiscordRPC.details = "☄️: " + asteroid_name + " at " + asteroid_field + " Field"
-	DiscordRPC.refresh()
 	
 	# Make Caverns
 	for x in range(world_width):

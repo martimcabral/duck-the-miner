@@ -13,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://cjtat8pahmy7l" path="res://assets/textures/player_status/health_empty.png" id="9_xk1ih"]
 [ext_resource type="Texture2D" uid="uid://dlgpxnlf8ckyo" path="res://assets/textures/player_status/temperature_empty.png" id="10_krbit"]
 [ext_resource type="Texture2D" uid="uid://cedbcgmeyqrbb" path="res://assets/textures/player_status/health_full.png" id="10_mkla5"]
+[ext_resource type="Texture2D" uid="uid://th7mth63l2ha" path="res://assets/textures/player_status/empty_circle.png" id="11_f2tsg"]
 [ext_resource type="Texture2D" uid="uid://6qb1b4n54kt8" path="res://assets/textures/player_status/temperature_full.png" id="11_xclme"]
 [ext_resource type="AudioStream" uid="uid://by78b6htnt5ir" path="res://sounds/sound_efects/place_block.ogg" id="12_r1vvj"]
-[ext_resource type="Texture2D" uid="uid://cmr7nr2uf3trb" path="res://assets/textures/player_status/oxygen_empty.png" id="12_ypwfb"]
 [ext_resource type="AudioStream" uid="uid://bo14ppma24hbf" path="res://sounds/sound_efects/quack.ogg" id="13_2b2kh"]
 [ext_resource type="Texture2D" uid="uid://b0f58cyexu4f4" path="res://assets/textures/player_status/oxygen_full.png" id="13_fiy22"]
 [ext_resource type="Texture2D" uid="uid://bekjnl7clpv2l" path="res://assets/textures/player_status/uv_full.png" id="14_6fg1g"]
@@ -191,12 +191,12 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 69.0
-offset_top = -296.0
-offset_right = 325.0
-offset_bottom = -40.0
+offset_left = 40.1533
+offset_top = -232.062
+offset_right = 296.153
+offset_bottom = 23.9384
 grow_vertical = 0
-scale = Vector2(0.9, 0.9)
+scale = Vector2(0.75, 0.75)
 tooltip_text = "Health"
 value = 100.0
 fill_mode = 4
@@ -221,12 +221,12 @@ texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 69.0
-offset_top = -296.0
-offset_right = 325.0
-offset_bottom = -40.0
+offset_left = 40.1533
+offset_top = -232.062
+offset_right = 296.153
+offset_bottom = 23.9384
 grow_vertical = 0
-scale = Vector2(0.9, 0.9)
+scale = Vector2(0.75, 0.75)
 tooltip_text = "Temperature"
 value = 100.0
 fill_mode = 4
@@ -249,26 +249,26 @@ text = "0ᵒ"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 116.0
-offset_top = -417.0
-offset_right = 372.0
-offset_bottom = -161.0
+offset_left = 87.0
+offset_top = -321.0
+offset_right = 343.0
+offset_bottom = -65.0
 grow_vertical = 0
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.25, 0.25)
 tooltip_text = "Health"
 max_value = 300.0
 value = 300.0
 fill_mode = 4
-texture_under = ExtResource("12_ypwfb")
+texture_under = ExtResource("11_f2tsg")
 texture_progress = ExtResource("13_fiy22")
 
 [node name="OxygenText" type="RichTextLabel" parent="Camera2D/HUD/Stats/OxygenStat"]
 layout_mode = 0
-offset_left = 80.1429
-offset_top = 105.143
-offset_right = 180.143
-offset_bottom = 162.143
-theme_override_font_sizes/normal_font_size = 55
+offset_left = 70.0
+offset_top = 97.0
+offset_right = 191.0
+offset_bottom = 163.0
+theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "000"
 
@@ -276,25 +276,25 @@ text = "000"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 231.0
-offset_top = -395.0
-offset_right = 487.0
-offset_bottom = -139.0
+offset_left = 193.0
+offset_top = -321.0
+offset_right = 449.0
+offset_bottom = -65.0
 grow_vertical = 0
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.25, 0.25)
 tooltip_text = "Health"
 value = 100.0
 fill_mode = 4
-texture_under = ExtResource("12_ypwfb")
+texture_under = ExtResource("11_f2tsg")
 texture_progress = ExtResource("14_6fg1g")
 
 [node name="uvText" type="RichTextLabel" parent="Camera2D/HUD/Stats/uvStat"]
 layout_mode = 0
-offset_left = 82.7141
-offset_top = 102.143
-offset_right = 185.714
-offset_bottom = 159.143
-theme_override_font_sizes/normal_font_size = 55
+offset_left = 69.0
+offset_top = 98.0
+offset_right = 194.0
+offset_bottom = 164.0
+theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "000"
 
@@ -302,26 +302,26 @@ text = "000"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 319.0
-offset_top = -308.0
-offset_right = 575.0
-offset_bottom = -52.0
+offset_left = 266.0
+offset_top = -235.0
+offset_right = 522.0
+offset_bottom = 21.0
 grow_vertical = 0
 rotation = 0.00172354
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.25, 0.25)
 tooltip_text = "Health"
 value = 100.0
 fill_mode = 4
-texture_under = ExtResource("12_ypwfb")
+texture_under = ExtResource("11_f2tsg")
 texture_progress = ExtResource("15_6ufol")
 
 [node name="HungerText" type="RichTextLabel" parent="Camera2D/HUD/Stats/HungerStat"]
 layout_mode = 0
-offset_left = 79.8571
-offset_top = 105.005
-offset_right = 182.857
-offset_bottom = 162.005
-theme_override_font_sizes/normal_font_size = 55
+offset_left = 62.0
+offset_top = 99.0
+offset_right = 195.0
+offset_bottom = 171.0
+theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "000"
 
@@ -329,26 +329,26 @@ text = "000"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 327.0
-offset_top = -188.0
-offset_right = 583.0
-offset_bottom = 68.0
+offset_left = 266.0
+offset_top = -132.0
+offset_right = 522.0
+offset_bottom = 124.0
 grow_vertical = 0
 rotation = 0.00172354
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.25, 0.25)
 tooltip_text = "Health"
 value = 100.0
 fill_mode = 4
-texture_under = ExtResource("12_ypwfb")
+texture_under = ExtResource("11_f2tsg")
 texture_progress = ExtResource("16_2x7od")
 
 [node name="ThirstText" type="RichTextLabel" parent="Camera2D/HUD/Stats/ThirstStat"]
 layout_mode = 0
-offset_left = 79.857
-offset_top = 105.005
-offset_right = 182.857
-offset_bottom = 162.005
-theme_override_font_sizes/normal_font_size = 55
+offset_left = 63.0138
+offset_top = 103.007
+offset_right = 197.014
+offset_bottom = 170.007
+theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "000"
 

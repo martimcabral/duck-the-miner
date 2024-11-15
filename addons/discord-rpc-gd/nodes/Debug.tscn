@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dnfq6kug4x6o2" path="res://addons/discord-rpc-gd/nodes/assets/Checked.svg" id="2_q6tao"]
 [ext_resource type="Texture2D" uid="uid://compmm3kviqqe" path="res://addons/discord-rpc-gd/nodes/assets/Unchecked.svg" id="3_5cyem"]
 [ext_resource type="Texture2D" uid="uid://dtc6ckladq0td" path="res://addons/discord-rpc-gd/nodes/assets/circle.svg" id="3_goflf"]
-[ext_resource type="Script" path="res://scripts/Discord/discord_manager.gd" id="4_0gxrl"]
+[ext_resource type="Script" path="res://scripts/Discord/discordRP.gd" id="4_722e3"]
 
 [sub_resource type="GDScript" id="GDScript_ak1tp"]
 resource_name = "Debug"
@@ -260,8 +260,8 @@ libraries = {
 "": SubResource("AnimationLibrary_a7ofc")
 }
 
-[node name="Discordo" type="Node" parent="."]
-script = ExtResource("4_0gxrl")
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_722e3")
 
 [connection signal="pressed" from="Panel/PrintCurrentUserOnConsole" to="." method="_on_print_current_user_on_console_pressed"]
 [connection signal="pressed" from="Panel/PrintFriends" to="." method="_on_print_friends_pressed"]

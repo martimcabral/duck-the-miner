@@ -9,7 +9,7 @@ uniform int mode;
 void fragment() {
     // Sample the current pixel color from the screen texture using UV coordinates
     vec4 color = texture(screen_tex, SCREEN_UV);
-    
+
     // Declarre a vector to store the corrected color
     vec3 corrected;
 

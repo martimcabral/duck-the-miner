@@ -5,16 +5,13 @@ var agachado = 0
 
 func _ready() -> void:
 	if ResourceLoader.exists("res://rcedit/game_dependency.png"):
-		print("Duck Rule #13 // Never loan money to a Duck. They'll pay you back, but in small bills.")
+		pass
 	else:
 		get_tree().quit()
 	
 	$GUI/Center/StartMenu.visible = true
 	$GUI/Center/OptionsMenu.visible = false
 	$GUI/Center/CreditsMenu.visible = false
-	
-	DiscordRPC.details = "At the Main Menu"
-	DiscordRPC.refresh()
 	
 	var random_player = randi_range(1, 2)
 	match random_player:
@@ -55,3 +52,11 @@ func _process(_delta: float) -> void:
 		elif window_mode == 1:
 			window_mode = 0
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _enter_tree():
+	if DiscordRPC.get_is_discord_working():
+		DiscordRPC.details = "At the Main Menu"
+		DiscordRPC.small_image = ""
+		DiscordRPC.refresh()
+	else:
+		print("[start.gd] Discord isn't running or wasn't detected, skipping rich presence.")
