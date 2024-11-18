@@ -1,18 +1,286 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=20 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="1_cqnqo"]
 [ext_resource type="Script" path="res://scenes/asteroid_selector.gd" id="1_of40j"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="3_ao1wk"]
+[ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/sun.png" id="3_ibgph"]
+[ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/mercury.png" id="4_mbvui"]
+[ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbit.png" id="5_36tfq"]
+[ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/venus.png" id="6_ot65a"]
+[ext_resource type="Texture2D" uid="uid://pyum8i4h4glr" path="res://assets/textures/universe/earth.png" id="7_eca82"]
+[ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moon.png" id="8_8qal8"]
+[ext_resource type="Texture2D" uid="uid://dgr4m0cb5jal2" path="res://assets/textures/universe/mars.png" id="8_l85a3"]
+[ext_resource type="Texture2D" uid="uid://djquxeifie1ql" path="res://assets/textures/universe/asteroids_field.png" id="9_1slgv"]
+[ext_resource type="Texture2D" uid="uid://do0rardstouqs" path="res://assets/textures/universe/jupiter.png" id="10_5fjah"]
+[ext_resource type="Texture2D" uid="uid://jmvxxfp8t62v" path="res://assets/textures/universe/gamma_field.png" id="12_h0c1s"]
+[ext_resource type="Texture2D" uid="uid://bqrbruiu5lla3" path="res://assets/textures/universe/orbit_big.png" id="13_2r2ma"]
+[ext_resource type="Texture2D" uid="uid://cyqfy26jjfek8" path="res://assets/textures/universe/saturn.png" id="13_482v2"]
+[ext_resource type="Texture2D" uid="uid://6hh31hvrlif1" path="res://assets/textures/universe/omega_field.png" id="13_hgiy1"]
+[ext_resource type="Texture2D" uid="uid://bsluqf5p8m0yi" path="res://assets/textures/universe/uranos.png" id="15_2pfml"]
+[ext_resource type="Texture2D" uid="uid://fn5sc5am4djd" path="res://assets/textures/universe/neptune.png" id="18_ee2r4"]
+[ext_resource type="Texture2D" uid="uid://cqfdd8gsiql4t" path="res://assets/textures/universe/lamdba_sigma.png" id="19_lqgvr"]
 
 [node name="AsteroidSelector" type="Node2D"]
+position = Vector2(2, 0)
 script = ExtResource("1_of40j")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1.90735e-06, -9.53674e-07)
+scale = Vector2(1, 1)
+
 [node name="UniverseBackground" type="TextureRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_left = -1061.0
+offset_top = -787.0
+offset_right = 2059.0
+offset_bottom = 1493.0
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_cqnqo")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="UniverseBackground"]
+color = Color(0.9, 0.958333, 1, 1)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ao1wk")
 volume_db = -5.0
 autoplay = true
+parameters/looping = true
+
+[node name="SolarSystem" type="Node2D" parent="."]
+
+[node name="Sun" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5556
+offset_top = -31.0001
+offset_right = 223.444
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_ibgph")
+
+[node name="Mercury" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -95.0965
+offset_top = -95.226
+offset_right = -63.0965
+offset_bottom = -63.226
+rotation = 0.888373
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(94.8312, 96.1747)
+texture = ExtResource("4_mbvui")
+
+[node name="MercuryOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -126.555
+offset_top = -126.0
+offset_right = 129.445
+offset_bottom = 130.0
+scale = Vector2(0.66, 0.66)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("5_36tfq")
+
+[node name="Venus" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -137.452
+offset_top = -149.57
+offset_right = -105.452
+offset_bottom = -117.57
+rotation = 4.69668
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(137.064, 150.878)
+texture = ExtResource("6_ot65a")
+
+[node name="VenusOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -179.0
+offset_top = -171.0
+offset_right = 183.0
+offset_bottom = 187.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(178.667, 169.778)
+texture = ExtResource("5_36tfq")
+
+[node name="Earth" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -207.555
+offset_top = -175.0
+offset_right = -175.555
+offset_bottom = -143.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(207.704, 176.368)
+texture = ExtResource("7_eca82")
+
+[node name="Moon" type="TextureRect" parent="SolarSystem/Earth"]
+z_index = 3
+layout_mode = 0
+offset_left = -1.69873
+offset_top = -126.288
+offset_right = 30.3013
+offset_bottom = -94.2876
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(18.2585, 141.88)
+texture = ExtResource("8_8qal8")
+
+[node name="MoonOrbit" type="TextureRect" parent="SolarSystem/Earth"]
+z_index = 1
+layout_mode = 0
+offset_left = -216.259
+offset_top = -211.51
+offset_right = 39.7412
+offset_bottom = 44.49
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(258.667, 252.296)
+texture = ExtResource("5_36tfq")
+
+[node name="EarthOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -259.0
+offset_top = -251.0
+offset_right = 261.0
+offset_bottom = 257.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(258.667, 252.296)
+texture = ExtResource("5_36tfq")
+
+[node name="Mars" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -314.494
+offset_top = -178.364
+offset_right = -282.494
+offset_bottom = -146.364
+rotation = 2.15723
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(314.289, 179.507)
+texture = ExtResource("8_l85a3")
+
+[node name="MarsOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -342.0
+offset_top = -337.0
+offset_right = 346.0
+offset_bottom = 344.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(341.333, 338.123)
+texture = ExtResource("5_36tfq")
+
+[node name="DeltaField" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -527.555
+offset_top = -533.0
+offset_right = 535.445
+offset_bottom = 540.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(526.969, 536.128)
+texture = ExtResource("9_1slgv")
+
+[node name="GammaField" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -636.188
+offset_top = -750.6
+offset_right = -120.188
+offset_bottom = -287.6
+rotation = -0.0349066
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(634.476, 750.668)
+texture = ExtResource("12_h0c1s")
+
+[node name="OmegaField" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = 497.925
+offset_top = -138.27
+offset_right = 728.925
+offset_bottom = 378.73
+rotation = -1.0472
+pivot_offset = Vector2(-499.096, 138.999)
+texture = ExtResource("13_hgiy1")
+
+[node name="Jupiter" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -19.5555
+offset_top = -665.0
+offset_right = 28.4445
+offset_bottom = -617.0
+pivot_offset = Vector2(19, 666)
+texture = ExtResource("10_5fjah")
+
+[node name="JupiterOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -859.0
+offset_top = -865.0
+offset_right = 868.0
+offset_bottom = 856.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(866.222, 866.403)
+texture = ExtResource("13_2r2ma")
+
+[node name="Saturn" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -26.5555
+offset_top = -954.0
+offset_right = 27.4445
+offset_bottom = -904.0
+pivot_offset = Vector2(25.5555, 955)
+texture = ExtResource("13_482v2")
+
+[node name="SaturnOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -1239.0
+offset_top = -1246.0
+offset_right = 1250.0
+offset_bottom = 1262.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(1224.07, 1245.39)
+texture = ExtResource("13_2r2ma")
+
+[node name="Uranus" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -11.0
+offset_top = -1282.0
+offset_right = 13.0
+offset_bottom = -1230.0
+pivot_offset = Vector2(11, 1290)
+texture = ExtResource("15_2pfml")
+
+[node name="UranusOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -1681.0
+offset_top = -1692.0
+offset_right = 1700.0
+offset_bottom = 1707.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(1660.07, 1692.06)
+texture = ExtResource("13_2r2ma")
+
+[node name="Neptune" type="TextureRect" parent="SolarSystem"]
+z_index = 2
+offset_left = -27.0
+offset_top = -1836.0
+offset_right = 24.0
+offset_bottom = -1786.0
+pivot_offset = Vector2(26, 1836)
+texture = ExtResource("18_ee2r4")
+
+[node name="NeptuneOrbit" type="TextureRect" parent="SolarSystem"]
+z_index = 1
+offset_left = -2440.0
+offset_top = -2422.0
+offset_right = 2417.0
+offset_bottom = 2420.0
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(2473.34, 2422.67)
+texture = ExtResource("13_2r2ma")
+
+[node name="LambdaSigma" type="TextureRect" parent="SolarSystem"]
+offset_left = -129.0
+offset_top = -127.0
+offset_right = 127.0
+offset_bottom = 129.0
+scale = Vector2(50, 50)
+pivot_offset = Vector2(127.9, 128.02)
+texture = ExtResource("19_lqgvr")
