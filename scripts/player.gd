@@ -28,6 +28,14 @@ var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/
 var block_selection_default = preload("res://assets/textures/selected_block.png")
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
+func _ready():
+	if DiscordRPC.get_is_discord_working():
+		var user_data = DiscordRPC.get_current_user()
+		$PlayerName.text = "[center]%s[/center]" % user_data["username"]
+	else:
+		$PlayerName.text = "Player"
+		print("[player.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
+
 func player_movement(input, delta):
 	if input: 
 		if Input.is_action_pressed("Agachar"):
@@ -262,6 +270,7 @@ func destroy_block():
 ##################################################################################################################################################
 ##################################################################################################################################################
 ##################################################################################################################################################
+
 func _on_minning_cooldown_timeout() -> void:
 	if Input.is_action_pressed("Destroy_Block"):
 		# 1. Get the global position of the mouse

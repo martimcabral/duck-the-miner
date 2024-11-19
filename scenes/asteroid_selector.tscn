@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=26 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="1_cqnqo"]
-[ext_resource type="Script" path="res://scenes/asteroid_selector.gd" id="1_of40j"]
+[ext_resource type="Script" path="res://scripts/Menus/asteroid_selector.gd" id="1_of40j"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="3_ao1wk"]
 [ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/sun.png" id="3_ibgph"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/mercury.png" id="4_mbvui"]
@@ -10,23 +10,31 @@
 [ext_resource type="Texture2D" uid="uid://pyum8i4h4glr" path="res://assets/textures/universe/earth.png" id="7_eca82"]
 [ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moon.png" id="8_8qal8"]
 [ext_resource type="Texture2D" uid="uid://dgr4m0cb5jal2" path="res://assets/textures/universe/mars.png" id="8_l85a3"]
-[ext_resource type="Texture2D" uid="uid://djquxeifie1ql" path="res://assets/textures/universe/asteroids_field.png" id="9_1slgv"]
 [ext_resource type="Texture2D" uid="uid://do0rardstouqs" path="res://assets/textures/universe/jupiter.png" id="10_5fjah"]
+[ext_resource type="Texture2D" uid="uid://5nkccdnb1caq" path="res://assets/textures/universe/delta_field.png" id="11_weny5"]
+[ext_resource type="Texture2D" uid="uid://bjbbbpyuplr0u" path="res://assets/textures/universe/moons/phobos.png" id="11_wp18u"]
 [ext_resource type="Texture2D" uid="uid://jmvxxfp8t62v" path="res://assets/textures/universe/gamma_field.png" id="12_h0c1s"]
+[ext_resource type="Texture2D" uid="uid://cmum2wfcr83m7" path="res://assets/textures/universe/moons/deimos.png" id="12_yejg0"]
 [ext_resource type="Texture2D" uid="uid://bqrbruiu5lla3" path="res://assets/textures/universe/orbit_big.png" id="13_2r2ma"]
 [ext_resource type="Texture2D" uid="uid://cyqfy26jjfek8" path="res://assets/textures/universe/saturn.png" id="13_482v2"]
 [ext_resource type="Texture2D" uid="uid://6hh31hvrlif1" path="res://assets/textures/universe/omega_field.png" id="13_hgiy1"]
 [ext_resource type="Texture2D" uid="uid://bsluqf5p8m0yi" path="res://assets/textures/universe/uranos.png" id="15_2pfml"]
+[ext_resource type="Texture2D" uid="uid://i7q6fayubeqv" path="res://assets/textures/universe/moons/io.png" id="17_nm7ke"]
 [ext_resource type="Texture2D" uid="uid://fn5sc5am4djd" path="res://assets/textures/universe/neptune.png" id="18_ee2r4"]
-[ext_resource type="Texture2D" uid="uid://cqfdd8gsiql4t" path="res://assets/textures/universe/lamdba_sigma.png" id="19_lqgvr"]
+[ext_resource type="Texture2D" uid="uid://dmfbgkg6pvpn2" path="res://assets/textures/universe/moons/europa.png" id="18_si5el"]
+[ext_resource type="Texture2D" uid="uid://bwbv5p2rtjkyl" path="res://assets/textures/universe/lambda_and_sigma_field.png" id="19_t1jft"]
+[ext_resource type="Texture2D" uid="uid://b0tu3gvsthbh5" path="res://assets/textures/universe/moons/ganymede.png" id="19_twbo6"]
+[ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/yotta_field.png" id="20_amytx"]
 
 [node name="AsteroidSelector" type="Node2D"]
-position = Vector2(2, 0)
 script = ExtResource("1_of40j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1.90735e-06, -9.53674e-07)
-scale = Vector2(1, 1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Camera2D"]
+position = Vector2(-1061, -787)
+scale = Vector2(0.7, 0.7)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
 offset_left = -1061.0
@@ -35,9 +43,6 @@ offset_right = 2059.0
 offset_bottom = 1493.0
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_cqnqo")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="UniverseBackground"]
-color = Color(0.9, 0.958333, 1, 1)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_ao1wk")
@@ -55,13 +60,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.5556
-offset_top = -31.0001
-offset_right = 223.444
-offset_bottom = 225.0
+offset_left = -122.562
+offset_top = -128.0
+offset_right = 133.437
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(122.223, 128)
 texture = ExtResource("3_ibgph")
 
 [node name="Mercury" type="TextureRect" parent="SolarSystem"]
@@ -159,6 +165,44 @@ scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(314.289, 179.507)
 texture = ExtResource("8_l85a3")
 
+[node name="Phobos" type="TextureRect" parent="SolarSystem/Mars"]
+z_index = 1
+layout_mode = 0
+offset_left = -4.80731
+offset_top = -0.00744152
+offset_right = -1.80731
+offset_bottom = 2.99255
+pivot_offset = Vector2(18.1735, 19.2078)
+texture = ExtResource("11_wp18u")
+
+[node name="PhobosOrbit" type="TextureRect" parent="SolarSystem/Mars"]
+layout_mode = 0
+offset_left = -8.48889
+offset_top = -10.3679
+offset_right = 247.511
+offset_bottom = 245.632
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_36tfq")
+
+[node name="Deimos" type="TextureRect" parent="SolarSystem/Mars"]
+z_index = 1
+layout_mode = 0
+offset_left = -4.03928
+offset_top = -18.1264
+offset_right = -1.03928
+offset_bottom = -15.1264
+pivot_offset = Vector2(20.0436, 34.1058)
+texture = ExtResource("12_yejg0")
+
+[node name="DeimosOrbit" type="TextureRect" parent="SolarSystem/Mars"]
+layout_mode = 0
+offset_left = -21.0
+offset_top = -23.0
+offset_right = 235.0
+offset_bottom = 233.0
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_36tfq")
+
 [node name="MarsOrbit" type="TextureRect" parent="SolarSystem"]
 z_index = 1
 offset_left = -342.0
@@ -177,7 +221,12 @@ offset_right = 535.445
 offset_bottom = 540.0
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(526.969, 536.128)
-texture = ExtResource("9_1slgv")
+texture = ExtResource("11_weny5")
+
+[node name="Area2D" type="Area2D" parent="SolarSystem/DeltaField"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolarSystem/DeltaField/Area2D"]
+polygon = PackedVector2Array(255.75, 42.6241, 22.417, 241.291, -42.9163, 523.957, -12.2496, 774.624, 249.084, 1065.29, 411.75, 1110.62, 637.084, 1090.62, 897.084, 982.624, 1066.42, 727.957, 1135.75, 498.624, 1041.08, 230.624, 899.75, 98.6241, 695.75, -8.0426, 454.417, -24.0426, 259.75, 41.2907, 361.084, 221.291, 509.084, 187.957, 578.417, 181.291, 715.75, 231.957, 806.417, 299.957, 861.084, 378.624, 890.417, 507.957, 874.417, 669.291, 823.75, 746.624, 762.417, 822.624, 666.417, 881.291, 499.75, 901.291, 307.75, 834.624, 219.75, 737.291, 167.75, 571.957, 174.417, 433.291, 251.75, 279.957, 358.417, 222.624)
 
 [node name="GammaField" type="TextureRect" parent="SolarSystem"]
 z_index = 2
@@ -190,6 +239,11 @@ scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(634.476, 750.668)
 texture = ExtResource("12_h0c1s")
 
+[node name="Area2D" type="Area2D" parent="SolarSystem/GammaField"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolarSystem/GammaField/Area2D"]
+polygon = PackedVector2Array(101.859, 74.926, -16.9645, 262.004, -29.0277, 352.75, -11.4194, 453.425, 42.9143, 457.546, 123.01, 392.524, 169.137, 249.603, 261.06, 196.111, 430.907, 139.782, 523.204, 107.428, 540.043, 39.0855, 507.132, -5.42352, 426.73, -27.1316, 240.691, 15.2905)
+
 [node name="OmegaField" type="TextureRect" parent="SolarSystem"]
 z_index = 2
 offset_left = 497.925
@@ -200,14 +254,95 @@ rotation = -1.0472
 pivot_offset = Vector2(-499.096, 138.999)
 texture = ExtResource("13_hgiy1")
 
+[node name="Area2D" type="Area2D" parent="SolarSystem/OmegaField"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolarSystem/OmegaField/Area2D"]
+polygon = PackedVector2Array(90.3441, -17.5179, 87.8823, 98.2186, 94.0999, 268.988, 10.6862, 394.512, -40.2563, 486.277, 19.6716, 574.076, 147.272, 483.086, 231.891, 377.651, 277.279, 208.264, 235.269, 105.501, 187.064, 4.00601)
+
 [node name="Jupiter" type="TextureRect" parent="SolarSystem"]
 z_index = 2
-offset_left = -19.5555
+offset_left = -22.5555
 offset_top = -665.0
-offset_right = 28.4445
+offset_right = 25.4445
 offset_bottom = -617.0
 pivot_offset = Vector2(19, 666)
 texture = ExtResource("10_5fjah")
+
+[node name="Io" type="TextureRect" parent="SolarSystem/Jupiter"]
+z_index = 1
+layout_mode = 0
+offset_left = 20.0
+offset_top = -21.0
+offset_right = 26.0
+offset_bottom = -15.0
+pivot_offset = Vector2(3.5555, 44)
+texture = ExtResource("17_nm7ke")
+
+[node name="IoOrbit" type="TextureRect" parent="SolarSystem/Jupiter"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 236.0
+offset_bottom = 238.0
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("5_36tfq")
+
+[node name="Europa" type="TextureRect" parent="SolarSystem/Jupiter"]
+z_index = 1
+layout_mode = 0
+offset_left = 8.5555
+offset_top = -29.0
+offset_right = 14.5555
+offset_bottom = -23.0
+pivot_offset = Vector2(15, 52)
+texture = ExtResource("18_si5el")
+
+[node name="EuropaOrbit" type="TextureRect" parent="SolarSystem/Jupiter"]
+layout_mode = 0
+offset_left = -29.4445
+offset_top = -27.0
+offset_right = 279.556
+offset_bottom = 282.0
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("5_36tfq")
+
+[node name="Ganymede" type="TextureRect" parent="SolarSystem/Jupiter"]
+z_index = 1
+layout_mode = 0
+offset_left = -47.4445
+offset_top = 19.0
+offset_right = -41.4445
+offset_bottom = 25.0
+pivot_offset = Vector2(71, 4)
+texture = ExtResource("19_twbo6")
+
+[node name="GanymedeOrbit" type="TextureRect" parent="SolarSystem/Jupiter"]
+layout_mode = 0
+offset_left = -45.0
+offset_top = -42.0
+offset_right = 316.0
+offset_bottom = 319.0
+scale = Vector2(0.37001, 0.37001)
+texture = ExtResource("5_36tfq")
+
+[node name="Callisto" type="TextureRect" parent="SolarSystem/Jupiter"]
+z_index = 1
+layout_mode = 0
+offset_left = 19.5555
+offset_top = 124.0
+offset_right = 25.5555
+offset_bottom = 130.0
+pivot_offset = Vector2(4, -101)
+texture = ExtResource("19_twbo6")
+
+[node name="CallistoOrbit" type="TextureRect" parent="SolarSystem/Jupiter"]
+layout_mode = 0
+offset_left = -80.4445
+offset_top = -78.0
+offset_right = 421.555
+offset_bottom = 424.0
+scale = Vector2(0.410005, 0.410005)
+texture = ExtResource("5_36tfq")
 
 [node name="JupiterOrbit" type="TextureRect" parent="SolarSystem"]
 z_index = 1
@@ -276,11 +411,35 @@ scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(2473.34, 2422.67)
 texture = ExtResource("13_2r2ma")
 
-[node name="LambdaSigma" type="TextureRect" parent="SolarSystem"]
-offset_left = -129.0
-offset_top = -127.0
-offset_right = 127.0
-offset_bottom = 129.0
-scale = Vector2(50, 50)
-pivot_offset = Vector2(127.9, 128.02)
-texture = ExtResource("19_lqgvr")
+[node name="LambdaSigmaField" type="TextureRect" parent="SolarSystem"]
+offset_left = -139.999
+offset_top = -137.0
+offset_right = 138.001
+offset_bottom = 141.0
+scale = Vector2(28, 28)
+pivot_offset = Vector2(138.622, 138.62)
+texture = ExtResource("19_t1jft")
+
+[node name="LamdbaArea2D" type="Area2D" parent="SolarSystem/LambdaSigmaField"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolarSystem/LambdaSigmaField/LamdbaArea2D"]
+polygon = PackedVector2Array(152.171, 23.8478, 114.064, 8.59784, 61.814, 22.705, 20.9926, 60.455, 0.778305, 115.384, 1.17117, 162.669, 12.2069, 209.955, 55.7069, 242.384, 100.707, 231.705, 112.135, 206.169, 84.314, 182.134, 69.4212, 148.955, 68.6712, 123.026, 86.9569, 92.8835, 112.135, 74.205, 146.457, 69.9907, 154.493, 49.7764)
+
+[node name="SigmaArea2D" type="Area2D" parent="SolarSystem/LambdaSigmaField"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolarSystem/LambdaSigmaField/SigmaArea2D"]
+polygon = PackedVector2Array(164.278, 52.2407, 171.135, 75.8836, 187.528, 91.5264, 202.421, 114.384, 207.743, 144.526, 202.421, 166.634, 186.778, 187.241, 169.243, 200.598, 136.028, 211.276, 127.278, 216.598, 118.135, 249.026, 119.278, 262.384, 139.493, 274.562, 219.564, 260.455, 277.528, 182.669, 282.1, 122.026, 267.993, 77.0264, 241.314, 40.7764, 199.35, 20.205, 180.278, 26.3121)
+
+[node name="YottaField" type="TextureRect" parent="SolarSystem"]
+offset_left = -356.999
+offset_top = -364.999
+offset_right = 372.001
+offset_bottom = 364.001
+scale = Vector2(28, 28)
+pivot_offset = Vector2(364.094, 363.5)
+texture = ExtResource("20_amytx")
+
+[node name="Area2D" type="Area2D" parent="SolarSystem/YottaField"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SolarSystem/YottaField/Area2D"]
+polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)

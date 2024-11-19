@@ -114,6 +114,17 @@ z_index = 1
 texture_filter = 1
 script = ExtResource("1_ym5y2")
 
+[node name="PlayerName" type="RichTextLabel" parent="."]
+z_index = 1
+texture_filter = 1
+offset_left = -20.0
+offset_top = -13.0
+offset_right = 104.0
+offset_bottom = 6.0
+scale = Vector2(0.33, 0.33)
+bbcode_enabled = true
+text = "Player"
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.98023e-08, -4.76837e-07)
 scale = Vector2(0.875, 0.875)
@@ -126,6 +137,7 @@ position = Vector2(-5.96046e-08, -2.98023e-08)
 scale = Vector2(1.27409, 1.27409)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlockRange"]
+visible = false
 shape = SubResource("CircleShape2D_ig4b6")
 debug_color = Color(1, 0, 0, 0.203922)
 
@@ -159,6 +171,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
+visible = false
 
 [node name="VersionDisplay" type="RichTextLabel" parent="Camera2D/HUD"]
 texture_filter = 1
@@ -186,6 +199,7 @@ Y: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
+visible = false
 
 [node name="HealthStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
 anchors_preset = 2
