@@ -2,17 +2,15 @@ extends Node2D
 
 var register_logs = true
 
-const world_width = 300
-const world_height = 1000
-const world_height_border = 1020 # Always +20
-
+var world_width # Default: 300
+var world_height # Default:  1000
+var world_height_border # Always: world_height + 20
 
 const world_border_up_and_down = 10
 const world_border_sides = 12
 
 var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
 var vogais = ['a', 'e', 'i', 'o', 'u']
-var AsteroidField = ["Delta", "Gamma", "Omega", "Lambda", "Sigma", "Yotta"]
 
 var asteroid_name
 var asteroid_field
@@ -63,8 +61,13 @@ func create_world_borders():
 			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
 
 func _ready():
+	$Player/HUD/AsteroidTitle.visible = true
+	$Player/HUD/FieldTitle.visible = true
+	
 	asteroid_name = create_asteroid_name()
-	asteroid_field = AsteroidField[randi() % AsteroidField.size()]
+	
+	$Player/HUD/AsteroidTitle.text = "[center]%s[/center]" % asteroid_name
+	$Player/HUD/FieldTitle.text = "[center]%s[/center]" % asteroid_field + " Field"
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
@@ -224,3 +227,8 @@ func create_asteroid_name():
 			return consoante1.to_upper() + vogal1 + consoante2 + vogal2 + consoante3 + vogal3 + consoante3 + vogal4 + vogal5 + consoante4 + vogal6
 		9:
 			return consoante1.to_upper() + vogal1 + consoante2 + consoante3 + vogal2 + consoante4
+
+func _on_title_timer_timeout() -> void:
+	print("Titles Disabled")
+	$Player/HUD/AsteroidTitle.visible = false
+	$Player/HUD/FieldTitle.visible = false

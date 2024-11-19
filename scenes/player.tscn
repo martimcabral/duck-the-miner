@@ -137,7 +137,6 @@ position = Vector2(-5.96046e-08, -2.98023e-08)
 scale = Vector2(1.27409, 1.27409)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlockRange"]
-visible = false
 shape = SubResource("CircleShape2D_ig4b6")
 debug_color = Color(1, 0, 0, 0.203922)
 
@@ -171,7 +170,6 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
-visible = false
 
 [node name="VersionDisplay" type="RichTextLabel" parent="Camera2D/HUD"]
 texture_filter = 1
@@ -199,7 +197,6 @@ Y: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
-visible = false
 
 [node name="HealthStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
 anchors_preset = 2
