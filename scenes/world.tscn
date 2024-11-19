@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
 [ext_resource type="Script" path="res://scripts/mission_inventory.gd" id="2_lusrp"]
-[ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/ore_tilemap.png" id="3_ty73d"]
+[ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/stony_ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Texture2D" uid="uid://cs5hgtiamef40" path="res://assets/textures/destroy_stages/stages.png" id="4_qexfe"]
 [ext_resource type="Script" path="res://scripts/detect_items.gd" id="4_rt7d7"]
 [ext_resource type="Script" path="res://scripts/map_management.gd" id="4_ys0ii"]
@@ -210,7 +210,7 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(0.509286, 0.509286, 0.509286, 1)
 theme_override_font_sizes/normal_font_size = 75
 bbcode_enabled = true
-text = "ASTEROID NAME"
+text = "FIELD NAME | BIOME NAME"
 
 [node name="ColorblindnessColorRect" type="ColorRect" parent="Player/HUD"]
 visible = false

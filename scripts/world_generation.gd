@@ -14,8 +14,7 @@ var vogais = ['a', 'e', 'i', 'o', 'u']
 
 var asteroid_name
 var asteroid_field
-
-var previous_scene_name = ""
+var asteroid_biome
 
 @onready var CaveSystem = $WorldTileMap/CaveSystem
 
@@ -32,6 +31,103 @@ func start_music():
 			$WorldMusic/Wave.play()
 		3:
 			$WorldMusic/Void.play()
+
+func _ready():
+	asteroid_biome = randi_range(1, 3)
+	match asteroid_biome:
+		1:
+			asteroid_biome = "Stony"
+		2:
+			asteroid_biome = "Frozen"
+		3:
+			asteroid_biome = "Volcanic"
+	
+	$Player/HUD/AsteroidTitle.visible = true
+	$Player/HUD/FieldTitle.visible = true
+	
+	asteroid_name = create_asteroid_name()
+	
+	$Player/HUD/AsteroidTitle.text = "[center]%s[/center]" % asteroid_name
+	$Player/HUD/FieldTitle.text = "[center]%s[/center]" % asteroid_field + " Field | " + asteroid_biome
+	
+	if DiscordRPC.get_is_discord_working():
+		DiscordRPC.small_image = "diamond-512"
+		DiscordRPC.small_image_text = "Debt: 4 528 913 301 674$"
+		DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
+		DiscordRPC.refresh()
+	else:
+		print("[world_generation.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
+	
+	start_music()
+	
+	var fnl = FastNoiseLite.new()
+	
+	match asteroid_field:
+		"Delta":
+			world_width = randi_range(200, 300)
+			world_height = randi_range(300, 600)
+		"Gamma":
+			world_width = randi_range(250, 400)
+			world_height = randi_range(500, 900)
+		"Omega":
+			world_width = randi_range(250, 400)
+			world_height = randi_range(750, 1000)
+		"Lambda":
+			world_width = randi_range(250, 400)
+			world_height = randi_range(850, 1100)
+		"Sigma":
+			world_width = randi_range(300, 400)
+			world_height = randi_range(1000, 1200)
+		"Yotta":
+			world_width = randi_range(150, 250)
+			world_height = randi_range(1250, 1500)
+	
+	world_height_border = world_height + 20
+	create_world_borders()
+	
+	var asteroid_size = Vector2i(world_width, world_height)
+	
+	fnl.seed = randi_range(0, 2147483646)
+	fnl.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	fnl.fractal_octaves = 4 #4
+	fnl.fractal_lacunarity = 2.25 #2.5
+	fnl.fractal_gain = 0.5 #0.4
+	
+	if (register_logs == true):
+		print("World Procedural Generation Logs:")
+		print("Asteroid Name: ", asteroid_name)
+		print("Asteroid Size: ", asteroid_size)
+		print("Asteroid Biome: ", asteroid_biome)
+		print("Asteroid Field: ", asteroid_field, "\n")
+		print("Seed: ", fnl.seed)
+		print("Noise Type: ", fnl.noise_type)
+		print("Octaves: ", fnl.fractal_octaves)
+		print("Lacunarity: ", fnl.fractal_lacunarity)
+		print("Gain: ", fnl.fractal_gain)
+	
+	# Make Caverns
+	for x in range(world_width):
+		for y in range(world_height):
+			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+			var noise = floor(fnl.get_noise_2d(x, y) * 5)
+			if noise == 0:
+				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
+	
+	#Create safe Cube	
+	start_position()
+	
+	# Put Ores:
+	match asteroid_biome:
+		"Stony":
+			put_coal()
+			put_copper()
+			put_iron()
+			put_gold()
+			put_diamond()
+			put_gems()
+			put_ice()
+	
+	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
 
 func create_world_borders():
 # Above Map Border
@@ -60,71 +156,6 @@ func create_world_borders():
 			y -= 9
 			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
 
-func _ready():
-	$Player/HUD/AsteroidTitle.visible = true
-	$Player/HUD/FieldTitle.visible = true
-	
-	asteroid_name = create_asteroid_name()
-	
-	$Player/HUD/AsteroidTitle.text = "[center]%s[/center]" % asteroid_name
-	$Player/HUD/FieldTitle.text = "[center]%s[/center]" % asteroid_field + " Field"
-	
-	if DiscordRPC.get_is_discord_working():
-		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Debt: 4 528 913 301 674$"
-		DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
-		DiscordRPC.refresh()
-	else:
-		print("[world_generation.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
-	
-	start_music()
-	create_world_borders()
-	
-	var fnl = FastNoiseLite.new()
-	
-	var asteroid_type = "Unknown"
-	var asteroid_biome = "Unknown"
-	
-	fnl.seed = randi_range(0, 2147483646)
-	fnl.noise_type = FastNoiseLite.TYPE_SIMPLEX   
-	fnl.fractal_octaves = 4 #4
-	fnl.fractal_lacunarity = 2.25 #2.5
-	fnl.fractal_gain = 0.5 #0.4
-	
-	if (register_logs == true):
-		print("World Procedural Generation Logs: ")
-		print("Asteroid Type: ", asteroid_type)
-		print("Asteroid Biome: ", asteroid_biome)
-		print("Asteroid Name: ", asteroid_name)
-		print("Asteroid Field: ", asteroid_field, "\n")
-		print("Seed: ", fnl.seed)
-		print("Noise Type: ", fnl.noise_type)
-		print("Octaves: ", fnl.fractal_octaves)
-		print("Lacunarity: ", fnl.fractal_lacunarity)
-		print("Gain: ", fnl.fractal_gain)
-	
-	# Make Caverns
-	for x in range(world_width):
-		for y in range(world_height):
-			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
-			var noise = floor(fnl.get_noise_2d(x, y) * 5)
-			if noise == 0:
-				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
-	
-	#Create safe Cube	
-	start_position()
-	
-	# Put Ores:
-	put_ice()
-	put_coal()
-	put_copper()
-	put_iron()
-	put_gold()
-	put_diamond()
-	put_gems()
-	
-	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
-	
 func set_colorblindness_value(colorblindness_value): # Pega-se na Variável e faz-se shenanigans
 	match colorblindness_value:
 		0:
