@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 	
 	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, fade_out))
 	$Player/HUD/FieldTitle.add_theme_color_override("default_color", Color(0.509, 0.509, 0.509, fade_out))
-	$Player/HUD/WorldMissionInventory.modulate.a8 = fade_in
+	$Player/HUD/ItemList.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/VersionDisplay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/PlayerPosition.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/HealthStat.modulate.a8 = fade_in

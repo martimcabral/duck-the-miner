@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=18 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/raw/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/raw/ice.png" id="2_m5k01"]
 [ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/raw/diamond.png" id="3_j7l03"]
 [ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/raw/ruby.png" id="5_hkxh7"]
 [ext_resource type="Texture2D" uid="uid://dtbodpsor8bxe" path="res://assets/textures/items/raw/emerald.png" id="6_yo33a"]
-[ext_resource type="Script" path="res://scripts/pickup_item.gd" id="7_6fcy1"]
 [ext_resource type="Texture2D" uid="uid://do2s5c8qpavqr" path="res://assets/textures/items/raw/sapphire.png" id="7_8muc8"]
 [ext_resource type="Texture2D" uid="uid://crhuk630gaw4s" path="res://assets/textures/items/raw/rock_and_stone.png" id="8_6go0k"]
 [ext_resource type="Texture2D" uid="uid://c5a0cdedwujld" path="res://assets/textures/items/raw/raw_copper.png" id="9_rs22p"]
@@ -39,7 +38,6 @@ size = Vector2(4.24264, 4.24264)
 editor_description = "Stone"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Stone"]
 texture_filter = 1
@@ -56,7 +54,6 @@ editor_description = "Coal"
 disable_mode = 2
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Coal"]
 texture_filter = 1
@@ -70,7 +67,6 @@ shape = SubResource("CircleShape2D_s40fl")
 editor_description = "RawCopper"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="RawCopper"]
 texture_filter = 1
@@ -85,7 +81,6 @@ shape = SubResource("RectangleShape2D_5sde2")
 editor_description = "RawIron"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="RawIron"]
 texture_filter = 1
@@ -100,7 +95,6 @@ shape = SubResource("RectangleShape2D_5sde2")
 editor_description = "RawGold"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="RawGold"]
 texture_filter = 1
@@ -115,7 +109,6 @@ shape = SubResource("RectangleShape2D_5sde2")
 editor_description = "Emerald"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Emerald"]
 texture_filter = 1
@@ -129,7 +122,6 @@ shape = SubResource("CircleShape2D_s7pjy")
 editor_description = "Ruby"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ruby"]
 texture_filter = 1
@@ -143,7 +135,6 @@ shape = SubResource("CircleShape2D_mro54")
 editor_description = "Sapphire"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sapphire"]
 texture_filter = 1
@@ -157,7 +148,6 @@ shape = SubResource("CircleShape2D_s7pjy")
 editor_description = "Diamond"
 gravity_scale = 0.05
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Diamond"]
 texture_filter = 1
@@ -175,7 +165,6 @@ editor_description = "Ice"
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
-script = ExtResource("7_6fcy1")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ice"]
 texture_filter = 1

@@ -18,7 +18,7 @@ var flashlight : bool = false
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var BreakingStages = $"../WorldTileMap/BreakingStages"
 
-@onready var InventoryAtWorld = $HUD/WorldMissionInventory
+@onready var InventoryAtWorld = $HUD/ItemList
 
 @onready var world = $".."
 
@@ -31,6 +31,8 @@ var block_selection_default = preload("res://assets/textures/selected_block.png"
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
 func _ready():
+	$HUD/ItemList/TeamInventoryLabel.text = "[center]%s[/center]" % "Duck's Pockets"
+	
 	if DiscordRPC.get_is_discord_working():
 		var user_data = DiscordRPC.get_current_user()
 		$PlayerName.text = "[center]%s[/center]" % user_data["username"]
