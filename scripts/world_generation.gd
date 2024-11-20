@@ -16,22 +16,37 @@ var asteroid_name
 var asteroid_field
 var asteroid_biome
 
-var time_remaining
-var fade_in
-var fade_out
+var time_remaining_Title_Timer
+var time_remaining_HUD_Fade_In
+
+var fade_in : float = 0.0
+var fade_out : float = 0.0
 
 @onready var CaveSystem = $WorldTileMap/CaveSystem
 
 func _process(_delta: float) -> void:
 	$WorldMusic.position = $Player.position
 	
-	var time_remaining = $TitleTimer.time_left
-	var fade_in = time_remaining / 10
-	var fade_out = time_remaining / 10
-	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, ))
-	#$Player/HUD/FieldTitle
-	#$TitleTimer
-
+	time_remaining_Title_Timer = $TitleTimer.time_left
+	time_remaining_HUD_Fade_In = $HUDFadeIn.time_left
+	
+	fade_out = time_remaining_Title_Timer / 10
+	
+	if $HUDFadeIn.time_left <= 5:
+		fade_in += time_remaining_HUD_Fade_In / 5
+	
+	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, fade_out))
+	$Player/HUD/FieldTitle.add_theme_color_override("default_color", Color(0.509, 0.509, 0.509, fade_out))
+	$Player/HUD/WorldMissionInventory.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/VersionDisplay.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/PlayerPosition.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/HealthStat.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/TemperatureStat.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/OxygenStat.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/uvStat.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/HungerStat.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/ThirstStat.modulate.a8 = fade_in
+	
 func start_music():
 	var random_music = randi_range(1, 3)
 	match random_music:
@@ -43,14 +58,14 @@ func start_music():
 			$WorldMusic/Void.play()
 
 func _ready():
-	asteroid_biome = randi_range(1, 3)
+	asteroid_biome = randi_range(1, 2)
 	match asteroid_biome:
 		1:
 			asteroid_biome = "Stony"
 		2:
-			asteroid_biome = "Frozen"
+			asteroid_biome = "Vulcanic"
 		3:
-			asteroid_biome = "Volcanic"
+			asteroid_biome = "Frozen"
 	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true
@@ -63,7 +78,10 @@ func _ready():
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
 		DiscordRPC.small_image_text = "Debt: 4 528 913 301 674$"
-		DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
+		if asteroid_field == null:
+			DiscordRPC.details = "🌑: " + asteroid_name + " at Unknown Field"
+		else:
+			DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
 		DiscordRPC.refresh()
 	else:
 		print("[world_generation.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
@@ -91,6 +109,9 @@ func _ready():
 		"Yotta":
 			world_width = randi_range(150, 250)
 			world_height = randi_range(1250, 1500)
+		_:
+			world_width = 300
+			world_height = 300
 	
 	world_height_border = world_height + 20
 	create_world_borders()
@@ -104,7 +125,7 @@ func _ready():
 	fnl.fractal_gain = 0.5 #0.4
 	
 	if (register_logs == true):
-		print("World Procedural Generation Logs:")
+		print("\nWorld Procedural Generation Logs:")
 		print("Asteroid Name: ", asteroid_name)
 		print("Asteroid Size: ", asteroid_size)
 		print("Asteroid Biome: ", asteroid_biome)
@@ -118,10 +139,15 @@ func _ready():
 	# Make Caverns
 	for x in range(world_width):
 		for y in range(world_height):
-			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+			if asteroid_biome == "Stony":
+				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
+			elif asteroid_biome == "Vulcanic":
+				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 0))
 			var noise = floor(fnl.get_noise_2d(x, y) * 5)
-			if noise == 0:
+			if noise == 0 and asteroid_biome == "Stony":
 				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
+			elif noise == 0 and asteroid_biome == "Vulcanic":
+				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 1))
 	
 	#Create safe Cube	
 	start_position()
@@ -136,7 +162,16 @@ func _ready():
 			put_diamond()
 			put_gems()
 			put_ice()
-	
+
+		"Vulcanic":
+			put_coal()
+			put_magnetite()
+			put_iron()
+			put_bauxite()
+			put_gold()
+			put_diamond()
+			put_gems()
+			put_lava_sockets()
 	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
 
 func create_world_borders():
@@ -166,20 +201,6 @@ func create_world_borders():
 			y -= 9
 			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
 
-func set_colorblindness_value(colorblindness_value): # Pega-se na Variável e faz-se shenanigans
-	match colorblindness_value:
-		0:
-			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 0)
-		1:
-			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 1)
-		2:
-			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 2)
-		3:
-			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 3)
-		4:
-			$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", 4)
-	
-
 func _on_music_timer_timeout() -> void:
 	start_music()
 
@@ -199,29 +220,61 @@ func start_position():
 		x += player_at_tilemap_position.x -1
 		for y in range(spawn_cube_size):
 			y += player_at_tilemap_position.y -2
-			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
+			if asteroid_biome == "Stony":
+				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
+			elif asteroid_biome == "Vulcanic":
+				CaveSystem.set_cell(Vector2i(x,y), 1, Vector2i(0, 1))
 			
 
-func put_ore(ore_height_min, ore_height_max, spawn_chance, atlas_coords):
+func put_ore(ore_height_min, ore_height_max, spawn_chance, biome, atlas_coords):
 	for x in range(world_width):
 		for y in range(ore_height_min, ore_height_max):
 			if randi_range(0, spawn_chance) == 1:
 				var tile_pos = Vector2i(x, y)
 				if CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-					CaveSystem.set_cell(tile_pos, 0, atlas_coords)
+					CaveSystem.set_cell(tile_pos, biome, atlas_coords)
 
 func put_coal():
-	put_ore(0, 200, 35, Vector2i(1, 0))
+	if asteroid_biome == "Stony":
+		put_ore(0, 200, 35, 0, Vector2i(1, 0))
+	elif asteroid_biome == "Vulcanic":
+		put_ore(0, 200, 35, 1, Vector2i(1, 0))
+
 func put_copper():
-	put_ore(0, 500, 35, Vector2i(1, 2))
+	if asteroid_biome == "Stony":
+		put_ore(0, 500, 35, 0, Vector2i(1, 2))
+
+func put_magnetite():
+	if asteroid_biome == "Vulcanic":
+		put_ore(0, 500, 35, 1, Vector2i(1, 2))
+
 func put_iron():
-	put_ore(200, 600, 60, Vector2i(2, 0))
+	if asteroid_biome == "Stony":
+		put_ore(200, 600, 60, 0, Vector2i(2, 0))
+	elif asteroid_biome == "Vulcanic":
+		put_ore(200, 600, 60, 1, Vector2i(2, 0))
+
+func put_bauxite():
+	if asteroid_biome == "Vulcanic":
+		put_ore(200, 600, 60, 1, Vector2i(0, 3))
+
 func put_gold():
-	put_ore(500, 800, 200, Vector2i(0, 2))
+	if asteroid_biome == "Stony":
+		put_ore(500, 800, 200, 0, Vector2i(0, 2))
+	elif asteroid_biome == "Vulcanic":
+		put_ore(500, 800, 200, 1, Vector2i(0, 2))
+
 func put_diamond():
-	put_ore(900, 1000, 425, Vector2i(3, 0))
+	if asteroid_biome == "Stony":
+		put_ore(900, 1000, 425, 0, Vector2i(3, 0))
+	elif asteroid_biome == "Vulcanic":
+		put_ore(900, 1000, 425, 1, Vector2i(3, 0))
+
 func put_ice():
-	put_ore(0, 1000, 300, Vector2i(3, 2))
+	put_ore(0, 1000, 300, 0, Vector2i(3, 2))
+
+func put_lava_sockets():
+	put_ore(0, 1000, 300, 1, Vector2i(3, 2))
 
 func put_gems():
 	for x in range(world_width):
@@ -230,10 +283,16 @@ func put_gems():
 				var tile_pos = Vector2i(x, y)
 				if CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
 					var random_gem = randi_range(1, 3)
-					match random_gem:
-						1: CaveSystem.set_cell(tile_pos, 0, Vector2i(1, 1))
-						2: CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
-						3: CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
+					if asteroid_biome == "Stony":
+						match random_gem:
+							1: CaveSystem.set_cell(tile_pos, 0, Vector2i(1, 1))
+							2: CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
+							3: CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
+					if asteroid_biome == "Vulcanic":
+						match random_gem:
+							1: CaveSystem.set_cell(tile_pos, 1, Vector2i(1, 1))
+							2: CaveSystem.set_cell(tile_pos, 1, Vector2i(2, 1))
+							3: CaveSystem.set_cell(tile_pos, 1, Vector2i(3, 1))
 
 func create_asteroid_name():
 	var consoante1 = consoantes[randi() % consoantes.size()]
@@ -268,8 +327,3 @@ func create_asteroid_name():
 			return consoante1.to_upper() + vogal1 + consoante2 + vogal2 + consoante3 + vogal3 + consoante3 + vogal4 + vogal5 + consoante4 + vogal6
 		9:
 			return consoante1.to_upper() + vogal1 + consoante2 + consoante3 + vogal2 + consoante4
-
-func _on_title_timer_timeout() -> void:
-	print("Titles Disabled")
-	$Player/HUD/AsteroidTitle.visible = false
-	$Player/HUD/FieldTitle.visible = false

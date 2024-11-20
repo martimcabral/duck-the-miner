@@ -20,6 +20,8 @@ var flashlight : bool = false
 
 @onready var InventoryAtWorld = $HUD/WorldMissionInventory
 
+@onready var world = $".."
+
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
@@ -33,7 +35,7 @@ func _ready():
 		var user_data = DiscordRPC.get_current_user()
 		$PlayerName.text = "[center]%s[/center]" % user_data["username"]
 	else:
-		$PlayerName.text = "Player"
+		$PlayerName.text = "[center]%s[/center]" % "Player"
 		print("[player.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
 
 func player_movement(input, delta):
@@ -267,7 +269,10 @@ func destroy_block():
 					if not used_tiles[tile_pos]["health"] == -1:
 						var drop_the_item = get_node("%WorldTileMap")
 						drop_the_item.drop_items()
-						CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 1))  # Destroy the tile
+						if world.asteroid_biome == "Stony":
+							CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 1))  # Destroy the tile
+						elif world.asteroid_biome == "Vulcanic":
+							CaveSystem.set_cell(tile_pos, 1, Vector2i(0, 1))
 ##################################################################################################################################################
 ##################################################################################################################################################
 ##################################################################################################################################################
