@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://on6jrqbcgjw5"
-path="res://.godot/imported/garnet.png-c4ccd917c4655a00707a9fddac9ce8d0.ctex"
+uid="uid://cuuqxw3kfijaf"
+path="res://.godot/imported/raw2.png-491b7afd77621b2b4ad6411621c25d24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/raw/garnet.png"
-dest_files=["res://.godot/imported/garnet.png-c4ccd917c4655a00707a9fddac9ce8d0.ctex"]
+source_file="res://assets/textures/items/ores/raw2.png"
+dest_files=["res://.godot/imported/raw2.png-491b7afd77621b2b4ad6411621c25d24.ctex"]
 
 [params]
 

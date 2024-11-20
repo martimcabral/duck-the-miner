@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w0jorqmk5pnh"
-path="res://.godot/imported/raw_gold.png-b933c1cf1fd29be6b294a1eb86afddbe.ctex"
+uid="uid://dtbodpsor8bxe"
+path="res://.godot/imported/emerald.png-d515f3d6c9a847f794854ac07cdd4e61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/raw/raw_gold.png"
-dest_files=["res://.godot/imported/raw_gold.png-b933c1cf1fd29be6b294a1eb86afddbe.ctex"]
+source_file="res://assets/textures/items/ores/emerald.png"
+dest_files=["res://.godot/imported/emerald.png-d515f3d6c9a847f794854ac07cdd4e61.ctex"]
 
 [params]
 

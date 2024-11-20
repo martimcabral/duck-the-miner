@@ -11,34 +11,34 @@ func _on_body_entered(body : Node2D):
 	if body.is_in_group("Pickable"):
 		match body.editor_description:
 			"Stone":
-				var stoneIcon = load("res://assets/textures/items/raw/rock_and_stone.png")
+				var stoneIcon = load("res://assets/textures/items/ores/rock_and_stone.png")
 				add_item_to_inventory("Stone", stoneIcon)
 			"Coal":
-				var coalIcon = load("res://assets/textures/items/raw/coal.png")
+				var coalIcon = load("res://assets/textures/items/ores/coal.png")
 				add_item_to_inventory("Coal", coalIcon)
 			"RawCopper":
-				var copperIcon = load("res://assets/textures/items/raw/raw_copper.png")
+				var copperIcon = load("res://assets/textures/items/ores/raw_copper.png")
 				add_item_to_inventory("Copper", copperIcon)
 			"RawIron":
-				var ironIcon = load("res://assets/textures/items/raw/raw_iron.png")
+				var ironIcon = load("res://assets/textures/items/ores/raw_iron.png")
 				add_item_to_inventory("Iron", ironIcon)
 			"RawGold":
-				var goldIcon = load("res://assets/textures/items/raw/raw_gold.png")
+				var goldIcon = load("res://assets/textures/items/ores/raw_gold.png")
 				add_item_to_inventory("Gold", goldIcon)
 			"Emerald":
-				var emeraldIcon = load("res://assets/textures/items/raw/emerald.png")
+				var emeraldIcon = load("res://assets/textures/items/ores/emerald.png")
 				add_item_to_inventory("Emerald", emeraldIcon)
 			"Ruby":
-				var rubyIcon = load("res://assets/textures/items/raw/ruby.png")
+				var rubyIcon = load("res://assets/textures/items/ores/ruby.png")
 				add_item_to_inventory("Ruby", rubyIcon)
 			"Sapphire":
-				var sapphireIcon = load("res://assets/textures/items/raw/sapphire.png")
+				var sapphireIcon = load("res://assets/textures/items/ores/sapphire.png")
 				add_item_to_inventory("Sapphire", sapphireIcon)
 			"Diamond":
-				var diamondIcon = load("res://assets/textures/items/raw/diamond.png")
+				var diamondIcon = load("res://assets/textures/items/ores/diamond.png")
 				add_item_to_inventory("Diamond", diamondIcon)
 			"Ice":
-				var iceIcon = load("res://assets/textures/items/raw/ice.png")
+				var iceIcon = load("res://assets/textures/items/ores/ice.png")
 				add_item_to_inventory("Ice", iceIcon)
 				
 		body.queue_free()

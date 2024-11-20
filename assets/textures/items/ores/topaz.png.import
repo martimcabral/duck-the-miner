@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5a0cdedwujld"
-path="res://.godot/imported/raw_copper.png-18ebbcfbae5c24ea0d5659cca076241c.ctex"
+uid="uid://bbts02caw12nh"
+path="res://.godot/imported/topaz.png-a8241cad45c9bf5686b38f2f263d9d8f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/raw/raw_copper.png"
-dest_files=["res://.godot/imported/raw_copper.png-18ebbcfbae5c24ea0d5659cca076241c.ctex"]
+source_file="res://assets/textures/items/ores/topaz.png"
+dest_files=["res://.godot/imported/topaz.png-a8241cad45c9bf5686b38f2f263d9d8f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cirskxa8itacu"
-path="res://.godot/imported/ice.png-34ae7cea98a880ee0ee53df1a30b2080.ctex"
+uid="uid://g4baqgfsmkv6"
+path="res://.godot/imported/raw_iron.png-662f70b08bbe6348d183f3cd80f7cd05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/raw/ice.png"
-dest_files=["res://.godot/imported/ice.png-34ae7cea98a880ee0ee53df1a30b2080.ctex"]
+source_file="res://assets/textures/items/ores/raw_iron.png"
+dest_files=["res://.godot/imported/raw_iron.png-662f70b08bbe6348d183f3cd80f7cd05.ctex"]
 
 [params]
 

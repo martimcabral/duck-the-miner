@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do2s5c8qpavqr"
-path="res://.godot/imported/sapphire.png-0b7d0aca7a17d8abe97a01e9553f028b.ctex"
+uid="uid://crhuk630gaw4s"
+path="res://.godot/imported/rock_and_stone.png-f3dc2d2ddaac3f27f6f5317c6451af83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/raw/sapphire.png"
-dest_files=["res://.godot/imported/sapphire.png-0b7d0aca7a17d8abe97a01e9553f028b.ctex"]
+source_file="res://assets/textures/items/ores/rock_and_stone.png"
+dest_files=["res://.godot/imported/rock_and_stone.png-f3dc2d2ddaac3f27f6f5317c6451af83.ctex"]
 
 [params]
 

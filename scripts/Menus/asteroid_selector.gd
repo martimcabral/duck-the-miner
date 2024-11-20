@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 		$SolarSystem.scale -= Vector2(0.05, 0.05)
 	
 	$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
+	
 	$SolarSystem/Sun.rotation -= delta * 0.1
 	$SolarSystem/Mercury.rotation -= delta * 0.05
 	$SolarSystem/Venus.rotation -= delta * 0.075

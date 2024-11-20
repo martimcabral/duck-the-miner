@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crhuk630gaw4s"
-path="res://.godot/imported/rock_and_stone.png-17b7f3079b9c112317e8c49b2ad9e6f6.ctex"
+uid="uid://bl3ox6bgrermp"
+path="res://.godot/imported/blue_gem.png-2c0b535aae1655d77593f581b9f69cb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/raw/rock_and_stone.png"
-dest_files=["res://.godot/imported/rock_and_stone.png-17b7f3079b9c112317e8c49b2ad9e6f6.ctex"]
+source_file="res://assets/textures/items/ores/blue_gem.png"
+dest_files=["res://.godot/imported/blue_gem.png-2c0b535aae1655d77593f581b9f69cb0.ctex"]
 
 [params]
 

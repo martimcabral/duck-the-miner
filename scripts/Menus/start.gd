@@ -5,7 +5,7 @@ var agachado = 0
 
 func _ready() -> void:
 	if DiscordRPC.get_is_discord_working():
-		DiscordRPC.details = "At the Main Menu"
+		DiscordRPC.details = "🏘️ At the Main Menu"
 		DiscordRPC.small_image = ""
 		DiscordRPC.refresh()
 	else:
