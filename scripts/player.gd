@@ -214,13 +214,14 @@ func _process(delta):
 ####################################################################################################################################################
 ####################################################################################################################################################
 ####################################################################################################################################################
+
 func destroy_block():
 		var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
 		var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
 		var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 
 		if player.current_item == 2:
-			print("Data: ", used_tiles, " ", tile_id)
+			#print("Data: ", used_tiles, " ", tile_id)
 			# Get health
 			var tile_health = tile_data.get_custom_data("health")
 		
@@ -296,7 +297,7 @@ func _on_hunger_remover_timeout() -> void:
 	$Camera2D/HUD/Stats/HungerStat.value -= 1
 
 func _on_thirst_remover_timeout() -> void:
-	$Camera2D/HUD/Stats/ThirstStat.value -= 1
+	$Camera2D/HUD/Stats/ThirstStat.value -= 1	
 
 func _on_uv_battery_consumption_timeout() -> void:
 	if flashlight == true:

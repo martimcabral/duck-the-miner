@@ -191,6 +191,7 @@ offset_right = 688.0
 offset_bottom = -281.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "ASTEROID NAME"
@@ -608,7 +609,7 @@ autostart = true
 visible = false
 
 [node name="TitleTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 one_shot = true
 autostart = true
 

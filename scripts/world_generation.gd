@@ -16,11 +16,21 @@ var asteroid_name
 var asteroid_field
 var asteroid_biome
 
+var time_remaining
+var fade_in
+var fade_out
+
 @onready var CaveSystem = $WorldTileMap/CaveSystem
 
 func _process(_delta: float) -> void:
 	$WorldMusic.position = $Player.position
-	DiscordRPC.run_callbacks()
+	
+	var time_remaining = $TitleTimer.time_left
+	var fade_in = time_remaining / 10
+	var fade_out = time_remaining / 10
+	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, ))
+	#$Player/HUD/FieldTitle
+	#$TitleTimer
 
 func start_music():
 	var random_music = randi_range(1, 3)
