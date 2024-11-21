@@ -166,6 +166,8 @@ texture_scale = 0.66
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4.25, 4.25)
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 

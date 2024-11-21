@@ -3,6 +3,7 @@ extends TileMap
 @onready var player = $"../Player"
 @onready var block_range = $"../Player/BlockRange"
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
+@onready var world = $".."
 
 var packed_scene = load("res://scenes/items.tscn")
 
@@ -32,27 +33,53 @@ func drop_items():
 	var block = CaveSystem.get_cell_atlas_coords(tile_pos)
 	
 	var item_name = ""
-	match block:
-		Vector2i(0, 0):
-			item_name = "Stone"
-		Vector2i(3, 0):
-			item_name = "Diamond"
-		Vector2i(3, 2):
-			item_name = "Ice"
-		Vector2i(1, 1):
-			item_name = "Emerald"
-		Vector2i(2, 1):
-			item_name = "Ruby"
-		Vector2i(3, 1):
-			item_name = "Sapphire"
-		Vector2i(1, 0):
-			item_name = "Coal"
-		Vector2i(2, 0):
-			item_name = "RawIron"
-		Vector2i(0, 2):
-			item_name = "RawGold"
-		Vector2i(1, 2):
-			item_name = "RawCopper"
+	if world.asteroid_biome == "Stony":
+		match block:
+			Vector2i(0, 0):
+				item_name = "Stone"
+			Vector2i(3, 0):
+				item_name = "Diamond"
+			Vector2i(3, 2):
+				item_name = "Ice"
+			Vector2i(1, 1):
+				item_name = "Emerald"
+			Vector2i(2, 1):
+				item_name = "Ruby"
+			Vector2i(3, 1):
+				item_name = "Sapphire"
+			Vector2i(1, 0):
+				item_name = "Coal"
+			Vector2i(2, 0):
+				item_name = "RawIron"
+			Vector2i(0, 2):
+				item_name = "RawGold"
+			Vector2i(1, 2):
+				item_name = "RawCopper"
+				
+	if world.asteroid_biome == "Vulcanic":
+		match block:
+			Vector2i(0, 0):
+				item_name = "Stone"
+			Vector2i(1, 0):
+				item_name = "Coal"
+			Vector2i(2, 0):
+				item_name = "RawIron"
+			Vector2i(3, 0):
+				item_name = "Diamond"
+			Vector2i(1, 1):
+				item_name = "Topaz"
+			Vector2i(2, 1):
+				item_name = "Tsavorite"
+			Vector2i(3, 1):
+				item_name = "Garnet"
+			Vector2i(0, 2):
+				item_name = "RawGold"
+			Vector2i(1, 2):
+				item_name = "RawMagnetite"
+			Vector2i(3, 2):
+				item_name = "Ice"
+			Vector2i(0, 3):
+				item_name = "RawBauxite"
 		
 	if item_name != "":
 		var target_node = instance.get_node(item_name)

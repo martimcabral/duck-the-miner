@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4cnr4s1c3kmj"
-path="res://.godot/imported/vulcanic_ore_tilemap.png-caca72026529f107cac1259fcd9c4915.ctex"
+uid="uid://irl63q53jknh"
+path="res://.godot/imported/raw_magnetite.png-90e5881c4d0d3d1c1cbf50345c840cf3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/vulcanic_ore_tilemap.png"
-dest_files=["res://.godot/imported/vulcanic_ore_tilemap.png-caca72026529f107cac1259fcd9c4915.ctex"]
+source_file="res://assets/textures/items/ores/raw_magnetite.png"
+dest_files=["res://.godot/imported/raw_magnetite.png-90e5881c4d0d3d1c1cbf50345c840cf3.ctex"]
 
 [params]
 

@@ -149,10 +149,13 @@ func _process(delta):
 		var radius = (collision_shape as CircleShape2D).radius
 		
 		if local_mouse_pos.length() <= radius:
-			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1) and $"../MissionInventory".inventory[0] >= 1):
-				$"../MissionInventory".inventory[0] -= 1
+			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)): #and $"../MissionInventory".inventory[0] >= 1):
+				#$"../MissionInventory".inventory[0] -= 1
 				print(tile_data, " ", tile_id)
-				CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
+				if world.asteroid_biome == "Stony":
+					CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
+				elif world.asteroid_biome == "Vulcanic":
+					CaveSystem.set_cell(tile_pos, 1, Vector2i(0, 0))
 				$"../Player/Player Sounds/PlaceBlock".play()
 				print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
 				

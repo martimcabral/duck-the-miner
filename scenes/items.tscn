@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=23 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
@@ -10,6 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://c5a0cdedwujld" path="res://assets/textures/items/ores/raw_copper.png" id="9_rs22p"]
 [ext_resource type="Texture2D" uid="uid://w0jorqmk5pnh" path="res://assets/textures/items/ores/raw_gold.png" id="10_xm5o4"]
 [ext_resource type="Texture2D" uid="uid://g4baqgfsmkv6" path="res://assets/textures/items/ores/raw_iron.png" id="11_gvemx"]
+[ext_resource type="Texture2D" uid="uid://irl63q53jknh" path="res://assets/textures/items/ores/raw_magnetite.png" id="11_sfkcr"]
+[ext_resource type="Texture2D" uid="uid://d3kjafhmywx3s" path="res://assets/textures/items/ores/raw_bauxite.png" id="12_tegxu"]
+[ext_resource type="Texture2D" uid="uid://bbts02caw12nh" path="res://assets/textures/items/ores/topaz.png" id="13_sgcvv"]
+[ext_resource type="Texture2D" uid="uid://on6jrqbcgjw5" path="res://assets/textures/items/ores/garnet.png" id="14_yfca6"]
+[ext_resource type="Texture2D" uid="uid://devr11bouug6s" path="res://assets/textures/items/ores/tsavorite.png" id="15_knr2n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
 size = Vector2(6.33902, 5.5559)
@@ -30,7 +35,7 @@ size = Vector2(5.70749, 1.90593)
 radius = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx5wy"]
-size = Vector2(4.24264, 4.24264)
+size = Vector2(4.17635, 4.17635)
 
 [node name="Items" type="Node2D"]
 
@@ -173,4 +178,90 @@ texture = ExtResource("2_m5k01")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ice"]
 rotation = -0.785398
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="RawMagnetite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Magnetite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RawMagnetite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_sfkcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawMagnetite"]
+position = Vector2(0.0312499, 0.153125)
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="RawBauxite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Bauxite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RawBauxite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_tegxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawBauxite"]
+position = Vector2(0.0312499, -0.0613772)
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="Topaz" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Topaz"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Topaz"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_sgcvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Topaz"]
+position = Vector2(-1.01527, 0.313396)
+rotation = 0.523599
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Topaz"]
+position = Vector2(0.552727, -0.18852)
+rotation = 0.523599
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Topaz"]
+position = Vector2(1.68058, -0.924042)
+rotation = 0.523599
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="Garnet" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Garnet"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Garnet"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_yfca6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Garnet"]
+position = Vector2(0.237275, 0.182882)
+shape = SubResource("RectangleShape2D_bx5wy")
+
+[node name="Tsavorite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Tsavorite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Tsavorite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_knr2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tsavorite"]
+position = Vector2(0.252221, 0.225885)
 shape = SubResource("RectangleShape2D_bx5wy")

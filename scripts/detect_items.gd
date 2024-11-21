@@ -40,7 +40,21 @@ func _on_body_entered(body : Node2D):
 			"Ice":
 				var iceIcon = load("res://assets/textures/items/ores/ice.png")
 				add_item_to_inventory("Ice", iceIcon)
-				
+			"Magnetite":
+				var magnetiteIcon = load("res://assets/textures/items/ores/raw_magnetite.png")
+				add_item_to_inventory("Magnetite", magnetiteIcon)
+			"Bauxite":
+				var bauxiteIcon = load("res://assets/textures/items/ores/raw_bauxite.png")
+				add_item_to_inventory("Bauxite", bauxiteIcon)
+			"Topaz":
+				var topazIcon = load("res://assets/textures/items/ores/topaz.png")
+				add_item_to_inventory("Topaz", topazIcon)
+			"Garnet":
+				var garnetIcon = load("res://assets/textures/items/ores/garnet.png")
+				add_item_to_inventory("Garnet", garnetIcon)
+			"Tsavorite":
+				var tsavoriteIcon = load("res://assets/textures/items/ores/tsavorite.png")
+				add_item_to_inventory("Tsavorire", tsavoriteIcon)
 		body.queue_free()
 		$PickupItem.play()
 

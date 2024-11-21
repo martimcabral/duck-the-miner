@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
 [ext_resource type="Script" path="res://scripts/world_generation.gd" id="1_nmwod"]
-[ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/stony_ore_tilemap.png" id="3_ty73d"]
+[ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/items/tilemaps/stony_ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Texture2D" uid="uid://cs5hgtiamef40" path="res://assets/textures/destroy_stages/stages.png" id="4_qexfe"]
 [ext_resource type="Script" path="res://scripts/detect_items.gd" id="4_rt7d7"]
 [ext_resource type="Script" path="res://scripts/map_management.gd" id="4_ys0ii"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://ddw2qlonthtr" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://dho2rcdc7tiba" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
 [ext_resource type="AudioStream" uid="uid://m7sw4erxvo0x" path="res://sounds/musics/void.ogg" id="10_7k7pq"]
-[ext_resource type="Texture2D" uid="uid://4cnr4s1c3kmj" path="res://assets/textures/vulcanic_ore_tilemap.png" id="18_bpr86"]
+[ext_resource type="Texture2D" uid="uid://4cnr4s1c3kmj" path="res://assets/textures/items/tilemaps/vulcanic_ore_tilemap.png" id="18_bpr86"]
 [ext_resource type="PackedScene" uid="uid://bbyiibgv0sxte" path="res://scenes/pause_menu.tscn" id="24_dvxve"]
 
 [sub_resource type="GDScript" id="GDScript_l0prr"]
