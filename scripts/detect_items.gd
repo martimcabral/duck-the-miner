@@ -55,6 +55,9 @@ func _on_body_entered(body : Node2D):
 			"Tsavorite":
 				var tsavoriteIcon = load("res://assets/textures/items/ores/tsavorite.png")
 				add_item_to_inventory("Tsavorire", tsavoriteIcon)
+			"LavaCluster":
+				var lavaClusterIcon = load("res://assets/textures/items/ores/lava_cluster.png")
+				add_item_to_inventory("Lava Cluster", lavaClusterIcon)
 		body.queue_free()
 		$PickupItem.play()
 

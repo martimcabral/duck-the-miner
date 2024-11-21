@@ -77,7 +77,7 @@ func drop_items():
 			Vector2i(1, 2):
 				item_name = "RawMagnetite"
 			Vector2i(3, 2):
-				item_name = "Ice"
+				item_name = "LavaCluster"
 			Vector2i(0, 3):
 				item_name = "RawBauxite"
 		

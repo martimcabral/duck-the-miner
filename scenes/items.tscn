@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=27 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bbts02caw12nh" path="res://assets/textures/items/ores/topaz.png" id="13_sgcvv"]
 [ext_resource type="Texture2D" uid="uid://on6jrqbcgjw5" path="res://assets/textures/items/ores/garnet.png" id="14_yfca6"]
 [ext_resource type="Texture2D" uid="uid://devr11bouug6s" path="res://assets/textures/items/ores/tsavorite.png" id="15_knr2n"]
+[ext_resource type="Texture2D" uid="uid://bp8wniy2fjiup" path="res://assets/textures/items/ores/lava_cluster.png" id="16_iufqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
 size = Vector2(6.33902, 5.5559)
@@ -35,7 +36,16 @@ size = Vector2(5.70749, 1.90593)
 radius = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bx5wy"]
-size = Vector2(4.17635, 4.17635)
+size = Vector2(7.35784, 5.65685)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0d5r"]
+size = Vector2(4.77372, 3.59808)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkuvt"]
+size = Vector2(4.42236, 4.3852)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fg2kt"]
+size = Vector2(8.48528, 8.48528)
 
 [node name="Items" type="Node2D"]
 
@@ -177,6 +187,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_m5k01")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ice"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
 rotation = -0.785398
 shape = SubResource("RectangleShape2D_bx5wy")
 
@@ -192,7 +203,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_sfkcr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RawMagnetite"]
-position = Vector2(0.0312499, 0.153125)
+position = Vector2(-0.0331966, 0.153125)
 shape = SubResource("RectangleShape2D_bx5wy")
 
 [node name="RawBauxite" type="RigidBody2D" parent="." groups=["Pickable"]]
@@ -222,19 +233,9 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("13_sgcvv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Topaz"]
-position = Vector2(-1.01527, 0.313396)
+position = Vector2(0.14332, -0.24885)
 rotation = 0.523599
-shape = SubResource("RectangleShape2D_bx5wy")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Topaz"]
-position = Vector2(0.552727, -0.18852)
-rotation = 0.523599
-shape = SubResource("RectangleShape2D_bx5wy")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Topaz"]
-position = Vector2(1.68058, -0.924042)
-rotation = 0.523599
-shape = SubResource("RectangleShape2D_bx5wy")
+shape = SubResource("RectangleShape2D_k0d5r")
 
 [node name="Garnet" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Garnet"
@@ -248,8 +249,8 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_yfca6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Garnet"]
-position = Vector2(0.237275, 0.182882)
-shape = SubResource("RectangleShape2D_bx5wy")
+position = Vector2(0.26082, 0.301094)
+shape = SubResource("RectangleShape2D_kkuvt")
 
 [node name="Tsavorite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Tsavorite"
@@ -263,5 +264,22 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_knr2n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tsavorite"]
-position = Vector2(0.252221, 0.225885)
-shape = SubResource("RectangleShape2D_bx5wy")
+position = Vector2(0.26082, 0.301094)
+shape = SubResource("RectangleShape2D_kkuvt")
+
+[node name="LavaCluster" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "LavaCluster"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="LavaCluster"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_iufqf")
+
+[node name="LavaCollisionShape2D" type="CollisionShape2D" parent="LavaCluster"]
+position = Vector2(1.19209e-07, 1.19209e-07)
+rotation = -0.785398
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_fg2kt")

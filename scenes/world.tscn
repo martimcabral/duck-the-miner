@@ -374,12 +374,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -31.0
-offset_top = 54.0
-offset_right = 103.0
-offset_bottom = 86.0
+offset_left = -44.0
+offset_top = 51.0
+offset_right = 90.0
+offset_bottom = 83.0
 grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.66, 0.66)
 theme_override_font_sizes/normal_font_size = 32
 text = "- EMPTY -"
 
