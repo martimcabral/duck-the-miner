@@ -48,10 +48,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Agachar"):
 		if agachado == 0:
 			agachado = 1
-			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/main_menu_down.png")
+			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/main_menu/main_menu_down.png")
 		elif agachado == 1:
 			agachado = 0
-			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/main_menu_up.png")
+			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/main_menu/main_menu_up.png")
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):

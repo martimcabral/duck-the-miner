@@ -137,7 +137,6 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -196,14 +195,14 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.0
-offset_top = 181.0
-offset_right = 63.0
-offset_bottom = 261.0
+offset_left = -176.5
+offset_top = 180.0
+offset_right = 194.5
+offset_bottom = 260.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
-text = "Join"
+text = "Multiplayer"
 
 [node name="OptionsButton" type="Button" parent="GUI/Center/StartMenu"]
 z_index = 1
@@ -269,6 +268,7 @@ text = "Exit"
 flat = true
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
