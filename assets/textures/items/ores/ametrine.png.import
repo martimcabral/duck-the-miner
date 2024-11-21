@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4cnr4s1c3kmj"
-path="res://.godot/imported/vulcanic_ore_tilemap.png-08307d6efde8114df69661679567157e.ctex"
+uid="uid://br5gwawvmimb7"
+path="res://.godot/imported/ametrine.png-17c5bb8315bcea166b2f4aff9ac1dcfd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/tilemaps/vulcanic_ore_tilemap.png"
-dest_files=["res://.godot/imported/vulcanic_ore_tilemap.png-08307d6efde8114df69661679567157e.ctex"]
+source_file="res://assets/textures/items/ores/ametrine.png"
+dest_files=["res://.godot/imported/ametrine.png-17c5bb8315bcea166b2f4aff9ac1dcfd.ctex"]
 
 [params]
 

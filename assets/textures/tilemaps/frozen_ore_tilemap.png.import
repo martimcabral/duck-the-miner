@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddhoinlyvlc4s"
-path="res://.godot/imported/stony_ore_tilemap.png-80a86778847290994107f073799939ba.ctex"
+uid="uid://cufhaafrsv6og"
+path="res://.godot/imported/frozen_ore_tilemap.png-bc1c7dc4f22391a3677dd1b17eecb25b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/tilemaps/stony_ore_tilemap.png"
-dest_files=["res://.godot/imported/stony_ore_tilemap.png-80a86778847290994107f073799939ba.ctex"]
+source_file="res://assets/textures/tilemaps/frozen_ore_tilemap.png"
+dest_files=["res://.godot/imported/frozen_ore_tilemap.png-bc1c7dc4f22391a3677dd1b17eecb25b.ctex"]
 
 [params]
 

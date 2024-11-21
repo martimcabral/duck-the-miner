@@ -58,7 +58,7 @@ func start_music():
 			$WorldMusic/Void.play()
 
 func _ready():
-	asteroid_biome = randi_range(1, 2)
+	asteroid_biome = randi_range(1, 3)
 	match asteroid_biome:
 		1:
 			asteroid_biome = "Stony"
@@ -143,11 +143,15 @@ func _ready():
 				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
 			elif asteroid_biome == "Vulcanic":
 				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 0))
+			elif asteroid_biome == "Frozen":
+				CaveSystem.set_cell(Vector2i(x, y), 2, Vector2i(0, 0))
 			var noise = floor(fnl.get_noise_2d(x, y) * 5)
 			if noise == 0 and asteroid_biome == "Stony":
 				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
 			elif noise == 0 and asteroid_biome == "Vulcanic":
 				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 1))
+			elif noise == 0 and asteroid_biome == "Frozen":
+				CaveSystem.set_cell(Vector2i(x, y), 2, Vector2i(0, 1))
 	
 	#Create safe Cube	
 	start_position()
@@ -162,7 +166,7 @@ func _ready():
 			put_diamond()
 			put_gems()
 			put_ice()
-
+		
 		"Vulcanic":
 			put_coal()
 			put_magnetite()
@@ -172,6 +176,17 @@ func _ready():
 			put_diamond()
 			put_gems()
 			put_lava_sockets()
+		
+		"Frozen":
+			put_galena()
+			put_silver()
+			put_wolframite()
+			put_pyrolustite()
+			put_nickel()
+			put_diamond()
+			put_gems()
+			put_ice()
+			
 	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
 
 func create_world_borders():
@@ -224,6 +239,8 @@ func start_position():
 				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
 			elif asteroid_biome == "Vulcanic":
 				CaveSystem.set_cell(Vector2i(x,y), 1, Vector2i(0, 1))
+			elif asteroid_biome == "Frozen":
+				CaveSystem.set_cell(Vector2i(x,y), 2, Vector2i(0, 1))
 			
 
 func put_ore(ore_height_min, ore_height_max, spawn_chance, biome, atlas_coords):
@@ -269,17 +286,37 @@ func put_diamond():
 		put_ore(900, 1000, 425, 0, Vector2i(3, 0))
 	elif asteroid_biome == "Vulcanic":
 		put_ore(900, 1000, 425, 1, Vector2i(3, 0))
+	elif asteroid_biome == "Frozen":
+		put_ore(900, 1000, 425, 2, Vector2i(3, 0))
 
 func put_ice():
-	put_ore(0, 1000, 300, 0, Vector2i(3, 2))
+	if asteroid_biome == "Stony":
+		put_ore(0, 1000, 300, 0, Vector2i(3, 2))
+	elif asteroid_biome == "Frozen":
+		put_ore(0, 1000, 100, 2, Vector2i(3, 2))
 
 func put_lava_sockets():
 	put_ore(0, 1000, 300, 1, Vector2i(3, 2))
 
+func put_galena():
+	put_ore(500, 800, 200, 2, Vector2i(1, 0))
+	
+func put_silver():
+	put_ore(150, 1200, 100, 2, Vector2i(2, 0))
+	
+func put_wolframite():
+	put_ore(0, 400, 150, 2, Vector2i(0, 2))
+	
+func put_pyrolustite():
+	put_ore(600, 1000, 50, 2, Vector2i(1, 2))
+	
+func put_nickel():
+	put_ore(350, 650, 125, 2, Vector2i(0, 3))
+
 func put_gems():
 	for x in range(world_width):
-		for y in range(500, 1000):
-			if randi_range(0, 750) == 1:
+		for y in range(700, 1600):
+			if randi_range(0, 675) == 1:
 				var tile_pos = Vector2i(x, y)
 				if CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
 					var random_gem = randi_range(1, 3)
@@ -293,6 +330,11 @@ func put_gems():
 							1: CaveSystem.set_cell(tile_pos, 1, Vector2i(1, 1))
 							2: CaveSystem.set_cell(tile_pos, 1, Vector2i(2, 1))
 							3: CaveSystem.set_cell(tile_pos, 1, Vector2i(3, 1))
+					if asteroid_biome == "Frozen":
+						match random_gem:
+							1: CaveSystem.set_cell(tile_pos, 2, Vector2i(1, 1))
+							2: CaveSystem.set_cell(tile_pos, 2, Vector2i(2, 1))	
+							3: CaveSystem.set_cell(tile_pos, 2, Vector2i(3, 1))
 
 func create_asteroid_name():
 	var consoante1 = consoantes[randi() % consoantes.size()]

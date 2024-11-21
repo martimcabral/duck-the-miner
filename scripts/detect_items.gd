@@ -58,6 +58,36 @@ func _on_body_entered(body : Node2D):
 			"LavaCluster":
 				var lavaClusterIcon = load("res://assets/textures/items/ores/lava_cluster.png")
 				add_item_to_inventory("Lava Cluster", lavaClusterIcon)
+			"DenseIce":
+				var denseIceIcon = load("res://assets/textures/items/ores/dense_ice.png")
+				add_item_to_inventory("Dense Ice", denseIceIcon)
+			"Amazonite":
+				var amazoniteIcon = load("res://assets/textures/items/ores/amazonite.png")
+				add_item_to_inventory("Amazonite", amazoniteIcon)
+			"Ametrine":
+				var ametrineIcon = load("res://assets/textures/items/ores/ametrine.png")
+				add_item_to_inventory("Ametrine", ametrineIcon)
+			"Apatite":
+				var apatiteIcon = load("res://assets/textures/items/ores/apatite.png")
+				add_item_to_inventory("Apatite", apatiteIcon)
+			"FrozenDiamond":
+				var frozenDiamondIcon = load("res://assets/textures/items/ores/frozen_diamond.png")
+				add_item_to_inventory("Frozen Diamond", frozenDiamondIcon)
+			"Galena":
+				var galenaIcon = load("res://assets/textures/items/ores/raw_galena.png")
+				add_item_to_inventory("Raw Galena", galenaIcon)
+			"Silver":
+				var silverIcon = load("res://assets/textures/items/ores/raw_silver.png")
+				add_item_to_inventory("Raw Silver", silverIcon)
+			"Wolframite":
+				var wolframiteIcon = load("res://assets/textures/items/ores/raw_wolframite.png")
+				add_item_to_inventory("Raw Wolframite", wolframiteIcon)
+			"Pyrolusite":
+				var pyrolusiteIcon = load("res://assets/textures/items/ores/raw_pyrolusite.png")
+				add_item_to_inventory("Raw Pyrolusite", pyrolusiteIcon)
+			"Nickel":
+				var nickelIcon = load("res://assets/textures/items/ores/raw_nickel.png")
+				add_item_to_inventory("Raw Nickel", nickelIcon)
 		body.queue_free()
 		$PickupItem.play()
 

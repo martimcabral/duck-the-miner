@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=41 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
@@ -16,6 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://on6jrqbcgjw5" path="res://assets/textures/items/ores/garnet.png" id="14_yfca6"]
 [ext_resource type="Texture2D" uid="uid://devr11bouug6s" path="res://assets/textures/items/ores/tsavorite.png" id="15_knr2n"]
 [ext_resource type="Texture2D" uid="uid://bp8wniy2fjiup" path="res://assets/textures/items/ores/lava_cluster.png" id="16_iufqf"]
+[ext_resource type="Texture2D" uid="uid://xna5mu6wa3xh" path="res://assets/textures/items/ores/dense_ice.png" id="17_tkevc"]
+[ext_resource type="Texture2D" uid="uid://4yki2mp243nv" path="res://assets/textures/items/ores/amazonite.png" id="18_8mntl"]
+[ext_resource type="Texture2D" uid="uid://br5gwawvmimb7" path="res://assets/textures/items/ores/ametrine.png" id="19_v23fx"]
+[ext_resource type="Texture2D" uid="uid://0flmt25tfpx5" path="res://assets/textures/items/ores/apatite.png" id="20_ow6ev"]
+[ext_resource type="Texture2D" uid="uid://jgsqmtdcyylu" path="res://assets/textures/items/ores/frozen_diamond.png" id="21_v03f4"]
+[ext_resource type="Texture2D" uid="uid://bhjis5djjw3u6" path="res://assets/textures/items/ores/raw_galena.png" id="22_r5npu"]
+[ext_resource type="Texture2D" uid="uid://21n8jxp1x6ku" path="res://assets/textures/items/ores/raw_silver.png" id="23_mqf8e"]
+[ext_resource type="Texture2D" uid="uid://cq0lyrld8ya3j" path="res://assets/textures/items/ores/raw_wolframite.png" id="24_duccr"]
+[ext_resource type="Texture2D" uid="uid://d255msdu3whk6" path="res://assets/textures/items/ores/raw_pyrolusite.png" id="25_p626e"]
+[ext_resource type="Texture2D" uid="uid://bmyqahldyiwyf" path="res://assets/textures/items/ores/raw_nickel.png" id="26_bx6yf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
 size = Vector2(6.33902, 5.5559)
@@ -46,6 +56,18 @@ size = Vector2(4.42236, 4.3852)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fg2kt"]
 size = Vector2(8.48528, 8.48528)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vg6rc"]
+radius = 2.96875
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6xpaq"]
+radius = 2.87772
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvslo"]
+radius = 2.72521
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5rc7"]
+radius = 4.23098
 
 [node name="Items" type="Node2D"]
 
@@ -283,3 +305,148 @@ position = Vector2(1.19209e-07, 1.19209e-07)
 rotation = -0.785398
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_fg2kt")
+
+[node name="DenseIce" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "DenseIce"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="DenseIce"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("17_tkevc")
+
+[node name="LavaCollisionShape2D" type="CollisionShape2D" parent="DenseIce"]
+position = Vector2(1.19209e-07, 1.19209e-07)
+rotation = -0.785398
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_fg2kt")
+
+[node name="Amazonite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Amazonite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Amazonite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_8mntl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Amazonite"]
+shape = SubResource("CircleShape2D_vg6rc")
+
+[node name="Ametrine" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Ametrine"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Ametrine"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_v23fx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ametrine"]
+shape = SubResource("CircleShape2D_6xpaq")
+
+[node name="Apatite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Apatite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Apatite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("20_ow6ev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Apatite"]
+shape = SubResource("CircleShape2D_tvslo")
+
+[node name="FrozenDiamond" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "FrozenDiamond"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="FrozenDiamond"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("21_v03f4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrozenDiamond"]
+shape = SubResource("RectangleShape2D_4whbr")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FrozenDiamond"]
+shape = SubResource("CircleShape2D_en54b")
+
+[node name="Galena" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Galena"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Galena"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("22_r5npu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Galena"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Silver" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Silver"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Silver"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("23_mqf8e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Silver"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Wolframite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Wolframite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Wolframite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("24_duccr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wolframite"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Pyrolusite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Pyrolusite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Pyrolusite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("25_p626e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pyrolusite"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Nickel" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Nickel"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Nickel"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("26_bx6yf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Nickel"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")

@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 				torch.position = CaveSystem.map_to_local(tile_pos)
 				add_child(torch)
 				$"../Player/Player Sounds/PlaceBlock".play()
-				print("Torch Placed: ", tile_pos)
+				#print("Torch Placed: ", tile_pos)
 
 func drop_items():
 	var instance = packed_scene.instantiate()
@@ -56,7 +56,7 @@ func drop_items():
 			Vector2i(1, 2):
 				item_name = "RawCopper"
 				
-	if world.asteroid_biome == "Vulcanic":
+	elif world.asteroid_biome == "Vulcanic":
 		match block:
 			Vector2i(0, 0):
 				item_name = "Stone"
@@ -80,6 +80,31 @@ func drop_items():
 				item_name = "LavaCluster"
 			Vector2i(0, 3):
 				item_name = "RawBauxite"
+				
+	elif world.asteroid_biome == "Frozen":
+		match block:
+			Vector2i(0, 0):
+				item_name = "Stone"
+			Vector2i(3, 0):
+				item_name = "FrozenDiamond"
+			Vector2i(3, 2):
+				item_name = "DenseIce"
+			Vector2i(1, 1):
+				item_name = "Ametrine"
+			Vector2i(2, 1):
+				item_name = "Apatite"
+			Vector2i(3, 1):
+				item_name = "Amazonite"
+			Vector2i(1, 0):
+				item_name = "Galena"
+			Vector2i(2, 0):
+				item_name = "Silver"
+			Vector2i(0, 2):
+				item_name = "Wolframite"
+			Vector2i(1, 2):
+				item_name = "Pyrolusite"
+			Vector2i(0, 3):
+				item_name = "Nickel"
 		
 	if item_name != "":
 		var target_node = instance.get_node(item_name)

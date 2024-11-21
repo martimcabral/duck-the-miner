@@ -156,6 +156,8 @@ func _process(delta):
 					CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
 				elif world.asteroid_biome == "Vulcanic":
 					CaveSystem.set_cell(tile_pos, 1, Vector2i(0, 0))
+				elif world.asteroid_biome == "Frozen":
+					CaveSystem.set_cell(tile_pos, 2, Vector2i(0, 0))
 				$"../Player/Player Sounds/PlaceBlock".play()
 				print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
 				
@@ -257,7 +259,7 @@ func destroy_block():
 				
 				# Detect percentage of the health of the Tile here:
 				var percentage = float(used_tiles[tile_pos]["health"]) / tile_health * 100
-				print(percentage, "%")
+				#print(percentage, "%")
 				if (percentage >= 76 and percentage <= 100):
 					BreakingStages.set_cell(tile_pos, 0, Vector2i(0, 0))
 				elif (percentage >= 50 and percentage <= 75):
@@ -278,6 +280,8 @@ func destroy_block():
 							CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 1))  # Destroy the tile
 						elif world.asteroid_biome == "Vulcanic":
 							CaveSystem.set_cell(tile_pos, 1, Vector2i(0, 1))
+						elif world.asteroid_biome == "Frozen":
+							CaveSystem.set_cell(tile_pos, 2, Vector2i(0, 1))
 ##################################################################################################################################################
 ##################################################################################################################################################
 ##################################################################################################################################################
