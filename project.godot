@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="Duck the Miner"
-config/version="1.8"
+config/version="1.8.2"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/bg_color=Color(0.976471, 0.709804, 0.247059, 1)
+boot_splash/bg_color=Color(0.976471, 0.611765, 0.247059, 1)
 boot_splash/image="res://assets/textures/loading_screen.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false

@@ -143,31 +143,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
+offset_left = -244.0
 offset_top = -248.0
-offset_right = 195.0
-offset_bottom = 401.0
+offset_right = 233.0
+offset_bottom = 406.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
 script = ExtResource("2_y368m")
-
-[node name="Continue" type="RichTextLabel" parent="GUI/Center/StartMenu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -143.5
-offset_top = 27.0
-offset_right = 171.5
-offset_bottom = 108.0
-grow_horizontal = 2
-theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
-theme_override_font_sizes/normal_font_size = 72
-text = "Continue
-"
 
 [node name="NewGameButton" type="Button" parent="GUI/Center/StartMenu"]
 z_index = 1
@@ -178,27 +163,27 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -172.5
-offset_top = -549.0
-offset_right = 182.5
-offset_bottom = -469.0
+offset_left = -201.5
+offset_top = -631.0
+offset_right = 211.5
+offset_bottom = -551.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_r1li2")
-text = "New Game"
+text = "Singleplayer"
 flat = true
 
-[node name="Join" type="RichTextLabel" parent="GUI/Center/StartMenu"]
+[node name="Multiplayer" type="RichTextLabel" parent="GUI/Center/StartMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -176.5
-offset_top = 180.0
+offset_top = 111.0
 offset_right = 194.5
-offset_bottom = 260.0
+offset_bottom = 191.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
@@ -214,9 +199,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -125.5
-offset_top = -397.0
+offset_top = -471.0
 offset_right = 125.5
-offset_bottom = -317.0
+offset_bottom = -391.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -235,9 +220,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -119.0
-offset_top = -160.0
+offset_top = -161.0
 offset_right = 119.0
-offset_bottom = -80.0
+offset_bottom = -81.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -686,14 +671,17 @@ flat = true
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
 visible = false
 texture_filter = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -626.0
-offset_top = 274.0
-offset_right = 630.0
-offset_bottom = 950.0
+anchor_bottom = 0.5
+offset_left = -493.5
+offset_top = -258.0
+offset_right = 493.5
+offset_bottom = 418.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
@@ -707,9 +695,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -496.0
-offset_top = -221.0
+offset_top = -237.0
 offset_right = 496.0
-offset_bottom = 219.0
+offset_bottom = 262.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
@@ -718,6 +706,7 @@ bbcode_enabled = true
 text = "[center]Textures:
 Sr. Patinho
 Split
+DragonKey
 
 Programming:
 Sr. Patinho
@@ -729,17 +718,15 @@ Gravity Sound"
 z_index = 1
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -624.0
-offset_top = -84.0
-offset_right = -398.0
-offset_bottom = -4.0
-grow_horizontal = 2
+offset_left = 9.0
+offset_top = -71.0
+offset_right = 210.0
+offset_bottom = 9.0
 grow_vertical = 0
+scale = Vector2(0.8, 0.8)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")

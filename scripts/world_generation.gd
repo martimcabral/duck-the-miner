@@ -49,13 +49,30 @@ func _process(_delta: float) -> void:
 	
 func start_music():
 	var random_music = randi_range(1, 3)
-	match random_music:
-		1:
-			$WorldMusic/Enter.play()
-		2:
-			$WorldMusic/Wave.play()
-		3:
-			$WorldMusic/Void.play()
+	if asteroid_biome == "Stony":
+		match random_music:
+			1:
+				$WorldMusic/Enter.play()
+			2:
+				$WorldMusic/Wave.play()
+			3:
+				$WorldMusic/Void.play()
+	elif asteroid_biome == "Vulcanic":
+		match random_music:
+			1:
+				$WorldMusic/Rift.play()
+			2:
+				$WorldMusic/Wave.play()
+			3:
+				$WorldMusic/Void.play()
+	elif asteroid_biome == "Frozen":
+		match random_music:
+			1:
+				$WorldMusic/Portal.play()
+			2:
+				$WorldMusic/Enter.play()
+			3:
+				$WorldMusic/Rift.play()
 
 func _ready():
 	asteroid_biome = randi_range(1, 3)
