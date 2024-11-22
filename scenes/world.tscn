@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/tilemaps/stony_ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Texture2D" uid="uid://cs5hgtiamef40" path="res://assets/textures/destroy_stages/stages.png" id="4_qexfe"]
 [ext_resource type="Script" path="res://scripts/detect_items.gd" id="4_rt7d7"]
-[ext_resource type="Script" path="res://scripts/map_management.gd" id="4_ys0ii"]
+[ext_resource type="Script" path="res://scripts/drop_item.gd" id="4_ys0ii"]
 [ext_resource type="Texture2D" uid="uid://b8523lkw1l4p7" path="res://assets/textures/selected_block.png" id="5_16s1h"]
 [ext_resource type="AudioStream" uid="uid://vykc0p7hqfye" path="res://sounds/sound_efects/pickup_item.ogg" id="5_j2snb"]
 [ext_resource type="Shader" path="res://scripts/Colorblindness/colorblindness_shader.gdshader" id="6_jiuwp"]
@@ -348,6 +348,7 @@ ssil_radius = 6.9
 ssil_intensity = 5.85
 ssil_sharpness = 0.0
 ssil_normal_rejection = 0.0
+glow_blend_mode = 0
 fog_height = 417.19
 adjustment_color_correction = SubResource("GradientTexture2D_4634m")
 

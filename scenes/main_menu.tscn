@@ -137,6 +137,7 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -669,7 +670,6 @@ text = "Back"
 flat = true
 
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -694,25 +694,35 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -496.0
-offset_top = -237.0
-offset_right = 496.0
-offset_bottom = 262.0
+offset_left = -486.5
+offset_top = -313.0
+offset_right = 489.5
+offset_bottom = 312.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_hgts2")
 bbcode_enabled = true
-text = "[center]Textures:
+text = "[center]TEXTURES:
 Sr. Patinho
 Split
 DragonKey
 
-Programming:
+PROGRAMMING:
 Sr. Patinho
 
-Music:
-Gravity Sound"
+FONT:
+Digital Disco - from fontenddev.com
+
+MUSIC:
+\"Enter\"
+\"Wave\"
+\"Void\"
+\"Rift\"
+\"Portal\"
+By: Gravity Sound
+
+"
 
 [node name="BackButton" type="Button" parent="GUI/Center/CreditsMenu"]
 z_index = 1
@@ -728,6 +738,7 @@ offset_bottom = 9.0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(0.629675, 0.629675, 0.629675, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"

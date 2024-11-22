@@ -31,6 +31,7 @@ var block_selection_default = preload("res://assets/textures/selected_block.png"
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
 func _ready():
+	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "alpha." + str(ProjectSettings.get_setting("application/config/version"))
 	$HUD/ItemList/TeamInventoryLabel.text = "[center]%s[/center]" % "Duck's Pockets"
 	
 	if DiscordRPC.get_is_discord_working():
@@ -70,7 +71,7 @@ func _process(delta):
 	$Camera2D/HUD/Stats/ThirstStat/ThirstText.text = "[center]%s[/center]" % str($Camera2D/HUD/Stats/ThirstStat.value)
 	
 	$Flashlight.look_at(get_global_mouse_position())
-	if Input.is_action_just_pressed("Place_Torch") and self.current_item == 4:
+	if Input.is_action_just_pressed("Use_Flashlight") and self.current_item == 4:
 		match (flashlight):
 			true:
 				$Flashlight.energy = 0
@@ -311,7 +312,7 @@ func _on_hunger_remover_timeout() -> void:
 	$Camera2D/HUD/Stats/HungerStat.value -= 1
 
 func _on_thirst_remover_timeout() -> void:
-	$Camera2D/HUD/Stats/ThirstStat.value -= 1	
+	$Camera2D/HUD/Stats/ThirstStat.value -= 1
 
 func _on_uv_battery_consumption_timeout() -> void:
 	if flashlight == true:

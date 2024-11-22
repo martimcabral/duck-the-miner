@@ -111,6 +111,7 @@ func drop_items():
 		target_node.get_parent().remove_child(target_node)  # Remove the item from its original parent
 		target_node.owner = null  # Unset the owner to avoid inconsistency
 		add_child(target_node)  # Add the item to the current scene
-		target_node.position = CaveSystem.map_to_local(tile_pos)
+		target_node.position = CaveSystem.map_to_local(tile_pos + Vector2(randf_range(-0.1, 0.1), randf_range(-0.1, 0.1)))
+		target_node.rotation = randi_range(0, 360)
 
 # © Sr. Patinho // 2007-2024 🦆

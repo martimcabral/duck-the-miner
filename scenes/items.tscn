@@ -1,8 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=43 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
+[ext_resource type="Texture2D" uid="uid://bd4o6j02nkuus" path="res://assets/textures/white-glow-light-effect-free-png.png" id="2_nq3r8"]
 [ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/ores/diamond.png" id="3_j7l03"]
+[ext_resource type="Script" path="res://scripts/rare_item_light_rotation.gd" id="3_reukg"]
 [ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/ores/ruby.png" id="5_hkxh7"]
 [ext_resource type="Texture2D" uid="uid://dtbodpsor8bxe" path="res://assets/textures/items/ores/emerald.png" id="6_yo33a"]
 [ext_resource type="Texture2D" uid="uid://do2s5c8qpavqr" path="res://assets/textures/items/ores/sapphire.png" id="7_8muc8"]
@@ -155,6 +157,12 @@ texture = ExtResource("6_yo33a")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Emerald"]
 shape = SubResource("CircleShape2D_s7pjy")
 
+[node name="PointLight2D" type="PointLight2D" parent="Emerald"]
+blend_mode = 1
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
 [node name="Ruby" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Ruby"
 gravity_scale = 0.05
@@ -168,6 +176,11 @@ texture = ExtResource("5_hkxh7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ruby"]
 shape = SubResource("CircleShape2D_mro54")
 
+[node name="PointLight2D" type="PointLight2D" parent="Ruby"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
 [node name="Sapphire" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Sapphire"
 gravity_scale = 0.05
@@ -180,6 +193,11 @@ texture = ExtResource("7_8muc8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sapphire"]
 shape = SubResource("CircleShape2D_s7pjy")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sapphire"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
 
 [node name="Diamond" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Diamond"
@@ -196,6 +214,11 @@ shape = SubResource("RectangleShape2D_4whbr")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Diamond"]
 shape = SubResource("CircleShape2D_en54b")
+
+[node name="PointLight2D" type="PointLight2D" parent="Diamond"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
 
 [node name="Ice" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Ice"
@@ -259,6 +282,11 @@ position = Vector2(0.14332, -0.24885)
 rotation = 0.523599
 shape = SubResource("RectangleShape2D_k0d5r")
 
+[node name="PointLight2D" type="PointLight2D" parent="Topaz"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
 [node name="Garnet" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Garnet"
 gravity_scale = 0.05
@@ -274,6 +302,11 @@ texture = ExtResource("14_yfca6")
 position = Vector2(0.26082, 0.301094)
 shape = SubResource("RectangleShape2D_kkuvt")
 
+[node name="PointLight2D" type="PointLight2D" parent="Garnet"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
 [node name="Tsavorite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Tsavorite"
 gravity_scale = 0.05
@@ -288,6 +321,11 @@ texture = ExtResource("15_knr2n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tsavorite"]
 position = Vector2(0.26082, 0.301094)
 shape = SubResource("RectangleShape2D_kkuvt")
+
+[node name="PointLight2D" type="PointLight2D" parent="Tsavorite"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
 
 [node name="LavaCluster" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "LavaCluster"
@@ -337,6 +375,11 @@ texture = ExtResource("18_8mntl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Amazonite"]
 shape = SubResource("CircleShape2D_vg6rc")
 
+[node name="PointLight2D" type="PointLight2D" parent="Amazonite"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
 [node name="Ametrine" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Ametrine"
 gravity_scale = 0.05
@@ -351,6 +394,11 @@ texture = ExtResource("19_v23fx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ametrine"]
 shape = SubResource("CircleShape2D_6xpaq")
 
+[node name="PointLight2D" type="PointLight2D" parent="Ametrine"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
 [node name="Apatite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Apatite"
 gravity_scale = 0.05
@@ -364,6 +412,11 @@ texture = ExtResource("20_ow6ev")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apatite"]
 shape = SubResource("CircleShape2D_tvslo")
+
+[node name="PointLight2D" type="PointLight2D" parent="Apatite"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
 
 [node name="FrozenDiamond" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "FrozenDiamond"
@@ -380,6 +433,11 @@ shape = SubResource("RectangleShape2D_4whbr")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="FrozenDiamond"]
 shape = SubResource("CircleShape2D_en54b")
+
+[node name="PointLight2D" type="PointLight2D" parent="FrozenDiamond"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
 
 [node name="Galena" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Galena"
