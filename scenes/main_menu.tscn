@@ -784,7 +784,6 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
 step = 5.0
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
 layout_mode = 2
 offset_left = 304.0
 offset_top = 5.0
@@ -919,7 +918,7 @@ offset_bottom = 424.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
-text = "Agachar"
+text = "Crouch"
 
 [node name="AgacharButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
 layout_mode = 0

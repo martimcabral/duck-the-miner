@@ -89,33 +89,19 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_fhbgv")
 text = "Continue"
 flat = true
 
-[node name="SaveGame" type="RichTextLabel" parent="GUI_Pause/PauseMenuPanel"]
+[node name="Settings" type="RichTextLabel" parent="GUI_Pause/PauseMenuPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -179.5
+offset_left = -128.5
 offset_top = 107.0
-offset_right = 202.5
+offset_right = 133.5
 offset_bottom = 188.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
 theme_override_font_sizes/normal_font_size = 72
-text = "Save Game"
-
-[node name="Options" type="RichTextLabel" parent="GUI_Pause/PauseMenuPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -125.5
-offset_top = 181.0
-offset_right = 126.5
-offset_bottom = 261.0
-grow_horizontal = 2
-theme_override_colors/default_color = Color(0.356863, 0.356863, 0.356863, 1)
-theme_override_font_sizes/normal_font_size = 72
-text = "Options"
+text = "Settings"
 
 [node name="FeedbackButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
 z_index = 1
@@ -126,10 +112,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -184.0
-offset_top = -237.0
-offset_right = 184.0
-offset_bottom = -157.0
+offset_left = -238.5
+offset_top = -365.0
+offset_right = 242.5
+offset_bottom = -285.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -147,16 +133,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -119.0
-offset_top = -160.0
-offset_right = 119.0
-offset_bottom = -80.0
+offset_left = -219.5
+offset_top = -170.0
+offset_right = 229.5
+offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
-text = "Main Menu"
+text = "Abort Mission"
 flat = true
 
 [node name="GoToDesktopButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
@@ -168,10 +154,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -63.5
-offset_top = -87.0
-offset_right = 63.5
-offset_bottom = -7.0
+offset_left = -240.5
+offset_top = -97.0
+offset_right = 240.5
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
