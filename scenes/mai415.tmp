@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=21 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
@@ -78,87 +78,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgfrk"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kp2r0"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnwve"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjk3e"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yobxf"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mivfx"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3wfw"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyawk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -191,66 +110,6 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvjna"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lxlq"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75a85"]
-bg_color = Color(0.07, 0.07, 0.07, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kr2bc"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pqgk"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgts2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -273,14 +132,12 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -495.0
-offset_top = 97.0
+offset_top = 119.0
 offset_right = 544.0
-offset_bottom = 256.0
+offset_bottom = 278.0
 grow_horizontal = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 10
 theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
@@ -395,9 +252,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -626.0
-offset_top = 260.0
+offset_top = 274.0
 offset_right = 630.0
-offset_bottom = 936.0
+offset_bottom = 950.0
 grow_horizontal = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -405,8 +262,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
 script = ExtResource("3_vt73r")
 
 [node name="Line2D" type="Line2D" parent="GUI/Center/OptionsMenu"]
-position = Vector2(196.859, 0.0433655)
-scale = Vector2(0.418288, 1.00434)
+position = Vector2(169, 0.0433655)
+scale = Vector2(0.536585, 1.00434)
 points = PackedVector2Array(225.5, 1.94818, 225.5, 672)
 
 [node name="DisplayButton" type="Button" parent="GUI/Center/OptionsMenu"]
@@ -419,9 +276,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -626.0
-offset_top = -666.0
+offset_top = -672.0
 offset_right = -341.0
-offset_bottom = -578.0
+offset_bottom = -584.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -440,9 +297,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -626.0
-offset_top = -518.0
+offset_top = -597.0
 offset_right = -341.0
-offset_bottom = -430.0
+offset_bottom = -509.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -461,9 +318,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -621.0
-offset_top = -590.0
+offset_top = -525.0
 offset_right = -336.0
-offset_bottom = -502.0
+offset_bottom = -437.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -524,9 +381,6 @@ offset_right = 938.0
 offset_bottom = 67.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
-theme_override_styles/normal = SubResource("StyleBoxFlat_dnwve")
 alignment = 1
 item_count = 13
 popup/item_0/text = "(16:9)"
@@ -576,9 +430,6 @@ offset_right = 939.0
 offset_bottom = 125.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pjk3e")
-theme_override_styles/normal = SubResource("StyleBoxFlat_yobxf")
 alignment = 1
 item_count = 2
 popup/item_0/text = "Fullscreen"
@@ -597,15 +448,12 @@ text = "FPS Limiter"
 [node name="FPSType" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel"]
 z_index = 1
 layout_mode = 0
-offset_left = 736.0
+offset_left = 746.0
 offset_top = 184.0
-offset_right = 867.0
+offset_right = 877.0
 offset_bottom = 235.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mivfx")
-theme_override_styles/normal = SubResource("StyleBoxFlat_a3wfw")
 alignment = 1
 item_count = 13
 popup/item_0/text = "Disabled"
@@ -783,376 +631,52 @@ mouse_default_cursor_shape = 7
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
 step = 5.0
 
-[node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
-layout_mode = 2
+[node name="ControlsScrollContainer" type="ScrollContainer" parent="GUI/Center/OptionsMenu"]
+layout_mode = 0
 offset_left = 304.0
 offset_top = 5.0
-offset_right = 304.0
-offset_bottom = 5.0
+offset_right = 1246.0
+offset_bottom = 663.0
 
-[node name="NextKeyHandler" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="ScrollabelPanel" type="Panel" parent="GUI/Center/OptionsMenu/ControlsScrollContainer"]
 layout_mode = 2
-offset_left = 56.0
-offset_right = 57.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="FlyUp" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="FlyUp" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsScrollContainer/ScrollabelPanel"]
 layout_mode = 2
-offset_left = 72.0
-offset_top = 49.0
-offset_right = 334.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 391.0
+offset_bottom = 70.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Fly Up"
 
-[node name="FlyUpButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="FlyUpButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsScrollContainer/ScrollabelPanel"]
 layout_mode = 0
-offset_left = 340.0
-offset_top = 51.0
-offset_right = 430.0
-offset_bottom = 98.0
+offset_left = 236.0
+offset_top = 19.0
+offset_right = 326.0
+offset_bottom = 66.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_tvjna")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5lxlq")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-toggle_mode = true
 
-[node name="FlyDown" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="FlyDown" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsScrollContainer/ScrollabelPanel"]
 layout_mode = 2
-offset_left = 72.0
-offset_top = 113.0
-offset_right = 330.0
-offset_bottom = 166.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 16.0
+offset_top = 81.0
+offset_right = 391.0
+offset_bottom = 134.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Fly Down"
 
-[node name="FlyDownButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="FlyDownButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsScrollContainer/ScrollabelPanel"]
 layout_mode = 0
-offset_left = 340.0
-offset_top = 115.0
-offset_right = 430.0
-offset_bottom = 162.0
+offset_left = 236.0
+offset_top = 83.0
+offset_right = 326.0
+offset_bottom = 130.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
 
-[node name="WalkLeft" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="PlaceHolder" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsScrollContainer"]
 layout_mode = 2
-offset_left = 72.0
-offset_top = 178.0
-offset_right = 334.0
-offset_bottom = 231.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Walk Left"
-
-[node name="WalkLeftButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 180.0
-offset_right = 430.0
-offset_bottom = 227.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="WalkRight" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 72.0
-offset_top = 243.0
-offset_right = 328.0
-offset_bottom = 296.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Walk Right"
-
-[node name="WalkRightButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 245.0
-offset_right = 430.0
-offset_bottom = 292.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="Run" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 72.0
-offset_top = 307.0
-offset_right = 324.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Run"
-
-[node name="RunButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 309.0
-offset_right = 430.0
-offset_bottom = 356.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="Agachar" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 72.0
-offset_top = 371.0
-offset_right = 330.0
-offset_bottom = 424.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Agachar"
-
-[node name="AgacharButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 373.0
-offset_right = 430.0
-offset_bottom = 420.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="DestroyBlock" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 72.0
-offset_top = 435.0
-offset_right = 337.0
-offset_bottom = 488.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Destroy"
-
-[node name="DestroyBlockButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 437.0
-offset_right = 430.0
-offset_bottom = 484.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="PlaceTorch" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 72.0
-offset_top = 499.0
-offset_right = 335.0
-offset_bottom = 552.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Place Light"
-
-[node name="PlaceTorchButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 501.0
-offset_right = 430.0
-offset_bottom = 548.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="PlaceBlock" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 72.0
-offset_top = 563.0
-offset_right = 336.0
-offset_bottom = 616.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Place Block"
-
-[node name="PlaceBlockButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 340.0
-offset_top = 565.0
-offset_right = 430.0
-offset_bottom = 612.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="PauseMenu" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 496.0
-offset_top = 49.0
-offset_right = 760.0
-offset_bottom = 102.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 48
-text = "Pause"
-
-[node name="PauseMenuButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 51.0
-offset_right = 854.0
-offset_bottom = 98.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_tvjna")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5lxlq")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-toggle_mode = true
-
-[node name="Quack" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 496.0
-offset_top = 113.0
-offset_right = 758.0
-offset_bottom = 166.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Quack"
-
-[node name="QuackButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 115.0
-offset_right = 854.0
-offset_bottom = 162.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="HideShowInventory" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 496.0
-offset_top = 178.0
-offset_right = 758.0
-offset_bottom = 231.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "H/S Invent."
-
-[node name="HideShowInventoryButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 180.0
-offset_right = 854.0
-offset_bottom = 227.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="OpenFeedback" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 496.0
-offset_top = 243.0
-offset_right = 757.0
-offset_bottom = 296.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Feedback"
-
-[node name="OpenFeedbackButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 245.0
-offset_right = 854.0
-offset_bottom = 292.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="UniverseZoomIn" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 496.0
-offset_top = 307.0
-offset_right = 759.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Zoom In"
-
-[node name="UniverseZoomInButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 309.0
-offset_right = 854.0
-offset_bottom = 356.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="UniverseZoomOut" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 496.0
-offset_top = 371.0
-offset_right = 747.0
-offset_bottom = 424.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Zoom Out"
-
-[node name="UniverseZoomOutButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 373.0
-offset_right = 854.0
-offset_bottom = 420.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
-
-[node name="UseFlashlight" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
-offset_left = 496.0
-offset_top = 435.0
-offset_right = 755.0
-offset_bottom = 488.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 48
-text = "Flashlight"
-
-[node name="UseFlashlightButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 0
-offset_left = 764.0
-offset_top = 437.0
-offset_right = 854.0
-offset_bottom = 484.0
-theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
 
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
 visible = false
@@ -1254,20 +778,6 @@ parameters/looping = true
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/MusicVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/AmbientVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_ambient_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/PlayerVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_player_volume_slider_value_changed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/FlyUpButton" to="GUI/Center/OptionsMenu" method="_on_fly_up_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/FlyDownButton" to="GUI/Center/OptionsMenu" method="_on_fly_down_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/WalkLeftButton" to="GUI/Center/OptionsMenu" method="_on_walk_left_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/WalkRightButton" to="GUI/Center/OptionsMenu" method="_on_walk_right_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/RunButton" to="GUI/Center/OptionsMenu" method="_on_run_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/AgacharButton" to="GUI/Center/OptionsMenu" method="_on_agachar_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/DestroyBlockButton" to="GUI/Center/OptionsMenu" method="_on_destroy_block_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/PlaceTorchButton" to="GUI/Center/OptionsMenu" method="_on_place_torch_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/PlaceBlockButton" to="GUI/Center/OptionsMenu" method="_on_place_block_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/PauseMenuButton" to="GUI/Center/OptionsMenu" method="_on_pause_menu_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/QuackButton" to="GUI/Center/OptionsMenu" method="_on_quack_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/HideShowInventoryButton" to="GUI/Center/OptionsMenu" method="_on_hide_show_inventory_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/OpenFeedbackButton" to="GUI/Center/OptionsMenu" method="_on_open_feedback_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UniverseZoomInButton" to="GUI/Center/OptionsMenu" method="_on_universe_zoom_in_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UniverseZoomOutButton" to="GUI/Center/OptionsMenu" method="_on_universe_zoom_out_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UseFlashlightButton" to="GUI/Center/OptionsMenu" method="_on_use_flashlight_button_pressed"]
+[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsScrollContainer/ScrollabelPanel/FlyUpButton" to="GUI/Center/OptionsMenu" method="_on_fly_up_button_pressed"]
+[connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsScrollContainer/ScrollabelPanel/FlyDownButton" to="GUI/Center/OptionsMenu" method="_on_fly_down_button_pressed"]
 [connection signal="pressed" from="GUI/Center/CreditsMenu/BackButton" to="GUI/Center/StartMenu" method="_on_back_button_pressed"]

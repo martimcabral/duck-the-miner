@@ -143,7 +143,7 @@ func _process(delta):
 		$"../WorldTileMap/BlockSelection".position = Vector2(-128, -128)
 		$"../WorldTileMap/BlockSelection".texture = block_selection_default
 		
-	if (Input.is_action_just_pressed("Place_Block")):
+	if Input.is_action_just_pressed("Place_Block") and current_item != 3:
 		var mouse_pos = get_global_mouse_position()
 		var local_mouse_pos = $BlockRange.to_local(mouse_pos)
 		var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
