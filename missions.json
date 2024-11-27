@@ -1,0 +1,266 @@
+{
+	"delta": {
+		"ID1": {
+			"Biome": "Frozen",
+			"Name": "Dkicae",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 31
+		},
+		"ID2": {
+			"Biome": "Stony",
+			"Name": "Obcee",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 18
+		},
+		"ID3": {
+			"Biome": "Vulcanic",
+			"Name": "Xaofo",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 1
+		}
+	},
+	"gamma": {
+		"ID6": {
+			"Biome": "Vulcanic",
+			"Name": "Wizowowaoma",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 76
+		},
+		"ID8": {
+			"Biome": "Vulcanic",
+			"Name": "Jol",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 83
+		},
+		"ID9": {
+			"Biome": "Vulcanic",
+			"Name": "Xafokakauqe",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": -46
+		}
+	},
+	"lambda": {
+		"ID11": {
+			"Biome": "Stony",
+			"Name": "Xaileubqu",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 84
+		},
+		"ID15": {
+			"Biome": "Stony",
+			"Name": "Inree",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": -26
+		},
+		"ID16": {
+			"Biome": "Frozen",
+			"Name": "Arhii",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": -60
+		},
+		"ID18": {
+			"Biome": "Frozen",
+			"Name": "Hoewaakbe",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 71
+		},
+		"ID19": {
+			"Biome": "Stony",
+			"Name": "Abhuu",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 5
+		},
+		"ID22": {
+			"Biome": "Frozen",
+			"Name": "Fsifau",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 102
+		},
+		"ID26": {
+			"Biome": "Frozen",
+			"Name": "Rikadidioyi",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 111
+		}
+	},
+	"omega": {
+		"ID14": {
+			"Biome": "Stony",
+			"Name": "Idgii",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 28
+		},
+		"ID15": {
+			"Biome": "Stony",
+			"Name": "Kaz",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 18
+		},
+		"ID7": {
+			"Biome": "Frozen",
+			"Name": "Bud",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 37
+		}
+	},
+	"sigma": {
+		"ID13": {
+			"Biome": "Stony",
+			"Name": "Tiefelo",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 86
+		},
+		"ID22": {
+			"Biome": "Frozen",
+			"Name": "Deofida",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": -42
+		},
+		"ID23": {
+			"Biome": "Frozen",
+			"Name": "Faadiho",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 75
+		},
+		"ID27": {
+			"Biome": "Frozen",
+			"Name": "Exwee",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": -18
+		},
+		"ID32": {
+			"Biome": "Frozen",
+			"Name": "Ohqa-Pape",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 15
+		},
+		"ID33": {
+			"Biome": "Stony",
+			"Name": "Ukni-Duva",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 17
+		},
+		"ID34": {
+			"Biome": "Frozen",
+			"Name": "Zud",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 32
+		}
+	},
+	"yotta": {
+		"ID21": {
+			"Biome": "Frozen",
+			"Name": "Jvadoa",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": -52
+		},
+		"ID24": {
+			"Biome": "Frozen",
+			"Name": "Peife",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 51
+		},
+		"ID28": {
+			"Biome": "Frozen",
+			"Name": "Runviv",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 117
+		},
+		"ID32": {
+			"Biome": "Stony",
+			"Name": "Logidadoopu",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 108
+		},
+		"ID40": {
+			"Biome": "Vulcanic",
+			"Name": "Sehojijouko",
+			"Objectites": {
+				"Primary": "Unknown",
+				"Secondary": "Unknown"
+			},
+			"Temperature": 57
+		}
+	}
+}

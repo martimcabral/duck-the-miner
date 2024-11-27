@@ -4,6 +4,17 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
+	var empty_file = "Empty"
+	var result = JSON.stringify(empty_file)
+	
+	var file = FileAccess.open("res://missions.json", FileAccess.WRITE)
+	if file:
+		file.store_string(result)
+		file.close()
+		print("[start.gd/missions.json] Asteroid data emptied")
+	else:
+		print("[start.gd/missions.json] Failed to open file for emptying stage.")
+	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.details = "🏘️ At the Main Menu"
 		DiscordRPC.small_image = ""

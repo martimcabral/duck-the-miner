@@ -17,12 +17,12 @@ func _ready():
 		if config.get_value("display", "windows_type") == 0:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-			print("Window Mode changed to: ", DisplayServer.window_get_mode())
+			print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
 		
 		else: # Bordeless
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-			print("Window Mode changed to: ", DisplayServer.window_get_mode())
+			print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
 		
 		$DisplayPanel/WindowsSizeDropDown.selected = config.get_value("display", "windows_size")
 		change_resolution(config.get_value("display", "windows_size"))
@@ -30,11 +30,11 @@ func _ready():
 		if config.get_value("display", "vsync") == false:
 			$DisplayPanel/VsyncCheckButton.button_pressed = false
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-			print("Vsync Disabled")
+			print("[options_menu.gd] Vsync Disabled")
 		else:
 			$DisplayPanel/VsyncCheckButton.button_pressed = true
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-			print("Vsync Enabled")
+			print("[options_menu.gd] Vsync Enabled")
 		
 		$DisplayPanel/FPSType.selected = config.get_value("display", "fps_limiter")
 		
@@ -85,11 +85,11 @@ func _on_windows_type_drop_down_item_selected(index: int) -> void:
 		0: # Fullscreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-			print("Window Mode changed to: ", DisplayServer.window_get_mode())
+			print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
 		1: # Bordeless
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-			print("Window Mode changed to: ", DisplayServer.window_get_mode())
+			print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
 			
 func _on_windows_size_drop_down_item_selected(index: int) -> void:
 	config.set_value("display", "windows_size", index)
@@ -100,10 +100,10 @@ func _on_vsync_check_button_toggled(toggled_on: bool) -> void:
 	match toggled_on:
 		true:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-			print("Vsync Enabled")
+			print("[options_menu.gd] Vsync Enabled")
 		false:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-			print("Vsync Disabled")
+			print("[options_menu.gd] Vsync Disabled")
 
 func _on_fps_type_item_selected(index: int) -> void:
 	config.set_value("display", "fps_limiter", index)

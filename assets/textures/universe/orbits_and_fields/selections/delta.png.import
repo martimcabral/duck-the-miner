@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqfdd8gsiql4t"
-path="res://.godot/imported/lamdba_sigma.png-a45b695450b6b8a816d845568ba4a2df.ctex"
+uid="uid://cwguqwipsudir"
+path="res://.godot/imported/delta.png-f77306cb60f1b6d548883e31d362222f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/universe/lamdba_sigma.png"
-dest_files=["res://.godot/imported/lamdba_sigma.png-a45b695450b6b8a816d845568ba4a2df.ctex"]
+source_file="res://assets/textures/universe/orbits_and_fields/selections/delta.png"
+dest_files=["res://.godot/imported/delta.png-f77306cb60f1b6d548883e31d362222f.ctex"]
 
 [params]
 

@@ -9,9 +9,6 @@ var world_height_border # Always: world_height + 20
 const world_border_up_and_down = 10
 const world_border_sides = 12
 
-var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
-var vogais = ['a', 'e', 'i', 'o', 'u']
-
 var asteroid_name
 var asteroid_field
 var asteroid_biome
@@ -87,10 +84,8 @@ func _ready():
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true
 	
-	asteroid_name = create_asteroid_name()
-	
 	$Player/HUD/AsteroidTitle.text = "[center]%s[/center]" % asteroid_name
-	$Player/HUD/FieldTitle.text = "[center]%s[/center]" % asteroid_field + " Field | " + asteroid_biome
+	$Player/HUD/FieldTitle.text = "[center]%s[/center]" % asteroid_field + " | " + asteroid_biome
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
@@ -98,7 +93,7 @@ func _ready():
 		if asteroid_field == null:
 			DiscordRPC.details = "🌑: " + asteroid_name + " at Unknown Field"
 		else:
-			DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field + " Field"
+			DiscordRPC.details = "🌑: " + asteroid_name + " at " + asteroid_field
 		DiscordRPC.refresh()
 	else:
 		print("[world_generation.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
@@ -142,7 +137,8 @@ func _ready():
 	fnl.fractal_gain = 0.5 #0.4
 	
 	if (register_logs == true):
-		print("\nWorld Procedural Generation Logs:")
+		print("\n///[world_generation.gd]")
+		print("World Procedural Generation Logs:")
 		print("Asteroid Name: ", asteroid_name)
 		print("Asteroid Size: ", asteroid_size)
 		print("Asteroid Biome: ", asteroid_biome)
@@ -152,7 +148,8 @@ func _ready():
 		print("Octaves: ", fnl.fractal_octaves)
 		print("Lacunarity: ", fnl.fractal_lacunarity)
 		print("Gain: ", fnl.fractal_gain)
-	
+		print("[world_generation.gd]\\\\\\")
+		
 	# Make Caverns
 	for x in range(world_width):
 		for y in range(world_height):
@@ -352,37 +349,3 @@ func put_gems():
 							1: CaveSystem.set_cell(tile_pos, 2, Vector2i(1, 1))
 							2: CaveSystem.set_cell(tile_pos, 2, Vector2i(2, 1))	
 							3: CaveSystem.set_cell(tile_pos, 2, Vector2i(3, 1))
-
-func create_asteroid_name():
-	var consoante1 = consoantes[randi() % consoantes.size()]
-	var consoante2 = consoantes[randi() % consoantes.size()]
-	var consoante3 = consoantes[randi() % consoantes.size()]
-	var consoante4 = consoantes[randi() % consoantes.size()]
-	var vogal1 = vogais[randi() % vogais.size()]
-	var vogal2 = vogais[randi() % vogais.size()]
-	var vogal3 = vogais[randi() % vogais.size()]
-	var vogal4 = vogais[randi() % vogais.size()]
-	var vogal5 = vogais[randi() % vogais.size()]
-	var vogal6 = vogais[randi() % vogais.size()]
-
-	var variante = randi() % 9 + 1
-
-	match variante: # 398,779,605
-		1:
-			return consoante1.to_upper() + vogal1 + vogal2 + consoante2 + vogal3
-		2:
-			return consoante1.to_upper() + vogal1 + vogal2 + consoante2 + vogal3 + consoante3 + vogal4
-		3:
-			return consoante1.to_upper() + vogal1 + consoante2
-		4:
-			return consoante1.to_upper() + consoante2 + vogal1 + consoante3 + vogal2 + vogal3
-		5:
-			return vogal1.to_upper() + consoante1 + consoante2 + vogal2 + "-" + consoante3.to_upper() + vogal3 + consoante4 + vogal4
-		6:
-			return vogal1.to_upper() + consoante1 + consoante2 + vogal3 + vogal3
-		7:
-			return consoante1.to_upper() + vogal1 + vogal2 + consoante2 + vogal3 + vogal4 + consoante3 + consoante4 + vogal5
-		8:
-			return consoante1.to_upper() + vogal1 + consoante2 + vogal2 + consoante3 + vogal3 + consoante3 + vogal4 + vogal5 + consoante4 + vogal6
-		9:
-			return consoante1.to_upper() + vogal1 + consoante2 + consoante3 + vogal2 + consoante4
