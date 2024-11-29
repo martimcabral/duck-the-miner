@@ -34,13 +34,6 @@ func _ready() -> void:
 	
 	save_asteroid_data()
 	
-	var delta_ammount =  get_asteroids_per_field("Delta Belt")
-	var gamma_ammount =  get_asteroids_per_field("Gamma Field")
-	var omega_ammount =  get_asteroids_per_field("Omega Field")
-	var lamdba_ammount =  get_asteroids_per_field("Lambda Field")
-	var sigma_ammount =  get_asteroids_per_field("Sigma Field")
-	var yotta_ammount =  get_asteroids_per_field("Yotta Belt")
-	
 	$FieldNameLabel.text = ""
 	
 	if DiscordRPC.get_is_discord_working():
@@ -251,25 +244,24 @@ func create_asteroid_name():
 
 # Function to generate asteroid data
 func generate_asteroid_data() -> Dictionary:
-	var fields = {}
+	var fields = {}  # Dictionary to store asteroid fields
 	var field_names = ["Delta Belt", "Gamma Field", "Omega Field", "Lambda Field", "Sigma Field", "Yotta Belt"]
-	var biomes = ["Stony", "Vulcanic", "Frozen"]
+	var biomes = ["Stony", "Volcanic", "Frozen"]
 	var objectites_primary = ["No Missions Available"]
 	var objectites_secondary = ["No Missions Available"]
-	var asteroid_next_id = 1
 	
 	for field_name in field_names:
-		var asteroids = {}
-		
+		var asteroids = {}  # Dictionary to store asteroids in the current field
+		var asteroid_id = 1  # Reset asteroid ID counter for each field
+			
 		for asteroid_num in range(1, randi_range(3, 8) + 1):
-			var asteroid_id = asteroid_next_id
 			var as_name = create_asteroid_name()
 			var biome = biomes[randi() % biomes.size()]
 			var temperature = randi_range(-75, 120)
 			var primary_objectite = objectites_primary[randi() % objectites_primary.size()]
 			var secondary_objectite = objectites_secondary[randi() % objectites_secondary.size()]
-			asteroid_next_id += asteroid_next_id  ### IDS NAO FUNCOIANNAOAOA 
 			
+			# Create asteroid entry
 			asteroids[asteroid_id] = {
 				"Name": as_name,
 				"Biome": biome,
@@ -279,7 +271,10 @@ func generate_asteroid_data() -> Dictionary:
 					"Secondary": secondary_objectite
 				}
 			}
-		fields[field_name] = asteroids
+			asteroid_id += 1  # Increment the ID for the next asteroid
+		
+		fields[field_name] = asteroids  # Add the field with its asteroids to the fields dictionary
+	
 	return fields
 
 # Save data to a JSON file
@@ -296,27 +291,16 @@ func save_asteroid_data():
 	else:
 		print("[asteroid_selector.gd/missions.json] Failed to open file for saving.")
 
-func get_asteroids_per_field(field : String):
-	var file = FileAccess.open(json_path, FileAccess.READ)
-	var json_string = file.get_as_text()
-	file.close()
-	
-	var json_parser = JSON.new()
-	json_parser.parse(json_string)
-	
-	var asteroid_data = json_parser.get_data()
-	var asteroid_count = asteroid_data[field].keys().size()
-	print("[asteroid_selector.gd] ", field , " has ", asteroid_count, " Asteroids") 
-
-
 func _on_next_button_pressed() -> void:
 	var file = FileAccess.open(json_path, FileAccess.READ)
-	var data = JSON.parse_string(file.get_as_text())
+	var parse_result = JSON.parse_string(file.get_as_text())
 	file.close()
+	var data = parse_result.data
 	
-	var delta_belt = data.result["Delta Belt"]["ID1"]
+	var delta_belt = data["Delta Belt"]["ID1"]
 	var page_asteroid_name = delta_belt["Name"]
 	var biome = delta_belt["Biome"]
 	var temperature = delta_belt["Temperature"]
 	var primary = delta_belt["Objectites"]["Primary"]
 	var secondary = delta_belt["Objectites"]["Secondary"]
+	

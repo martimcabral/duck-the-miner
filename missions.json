@@ -1,374 +1,239 @@
 {
 	"Delta Belt": {
 		"1": {
-			"Biome": "Stony",
-			"Name": "Caelu",
+			"Biome": "Volcanic",
+			"Name": "Hoijaetfe",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 2
+			"Temperature": 94
 		},
 		"2": {
-			"Biome": "Vulcanic",
-			"Name": "Tih",
+			"Biome": "Volcanic",
+			"Name": "Ifvo-Dawi",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 58
+			"Temperature": -1
+		},
+		"3": {
+			"Biome": "Volcanic",
+			"Name": "Soute",
+			"Objectites": {
+				"Primary": "No Missions Available",
+				"Secondary": "No Missions Available"
+			},
+			"Temperature": -2
 		},
 		"4": {
-			"Biome": "Stony",
-			"Name": "Civfig",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -53
-		},
-		"8": {
 			"Biome": "Frozen",
-			"Name": "Suinietri",
+			"Name": "Dmevoi",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": -73
-		},
-		"16": {
-			"Biome": "Stony",
-			"Name": "Abgi-Dipo",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -43
-		},
-		"32": {
-			"Biome": "Frozen",
-			"Name": "Toaqiacja",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 84
-		},
-		"64": {
-			"Biome": "Stony",
-			"Name": "Jaine",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -73
-		},
-		"128": {
-			"Biome": "Stony",
-			"Name": "Teozoawhe",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -14
+			"Temperature": 21
 		}
 	},
 	"Gamma Field": {
-		"256": {
-			"Biome": "Vulcanic",
-			"Name": "Qoapeodfo",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -30
-		},
-		"512": {
-			"Biome": "Vulcanic",
-			"Name": "Xeigiawza",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 23
-		},
-		"1024": {
-			"Biome": "Vulcanic",
-			"Name": "Idcee",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 62
-		},
-		"2048": {
+		"1": {
 			"Biome": "Stony",
-			"Name": "Rsuxau",
+			"Name": "Zifpeb",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 81
+			"Temperature": -16
 		},
-		"4096": {
-			"Biome": "Vulcanic",
-			"Name": "Vuojiutqo",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 91
-		},
-		"8192": {
+		"2": {
 			"Biome": "Stony",
-			"Name": "Ecxu-Gori",
+			"Name": "Ixrii",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 57
+			"Temperature": -17
 		},
-		"16384": {
+		"3": {
+			"Biome": "Stony",
+			"Name": "Emfu-Fama",
+			"Objectites": {
+				"Primary": "No Missions Available",
+				"Secondary": "No Missions Available"
+			},
+			"Temperature": -13
+		},
+		"4": {
 			"Biome": "Frozen",
-			"Name": "Deufuvu",
+			"Name": "Beculeleipa",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": -39
-		},
-		"32768": {
-			"Biome": "Stony",
-			"Name": "Diojeda",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 8
+			"Temperature": -20
 		}
 	},
 	"Lambda Field": {
-		"4194304": {
-			"Biome": "Vulcanic",
-			"Name": "Fmezoe",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 34
-		},
-		"8388608": {
+		"1": {
 			"Biome": "Frozen",
-			"Name": "Juewuaqfu",
+			"Name": "Jaoca",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 110
+			"Temperature": -8
 		},
-		"16777216": {
-			"Biome": "Vulcanic",
-			"Name": "Sel",
+		"2": {
+			"Biome": "Stony",
+			"Name": "Umyi-Xade",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": -39
+			"Temperature": 55
 		},
-		"33554432": {
-			"Biome": "Frozen",
-			"Name": "Icki-Juwo",
+		"3": {
+			"Biome": "Stony",
+			"Name": "Xoutele",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 28
+			"Temperature": 71
 		},
-		"67108864": {
-			"Biome": "Frozen",
-			"Name": "Hevhuh",
+		"4": {
+			"Biome": "Stony",
+			"Name": "Xohacocieyi",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": -48
-		},
-		"134217728": {
-			"Biome": "Vulcanic",
-			"Name": "Weobi",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 39
+			"Temperature": 111
 		}
 	},
 	"Omega Field": {
-		"65536": {
-			"Biome": "Vulcanic",
-			"Name": "Akzi-Sovi",
+		"1": {
+			"Biome": "Volcanic",
+			"Name": "Attoo",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 39
+			"Temperature": 111
 		},
-		"131072": {
-			"Biome": "Vulcanic",
-			"Name": "Rooko",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 0
-		},
-		"262144": {
+		"2": {
 			"Biome": "Stony",
-			"Name": "Bzifiu",
+			"Name": "Qioge",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 28
+			"Temperature": 31
 		},
-		"524288": {
-			"Biome": "Stony",
-			"Name": "Foabure",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 107
-		},
-		"1048576": {
+		"3": {
 			"Biome": "Frozen",
-			"Name": "Knijae",
+			"Name": "Pueviaztu",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 117
+			"Temperature": -60
 		},
-		"2097152": {
-			"Biome": "Frozen",
-			"Name": "Waxapupaihi",
+		"4": {
+			"Biome": "Volcanic",
+			"Name": "Rjocoe",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 17
+			"Temperature": 66
 		}
 	},
 	"Sigma Field": {
-		"268435456": {
+		"1": {
+			"Biome": "Volcanic",
+			"Name": "Quburorioji",
+			"Objectites": {
+				"Primary": "No Missions Available",
+				"Secondary": "No Missions Available"
+			},
+			"Temperature": -37
+		},
+		"2": {
 			"Biome": "Stony",
-			"Name": "Quliwowuijo",
+			"Name": "Gaaputa",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": -24
+			"Temperature": 37
 		},
-		"536870912": {
+		"3": {
 			"Biome": "Frozen",
-			"Name": "Wibxit",
+			"Name": "Itme-Wuwi",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": -26
-		},
-		"1073741824": {
-			"Biome": "Stony",
-			"Name": "Weujaxi",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 51
-		},
-		"2147483648": {
-			"Biome": "Frozen",
-			"Name": "Vayduh",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 1
-		},
-		"4294967296": {
-			"Biome": "Frozen",
-			"Name": "Viunezi",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -43
-		},
-		"8589934592": {
-			"Biome": "Frozen",
-			"Name": "Hoowa",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -25
-		},
-		"17179869184": {
-			"Biome": "Frozen",
-			"Name": "Nertap",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -31
+			"Temperature": -62
 		}
 	},
 	"Yotta Belt": {
-		"34359738368": {
+		"1": {
 			"Biome": "Frozen",
-			"Name": "Zougime",
+			"Name": "Maoqi",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 15
+			"Temperature": 80
 		},
-		"68719476736": {
+		"2": {
 			"Biome": "Frozen",
-			"Name": "Row",
+			"Name": "Uptaa",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": 0
+			"Temperature": 67
 		},
-		"137438953472": {
-			"Biome": "Vulcanic",
-			"Name": "Usroo",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": -7
-		},
-		"274877906944": {
-			"Biome": "Frozen",
-			"Name": "Koehoaqxo",
-			"Objectites": {
-				"Primary": "No Missions Available",
-				"Secondary": "No Missions Available"
-			},
-			"Temperature": 120
-		},
-		"549755813888": {
+		"3": {
 			"Biome": "Stony",
-			"Name": "Qazqel",
+			"Name": "Ldefuu",
 			"Objectites": {
 				"Primary": "No Missions Available",
 				"Secondary": "No Missions Available"
 			},
-			"Temperature": -29
+			"Temperature": -51
+		},
+		"4": {
+			"Biome": "Volcanic",
+			"Name": "Omyuu",
+			"Objectites": {
+				"Primary": "No Missions Available",
+				"Secondary": "No Missions Available"
+			},
+			"Temperature": -10
+		},
+		"5": {
+			"Biome": "Volcanic",
+			"Name": "Fuh",
+			"Objectites": {
+				"Primary": "No Missions Available",
+				"Secondary": "No Missions Available"
+			},
+			"Temperature": -52
+		},
+		"6": {
+			"Biome": "Volcanic",
+			"Name": "Roztow",
+			"Objectites": {
+				"Primary": "No Missions Available",
+				"Secondary": "No Missions Available"
+			},
+			"Temperature": 82
 		}
 	}
 }

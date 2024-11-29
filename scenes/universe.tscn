@@ -246,7 +246,6 @@ autoplay = true
 parameters/looping = true
 
 [node name="SolarSystem" type="Node2D" parent="."]
-visible = false
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
 z_index = 1
