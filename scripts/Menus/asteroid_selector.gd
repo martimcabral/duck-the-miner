@@ -6,13 +6,6 @@ var max_zoom = 4
 var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
 var vogais = ['a', 'e', 'i', 'o', 'u']
 
-var delta_location
-var gamma_location
-var omega_location
-var lambda_location
-var sigma_location
-var yotta_location
-
 var delta_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/delta.png")
 var gamma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/gamma.png")
 var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/omega.png")
@@ -21,18 +14,34 @@ var sigma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 var yotta_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/yotta.png")
 
 var json_path = "res://missions.json"
-var current_page = 0
+var current_page = 1
+var current_field : String
+
+var delta_ammount
+var gamma_ammount
+var omega_ammount
+var lambda_ammount
+var sigma_ammount
+var yotta_ammount
 
 func _ready() -> void:
-	$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text = "[center]%s[/center]" % "00/00"
+	save_asteroid_data()
 	
+	delta_ammount =  get_asteroids_per_field("Delta Belt")
+	gamma_ammount =  get_asteroids_per_field("Gamma Field")
+	omega_ammount =  get_asteroids_per_field("Omega Field")
+	lambda_ammount =  get_asteroids_per_field("Lambda Field")
+	sigma_ammount =  get_asteroids_per_field("Sigma Field")
+	yotta_ammount =  get_asteroids_per_field("Yotta Belt")
+	
+	$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text = "[center]%s[/center]" % "00/00"
+	$Camera2D/HUD/InfoPanel/Description.text = ""
 	$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = false
 	$Camera2D/HUD/InfoPanel/FieldImage.visible = false
 	$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = false
+	$Camera2D/HUD/InfoPanel/TravelPanel.visible = false
 	$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "[ ! ] Select an Asteroid Field"
 	$Camera2D/HUD/InfoPanel.size = Vector2i(387, 146)
-	
-	save_asteroid_data()
 	
 	$FieldNameLabel.text = ""
 	
@@ -49,13 +58,36 @@ func _ready() -> void:
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(delta: float) -> void:
-	delta_location = $SolarSystem/DeltaBelt.position
-	gamma_location = $SolarSystem/GammaField.position
-	omega_location = $SolarSystem/OmegaField.position
-	lambda_location = $SolarSystem/LambdaField.position
-	sigma_location = $SolarSystem/SigmaField.position
-	yotta_location = $SolarSystem/YottaBelt.position
 	
+	
+	match current_field:
+		"Delta Belt":
+			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
+			if current_page > delta_ammount:
+				current_page = delta_ammount
+		"Gamma Field":
+			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(gamma_ammount)
+			if current_page > gamma_ammount:
+				current_page = gamma_ammount
+		"Omega Field":
+			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(omega_ammount)
+			if current_page > omega_ammount:
+				current_page = omega_ammount
+		"Lambda Field":
+			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(lambda_ammount)
+			if current_page > lambda_ammount:
+				current_page = lambda_ammount
+		"Sigma Field":
+			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(sigma_ammount)
+			if current_page > sigma_ammount:
+				current_page = sigma_ammount
+		"Yotta Belt":
+			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(yotta_ammount)
+			if current_page > yotta_ammount:
+				current_page = yotta_ammount
+
+	if current_page <= 0: current_page = 1
+
 	if Input.is_action_just_pressed("Universe_Zoom_In") and $SolarSystem.scale.x <= max_zoom:
 		$SolarSystem.scale += Vector2(0.05, 0.05)
 		
@@ -64,6 +96,9 @@ func _process(delta: float) -> void:
 	
 	$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
 	
+	rotate_solar_system(delta)
+
+func rotate_solar_system(delta):
 	$SolarSystem/Sun.rotation -= delta * 0.1
 	$SolarSystem/Mercury.rotation -= delta * 0.05
 	$SolarSystem/Venus.rotation -= delta * 0.075
@@ -104,9 +139,10 @@ func _process(delta: float) -> void:
 # This works by when clicking on an Asteroid Field it will put the world scene in this current scene and then after it will free the Universe from the Memory
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
+		current_page = 1
+		current_field = "Delta Belt"
+		get_asteroid_info()
+		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = delta_thumbnail
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Delta Belt"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
@@ -114,9 +150,10 @@ func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 
 func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
+		current_page = 1
+		current_field = "Gamma Field"
+		get_asteroid_info()
+		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = gamma_thumbnail
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Gamma Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
@@ -124,9 +161,10 @@ func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 
 func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
+		current_page = 1
+		current_field = "Omega Field"
+		get_asteroid_info()
+		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = omega_thumbnail
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Omega Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
@@ -134,30 +172,39 @@ func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 
 func _on_lamdba_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
+		current_page = 1
+		current_field = "Lambda Field"
+		get_asteroid_info()
+		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = lambda_thumbnail
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Lambda Field"
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
 func _on_sigma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
+		current_page = 1
+		current_field = "Sigma Field"
+		get_asteroid_info()
+		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = sigma_thumbnail
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Sigma Field"
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
 func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
+		current_page = 1
+		current_field = "Yotta Belt"
+		get_asteroid_info()
+		show_all_info()
+		$Camera2D/HUD/InfoPanel/FieldImage.texture = yotta_thumbnail
+		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Yotta Belt"
+		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
+
+func show_all_info():
 		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
 		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
 		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage.texture = yotta_thumbnail
-		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Yotta Field"
-		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/InfoPanel/TravelPanel.visible = true
 
 func change_to_world(field):
 	var new_world = preload("res://scenes/world.tscn").instantiate()
@@ -247,8 +294,8 @@ func generate_asteroid_data() -> Dictionary:
 	var fields = {}  # Dictionary to store asteroid fields
 	var field_names = ["Delta Belt", "Gamma Field", "Omega Field", "Lambda Field", "Sigma Field", "Yotta Belt"]
 	var biomes = ["Stony", "Volcanic", "Frozen"]
-	var objectites_primary = ["No Missions Available"]
-	var objectites_secondary = ["No Missions Available"]
+	var objectites_primary = ["n/a"]
+	var objectites_secondary = ["n/a"]
 	
 	for field_name in field_names:
 		var asteroids = {}  # Dictionary to store asteroids in the current field
@@ -292,15 +339,43 @@ func save_asteroid_data():
 		print("[asteroid_selector.gd/missions.json] Failed to open file for saving.")
 
 func _on_next_button_pressed() -> void:
+	current_page += 1
+	get_asteroid_info()
+
+func _on_previous_button_pressed() -> void:
+	current_page -= 1
+	get_asteroid_info()
+
+func get_asteroid_info():
+	if current_page >= 1:
+		print(delta_ammount)
+		var file = FileAccess.open(json_path, FileAccess.READ)
+		var parse_result = JSON.parse_string(file.get_as_text())
+		file.close()
+		if current_field == "Delta Belt" and current_page <= delta_ammount \
+			or current_field == "Gamma Field" and current_page <= gamma_ammount \
+			or current_field == "Omega Field" and current_page <= omega_ammount \
+			or current_field == "Lambda Field" and current_page <= lambda_ammount \
+			or current_field == "Sigma Field" and current_page <= sigma_ammount\
+			or current_field == "Yotta Belt" and current_page <= yotta_ammount:
+			
+			var asteroid_info = parse_result[current_field][str(current_page)]
+			var page_asteroid_name = asteroid_info["Name"]
+			var biome = asteroid_info["Biome"]
+			var temperature = asteroid_info["Temperature"]
+			var primary = asteroid_info["Objectites"]["Primary"]
+			var secondary = asteroid_info["Objectites"]["Secondary"]
+			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(page_asteroid_name) + "\nBiome: " + str(biome) + "\nTemperature: " + str(temperature) + "ºC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+
+func get_asteroids_per_field(field : String):
 	var file = FileAccess.open(json_path, FileAccess.READ)
-	var parse_result = JSON.parse_string(file.get_as_text())
+	var json_string = file.get_as_text()
 	file.close()
-	var data = parse_result.data
 	
-	var delta_belt = data["Delta Belt"]["ID1"]
-	var page_asteroid_name = delta_belt["Name"]
-	var biome = delta_belt["Biome"]
-	var temperature = delta_belt["Temperature"]
-	var primary = delta_belt["Objectites"]["Primary"]
-	var secondary = delta_belt["Objectites"]["Secondary"]
+	var json_parser = JSON.new()
+	json_parser.parse(json_string)
 	
+	var asteroid_data = json_parser.get_data()
+	var asteroid_count = asteroid_data[field].keys().size()
+	print("[asteroid_selector.gd] ", field , " has ", asteroid_count, " Asteroids") 
+	return asteroid_count

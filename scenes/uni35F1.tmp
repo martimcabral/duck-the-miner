@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=39 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="1_cqnqo"]
 [ext_resource type="Script" path="res://scripts/Menus/asteroid_selector.gd" id="1_of40j"]
@@ -36,10 +36,9 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0xh0"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 6
+border_width_top = 6
+border_width_bottom = 6
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -71,12 +70,9 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6q8t"]
-bg_color = Color(1, 1, 1, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a75e2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cooj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a75e2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="AsteroidSelector" type="Node2D"]
@@ -212,41 +208,6 @@ bbcode_enabled = true
 text = "00/00
 "
 
-[node name="TravelPanel" type="Panel" parent="Camera2D/HUD/InfoPanel"]
-z_index = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -57.5
-offset_top = -77.0
-offset_right = 57.5
-offset_bottom = -24.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_pff5p")
-
-[node name="TravelButton" type="Button" parent="Camera2D/HUD/InfoPanel/TravelPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -20.0
-offset_right = 48.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxFlat_h6q8t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5cooj")
-text = "Travel"
-
 [node name="Description" type="RichTextLabel" parent="Camera2D/HUD/InfoPanel"]
 layout_mode = 1
 anchors_preset = 7
@@ -255,9 +216,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -168.5
-offset_top = -282.0
+offset_top = -306.0
 offset_right = 165.5
-offset_bottom = -94.0
+offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 32
@@ -850,7 +811,6 @@ theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Field Name"
 
-[connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]
 [connection signal="mouse_entered" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_entered"]
