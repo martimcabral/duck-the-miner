@@ -46,8 +46,8 @@ func _ready() -> void:
 	if random_flip_y == 1:
 		$GUI/Center/Background.flip_v = true
 	
-	var easter_egg_title = randi_range(1, 20)
-	if easter_egg_title == 20:
+	var easter_egg_title = randi_range(1, 25)
+	if easter_egg_title == 25:
 		$GUI/Center/Title.text = "Miner the Duck"
 
 func _process(_delta: float) -> void:

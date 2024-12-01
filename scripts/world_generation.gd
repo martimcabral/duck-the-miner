@@ -72,15 +72,6 @@ func start_music():
 				$WorldMusic/Rift.play()
 
 func _ready():
-	asteroid_biome = randi_range(1, 3)
-	match asteroid_biome:
-		1:
-			asteroid_biome = "Stony"
-		2:
-			asteroid_biome = "Vulcanic"
-		3:
-			asteroid_biome = "Frozen"
-	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true
 	
@@ -137,7 +128,7 @@ func _ready():
 	fnl.fractal_gain = 0.5 #0.4
 	
 	if (register_logs == true):
-		print("\n///[world_generation.gd]")
+		print("\n[world_generation.gd]")
 		print("World Procedural Generation Logs:")
 		print("Asteroid Name: ", asteroid_name)
 		print("Asteroid Size: ", asteroid_size)
@@ -148,7 +139,7 @@ func _ready():
 		print("Octaves: ", fnl.fractal_octaves)
 		print("Lacunarity: ", fnl.fractal_lacunarity)
 		print("Gain: ", fnl.fractal_gain)
-		print("[world_generation.gd]\\\\\\")
+		print("[world_generation.gd]")
 		
 	# Make Caverns
 	for x in range(world_width):

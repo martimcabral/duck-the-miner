@@ -15,6 +15,8 @@ var yotta_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 
 var json_path = "res://missions.json"
 var current_page = 1
+var current_asteroid_name : String
+var current_asteroid_biome : String
 var current_field : String
 
 var delta_ammount
@@ -293,7 +295,7 @@ func create_asteroid_name():
 func generate_asteroid_data() -> Dictionary:
 	var fields = {}  # Dictionary to store asteroid fields
 	var field_names = ["Delta Belt", "Gamma Field", "Omega Field", "Lambda Field", "Sigma Field", "Yotta Belt"]
-	var biomes = ["Stony", "Volcanic", "Frozen"]
+	var biomes = ["Stony", "Vulcanic", "Frozen"]
 	var objectites_primary = ["n/a"]
 	var objectites_secondary = ["n/a"]
 	
@@ -360,12 +362,12 @@ func get_asteroid_info():
 			or current_field == "Yotta Belt" and current_page <= yotta_ammount:
 			
 			var asteroid_info = parse_result[current_field][str(current_page)]
-			var page_asteroid_name = asteroid_info["Name"]
-			var biome = asteroid_info["Biome"]
+			current_asteroid_name = asteroid_info["Name"]
+			current_asteroid_biome = asteroid_info["Biome"]
 			var temperature = asteroid_info["Temperature"]
 			var primary = asteroid_info["Objectites"]["Primary"]
 			var secondary = asteroid_info["Objectites"]["Secondary"]
-			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(page_asteroid_name) + "\nBiome: " + str(biome) + "\nTemperature: " + str(temperature) + "ºC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ºC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 
 func get_asteroids_per_field(field : String):
 	var file = FileAccess.open(json_path, FileAccess.READ)
@@ -377,5 +379,14 @@ func get_asteroids_per_field(field : String):
 	
 	var asteroid_data = json_parser.get_data()
 	var asteroid_count = asteroid_data[field].keys().size()
-	print("[asteroid_selector.gd] ", field , " has ", asteroid_count, " Asteroids") 
+	print("[asteroid_selector.gd] ", field , " has ", asteroid_count, " Asteroids")
 	return asteroid_count
+
+func _on_travel_button_pressed() -> void:
+	var new_world = preload("res://scenes/world.tscn").instantiate()
+	new_world.asteroid_field = current_field
+	new_world.asteroid_name = current_asteroid_name
+	new_world.asteroid_biome = current_asteroid_biome
+	get_tree().root.add_child(new_world)
+	get_tree().current_scene.call_deferred("free")
+	get_tree().current_scene = new_world
