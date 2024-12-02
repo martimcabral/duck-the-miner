@@ -1,0 +1,251 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqnsvm07mgu4w"]
+
+[ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/no_duck.png" id="1_yqqd4"]
+[ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/players/lights/point_light.png" id="2_a22qm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8laf"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfeft"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl6xf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rjyj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuhs3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7ds1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Lobby" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="LobbyBackgroundImage" type="TextureRect" parent="HUD"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="LobbyPanel" type="Panel" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MoneyPanel" type="Panel" parent="HUD/LobbyPanel"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 33.0
+offset_right = 788.0
+offset_bottom = 131.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8laf")
+
+[node name="DebtLabel" type="Label" parent="HUD/LobbyPanel/MoneyPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 23.0
+offset_top = -30.0
+offset_right = 451.0
+offset_bottom = 34.0
+grow_vertical = 2
+tooltip_text = "Your Debt"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 64
+text = "€ 9 578 123 932"
+
+[node name="Line2D" type="Line2D" parent="HUD/LobbyPanel/MoneyPanel"]
+points = PackedVector2Array(468, 95, 468, 4)
+width = 6.0
+
+[node name="StockMarketLabel" type="Label" parent="HUD/LobbyPanel/MoneyPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -229.0
+offset_top = -32.0
+offset_right = -25.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "Stock Market"
+mouse_filter = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "sla -8%"
+
+[node name="UniverseMapPanel" type="Panel" parent="HUD/LobbyPanel"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 154.0
+offset_right = 788.0
+offset_bottom = 534.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8laf")
+
+[node name="LobbyPanel" type="Panel" parent="HUD/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = -509.0
+offset_right = 788.0
+offset_bottom = -129.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qfeft")
+
+[node name="PlayerHOST" type="TextureRect" parent="HUD/LobbyPanel/LobbyPanel"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 125.0
+offset_right = 105.0
+offset_bottom = 165.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_yqqd4")
+
+[node name="PointLight2D" type="PointLight2D" parent="HUD/LobbyPanel/LobbyPanel/PlayerHOST"]
+position = Vector2(19.6667, 7)
+texture = ExtResource("2_a22qm")
+
+[node name="PlayerNumber2" type="TextureRect" parent="HUD/LobbyPanel/LobbyPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_yqqd4")
+
+[node name="PlayerNumber3" type="TextureRect" parent="HUD/LobbyPanel/LobbyPanel"]
+layout_mode = 0
+offset_left = 538.0
+offset_top = 92.0
+offset_right = 578.0
+offset_bottom = 132.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_yqqd4")
+
+[node name="PlayerNumber4" type="TextureRect" parent="HUD/LobbyPanel/LobbyPanel"]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 82.0
+offset_right = 292.0
+offset_bottom = 122.0
+scale = Vector2(3, 3)
+texture = ExtResource("1_yqqd4")
+
+[node name="ControlPanel" type="Panel" parent="HUD/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 253.0
+offset_top = -102.0
+offset_right = 607.0
+offset_bottom = -23.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8laf")
+
+[node name="BackButton" type="Button" parent="HUD/LobbyPanel/ControlPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 21.0
+offset_top = -34.0
+offset_right = 165.0
+offset_bottom = 38.0
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_tl6xf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7rjyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uuhs3")
+text = "Back"
+
+[node name="Line2D" type="Line2D" parent="HUD/LobbyPanel/ControlPanel"]
+position = Vector2(-131, 0.150002)
+scale = Vector2(1, 1.05)
+points = PackedVector2Array(311, 3, 311, 71)
+width = 6.0
+
+[node name="StartButton" type="Button" parent="HUD/LobbyPanel/ControlPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -34.0
+offset_right = -14.0
+offset_bottom = 38.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_t7ds1")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7rjyj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_uuhs3")
+text = "Start"
+
+[node name="UpgradingPanel" type="Panel" parent="HUD/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1063.0
+offset_top = 78.0
+offset_right = -595.0
+offset_bottom = 375.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8laf")
+
+[node name="ClassPanel" type="Panel" parent="HUD/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -516.0
+offset_top = 58.0
+offset_right = -58.0
+offset_bottom = 373.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8laf")
+
+[node name="InventoryPanel" type="Panel" parent="HUD/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1069.0
+offset_top = -619.0
+offset_right = -38.0
+offset_bottom = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h8laf")

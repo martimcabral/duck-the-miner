@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/duck_walking.png" id="2_815s6"]
 [ext_resource type="Texture2D" uid="uid://cp17yyvfj1o5u" path="res://assets/textures/players/duck_squat.png" id="2_bkd5y"]
-[ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/point_light.png" id="3_jwt0r"]
+[ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/players/lights/point_light.png" id="3_jwt0r"]
 [ext_resource type="Texture2D" uid="uid://cbhiqpcmuwp47" path="res://assets/textures/players/duck_flying.png" id="3_twhi0"]
 [ext_resource type="Texture2D" uid="uid://cvesw4kr1dsav" path="res://assets/textures/players/lights/flashlight_beam_larger.png" id="4_83sd1"]
 [ext_resource type="AudioStream" uid="uid://diia266v1kn1k" path="res://sounds/sound_efects/mining1.ogg" id="6_754b5"]

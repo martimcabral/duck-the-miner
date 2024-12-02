@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd4o6j02nkuus"
-path="res://.godot/imported/white-glow-light-effect-free-png.png-e7f58e46bf57f2377ee1e70a2ae77364.ctex"
+uid="uid://bjod08dslu63f"
+path="res://.godot/imported/point_light.png-a42174461564246f4cb09dd649453c4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/white-glow-light-effect-free-png.png"
-dest_files=["res://.godot/imported/white-glow-light-effect-free-png.png-e7f58e46bf57f2377ee1e70a2ae77364.ctex"]
+source_file="res://assets/textures/players/lights/point_light.png"
+dest_files=["res://.godot/imported/point_light.png-a42174461564246f4cb09dd649453c4d.ctex"]
 
 [params]
 
