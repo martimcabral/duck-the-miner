@@ -18,7 +18,7 @@ func _on_continue_pressed() -> void:
 
 func _on_go_to_main_menu_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(null)
-	var new_game_scene = load("res://scenes/main_menu.tscn")
+	var new_game_scene = load("res://scenes/lobby.tscn")
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
 

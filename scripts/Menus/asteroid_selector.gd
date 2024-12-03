@@ -1,5 +1,8 @@
 extends Node2D
 
+var selecting_mission = false
+var mission_selected = false
+
 var min_zoom = 0.05
 var max_zoom = 4
 
@@ -27,6 +30,9 @@ var sigma_ammount
 var yotta_ammount
 
 func _ready() -> void:
+	$Camera2D/HUD/BackToLobbyButton.visible = false
+	$Camera2D/HUD/InfoPanel.visible = false
+	
 	save_asteroid_data()
 	
 	delta_ammount =  get_asteroids_per_field("Delta Belt")
@@ -41,7 +47,6 @@ func _ready() -> void:
 	$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = false
 	$Camera2D/HUD/InfoPanel/FieldImage.visible = false
 	$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = false
-	$Camera2D/HUD/InfoPanel/TravelPanel.visible = false
 	$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "[ ! ] Select an Asteroid Field"
 	$Camera2D/HUD/InfoPanel.size = Vector2i(387, 146)
 	
@@ -60,8 +65,6 @@ func _ready() -> void:
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(delta: float) -> void:
-	
-	
 	match current_field:
 		"Delta Belt":
 			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
@@ -89,14 +92,13 @@ func _process(delta: float) -> void:
 				current_page = yotta_ammount
 
 	if current_page <= 0: current_page = 1
-
-	if Input.is_action_just_pressed("Universe_Zoom_In") and $SolarSystem.scale.x <= max_zoom:
-		$SolarSystem.scale += Vector2(0.05, 0.05)
-		
-	if Input.is_action_just_pressed("Universe_Zoom_Out") and $SolarSystem.scale.x >= min_zoom:
-		$SolarSystem.scale -= Vector2(0.05, 0.05)
 	
-	$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
+	if selecting_mission == true:
+		if Input.is_action_just_pressed("Universe_Zoom_In") and $SolarSystem.scale.x <= max_zoom:
+			$SolarSystem.scale += Vector2(0.05, 0.05)
+		if Input.is_action_just_pressed("Universe_Zoom_Out") and $SolarSystem.scale.x >= min_zoom:
+			$SolarSystem.scale -= Vector2(0.05, 0.05)
+		$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
 	
 	rotate_solar_system(delta)
 
@@ -146,6 +148,8 @@ func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		get_asteroid_info()
 		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = delta_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = delta_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Delta Belt"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Delta Belt"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
@@ -157,6 +161,8 @@ func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		get_asteroid_info()
 		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = gamma_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = gamma_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Gamma Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Gamma Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
@@ -168,6 +174,8 @@ func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		get_asteroid_info()
 		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = omega_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = omega_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Omega Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Omega Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
@@ -179,6 +187,8 @@ func _on_lamdba_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_i
 		get_asteroid_info()
 		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = lambda_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = lambda_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Lambda Feild"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Lambda Field"
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
@@ -189,6 +199,8 @@ func _on_sigma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		get_asteroid_info()
 		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = sigma_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = sigma_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Sigma Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Sigma Field"
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
@@ -199,6 +211,8 @@ func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		get_asteroid_info()
 		show_all_info()
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = yotta_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = yotta_thumbnail
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Yotta Belt"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Yotta Belt"
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
@@ -206,7 +220,6 @@ func show_all_info():
 		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
 		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
 		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
-		$Camera2D/HUD/InfoPanel/TravelPanel.visible = true
 
 func change_to_world(field):
 	var new_world = preload("res://scenes/world.tscn").instantiate()
@@ -228,7 +241,7 @@ func _on_omega_area_2d_mouse_entered() -> void:
 	$FieldNameLabel.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
 
 func _on_lamdba_area_2d_mouse_entered() -> void:
-	$FieldNameLabel.text = "[center]%s[/center]" % "Lamdba Field"
+	$FieldNameLabel.text = "[center]%s[/center]" % "Lambda Field"
 	$FieldNameLabel.add_theme_color_override("font_shadow_color", Color(0.788, 0.38, 0.157, 1))
 
 func _on_sigma_area_2d_mouse_entered() -> void:
@@ -350,6 +363,7 @@ func _on_previous_button_pressed() -> void:
 
 func get_asteroid_info():
 	if current_page >= 1:
+		mission_selected = true
 		print(delta_ammount)
 		var file = FileAccess.open(json_path, FileAccess.READ)
 		var parse_result = JSON.parse_string(file.get_as_text())
@@ -363,10 +377,12 @@ func get_asteroid_info():
 			
 			var asteroid_info = parse_result[current_field][str(current_page)]
 			current_asteroid_name = asteroid_info["Name"]
+			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidName.text = "Going to: " + current_asteroid_name
 			current_asteroid_biome = asteroid_info["Biome"]
 			var temperature = asteroid_info["Temperature"]
 			var primary = asteroid_info["Objectites"]["Primary"]
 			var secondary = asteroid_info["Objectites"]["Secondary"]
+			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ºC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ºC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 
 func get_asteroids_per_field(field : String):
@@ -382,11 +398,30 @@ func get_asteroids_per_field(field : String):
 	print("[asteroid_selector.gd] ", field , " has ", asteroid_count, " Asteroids")
 	return asteroid_count
 
-func _on_travel_button_pressed() -> void:
-	var new_world = preload("res://scenes/world.tscn").instantiate()
-	new_world.asteroid_field = current_field
-	new_world.asteroid_name = current_asteroid_name
-	new_world.asteroid_biome = current_asteroid_biome
-	get_tree().root.add_child(new_world)
-	get_tree().current_scene.call_deferred("free")
-	get_tree().current_scene = new_world
+func _on_select_mission_button_pressed() -> void:
+	selecting_mission = true
+	$Camera2D/HUD/LobbyPanel.visible = false
+	$Camera2D/HUD/BackToLobbyButton.visible = true
+	$Camera2D/HUD/InfoPanel.visible = true
+
+func _on_back_to_lobby_button_pressed() -> void:
+	selecting_mission = false
+	$Camera2D/HUD/LobbyPanel.visible = true
+	$Camera2D/HUD/BackToLobbyButton.visible = false
+	$Camera2D/HUD/InfoPanel.visible = false
+
+func _on_back_button_pressed() -> void:
+	Input.set_custom_mouse_cursor(null)
+	var new_game_scene = load("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_packed(new_game_scene)
+	new_game_scene.instantiate()
+
+func _on_start_button_pressed() -> void:
+	if mission_selected == true:
+		var new_world = preload("res://scenes/world.tscn").instantiate()
+		new_world.asteroid_field = current_field
+		new_world.asteroid_name = current_asteroid_name
+		new_world.asteroid_biome = current_asteroid_biome
+		get_tree().root.add_child(new_world)
+		get_tree().current_scene.call_deferred("free")
+		get_tree().current_scene = new_world
