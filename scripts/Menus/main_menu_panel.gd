@@ -8,7 +8,7 @@ func _on_options_button_pressed() -> void:
 	$"../OptionsMenu".visible = true
 
 func _on_new_game_button_pressed() -> void:
-	get_tree().change_scene_to_packed(preload("res://scenes/universe.tscn"))
+	get_tree().change_scene_to_packed(preload("res://scenes/lobby.tscn"))
 
 func _on_credits_button_pressed() -> void:
 	$".".visible = false
