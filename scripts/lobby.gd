@@ -21,6 +21,7 @@ var current_page = 1
 var current_asteroid_name : String
 var current_asteroid_biome : String
 var current_field : String
+var asteroid_temperature
 
 var delta_ammount
 var gamma_ammount
@@ -30,6 +31,8 @@ var sigma_ammount
 var yotta_ammount
 
 func _ready() -> void:
+	create_stock_market()
+	
 	$Camera2D/HUD/BackToLobbyButton.visible = false
 	$Camera2D/HUD/InfoPanel.visible = false
 	
@@ -150,6 +153,7 @@ func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = delta_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = delta_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Delta Belt"
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Delta Belt"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
@@ -163,6 +167,7 @@ func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = gamma_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = gamma_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Gamma Field"
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Gamma Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
@@ -176,6 +181,7 @@ func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = omega_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = omega_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Omega Field"
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Omega Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
@@ -189,7 +195,9 @@ func _on_lamdba_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_i
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = lambda_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = lambda_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Lambda Feild"
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.788, 0.38, 0.157, 1))
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Lambda Field"
+		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.38, 0.157, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
 func _on_sigma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -201,7 +209,9 @@ func _on_sigma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = sigma_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = sigma_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Sigma Field"
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.537, 0.788, 0.157, 1))
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Sigma Field"
+		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.537, 0.788, 0.157, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
 func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -213,7 +223,9 @@ func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldImage.texture = yotta_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = yotta_thumbnail
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Yotta Belt"
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Yotta Belt"
+		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
 
 func show_all_info():
@@ -282,7 +294,7 @@ func create_asteroid_name():
 	var vogal5 = vogais[randi() % vogais.size()]
 	var vogal6 = vogais[randi() % vogais.size()]
 
-	var variante = randi() % 9 + 1
+	var variante = randi_range(1, 9)
 
 	match variante: # 398,779,605 Combinações
 		1:
@@ -319,7 +331,10 @@ func generate_asteroid_data() -> Dictionary:
 		for asteroid_num in range(1, randi_range(3, 8) + 1):
 			var as_name = create_asteroid_name()
 			var biome = biomes[randi() % biomes.size()]
-			var temperature = randi_range(-75, 120)
+			match biome:
+				"Stony": asteroid_temperature = randi_range(15, 30)
+				"Vulcanic": asteroid_temperature = randi_range(75, 90)
+				"Frozen": asteroid_temperature = randi_range(-45, -65)
 			var primary_objectite = objectites_primary[randi() % objectites_primary.size()]
 			var secondary_objectite = objectites_secondary[randi() % objectites_secondary.size()]
 			
@@ -327,7 +342,7 @@ func generate_asteroid_data() -> Dictionary:
 			asteroids[asteroid_id] = {
 				"Name": as_name,
 				"Biome": biome,
-				"Temperature": temperature,
+				"Temperature": asteroid_temperature,
 				"Objectites": {
 					"Primary": primary_objectite,
 					"Secondary": secondary_objectite
@@ -364,7 +379,6 @@ func _on_previous_button_pressed() -> void:
 func get_asteroid_info():
 	if current_page >= 1:
 		mission_selected = true
-		print(delta_ammount)
 		var file = FileAccess.open(json_path, FileAccess.READ)
 		var parse_result = JSON.parse_string(file.get_as_text())
 		file.close()
@@ -380,10 +394,11 @@ func get_asteroid_info():
 			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidName.text = "Going to: " + current_asteroid_name
 			current_asteroid_biome = asteroid_info["Biome"]
 			var temperature = asteroid_info["Temperature"]
+			asteroid_temperature = temperature
 			var primary = asteroid_info["Objectites"]["Primary"]
 			var secondary = asteroid_info["Objectites"]["Secondary"]
-			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ºC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
-			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ºC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 
 func get_asteroids_per_field(field : String):
 	var file = FileAccess.open(json_path, FileAccess.READ)
@@ -422,6 +437,39 @@ func _on_start_button_pressed() -> void:
 		new_world.asteroid_field = current_field
 		new_world.asteroid_name = current_asteroid_name
 		new_world.asteroid_biome = current_asteroid_biome
+		new_world.asteroid_temperature = asteroid_temperature
 		get_tree().root.add_child(new_world)
 		get_tree().current_scene.call_deferred("free")
 		get_tree().current_scene = new_world
+
+func create_stock_market():
+	var consoante1 = consoantes[randi() % consoantes.size()]
+	var consoante2 = consoantes[randi() % consoantes.size()]
+	var vogal1 = vogais[randi() % vogais.size()]
+	var vogal2 = vogais[randi() % vogais.size()]
+	
+	var variante = randi_range(1, 4)
+	
+	var money_word : String
+	match variante: # 4 935 Variações
+		1:
+			money_word = vogal1 + consoante1 + consoante2
+		2:
+			money_word = consoante1 + vogal1 + consoante2
+		3:
+			money_word = vogal1 + vogal2 + consoante1
+		4:
+			money_word = consoante1 + vogal1 + vogal2
+	
+	var random_percentage = round(randf_range(0, 2) * 100) / 100.0
+	
+	match randi_range(1,2):
+		1: 
+			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.add_theme_color_override("default_color", Color(0, 0.92, 0))
+			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.text = "[center]%s[/center]" % money_word.to_upper() + " +" + str(random_percentage) + "%"
+		2: 
+			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.add_theme_color_override("default_color", Color(0.92, 0, 0))
+			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.text = "[center]%s[/center]" % money_word.to_upper() + " -" + str(random_percentage) + "%"
+
+func _on_stock_market_timer_timeout() -> void:
+	create_stock_market()

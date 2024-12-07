@@ -1,6 +1,6 @@
-[gd_scene load_steps=56 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=60 format=3 uid="uid://c4ub8dctj6n1f"]
 
-[ext_resource type="Script" path="res://scripts/Menus/asteroid_selector.gd" id="1_13iuh"]
+[ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
 [ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/no_duck.png" id="2_w0a7i"]
 [ext_resource type="Texture2D" uid="uid://dfllye01n6j7y" path="res://assets/textures/universe/orbits_and_fields/thumbs/not_selected.png" id="3_copxc"]
@@ -36,6 +36,66 @@
 [ext_resource type="Texture2D" uid="uid://byoyi20jpc3wq" path="res://assets/textures/universe/orbits_and_fields/lamdba.png" id="32_56off"]
 [ext_resource type="Texture2D" uid="uid://cbpnjbuvq3yk" path="res://assets/textures/universe/orbits_and_fields/sigma.png" id="33_xtoui"]
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/yotta_field.png" id="34_qqdto"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq7us"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 6.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syqgr"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 6.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jcuy"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 6.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2ah2"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 6.0
+expand_margin_right = 12.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcuow"]
 shader = ExtResource("2_3a20b")
@@ -122,6 +182,54 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxiqe"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adhx8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6csu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4vdb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ou6c"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -164,66 +272,6 @@ bg_color = Color(1, 1, 1, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a75e2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq7us"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 6.0
-expand_margin_right = 12.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syqgr"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 6.0
-expand_margin_right = 12.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jcuy"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 6.0
-expand_margin_right = 12.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2ah2"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 6.0
-expand_margin_right = 12.0
-
 [node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
 
@@ -231,6 +279,24 @@ script = ExtResource("1_13iuh")
 position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
+
+[node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD"]
+z_index = -1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -108.0
+offset_right = 276.0
+offset_bottom = -32.0
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_aq7us")
+theme_override_styles/hover = SubResource("StyleBoxFlat_syqgr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3jcuy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w2ah2")
+text = "Go Back"
 
 [node name="LobbyPanel" type="Panel" parent="Camera2D/HUD"]
 self_modulate = Color(1, 1, 1, 0)
@@ -241,7 +307,7 @@ offset_bottom = 1080.0
 [node name="MoneyPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 33.0
+offset_top = 53.0
 offset_right = 788.0
 offset_bottom = 131.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
@@ -251,45 +317,50 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 23.0
-offset_top = -30.0
-offset_right = 451.0
-offset_bottom = 34.0
+offset_left = 62.0
+offset_top = -21.0
+offset_right = 419.0
+offset_bottom = 27.0
 grow_vertical = 2
 tooltip_text = "Your Debt"
 mouse_filter = 0
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "€ 9 578 123 932"
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
-points = PackedVector2Array(468, 95, 468, 4)
+position = Vector2(-16, 0)
+points = PackedVector2Array(468.044, 76.5015, 468, 4)
 width = 6.0
 
-[node name="StockMarketLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
+[node name="StockMarketLabel" type="RichTextLabel" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -229.0
-offset_top = -32.0
-offset_right = -25.0
-offset_bottom = 32.0
+offset_left = -265.0
+offset_top = -22.0
+offset_right = -6.0
+offset_bottom = 27.0
 grow_horizontal = 0
 grow_vertical = 2
 tooltip_text = "Stock Market"
-mouse_filter = 0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "sla -8%"
+theme_override_colors/default_color = Color(1, 0.607843, 0.462745, 1)
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = " SLA -8.88%"
+
+[node name="StockMarketTimer" type="Timer" parent="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel"]
+wait_time = 15.0
+autostart = true
 
 [node name="UniverseMapPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 154.0
 offset_right = 788.0
-offset_bottom = 534.0
+offset_bottom = 573.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
@@ -300,9 +371,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -162.0
-offset_top = -44.0
+offset_top = -28.0
 offset_right = 162.0
-offset_bottom = 16.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -313,16 +384,21 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_mqj1l")
 text = "Select Mission"
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
-position = Vector2(8, 0)
+position = Vector2(8, 0.322585)
+scale = Vector2(1, 1.16129)
 points = PackedVector2Array(356, 4, 356, 333)
 width = 6.0
 
 [node name="FieldLobbyThumbnail" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 24.0
-offset_top = 77.0
+offset_top = -106.0
 offset_right = 344.0
-offset_bottom = 257.0
+offset_bottom = 74.0
+grow_vertical = 2
 texture = ExtResource("3_copxc")
 
 [node name="ImageBorders" type="Panel" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail"]
@@ -344,27 +420,34 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rb7cd")
 [node name="FielName" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 layout_mode = 1
 offset_left = 29.0
-offset_top = 36.0
+offset_top = 52.0
 offset_right = 338.0
-offset_bottom = 68.0
+offset_bottom = 84.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
 [node name="AsteroidName" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 layout_mode = 1
 offset_left = 35.0
-offset_top = 268.0
+offset_top = 300.0
 offset_right = 335.0
-offset_bottom = 300.0
+offset_bottom = 332.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
 [node name="AsteroidDescription" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
-layout_mode = 0
-offset_left = 385.0
-offset_top = 29.0
-offset_right = 698.0
-offset_bottom = 305.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -337.0
+offset_top = -170.0
+offset_right = -24.0
+offset_bottom = 106.0
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "No Mission Selected"
 horizontal_alignment = 1
@@ -376,11 +459,24 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 68.0
-offset_top = -509.0
+offset_top = -451.0
 offset_right = 788.0
-offset_bottom = -129.0
+offset_bottom = -122.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fwspj")
+
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.0
+offset_top = 16.0
+offset_right = 63.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Lobby"
 
 [node name="PlayerHOST" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/LobbyPanel"]
 layout_mode = 1
@@ -450,14 +546,31 @@ scale = Vector2(3, 3)
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("2_w0a7i")
 
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Camera2D/HUD/LobbyPanel/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -86.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 84.0
+grow_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_lxiqe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_adhx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i6csu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4vdb")
+color = Color(0.13, 0.52, 0.4095, 1)
+edit_alpha = false
+
 [node name="ControlPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 253.0
-offset_top = -102.0
-offset_right = 607.0
+offset_left = 283.0
+offset_top = -88.0
+offset_right = 559.0
 offset_bottom = -23.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
@@ -467,22 +580,22 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 21.0
-offset_top = -34.0
-offset_right = 165.0
-offset_bottom = 38.0
+offset_left = 17.3213
+offset_top = -29.5
+offset_right = 126.321
+offset_bottom = 34.5
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_4ou6c")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qhto6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kmbym")
 text = "Back"
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
-position = Vector2(-131, 0.150002)
+position = Vector2(-175, 0.150002)
 scale = Vector2(1, 1.05)
-points = PackedVector2Array(311, 3, 311, 71)
+points = PackedVector2Array(311, 3, 310.97, 58.1774)
 width = 6.0
 
 [node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
@@ -492,14 +605,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -158.0
-offset_top = -34.0
-offset_right = -14.0
-offset_bottom = 38.0
+offset_left = -135.0
+offset_top = -30.5
+offset_right = -8.0
+offset_bottom = 33.5
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_icb1v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qhto6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kmbym")
@@ -516,6 +629,19 @@ offset_right = -581.0
 offset_bottom = 354.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
+
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/UpgradingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_top = 24.0
+offset_right = 160.5
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Tool Upgrading"
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/UpgradingPanel"]
 layout_mode = 1
@@ -545,6 +671,19 @@ offset_right = -36.0
 offset_bottom = 355.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
+
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/ClassPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -165.0
+offset_top = 24.0
+offset_right = 165.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Class Selection"
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/ClassPanel"]
 layout_mode = 1
@@ -577,6 +716,19 @@ offset_bottom = -45.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
+
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/InventoryPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Inventory"
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/InventoryPanel"]
 layout_mode = 1
@@ -739,24 +891,8 @@ Secundary: Unknown"
 fit_content = true
 scroll_following = true
 
-[node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = -108.0
-offset_right = 276.0
-offset_bottom = -32.0
-grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxFlat_aq7us")
-theme_override_styles/hover = SubResource("StyleBoxFlat_syqgr")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_3jcuy")
-theme_override_styles/normal = SubResource("StyleBoxFlat_w2ah2")
-text = "Go Back"
-
 [node name="UniverseBackground" type="TextureRect" parent="."]
+z_index = -2
 offset_left = -1116.0
 offset_top = -892.0
 offset_right = 2004.0
@@ -1336,12 +1472,13 @@ theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Field Name"
 
+[connection signal="pressed" from="Camera2D/HUD/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
+[connection signal="timeout" from="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel/StockMarketTimer" to="." method="_on_stock_market_timer_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]
 [connection signal="mouse_entered" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_exited"]

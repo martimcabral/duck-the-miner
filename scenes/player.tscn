@@ -264,14 +264,14 @@ value = 100.0
 fill_mode = 4
 texture_under = ExtResource("10_krbit")
 texture_progress = ExtResource("11_xclme")
-tint_progress = Color(0.266667, 0, 1, 1)
+tint_progress = Color(1, 0, 0.95, 1)
 
 [node name="TemperatureText" type="RichTextLabel" parent="Camera2D/HUD/Stats/TemperatureStat"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 89.0
+offset_left = 77.0
 offset_top = 125.0
-offset_right = 167.0
+offset_right = 180.0
 offset_bottom = 182.0
 tooltip_text = "Temperature"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

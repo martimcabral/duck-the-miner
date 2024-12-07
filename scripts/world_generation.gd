@@ -12,6 +12,7 @@ const world_border_sides = 12
 var asteroid_name
 var asteroid_field
 var asteroid_biome
+var asteroid_temperature
 
 var time_remaining_Title_Timer
 var time_remaining_HUD_Fade_In
@@ -72,6 +73,14 @@ func start_music():
 				$WorldMusic/Rift.play()
 
 func _ready():
+	$Player/Camera2D/HUD/Stats/TemperatureStat/TemperatureText.text = "[center]%s[/center]" % str(asteroid_temperature) + "ᵒC"
+	
+	var min_value = -65  # Minimum value
+	var max_value = 90  # Maximum value
+	var temperature_color_value = ((asteroid_temperature - min_value) / (max_value - min_value)) -0.2
+	print(temperature_color_value) 
+	$Player/Camera2D/HUD/Stats/TemperatureStat.tint_progress = Color.from_hsv(temperature_color_value, 1, 1, 1)
+	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true
 	
@@ -133,6 +142,7 @@ func _ready():
 		print("Asteroid Name: ", asteroid_name)
 		print("Asteroid Size: ", asteroid_size)
 		print("Asteroid Biome: ", asteroid_biome)
+		print("Asteroid Temperature: ", asteroid_temperature)
 		print("Asteroid Field: ", asteroid_field, "\n")
 		print("Seed: ", fnl.seed)
 		print("Noise Type: ", fnl.noise_type)
