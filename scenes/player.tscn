@@ -264,7 +264,7 @@ value = 100.0
 fill_mode = 4
 texture_under = ExtResource("10_krbit")
 texture_progress = ExtResource("11_xclme")
-tint_progress = Color(1, 0, 0.95, 1)
+tint_progress = Color(0.266667, 0.8, 0.16, 1)
 
 [node name="TemperatureText" type="RichTextLabel" parent="Camera2D/HUD/Stats/TemperatureStat"]
 texture_filter = 1

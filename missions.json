@@ -1,82 +1,349 @@
 {
 	"Delta Belt": {
 		"1": {
-			"Biome": "Frozen",
-			"Name": "Meuku",
+			"Biome": "Vulcanic",
+			"Name": "Bav",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
-			"Temperature": -45
+			"Temperature": 86
 		},
 		"2": {
-			"Biome": "Frozen",
-			"Name": "Zioniotke",
+			"Biome": "Vulcanic",
+			"Name": "Luuquekbu",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
-			"Temperature": -53
+			"Temperature": 78
 		},
 		"3": {
+			"Biome": "Vulcanic",
+			"Name": "Viiloka",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 82
+		},
+		"4": {
+			"Biome": "Stony",
+			"Name": "Anbee",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -14
+		},
+		"5": {
+			"Biome": "Stony",
+			"Name": "Eyri-Poma",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -3
+		},
+		"6": {
+			"Biome": "Vulcanic",
+			"Name": "Qeikuupbi",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 87
+		},
+		"7": {
 			"Biome": "Frozen",
-			"Name": "Kew",
+			"Name": "Ulne-Mane",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
 			"Temperature": -56
 		},
-		"4": {
+		"8": {
 			"Biome": "Stony",
-			"Name": "Futonunoulo",
+			"Name": "Oclo-Yede",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
-			"Temperature": 25
+			"Temperature": -23
+		}
+	},
+	"Gamma Field": {
+		"1": {
+			"Biome": "Frozen",
+			"Name": "Kuuve",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -48
+		},
+		"2": {
+			"Biome": "Vulcanic",
+			"Name": "Jegoqoqiuca",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 76
+		},
+		"3": {
+			"Biome": "Frozen",
+			"Name": "Jiiluevme",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -53
+		},
+		"4": {
+			"Biome": "Vulcanic",
+			"Name": "Pifibaboupi",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 85
 		},
 		"5": {
+			"Biome": "Vulcanic",
+			"Name": "Ziita",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 81
+		},
+		"6": {
 			"Biome": "Frozen",
-			"Name": "Weuzu",
+			"Name": "Zualeolfe",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
 			"Temperature": -60
 		},
-		"6": {
+		"7": {
 			"Biome": "Frozen",
-			"Name": "Suiquukwe",
+			"Name": "Diiluivxu",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
-			"Temperature": -46
+			"Temperature": -45
+		},
+		"8": {
+			"Biome": "Stony",
+			"Name": "Duade",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -6
 		}
 	},
-	"Gamma Field": {
+	"Lambda Field": {
 		"1": {
-			"Biome": "Frozen",
-			"Name": "Zyarie",
+			"Biome": "Stony",
+			"Name": "Purton",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
-			"Temperature": -52
+			"Temperature": -16
 		},
 		"2": {
+			"Biome": "Stony",
+			"Name": "Ahmoo",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -8
+		},
+		"3": {
+			"Biome": "Frozen",
+			"Name": "Yiz",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -49
+		},
+		"4": {
+			"Biome": "Frozen",
+			"Name": "Cew",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -65
+		},
+		"5": {
+			"Biome": "Stony",
+			"Name": "Kefoqeqiexe",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -28
+		},
+		"6": {
+			"Biome": "Stony",
+			"Name": "Fux",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -16
+		},
+		"7": {
 			"Biome": "Vulcanic",
-			"Name": "Pejecacuere",
+			"Name": "Irru-Qare",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 80
+		},
+		"8": {
+			"Biome": "Vulcanic",
+			"Name": "Voiguixyo",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
 			"Temperature": 83
+		}
+	},
+	"Omega Field": {
+		"1": {
+			"Biome": "Vulcanic",
+			"Name": "Daihuawda",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 75
+		},
+		"2": {
+			"Biome": "Vulcanic",
+			"Name": "Lirneq",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 82
 		},
 		"3": {
+			"Biome": "Frozen",
+			"Name": "Xlakue",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -57
+		},
+		"4": {
+			"Biome": "Stony",
+			"Name": "Kkitae",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -7
+		},
+		"5": {
 			"Biome": "Vulcanic",
-			"Name": "Ceidu",
+			"Name": "Roesouzhu",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 82
+		},
+		"6": {
+			"Biome": "Vulcanic",
+			"Name": "Mueqe",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 86
+		},
+		"7": {
+			"Biome": "Stony",
+			"Name": "Mouqi",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -30
+		}
+	},
+	"Sigma Field": {
+		"1": {
+			"Biome": "Vulcanic",
+			"Name": "Tborae",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 89
+		},
+		"2": {
+			"Biome": "Stony",
+			"Name": "Yeayu",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -25
+		},
+		"3": {
+			"Biome": "Frozen",
+			"Name": "Jaowootfe",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -48
+		},
+		"4": {
+			"Biome": "Stony",
+			"Name": "Fueso",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -28
+		},
+		"5": {
+			"Biome": "Vulcanic",
+			"Name": "Jeeteoqvu",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 77
+		},
+		"6": {
+			"Biome": "Vulcanic",
+			"Name": "Dovererueqa",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 82
+		},
+		"7": {
+			"Biome": "Vulcanic",
+			"Name": "Tug",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
@@ -84,219 +351,69 @@
 			"Temperature": 90
 		}
 	},
-	"Lambda Field": {
+	"Yotta Belt": {
 		"1": {
-			"Biome": "Vulcanic",
-			"Name": "Piaceogde",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 85
-		},
-		"2": {
 			"Biome": "Frozen",
-			"Name": "Aqzaa",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": -47
-		},
-		"3": {
-			"Biome": "Frozen",
-			"Name": "Inca-Tifu",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": -57
-		},
-		"4": {
-			"Biome": "Vulcanic",
-			"Name": "Uqvi-Duje",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 79
-		},
-		"5": {
-			"Biome": "Frozen",
-			"Name": "Paabiebte",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": -50
-		},
-		"6": {
-			"Biome": "Frozen",
-			"Name": "Lab",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": -57
-		},
-		"7": {
-			"Biome": "Frozen",
-			"Name": "Erlu-Gawa",
+			"Name": "Pew",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
 			"Temperature": -51
-		}
-	},
-	"Omega Field": {
-		"1": {
-			"Biome": "Stony",
-			"Name": "Ixza-Labi",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 22
 		},
 		"2": {
-			"Biome": "Stony",
-			"Name": "Sihyic",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 26
-		},
-		"3": {
-			"Biome": "Stony",
-			"Name": "Piesoufla",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 19
-		},
-		"4": {
-			"Biome": "Vulcanic",
-			"Name": "Fmosua",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 89
-		},
-		"5": {
-			"Biome": "Vulcanic",
-			"Name": "Esfee",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 83
-		},
-		"6": {
 			"Biome": "Frozen",
-			"Name": "Fusoyoyaeyu",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": -54
-		},
-		"7": {
-			"Biome": "Stony",
-			"Name": "Zik",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 19
-		}
-	},
-	"Sigma Field": {
-		"1": {
-			"Biome": "Vulcanic",
-			"Name": "Tayororuoco",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 85
-		},
-		"2": {
-			"Biome": "Stony",
-			"Name": "Zpukei",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 22
-		},
-		"3": {
-			"Biome": "Stony",
-			"Name": "Huhvut",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 28
-		},
-		"4": {
-			"Biome": "Frozen",
-			"Name": "Bqebia",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": -64
-		},
-		"5": {
-			"Biome": "Stony",
-			"Name": "Meh",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 15
-		},
-		"6": {
-			"Biome": "Vulcanic",
-			"Name": "Hebujojuibi",
-			"Objectites": {
-				"Primary": "n/a",
-				"Secondary": "n/a"
-			},
-			"Temperature": 87
-		}
-	},
-	"Yotta Belt": {
-		"1": {
-			"Biome": "Frozen",
-			"Name": "Quuhe",
+			"Name": "Wueheotjo",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
 			"Temperature": -49
 		},
-		"2": {
+		"3": {
 			"Biome": "Frozen",
-			"Name": "Gajqoq",
+			"Name": "Elsu-Piti",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -64
+		},
+		"4": {
+			"Biome": "Vulcanic",
+			"Name": "Douzare",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 80
+		},
+		"5": {
+			"Biome": "Frozen",
+			"Name": "Beq",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
 			"Temperature": -58
 		},
-		"3": {
-			"Biome": "Vulcanic",
-			"Name": "Zas",
+		"6": {
+			"Biome": "Stony",
+			"Name": "Seqokikiupu",
 			"Objectites": {
 				"Primary": "n/a",
 				"Secondary": "n/a"
 			},
-			"Temperature": 76
+			"Temperature": -27
+		},
+		"7": {
+			"Biome": "Stony",
+			"Name": "Bainewi",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -16
 		}
 	}
 }

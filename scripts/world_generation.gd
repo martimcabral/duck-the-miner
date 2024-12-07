@@ -73,13 +73,17 @@ func start_music():
 				$WorldMusic/Rift.play()
 
 func _ready():
-	$Player/Camera2D/HUD/Stats/TemperatureStat/TemperatureText.text = "[center]%s[/center]" % str(asteroid_temperature) + "ᵒC"
+	var min_temp = -10  # Minimum temperature
+	var max_temp = 40   # Maximum temperature
+	var max_hue = 235   # Maximum hue value in your system
+	var clamped_temp = clamp(asteroid_temperature, min_temp, max_temp)
+	var temperature_color_value = (clamped_temp - min_temp) / (max_temp - min_temp)
+	var inverted_temperature_value = 1.0 - temperature_color_value
+	var hue = inverted_temperature_value * max_hue
+	var temperature_color = Color.from_hsv(hue / 360.0, 0.8, 0.8, 1)  # Convert hue to 0-1 range
+	$Player/Camera2D/HUD/Stats/TemperatureStat.tint_progress = temperature_color
 	
-	var min_value = -65  # Minimum value
-	var max_value = 90  # Maximum value
-	var temperature_color_value = ((asteroid_temperature - min_value) / (max_value - min_value)) -0.2
-	print(temperature_color_value) 
-	$Player/Camera2D/HUD/Stats/TemperatureStat.tint_progress = Color.from_hsv(temperature_color_value, 1, 1, 1)
+	$Player/Camera2D/HUD/Stats/TemperatureStat/TemperatureText.text = "[center]%s[/center]" % str(asteroid_temperature) + "ᵒC"
 	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true
