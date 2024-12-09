@@ -124,7 +124,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Feedback"
 flat = true
 
-[node name="GoToMainMenuButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
+[node name="AbortMissionButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -168,5 +168,5 @@ flat = true
 
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/FeedbackButton" to="." method="_on_feedback_button_pressed"]
-[connection signal="pressed" from="GUI_Pause/PauseMenuPanel/GoToMainMenuButton" to="." method="_on_go_to_main_menu_button_pressed"]
+[connection signal="pressed" from="GUI_Pause/PauseMenuPanel/AbortMissionButton" to="." method="_on_abort_mission_button_pressed"]
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/GoToDesktopButton" to="." method="_on_go_to_desktop_button_pressed"]
