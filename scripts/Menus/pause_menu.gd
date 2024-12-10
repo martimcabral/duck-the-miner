@@ -28,21 +28,21 @@ func _on_abort_mission_button_pressed() -> void:
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
 	
-	# Get items from the ItemList Node
-	var item_list = get_items_from_itemlist($"../Player/HUD/ItemList")
+	# Load current inventory from the JSON file
+	var current_inventory = load_inventory("res://inventory.json")
 	
-	# Get current inventory from the JSON file
-	var current_inventory = load_inventory("user://items.json")
+	# Get new items from the ItemList Node
+	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	
-	# Merge the current inventory with the new items
-	var updated_inventory = merge_inventories(current_inventory, item_list)
+	# Merge current inventory with new items
+	var updated_inventory = merge_items(current_inventory, new_items)
 	
-	# Convert the updated inventory to JSON
-	var json_data = create_json_from_list(updated_inventory)
+	# Convert the updated inventory to JSON format
+	var formatted_data = format_items_to_json(updated_inventory)
 	
 	# Save JSON to a file
 	var file_path = "res://inventory.json"
-	if save_json_to_file(file_path, json_data):
+	if save_json_to_file(file_path, formatted_data):
 		print("JSON saved successfully to", file_path)
 	else:
 		print("Failed to save JSON")
@@ -67,13 +67,14 @@ func get_items_from_itemlist(item_list_node):
 		})
 	return items
 
-# Function to merge current inventory with new items
-func merge_inventories(current_inventory, new_items):
+# Function to merge items into the current inventory
+func merge_items(current_inventory, new_items):
 	var inventory_dict = {}
 
 	# Add current inventory to a dictionary
-	for item in current_inventory:
-		inventory_dict[item["name"]] = item["quantity"]
+	if current_inventory.size() > 0:
+		for item_name in current_inventory[0].keys():
+			inventory_dict[item_name] = current_inventory[0][item_name]
 
 	# Add or update items from the new inventory
 	for item in new_items:
@@ -82,14 +83,13 @@ func merge_inventories(current_inventory, new_items):
 		else:
 			inventory_dict[item["name"]] = item["quantity"]
 
-	# Convert back to the desired format
-	var updated_inventory = []
-	var inventory_entry = {}
-	for item_name in inventory_dict.keys():
-		inventory_entry[item_name] = inventory_dict[item_name]
-	updated_inventory.append(inventory_entry)
+	# Return the merged inventory as a list of one dictionary
+	return [inventory_dict]
 
-	return updated_inventory
+# Function to format the inventory into the desired JSON structure
+func format_items_to_json(inventory_dict):
+	# Convert inventory dictionary to a JSON string
+	return JSON.stringify(inventory_dict, "\t")  # Pretty-print with tabs
 
 # Function to load inventory from a JSON file
 func load_inventory(file_path):
@@ -101,13 +101,7 @@ func load_inventory(file_path):
 		var result = json_parser.parse(json)
 		if result == OK:
 			return json_parser.get_data()  # Return parsed JSON as a list of dictionaries
-	return []
-
-# Function to convert the item list to JSON
-func create_json_from_list(item_list):
-	# Create JSON string from the list
-	var json_string = JSON.stringify(item_list, "\t") # Pretty-print with tabs
-	return json_string
+	return [{}]  # Return an empty inventory if the file does not exist or is invalid
 
 # Function to save JSON data to a file
 func save_json_to_file(file_path, json_data):
