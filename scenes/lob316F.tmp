@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=58 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -180,6 +180,54 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxiqe"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_adhx8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6csu"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4vdb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ou6c"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -229,9 +277,9 @@ script = ExtResource("1_13iuh")
 position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
+visible = false
 
 [node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD"]
-visible = false
 z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -496,6 +544,23 @@ grow_vertical = 2
 scale = Vector2(3, 3)
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("2_w0a7i")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Camera2D/HUD/LobbyPanel/LobbyPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -86.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = 84.0
+grow_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_lxiqe")
+theme_override_styles/hover = SubResource("StyleBoxFlat_adhx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_i6csu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y4vdb")
+color = Color(0.13, 0.52, 0.4095, 1)
+edit_alpha = false
 
 [node name="ControlPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 1
@@ -822,28 +887,6 @@ Primary: Unknown
 Secundary: Unknown"
 fit_content = true
 scroll_following = true
-
-[node name="SystemInfoPanel" type="Panel" parent="Camera2D/HUD"]
-visible = false
-z_index = 1
-texture_filter = 1
-offset_left = 1547.0
-offset_top = 84.0
-offset_right = 1934.0
-offset_bottom = 186.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_n0xh0")
-
-[node name="SystemName" type="RichTextLabel" parent="Camera2D/HUD/SystemInfoPanel"]
-layout_mode = 0
-offset_top = 30.0
-offset_right = 386.0
-offset_bottom = 78.0
-theme_override_colors/font_shadow_color = Color(1, 0.45, 0, 1)
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_offset_x = 2
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "Insert System"
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
 z_index = -2
@@ -1369,7 +1412,7 @@ offset_left = -356.999
 offset_top = -364.999
 offset_right = 372.001
 offset_bottom = 364.001
-scale = Vector2(9, 9)
+scale = Vector2(8, 8)
 pivot_offset = Vector2(364.094, 363.5)
 texture = ExtResource("34_qqdto")
 

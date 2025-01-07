@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b011f1ddqjy4u"
-path="res://.godot/imported/sigma.png-69aa4c7d2c6969d6a2c1a1a757dd9c74.ctex"
+uid="uid://8fwyr7nbpo"
+path="res://.godot/imported/main_cursor.png-180f9fbef05a49388721ba5d7098ac99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/universe/orbits_and_fields/thumbs/sigma.png"
-dest_files=["res://.godot/imported/sigma.png-69aa4c7d2c6969d6a2c1a1a757dd9c74.ctex"]
+source_file="res://assets/textures/players/main_cursor.png"
+dest_files=["res://.godot/imported/main_cursor.png-180f9fbef05a49388721ba5d7098ac99.ctex"]
 
 [params]
 

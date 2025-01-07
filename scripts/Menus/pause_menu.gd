@@ -23,7 +23,7 @@ func _on_feedback_button_pressed() -> void:
 	OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 
 func _on_abort_mission_button_pressed() -> void:
-	Input.set_custom_mouse_cursor(null)
+	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
 	var new_game_scene = load("res://scenes/lobby.tscn")
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()

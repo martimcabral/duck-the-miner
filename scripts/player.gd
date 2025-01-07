@@ -31,6 +31,11 @@ var block_selection_default = preload("res://assets/textures/selected_block.png"
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
 func _ready():
+	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(0, cursor_texture_sword)
+	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(1, cursor_texture_pickaxe)
+	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(2, cursor_texture_light)
+	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(3, cursor_texture_flashlight)
+	
 	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "alpha." + str(ProjectSettings.get_setting("application/config/version"))
 	$HUD/ItemList/TeamInventoryLabel.text = "[center]%s[/center]" % "Duck's Pockets"
 	
@@ -192,15 +197,19 @@ func _process(delta):
 	if Input.is_action_just_pressed("Hotbar_1"):
 		current_item = 1
 		Input.set_custom_mouse_cursor(cursor_texture_sword)
+		$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
 	if Input.is_action_just_pressed("Hotbar_2"):
 		current_item = 2
 		Input.set_custom_mouse_cursor(cursor_texture_pickaxe, Input.get_current_cursor_shape(), Vector2(9, 9))
+		$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
 	if Input.is_action_just_pressed("Hotbar_3"):
 		current_item = 3
 		Input.set_custom_mouse_cursor(cursor_texture_light)
+		$Camera2D/HUD/Hotbar/TabBar.current_tab = 2
 	if Input.is_action_just_pressed("Hotbar_4"):
 		current_item = 4
 		Input.set_custom_mouse_cursor(cursor_texture_flashlight)
+		$Camera2D/HUD/Hotbar/TabBar.current_tab = 3
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):

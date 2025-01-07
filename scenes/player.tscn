@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=37 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/duck_walking.png" id="2_815s6"]
@@ -109,6 +109,46 @@ radius = 38.4908
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5m53"]
 size = Vector2(12, 13)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0r2e0"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 0.627451)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.25, 0.25, 0.25, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n53tx"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 0.627451)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -398,6 +438,32 @@ theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/normal_font_size = 65
 bbcode_enabled = true
 text = "000"
+
+[node name="Hotbar" type="CanvasLayer" parent="Camera2D/HUD"]
+
+[node name="TabBar" type="TabBar" parent="Camera2D/HUD/Hotbar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -558.0
+offset_top = -129.0
+offset_right = 559.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_0r2e0")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_n53tx")
+current_tab = 0
+tab_alignment = 1
+tab_count = 4
+tab_0/title = "Sword"
+tab_1/title = "Pickaxe"
+tab_2/title = "Light"
+tab_3/title = "UV Flashlight"
 
 [node name="Player Sounds" type="Node2D" parent="."]
 
