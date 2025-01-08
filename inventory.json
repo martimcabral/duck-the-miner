@@ -1,10 +1,11 @@
 [
 	{
-		"Dense Ice": 10,
-		"Lava Cluster": 1,
-		"Magnetite": 6,
-		"Raw Silver": 12,
-		"Raw Wolframite": 10,
-		"Stone": 674
+		"Bauxite": 1,
+		"Coal": 5,
+		"Copper": 1,
+		"Iron": 1,
+		"Lava Cluster": 3,
+		"Magnetite": 4,
+		"Stone": 163
 	}
 ]

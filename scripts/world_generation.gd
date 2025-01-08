@@ -107,22 +107,16 @@ func _ready():
 	var fnl = FastNoiseLite.new()
 	
 	match asteroid_field:
-		"Delta":
+		"Delta Belt":
 			world_width = randi_range(200, 300)
 			world_height = randi_range(300, 600)
-		"Gamma":
+		"Gamma Field":
 			world_width = randi_range(250, 400)
 			world_height = randi_range(500, 900)
-		"Omega":
+		"Omega Field":
 			world_width = randi_range(250, 400)
 			world_height = randi_range(750, 1000)
-		"Lambda":
-			world_width = randi_range(250, 400)
-			world_height = randi_range(850, 1100)
-		"Sigma":
-			world_width = randi_range(300, 400)
-			world_height = randi_range(1000, 1200)
-		"Yotta":
+		"Koppa Belt":
 			world_width = randi_range(150, 250)
 			world_height = randi_range(1250, 1500)
 		_:
@@ -352,5 +346,5 @@ func put_gems():
 					if asteroid_biome == "Frozen":
 						match random_gem:
 							1: CaveSystem.set_cell(tile_pos, 2, Vector2i(1, 1))
-							2: CaveSystem.set_cell(tile_pos, 2, Vector2i(2, 1))	
+							2: CaveSystem.set_cell(tile_pos, 2, Vector2i(2, 1))
 							3: CaveSystem.set_cell(tile_pos, 2, Vector2i(3, 1))

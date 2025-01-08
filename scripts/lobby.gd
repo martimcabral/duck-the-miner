@@ -26,9 +26,83 @@ var gamma_ammount
 var omega_ammount
 var koppa_ammount
 
-# Koppa is the older Yotta, caution when reading this file
+@onready var item_list = $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList
 
-func _ready() -> void:
+# Dictionary to map item names to their corresponding texture paths
+var item_icons = {
+	"Stone": "res://assets/textures/items/ores/rock_and_stone.png",
+	"Coal": "res://assets/textures/items/ores/coal.png",
+	"Copper": "res://assets/textures/items/ores/raw_copper.png",
+	"Iron": "res://assets/textures/items/ores/raw_iron.png",
+	"Raw Gold": "res://assets/textures/items/ores/raw_gold.png",
+	"Emerald": "res://assets/textures/items/ores/emerald.png",
+	"Ruby": "res://assets/textures/items/ores/ruby.png",
+	"Sapphire": "res://assets/textures/items/ores/sapphire.png",
+	"Diamond": "res://assets/textures/items/ores/diamond.png",
+	"Ice": "res://assets/textures/items/ores/ice.png",
+	"Magnetite": "res://assets/textures/items/ores/raw_magnetite.png",
+	"Bauxite": "res://assets/textures/items/ores/raw_bauxite.png",
+	"Topaz": "res://assets/textures/items/ores/topaz.png",
+	"Garnet": "res://assets/textures/items/ores/garnet.png",
+	"Tsavorite": "res://assets/textures/items/ores/tsavorite.png",
+	"Lava Cluster": "res://assets/textures/items/ores/lava_cluster.png",
+	"Dense Ice": "res://assets/textures/items/ores/dense_ice.png",
+	"Amazonite": "res://assets/textures/items/ores/amazonite.png",
+	"Ametrine": "res://assets/textures/items/ores/ametrine.png",
+	"Apatite": "res://assets/textures/items/ores/apatite.png",
+	"Frozen Diamond": "res://assets/textures/items/ores/frozen_diamond.png",
+	"Raw Galena": "res://assets/textures/items/ores/raw_galena.png",
+	"Raw Silver": "res://assets/textures/items/ores/raw_silver.png",
+	"Raw Wolframite": "res://assets/textures/items/ores/raw_wolframite.png",
+	"Raw Pyrolusite": "res://assets/textures/items/ores/raw_pyrolusite.png",
+	"Raw Nickel": "res://assets/textures/items/ores/raw_nickel.png"
+}
+
+func _ready():
+	
+	
+	# Path to the JSON file
+	var inv_path = "res://inventory.json"
+	
+	# Load the JSON file
+	var file = FileAccess.open(inv_path, FileAccess.READ)
+	
+	# Check if the file was successfully opened
+	if file:
+		# Read the content of the file
+		var json_data = file.get_as_text()
+		file.close()
+		
+		# Create an instance of the JSON parser
+		var json_parser = JSON.new()
+		var parse_result = json_parser.parse(json_data)
+		
+		# Check if the parsing was successful
+		if parse_result == OK:
+			var parsed_data = json_parser.data
+			# Populate the ItemList with items and their icons
+			for item_name in parsed_data[0]:
+				var quantity = parsed_data[0][item_name]
+				var item_text = "%s: %d" % [item_name, quantity]
+				
+				# Add the item to the ItemList
+				var icon = load(item_icons.get(item_name, "res://assets/textures/items/ores/rock_and_stone.png"))  # Default icon if not found
+				var item_index = item_list.add_item(item_text)  # Add item text to the list
+				
+				# Set the icon for the item
+				item_list.set_item_icon(item_index, icon)
+		else:
+			print("Error parsing JSON: ", parse_result)
+	else:
+		print("Failed to open file: ", inv_path)
+		
+	if $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.item_count == 0:
+		$Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.visible = false
+		$Camera2D/HUD/LobbyPanel/InventoryPanel/UnavailableLabel.visible = true
+	else: 
+		$Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.visible = true
+		$Camera2D/HUD/LobbyPanel/InventoryPanel/UnavailableLabel.visible = false
+	
 	create_stock_market()
 	
 	$Camera2D/HUD/BackToLobbyButton.visible = false

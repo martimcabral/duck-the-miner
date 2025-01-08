@@ -410,9 +410,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 68.0
-offset_top = -411.0
+offset_top = -451.0
 offset_right = 788.0
-offset_bottom = -67.0
+offset_bottom = -122.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fwspj")
 
@@ -503,9 +503,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 283.0
-offset_top = -101.0
+offset_top = -88.0
 offset_right = 559.0
-offset_bottom = -36.0
+offset_bottom = -23.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
@@ -665,7 +665,6 @@ theme_override_font_sizes/font_size = 64
 text = "Inventory"
 
 [node name="ItemList" type="ItemList" parent="Camera2D/HUD/LobbyPanel/InventoryPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -678,35 +677,10 @@ offset_right = 509.5
 offset_bottom = 306.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 4
-theme_override_constants/v_separation = 30
-theme_override_constants/h_separation = 30
 theme_override_font_sizes/font_size = 32
-max_text_lines = 2
-text_overrun_behavior = 0
-max_columns = 5
+max_columns = 3
 same_column_width = true
-fixed_column_width = 170
 icon_mode = 0
-icon_scale = 5.0
-
-[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/InventoryPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -26.0
-offset_right = 70.0
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0.48, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "Empty"
 
 [node name="InfoPanel" type="Panel" parent="Camera2D/HUD"]
 visible = false
@@ -876,7 +850,6 @@ bbcode_enabled = true
 text = "Insert System"
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
-visible = false
 z_index = -2
 offset_left = -1116.0
 offset_top = -892.0
@@ -886,14 +859,12 @@ scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_k2cb4")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("4_8r1et")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
 
 [node name="SolarSystem" type="Node2D" parent="."]
-visible = false
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
 z_index = 1
