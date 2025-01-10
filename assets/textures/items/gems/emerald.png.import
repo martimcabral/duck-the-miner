@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do2s5c8qpavqr"
-path="res://.godot/imported/sapphire.png-ae73937c26483df092bf8e153ab5cc82.ctex"
+uid="uid://dtbodpsor8bxe"
+path="res://.godot/imported/emerald.png-518e0b9ea99e7adaab5e956e24524868.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/sapphire.png"
-dest_files=["res://.godot/imported/sapphire.png-ae73937c26483df092bf8e153ab5cc82.ctex"]
+source_file="res://assets/textures/items/gems/emerald.png"
+dest_files=["res://.godot/imported/emerald.png-518e0b9ea99e7adaab5e956e24524868.ctex"]
 
 [params]
 

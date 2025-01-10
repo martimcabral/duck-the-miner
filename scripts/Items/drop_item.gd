@@ -106,6 +106,29 @@ func drop_items():
 			Vector2i(0, 3):
 				item_name = "Nickel"
 		
+	elif world.asteroid_biome == "Swamp":
+		match block:
+			Vector2i(0, 0):
+				item_name = "Stone"
+			Vector2i(1, 0):
+				item_name = "Graphite"
+			Vector2i(2, 0):
+				item_name = "RawCobalt"
+			Vector2i(3, 0):
+				item_name = "RawUranium"
+			Vector2i(0, 2):
+				item_name = "RawPlatinum"
+			Vector2i(1, 2):
+				item_name = "RawZirconium"
+			Vector2i(3, 2):
+				item_name = "Sulfur"
+			Vector2i(1, 1):
+				item_name = "Charoite"
+			Vector2i(2, 1):
+				item_name = "Sugilite"
+			Vector2i(3, 1):
+				item_name = "Peridot"
+
 	if item_name != "":
 		var target_node = instance.get_node(item_name)
 		target_node.get_parent().remove_child(target_node)  # Remove the item from its original parent

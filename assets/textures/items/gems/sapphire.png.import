@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br83c414wbagk"
-path="res://.godot/imported/aquamarine.png-632d3e63b390ba041a6c249223a19e72.ctex"
+uid="uid://do2s5c8qpavqr"
+path="res://.godot/imported/sapphire.png-b2bcbfcc36b60c1b9fc1104106fb1b45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/aquamarine.png"
-dest_files=["res://.godot/imported/aquamarine.png-632d3e63b390ba041a6c249223a19e72.ctex"]
+source_file="res://assets/textures/items/gems/sapphire.png"
+dest_files=["res://.godot/imported/sapphire.png-b2bcbfcc36b60c1b9fc1104106fb1b45.ctex"]
 
 [params]
 

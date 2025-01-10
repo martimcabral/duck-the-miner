@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwgbkqf7ql4dh"
-path="res://.godot/imported/pearl.png-57b2e1006049523a5741787822b2d834.ctex"
+uid="uid://dah8stcbfbhmp"
+path="res://.godot/imported/raw_cobalt.png-0dec329633c10c67079a78111ae37b02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/pearl.png"
-dest_files=["res://.godot/imported/pearl.png-57b2e1006049523a5741787822b2d834.ctex"]
+source_file="res://assets/textures/items/ores/raw_cobalt.png"
+dest_files=["res://.godot/imported/raw_cobalt.png-0dec329633c10c67079a78111ae37b02.ctex"]
 
 [params]
 

@@ -88,6 +88,33 @@ func _on_body_entered(body : Node2D):
 			"Nickel":
 				var nickelIcon = load("res://assets/textures/items/ores/raw_nickel.png")
 				add_item_to_inventory("Raw Nickel", nickelIcon)
+			"Graphite":
+				var graphiteIcon = load("res://assets/textures/items/ores/graphite.png")
+				add_item_to_inventory("Graphite", graphiteIcon)
+			"RawCobalt":
+				var cobaltIcon = load("res://assets/textures/items/ores/raw_cobalt.png")
+				add_item_to_inventory("Raw Cobalt", cobaltIcon)
+			"RawUranium":
+				var uraniumIcon = load("res://assets/textures/items/ores/raw_uranium.png")
+				add_item_to_inventory("Raw Uranium", uraniumIcon)
+			"Charoite":
+				var charoiteIcon = load("res://assets/textures/items/gems/charoite.png")
+				add_item_to_inventory("Charoite", charoiteIcon)
+			"Sugilite":
+				var sugiliteIcon = load("res://assets/textures/items/gems/sugilite.png")
+				add_item_to_inventory("Sugilite", sugiliteIcon)
+			"Peridot":
+				var peridotIcon = load("res://assets/textures/items/gems/peridot.png")
+				add_item_to_inventory("Peridot", peridotIcon)
+			"Sulfur":
+				var sulfurIcon = load("res://assets/textures/items/ores/sulfur.png")
+				add_item_to_inventory("Sulfur", sulfurIcon)
+			"RawZirconium":
+				var zirconiumIcon = load("res://assets/textures/items/ores/raw_zirconium.png")
+				add_item_to_inventory("Raw Zirconium", zirconiumIcon)
+			"RawPlatinum":
+				var platinumIcon = load("res://assets/textures/items/ores/raw_platinum.png")
+				add_item_to_inventory("Raw Platinum", platinumIcon)
 		body.queue_free()
 		$PickupItem.play()
 

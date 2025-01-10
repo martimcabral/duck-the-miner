@@ -1,33 +1,42 @@
-[gd_scene load_steps=43 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=52 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
 [ext_resource type="Texture2D" uid="uid://bd4o6j02nkuus" path="res://assets/textures/players/lights/white-glow-light-effect-free-png.png" id="2_nq3r8"]
-[ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/ores/diamond.png" id="3_j7l03"]
+[ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/gems/diamond.png" id="3_j7l03"]
 [ext_resource type="Script" path="res://scripts/Items/rare_item_light_rotation.gd" id="3_reukg"]
-[ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/ores/ruby.png" id="5_hkxh7"]
-[ext_resource type="Texture2D" uid="uid://dtbodpsor8bxe" path="res://assets/textures/items/ores/emerald.png" id="6_yo33a"]
-[ext_resource type="Texture2D" uid="uid://do2s5c8qpavqr" path="res://assets/textures/items/ores/sapphire.png" id="7_8muc8"]
+[ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/gems/ruby.png" id="5_hkxh7"]
+[ext_resource type="Texture2D" uid="uid://dtbodpsor8bxe" path="res://assets/textures/items/gems/emerald.png" id="6_yo33a"]
+[ext_resource type="Texture2D" uid="uid://do2s5c8qpavqr" path="res://assets/textures/items/gems/sapphire.png" id="7_8muc8"]
 [ext_resource type="Texture2D" uid="uid://crhuk630gaw4s" path="res://assets/textures/items/ores/rock_and_stone.png" id="8_6go0k"]
 [ext_resource type="Texture2D" uid="uid://c5a0cdedwujld" path="res://assets/textures/items/ores/raw_copper.png" id="9_rs22p"]
 [ext_resource type="Texture2D" uid="uid://w0jorqmk5pnh" path="res://assets/textures/items/ores/raw_gold.png" id="10_xm5o4"]
 [ext_resource type="Texture2D" uid="uid://g4baqgfsmkv6" path="res://assets/textures/items/ores/raw_iron.png" id="11_gvemx"]
 [ext_resource type="Texture2D" uid="uid://irl63q53jknh" path="res://assets/textures/items/ores/raw_magnetite.png" id="11_sfkcr"]
 [ext_resource type="Texture2D" uid="uid://d3kjafhmywx3s" path="res://assets/textures/items/ores/raw_bauxite.png" id="12_tegxu"]
-[ext_resource type="Texture2D" uid="uid://bbts02caw12nh" path="res://assets/textures/items/ores/topaz.png" id="13_sgcvv"]
-[ext_resource type="Texture2D" uid="uid://on6jrqbcgjw5" path="res://assets/textures/items/ores/garnet.png" id="14_yfca6"]
-[ext_resource type="Texture2D" uid="uid://devr11bouug6s" path="res://assets/textures/items/ores/tsavorite.png" id="15_knr2n"]
+[ext_resource type="Texture2D" uid="uid://bbts02caw12nh" path="res://assets/textures/items/gems/topaz.png" id="13_sgcvv"]
+[ext_resource type="Texture2D" uid="uid://on6jrqbcgjw5" path="res://assets/textures/items/gems/garnet.png" id="14_yfca6"]
+[ext_resource type="Texture2D" uid="uid://devr11bouug6s" path="res://assets/textures/items/gems/tsavorite.png" id="15_knr2n"]
 [ext_resource type="Texture2D" uid="uid://bp8wniy2fjiup" path="res://assets/textures/items/ores/lava_cluster.png" id="16_iufqf"]
 [ext_resource type="Texture2D" uid="uid://xna5mu6wa3xh" path="res://assets/textures/items/ores/dense_ice.png" id="17_tkevc"]
-[ext_resource type="Texture2D" uid="uid://4yki2mp243nv" path="res://assets/textures/items/ores/amazonite.png" id="18_8mntl"]
-[ext_resource type="Texture2D" uid="uid://br5gwawvmimb7" path="res://assets/textures/items/ores/ametrine.png" id="19_v23fx"]
-[ext_resource type="Texture2D" uid="uid://0flmt25tfpx5" path="res://assets/textures/items/ores/apatite.png" id="20_ow6ev"]
-[ext_resource type="Texture2D" uid="uid://jgsqmtdcyylu" path="res://assets/textures/items/ores/frozen_diamond.png" id="21_v03f4"]
+[ext_resource type="Texture2D" uid="uid://4yki2mp243nv" path="res://assets/textures/items/gems/amazonite.png" id="18_8mntl"]
+[ext_resource type="Texture2D" uid="uid://br5gwawvmimb7" path="res://assets/textures/items/gems/ametrine.png" id="19_v23fx"]
+[ext_resource type="Texture2D" uid="uid://0flmt25tfpx5" path="res://assets/textures/items/gems/apatite.png" id="20_ow6ev"]
+[ext_resource type="Texture2D" uid="uid://jgsqmtdcyylu" path="res://assets/textures/items/gems/frozen_diamond.png" id="21_v03f4"]
 [ext_resource type="Texture2D" uid="uid://bhjis5djjw3u6" path="res://assets/textures/items/ores/raw_galena.png" id="22_r5npu"]
 [ext_resource type="Texture2D" uid="uid://21n8jxp1x6ku" path="res://assets/textures/items/ores/raw_silver.png" id="23_mqf8e"]
 [ext_resource type="Texture2D" uid="uid://cq0lyrld8ya3j" path="res://assets/textures/items/ores/raw_wolframite.png" id="24_duccr"]
 [ext_resource type="Texture2D" uid="uid://d255msdu3whk6" path="res://assets/textures/items/ores/raw_pyrolusite.png" id="25_p626e"]
 [ext_resource type="Texture2D" uid="uid://bmyqahldyiwyf" path="res://assets/textures/items/ores/raw_nickel.png" id="26_bx6yf"]
+[ext_resource type="Texture2D" uid="uid://wuik2r333m4h" path="res://assets/textures/items/ores/graphite.png" id="29_h1d75"]
+[ext_resource type="Texture2D" uid="uid://dah8stcbfbhmp" path="res://assets/textures/items/ores/raw_cobalt.png" id="30_3if0d"]
+[ext_resource type="Texture2D" uid="uid://dfsvjw62rapgp" path="res://assets/textures/items/ores/raw_uranium.png" id="31_gohtb"]
+[ext_resource type="Texture2D" uid="uid://d1y81kisq65ck" path="res://assets/textures/items/gems/charoite.png" id="32_nck7w"]
+[ext_resource type="Texture2D" uid="uid://0bpcin43lp80" path="res://assets/textures/items/gems/sugilite.png" id="33_pscgx"]
+[ext_resource type="Texture2D" uid="uid://bqwy8x6y6v5f4" path="res://assets/textures/items/gems/peridot.png" id="34_7gysh"]
+[ext_resource type="Texture2D" uid="uid://bnpcuukfkoims" path="res://assets/textures/items/ores/sulfur.png" id="35_nv61g"]
+[ext_resource type="Texture2D" uid="uid://cu3ctfwj0wblm" path="res://assets/textures/items/ores/raw_zirconium.png" id="36_22w3o"]
+[ext_resource type="Texture2D" uid="uid://bfyndhyjsae6s" path="res://assets/textures/items/ores/raw_platinum.png" id="37_n7np7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
 size = Vector2(6.33902, 5.5559)
@@ -507,4 +516,141 @@ texture = ExtResource("26_bx6yf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nickel"]
 position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Graphite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Graphite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Graphite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("29_h1d75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphite"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Charoite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Charoite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Charoite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("32_nck7w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charoite"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="PointLight2D" type="PointLight2D" parent="Charoite"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Sugilite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Sugilite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Sugilite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("33_pscgx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sugilite"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sugilite"]
+energy = 0.5
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Peridot" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Peridot"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Peridot"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("34_7gysh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Peridot"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="PointLight2D" type="PointLight2D" parent="Peridot"]
+energy = 0.5
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Sulfur" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Sulfur"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Sulfur"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("35_nv61g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sulfur"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="RawCobalt" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "RawCobalt"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RawCobalt"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("30_3if0d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawCobalt"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="RawUranium" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "RawUranium"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RawUranium"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("31_gohtb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawUranium"]
+position = Vector2(0.134196, 0.40957)
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="RawZirconium" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "RawZirconium"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RawZirconium"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("36_22w3o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawZirconium"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="RawPlatinum" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "RawPlatinum"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RawPlatinum"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("37_n7np7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawPlatinum"]
 shape = SubResource("CircleShape2D_y5rc7")

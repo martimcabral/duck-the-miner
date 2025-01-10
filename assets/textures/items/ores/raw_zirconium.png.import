@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jgsqmtdcyylu"
-path="res://.godot/imported/frozen_diamond.png-e851167587bb5934e6c967c47c3f3dd7.ctex"
+uid="uid://cu3ctfwj0wblm"
+path="res://.godot/imported/raw_zirconium.png-087e787eca21dcd01054c1836172cc64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/frozen_diamond.png"
-dest_files=["res://.godot/imported/frozen_diamond.png-e851167587bb5934e6c967c47c3f3dd7.ctex"]
+source_file="res://assets/textures/items/ores/raw_zirconium.png"
+dest_files=["res://.godot/imported/raw_zirconium.png-087e787eca21dcd01054c1836172cc64.ctex"]
 
 [params]
 

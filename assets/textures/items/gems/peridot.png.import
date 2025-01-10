@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://devr11bouug6s"
-path="res://.godot/imported/tsavorite.png-40aac5d626cdefee13be4466e7ee7ea5.ctex"
+uid="uid://bqwy8x6y6v5f4"
+path="res://.godot/imported/peridot.png-06bc2304ecdcd19c116723d415fa4687.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/tsavorite.png"
-dest_files=["res://.godot/imported/tsavorite.png-40aac5d626cdefee13be4466e7ee7ea5.ctex"]
+source_file="res://assets/textures/items/gems/peridot.png"
+dest_files=["res://.godot/imported/peridot.png-06bc2304ecdcd19c116723d415fa4687.ctex"]
 
 [params]
 

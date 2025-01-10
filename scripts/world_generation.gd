@@ -71,6 +71,14 @@ func start_music():
 				$WorldMusic/Enter.play()
 			3:
 				$WorldMusic/Rift.play()
+	elif asteroid_biome == "Swamp":
+		match random_music:
+			1:
+				$WorldMusic/Void.play()
+			2:
+				$WorldMusic/Enter.play()
+			3:
+				$WorldMusic/Wave.play()
 
 func _ready():
 	var min_temp = -10  # Minimum temperature
@@ -158,6 +166,8 @@ func _ready():
 				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 0))
 			elif asteroid_biome == "Frozen":
 				CaveSystem.set_cell(Vector2i(x, y), 2, Vector2i(0, 0))
+			elif asteroid_biome == "Swamp":
+				CaveSystem.set_cell(Vector2i(x, y), 3, Vector2i(0, 0))
 			var noise = floor(fnl.get_noise_2d(x, y) * 5)
 			if noise == 0 and asteroid_biome == "Stony":
 				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
@@ -165,6 +175,8 @@ func _ready():
 				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 1))
 			elif noise == 0 and asteroid_biome == "Frozen":
 				CaveSystem.set_cell(Vector2i(x, y), 2, Vector2i(0, 1))
+			elif noise == 0 and asteroid_biome == "Swamp":
+				CaveSystem.set_cell(Vector2i(x, y), 3, Vector2i(0, 1))
 	
 	#Create safe Cube	
 	start_position()
@@ -199,7 +211,15 @@ func _ready():
 			put_diamond()
 			put_gems()
 			put_ice()
-			
+		
+		"Swamp":
+			put_graphite()
+			put_cobalt()
+			put_uranium()
+			put_platinum()
+			put_zirconium()
+			put_sulfur()
+			put_gems()
 	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
 
 func create_world_borders():
@@ -254,6 +274,8 @@ func start_position():
 				CaveSystem.set_cell(Vector2i(x,y), 1, Vector2i(0, 1))
 			elif asteroid_biome == "Frozen":
 				CaveSystem.set_cell(Vector2i(x,y), 2, Vector2i(0, 1))
+			elif asteroid_biome == "Swamp":
+				CaveSystem.set_cell(Vector2i(x,y), 3, Vector2i(0, 1))
 			
 
 func put_ore(ore_height_min, ore_height_max, spawn_chance, biome, atlas_coords):
@@ -326,10 +348,28 @@ func put_pyrolustite():
 func put_nickel():
 	put_ore(350, 650, 125, 2, Vector2i(0, 3))
 
+func put_graphite():
+	put_ore(0, 650, 250, 3, Vector2i(1, 0))
+
+func put_cobalt():
+	put_ore(0, 1000, 400, 3, Vector2i(2, 0))
+
+func put_uranium():
+	put_ore(750, 950, 500, 3, Vector2i(3, 0))
+
+func put_platinum():
+	put_ore(250, 550, 475, 3, Vector2i(0, 2))
+
+func put_zirconium():
+	put_ore(0, 1100, 325, 3, Vector2i(1, 2))
+
+func put_sulfur():
+	put_ore(500, 575, 15, 3, Vector2i(3, 2))
+
 func put_gems():
 	for x in range(world_width):
 		for y in range(700, 1600):
-			if randi_range(0, 675) == 1:
+			if randi_range(0, 625) == 1:
 				var tile_pos = Vector2i(x, y)
 				if CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
 					var random_gem = randi_range(1, 3)
@@ -348,3 +388,8 @@ func put_gems():
 							1: CaveSystem.set_cell(tile_pos, 2, Vector2i(1, 1))
 							2: CaveSystem.set_cell(tile_pos, 2, Vector2i(2, 1))
 							3: CaveSystem.set_cell(tile_pos, 2, Vector2i(3, 1))
+					if asteroid_biome == "Swamp":
+						match random_gem:
+							1: CaveSystem.set_cell(tile_pos, 3, Vector2i(1, 1))
+							2: CaveSystem.set_cell(tile_pos, 3, Vector2i(2, 1))
+							3: CaveSystem.set_cell(tile_pos, 3, Vector2i(3, 1))

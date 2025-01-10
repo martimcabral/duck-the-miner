@@ -1239,6 +1239,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1001, 591)
 stream = ExtResource("5_08a1y")
 bus = &"Player"
 

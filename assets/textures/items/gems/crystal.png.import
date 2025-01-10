@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4yki2mp243nv"
-path="res://.godot/imported/amazonite.png-ca8869e78cfe236c7e23451deb1d483e.ctex"
+uid="uid://cr3sckb2abm3m"
+path="res://.godot/imported/crystal.png-32beb31c3db3adc77a0cedae33f88dee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/amazonite.png"
-dest_files=["res://.godot/imported/amazonite.png-ca8869e78cfe236c7e23451deb1d483e.ctex"]
+source_file="res://assets/textures/items/gems/crystal.png"
+dest_files=["res://.godot/imported/crystal.png-32beb31c3db3adc77a0cedae33f88dee.ctex"]
 
 [params]
 

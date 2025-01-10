@@ -55,7 +55,16 @@ var item_icons = {
 	"Raw Silver": "res://assets/textures/items/ores/raw_silver.png",
 	"Raw Wolframite": "res://assets/textures/items/ores/raw_wolframite.png",
 	"Raw Pyrolusite": "res://assets/textures/items/ores/raw_pyrolusite.png",
-	"Raw Nickel": "res://assets/textures/items/ores/raw_nickel.png"
+	"Raw Nickel": "res://assets/textures/items/ores/raw_nickel.png",
+	"Raw Uranium": "res://assets/textures/items/ores/raw_uranium.png",
+	"Raw Platinum": "res://assets/textures/items/ores/raw_nickel.png",
+	"Raw Zirconium": "res://assets/textures/items/ores/raw_zirconium.png",
+	"Raw Cobalt": "res://assets/textures/items/ores/raw_cobalt.png",
+	"Sulfur": "res://assets/textures/items/ores/sulfur.png",
+	"Graphite": "res://assets/textures/items/ores/graphite.png",
+	"Charoite": "res://assets/textures/items/gems/charoite.png",
+	"Sugilite": "res://assets/textures/items/gems/sugilite.png",
+	"Peridot": "res://assets/textures/items/gems/peridot.png"
 }
 
 func _ready():
@@ -95,7 +104,7 @@ func _ready():
 			var item_text = "%s: %d" % [item_name, quantity]
 			
 			# Add the item to the ItemList
-			var icon = load(item_icons.get(item_name, "res://assets/textures/items/ores/rock_and_stone.png"))  # Default icon if not found
+			var icon = load(item_icons.get(item_name, "res://assets/textures/items/no_texture.png"))  # Default icon if not found
 			var item_index = item_list.add_item(item_text)  # Add item text to the list
 			
 			# Set the icon for the item
@@ -346,7 +355,7 @@ func create_asteroid_name():
 func generate_asteroid_data() -> Dictionary:
 	var fields = {}  # Dictionary to store asteroid fields
 	var field_names = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
-	var biomes = ["Stony", "Vulcanic", "Frozen"]
+	var biomes = ["Stony", "Vulcanic", "Frozen", "Swamp"]
 	var objectites_primary = ["n/a"]
 	var objectites_secondary = ["n/a"]
 	
@@ -354,13 +363,14 @@ func generate_asteroid_data() -> Dictionary:
 		var asteroids = {}  # Dictionary to store asteroids in the current field
 		var asteroid_id = 1  # Reset asteroid ID counter for each field
 			
-		for asteroid_num in range(1, randi_range(3, 8) + 1):
+		for asteroid_num in range(1, randi_range(4, 9) + 1):
 			var as_name = create_asteroid_name()
 			var biome = biomes[randi() % biomes.size()]
 			match biome:
 				"Stony": asteroid_temperature = randi_range(15, 30)
 				"Vulcanic": asteroid_temperature = randi_range(75, 90)
 				"Frozen": asteroid_temperature = randi_range(-45, -65)
+				"Swamp": asteroid_temperature = randi_range(-5, 12)
 			var primary_objectite = objectites_primary[randi() % objectites_primary.size()]
 			var secondary_objectite = objectites_secondary[randi() % objectites_secondary.size()]
 			

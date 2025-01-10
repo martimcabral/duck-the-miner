@@ -174,9 +174,8 @@ func change_resolution(index):
 		12:
 			DisplayServer.window_set_size(Vector2i(1024, 768))
 
-# Converts a value from 0-100 to -80 to 0
 func convert_to_db(value: float) -> float:
-	return lerp(-80, 0, value / 100.0)
+	return lerp(-50, 0, value / 100.0)
 
 func _on_master_volume_slider_value_changed(value: float) -> void:
 	var db_value = convert_to_db(value)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5swk404rbin3"
-path="res://.godot/imported/diamond.png-bcb3b77946a4253fdc50c0dda15f323a.ctex"
+uid="uid://k3vcrgovwbdr"
+path="res://.godot/imported/ruby.png-798b8c15be599ae0f6b54cd1b417ae95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/diamond.png"
-dest_files=["res://.godot/imported/diamond.png-bcb3b77946a4253fdc50c0dda15f323a.ctex"]
+source_file="res://assets/textures/items/gems/ruby.png"
+dest_files=["res://.godot/imported/ruby.png-798b8c15be599ae0f6b54cd1b417ae95.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtbodpsor8bxe"
-path="res://.godot/imported/emerald.png-d515f3d6c9a847f794854ac07cdd4e61.ctex"
+uid="uid://jgsqmtdcyylu"
+path="res://.godot/imported/frozen_diamond.png-0084adb349ef45b6d531de0ae86c0b65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/emerald.png"
-dest_files=["res://.godot/imported/emerald.png-d515f3d6c9a847f794854ac07cdd4e61.ctex"]
+source_file="res://assets/textures/items/gems/frozen_diamond.png"
+dest_files=["res://.godot/imported/frozen_diamond.png-0084adb349ef45b6d531de0ae86c0b65.ctex"]
 
 [params]
 
