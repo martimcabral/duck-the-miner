@@ -28,24 +28,18 @@ func _on_abort_mission_button_pressed() -> void:
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
 	
-	# Load current inventory from the JSON file
-	var current_inventory = load_inventory("res://inventory.json")
-	
+	# Load current inventory from the CFG file
+	var current_inventory = load_inventory("res://inventory.cfg")
 	# Get new items from the ItemList Node
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
-	
 	# Merge current inventory with new items
 	var updated_inventory = merge_items(current_inventory, new_items)
-	
-	# Convert the updated inventory to JSON format
-	var formatted_data = format_items_to_json(updated_inventory)
-	
-	# Save JSON to a file
-	var file_path = "res://inventory.json"
-	if save_json_to_file(file_path, formatted_data):
-		print("JSON saved successfully to", file_path)
+	# Save updated inventory to the CFG file
+	var file_path = "res://inventory.cfg"
+	if save_inventory_to_cfg(file_path, updated_inventory):
+		print("Inventory saved successfully to", file_path)
 	else:
-		print("Failed to save JSON")
+		print("Failed to save inventory")
 
 # Function to retrieve items from the ItemList Node
 func get_items_from_itemlist(item_list_node):
@@ -54,27 +48,27 @@ func get_items_from_itemlist(item_list_node):
 		var item_text = item_list_node.get_item_text(i)
 		var item_name = item_text
 		var quantity = 1
-
+		
 		# Split the item text into parts
 		var parts = item_text.split(" ")
 		if parts.size() > 1:
 			item_name = " ".join(parts.slice(0, parts.size() - 1))  # Join all except the last part
 			quantity = int(parts[-1])  # Get the last part as a number
-
+		
 		items.append({
 			"name": item_name,
 			"quantity": quantity
 		})
 	return items
 
-# Function to merge items into the current inventory
 func merge_items(current_inventory, new_items):
 	var inventory_dict = {}
 
-	# Add current inventory to a dictionary
-	if current_inventory.size() > 0:
-		for item_name in current_inventory[0].keys():
-			inventory_dict[item_name] = current_inventory[0][item_name]
+	# Convert current_inventory into a usable dictionary
+	for item_name in current_inventory:
+		# Assuming current_inventory is a dictionary-like structure with keys as item names
+		var quantity = current_inventory.get(item_name, 0)
+		inventory_dict[item_name] = quantity
 
 	# Add or update items from the new inventory
 	for item in new_items:
@@ -83,31 +77,21 @@ func merge_items(current_inventory, new_items):
 		else:
 			inventory_dict[item["name"]] = item["quantity"]
 
-	# Return the merged inventory as a list of one dictionary
-	return [inventory_dict]
+	return inventory_dict
 
-# Function to format the inventory into the desired JSON structure
-func format_items_to_json(inventory_dict):
-	# Convert inventory dictionary to a JSON string
-	return JSON.stringify(inventory_dict, "\t")  # Pretty-print with tabs
-
-# Function to load inventory from a JSON file
+# Function to load inventory from a CFG file
 func load_inventory(file_path):
-	var file = FileAccess.open(file_path, FileAccess.READ)
-	if file:
-		var json = file.get_as_text()
-		file.close()
-		var json_parser = JSON.new()  # Create an instance of the JSON class
-		var result = json_parser.parse(json)
-		if result == OK:
-			return json_parser.get_data()  # Return parsed JSON as a list of dictionaries
-	return [{}]  # Return an empty inventory if the file does not exist or is invalid
+	var config = ConfigFile.new()
+	if config.load(file_path) == OK:
+		var inventory_data = {}
+		for item_name in config.get_section_keys("inventory"):
+			inventory_data[item_name] = config.get_value("inventory", item_name, 0)  # Default to 0 if not found
+		return inventory_data
+	return {}
 
-# Function to save JSON data to a file
-func save_json_to_file(file_path, json_data):
-	var file = FileAccess.open(file_path, FileAccess.WRITE)
-	if file:
-		file.store_string(json_data)
-		file.close()
-		return true
-	return false
+# Function to save inventory to a CFG file
+func save_inventory_to_cfg(file_path, inventory):
+	var config = ConfigFile.new()
+	for item_name in inventory.keys():
+		config.set_value("inventory", item_name, inventory[item_name])
+	return config.save(file_path) == OK

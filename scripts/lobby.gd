@@ -59,42 +59,31 @@ var item_icons = {
 }
 
 func _ready():
+	# Path to the CFG file
+	var inv_path = "res://inventory.cfg"
 	
+	# Load the CFG file
+	var config = ConfigFile.new()
+	var load_result = config.load(inv_path)
 	
-	# Path to the JSON file
-	var inv_path = "res://inventory.json"
-	
-	# Load the JSON file
-	var file = FileAccess.open(inv_path, FileAccess.READ)
-	
-	# Check if the file was successfully opened
-	if file:
-		# Read the content of the file
-		var json_data = file.get_as_text()
-		file.close()
+	# Check if the file was successfully loaded
+	if load_result == OK:
+		# Get all items from the "inventory" section
+		var inventory_data = config.get_section_keys("inventory")
 		
-		# Create an instance of the JSON parser
-		var json_parser = JSON.new()
-		var parse_result = json_parser.parse(json_data)
-		
-		# Check if the parsing was successful
-		if parse_result == OK:
-			var parsed_data = json_parser.data
-			# Populate the ItemList with items and their icons
-			for item_name in parsed_data[0]:
-				var quantity = parsed_data[0][item_name]
-				var item_text = "%s: %d" % [item_name, quantity]
-				
-				# Add the item to the ItemList
-				var icon = load(item_icons.get(item_name, "res://assets/textures/items/ores/rock_and_stone.png"))  # Default icon if not found
-				var item_index = item_list.add_item(item_text)  # Add item text to the list
-				
-				# Set the icon for the item
-				item_list.set_item_icon(item_index, icon)
-		else:
-			print("Error parsing JSON: ", parse_result)
+		# Populate the ItemList with items and their icons
+		for item_name in inventory_data:
+			var quantity = config.get_value("inventory", item_name, 0)  # Default quantity is 0
+			var item_text = "%s: %d" % [item_name, quantity]
+			
+			# Add the item to the ItemList
+			var icon = load(item_icons.get(item_name, "res://assets/textures/items/ores/rock_and_stone.png"))  # Default icon if not found
+			var item_index = item_list.add_item(item_text)  # Add item text to the list
+			
+			# Set the icon for the item
+			item_list.set_item_icon(item_index, icon)
 	else:
-		print("Failed to open file: ", inv_path)
+		print("Failed to load CFG file: ", inv_path)
 		
 	if $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.item_count == 0:
 		$Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.visible = false
@@ -297,7 +286,6 @@ func _on_gamma_area_2d_mouse_exited() -> void:
 
 func _on_omega_area_2d_mouse_exited() -> void:
 	$FieldNameLabel.text = ""
-
 
 func _on_yotta_area_2d_mouse_exited() -> void:
 	$FieldNameLabel.text = ""
