@@ -66,6 +66,9 @@ func _ready():
 		print("[options_menu.gd] Failed to load config file. Error:", err)
 
 func _on_back_button_pressed() -> void:
+	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".play()
+	
 	$DisplayPanel.visible = false
 	$"../StartMenu".visible = true
 	$".".visible = false
@@ -171,22 +174,34 @@ func change_resolution(index):
 		12:
 			DisplayServer.window_set_size(Vector2i(1024, 768))
 
+# Converts a value from 0-100 to -80 to 0
+func convert_to_db(value: float) -> float:
+	return lerp(-80, 0, value / 100.0)
+
 func _on_master_volume_slider_value_changed(value: float) -> void:
+	var db_value = convert_to_db(value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_value)
 	$AudioPanel/CurrentVolume.text = str(value)
 	config.set_value("audio", "master", value)
 	config.save(file_path)
 
 func _on_music_volume_slider_value_changed(value: float) -> void:
+	var db_value = convert_to_db(value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), db_value)
 	$AudioPanel/CurrentMusicVolume.text = str(value)
 	config.set_value("audio", "music", value)
 	config.save(file_path)
 
 func _on_ambient_volume_slider_value_changed(value: float) -> void:
+	var db_value = convert_to_db(value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient"), db_value)
 	$AudioPanel/CurrentAmbientVolume.text = str(value)
 	config.set_value("audio", "ambient", value)
 	config.save(file_path)
 
 func _on_player_volume_slider_value_changed(value: float) -> void:
+	var db_value = convert_to_db(value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Player"), db_value)
 	$AudioPanel/CurrentPlayerVolume.text = str(value)
 	config.set_value("audio", "player", value)
 	config.save(file_path)

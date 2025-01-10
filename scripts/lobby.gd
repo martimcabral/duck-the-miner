@@ -59,6 +59,24 @@ var item_icons = {
 }
 
 func _ready():
+	var save_file = ConfigFile.new()
+	save_file.load("res://debt.cfg")
+	var current_debt = str(save_file.get_value("debt", "current", null))
+	var number_str = str(current_debt)
+	# Create an empty list to store the parts of the formatted number
+	var formatted_number = ""
+	var counter = 0
+	
+	# Loop through the string representation of the number backwards
+	for i in range(number_str.length() - 1, -1, -1):
+		formatted_number = number_str[i] + formatted_number
+		counter += 1
+		
+		# Add a space after every 3 digits, but not after the last group
+		if counter % 3 == 0 and i != 0:
+			formatted_number = " " + formatted_number
+	$Camera2D/HUD/LobbyPanel/MoneyPanel/DebtLabel.text = "€ " + formatted_number
+	
 	# Path to the CFG file
 	var inv_path = "res://inventory.cfg"
 	
@@ -428,6 +446,9 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/SystemInfoPanel.visible = true
 
 func _on_back_to_lobby_button_pressed() -> void:
+	$MouseSoundEffects.stream = load("res://sounds/sound_effects/back.ogg")
+	$MouseSoundEffects.play()
+	
 	selecting_mission = false
 	$Camera2D/HUD/LobbyPanel.visible = true
 	$Camera2D/HUD/BackToLobbyButton.visible = false

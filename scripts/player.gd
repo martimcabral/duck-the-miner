@@ -31,6 +31,9 @@ var block_selection_default = preload("res://assets/textures/selected_block.png"
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
 func _ready():
+	if world.asteroid_biome == "Frozen":
+		$Camera2D/HUD/FreezingOverlay.visible = true
+	
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(0, cursor_texture_sword)
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(1, cursor_texture_pickaxe)
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(2, cursor_texture_light)

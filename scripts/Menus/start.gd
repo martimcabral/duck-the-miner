@@ -4,6 +4,36 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
+	var save_path = "res://debt.cfg"
+	var save_config = ConfigFile.new()
+	
+	if FileAccess.file_exists(save_path):
+		print("[debt.cfg] was detected successfully")
+	else:
+		print("[debt.cfg] not found. Creating a new one..., with a new debt.")
+		var new_debt = int(randf_range(9_000_000_000, 10_000_000_000))
+		save_config.set_value("debt", "start", new_debt)
+		save_config.set_value("debt", "current", new_debt)
+		save_config.save(save_path)
+
+################################################################################
+################################################################################
+################################################################################
+
+	var file_path = "res://game_settings.cfg"
+	var config = ConfigFile.new()
+	
+	if FileAccess.file_exists(file_path):
+		print("[game_settings.cfg] was detected successfully")
+	else:
+		print("[game_settings.cfg] not found. Creating a new one...")
+		# Save the file
+		var save_error = config.save(file_path)
+		if save_error != OK:
+			print("[ERROR] Could not save the configuration file: ", save_error)
+		else:
+			print("Configuration file created successfully.")
+	
 	var empty_file = "Empty"
 	var result = JSON.stringify(empty_file)
 	

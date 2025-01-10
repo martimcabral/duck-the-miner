@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=34 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" path="res://scripts/Menus/options_menu.gd" id="3_vt73r"]
+[ext_resource type="AudioStream" uid="uid://dx8qvewqg7pwy" path="res://sounds/sound_effects/play.ogg" id="5_08a1y"]
 
 [sub_resource type="Shader" id="Shader_o5xol"]
 code = "shader_type canvas_item;
@@ -273,9 +274,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -495.0
-offset_top = 97.0
+offset_top = 105.0
 offset_right = 544.0
-offset_bottom = 256.0
+offset_bottom = 264.0
 grow_horizontal = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -655,7 +656,6 @@ scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="AudioPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -784,6 +784,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
 step = 5.0
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
+visible = false
 layout_mode = 2
 offset_left = 304.0
 offset_top = 5.0
@@ -1234,7 +1235,15 @@ position = Vector2(1000, 591)
 stream = ExtResource("2_v23jq")
 volume_db = -5.0
 autoplay = true
+bus = &"Music"
 parameters/looping = true
+
+[node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_08a1y")
+bus = &"Player"
+
+[node name="TimeToPlay" type="Timer" parent="MouseSoundEffects"]
+wait_time = 0.75
 
 [connection signal="pressed" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/OptionsButton" to="GUI/Center/StartMenu" method="_on_options_button_pressed"]
@@ -1270,3 +1279,4 @@ parameters/looping = true
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UniverseZoomOutButton" to="GUI/Center/OptionsMenu" method="_on_universe_zoom_out_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UseFlashlightButton" to="GUI/Center/OptionsMenu" method="_on_use_flashlight_button_pressed"]
 [connection signal="pressed" from="GUI/Center/CreditsMenu/BackButton" to="GUI/Center/StartMenu" method="_on_back_button_pressed"]
+[connection signal="timeout" from="MouseSoundEffects/TimeToPlay" to="GUI/Center/StartMenu" method="_on_time_to_play_timeout"]

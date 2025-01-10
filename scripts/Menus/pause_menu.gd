@@ -28,14 +28,10 @@ func _on_abort_mission_button_pressed() -> void:
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
 	
-	# Load current inventory from the CFG file
-	var current_inventory = load_inventory("res://inventory.cfg")
-	# Get new items from the ItemList Node
-	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
-	# Merge current inventory with new items
-	var updated_inventory = merge_items(current_inventory, new_items)
-	# Save updated inventory to the CFG file
 	var file_path = "res://inventory.cfg"
+	var current_inventory = load_inventory("res://inventory.cfg")
+	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
+	var updated_inventory = merge_items(current_inventory, new_items)
 	if save_inventory_to_cfg(file_path, updated_inventory):
 		print("Inventory saved successfully to", file_path)
 	else:

@@ -6,18 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/players/lights/point_light.png" id="3_jwt0r"]
 [ext_resource type="Texture2D" uid="uid://cbhiqpcmuwp47" path="res://assets/textures/players/duck_flying.png" id="3_twhi0"]
 [ext_resource type="Texture2D" uid="uid://cvesw4kr1dsav" path="res://assets/textures/players/lights/flashlight_beam_larger.png" id="4_83sd1"]
-[ext_resource type="AudioStream" uid="uid://diia266v1kn1k" path="res://sounds/sound_efects/mining1.ogg" id="6_754b5"]
+[ext_resource type="AudioStream" uid="uid://diia266v1kn1k" path="res://sounds/sound_effects/mining1.ogg" id="6_754b5"]
 [ext_resource type="Texture2D" uid="uid://cvf6kq6fnv7y1" path="res://assets/textures/freezing_effect.png" id="7_i24mp"]
-[ext_resource type="AudioStream" uid="uid://8weydkx10qqi" path="res://sounds/sound_efects/mining2.ogg" id="7_lpuh6"]
-[ext_resource type="AudioStream" uid="uid://bwgwkvtcl6fsm" path="res://sounds/sound_efects/mining3.ogg" id="8_avynl"]
-[ext_resource type="AudioStream" uid="uid://c3kmi1pd30e6n" path="res://sounds/sound_efects/mining4.ogg" id="9_4jbyg"]
+[ext_resource type="AudioStream" uid="uid://8weydkx10qqi" path="res://sounds/sound_effects/mining2.ogg" id="7_lpuh6"]
+[ext_resource type="AudioStream" uid="uid://bwgwkvtcl6fsm" path="res://sounds/sound_effects/mining3.ogg" id="8_avynl"]
+[ext_resource type="AudioStream" uid="uid://c3kmi1pd30e6n" path="res://sounds/sound_effects/mining4.ogg" id="9_4jbyg"]
 [ext_resource type="Texture2D" uid="uid://cjtat8pahmy7l" path="res://assets/textures/players/status/health_empty.png" id="9_xk1ih"]
 [ext_resource type="Texture2D" uid="uid://dlgpxnlf8ckyo" path="res://assets/textures/players/status/temperature_empty.png" id="10_krbit"]
 [ext_resource type="Texture2D" uid="uid://cedbcgmeyqrbb" path="res://assets/textures/players/status/health_full.png" id="10_mkla5"]
 [ext_resource type="Texture2D" uid="uid://th7mth63l2ha" path="res://assets/textures/players/status/empty_circle.png" id="11_f2tsg"]
 [ext_resource type="Texture2D" uid="uid://6qb1b4n54kt8" path="res://assets/textures/players/status/temperature_full.png" id="11_xclme"]
-[ext_resource type="AudioStream" uid="uid://by78b6htnt5ir" path="res://sounds/sound_efects/place_block.ogg" id="12_r1vvj"]
-[ext_resource type="AudioStream" uid="uid://bo14ppma24hbf" path="res://sounds/sound_efects/quack.ogg" id="13_2b2kh"]
+[ext_resource type="AudioStream" uid="uid://by78b6htnt5ir" path="res://sounds/sound_effects/place_block.ogg" id="12_r1vvj"]
+[ext_resource type="AudioStream" uid="uid://bo14ppma24hbf" path="res://sounds/sound_effects/quack.ogg" id="13_2b2kh"]
 [ext_resource type="Texture2D" uid="uid://b0f58cyexu4f4" path="res://assets/textures/players/status/oxygen_full.png" id="13_fiy22"]
 [ext_resource type="Texture2D" uid="uid://bekjnl7clpv2l" path="res://assets/textures/players/status/uv_full.png" id="14_6fg1g"]
 [ext_resource type="Texture2D" uid="uid://cn1dcngf0i6gp" path="res://assets/textures/players/status/hunger_full.png" id="15_6ufol"]
@@ -217,6 +217,7 @@ drag_vertical_enabled = true
 
 [node name="FreezingOverlay" type="TextureRect" parent="Camera2D/HUD"]
 visible = false
+self_modulate = Color(1, 1, 1, 0.843137)
 texture_filter = 1
 offset_left = -2.0
 offset_top = -1.0
@@ -469,24 +470,30 @@ tab_3/title = "UV Flashlight"
 
 [node name="Mining1" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("6_754b5")
+bus = &"Player"
 
 [node name="Mining2" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("7_lpuh6")
+bus = &"Player"
 
 [node name="Mining3" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("8_avynl")
+bus = &"Player"
 
 [node name="Mining4" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("9_4jbyg")
+bus = &"Player"
 
 [node name="PlaceBlock" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("12_r1vvj")
 volume_db = -10.0
+bus = &"Ambient"
 
 [node name="Quack" type="AudioStreamPlayer2D" parent="Player Sounds"]
 stream = ExtResource("13_2b2kh")
 volume_db = -5.0
 max_distance = 2e+06
+bus = &"Player"
 
 [node name="HungerConsumption" type="Timer" parent="."]
 wait_time = 20.0
