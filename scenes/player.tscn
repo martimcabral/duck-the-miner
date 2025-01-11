@@ -217,7 +217,7 @@ drag_vertical_enabled = true
 
 [node name="FreezingOverlay" type="TextureRect" parent="Camera2D/HUD"]
 visible = false
-self_modulate = Color(1, 1, 1, 0.843137)
+self_modulate = Color(1, 1, 1, 0.462745)
 texture_filter = 1
 offset_left = -2.0
 offset_top = -1.0

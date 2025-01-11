@@ -619,7 +619,6 @@ wait_time = 180.0
 autostart = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("24_dvxve")]
-visible = false
 
 [node name="TitleTimer" type="Timer" parent="."]
 wait_time = 15.0

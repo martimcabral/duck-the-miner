@@ -44,6 +44,8 @@ func _process(_delta: float) -> void:
 	$Player/Camera2D/HUD/Stats/uvStat.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/HungerStat.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/ThirstStat.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
 	
 func start_music():
 	var random_music = randi_range(1, 3)
@@ -100,8 +102,6 @@ func _ready():
 	$Player/HUD/FieldTitle.text = "[center]%s[/center]" % asteroid_field + " | " + asteroid_biome
 	
 	if DiscordRPC.get_is_discord_working():
-		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Debt: 4 528 913 301 674$"
 		if asteroid_field == null:
 			DiscordRPC.details = "🌑: " + asteroid_name + " at Unknown Field"
 		else:
@@ -117,16 +117,16 @@ func _ready():
 	match asteroid_field:
 		"Delta Belt":
 			world_width = randi_range(200, 300)
-			world_height = randi_range(300, 600)
+			world_height = randi_range(800, 950)
 		"Gamma Field":
 			world_width = randi_range(250, 400)
-			world_height = randi_range(500, 900)
+			world_height = randi_range(850, 1025)
 		"Omega Field":
-			world_width = randi_range(250, 400)
-			world_height = randi_range(750, 1000)
+			world_width = randi_range(250, 350)
+			world_height = randi_range(850, 1000)
 		"Koppa Belt":
 			world_width = randi_range(150, 250)
-			world_height = randi_range(1250, 1500)
+			world_height = randi_range(1050, 1250)
 		_:
 			world_width = 300
 			world_height = 300
@@ -178,7 +178,7 @@ func _ready():
 			elif noise == 0 and asteroid_biome == "Swamp":
 				CaveSystem.set_cell(Vector2i(x, y), 3, Vector2i(0, 1))
 	
-	#Create safe Cube	
+	#Create safe Cube
 	start_position()
 	
 	# Put Ores:
@@ -349,22 +349,22 @@ func put_nickel():
 	put_ore(350, 650, 125, 2, Vector2i(0, 3))
 
 func put_graphite():
-	put_ore(0, 650, 250, 3, Vector2i(1, 0))
+	put_ore(0, 1500, 175, 3, Vector2i(1, 0))
 
 func put_cobalt():
-	put_ore(0, 1000, 400, 3, Vector2i(2, 0))
+	put_ore(0, 425, 80, 3, Vector2i(2, 0))
 
 func put_uranium():
-	put_ore(750, 950, 500, 3, Vector2i(3, 0))
+	put_ore(750, 950, 75, 3, Vector2i(3, 0))
 
 func put_platinum():
-	put_ore(250, 550, 475, 3, Vector2i(0, 2))
+	put_ore(250, 550, 225, 3, Vector2i(0, 2))
 
 func put_zirconium():
-	put_ore(0, 1100, 325, 3, Vector2i(1, 2))
+	put_ore(0, 1100, 115, 3, Vector2i(1, 2))
 
 func put_sulfur():
-	put_ore(500, 575, 15, 3, Vector2i(3, 2))
+	put_ore(350, 625, 50, 3, Vector2i(3, 2))
 
 func put_gems():
 	for x in range(world_width):

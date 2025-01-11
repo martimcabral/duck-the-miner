@@ -143,6 +143,8 @@ func _ready():
 	$FieldNameLabel.text = ""
 	
 	if DiscordRPC.get_is_discord_working():
+		DiscordRPC.small_image = "diamond-512"
+		DiscordRPC.small_image_text = "Debt: " + formatted_number + " €" 
 		var random = randi_range(1, 2)
 		match random:
 			1:
