@@ -1,33 +1,5 @@
 extends Node2D
 
-var selecting_mission = false
-var mission_selected = false
-
-var min_zoom = 0.15
-var max_zoom = 2.5
-
-var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
-var vogais = ['a', 'e', 'i', 'o', 'u']
-
-var delta_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/delta.png")
-var gamma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/gamma.png")
-var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/omega.png")
-var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/koppa.png")
-
-var json_path = "res://missions.json"
-var current_page = 1
-var current_asteroid_name : String
-var current_asteroid_biome : String
-var current_field : String
-var asteroid_temperature
-
-var delta_ammount
-var gamma_ammount
-var omega_ammount
-var koppa_ammount
-
-@onready var item_list = $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList
-
 # Dictionary to map item names to their corresponding texture paths
 var item_icons = {
 	"Stone": "res://assets/textures/items/ores/rock_and_stone.png",
@@ -66,6 +38,34 @@ var item_icons = {
 	"Sugilite": "res://assets/textures/items/gems/sugilite.png",
 	"Peridot": "res://assets/textures/items/gems/peridot.png"
 }
+
+var selecting_mission = false
+var mission_selected = false
+
+var min_zoom = 0.15
+var max_zoom = 2.5
+
+var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+var vogais = ['a', 'e', 'i', 'o', 'u']
+
+var delta_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/delta.png")
+var gamma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/gamma.png")
+var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/omega.png")
+var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/koppa.png")
+
+var json_path = "res://missions.json"
+var current_page = 1
+var current_asteroid_name : String
+var current_asteroid_biome : String
+var current_field : String
+var asteroid_temperature
+
+var delta_ammount : int = 0
+var gamma_ammount : int = 0
+var omega_ammount : int = 0
+var koppa_ammount : int = 0
+
+@onready var item_list = $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList
 
 func _ready():
 	var save_file = ConfigFile.new()
@@ -437,17 +437,39 @@ func get_asteroid_info():
 			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 
 func get_asteroids_per_field(field : String):
+	# This Code in the Second Half was completly remade due to a error of impossibility of reading the asteroid data on the JSON File
+	# Ensure the file is opened and read correctly
 	var file = FileAccess.open(json_path, FileAccess.READ)
-	var json_string = file.get_as_text()
-	file.close()
-	
-	var json_parser = JSON.new()
-	json_parser.parse(json_string)
-	
-	var asteroid_data = json_parser.get_data()
-	var asteroid_count = asteroid_data[field].keys().size()
-	print("[asteroid_selector.gd] ", field , " has ", asteroid_count, " Asteroids")
-	return asteroid_count
+	if file:
+		var json_string = file.get_as_text()
+		file.close()
+		
+		var json_parser = JSON.new()
+		var error = json_parser.parse(json_string)
+		if error != OK:
+			print("Error parsing JSON: ", error)
+			return 0
+		
+		# Get the parsed data (should be a dictionary)
+		var asteroid_data = json_parser.get_data()
+		
+		# Ensure asteroid_data is a dictionary
+		if typeof(asteroid_data) == TYPE_DICTIONARY:
+			# Check if the field exists in asteroid_data
+			if asteroid_data.has(field):
+				var field_data = asteroid_data[field]
+				var asteroid_count = field_data.keys().size()
+				print("[asteroid_selector.gd] ", field, " has ", asteroid_count, " Asteroids")
+				return asteroid_count
+			else:
+				print("Field '", field, "' not found in asteroid data.")
+				return 0
+		else:
+			print("Parsed data is not a dictionary!")
+			return 0
+	else:
+		print("Failed to open file: ", json_path)
+		return 0
 
 func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
