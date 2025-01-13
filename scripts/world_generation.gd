@@ -31,7 +31,7 @@ func _process(_delta: float) -> void:
 	fade_out = time_remaining_Title_Timer / 10
 	
 	if $HUDFadeIn.time_left <= 5:
-		fade_in += time_remaining_HUD_Fade_In / 5
+		fade_in += time_remaining_HUD_Fade_In
 	
 	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, fade_out))
 	$Player/HUD/FieldTitle.add_theme_color_override("default_color", Color(0.509, 0.509, 0.509, fade_out))
@@ -42,8 +42,6 @@ func _process(_delta: float) -> void:
 	$Player/Camera2D/HUD/Stats/TemperatureStat.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/OxygenStat.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/uvStat.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/HungerStat.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/ThirstStat.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
 	

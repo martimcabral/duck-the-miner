@@ -87,7 +87,7 @@ func _ready():
 	$Camera2D/HUD/LobbyPanel/MoneyPanel/DebtLabel.text = "€ " + formatted_number
 	
 	# Path to the CFG file
-	var inv_path = "res://inventory.cfg"
+	var inv_path = "res://inventory_resources.cfg"
 	
 	# Load the CFG file
 	var config = ConfigFile.new()

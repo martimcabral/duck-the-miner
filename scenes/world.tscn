@@ -510,10 +510,13 @@ color = Color(1, 1, 1, 0)
 
 [node name="ItemList" type="ItemList" parent="Player/HUD"]
 texture_filter = 1
-offset_left = 1665.0
-offset_top = 39.0
-offset_right = 1920.0
-offset_bottom = 119.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -255.0
+offset_top = 32.0
+offset_bottom = 112.0
+grow_horizontal = 0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 23

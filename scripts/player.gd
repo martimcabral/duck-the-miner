@@ -31,15 +31,16 @@ var block_selection_default = preload("res://assets/textures/selected_block.png"
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
 func _ready():
-	if world.asteroid_biome == "Frozen":
-		$Camera2D/HUD/FreezingOverlay.visible = true
+	match world.asteroid_biome:
+		"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
+		"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
 	
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(0, cursor_texture_sword)
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(1, cursor_texture_pickaxe)
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(2, cursor_texture_light)
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(3, cursor_texture_flashlight)
 	
-	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "alpha." + str(ProjectSettings.get_setting("application/config/version"))
+	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "beta." + str(ProjectSettings.get_setting("application/config/version"))
 	$HUD/ItemList/TeamInventoryLabel.text = "[center]%s[/center]" % "Duck's Pockets"
 	
 	if DiscordRPC.get_is_discord_working():
@@ -67,9 +68,6 @@ func player_movement(input, delta):
 func _process(delta):
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
-	
-	$Camera2D/HUD/Stats/HungerStat/HungerText.text = "[center]%s[/center]" % str($Camera2D/HUD/Stats/HungerStat.value)
-	$Camera2D/HUD/Stats/ThirstStat/ThirstText.text = "[center]%s[/center]" % str($Camera2D/HUD/Stats/ThirstStat.value)
 	
 	$Flashlight.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("Use_Flashlight") and self.current_item == 4:
@@ -317,15 +315,28 @@ func _on_minning_cooldown_timeout() -> void:
 			pass
 			#print("[!] Trying to Destroy block outside BlockRange")
 
-func _on_hunger_remover_timeout() -> void:
-	$Camera2D/HUD/Stats/HungerStat.value -= 1
-
-func _on_thirst_remover_timeout() -> void:
-	$Camera2D/HUD/Stats/ThirstStat.value -= 1
-
 func _on_uv_battery_consumption_timeout() -> void:
 	if flashlight == true:
 		$Camera2D/HUD/Stats/uvStat.value -= 1
 
 func _on_oxygen_consumption_timeout() -> void:
 	$Camera2D/HUD/Stats/OxygenStat.value -= 1
+
+func _on_tab_bar_tab_clicked(tab: int) -> void:
+	match tab:
+		0:
+			current_item = 1
+			Input.set_custom_mouse_cursor(cursor_texture_sword)
+			$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
+		1: 
+			current_item = 2
+			Input.set_custom_mouse_cursor(cursor_texture_sword)
+			$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
+		2:
+			current_item = 3
+			Input.set_custom_mouse_cursor(cursor_texture_sword)
+			$Camera2D/HUD/Hotbar/TabBar.current_tab = 2
+		3: 
+			current_item = 4
+			Input.set_custom_mouse_cursor(cursor_texture_sword)
+			$Camera2D/HUD/Hotbar/TabBar.current_tab = 3

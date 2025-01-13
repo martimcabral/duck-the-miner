@@ -12,6 +12,7 @@ func _on_new_game_button_pressed() -> void:
 	$"../../../MouseSoundEffects".play()
 	
 	$NewGameButton.text = "Loading..."
+	$NewGameButton.add_theme_color_override("font_hover_color", Color(1, 1, 1, 1))
 	$OptionsButton.visible = false
 	$CreditsButton.visible = false
 	$ExitButton.visible = false

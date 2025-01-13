@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=57 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -199,6 +199,10 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4rar"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ml33q"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0xh0"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -691,6 +695,7 @@ theme_override_constants/outline_size = 4
 theme_override_constants/v_separation = 30
 theme_override_constants/h_separation = 30
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_ml33q")
 max_text_lines = 2
 text_overrun_behavior = 0
 max_columns = 5
