@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=59 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dfllye01n6j7y" path="res://assets/textures/universe/orbits_and_fields/thumbs/not_selected.png" id="3_copxc"]
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="3_k2cb4"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="4_8r1et"]
+[ext_resource type="Texture2D" uid="uid://d1xf5oxd8w0ks" path="res://assets/textures/players/duck.png" id="4_lhulu"]
 [ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/planets/sun.png" id="5_qdeo3"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
@@ -34,6 +35,35 @@
 [ext_resource type="Texture2D" uid="uid://jmvxxfp8t62v" path="res://assets/textures/universe/orbits_and_fields/gamma_field.png" id="30_e4ddj"]
 [ext_resource type="Texture2D" uid="uid://6hh31hvrlif1" path="res://assets/textures/universe/orbits_and_fields/omega_field.png" id="31_832n6"]
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/koppa_belt.png" id="34_qqdto"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_octoe"]
+properties/0/path = NodePath("Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel:theme_override_colors/default_color")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName:text")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidName:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription:text")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H:visible")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H:visible")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H:visible")
+properties/8/spawn = true
+properties/8/replication_mode = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq7us"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -237,12 +267,16 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_octoe")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 
 [node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD"]
+visible = false
 z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -326,6 +360,7 @@ offset_bottom = 573.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -346,8 +381,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_mqj1l")
 text = "Select Mission"
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
-position = Vector2(8, 0.322585)
-scale = Vector2(1, 1.16129)
+position = Vector2(8, 0.492674)
+scale = Vector2(1, 1.24633)
 points = PackedVector2Array(356, 4, 356, 333)
 width = 6.0
 
@@ -441,6 +476,79 @@ theme_override_font_sizes/font_size = 48
 text = "Lobby"
 
 [node name="PlayerHOST" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.0
+offset_top = -20.0
+offset_right = -242.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("4_lhulu")
+
+[node name="PlayerNumber2" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -20.0
+offset_right = -70.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("4_lhulu")
+
+[node name="PlayerNumber3" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 78.0
+offset_top = -20.0
+offset_right = 118.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("4_lhulu")
+
+[node name="PlayerNumber4" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 250.0
+offset_top = -20.0
+offset_right = 290.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("4_lhulu")
+
+[node name="PlayerHOST-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 6
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -457,7 +565,8 @@ scale = Vector2(3, 3)
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("2_w0a7i")
 
-[node name="PlayerNumber2" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+[node name="PlayerNumber2-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 6
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -474,7 +583,8 @@ scale = Vector2(3, 3)
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("2_w0a7i")
 
-[node name="PlayerNumber3" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+[node name="PlayerNumber3-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 6
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -491,7 +601,8 @@ scale = Vector2(3, 3)
 pivot_offset = Vector2(20, 20)
 texture = ExtResource("2_w0a7i")
 
-[node name="PlayerNumber4" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+[node name="PlayerNumber4-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+z_index = 6
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -564,6 +675,41 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qhto6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e4rar")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kmbym")
 text = "Start"
+
+[node name="MultiplayerPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 56.0
+grow_horizontal = 0
+
+[node name="AloneButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel"]
+layout_mode = 0
+offset_left = -192.0
+offset_right = -104.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 32
+text = "Alone"
+
+[node name="HostButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel"]
+layout_mode = 0
+offset_left = -103.0
+offset_right = -33.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 32
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel"]
+layout_mode = 0
+offset_left = -32.0
+offset_right = 30.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 32
+text = "Join"
 
 [node name="UpgradingPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 1
@@ -725,10 +871,17 @@ text = "Empty"
 [node name="InfoPanel" type="Panel" parent="Camera2D/HUD"]
 z_index = 1
 texture_filter = 1
-offset_left = 1547.0
-offset_top = 204.0
-offset_right = 1934.0
-offset_bottom = 865.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -371.0
+offset_top = -330.5
+offset_right = 16.0
+offset_bottom = 330.5
+grow_horizontal = 0
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n0xh0")
 
 [node name="FieldBeltName" type="RichTextLabel" parent="Camera2D/HUD/InfoPanel"]
@@ -869,10 +1022,14 @@ scroll_following = true
 [node name="SystemInfoPanel" type="Panel" parent="Camera2D/HUD"]
 z_index = 1
 texture_filter = 1
-offset_left = 1547.0
-offset_top = 84.0
-offset_right = 1934.0
-offset_bottom = 186.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -371.0
+offset_top = 28.0
+offset_right = 16.0
+offset_bottom = 130.0
+grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n0xh0")
 
 [node name="SystemName" type="RichTextLabel" parent="Camera2D/HUD/SystemInfoPanel"]
@@ -1425,6 +1582,7 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="FieldNameLabel" type="RichTextLabel" parent="."]
+visible = false
 z_index = 4
 anchors_preset = 7
 anchor_left = 0.5
@@ -1448,6 +1606,8 @@ text = "Field Name"
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]

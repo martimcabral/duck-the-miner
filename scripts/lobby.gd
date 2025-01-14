@@ -39,6 +39,10 @@ var item_icons = {
 	"Peridot": "res://assets/textures/items/gems/peridot.png"
 }
 
+#var no_duck = preload("res://assets/textures/players/no_duck.png")
+#var yes_duck = preload("res://assets/textures/players/duck.png")
+var player_ammount = 0
+
 var selecting_mission = false
 var mission_selected = false
 
@@ -157,6 +161,8 @@ func _ready():
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(delta: float) -> void:
+	get_players()
+	
 	match current_field:
 		"Delta Belt":
 			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
@@ -537,3 +543,55 @@ func create_stock_market():
 
 func _on_stock_market_timer_timeout() -> void:
 	create_stock_market()
+
+###############################################################################################################################################################################
+###############################################################################################################################################################################
+###############################################################################################################################################################################
+var player_amount: int = 0
+
+func get_players():
+	var connected_peers = multiplayer.get_peers()
+	if multiplayer.is_server():
+		player_ammount = connected_peers.size() + 1
+	else:
+		player_ammount = connected_peers.size() + 1
+	
+	match player_ammount:
+		1:
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".show()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".show()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".show()
+		2:
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".show()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".show()
+		3:
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".show()
+		4:
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".hide()
+			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".hide()
+
+var peer = ENetMultiplayerPeer.new()
+
+func _on_host_button_pressed() -> void:
+	peer.create_server(44424, 4)
+	multiplayer.multiplayer_peer = peer
+	
+	multiplayer.peer_connected.connect(
+		func(pid):
+			print("Peer: " + str(pid) + " has connected to the game!")
+	)
+
+func _on_join_button_pressed() -> void:
+	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton.hide()
+	peer.create_client("localhost", 44424)
+	multiplayer.multiplayer_peer = peer
+
+# const PLAYER = preload("res://scenes/player.tscn")
