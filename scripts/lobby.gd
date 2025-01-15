@@ -39,10 +39,6 @@ var item_icons = {
 	"Peridot": "res://assets/textures/items/gems/peridot.png"
 }
 
-#var no_duck = preload("res://assets/textures/players/no_duck.png")
-#var yes_duck = preload("res://assets/textures/players/duck.png")
-var player_ammount = 0
-
 var selecting_mission = false
 var mission_selected = false
 
@@ -441,6 +437,8 @@ func get_asteroid_info():
 			var secondary = asteroid_info["Objectites"]["Secondary"]
 			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+		else:
+			print("An error ocurred trying to parse asteroid content, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
 
 func get_asteroids_per_field(field : String):
 	# This Code in the Second Half was completly remade due to a error of impossibility of reading the asteroid data on the JSON File
@@ -547,16 +545,14 @@ func _on_stock_market_timer_timeout() -> void:
 ###############################################################################################################################################################################
 ###############################################################################################################################################################################
 ###############################################################################################################################################################################
+
 var player_amount: int = 0
 
 func get_players():
 	var connected_peers = multiplayer.get_peers()
-	if multiplayer.is_server():
-		player_ammount = connected_peers.size() + 1
-	else:
-		player_ammount = connected_peers.size() + 1
+	player_amount = connected_peers.size() + 1
 	
-	match player_ammount:
+	match player_amount:
 		1:
 			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
 			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".show()
@@ -581,6 +577,7 @@ func get_players():
 var peer = ENetMultiplayerPeer.new()
 
 func _on_host_button_pressed() -> void:
+	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton.show()
 	peer.create_server(44424, 4)
 	multiplayer.multiplayer_peer = peer
 	
@@ -594,4 +591,12 @@ func _on_join_button_pressed() -> void:
 	peer.create_client("localhost", 44424)
 	multiplayer.multiplayer_peer = peer
 
+func _on_alone_button_pressed() -> void:
+	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton.show()
+	multiplayer.peer_connected.connect(
+		func(pid):
+			print("Peer: " + str(pid) + " will be disconnected from the game!")
+	)
+	peer.close()
+	
 # const PLAYER = preload("res://scenes/player.tscn")
