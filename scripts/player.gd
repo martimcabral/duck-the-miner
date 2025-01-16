@@ -42,13 +42,6 @@ func _ready():
 	
 	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "beta." + str(ProjectSettings.get_setting("application/config/version"))
 	$HUD/ItemList/TeamInventoryLabel.text = "[center]%s[/center]" % "Duck's Pockets"
-	
-	if DiscordRPC.get_is_discord_working():
-		var user_data = DiscordRPC.get_current_user()
-		$PlayerName.text = "[center]%s[/center]" % user_data["username"]
-	else:
-		$PlayerName.text = "[center]%s[/center]" % "Player"
-		print("[player.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
 
 func player_movement(input, delta):
 	if input: 

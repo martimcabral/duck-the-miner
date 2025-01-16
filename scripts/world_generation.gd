@@ -247,35 +247,6 @@ func create_world_borders():
 			y -= 9
 			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
 
-func _on_music_timer_timeout() -> void:
-	start_music()
-
-func start_position():
-	var spawn_cube_size = 3
-	
-	# Random Position to the player Spawn
-	var player_position = Vector2(randi_range(2250,2750), 1500)
-	
-	$Player.position = player_position
-	
-	# Sets the tilemap position by getting player.P 
-	var player_at_tilemap_position = $WorldTileMap.local_to_map(player_position)
-	
-	# Makes the cube and offeset' it to the center the plater location
-	for x in range(spawn_cube_size):
-		x += player_at_tilemap_position.x -1
-		for y in range(spawn_cube_size):
-			y += player_at_tilemap_position.y -2
-			if asteroid_biome == "Stony":
-				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
-			elif asteroid_biome == "Vulcanic":
-				CaveSystem.set_cell(Vector2i(x,y), 1, Vector2i(0, 1))
-			elif asteroid_biome == "Frozen":
-				CaveSystem.set_cell(Vector2i(x,y), 2, Vector2i(0, 1))
-			elif asteroid_biome == "Swamp":
-				CaveSystem.set_cell(Vector2i(x,y), 3, Vector2i(0, 1))
-			
-
 func put_ore(ore_height_min, ore_height_max, spawn_chance, biome, atlas_coords):
 	for x in range(world_width):
 		for y in range(ore_height_min, ore_height_max):
@@ -391,3 +362,32 @@ func put_gems():
 							1: CaveSystem.set_cell(tile_pos, 3, Vector2i(1, 1))
 							2: CaveSystem.set_cell(tile_pos, 3, Vector2i(2, 1))
 							3: CaveSystem.set_cell(tile_pos, 3, Vector2i(3, 1))
+
+func _on_music_timer_timeout() -> void:
+	start_music()
+
+func start_position():
+	var spawn_cube_size = 3
+	
+	# Random Position to the player Spawn
+	var player_position = Vector2(randi_range(750,1000), 750)
+	
+	$Player.position = player_position
+	
+	# Sets the tilemap position by getting player.P 
+	var player_at_tilemap_position = $WorldTileMap.local_to_map(player_position)
+	
+	# Makes the cube and offeset' it to the center the plater location
+	for x in range(spawn_cube_size):
+		x += player_at_tilemap_position.x -1
+		for y in range(spawn_cube_size):
+			y += player_at_tilemap_position.y -2
+			if asteroid_biome == "Stony":
+				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
+			elif asteroid_biome == "Vulcanic":
+				CaveSystem.set_cell(Vector2i(x,y), 1, Vector2i(0, 1))
+			elif asteroid_biome == "Frozen":
+				CaveSystem.set_cell(Vector2i(x,y), 2, Vector2i(0, 1))
+			elif asteroid_biome == "Swamp":
+				CaveSystem.set_cell(Vector2i(x,y), 3, Vector2i(0, 1))
+			

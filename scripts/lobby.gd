@@ -119,13 +119,20 @@ func _ready():
 		$Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.visible = true
 		$Camera2D/HUD/LobbyPanel/InventoryPanel/UnavailableLabel.visible = false
 	
-	create_stock_market()
-	
 	$Camera2D/HUD/BackToLobbyButton.visible = false
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	
-	save_asteroid_data()
+	var file = FileAccess.open("res://missions.json", FileAccess.READ)
+	if file:
+		var result = file.get_as_text()
+		if result == str(0):
+			file.close()
+			save_asteroid_data()
+		else:
+			print("[lobby.gd/missions.json] file is not empty!")
+	else:
+		print("[lobby.gd/missions.json] failed to open file!")
 	
 	delta_ammount =  get_asteroids_per_field("Delta Belt")
 	gamma_ammount =  get_asteroids_per_field("Gamma Field")
@@ -156,9 +163,7 @@ func _ready():
 	else:
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
-func _process(delta: float) -> void:
-	get_players()
-	
+func _process(_delta: float) -> void:
 	match current_field:
 		"Delta Belt":
 			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
@@ -185,44 +190,6 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("Universe_Zoom_Out") and $SolarSystem.scale.x >= min_zoom:
 			$SolarSystem.scale -= Vector2(0.05, 0.05)
 		$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
-	
-	rotate_solar_system(delta)
-
-func rotate_solar_system(delta):
-	$SolarSystem/Sun.rotation -= delta * 0.1
-	$SolarSystem/Mercury.rotation -= delta * 0.05
-	$SolarSystem/Venus.rotation -= delta * 0.075
-	
-	$SolarSystem/Earth.rotation -= delta * 0.1
-	$SolarSystem/Earth/Moon.rotation -= delta * 0.25
-	
-	$SolarSystem/Mars.rotation -= delta * 0.125
-	$SolarSystem/Mars/Phobos.rotation -= delta * 0.3
-	$SolarSystem/Mars/Deimos.rotation -= delta * 0.5
-	
-	$SolarSystem/Jupiter.rotation -= delta * 0.08
-	$SolarSystem/Jupiter/Io.rotation -= delta * 0.15
-	$SolarSystem/Jupiter/Europa.rotation -= delta * 0.25
-	$SolarSystem/Jupiter/Ganymede.rotation -= delta * 0.5
-	$SolarSystem/Jupiter/Callisto.rotation -= delta * 0.2
-	
-	$SolarSystem/Saturn.rotation -= delta * 0.04
-	$SolarSystem/Saturn/Mimas.rotation -= delta * 0.4
-	$SolarSystem/Saturn/Rhea.rotation -= delta * 0.75
-	$SolarSystem/Saturn/Titan.rotation -= delta * 0.1
-	
-	$SolarSystem/Uranus.rotation -= delta * 0.07
-	$SolarSystem/Uranus/Miranda.rotation -= delta * 0.33
-	$SolarSystem/Uranus/Titania.rotation -= delta * 0.25
-	
-	$SolarSystem/Neptune.rotation -= delta * 0.01
-	$SolarSystem/Neptune/Proteus.rotation -= delta * 0.33
-	$SolarSystem/Neptune/Tritan.rotation += delta * 0.5
-	
-	$SolarSystem/DeltaBelt.rotation += delta * 0.05
-	$SolarSystem/GammaField.rotation -= delta * 0.08
-	$SolarSystem/OmegaField.rotation -= delta * 0.08
-	$SolarSystem/KoppaBelt.rotation += delta * 0.03
 
 # This works by when clicking on an Asteroid Field it will put the world scene in this current scene and then after it will free the Universe from the Memory
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -509,94 +476,3 @@ func _on_start_button_pressed() -> void:
 		get_tree().root.add_child(new_world)
 		get_tree().current_scene.call_deferred("free")
 		get_tree().current_scene = new_world
-
-func create_stock_market():
-	var consoante1 = consoantes[randi() % consoantes.size()]
-	var consoante2 = consoantes[randi() % consoantes.size()]
-	var vogal1 = vogais[randi() % vogais.size()]
-	var vogal2 = vogais[randi() % vogais.size()]
-	
-	var variante = randi_range(1, 4)
-	
-	var money_word : String
-	match variante: # 4 935 Variações
-		1:
-			money_word = vogal1 + consoante1 + consoante2
-		2:
-			money_word = consoante1 + vogal1 + consoante2
-		3:
-			money_word = vogal1 + vogal2 + consoante1
-		4:
-			money_word = consoante1 + vogal1 + vogal2
-	
-	var random_percentage = round(randf_range(0, 2) * 100) / 100.0
-	
-	match randi_range(1,2):
-		1: 
-			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.add_theme_color_override("default_color", Color(0, 0.92, 0))
-			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.text = "[center]%s[/center]" % money_word.to_upper() + " +" + str(random_percentage) + "%"
-		2: 
-			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.add_theme_color_override("default_color", Color(0.92, 0, 0))
-			$Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel.text = "[center]%s[/center]" % money_word.to_upper() + " -" + str(random_percentage) + "%"
-
-func _on_stock_market_timer_timeout() -> void:
-	create_stock_market()
-
-###############################################################################################################################################################################
-###############################################################################################################################################################################
-###############################################################################################################################################################################
-
-var player_amount: int = 0
-
-func get_players():
-	var connected_peers = multiplayer.get_peers()
-	player_amount = connected_peers.size() + 1
-	
-	match player_amount:
-		1:
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".show()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".show()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".show()
-		2:
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".show()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".show()
-		3:
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".show()
-		4:
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H".hide()
-			$"Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H".hide()
-
-var peer = ENetMultiplayerPeer.new()
-
-func _on_host_button_pressed() -> void:
-	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton.show()
-	peer.create_server(44424, 4)
-	multiplayer.multiplayer_peer = peer
-	
-	multiplayer.peer_connected.connect(
-		func(pid):
-			print("Peer: " + str(pid) + " has connected to the game!")
-	)
-
-func _on_join_button_pressed() -> void:
-	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton.hide()
-	peer.create_client("localhost", 44424)
-	multiplayer.multiplayer_peer = peer
-
-func _on_alone_button_pressed() -> void:
-	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton.show()
-	multiplayer.peer_connected.connect(
-		func(pid):
-			print("Peer: " + str(pid) + " will be disconnected from the game!")
-	)
-	peer.close()
-	
-# const PLAYER = preload("res://scenes/player.tscn")

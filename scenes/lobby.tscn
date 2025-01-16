@@ -1,15 +1,17 @@
-[gd_scene load_steps=59 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=60 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
 [ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/no_duck.png" id="2_w0a7i"]
 [ext_resource type="Texture2D" uid="uid://dfllye01n6j7y" path="res://assets/textures/universe/orbits_and_fields/thumbs/not_selected.png" id="3_copxc"]
+[ext_resource type="Script" path="res://scripts/Menus/stock_market_label.gd" id="3_elco0"]
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="3_k2cb4"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="4_8r1et"]
 [ext_resource type="Texture2D" uid="uid://d1xf5oxd8w0ks" path="res://assets/textures/players/duck.png" id="4_lhulu"]
 [ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/planets/sun.png" id="5_qdeo3"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
+[ext_resource type="Script" path="res://scripts/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
 [ext_resource type="Texture2D" uid="uid://pyum8i4h4glr" path="res://assets/textures/universe/planets/earth.png" id="9_3r2xp"]
 [ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moons/moon.png" id="10_kuvf8"]
@@ -35,35 +37,6 @@
 [ext_resource type="Texture2D" uid="uid://jmvxxfp8t62v" path="res://assets/textures/universe/orbits_and_fields/gamma_field.png" id="30_e4ddj"]
 [ext_resource type="Texture2D" uid="uid://6hh31hvrlif1" path="res://assets/textures/universe/orbits_and_fields/omega_field.png" id="31_832n6"]
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/koppa_belt.png" id="34_qqdto"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_octoe"]
-properties/0/path = NodePath("Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel:text")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel:theme_override_colors/default_color")
-properties/1/spawn = true
-properties/1/replication_mode = 2
-properties/2/path = NodePath("Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName:text")
-properties/2/spawn = true
-properties/2/replication_mode = 2
-properties/3/path = NodePath("Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidName:text")
-properties/3/spawn = true
-properties/3/replication_mode = 2
-properties/4/path = NodePath("Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription:text")
-properties/4/spawn = true
-properties/4/replication_mode = 2
-properties/5/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerHOST-H:visible")
-properties/5/spawn = true
-properties/5/replication_mode = 2
-properties/6/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber2-H:visible")
-properties/6/spawn = true
-properties/6/replication_mode = 2
-properties/7/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber3-H:visible")
-properties/7/spawn = true
-properties/7/replication_mode = 2
-properties/8/path = NodePath("Camera2D/HUD/LobbyPanel/PlayerPanel/PlayerNumber4-H:visible")
-properties/8/spawn = true
-properties/8/replication_mode = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq7us"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -267,9 +240,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_octoe")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1.90735e-06, -9.53674e-07)
 
@@ -346,6 +316,7 @@ theme_override_colors/default_color = Color(1, 0.607843, 0.462745, 1)
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = " SLA -8.88%"
+script = ExtResource("3_elco0")
 
 [node name="StockMarketTimer" type="Timer" parent="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel"]
 wait_time = 15.0
@@ -675,41 +646,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qhto6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_e4rar")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kmbym")
 text = "Start"
-
-[node name="MultiplayerPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -56.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = 56.0
-grow_horizontal = 0
-
-[node name="AloneButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel"]
-layout_mode = 0
-offset_left = -192.0
-offset_right = -104.0
-offset_bottom = 40.0
-theme_override_font_sizes/font_size = 32
-text = "Alone"
-
-[node name="HostButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel"]
-layout_mode = 0
-offset_left = -103.0
-offset_right = -33.0
-offset_bottom = 40.0
-theme_override_font_sizes/font_size = 32
-text = "Host"
-
-[node name="JoinButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel"]
-layout_mode = 0
-offset_left = -32.0
-offset_right = 30.0
-offset_bottom = 40.0
-theme_override_font_sizes/font_size = 32
-text = "Join"
 
 [node name="UpgradingPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 1
@@ -1046,10 +982,17 @@ text = "Insert System"
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
 z_index = -2
-offset_left = -1116.0
-offset_top = -892.0
-offset_right = 2004.0
-offset_bottom = 1388.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1565.0
+offset_top = -1178.0
+offset_right = 2912.0
+offset_bottom = 2093.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_k2cb4")
 
@@ -1064,6 +1007,7 @@ parameters/looping = true
 bus = &"Player"
 
 [node name="SolarSystem" type="Node2D" parent="."]
+script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
 z_index = 1
@@ -1602,13 +1546,10 @@ bbcode_enabled = true
 text = "Field Name"
 
 [connection signal="pressed" from="Camera2D/HUD/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
-[connection signal="timeout" from="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel/StockMarketTimer" to="." method="_on_stock_market_timer_timeout"]
+[connection signal="timeout" from="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel/StockMarketTimer" to="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel" method="_on_stock_market_timer_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel/AloneButton" to="." method="_on_alone_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel/HostButton" to="." method="_on_host_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/MultiplayerPanel/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]

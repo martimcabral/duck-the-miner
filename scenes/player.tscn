@@ -222,19 +222,6 @@ z_index = 1
 texture_filter = 1
 script = ExtResource("1_ym5y2")
 
-[node name="PlayerName" type="RichTextLabel" parent="."]
-z_index = 1
-texture_filter = 1
-offset_left = -20.0
-offset_top = -13.0
-offset_right = 104.0
-offset_bottom = 6.0
-scale = Vector2(0.33, 0.33)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 2
-bbcode_enabled = true
-text = "Player"
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.98023e-08, -4.76837e-07)
 scale = Vector2(0.875, 0.875)
@@ -281,6 +268,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
+follow_viewport_scale = 0.5
 
 [node name="MirageOverlay" type="Sprite2D" parent="Camera2D/HUD"]
 visible = false

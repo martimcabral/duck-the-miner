@@ -23,10 +23,16 @@ func _on_feedback_button_pressed() -> void:
 	OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 
 func _on_abort_mission_button_pressed() -> void:
-	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
-	var new_game_scene = load("res://scenes/lobby.tscn")
-	get_tree().change_scene_to_packed(new_game_scene)
-	new_game_scene.instantiate()
+	var empty_file = 0
+	var result = JSON.stringify(empty_file)
+	
+	var file = FileAccess.open("res://missions.json", FileAccess.WRITE)
+	if file:
+		file.store_string(result)
+		file.close()
+		print("[start.gd/missions.json] Asteroid data emptied")
+	else:
+		print("[start.gd/missions.json] Failed to open file for emptying stage.")
 	
 	var file_path = "res://inventory_resources.cfg"
 	var current_inventory = load_inventory("res://inventory_resources.cfg")
@@ -36,6 +42,11 @@ func _on_abort_mission_button_pressed() -> void:
 		print("Inventory saved successfully to", file_path)
 	else:
 		print("Failed to save inventory")
+	
+	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
+	var new_game_scene = load("res://scenes/lobby.tscn")
+	get_tree().change_scene_to_packed(new_game_scene)
+	new_game_scene.instantiate()
 
 # Function to retrieve items from the ItemList Node
 func get_items_from_itemlist(item_list_node):

@@ -15,6 +15,18 @@ func _ready() -> void:
 		save_config.set_value("debt", "start", new_debt)
 		save_config.set_value("debt", "current", new_debt)
 		save_config.save(save_path)
+	
+	if not FileAccess.file_exists("res://missions.json"):
+		var empty_file = 0
+		var result = JSON.stringify(empty_file)
+		
+		var file = FileAccess.open("res://missions.json", FileAccess.WRITE)
+		if file:
+			file.store_string(result)
+			file.close()
+			print("[start.gd/missions.json] Asteroid data emptied")
+		else:
+			print("[start.gd/missions.json] Failed to open file for emptying stage.")
 
 ################################################################################
 ################################################################################
@@ -33,17 +45,6 @@ func _ready() -> void:
 			print("[ERROR] Could not save the configuration file: ", save_error)
 		else:
 			print("Configuration file created successfully.")
-	
-	var empty_file = "Empty"
-	var result = JSON.stringify(empty_file)
-	
-	var file = FileAccess.open("res://missions.json", FileAccess.WRITE)
-	if file:
-		file.store_string(result)
-		file.close()
-		print("[start.gd/missions.json] Asteroid data emptied")
-	else:
-		print("[start.gd/missions.json] Failed to open file for emptying stage.")
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.details = "🏘️ At the Main Menu"

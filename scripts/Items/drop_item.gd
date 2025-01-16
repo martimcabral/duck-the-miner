@@ -5,7 +5,7 @@ extends TileMap
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var world = $".."
 
-var packed_scene = load("res://scenes/items.tscn")
+var packed_scene = load("res://scenes/misc/items.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 	if local_mouse_pos.length() <= radius:
 		if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == 3:
 			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
-				var torch_scene : PackedScene = preload("res://scenes/light.tscn")
+				var torch_scene : PackedScene = preload("res://scenes/misc/light.tscn")
 				var torch = torch_scene.instantiate()
 			
 				torch.position = CaveSystem.map_to_local(tile_pos)
