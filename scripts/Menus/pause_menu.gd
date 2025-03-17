@@ -26,7 +26,7 @@ func _on_abort_mission_button_pressed() -> void:
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
 	
-	var file = FileAccess.open("res://missions.json", FileAccess.WRITE)
+	var file = FileAccess.open("res://save/missions.json", FileAccess.WRITE)
 	if file:
 		file.store_string(result)
 		file.close()
@@ -34,8 +34,8 @@ func _on_abort_mission_button_pressed() -> void:
 	else:
 		print("[start.gd/missions.json] Failed to open file for emptying stage.")
 	
-	var file_path = "res://inventory_resources.cfg"
-	var current_inventory = load_inventory("res://inventory_resources.cfg")
+	var file_path = "res://save/inventory_resources.cfg"
+	var current_inventory = load_inventory("res://save/inventory_resources.cfg")
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	var updated_inventory = merge_items(current_inventory, new_items)
 	if save_inventory_to_cfg(file_path, updated_inventory):

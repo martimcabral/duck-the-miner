@@ -53,7 +53,7 @@ var gamma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/omega.png")
 var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/koppa.png")
 
-var json_path = "res://missions.json"
+var json_path = "res://save/missions.json"
 var current_page = 1
 var current_asteroid_name : String
 var current_asteroid_biome : String
@@ -69,7 +69,7 @@ var koppa_ammount : int = 0
 
 func _ready():
 	var save_file = ConfigFile.new()
-	save_file.load("res://debt.cfg")
+	save_file.load("res://save/debt.cfg")
 	var current_debt = str(save_file.get_value("debt", "current", null))
 	var number_str = str(current_debt)
 	# Create an empty list to store the parts of the formatted number
@@ -87,7 +87,7 @@ func _ready():
 	$Camera2D/HUD/LobbyPanel/MoneyPanel/DebtLabel.text = "€ " + formatted_number
 	
 	# Path to the CFG file
-	var inv_path = "res://inventory_resources.cfg"
+	var inv_path = "res://save/inventory_resources.cfg"
 	
 	# Load the CFG file
 	var config = ConfigFile.new()
@@ -123,7 +123,7 @@ func _ready():
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	
-	var file = FileAccess.open("res://missions.json", FileAccess.READ)
+	var file = FileAccess.open("res://save/missions.json", FileAccess.READ)
 	if file:
 		var result = file.get_as_text()
 		if result == str(0):
@@ -367,7 +367,7 @@ func save_asteroid_data():
 	
 	var result = JSON.stringify(asteroid_data, "\t")
 	
-	var file = FileAccess.open("res://missions.json", FileAccess.WRITE)
+	var file = FileAccess.open("res://save/missions.json", FileAccess.WRITE)
 	if file:
 		file.store_string(result)
 		file.close()

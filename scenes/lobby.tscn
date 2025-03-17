@@ -1,13 +1,11 @@
-[gd_scene load_steps=60 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=58 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
-[ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/no_duck.png" id="2_w0a7i"]
 [ext_resource type="Texture2D" uid="uid://dfllye01n6j7y" path="res://assets/textures/universe/orbits_and_fields/thumbs/not_selected.png" id="3_copxc"]
 [ext_resource type="Script" path="res://scripts/Menus/stock_market_label.gd" id="3_elco0"]
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="3_k2cb4"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="4_8r1et"]
-[ext_resource type="Texture2D" uid="uid://d1xf5oxd8w0ks" path="res://assets/textures/players/duck.png" id="4_lhulu"]
 [ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/planets/sun.png" id="5_qdeo3"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
@@ -171,15 +169,13 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwspj"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e17u6"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
@@ -322,12 +318,51 @@ script = ExtResource("3_elco0")
 wait_time = 15.0
 autostart = true
 
+[node name="UniverseMapPanel2" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 156.0
+offset_right = 788.0
+offset_bottom = 488.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
+
+[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.5
+offset_top = -26.0
+offset_right = 136.5
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "Unavailable"
+
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.5
+offset_top = 24.0
+offset_right = 160.5
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Company Trust"
+horizontal_alignment = 1
+
 [node name="UniverseMapPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 154.0
+offset_top = 546.0
 offset_right = 788.0
-offset_bottom = 573.0
+offset_bottom = 933.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
@@ -338,9 +373,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -162.0
+offset_left = -158.0
 offset_top = -28.0
-offset_right = 162.0
+offset_right = 166.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -421,188 +456,19 @@ text = "No Mission Selected"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
+[node name="ControlPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 68.0
-offset_top = -431.0
-offset_right = 788.0
-offset_bottom = -87.0
+offset_left = 295.0
+offset_top = -121.0
+offset_right = 571.0
+offset_bottom = -59.0
 grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fwspj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_e17u6")
 
-[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -63.0
-offset_top = 16.0
-offset_right = 63.0
-offset_bottom = 64.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "Lobby"
-
-[node name="PlayerHOST" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 5
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -282.0
-offset_top = -20.0
-offset_right = -242.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("4_lhulu")
-
-[node name="PlayerNumber2" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 5
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -20.0
-offset_right = -70.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("4_lhulu")
-
-[node name="PlayerNumber3" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 5
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 78.0
-offset_top = -20.0
-offset_right = 118.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("4_lhulu")
-
-[node name="PlayerNumber4" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 5
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 250.0
-offset_top = -20.0
-offset_right = 290.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("4_lhulu")
-
-[node name="PlayerHOST-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 6
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -282.0
-offset_top = -20.0
-offset_right = -242.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("2_w0a7i")
-
-[node name="PlayerNumber2-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 6
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -20.0
-offset_right = -70.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("2_w0a7i")
-
-[node name="PlayerNumber3-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 6
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 78.0
-offset_top = -20.0
-offset_right = 118.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("2_w0a7i")
-
-[node name="PlayerNumber4-H" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-z_index = 6
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 250.0
-offset_top = -20.0
-offset_right = 290.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("2_w0a7i")
-
-[node name="ControlPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel/PlayerPanel"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 215.0
-offset_top = -34.0
-offset_right = 491.0
-offset_bottom = 31.0
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
-
-[node name="BackButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel"]
+[node name="BackButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -620,13 +486,13 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_h7bje")
 theme_override_styles/normal = SubResource("StyleBoxFlat_kmbym")
 text = "Back"
 
-[node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel"]
+[node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
 position = Vector2(-175, 0.150002)
 scale = Vector2(1, 1.05)
 points = PackedVector2Array(311, 3, 310.97, 58.1774)
 width = 6.0
 
-[node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel"]
+[node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1267,10 +1133,10 @@ texture = ExtResource("18_0m4te")
 
 [node name="Saturn" type="TextureRect" parent="SolarSystem"]
 z_index = 2
-offset_left = -26.5555
-offset_top = -954.0
-offset_right = 27.4445
-offset_bottom = -904.0
+offset_left = -27.0
+offset_top = -955.0
+offset_right = 32.0
+offset_bottom = -923.0
 rotation = 3.55349
 pivot_offset = Vector2(25.5555, 955)
 texture = ExtResource("19_12kdj")
@@ -1278,60 +1144,60 @@ texture = ExtResource("19_12kdj")
 [node name="Mimas" type="TextureRect" parent="SolarSystem/Saturn"]
 z_index = 1
 layout_mode = 0
-offset_left = -4.4445
-offset_top = -257.0
-offset_right = 35.5555
-offset_bottom = -217.0
+offset_left = -4.21318
+offset_top = -261.466
+offset_right = 35.7868
+offset_bottom = -221.466
 scale = Vector2(0.15, 0.15)
 pivot_offset = Vector2(33.3333, 280)
 texture = ExtResource("20_a7sir")
 
 [node name="MimasOrbit" type="TextureRect" parent="SolarSystem/Saturn"]
 layout_mode = 0
-offset_left = -9.4445
-offset_top = -16.0
-offset_right = 246.555
-offset_bottom = 240.0
+offset_left = -9.21329
+offset_top = -20.4666
+offset_right = 246.786
+offset_bottom = 235.533
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_ub56o")
 
 [node name="Rhea" type="TextureRect" parent="SolarSystem/Saturn"]
 z_index = 1
 layout_mode = 0
-offset_left = 1.5555
-offset_top = -201.0
-offset_right = 41.5555
-offset_bottom = -161.0
+offset_left = 1.78679
+offset_top = -205.466
+offset_right = 41.7868
+offset_bottom = -165.466
 scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(26.6666, 224)
 texture = ExtResource("21_0ubea")
 
 [node name="RheaOrbit" type="TextureRect" parent="SolarSystem/Saturn"]
 layout_mode = 0
-offset_left = -23.4445
-offset_top = -28.0
-offset_right = 232.555
-offset_bottom = 228.0
+offset_left = -23.2132
+offset_top = -32.4662
+offset_right = 232.786
+offset_bottom = 223.534
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_ub56o")
 
 [node name="Titan" type="TextureRect" parent="SolarSystem/Saturn"]
 z_index = 1
 layout_mode = 0
-offset_left = 3.5555
-offset_top = -211.0
-offset_right = 43.5555
-offset_bottom = -171.0
+offset_left = 3.78682
+offset_top = -215.466
+offset_right = 43.7868
+offset_bottom = -175.466
 scale = Vector2(0.4, 0.4)
 pivot_offset = Vector2(25, 234)
 texture = ExtResource("22_qs1ri")
 
 [node name="TitanOrbit" type="TextureRect" parent="SolarSystem/Saturn"]
 layout_mode = 0
-offset_left = -63.4445
-offset_top = -65.0
-offset_right = 192.555
-offset_bottom = 191.0
+offset_left = -63.2132
+offset_top = -69.4661
+offset_right = 192.786
+offset_bottom = 186.534
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("7_ub56o")
 
@@ -1526,7 +1392,6 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="FieldNameLabel" type="RichTextLabel" parent="."]
-visible = false
 z_index = 4
 anchors_preset = 7
 anchor_left = 0.5
@@ -1548,8 +1413,8 @@ text = "Field Name"
 [connection signal="pressed" from="Camera2D/HUD/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
 [connection signal="timeout" from="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel/StockMarketTimer" to="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel" method="_on_stock_market_timer_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/PlayerPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]

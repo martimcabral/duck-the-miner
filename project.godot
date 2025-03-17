@@ -52,6 +52,7 @@ folder_colors={
 "res://assets/": "red",
 "res://python/": "gray",
 "res://rcedit/": "pink",
+"res://save/": "blue",
 "res://scenes/": "purple",
 "res://scripts/": "teal",
 "res://sounds/": "yellow"

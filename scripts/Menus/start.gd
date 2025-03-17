@@ -4,23 +4,26 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
-	var save_path = "res://debt.cfg"
-	var save_config = ConfigFile.new()
+	if not DirAccess.dir_exists_absolute("res://save"):
+		DirAccess.make_dir_absolute("res://save")
 	
-	if FileAccess.file_exists(save_path):
+	var debt_path = "res://save/debt.cfg"
+	var debt_config = ConfigFile.new()
+	
+	if FileAccess.file_exists(debt_path):
 		print("[debt.cfg] was detected successfully")
 	else:
 		print("[debt.cfg] not found. Creating a new one..., with a new debt.")
 		var new_debt = int(randf_range(9_000_000_000, 10_000_000_000))
-		save_config.set_value("debt", "start", new_debt)
-		save_config.set_value("debt", "current", new_debt)
-		save_config.save(save_path)
+		debt_config.set_value("debt", "start", new_debt)
+		debt_config.set_value("debt", "current", new_debt)
+		debt_config.save(debt_path)
 	
-	if not FileAccess.file_exists("res://missions.json"):
+	if not FileAccess.file_exists("res://save/missions.json"):
 		var empty_file = 0
 		var result = JSON.stringify(empty_file)
 		
-		var file = FileAccess.open("res://missions.json", FileAccess.WRITE)
+		var file = FileAccess.open("res://save/missions.json", FileAccess.WRITE)
 		if file:
 			file.store_string(result)
 			file.close()
