@@ -69,9 +69,9 @@ var koppa_ammount : int = 0
 
 func _ready():
 	var save_file = ConfigFile.new()
-	save_file.load("res://save/debt.cfg")
-	var current_debt = str(save_file.get_value("debt", "current", null))
-	var number_str = str(current_debt)
+	save_file.load("res://save/money.cfg")
+	var current_money = str(save_file.get_value("money", "current", null))
+	var number_str = str(current_money)
 	# Create an empty list to store the parts of the formatted number
 	var formatted_number = ""
 	var counter = 0
@@ -84,8 +84,7 @@ func _ready():
 		# Add a space after every 3 digits, but not after the last group
 		if counter % 3 == 0 and i != 0:
 			formatted_number = " " + formatted_number
-	$Camera2D/HUD/LobbyPanel/MoneyPanel/DebtLabel.text = "€ " + formatted_number
-	
+	$Camera2D/HUD/LobbyPanel/MoneyPanel/MoneyLabel.text = "€ " + formatted_number
 	# Path to the CFG file
 	var inv_path = "res://save/inventory_resources.cfg"
 	
@@ -151,7 +150,7 @@ func _ready():
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Debt: " + formatted_number + " €" 
+		DiscordRPC.small_image_text = "Money: " + formatted_number + " €" 
 		var random = randi_range(1, 2)
 		match random:
 			1:

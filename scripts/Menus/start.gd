@@ -7,17 +7,17 @@ func _ready() -> void:
 	if not DirAccess.dir_exists_absolute("res://save"):
 		DirAccess.make_dir_absolute("res://save")
 	
-	var debt_path = "res://save/debt.cfg"
-	var debt_config = ConfigFile.new()
+	var money_path = "res://save/money.cfg"
+	var money_config = ConfigFile.new()
 	
-	if FileAccess.file_exists(debt_path):
-		print("[debt.cfg] was detected successfully")
+	if FileAccess.file_exists(money_path):
+		print("[money.cfg] was detected successfully")
 	else:
-		print("[debt.cfg] not found. Creating a new one..., with a new debt.")
-		var new_debt = int(randf_range(9_000_000_000, 10_000_000_000))
-		debt_config.set_value("debt", "start", new_debt)
-		debt_config.set_value("debt", "current", new_debt)
-		debt_config.save(debt_path)
+		print("[money.cfg] not found. Creating a new one..., with a new money.")
+		var new_money = int(randf_range(9_000_000_000, 10_000_000_000))
+		money_config.set_value("money", "start", new_money)
+		money_config.set_value("money", "current", new_money)
+		money_config.save(money_path)
 	
 	if not FileAccess.file_exists("res://save/missions.json"):
 		var empty_file = 0
