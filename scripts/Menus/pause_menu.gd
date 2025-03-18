@@ -16,13 +16,22 @@ func _on_continue_pressed() -> void:
 	$GUI_Pause.visible = false
 	pause_menu_visible = false
 
-func _on_go_to_desktop_button_pressed() -> void:
-	get_tree().quit()
-
 func _on_feedback_button_pressed() -> void:
 	OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 
+func _on_go_to_desktop_button_pressed() -> void:
+	keep_inventory()
+	get_tree().quit()
+
 func _on_abort_mission_button_pressed() -> void:
+	keep_inventory()
+	
+	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
+	var new_game_scene = load("res://scenes/lobby.tscn")
+	get_tree().change_scene_to_packed(new_game_scene)
+	new_game_scene.instantiate()
+
+func keep_inventory():
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
 	
@@ -42,11 +51,6 @@ func _on_abort_mission_button_pressed() -> void:
 		print("Inventory saved successfully to", file_path)
 	else:
 		print("Failed to save inventory")
-	
-	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
-	var new_game_scene = load("res://scenes/lobby.tscn")
-	get_tree().change_scene_to_packed(new_game_scene)
-	new_game_scene.instantiate()
 
 # Function to retrieve items from the ItemList Node
 func get_items_from_itemlist(item_list_node):

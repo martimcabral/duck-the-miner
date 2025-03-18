@@ -324,13 +324,13 @@ func _on_tab_bar_tab_clicked(tab: int) -> void:
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
 		1: 
 			current_item = 2
-			Input.set_custom_mouse_cursor(cursor_texture_sword)
+			Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
 		2:
 			current_item = 3
-			Input.set_custom_mouse_cursor(cursor_texture_sword)
+			Input.set_custom_mouse_cursor(cursor_texture_light)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 2
 		3: 
 			current_item = 4
-			Input.set_custom_mouse_cursor(cursor_texture_sword)
+			Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 3
