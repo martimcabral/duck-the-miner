@@ -1,6 +1,6 @@
 extends Node2D
 
-# Dictionary to map item names to their corresponding texture paths
+# Dictionary to map item names to their corresponding texture paths - Fake Atlas
 var item_icons = {
 	"Stone": "res://assets/textures/items/ores/rock_and_stone.png",
 	"Coal": "res://assets/textures/items/ores/coal.png",
@@ -121,6 +121,7 @@ func _ready():
 	$Camera2D/HUD/BackToLobbyButton.visible = false
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
+	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
 	
 	var file = FileAccess.open("res://save/missions.json", FileAccess.READ)
 	if file:
@@ -163,6 +164,8 @@ func _ready():
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(_delta: float) -> void:
+	if mission_selected: $Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = true
+	
 	match current_field:
 		"Delta Belt":
 			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
@@ -251,6 +254,7 @@ func show_all_info():
 		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
 		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
 		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
+		$Camera2D/HUD/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = true
 
 func change_to_world(field):
 	var new_world = preload("res://scenes/world.tscn").instantiate()
@@ -449,16 +453,6 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/InfoPanel.visible = true
 	$Camera2D/HUD/SystemInfoPanel.visible = true
 
-func _on_back_to_lobby_button_pressed() -> void:
-	$MouseSoundEffects.stream = load("res://sounds/sound_effects/back.ogg")
-	$MouseSoundEffects.play()
-	
-	selecting_mission = false
-	$Camera2D/HUD/LobbyPanel.visible = true
-	$Camera2D/HUD/BackToLobbyButton.visible = false
-	$Camera2D/HUD/InfoPanel.visible = false
-	$Camera2D/HUD/SystemInfoPanel.visible = false
-
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
 	var new_game_scene = load("res://scenes/main_menu.tscn")
@@ -475,3 +469,21 @@ func _on_start_button_pressed() -> void:
 		get_tree().root.add_child(new_world)
 		get_tree().current_scene.call_deferred("free")
 		get_tree().current_scene = new_world
+
+func _on_back_to_lobby_button_pressed() -> void:
+	$MouseSoundEffects.stream = load("res://sounds/sound_effects/back.ogg")
+	$MouseSoundEffects.play()
+	
+	selecting_mission = false
+	$Camera2D/HUD/LobbyPanel.visible = true
+	$Camera2D/HUD/BackToLobbyButton.visible = false
+	$Camera2D/HUD/InfoPanel.visible = false
+	$Camera2D/HUD/SystemInfoPanel.visible = false
+
+func _select_mission_button_info_panel_pressed() -> void:
+	selecting_mission = false
+	$Camera2D/HUD/LobbyPanel.visible = true
+	$Camera2D/HUD/BackToLobbyButton.visible = false
+	$Camera2D/HUD/InfoPanel.visible = false
+	$Camera2D/HUD/SystemInfoPanel.visible = false
+	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false

@@ -196,7 +196,7 @@ func _process(delta):
 		$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
 	if Input.is_action_just_pressed("Hotbar_2"):
 		current_item = 2
-		Input.set_custom_mouse_cursor(cursor_texture_pickaxe, Input.get_current_cursor_shape(), Vector2(9, 9))
+		Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 		$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
 	if Input.is_action_just_pressed("Hotbar_3"):
 		current_item = 3

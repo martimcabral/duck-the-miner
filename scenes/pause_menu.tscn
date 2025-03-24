@@ -142,7 +142,7 @@ grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
-text = "Abort Mission"
+text = "End Mission"
 flat = true
 
 [node name="GoToDesktopButton" type="Button" parent="GUI_Pause/PauseMenuPanel"]

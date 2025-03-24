@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=61 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -232,6 +232,16 @@ bg_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a75e2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xofqc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lbdx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i10xw"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
@@ -319,15 +329,15 @@ script = ExtResource("3_elco0")
 wait_time = 15.0
 autostart = true
 
-[node name="UniverseMapPanel2" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
+[node name="CompanyTrustPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 156.0
 offset_right = 788.0
-offset_bottom = 488.0
+offset_bottom = 505.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
-[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel2"]
+[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/CompanyTrustPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -344,7 +354,7 @@ theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
 theme_override_font_sizes/font_size = 52
 text = "Unavailable"
 
-[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel2"]
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/CompanyTrustPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -707,9 +717,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -161.0
+offset_left = -164.0
 offset_top = -240.5
-offset_right = 159.0
+offset_right = 156.0
 offset_bottom = -60.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -799,7 +809,44 @@ bbcode_enabled = true
 text = "00/00
 "
 
-[node name="Description" type="RichTextLabel" parent="Camera2D/HUD/InfoPanel"]
+[node name="SelectMissionPanel" type="Panel" parent="Camera2D/HUD/InfoPanel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.5
+offset_top = -83.0
+offset_right = 61.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pff5p")
+
+[node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/InfoPanel/SelectMissionPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -15.5
+offset_right = 47.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_a75e2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xofqc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2lbdx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i10xw")
+text = "Select"
+
+[node name="Description" type="Label" parent="Camera2D/HUD/InfoPanel"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -807,20 +854,18 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -168.5
-offset_top = -282.0
+offset_top = -294.0
 offset_right = 165.5
-offset_bottom = -94.0
+offset_bottom = -106.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/normal_font_size = 32
-bbcode_enabled = true
+theme_override_font_sizes/font_size = 32
 text = "Name: Xuuseeygo
 Biome: Vulcanic
 Temperature: 120ºC
 Primary: Unknown
 Secundary: Unknown"
-fit_content = true
-scroll_following = true
+horizontal_alignment = 1
 
 [node name="SystemInfoPanel" type="Panel" parent="Camera2D/HUD"]
 z_index = 1
@@ -829,9 +874,9 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -371.0
-offset_top = 28.0
+offset_top = 54.0
 offset_right = 16.0
-offset_bottom = 130.0
+offset_bottom = 156.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n0xh0")
 
@@ -1418,6 +1463,7 @@ text = "Field Name"
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/InfoPanel/SelectMissionPanel/SelectMissionButton" to="." method="_select_mission_button_info_panel_pressed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]
 [connection signal="mouse_entered" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_exited"]
