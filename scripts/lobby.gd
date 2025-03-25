@@ -41,6 +41,7 @@ var item_icons = {
 
 var selecting_mission = false
 var mission_selected = false
+var skin_selected : int = 0
 
 var min_zoom = 0.15
 var max_zoom = 2.5
@@ -52,6 +53,8 @@ var delta_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 var gamma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/gamma.png")
 var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/omega.png")
 var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/koppa.png")
+
+var skin_path : String = "res://save/skin.cfg"
 
 var json_path = "res://save/missions.json"
 var current_page = 1
@@ -110,7 +113,9 @@ func _ready():
 			item_list.set_item_icon(item_index, icon)
 	else:
 		print("Failed to load CFG file: ", inv_path)
-		
+	
+	load_skin()
+	
 	if $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.item_count == 0:
 		$Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.visible = false
 		$Camera2D/HUD/LobbyPanel/InventoryPanel/UnavailableLabel.visible = true
@@ -489,3 +494,47 @@ func _select_mission_button_info_panel_pressed() -> void:
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
+
+func load_skin():
+	if FileAccess.file_exists(skin_path):
+		var skin_file = ConfigFile.new()
+		skin_file.load(skin_path)
+		skin_selected = int(skin_file.get_value("skin", "selected", 0))
+		print("Current Skin: " + str(skin_selected))
+		
+	match skin_selected:
+		0: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/no_duck.png")
+		1: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/duck.png")
+		2: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/duck_wip.png")
+
+func _on_skin_previous_button_pressed() -> void:
+	skin_selected -= 1
+	if skin_selected < 0 : skin_selected = 0
+	
+	match skin_selected:
+		0: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/no_duck.png")
+		1: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/duck.png")
+		2: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/duck_wip.png")
+	
+	if FileAccess.file_exists(skin_path):
+		var skin_file = ConfigFile.new()
+		skin_file.load(skin_path)
+		skin_file.set_value("skin", "selected", skin_selected)
+		print("Current Skin: " + str(skin_selected))
+		skin_file.save()
+
+func _on_skin_next_button_pressed() -> void:
+	skin_selected += 1
+	if skin_selected >= 2 : skin_selected = 2
+	
+	match skin_selected:
+		0: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/no_duck.png")
+		1: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/duck.png")
+		2: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/duck_wip.png")
+		
+	if FileAccess.file_exists(skin_path):
+		var skin_file = ConfigFile.new()
+		skin_file.load(skin_path)
+		skin_file.set_value("skin", "selected", skin_selected)
+		print("Current Skin: " + str(skin_selected))
+		skin_file.save()

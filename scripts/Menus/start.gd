@@ -18,7 +18,11 @@ func _ready() -> void:
 		money_config.set_value("money", "start", new_money)
 		money_config.set_value("money", "current", new_money)
 		money_config.save(money_path)
-	
+
+################################################################################
+################################################################################
+################################################################################
+
 	if not FileAccess.file_exists("res://save/missions.json"):
 		var empty_file = 0
 		var result = JSON.stringify(empty_file)
@@ -30,6 +34,20 @@ func _ready() -> void:
 			print("[start.gd/missions.json] Asteroid data emptied")
 		else:
 			print("[start.gd/missions.json] Failed to open file for emptying stage.")
+
+################################################################################
+################################################################################
+################################################################################
+
+	var skin_path = "res://save/skin.cfg"
+	var skin_config = ConfigFile.new()
+	
+	if FileAccess.file_exists(skin_path):
+		print("[skin.cfg] was detected successfully")
+	else:
+		print("[skin.cfg] not found. Creating a new one..., with a new skin.")
+		skin_config.set_value("skin", "selected", 1)
+		skin_config.save(skin_path)
 
 ################################################################################
 ################################################################################
