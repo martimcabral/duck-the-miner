@@ -547,7 +547,7 @@ offset_right = 160.5
 offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "Tool Upgrading"
+text = "Crafting Station"
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/UpgradingPanel"]
 layout_mode = 1
@@ -566,7 +566,7 @@ theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
 theme_override_font_sizes/font_size = 52
 text = "Unavailable"
 
-[node name="ClassPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
+[node name="SkinSelectionPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -578,7 +578,7 @@ offset_bottom = 355.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
-[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/ClassPanel"]
+[node name="SkinSelectionLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/SkinSelectionPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -589,9 +589,9 @@ offset_right = 165.0
 offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "Class Selection"
+text = "Skin Selection"
 
-[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/ClassPanel"]
+[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/SkinSelectionPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

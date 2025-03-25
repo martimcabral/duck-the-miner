@@ -164,27 +164,28 @@ func _ready():
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(_delta: float) -> void:
-	if mission_selected: $Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = true
+	if mission_selected : $Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = true
 	
-	match current_field:
-		"Delta Belt":
-			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
-			if current_page > delta_ammount:
-				current_page = delta_ammount
-		"Gamma Field":
-			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(gamma_ammount)
-			if current_page > gamma_ammount:
-				current_page = gamma_ammount
-		"Omega Field":
-			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(omega_ammount)
-			if current_page > omega_ammount:
-				current_page = omega_ammount
-		"Koppa Belt":
-			$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(koppa_ammount)
-			if current_page > koppa_ammount:
-				current_page = koppa_ammount
-
-	if current_page <= 0: current_page = 1
+	if current_page >= 1 :
+		match current_field:
+			"Delta Belt":
+				if current_page > delta_ammount:
+					current_page = delta_ammount
+				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
+			"Gamma Field":
+				if current_page > gamma_ammount:
+					current_page = gamma_ammount
+				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(gamma_ammount)
+			"Omega Field":
+				if current_page > omega_ammount:
+					current_page = omega_ammount
+				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(omega_ammount)
+			"Koppa Belt":
+				if current_page > koppa_ammount:
+					current_page = koppa_ammount
+				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(koppa_ammount)
+	else: 
+		current_page = 1
 	
 	if selecting_mission == true:
 		if Input.is_action_just_pressed("Universe_Zoom_In") and $SolarSystem.scale.x <= max_zoom:
@@ -392,6 +393,7 @@ func get_asteroid_info():
 		var file = FileAccess.open(json_path, FileAccess.READ)
 		var parse_result = JSON.parse_string(file.get_as_text())
 		file.close()
+		
 		if current_field == "Delta Belt" and current_page <= delta_ammount \
 			or current_field == "Gamma Field" and current_page <= gamma_ammount \
 			or current_field == "Omega Field" and current_page <= omega_ammount \
