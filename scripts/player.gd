@@ -22,6 +22,9 @@ var flashlight : bool = false
 
 @onready var world = $".."
 
+var skin_path : String = "res://save/skin.cfg"
+var skin_selected : int
+
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
@@ -31,6 +34,8 @@ var block_selection_default = preload("res://assets/textures/selected_block.png"
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
 func _ready():
+	load_skin()
+	
 	match world.asteroid_biome:
 		"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
 		"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
@@ -168,20 +173,20 @@ func _process(delta):
 	$AnimatedSprite2D.play()
 	
 	if not is_on_floor():
-		$AnimatedSprite2D.animation = "flying"
+		$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
 	if not is_on_floor() and Input.is_action_pressed("Walk_Right"):
 		$AnimatedSprite2D.flip_h = true
 	elif not is_on_floor() and Input.is_action_pressed("Walk_Left"):
 		$AnimatedSprite2D.flip_h = false
 		
 	if is_on_floor() and Input.is_action_pressed("Agachar"):
-		$AnimatedSprite2D.animation = "squat"
+		$AnimatedSprite2D.animation = str(skin_selected) + "_squat"
 		if Input.is_action_pressed("Walk_Left"):
 			$AnimatedSprite2D.flip_h = false
 		elif Input.is_action_pressed("Walk_Right"):
 			$AnimatedSprite2D.flip_h = true
 	elif is_on_floor():
-		$AnimatedSprite2D.animation = "walking"
+		$AnimatedSprite2D.animation = str(skin_selected) + "_walking"
 		if Input.is_action_pressed("Walk_Right"):
 			$AnimatedSprite2D.flip_h = true
 		elif Input.is_action_pressed("Walk_Left"):
@@ -334,3 +339,10 @@ func _on_tab_bar_tab_clicked(tab: int) -> void:
 			current_item = 4
 			Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 3
+
+func load_skin():
+	if FileAccess.file_exists(skin_path):
+		var skin_file = ConfigFile.new()
+		skin_file.load(skin_path)
+		skin_selected = int(skin_file.get_value("skin", "selected", 1))
+		print("[player.gd] Current Skin: " + str(skin_selected))

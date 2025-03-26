@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/Menus/stock_market_label.gd" id="3_elco0"]
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/universe_background.png" id="3_k2cb4"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="4_8r1et"]
-[ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/no_duck.png" id="5_enoir"]
+[ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/skins/0/no_duck.png" id="5_enoir"]
 [ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/planets/sun.png" id="5_qdeo3"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
@@ -939,10 +939,10 @@ parameters/looping = true
 bus = &"Player"
 
 [node name="SolarSystem" type="Node2D" parent="."]
-visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
+visible = false
 z_index = 1
 texture_filter = 1
 anchors_preset = 8

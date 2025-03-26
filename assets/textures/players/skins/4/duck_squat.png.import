@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x3okqrsqjibu"
-path="res://.godot/imported/duck_wip.png-c67a77015d7dcfa782b584bedbf8b71c.ctex"
+uid="uid://dyp35x211voff"
+path="res://.godot/imported/duck_squat.png-b329114a70083e874704e78375f0751b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/players/duck_wip.png"
-dest_files=["res://.godot/imported/duck_wip.png-c67a77015d7dcfa782b584bedbf8b71c.ctex"]
+source_file="res://assets/textures/players/skins/4/duck_squat.png"
+dest_files=["res://.godot/imported/duck_squat.png-b329114a70083e874704e78375f0751b.ctex"]
 
 [params]
 
