@@ -169,6 +169,8 @@ func _ready():
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(_delta: float) -> void:
+	$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0.01))
+	
 	if mission_selected : $Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = true
 	
 	if current_page >= 1 :
@@ -502,23 +504,13 @@ func load_skin():
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
 		print("Current Skin: " + str(skin_selected))
 		
-	match skin_selected:
-		0: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/0/no_duck.png")
-		1: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/1/duck.png")
-		2: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/2/duck.png")
-		3: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/3/duck.png")
-		4: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/4/duck.png")
+	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 
 func _on_skin_previous_button_pressed() -> void:
 	skin_selected -= 1
-	if skin_selected < 0 : skin_selected = 0
+	if skin_selected < 1 : skin_selected = 1
 	
-	match skin_selected:
-		0: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/0/no_duck.png")
-		1: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/1/duck.png")
-		2: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/2/duck.png")
-		3: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/3/duck.png")
-		4: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/4/duck.png")
+	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
@@ -531,12 +523,7 @@ func _on_skin_next_button_pressed() -> void:
 	skin_selected += 1
 	if skin_selected >= 4 : skin_selected = 4
 	
-	match skin_selected:
-		0: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/0/no_duck.png")
-		1: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/1/duck.png")
-		2: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/2/duck.png")
-		3: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/3/duck.png")
-		4: $Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/4/duck.png")
+	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
