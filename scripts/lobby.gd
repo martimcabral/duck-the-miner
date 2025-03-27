@@ -127,6 +127,7 @@ func _ready():
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
+	$Camera2D/HUD/ZoomRuler.visible = false
 	
 	var file = FileAccess.open("res://save/missions.json", FileAccess.READ)
 	if file:
@@ -169,8 +170,6 @@ func _ready():
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(_delta: float) -> void:
-	$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0.01))
-	
 	if mission_selected : $Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = true
 	
 	if current_page >= 1 :
@@ -195,11 +194,20 @@ func _process(_delta: float) -> void:
 		current_page = 1
 	
 	if selecting_mission == true:
+		$Camera2D/HUD/ZoomRuler.visible = true
 		if Input.is_action_just_pressed("Universe_Zoom_In") and $SolarSystem.scale.x <= max_zoom:
 			$SolarSystem.scale += Vector2(0.05, 0.05)
+			$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 5) + 'x'
+			$Camera2D/HUD/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
 		if Input.is_action_just_pressed("Universe_Zoom_Out") and $SolarSystem.scale.x >= min_zoom:
 			$SolarSystem.scale -= Vector2(0.05, 0.05)
+			$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
+			$Camera2D/HUD/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
 		$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
+
+func _on_ZoomSlider_value_changed(value: float) -> void:
+	$SolarSystem.scale = Vector2(value / 39.215, value / 39.215)
+	$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
 
 # This works by when clicking on an Asteroid Field it will put the world scene in this current scene and then after it will free the Universe from the Memory
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -455,12 +463,13 @@ func get_asteroids_per_field(field : String):
 		return 0
 
 func _on_select_mission_button_pressed() -> void:
-	$Camera2D/HUD/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
 	selecting_mission = true
 	$Camera2D/HUD/LobbyPanel.visible = false
 	$Camera2D/HUD/BackToLobbyButton.visible = true
 	$Camera2D/HUD/InfoPanel.visible = true
 	$Camera2D/HUD/SystemInfoPanel.visible = true
+	$Camera2D/HUD/ZoomRuler.visible = false
+	$Camera2D/HUD/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
@@ -488,6 +497,7 @@ func _on_back_to_lobby_button_pressed() -> void:
 	$Camera2D/HUD/BackToLobbyButton.visible = false
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
+	$Camera2D/HUD/ZoomRuler.visible = false
 
 func _select_mission_button_info_panel_pressed() -> void:
 	selecting_mission = false
@@ -496,6 +506,7 @@ func _select_mission_button_info_panel_pressed() -> void:
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
+	$Camera2D/HUD/ZoomRuler.visible = false
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):

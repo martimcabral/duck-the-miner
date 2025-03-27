@@ -933,7 +933,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 32.0
 offset_top = -292.0
-offset_right = 151.0
+offset_right = 131.0
 offset_bottom = 277.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n0xh0")
@@ -949,9 +949,11 @@ offset_right = 40.5
 offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "2.5x"
+text = "9x"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSlider" type="VSlider" parent="Camera2D/HUD/ZoomRuler"]
+[node name="ZoomSlider" type="VSlider" parent="Camera2D/HUD/ZoomRuler"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -964,7 +966,8 @@ offset_right = 36.5
 offset_bottom = 251.5
 grow_horizontal = 2
 grow_vertical = 2
-step = 8.0
+min_value = 5.85
+value = 38.85
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_8r1et")
@@ -1496,7 +1499,6 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
-visible = false
 z_index = -2
 anchors_preset = 8
 anchor_left = 0.5
@@ -1541,6 +1543,7 @@ text = "Field Name"
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/SelectMissionPanel/SelectMissionButton" to="." method="_select_mission_button_info_panel_pressed"]
+[connection signal="value_changed" from="Camera2D/HUD/ZoomRuler/ZoomSlider" to="." method="_on_ZoomSlider_value_changed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]
 [connection signal="mouse_entered" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_exited"]
