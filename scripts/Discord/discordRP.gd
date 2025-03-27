@@ -1,11 +1,21 @@
 extends Node
 
+var skin_selected = get_skin()
+
+func get_skin():
+	var skin_path = "res://save/skin.cfg"
+	if FileAccess.file_exists(skin_path):
+		var skin_file = ConfigFile.new()
+		skin_file.load(skin_path)
+		skin_selected = int(skin_file.get_value("skin", "selected", 0))
+		return skin_selected
+
 func _ready() -> void:
 	DiscordRPC.app_id = 1306635163265929327
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.details = "🎮 Just started playing!"
 		DiscordRPC.state = "beta." + str(ProjectSettings.get_setting("application/config/version"))
-		DiscordRPC.large_image = "duck-1028"
+		DiscordRPC.large_image = str(skin_selected) + "duck"
 		DiscordRPC.large_image_text = "Get Duck the Miner at itch.io"
 		DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
 		DiscordRPC.refresh()

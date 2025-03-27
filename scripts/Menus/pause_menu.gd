@@ -1,16 +1,21 @@
 extends Node2D
 
 var pause_menu_visible = false
+var saved_states = {}
 
 func _process(_delta: float) -> void:
+	
 	if Input.is_action_just_pressed("PauseMenu"):
 		match pause_menu_visible:
 			false:
 				pause_menu_visible = true
 				$GUI_Pause.visible = pause_menu_visible
+				enable_all_rigid_body_physics()
 			true:
 				pause_menu_visible = false
 				$GUI_Pause.visible = pause_menu_visible
+				disable_all_rigid_body_physics()
+				
 
 func _on_continue_pressed() -> void:
 	$GUI_Pause.visible = false
@@ -106,3 +111,24 @@ func save_inventory_to_cfg(file_path, inventory):
 	for item_name in inventory.keys():
 		config.set_value("inventory", item_name, inventory[item_name])
 	return config.save(file_path) == OK
+
+func disable_all_rigid_body_physics():
+	saved_states.clear()  # Reset previous states
+	for body in get_tree().get_nodes_in_group("Pickable"):
+		if body is RigidBody2D:
+			# Store linear and angular velocities
+			saved_states[body] = {
+				"linear_velocity": body.linear_velocity,
+				"angular_velocity": body.angular_velocity
+			}
+			body.freeze = true
+
+func enable_all_rigid_body_physics():
+	for body in saved_states.keys():
+		if body and body is RigidBody2D:
+			var state = saved_states[body]
+			# Unfreeze and restore velocities
+			body.linear_velocity = state["linear_velocity"]
+			body.angular_velocity = state["angular_velocity"]
+			body.freeze = false
+	saved_states.clear()  # Clear stored states

@@ -73,6 +73,14 @@ var koppa_ammount : int = 0
 @onready var item_list = $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList
 
 func _ready():
+	$Camera2D/HUD/LobbyPanel/MoneyPanel.visible = true
+	$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.visible = true
+	$Camera2D/HUD/LobbyPanel/UniverseMapPanel.visible = true
+	$Camera2D/HUD/LobbyPanel/ControlPanel.visible = true
+	$Camera2D/HUD/LobbyPanel/CraftingPanel.visible = true
+	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.visible = true
+	$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = true
+	
 	var save_file = ConfigFile.new()
 	save_file.load("res://save/money.cfg")
 	var current_money = str(save_file.get_value("money", "current", null))
@@ -171,8 +179,7 @@ func _ready():
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(_delta: float) -> void:
-	lobby_fade_in = 300 * (1 - clamp($FadeInLobby.time_left, 0.0, 1.0))
-	print(lobby_fade_in, " / ", $FadeInLobby.time_left)
+	lobby_fade_in = 255 * (1 - clamp($FadeInLobby.time_left, 0.0, 1.0))
 
 	$Camera2D/HUD/LobbyPanel/MoneyPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.modulate.a8 = lobby_fade_in
@@ -542,21 +549,22 @@ func load_skin():
 		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
-		print("Current Skin: " + str(skin_selected))
-		
 	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
+	DiscordRPC.large_image = str(skin_selected) + "duck"
+	DiscordRPC.refresh()
 
 func _on_skin_previous_button_pressed() -> void:
 	skin_selected -= 1
 	if skin_selected < 1 : skin_selected = 1
 	
 	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
-
+	DiscordRPC.large_image = str(skin_selected) + "duck"
+	DiscordRPC.refresh()
+	
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_file.set_value("skin", "selected", skin_selected)
-		print("[lobby.gd] Current Skin: " + str(skin_selected))
 		skin_file.save(skin_path)
 
 func _on_skin_next_button_pressed() -> void:
@@ -564,12 +572,13 @@ func _on_skin_next_button_pressed() -> void:
 	if skin_selected >= 4 : skin_selected = 4
 	
 	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
-
+	DiscordRPC.large_image = str(skin_selected) + "duck"
+	DiscordRPC.refresh()
+	
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_file.set_value("skin", "selected", skin_selected)
-		print("Current Skin: " + str(skin_selected))
 		skin_file.save(skin_path)
 
 func get_pages():

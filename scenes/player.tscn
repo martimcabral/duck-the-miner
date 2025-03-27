@@ -713,30 +713,30 @@ tab_1/title = "Pickaxe"
 tab_2/title = "Light"
 tab_3/title = "UV Flashlight"
 
-[node name="Player Sounds" type="Node2D" parent="."]
+[node name="PlayerSounds" type="Node2D" parent="."]
 
-[node name="Mining1" type="AudioStreamPlayer2D" parent="Player Sounds"]
+[node name="Mining1" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("6_754b5")
 bus = &"Player"
 
-[node name="Mining2" type="AudioStreamPlayer2D" parent="Player Sounds"]
+[node name="Mining2" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("7_lpuh6")
 bus = &"Player"
 
-[node name="Mining3" type="AudioStreamPlayer2D" parent="Player Sounds"]
+[node name="Mining3" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("8_avynl")
 bus = &"Player"
 
-[node name="Mining4" type="AudioStreamPlayer2D" parent="Player Sounds"]
+[node name="Mining4" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("9_4jbyg")
 bus = &"Player"
 
-[node name="PlaceBlock" type="AudioStreamPlayer2D" parent="Player Sounds"]
+[node name="PlaceBlock" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("12_r1vvj")
 volume_db = -10.0
 bus = &"Ambient"
 
-[node name="Quack" type="AudioStreamPlayer2D" parent="Player Sounds"]
+[node name="Quack" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("13_2b2kh")
 volume_db = -5.0
 max_distance = 2e+06

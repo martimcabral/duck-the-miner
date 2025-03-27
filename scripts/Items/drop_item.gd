@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 			
 				torch.position = CaveSystem.map_to_local(tile_pos)
 				add_child(torch)
-				$"../Player/Player Sounds/PlaceBlock".play()
+				$"../Player/PlayerSounds/PlaceBlock".play()
 				#print("Torch Placed: ", tile_pos)
 
 func drop_items():

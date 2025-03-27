@@ -437,6 +437,8 @@ adjustment_color_correction = SubResource("GradientTexture2D_4634m")
 [node name="World" type="Node2D"]
 script = ExtResource("1_nmwod")
 
+[node name="PauseMenu" parent="." instance=ExtResource("24_dvxve")]
+
 [node name="MissionInventory" type="Node2D" parent="."]
 script = SubResource("GDScript_l0prr")
 
@@ -620,8 +622,6 @@ volume_db = -15.0
 process_callback = 0
 wait_time = 180.0
 autostart = true
-
-[node name="PauseMenu" parent="." instance=ExtResource("24_dvxve")]
 
 [node name="TitleTimer" type="Timer" parent="."]
 wait_time = 15.0
