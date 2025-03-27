@@ -144,10 +144,7 @@ func _ready():
 	else:
 		print("[lobby.gd/missions.json] failed to open file!")
 	
-	delta_ammount =  get_asteroids_per_field("Delta Belt")
-	gamma_ammount =  get_asteroids_per_field("Gamma Field")
-	omega_ammount =  get_asteroids_per_field("Omega Field")
-	koppa_ammount =  get_asteroids_per_field("Koppa Belt")
+	get_pages()
 	
 	$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text = "[center]%s[/center]" % "00/00"
 	$Camera2D/HUD/InfoPanel/Description.text = ""
@@ -575,5 +572,15 @@ func _on_skin_next_button_pressed() -> void:
 		print("Current Skin: " + str(skin_selected))
 		skin_file.save(skin_path)
 
+func get_pages():
+	delta_ammount =  get_asteroids_per_field("Delta Belt")
+	gamma_ammount =  get_asteroids_per_field("Gamma Field")
+	omega_ammount =  get_asteroids_per_field("Omega Field")
+	koppa_ammount =  get_asteroids_per_field("Koppa Belt")
+	
 func _on_reroll_button_pressed() -> void:
+	current_page = 1
 	save_asteroid_data()
+	get_asteroid_info()
+	get_asteroid_info()
+	get_pages()
