@@ -180,28 +180,28 @@ func convert_to_db(value: float) -> float:
 func _on_master_volume_slider_value_changed(value: float) -> void:
 	var db_value = convert_to_db(value)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_value)
-	$AudioPanel/CurrentVolume.text = str(value)
+	$AudioPanel/CurrentVolume.text = str(int(value))
 	config.set_value("audio", "master", value)
 	config.save(file_path)
 
 func _on_music_volume_slider_value_changed(value: float) -> void:
 	var db_value = convert_to_db(value)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), db_value)
-	$AudioPanel/CurrentMusicVolume.text = str(value)
+	$AudioPanel/CurrentMusicVolume.text = str(int(value))
 	config.set_value("audio", "music", value)
 	config.save(file_path)
 
 func _on_ambient_volume_slider_value_changed(value: float) -> void:
 	var db_value = convert_to_db(value)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient"), db_value)
-	$AudioPanel/CurrentAmbientVolume.text = str(value)
+	$AudioPanel/CurrentAmbientVolume.text = str(int(value))
 	config.set_value("audio", "ambient", value)
 	config.save(file_path)
 
 func _on_player_volume_slider_value_changed(value: float) -> void:
 	var db_value = convert_to_db(value)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Player"), db_value)
-	$AudioPanel/CurrentPlayerVolume.text = str(value)
+	$AudioPanel/CurrentPlayerVolume.text = str(int(value))
 	config.set_value("audio", "player", value)
 	config.save(file_path)
 

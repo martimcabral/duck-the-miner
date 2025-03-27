@@ -13,11 +13,11 @@ config_version=5
 config/name="Duck the Miner"
 config/version="1.4"
 run/main_scene="res://scenes/main_menu.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.848606, 0.517103, 0.071148, 1)
-boot_splash/image="res://assets/textures/loading_screen.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
+boot_splash/image="res://assets/textures/loading_screen.png"
 config/icon="res://assets/textures/icon.png"
 
 [audio]
@@ -35,7 +35,6 @@ GameSettings="*res://scripts/game_settings.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/size/initial_position_type=0
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/textures/players/main_cursor.png"

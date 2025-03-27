@@ -91,7 +91,7 @@ func _ready():
 	var temperature_color = Color.from_hsv(hue / 360.0, 0.8, 0.8, 1)  # Convert hue to 0-1 range
 	$Player/Camera2D/HUD/Stats/TemperatureStat.tint_progress = temperature_color
 	
-	$Player/Camera2D/HUD/Stats/TemperatureStat/TemperatureText.text = "[center]%s[/center]" % str(asteroid_temperature) + "ᵒC"
+	$Player/Camera2D/HUD/Stats/TemperatureStat/TemperatureText.text = "[center]%s[/center]" % str(int(asteroid_temperature)) + "ᵒC"
 	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true

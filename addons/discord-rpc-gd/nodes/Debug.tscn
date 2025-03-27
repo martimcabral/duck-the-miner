@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dnfq6kug4x6o2" path="res://addons/discord-rpc-gd/nodes/assets/Checked.svg" id="2_q6tao"]
 [ext_resource type="Texture2D" uid="uid://compmm3kviqqe" path="res://addons/discord-rpc-gd/nodes/assets/Unchecked.svg" id="3_5cyem"]
 [ext_resource type="Texture2D" uid="uid://dtc6ckladq0td" path="res://addons/discord-rpc-gd/nodes/assets/circle.svg" id="3_goflf"]
-[ext_resource type="Script" path="res://scripts/Discord/discordRP.gd" id="4_722e3"]
+[ext_resource type="Script" uid="uid://d3ls2nao5lf8e" path="res://scripts/Discord/discordRP.gd" id="4_722e3"]
 
 [sub_resource type="GDScript" id="GDScript_ak1tp"]
 resource_name = "Debug"
@@ -112,8 +112,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a7ofc"]
 _data = {
-"RESET": SubResource("Animation_mmtmn"),
-"pulsate": SubResource("Animation_5u02v")
+&"RESET": SubResource("Animation_mmtmn"),
+&"pulsate": SubResource("Animation_5u02v")
 }
 
 [node name="DebugNodeGroup" type="Node"]
