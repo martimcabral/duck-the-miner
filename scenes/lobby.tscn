@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=63 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -96,6 +96,18 @@ corner_radius_bottom_left = 12
 expand_margin_left = 12.0
 expand_margin_top = 6.0
 expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21jdc"]
+bg_color = Color(0.07, 0.07, 0.07, 0.745098)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kcuow"]
 shader = ExtResource("2_3a20b")
@@ -212,7 +224,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0xh0"]
-bg_color = Color(0.07, 0.07, 0.07, 0.196078)
+bg_color = Color(0.07, 0.07, 0.07, 0.823529)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -247,6 +259,15 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
 
+[node name="FadeInLobby" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true
+autostart = true
+
+[node name="TimeToStart" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1.90735e-06, -9.53674e-07)
 
@@ -269,6 +290,62 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_syqgr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3jcuy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w2ah2")
 text = "Go Back"
+
+[node name="RerollButton" type="Button" parent="Camera2D/HUD"]
+z_index = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -187.0
+offset_top = -76.0
+offset_right = -40.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_aq7us")
+theme_override_styles/hover = SubResource("StyleBoxFlat_syqgr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3jcuy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w2ah2")
+text = "Reroll
+"
+
+[node name="LoadingPanel" type="Panel" parent="Camera2D/HUD"]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -63.5
+offset_right = 179.0
+offset_bottom = 63.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_21jdc")
+
+[node name="LoadingText" type="Label" parent="Camera2D/HUD/LoadingPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -27.0
+offset_right = 130.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Your Debt"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 64
+text = "Loading..."
+horizontal_alignment = 1
 
 [node name="LobbyPanel" type="Panel" parent="Camera2D/HUD"]
 self_modulate = Color(1, 1, 1, 0)
@@ -1533,7 +1610,9 @@ theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Field Name"
 
+[connection signal="timeout" from="TimeToStart" to="." method="_on_time_to_start_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/RerollButton" to="." method="_on_reroll_button_pressed"]
 [connection signal="timeout" from="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel/StockMarketTimer" to="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel" method="_on_stock_market_timer_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]

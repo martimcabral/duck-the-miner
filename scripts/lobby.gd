@@ -1,6 +1,6 @@
 extends Node2D
 
-# Dictionary to map item names to their corresponding texture paths - Fake Atlas
+# Dictionary to item names to their corresponding texture paths - Fake Atlas
 var item_icons = {
 	"Stone": "res://assets/textures/items/ores/rock_and_stone.png",
 	"Coal": "res://assets/textures/items/ores/coal.png",
@@ -29,7 +29,7 @@ var item_icons = {
 	"Raw Pyrolusite": "res://assets/textures/items/ores/raw_pyrolusite.png",
 	"Raw Nickel": "res://assets/textures/items/ores/raw_nickel.png",
 	"Raw Uranium": "res://assets/textures/items/ores/raw_uranium.png",
-	"Raw Platinum": "res://assets/textures/items/ores/raw_nickel.png",
+	"Raw Platinum": "res://assets/textures/items/ores/raw_platinum.png",
 	"Raw Zirconium": "res://assets/textures/items/ores/raw_zirconium.png",
 	"Raw Cobalt": "res://assets/textures/items/ores/raw_cobalt.png",
 	"Sulfur": "res://assets/textures/items/ores/sulfur.png",
@@ -45,6 +45,8 @@ var skin_selected : int = 0
 
 var min_zoom = 0.15
 var max_zoom = 2.5
+
+var lobby_fade_in : float = 0
 
 var consoantes = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
 var vogais = ['a', 'e', 'i', 'o', 'u']
@@ -128,6 +130,8 @@ func _ready():
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
 	$Camera2D/HUD/ZoomRuler.visible = false
+	$Camera2D/HUD/LoadingPanel.visible = false
+	$Camera2D/HUD/RerollButton.visible = false
 	
 	var file = FileAccess.open("res://save/missions.json", FileAccess.READ)
 	if file:
@@ -170,6 +174,17 @@ func _ready():
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
 func _process(_delta: float) -> void:
+	lobby_fade_in = 300 * (1 - clamp($FadeInLobby.time_left, 0.0, 1.0))
+	print(lobby_fade_in, " / ", $FadeInLobby.time_left)
+
+	$Camera2D/HUD/LobbyPanel/MoneyPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/LobbyPanel/UniverseMapPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/LobbyPanel/ControlPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/LobbyPanel/CraftingPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/LobbyPanel/InventoryPanel.modulate.a8 = lobby_fade_in
+	
 	if mission_selected : $Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = true
 	
 	if current_page >= 1 :
@@ -468,6 +483,7 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/BackToLobbyButton.visible = true
 	$Camera2D/HUD/InfoPanel.visible = true
 	$Camera2D/HUD/SystemInfoPanel.visible = true
+	$Camera2D/HUD/RerollButton.visible = true
 	$Camera2D/HUD/ZoomRuler.visible = false
 	$Camera2D/HUD/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
 
@@ -479,14 +495,28 @@ func _on_back_button_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	if mission_selected == true:
-		var new_world = preload("res://scenes/world.tscn").instantiate()
-		new_world.asteroid_field = current_field
-		new_world.asteroid_name = current_asteroid_name
-		new_world.asteroid_biome = current_asteroid_biome
-		new_world.asteroid_temperature = asteroid_temperature
-		get_tree().root.add_child(new_world)
-		get_tree().current_scene.call_deferred("free")
-		get_tree().current_scene = new_world
+		$Camera2D/HUD/LobbyPanel/MoneyPanel.visible = false
+		$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.visible = false
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel.visible = false
+		$Camera2D/HUD/LobbyPanel/ControlPanel.visible = false
+		$Camera2D/HUD/LobbyPanel/CraftingPanel.visible = false
+		$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.visible = false
+		$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = false
+		$Camera2D/HUD/LoadingPanel.visible = true
+		$Camera2D/HUD/BackToLobbyButton.text = "Loading ..."
+		$Camera2D/HUD/BackToLobbyButton.position = Vector2(858, 510)
+		$Camera2D/HUD/BackToLobbyButton.scale = Vector2(1.5, 1.5)
+		$TimeToStart.start()
+
+func _on_time_to_start_timeout() -> void:
+	var new_world = preload("res://scenes/world.tscn").instantiate()
+	new_world.asteroid_field = current_field
+	new_world.asteroid_name = current_asteroid_name
+	new_world.asteroid_biome = current_asteroid_biome
+	new_world.asteroid_temperature = asteroid_temperature
+	get_tree().root.add_child(new_world)
+	get_tree().current_scene.call_deferred("free")
+	get_tree().current_scene = new_world
 
 func _on_back_to_lobby_button_pressed() -> void:
 	$MouseSoundEffects.stream = load("res://sounds/sound_effects/back.ogg")
@@ -498,6 +528,7 @@ func _on_back_to_lobby_button_pressed() -> void:
 	$Camera2D/HUD/InfoPanel.visible = false
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	$Camera2D/HUD/ZoomRuler.visible = false
+	$Camera2D/HUD/RerollButton.visible = false
 
 func _select_mission_button_info_panel_pressed() -> void:
 	selecting_mission = false
@@ -507,6 +538,7 @@ func _select_mission_button_info_panel_pressed() -> void:
 	$Camera2D/HUD/SystemInfoPanel.visible = false
 	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
 	$Camera2D/HUD/ZoomRuler.visible = false
+	$Camera2D/HUD/RerollButton.visible = false
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):
@@ -542,3 +574,6 @@ func _on_skin_next_button_pressed() -> void:
 		skin_file.set_value("skin", "selected", skin_selected)
 		print("Current Skin: " + str(skin_selected))
 		skin_file.save(skin_path)
+
+func _on_reroll_button_pressed() -> void:
+	save_asteroid_data()
