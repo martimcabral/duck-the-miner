@@ -30,12 +30,13 @@ var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/d
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
 var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/flashlight_item.png")
 var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
+var cursor_default = preload("res://assets/textures/players/main_cursor.png")
 
 var block_selection_default = preload("res://assets/textures/selected_block.png")
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
 
 func _ready():
-	Input.set_custom_mouse_cursor(the_nothing_texture)
+	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
 	
 	match world.asteroid_biome:
@@ -67,8 +68,6 @@ func player_movement(input, delta):
 		velocity.y += falling_speed * delta * 1.1
 
 func _process(delta):
-	$Camera2D/HUD/Cursor.position = get_screen_mouse_position()
-	
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 	
@@ -116,12 +115,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("PauseMenu"):
 		if $"../PauseMenu/GUI_Pause".visible == true:
 			$"../PauseMenu/GUI_Pause".visible = false
-			$Camera2D/HUD/Cursor.visible = true
-			Input.set_custom_mouse_cursor(the_nothing_texture)
+			match current_item:
+				1: Input.set_custom_mouse_cursor(cursor_texture_sword)
+				2: Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
+				3: Input.set_custom_mouse_cursor(cursor_texture_light)
+				4: Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 		elif $"../PauseMenu/GUI_Pause".visible == false:
 			$"../PauseMenu/GUI_Pause".visible = true
-			$Camera2D/HUD/Cursor.visible = false
-			Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
+			Input.set_custom_mouse_cursor(cursor_default)
 		
 	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
 	var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
@@ -186,10 +187,8 @@ func _process(delta):
 		if not is_on_floor():
 			$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
 		if not is_on_floor() and Input.is_action_pressed("Walk_Right"):
-			$Camera2D/HUD/Cursor.flip_h = true
 			$AnimatedSprite2D.flip_h = true
 		elif not is_on_floor() and Input.is_action_pressed("Walk_Left"):
-			$Camera2D/HUD/Cursor.flip_h = false
 			$AnimatedSprite2D.flip_h = false
 			
 		if is_on_floor() and Input.is_action_pressed("Agachar"):
@@ -201,12 +200,8 @@ func _process(delta):
 		elif is_on_floor():
 			$AnimatedSprite2D.animation = str(skin_selected) + "_walking"
 			if Input.is_action_pressed("Walk_Right"):
-				$Camera2D/HUD/Cursor.flip_h = true
-				$Camera2D/HUD/Cursor.offset.x = -8
 				$AnimatedSprite2D.flip_h = true
 			elif Input.is_action_pressed("Walk_Left"):
-				$Camera2D/HUD/Cursor.offset.x = 8
-				$Camera2D/HUD/Cursor.flip_h = false
 				$AnimatedSprite2D.flip_h = false
 			else:
 				$AnimatedSprite2D.stop()
@@ -214,24 +209,20 @@ func _process(delta):
 		# Mudar o Cursor dependendo do Item selecinado da Hotbar
 		if Input.is_action_just_pressed("Hotbar_1"):
 			current_item = 1
-			$Camera2D/HUD/Cursor.texture = (cursor_texture_sword)
+			Input.set_custom_mouse_cursor(cursor_texture_sword)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
-			$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 		if Input.is_action_just_pressed("Hotbar_2"):
 			current_item = 2
-			$Camera2D/HUD/Cursor.texture = (cursor_texture_pickaxe)
+			Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
-			$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 		if Input.is_action_just_pressed("Hotbar_3"):
 			current_item = 3
-			$Camera2D/HUD/Cursor.texture = (cursor_texture_light)
+			Input.set_custom_mouse_cursor(cursor_texture_light)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 2
-			$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 		if Input.is_action_just_pressed("Hotbar_4"):
 			current_item = 4
-			$Camera2D/HUD/Cursor.texture = (cursor_texture_flashlight)
+			Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 			$Camera2D/HUD/Hotbar/TabBar.current_tab = 3
-			$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 	else:
 		$AnimatedSprite2D.stop()
 	
@@ -319,10 +310,6 @@ func destroy_block():
 
 func _on_minning_cooldown_timeout() -> void:
 	if Input.is_action_pressed("Destroy_Block"):
-		match current_item:
-			1: $Camera2D/HUD/Cursor/AnimationPlayer.play("sword")
-			2: $Camera2D/HUD/Cursor/AnimationPlayer.play("swing")
-		
 		# 1. Get the global position of the mouse
 		var mouse_pos = get_global_mouse_position()
 		# 2. Convert the global mouse position to the local position of the Area2D
@@ -336,8 +323,6 @@ func _on_minning_cooldown_timeout() -> void:
 		# 5. If the mouse is within the Area2D/BlockRange than start to destroy EVERYTHING
 		if local_mouse_pos.length() <= radius:
 			destroy_block()
-	else:
-		$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 
 func _on_uv_battery_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
@@ -353,24 +338,20 @@ func _on_tab_bar_tab_clicked(tab: int) -> void:
 		match tab:
 			0:
 				current_item = 1
-				$Camera2D/HUD/Cursor.texture(cursor_texture_sword)
+				Input.set_custom_mouse_cursor(cursor_texture_sword)
 				$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
-				$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 			1: 
 				current_item = 2
-				$Camera2D/HUD/Cursor.texture(cursor_texture_pickaxe)
+				Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 				$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
-				$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 			2:
 				current_item = 3
-				$Camera2D/HUD/Cursor.texture(cursor_texture_light)
+				Input.set_custom_mouse_cursor(cursor_texture_light)
 				$Camera2D/HUD/Hotbar/TabBar.current_tab = 2
-				$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 			3: 
 				current_item = 4
-				$Camera2D/HUD/Cursor.texture(cursor_texture_flashlight)
+				Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 				$Camera2D/HUD/Hotbar/TabBar.current_tab = 3
-				$Camera2D/HUD/Cursor/AnimationPlayer.stop()
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):
@@ -378,9 +359,3 @@ func load_skin():
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 1))
 		print("[player.gd] Current Skin: " + str(skin_selected))
-
-func get_screen_mouse_position():
-	var viewport_position = get_viewport().get_mouse_position()
-	var window_position = DisplayServer.window_get_position()
-	var screen_position = Vector2(window_position) + viewport_position
-	return screen_position

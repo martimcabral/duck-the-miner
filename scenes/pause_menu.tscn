@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://n0kjraecvul5" path="res://scripts/Menus/pause_menu.gd" id="1_br3yh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
-bg_color = Color(0, 0, 0, 0.556863)
+bg_color = Color(0, 0, 0, 0.686275)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
