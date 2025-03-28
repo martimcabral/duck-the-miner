@@ -39,10 +39,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq7us"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -54,10 +54,10 @@ expand_margin_right = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syqgr"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -69,10 +69,10 @@ expand_margin_right = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jcuy"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -84,10 +84,10 @@ expand_margin_right = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2ah2"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -115,10 +115,10 @@ shader_parameter/lod = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3adby"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -127,10 +127,10 @@ corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjmxu"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -142,10 +142,10 @@ expand_margin_right = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tro2"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -157,10 +157,10 @@ expand_margin_right = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqj1l"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -184,10 +184,10 @@ corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e17u6"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
@@ -380,8 +380,8 @@ horizontal_alignment = 1
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
 position = Vector2(-32, 0)
-points = PackedVector2Array(468.044, 76.5015, 468, 4)
-width = 6.0
+points = PackedVector2Array(468.044, 76.5015, 468, 2)
+width = 4.0
 
 [node name="StockMarketLabel" type="RichTextLabel" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
 layout_mode = 1
@@ -480,8 +480,8 @@ text = "Select Mission"
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 position = Vector2(8, 0.492674)
 scale = Vector2(1, 1.24633)
-points = PackedVector2Array(356, 4, 356, 333)
-width = 6.0
+points = PackedVector2Array(356, 1.20941, 356, 283.639)
+width = 4.0
 
 [node name="FieldLobbyThumbnail" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 layout_mode = 1
@@ -582,7 +582,7 @@ text = "Back"
 position = Vector2(-175, 0.150002)
 scale = Vector2(1, 1.05)
 points = PackedVector2Array(311, 3, 310.97, 58.1774)
-width = 6.0
+width = 4.0
 
 [node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
 layout_mode = 1

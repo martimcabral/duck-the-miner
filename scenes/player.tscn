@@ -1,8 +1,9 @@
-[gd_scene load_steps=77 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=82 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/skins/1/duck_walking.png" id="2_815s6"]
 [ext_resource type="Texture2D" uid="uid://cp17yyvfj1o5u" path="res://assets/textures/players/skins/1/duck_squat.png" id="2_bkd5y"]
+[ext_resource type="Texture2D" uid="uid://c7njuvmbuaqqf" path="res://assets/textures/equipment/pickaxes/debug_pickaxe.png" id="2_dt7fs"]
 [ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/players/lights/point_light.png" id="3_jwt0r"]
 [ext_resource type="Texture2D" uid="uid://cbhiqpcmuwp47" path="res://assets/textures/players/skins/1/duck_flying.png" id="3_twhi0"]
 [ext_resource type="Texture2D" uid="uid://cvesw4kr1dsav" path="res://assets/textures/players/lights/flashlight_beam_larger.png" id="4_83sd1"]
@@ -346,6 +347,85 @@ radius = 38.4908
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5m53"]
 size = Vector2(12, 13)
 
+[sub_resource type="Animation" id="Animation_dt7fs"]
+resource_name = "swing"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.25, 1.25), Vector2(1.45, 1.45)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -0.436332]
+}
+
+[sub_resource type="Animation" id="Animation_wqfne"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.25, 1.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wnwbv"]
+resource_name = "sword"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.566667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.13446, 0.610865, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wnwbv"]
+_data = {
+&"RESET": SubResource("Animation_wqfne"),
+&"swing": SubResource("Animation_dt7fs"),
+&"sword": SubResource("Animation_wnwbv")
+}
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mngom"]
 noise_type = 2
 frequency = 0.0888
@@ -505,6 +585,19 @@ drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 follow_viewport_scale = 0.5
+
+[node name="Cursor" type="Sprite2D" parent="Camera2D/HUD"]
+z_index = 10
+z_as_relative = false
+position = Vector2(-50, 314)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_dt7fs")
+offset = Vector2(-14.4, -14.4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/HUD/Cursor"]
+libraries = {
+&"": SubResource("AnimationLibrary_wnwbv")
+}
 
 [node name="MirageOverlay" type="Sprite2D" parent="Camera2D/HUD"]
 visible = false

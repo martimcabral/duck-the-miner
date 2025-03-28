@@ -50,8 +50,8 @@ border_width_left = 3
 border_width_top = 3
 border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_bottom_left = 16
+corner_radius_top_left = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fbxys"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -548,6 +548,10 @@ offset_right = 142.5
 offset_bottom = 51.0
 grow_horizontal = 2
 scale = Vector2(0.8, 0.8)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "Duck's Pockets"
@@ -564,6 +568,11 @@ offset_right = 90.0
 offset_bottom = 83.0
 grow_horizontal = 2
 scale = Vector2(0.66, 0.66)
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/normal_font_size = 32
 text = "- EMPTY -"
 
