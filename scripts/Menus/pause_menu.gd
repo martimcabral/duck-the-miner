@@ -40,7 +40,7 @@ func keep_inventory():
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
 	
-	var file = FileAccess.open("res://save/missions.json", FileAccess.WRITE)
+	var file = FileAccess.open(str("res://save", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
 	if file:
 		file.store_string(result)
 		file.close()
@@ -48,8 +48,8 @@ func keep_inventory():
 	else:
 		print("[start.gd/missions.json] Failed to open file for emptying stage.")
 	
-	var file_path = "res://save/inventory_resources.cfg"
-	var current_inventory = load_inventory("res://save/inventory_resources.cfg")
+	var file_path = str("res://save", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+	var current_inventory = load_inventory(str("res://save", GetSaveFile.save_being_used, "/inventory_resources.cfg"))
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	var updated_inventory = merge_items(current_inventory, new_items)
 	if save_inventory_to_cfg(file_path, updated_inventory):

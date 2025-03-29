@@ -1,9 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=36 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" uid="uid://bsjsgdqygu8x5" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
+[ext_resource type="Script" uid="uid://bbygtdu0v3de8" path="res://scripts/Menus/save_files_menu.gd" id="3_rtw2f"]
 [ext_resource type="Script" uid="uid://dt2nt4vg6abkt" path="res://scripts/Menus/options_menu.gd" id="3_vt73r"]
+[ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/main_menu/trash_can.png" id="4_oa1go"]
 [ext_resource type="AudioStream" uid="uid://dx8qvewqg7pwy" path="res://sounds/sound_effects/play.ogg" id="5_08a1y"]
 
 [sub_resource type="Shader" id="Shader_o5xol"]
@@ -67,6 +69,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40bhi"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
+bg_color = Color(0.59, 0.59, 0.59, 0)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev00f"]
 bg_color = Color(0.6, 0.6, 1, 0)
 
@@ -74,9 +79,6 @@ bg_color = Color(0.6, 0.6, 1, 0)
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l6o4"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgfrk"]
@@ -258,6 +260,9 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_0o5ht")
 
+[node name="TimeToPlay" type="Timer" parent="."]
+wait_time = 0.75
+
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="Center" type="Node" parent="GUI"]
@@ -286,6 +291,7 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -316,6 +322,7 @@ offset_right = 87.0
 offset_bottom = 108.0
 grow_horizontal = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_r1li2")
 text = "Play"
@@ -334,6 +341,7 @@ offset_right = 138.5
 offset_bottom = 190.0
 grow_horizontal = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_y4du8")
 text = "Settings"
@@ -363,6 +371,7 @@ offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Credits"
@@ -384,12 +393,147 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Exit"
 flat = true
 
+[node name="SaveFilesMenu" type="Panel" parent="GUI/Center"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -403.5
+offset_top = -240.5
+offset_right = 403.5
+offset_bottom = 368.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
+script = ExtResource("3_rtw2f")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/Center/SaveFilesMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -398.5
+offset_top = 5.0
+offset_right = 400.5
+offset_bottom = 518.0
+grow_horizontal = 2
+
+[node name="SaveList" type="VBoxContainer" parent="GUI/Center/SaveFilesMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+
+[node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu"]
+points = PackedVector2Array(806.5, 520.5, 3.5, 520.5)
+width = 4.0
+
+[node name="PlayButton" type="Button" parent="GUI/Center/SaveFilesMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.5
+offset_top = -77.0
+offset_right = 89.5
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_disabled_color = Color(0.35, 0.35, 0.35, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
+disabled = true
+text = "Play"
+flat = true
+
+[node name="CreateGame" type="Button" parent="GUI/Center/SaveFilesMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -127.5
+offset_top = -76.5
+offset_right = -52.5
+offset_bottom = 3.5
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
+text = "+"
+flat = true
+
+[node name="DeleteGame" type="Button" parent="GUI/Center/SaveFilesMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -67.5
+offset_top = -80.4999
+offset_right = -50.5
+offset_bottom = -61.4999
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3.5, 3.5)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
+icon = ExtResource("4_oa1go")
+flat = true
+
+[node name="BackButton" type="Button" parent="GUI/Center/SaveFilesMenu"]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -77.0
+offset_right = 211.0
+offset_bottom = 3.0
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
+text = "Back"
+flat = true
+
+[node name="VerifyFiles" type="Timer" parent="GUI/Center/SaveFilesMenu"]
+wait_time = 0.25
+autostart = true
+
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1245,13 +1389,18 @@ position = Vector2(1001, 591)
 stream = ExtResource("5_08a1y")
 bus = &"Player"
 
-[node name="TimeToPlay" type="Timer" parent="MouseSoundEffects"]
-wait_time = 0.75
-
+[connection signal="timeout" from="TimeToPlay" to="GUI/Center/StartMenu" method="_on_time_to_play_timeout"]
 [connection signal="pressed" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/OptionsButton" to="GUI/Center/StartMenu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/CreditsButton" to="GUI/Center/StartMenu" method="_on_credits_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/ExitButton" to="GUI/Center/StartMenu" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="GUI/Center/SaveFilesMenu/PlayButton" to="GUI/Center/StartMenu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="GUI/Center/SaveFilesMenu/CreateGame" to="GUI/Center/SaveFilesMenu" method="_on_create_game_pressed"]
+[connection signal="mouse_entered" from="GUI/Center/SaveFilesMenu/DeleteGame" to="GUI/Center/SaveFilesMenu" method="_on_delete_game_mouse_entered"]
+[connection signal="mouse_exited" from="GUI/Center/SaveFilesMenu/DeleteGame" to="GUI/Center/SaveFilesMenu" method="_on_delete_game_mouse_exited"]
+[connection signal="pressed" from="GUI/Center/SaveFilesMenu/DeleteGame" to="GUI/Center/SaveFilesMenu" method="_on_delete_game_pressed"]
+[connection signal="pressed" from="GUI/Center/SaveFilesMenu/BackButton" to="GUI/Center/SaveFilesMenu" method="_on_back_button_pressed"]
+[connection signal="timeout" from="GUI/Center/SaveFilesMenu/VerifyFiles" to="GUI/Center/SaveFilesMenu" method="_on_verify_files_timeout"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayButton" to="GUI/Center/OptionsMenu" method="_on_display_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/AudioButton" to="GUI/Center/OptionsMenu" method="_on_audio_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsButton" to="GUI/Center/OptionsMenu" method="_on_controls_button_pressed"]
@@ -1282,4 +1431,3 @@ wait_time = 0.75
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UniverseZoomOutButton" to="GUI/Center/OptionsMenu" method="_on_universe_zoom_out_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UseFlashlightButton" to="GUI/Center/OptionsMenu" method="_on_use_flashlight_button_pressed"]
 [connection signal="pressed" from="GUI/Center/CreditsMenu/BackButton" to="GUI/Center/StartMenu" method="_on_back_button_pressed"]
-[connection signal="timeout" from="MouseSoundEffects/TimeToPlay" to="GUI/Center/StartMenu" method="_on_time_to_play_timeout"]

@@ -56,9 +56,9 @@ var gamma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/omega.png")
 var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/koppa.png")
 
-var skin_path : String = "res://save/skin.cfg"
+var skin_path : String = str("res://save/", GetSaveFile.save_being_used, "/skin.cfg")
 
-var json_path = "res://save/missions.json"
+var json_path : String = str("res://save/", GetSaveFile.save_being_used, "/missions.json")
 var current_page = 1
 var current_asteroid_name : String
 var current_asteroid_biome : String
@@ -82,7 +82,7 @@ func _ready():
 	$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = true
 	
 	var save_file = ConfigFile.new()
-	save_file.load("res://save/money.cfg")
+	save_file.load(str("res://save/", GetSaveFile.save_being_used, "/money.cfg"))
 	var current_money = str(save_file.get_value("money", "current", null))
 	var number_str = str(current_money)
 	# Create an empty list to store the parts of the formatted number
@@ -99,7 +99,7 @@ func _ready():
 			formatted_number = " " + formatted_number
 	$Camera2D/HUD/LobbyPanel/MoneyPanel/MoneyLabel.text = "€ " + formatted_number
 	# Path to the CFG file
-	var inv_path = "res://save/inventory_resources.cfg"
+	var inv_path = str("res://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	
 	# Load the CFG file
 	var config = ConfigFile.new()
@@ -141,7 +141,7 @@ func _ready():
 	$Camera2D/HUD/LoadingPanel.visible = false
 	$Camera2D/HUD/RerollButton.visible = false
 	
-	var file = FileAccess.open("res://save/missions.json", FileAccess.READ)
+	var file = FileAccess.open(str("res://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.READ)
 	if file:
 		var result = file.get_as_text()
 		if result == str(0):
@@ -405,7 +405,7 @@ func save_asteroid_data():
 	
 	var result = JSON.stringify(asteroid_data, "\t")
 	
-	var file = FileAccess.open("res://save/missions.json", FileAccess.WRITE)
+	var file = FileAccess.open(str("res://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
 	if file:
 		file.store_string(result)
 		file.close()

@@ -4,3 +4,6 @@
 
 # Ignore all tmp files
 *.tmp
+
+# Ignore save Files
+save/
