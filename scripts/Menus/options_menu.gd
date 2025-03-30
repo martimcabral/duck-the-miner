@@ -67,6 +67,7 @@ func _ready():
 
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".pitch_scale = 1
 	$"../../../MouseSoundEffects".play()
 	
 	$DisplayPanel.visible = false

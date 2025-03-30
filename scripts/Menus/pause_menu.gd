@@ -4,7 +4,6 @@ var pause_menu_visible = false
 var saved_states = {}
 
 func _process(_delta: float) -> void:
-	
 	if Input.is_action_just_pressed("PauseMenu"):
 		match pause_menu_visible:
 			false:
@@ -132,3 +131,14 @@ func enable_all_rigid_body_physics():
 			body.angular_velocity = state["angular_velocity"]
 			body.freeze = false
 	saved_states.clear()  # Clear stored states
+
+func _ready() -> void:
+	for button in get_tree().get_nodes_in_group("Buttons"):
+		button.mouse_entered.connect(func(): _on_button_mouse_entered())
+
+func _on_button_mouse_entered() -> void:
+	var mouse_sound = $MouseSoundEffects
+	if mouse_sound:
+		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
+		mouse_sound.pitch_scale = 0.75
+		mouse_sound.play()

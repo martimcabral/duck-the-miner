@@ -8,8 +8,11 @@ var saves_path = str("res://save/saves.cfg")
 var saves_config = ConfigFile.new()
 var getmoney_config = ConfigFile.new()
 
+var normal_stylebox = StyleBoxFlat.new()
+var focus_stylebox = StyleBoxFlat.new()
+var hover_stylebox = StyleBoxFlat.new()
+
 func _ready() -> void:
-	
 	if not FileAccess.file_exists(saves_path):
 		print("[save/save.cfg] not found. Creating a new one....")
 		saves_config.set_value("saves", "selected", 0)
@@ -28,12 +31,10 @@ func get_save_files():
 	var directories = savedir.get_directories()
 	for i in range(0, 100):
 		if directories.has(str(i)) == true:
-			print(i, directories.has(str(i)))
 			var SaveButton = Button.new()
 			
 			getmoney_config.load(str("res://save/", i, "/money.cfg"))
 			var current_money = str(getmoney_config.get_value("money", "current", 0))
-			print("ABACATE: ", current_money)
 			var number_str = str(current_money)
 			var formatted_number = ""
 			var counter = 0
@@ -44,11 +45,18 @@ func get_save_files():
 					formatted_number = " " + formatted_number
 			SaveButton.text = "Save " + str(i) + " - " + str(formatted_number) + " €"
 			
+			create_styleboxes()
+			SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
+			SaveButton.add_theme_stylebox_override("focus", focus_stylebox)
+			SaveButton.add_theme_stylebox_override("hover", hover_stylebox)
+			
 			SaveButton.add_theme_color_override("font_color", Color.WHITE)
 			SaveButton.add_theme_font_size_override("font_size", 48)
 			SaveButton.set_meta("save", i)
-			SaveButton.pressed.connect(set_selected_save.bind(SaveButton))
+			SaveButton.pressed.connect(func(): set_selected_save(SaveButton))
+			SaveButton.mouse_entered.connect(func(): _on_button_mouse_entered())
 			$ScrollContainer/SaveList.add_child(SaveButton)
+			SaveButton.add_to_group("Buttons")
 
 func _on_verify_files_timeout() -> void:
 	saves_number = savedir.get_directories().size()
@@ -62,15 +70,27 @@ func _on_back_button_pressed() -> void:
 	$".".visible = false
 
 func _on_create_game_pressed() -> void:
+	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/play.ogg")
+	$"../../../MouseSoundEffects".pitch_scale = 1.25
+	$"../../../MouseSoundEffects".play()
+	
 	# Create SaveGame Button
 	saves_number += 1
 	var SaveButton = Button.new()
-	SaveButton.text = "Save " + str(saves_number) + " - Just Created"
+	SaveButton.text = "Save " + str(saves_number) + " - New"
 	SaveButton.add_theme_color_override("font_color", Color.WHITE)
 	SaveButton.add_theme_font_size_override("font_size", 48)
+	
+	create_styleboxes()
+	
+	SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
+	SaveButton.add_theme_stylebox_override("focus", focus_stylebox)
+	SaveButton.add_theme_stylebox_override("hover", hover_stylebox)
 	SaveButton.set_meta("save", saves_number)
-	SaveButton.pressed.connect(set_selected_save.bind(SaveButton))
+	SaveButton.pressed.connect(func(): set_selected_save(SaveButton))
+	SaveButton.mouse_entered.connect(func(): _on_button_mouse_entered())
 	$ScrollContainer/SaveList.add_child(SaveButton)
+	SaveButton.add_to_group("Buttons")
 	
 	# Create the actual file
 	var save_file_path = "res://save/" + str(saves_number)
@@ -78,49 +98,46 @@ func _on_create_game_pressed() -> void:
 		DirAccess.make_dir_absolute(save_file_path)
 	
 	################################################################################
+	var newsavefile_path = str("res://save/", saves_number, "/money.cfg")
+	var newsavefile_config = ConfigFile.new()
+	newsavefile_config.save(newsavefile_path)
+
+	################################################################################
 	
 	var money_path = str("res://save/", saves_number, "/money.cfg")
 	var money_config = ConfigFile.new()
 	
-	if FileAccess.file_exists(money_path):
-		print("[money.cfg] was detected successfully")
-	else:
-		print("[money.cfg] not found. Creating a new one..., with a new money.")
-		var new_money = int(randf_range(1_000, 10_000))
-		money_config.set_value("money", "start", new_money)
-		money_config.set_value("money", "current", new_money)
-		money_config.save(money_path)
+	var new_money = int(randf_range(1_000, 10_000))
+	money_config.set_value("money", "start", new_money)
+	money_config.set_value("money", "current", new_money)
+	money_config.save(money_path)
 	
 	################################################################################
 	
 	var missions_path = str("res://save/", saves_number, "/missions.json")
-	if not FileAccess.file_exists(missions_path):
-		var empty_file = 0
-		var result = JSON.stringify(empty_file)
-		
-		var file = FileAccess.open(missions_path, FileAccess.WRITE)
-		if file:
-			file.store_string(result)
-			file.close()
-			print("[start.gd/missions.json] Asteroid data emptied")
-		else:
-			print("[start.gd/missions.json] Failed to open file for emptying stage.")
+	var empty_file = 0
+	var result = JSON.stringify(empty_file)
+	
+	var file = FileAccess.open(missions_path, FileAccess.WRITE)
+	file.store_string(result)
+	file.close()
+	print("[start.gd/missions.json] Asteroid data emptied")
+	
 	
 	################################################################################
 	
 	var skin_path = str("res://save/", saves_number, "/skin.cfg")
 	var skin_config = ConfigFile.new()
-	
-	if FileAccess.file_exists(skin_path):
-		print("[skin.cfg] was detected successfully")
-	else:
-		print("[skin.cfg] not found. Creating a new one..., with a new skin.")
-		skin_config.set_value("skin", "selected", 1)
-		skin_config.save(skin_path)
+	skin_config.set_value("skin", "selected", 1)
+	skin_config.save(skin_path)
 	
 	################################################################################
 
 func _on_delete_game_pressed() -> void:
+	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".pitch_scale = 0.75
+	$"../../../MouseSoundEffects".play()
+	
 	var button = find_button_by_save(selected_save)
 	if button:
 		button.queue_free()
@@ -158,3 +175,54 @@ func random_bullshit_go():
 	for i in range(24):
 		rbg += symbols[randi() % symbols.size()]
 	return rbg
+
+func create_styleboxes():
+	normal_stylebox.border_color = Color("555555")
+	normal_stylebox.border_width_bottom = 3
+	normal_stylebox.border_width_top = 3
+	normal_stylebox.border_width_left = 3
+	normal_stylebox.border_width_right = 3
+	normal_stylebox.corner_radius_bottom_left = 4
+	normal_stylebox.corner_radius_bottom_right = 4
+	normal_stylebox.corner_radius_top_left = 4
+	normal_stylebox.corner_radius_top_right = 4
+	normal_stylebox.content_margin_bottom = 10
+	normal_stylebox.content_margin_top = 10
+	normal_stylebox.content_margin_left = 20
+	normal_stylebox.content_margin_right = 20
+	normal_stylebox.bg_color = Color.BLACK
+	
+	focus_stylebox.border_color = Color("f9b53f")
+	focus_stylebox.border_width_bottom = 3
+	focus_stylebox.border_width_top = 3
+	focus_stylebox.border_width_left = 3
+	focus_stylebox.border_width_right = 3
+	focus_stylebox.corner_radius_bottom_left = 4
+	focus_stylebox.corner_radius_bottom_right = 4
+	focus_stylebox.corner_radius_top_left = 4
+	focus_stylebox.corner_radius_top_right = 4
+	focus_stylebox.bg_color = Color.BLACK
+
+	hover_stylebox.border_color = Color.WHITE
+	hover_stylebox.border_width_bottom = 3
+	hover_stylebox.border_width_top = 3
+	hover_stylebox.border_width_left = 3
+	hover_stylebox.border_width_right = 3
+	hover_stylebox.corner_radius_bottom_left = 4
+	hover_stylebox.corner_radius_bottom_right = 4
+	hover_stylebox.corner_radius_top_left = 4
+	hover_stylebox.corner_radius_top_right = 4
+	hover_stylebox.bg_color = Color.BLACK
+	return hover_stylebox
+
+func _on_play_button_mouse_entered() -> void:
+	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".pitch_scale = 1
+	$"../../../MouseSoundEffects".play()
+
+func _on_button_mouse_entered() -> void:
+	var mouse_sound = $"../../../MouseSoundEffects"
+	if mouse_sound:
+		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
+		mouse_sound.pitch_scale = 1
+		mouse_sound.play()

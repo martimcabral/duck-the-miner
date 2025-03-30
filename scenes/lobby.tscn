@@ -273,7 +273,7 @@ position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 
-[node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD"]
+[node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD" groups=["Buttons"]]
 z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -291,7 +291,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_3jcuy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w2ah2")
 text = "Go Back"
 
-[node name="RerollButton" type="Button" parent="Camera2D/HUD"]
+[node name="RerollButton" type="Button" parent="Camera2D/HUD" groups=["Buttons"]]
 z_index = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -362,7 +362,7 @@ offset_right = 788.0
 offset_bottom = 113.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
-[node name="MoneyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
+[node name="MoneyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/MoneyPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -383,7 +383,7 @@ position = Vector2(-32, 0)
 points = PackedVector2Array(468.044, 76.5015, 468, 2)
 width = 4.0
 
-[node name="StockMarketLabel" type="RichTextLabel" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
+[node name="StockMarketLabel" type="RichTextLabel" parent="Camera2D/HUD/LobbyPanel/MoneyPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -456,7 +456,7 @@ offset_right = 788.0
 offset_bottom = 933.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
-[node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
+[node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 1
 anchors_preset = 7
@@ -560,7 +560,7 @@ offset_bottom = -59.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_e17u6")
 
-[node name="BackButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
+[node name="BackButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -584,7 +584,7 @@ scale = Vector2(1, 1.05)
 points = PackedVector2Array(311, 3, 310.97, 58.1774)
 width = 4.0
 
-[node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
+[node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -676,7 +676,7 @@ text = "Skin Selection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkinPreviousButton" type="Button" parent="Camera2D/HUD/LobbyPanel/SkinSelectionPanel"]
+[node name="SkinPreviousButton" type="Button" parent="Camera2D/HUD/LobbyPanel/SkinSelectionPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -691,7 +691,7 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxFlat_h6q8t")
 text = "<"
 
-[node name="SkinNextButton" type="Button" parent="Camera2D/HUD/LobbyPanel/SkinSelectionPanel"]
+[node name="SkinNextButton" type="Button" parent="Camera2D/HUD/LobbyPanel/SkinSelectionPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -740,7 +740,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
-[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/InventoryPanel"]
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/InventoryPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -753,7 +753,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "Inventory"
 
-[node name="ItemList" type="ItemList" parent="Camera2D/HUD/LobbyPanel/InventoryPanel"]
+[node name="ItemList" type="ItemList" parent="Camera2D/HUD/LobbyPanel/InventoryPanel" groups=["Buttons"]]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -873,7 +873,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pff5p")
 
-[node name="PreviousButton" type="Button" parent="Camera2D/HUD/InfoPanel/AsteroidGUIder"]
+[node name="PreviousButton" type="Button" parent="Camera2D/HUD/InfoPanel/AsteroidGUIder" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -889,7 +889,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_h6q8t")
 text = "<"
 
-[node name="NextButton" type="Button" parent="Camera2D/HUD/InfoPanel/AsteroidGUIder"]
+[node name="NextButton" type="Button" parent="Camera2D/HUD/InfoPanel/AsteroidGUIder" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -942,7 +942,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pff5p")
 
-[node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/InfoPanel/SelectMissionPanel"]
+[node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/InfoPanel/SelectMissionPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1037,7 +1037,7 @@ text = "9x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ZoomSlider" type="VSlider" parent="Camera2D/HUD/ZoomRuler"]
+[node name="ZoomSlider" type="VSlider" parent="Camera2D/HUD/ZoomRuler" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

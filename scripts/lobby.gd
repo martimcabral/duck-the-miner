@@ -81,6 +81,9 @@ func _ready():
 	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.visible = true
 	$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = true
 	
+	for button in get_tree().get_nodes_in_group("Buttons"):
+		button.mouse_entered.connect(func(): _on_button_mouse_entered())
+	
 	var save_file = ConfigFile.new()
 	save_file.load(str("res://save/", GetSaveFile.save_being_used, "/money.cfg"))
 	var current_money = str(save_file.get_value("money", "current", null))
@@ -593,3 +596,10 @@ func _on_reroll_button_pressed() -> void:
 	get_asteroid_info()
 	get_asteroid_info()
 	get_pages()
+
+func _on_button_mouse_entered() -> void:
+	var mouse_sound = $MouseSoundEffects
+	if mouse_sound:
+		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
+		mouse_sound.pitch_scale = 1
+		mouse_sound.play()

@@ -309,7 +309,7 @@ size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
 script = ExtResource("2_y368m")
 
-[node name="NewGameButton" type="Button" parent="GUI/Center/StartMenu"]
+[node name="NewGameButton" type="Button" parent="GUI/Center/StartMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -328,7 +328,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_r1li2")
 text = "Play"
 flat = true
 
-[node name="OptionsButton" type="Button" parent="GUI/Center/StartMenu"]
+[node name="OptionsButton" type="Button" parent="GUI/Center/StartMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -355,7 +355,7 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="CreditsButton" type="Button" parent="GUI/Center/StartMenu"]
+[node name="CreditsButton" type="Button" parent="GUI/Center/StartMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -377,7 +377,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Credits"
 flat = true
 
-[node name="ExitButton" type="Button" parent="GUI/Center/StartMenu"]
+[node name="ExitButton" type="Button" parent="GUI/Center/StartMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -406,10 +406,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -403.5
-offset_top = -240.5
-offset_right = 403.5
-offset_bottom = 368.5
+offset_left = -403.0
+offset_top = -245.0
+offset_right = 404.0
+offset_bottom = 369.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -423,9 +423,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -398.5
-offset_top = 5.0
-offset_right = 400.5
-offset_bottom = 518.0
+offset_top = 12.0
+offset_right = 399.5
+offset_bottom = 503.0
 grow_horizontal = 2
 
 [node name="SaveList" type="VBoxContainer" parent="GUI/Center/SaveFilesMenu/ScrollContainer"]
@@ -437,7 +437,7 @@ size_flags_vertical = 2
 points = PackedVector2Array(806.5, 520.5, 3.5, 520.5)
 width = 4.0
 
-[node name="PlayButton" type="Button" parent="GUI/Center/SaveFilesMenu"]
+[node name="PlayButton" type="Button" parent="GUI/Center/SaveFilesMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -462,7 +462,7 @@ disabled = true
 text = "Play"
 flat = true
 
-[node name="CreateGame" type="Button" parent="GUI/Center/SaveFilesMenu"]
+[node name="CreateGame" type="Button" parent="GUI/Center/SaveFilesMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -485,7 +485,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "+"
 flat = true
 
-[node name="DeleteGame" type="Button" parent="GUI/Center/SaveFilesMenu"]
+[node name="DeleteGame" type="Button" parent="GUI/Center/SaveFilesMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -494,9 +494,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -67.5
+offset_left = -75.5
 offset_top = -80.4999
-offset_right = -50.5
+offset_right = -58.5
 offset_bottom = -61.4999
 grow_horizontal = 0
 grow_vertical = 0
@@ -508,7 +508,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 icon = ExtResource("4_oa1go")
 flat = true
 
-[node name="BackButton" type="Button" parent="GUI/Center/SaveFilesMenu"]
+[node name="BackButton" type="Button" parent="GUI/Center/SaveFilesMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -553,7 +553,7 @@ position = Vector2(196.859, 0.0433655)
 scale = Vector2(0.418288, 1.00434)
 points = PackedVector2Array(225.5, 1.94818, 225.5, 672)
 
-[node name="DisplayButton" type="Button" parent="GUI/Center/OptionsMenu"]
+[node name="DisplayButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -574,7 +574,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_ev00f")
 text = "Display"
 flat = true
 
-[node name="AudioButton" type="Button" parent="GUI/Center/OptionsMenu"]
+[node name="AudioButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -595,7 +595,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_8qy33")
 text = "Audio"
 flat = true
 
-[node name="ControlsButton" type="Button" parent="GUI/Center/OptionsMenu"]
+[node name="ControlsButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -616,7 +616,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_8l6o4")
 text = "Controls"
 flat = true
 
-[node name="BackButton" type="Button" parent="GUI/Center/OptionsMenu"]
+[node name="BackButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -659,7 +659,7 @@ offset_bottom = 74.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Window Size"
 
-[node name="WindowsSizeDropDown" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel"]
+[node name="WindowsSizeDropDown" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 673.0
@@ -712,7 +712,7 @@ theme_override_font_sizes/normal_font_size = 48
 text = "Window Type
 "
 
-[node name="WindowsTypeDropDown" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel"]
+[node name="WindowsTypeDropDown" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 674.0
@@ -740,7 +740,7 @@ offset_bottom = 239.0
 theme_override_font_sizes/normal_font_size = 48
 text = "FPS Limiter"
 
-[node name="FPSType" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel"]
+[node name="FPSType" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 736.0
@@ -791,7 +791,7 @@ theme_override_font_sizes/normal_font_size = 48
 text = "Vsync
 "
 
-[node name="VsyncCheckButton" type="CheckButton" parent="GUI/Center/OptionsMenu/DisplayPanel"]
+[node name="VsyncCheckButton" type="CheckButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 765.0
@@ -831,7 +831,7 @@ offset_bottom = 72.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
-[node name="MasterVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel"]
+[node name="MasterVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 450.0
@@ -860,7 +860,7 @@ offset_bottom = 132.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
-[node name="MusicVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel"]
+[node name="MusicVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 451.0
@@ -889,7 +889,7 @@ offset_bottom = 192.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
-[node name="AmbientVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel"]
+[node name="AmbientVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 451.0
@@ -918,7 +918,7 @@ offset_bottom = 254.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
-[node name="PlayerVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel"]
+[node name="PlayerVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
 offset_left = 451.0
@@ -956,7 +956,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
 text = "Fly Up"
 
-[node name="FlyUpButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="FlyUpButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 51.0
@@ -979,7 +979,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Fly Down"
 
-[node name="FlyDownButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="FlyDownButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 115.0
@@ -1001,7 +1001,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Walk Left"
 
-[node name="WalkLeftButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="WalkLeftButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 180.0
@@ -1023,7 +1023,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Walk Right"
 
-[node name="WalkRightButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="WalkRightButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 245.0
@@ -1045,7 +1045,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Run"
 
-[node name="RunButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="RunButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 309.0
@@ -1067,7 +1067,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Crouch"
 
-[node name="AgacharButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="AgacharButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 373.0
@@ -1089,7 +1089,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Destroy"
 
-[node name="DestroyBlockButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="DestroyBlockButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 437.0
@@ -1111,7 +1111,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Place Light"
 
-[node name="PlaceTorchButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="PlaceTorchButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 501.0
@@ -1133,7 +1133,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Place Block"
 
-[node name="PlaceBlockButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="PlaceBlockButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 340.0
 offset_top = 565.0
@@ -1156,7 +1156,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 48
 text = "Pause"
 
-[node name="PauseMenuButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="PauseMenuButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 764.0
 offset_top = 51.0
@@ -1179,7 +1179,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Quack"
 
-[node name="QuackButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="QuackButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 764.0
 offset_top = 115.0
@@ -1201,7 +1201,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "H/S Invent."
 
-[node name="HideShowInventoryButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="HideShowInventoryButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 764.0
 offset_top = 180.0
@@ -1223,7 +1223,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Feedback"
 
-[node name="OpenFeedbackButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="OpenFeedbackButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 764.0
 offset_top = 245.0
@@ -1245,7 +1245,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Zoom In"
 
-[node name="UniverseZoomInButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="UniverseZoomInButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 764.0
 offset_top = 309.0
@@ -1267,7 +1267,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Zoom Out"
 
-[node name="UniverseZoomOutButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="UniverseZoomOutButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 764.0
 offset_top = 373.0
@@ -1289,7 +1289,7 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
 text = "Flashlight"
 
-[node name="UseFlashlightButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel"]
+[node name="UseFlashlightButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 764.0
 offset_top = 437.0
@@ -1356,7 +1356,7 @@ By: Gravity Sound
 
 "
 
-[node name="BackButton" type="Button" parent="GUI/Center/CreditsMenu"]
+[node name="BackButton" type="Button" parent="GUI/Center/CreditsMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1

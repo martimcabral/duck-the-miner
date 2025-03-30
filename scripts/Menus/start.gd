@@ -4,6 +4,9 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
+	for button in get_tree().get_nodes_in_group("Buttons"):
+		button.mouse_entered.connect(func(): _on_button_mouse_entered())
+	
 	var save_folder_path = "res://save"
 	if not DirAccess.dir_exists_absolute(save_folder_path):
 		DirAccess.make_dir_absolute(save_folder_path)
@@ -79,3 +82,10 @@ func _process(_delta: float) -> void:
 		elif window_mode == 1:
 			window_mode = 0
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _on_button_mouse_entered() -> void:
+	var mouse_sound = $MouseSoundEffects
+	if mouse_sound:
+		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
+		mouse_sound.pitch_scale = 1
+		mouse_sound.play()

@@ -15,6 +15,7 @@ func _on_options_button_pressed() -> void:
 
 func _on_new_game_button_pressed() -> void: 
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/play.ogg")
+	$"../../../MouseSoundEffects".pitch_scale = 1
 	$"../../../MouseSoundEffects".play()
 	$".".visible = false
 	$"../SaveFilesMenu".visible = true
@@ -25,6 +26,7 @@ func _on_credits_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".pitch_scale = 1
 	$"../../../MouseSoundEffects".play()
 	
 	$".".visible = true
