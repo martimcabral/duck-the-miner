@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uiftpjoa0hew"
-path="res://.godot/imported/interstellar_logistics.png-efaeefd99ef10faae4f22e2d9fa8b75d.ctex"
+uid="uid://b00yhm6p4g6yq"
+path="res://.godot/imported/owlwing_laboratories.png-a5071def4e437406591145d014c17477.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/companies/interstellar_logistics.png"
-dest_files=["res://.godot/imported/interstellar_logistics.png-efaeefd99ef10faae4f22e2d9fa8b75d.ctex"]
+source_file="res://assets/textures/companies/letters/owlwing_laboratories.png"
+dest_files=["res://.godot/imported/owlwing_laboratories.png-a5071def4e437406591145d014c17477.ctex"]
 
 [params]
 

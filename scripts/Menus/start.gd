@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var window_mode = 0
 var agachado = 0

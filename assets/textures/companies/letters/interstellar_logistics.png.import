@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uiftpjoa0hew"
-path="res://.godot/imported/interstellar_logistics.png-efaeefd99ef10faae4f22e2d9fa8b75d.ctex"
+uid="uid://c5fofucmwnq4c"
+path="res://.godot/imported/interstellar_logistics.png-dcebf1dd7ee5b7abc27858cf378ff454.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/companies/interstellar_logistics.png"
-dest_files=["res://.godot/imported/interstellar_logistics.png-efaeefd99ef10faae4f22e2d9fa8b75d.ctex"]
+source_file="res://assets/textures/companies/letters/interstellar_logistics.png"
+dest_files=["res://.godot/imported/interstellar_logistics.png-dcebf1dd7ee5b7abc27858cf378ff454.ctex"]
 
 [params]
 

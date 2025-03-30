@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var pause_menu_visible = false
 var saved_states = {}

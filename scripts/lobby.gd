@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 # Dictionary to item names to their corresponding texture paths - Fake Atlas
 var item_icons = {

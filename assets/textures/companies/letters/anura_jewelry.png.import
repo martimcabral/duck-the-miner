@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uiftpjoa0hew"
-path="res://.godot/imported/interstellar_logistics.png-efaeefd99ef10faae4f22e2d9fa8b75d.ctex"
+uid="uid://c5nrw466cildv"
+path="res://.godot/imported/anura_jewelry.png-f62162db432aee3b19292e2606ec5de7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/companies/interstellar_logistics.png"
-dest_files=["res://.godot/imported/interstellar_logistics.png-efaeefd99ef10faae4f22e2d9fa8b75d.ctex"]
+source_file="res://assets/textures/companies/letters/anura_jewelry.png"
+dest_files=["res://.godot/imported/anura_jewelry.png-f62162db432aee3b19292e2606ec5de7.ctex"]
 
 [params]
 

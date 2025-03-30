@@ -1,0 +1,162 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhdhfo2d28cox"]
+
+[ext_resource type="Script" uid="uid://buxcv83prgodf" path="res://scripts/Menus/stock_the_market.gd" id="1_0bc1u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bc1u"]
+bg_color = Color(0.138909, 8.43792e-05, 0.190874, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="StockTheMarket" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0bc1u")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1075, 0, 0.15, 1)
+
+[node name="VerticalLine2D" type="Line2D" parent="."]
+position = Vector2(172, -32)
+points = PackedVector2Array(415, -59, 415, 1195)
+
+[node name="FirstHorizontalLine2D" type="Line2D" parent="VerticalLine2D"]
+position = Vector2(-64, 16)
+points = PackedVector2Array(-268, 133, 2010, 133)
+
+[node name="SecondHorizontalLine2D" type="Line2D" parent="VerticalLine2D"]
+position = Vector2(0, 736)
+points = PackedVector2Array(-935, 133, 411, 133)
+
+[node name="StockTheMarketLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 582.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 64
+text = "STOCK THE MARKET"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Companies" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 12.0
+offset_bottom = 12.0
+
+[node name="FyctionButton" type="Button" parent="Companies" groups=["Buttons"]]
+layout_mode = 0
+offset_top = 122.0
+offset_right = 582.0
+offset_bottom = 206.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "FYCTION ENTERPRISE"
+
+[node name="HaznuclearButton" type="Button" parent="Companies" groups=["Buttons"]]
+offset_top = 220.0
+offset_right = 582.0
+offset_bottom = 304.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "HAZNUCLEAR POWER"
+
+[node name="OwlwingButton" type="Button" parent="Companies" groups=["Buttons"]]
+offset_top = 320.0
+offset_right = 582.0
+offset_bottom = 404.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "OWLWING LABORATORIES"
+
+[node name="BillButton" type="Button" parent="Companies" groups=["Buttons"]]
+offset_top = 420.0
+offset_right = 582.0
+offset_bottom = 504.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "BILL INDUSTRIES"
+
+[node name="InterstellarButton" type="Button" parent="Companies" groups=["Buttons"]]
+offset_top = 525.0
+offset_right = 582.0
+offset_bottom = 609.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "INTERSTELLAR LOGISTICS"
+
+[node name="AnuraButton" type="Button" parent="Companies" groups=["Buttons"]]
+offset_top = 631.0
+offset_right = 582.0
+offset_bottom = 715.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "ANURA JEWERLY"
+
+[node name="CloseMarketButton" type="Button" parent="Companies" groups=["Buttons"]]
+z_index = 7
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1796.0
+offset_top = 4.0
+offset_right = 1899.0
+offset_bottom = 108.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 96
+text = "X"
+
+[node name="CompanyLogo" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -220.0
+offset_right = 554.0
+offset_bottom = -14.0
+grow_vertical = 0
+stretch_mode = 5
+
+[node name="StockPanel" type="Panel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1262.0
+offset_top = -899.0
+offset_right = -62.0
+offset_bottom = -49.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0bc1u")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="Companies/FyctionButton" to="." method="_on_fyction_button_pressed"]
+[connection signal="pressed" from="Companies/HaznuclearButton" to="." method="_on_haznuclear_button_pressed"]
+[connection signal="pressed" from="Companies/OwlwingButton" to="." method="_on_owlwing_button_pressed"]
+[connection signal="pressed" from="Companies/BillButton" to="." method="_on_bill_button_pressed"]
+[connection signal="pressed" from="Companies/InterstellarButton" to="." method="_on_interstellar_button_pressed"]
+[connection signal="pressed" from="Companies/AnuraButton" to="." method="_on_anura_button_pressed"]
+[connection signal="pressed" from="Companies/CloseMarketButton" to="." method="_on_close_market_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
