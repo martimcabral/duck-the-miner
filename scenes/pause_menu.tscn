@@ -20,9 +20,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_40bhi"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="PauseMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="PauseMenu" type="Node2D"]
 script = ExtResource("1_br3yh")
 
 [node name="GUI_Pause" type="CanvasLayer" parent="."]

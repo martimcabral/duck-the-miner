@@ -256,9 +256,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i10xw"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[node name="AsteroidSelector" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
 
 [node name="FadeInLobby" type="Timer" parent="."]
@@ -1586,7 +1584,6 @@ polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.5
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
 z_index = -2
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1603,7 +1600,6 @@ texture = ExtResource("3_k2cb4")
 
 [node name="FieldNameLabel" type="RichTextLabel" parent="."]
 z_index = 4
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

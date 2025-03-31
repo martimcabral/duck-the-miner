@@ -98,9 +98,10 @@ func _on_create_game_pressed() -> void:
 		DirAccess.make_dir_absolute(save_file_path)
 	
 	################################################################################
-	var newsavefile_path = str("res://save/", saves_number, "/money.cfg")
-	var newsavefile_config = ConfigFile.new()
-	newsavefile_config.save(newsavefile_path)
+	
+	var inv_path = str("res://save/", saves_number, "/inventory_resources.cfg")
+	var inv_config = ConfigFile.new()
+	inv_config.save(inv_path)
 
 	################################################################################
 	

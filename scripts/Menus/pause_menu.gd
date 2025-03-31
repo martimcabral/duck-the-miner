@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 
 var pause_menu_visible = false
 var saved_states = {}
@@ -47,8 +47,8 @@ func keep_inventory():
 	else:
 		print("[start.gd/missions.json] Failed to open file for emptying stage.")
 	
-	var file_path = str("res://save", GetSaveFile.save_being_used, "/inventory_resources.cfg")
-	var current_inventory = load_inventory(str("res://save", GetSaveFile.save_being_used, "/inventory_resources.cfg"))
+	var file_path = str("res://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+	var current_inventory = load_inventory(file_path)
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	var updated_inventory = merge_items(current_inventory, new_items)
 	if save_inventory_to_cfg(file_path, updated_inventory):

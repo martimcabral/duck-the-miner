@@ -34,12 +34,23 @@ func _on_close_market_button_pressed() -> void:
 func _ready() -> void:
 	for x in range(0, $StockPanel.size.x, 100):
 		for y in range(0, $StockPanel.size.y, 100):
-			var dot = ColorRect.new()
-			dot.size.x = 10
-			dot.size.y = 10
-			dot.size = Vector2(10, 10)
-			dot.position = Vector2(x, y)
-			$StockPanel.add_child(dot)
+			var vline = Line2D.new()
+			vline.default_color = Color("36014d")
+			vline.points = PackedVector2Array ([
+				Vector2(x + 85, y + 40.5),
+				Vector2(x + 85, 10)
+			])
+			$StockPanel.add_child(vline)
+		
+	for x in range(0, $StockPanel.size.x, 100):
+		for y in range(0, $StockPanel.size.y, 100):
+			var hline = Line2D.new()
+			hline.default_color = Color("36014d")
+			hline.points = PackedVector2Array ([
+				Vector2(x + 10, y + 18),
+				Vector2(1190, y + 18)
+			])
+			$StockPanel.add_child(hline)
 
 func _on_timer_timeout() -> void:
 	fyction_chart()
