@@ -129,7 +129,6 @@ func _on_create_game_pressed() -> void:
 	file.close()
 	print("[start.gd/missions.json] Asteroid data emptied")
 	
-	
 	################################################################################
 	
 	var skin_path = str("res://save/", saves_number, "/skin.cfg")
@@ -143,6 +142,13 @@ func _on_create_game_pressed() -> void:
 	var day_config = ConfigFile.new()
 	day_config.set_value("day", "current", 1)
 	day_config.save(day_path)
+	
+	################################################################################
+		
+	var stock_path = str("res://save/", saves_number, "/stock.cfg")
+	var stock_config = ConfigFile.new()
+	stock_config.set_value("stock", "idk", 1)
+	stock_config.save(stock_path)
 	
 	################################################################################
 
