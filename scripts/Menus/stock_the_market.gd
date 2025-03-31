@@ -10,7 +10,6 @@ var companies_logos : Dictionary = {
 }
 
 func _on_fyction_button_pressed() -> void:
-	$Timer.start()
 	$CompanyLogo.texture = load(companies_logos["Fyction"])
 
 func _on_haznuclear_button_pressed() -> void:
@@ -28,10 +27,25 @@ func _on_interstellar_button_pressed() -> void:
 func _on_anura_button_pressed() -> void:
 	$CompanyLogo.texture = load(companies_logos["Anura"])
 
+func _on_octo_button_pressed() -> void:
+	pass # Replace with function body.
+
 func _on_close_market_button_pressed() -> void:
 	get_tree().quit()
 
 func _ready() -> void:
+	create_chart("00CFFF", "Fyction")
+	create_chart("e0163e", "Haznuclear")
+	create_chart("d63ffc", "Owlwing")
+	create_chart("ffc858", "Bill")
+	create_chart("e45c24", "Interstellar")
+	create_chart("14c020", "Anura")
+	create_chart("ffffff", "Octane")
+	
+	for linha in $StockPanel.get_children():
+		if linha is Line2D:
+			print(linha.get_meta("linename"))
+	
 	for x in range(0, $StockPanel.size.x, 100):
 		for y in range(0, $StockPanel.size.y, 100):
 			var vline = Line2D.new()
@@ -52,21 +66,20 @@ func _ready() -> void:
 			])
 			$StockPanel.add_child(hline)
 
-func _on_timer_timeout() -> void:
-	fyction_chart()
-
-func fyction_chart():
+func create_chart(cor, nome):
 	var line = Line2D.new()
-	line.width = 10
-	#line.default_color = Color("00CFFF")
-	line.default_color = Color(randf(), randf(), randf())
+	line.width = 8
+	line.default_color = Color(cor)
 	line.z_index = 1
+	line.set_meta("linename", nome)
 	
 	var curve = Curve2D.new()
-	for i in range(0, $StockPanel.size.x, 50):
-		curve.add_point(Vector2(i, randi_range(800, 0)))
-	curve.bake_interval = 2
+	for i in range(0, $StockPanel.size.x, 117.5):
+		curve.add_point(Vector2(i + 12.5, randi_range(0, 800)))
 	var curve_points = curve.get_baked_points()
 	
+	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+	line.end_cap_mode = Line2D.LINE_CAP_ROUND
+	line.joint_mode = Line2D.LINE_JOINT_ROUND
 	line.points = curve_points
 	$StockPanel.add_child(line)

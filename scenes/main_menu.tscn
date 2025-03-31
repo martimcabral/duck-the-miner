@@ -1380,7 +1380,7 @@ text = "Back"
 flat = true
 
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(1000, 591)
+position = Vector2(981, 577)
 stream = ExtResource("2_v23jq")
 volume_db = -5.0
 autoplay = true
@@ -1388,7 +1388,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(1001, 591)
+position = Vector2(976, 575)
 stream = ExtResource("5_08a1y")
 bus = &"Player"
 

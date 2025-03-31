@@ -39,10 +39,11 @@ points = PackedVector2Array(415, -59, 415, 1195)
 [node name="FirstHorizontalLine2D" type="Line2D" parent="VerticalLine2D"]
 position = Vector2(-64, 16)
 points = PackedVector2Array(-268, 133, 2010, 133)
+joint_mode = 2
 
 [node name="SecondHorizontalLine2D" type="Line2D" parent="VerticalLine2D"]
-position = Vector2(0, 736)
-points = PackedVector2Array(-935, 133, 411, 133)
+position = Vector2(0, 720)
+points = PackedVector2Array(-447, 133, 411, 133)
 
 [node name="StockTheMarketLabel" type="Label" parent="."]
 layout_mode = 0
@@ -58,7 +59,7 @@ anchors_preset = 0
 offset_right = 12.0
 offset_bottom = 12.0
 
-[node name="FyctionButton" type="Button" parent="Companies" groups=["Buttons"]]
+[node name="FyctionButton" type="CheckBox" parent="Companies" groups=["Buttons"]]
 layout_mode = 0
 offset_top = 122.0
 offset_right = 582.0
@@ -66,8 +67,9 @@ offset_bottom = 206.0
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "FYCTION ENTERPRISE"
+alignment = 1
 
-[node name="HaznuclearButton" type="Button" parent="Companies" groups=["Buttons"]]
+[node name="HaznuclearButton" type="CheckBox" parent="Companies" groups=["Buttons"]]
 layout_mode = 0
 offset_top = 220.0
 offset_right = 582.0
@@ -75,8 +77,9 @@ offset_bottom = 304.0
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "HAZNUCLEAR POWER"
+alignment = 1
 
-[node name="OwlwingButton" type="Button" parent="Companies" groups=["Buttons"]]
+[node name="OwlwingButton" type="CheckBox" parent="Companies" groups=["Buttons"]]
 layout_mode = 0
 offset_top = 320.0
 offset_right = 582.0
@@ -84,8 +87,9 @@ offset_bottom = 404.0
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "OWLWING LABORATORIES"
+alignment = 1
 
-[node name="BillButton" type="Button" parent="Companies" groups=["Buttons"]]
+[node name="BillButton" type="CheckBox" parent="Companies" groups=["Buttons"]]
 layout_mode = 0
 offset_top = 420.0
 offset_right = 582.0
@@ -93,8 +97,9 @@ offset_bottom = 504.0
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "BILL INDUSTRIES"
+alignment = 1
 
-[node name="InterstellarButton" type="Button" parent="Companies" groups=["Buttons"]]
+[node name="InterstellarButton" type="CheckBox" parent="Companies" groups=["Buttons"]]
 layout_mode = 0
 offset_top = 525.0
 offset_right = 582.0
@@ -102,8 +107,9 @@ offset_bottom = 609.0
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "INTERSTELLAR LOGISTICS"
+alignment = 1
 
-[node name="AnuraButton" type="Button" parent="Companies" groups=["Buttons"]]
+[node name="AnuraButton" type="CheckBox" parent="Companies" groups=["Buttons"]]
 layout_mode = 0
 offset_top = 631.0
 offset_right = 582.0
@@ -111,6 +117,19 @@ offset_bottom = 715.0
 theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "ANURA JEWERLY"
+alignment = 1
+
+[node name="OctaneButton" type="CheckBox" parent="Companies" groups=["Buttons"]]
+layout_mode = 0
+offset_top = 734.0
+offset_right = 582.0
+offset_bottom = 818.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 48
+text = "OCTANE WORKS"
+alignment = 1
 
 [node name="CloseMarketButton" type="Button" parent="Companies" groups=["Buttons"]]
 z_index = 7
@@ -140,7 +159,6 @@ grow_vertical = 0
 stretch_mode = 5
 
 [node name="StockPanel" type="Panel" parent="."]
-visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 3
@@ -156,13 +174,11 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0bc1u")
 
-[node name="Timer" type="Timer" parent="."]
-
 [connection signal="pressed" from="Companies/FyctionButton" to="." method="_on_fyction_button_pressed"]
 [connection signal="pressed" from="Companies/HaznuclearButton" to="." method="_on_haznuclear_button_pressed"]
 [connection signal="pressed" from="Companies/OwlwingButton" to="." method="_on_owlwing_button_pressed"]
 [connection signal="pressed" from="Companies/BillButton" to="." method="_on_bill_button_pressed"]
 [connection signal="pressed" from="Companies/InterstellarButton" to="." method="_on_interstellar_button_pressed"]
 [connection signal="pressed" from="Companies/AnuraButton" to="." method="_on_anura_button_pressed"]
+[connection signal="pressed" from="Companies/OctaneButton" to="." method="_on_octo_button_pressed"]
 [connection signal="pressed" from="Companies/CloseMarketButton" to="." method="_on_close_market_button_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
