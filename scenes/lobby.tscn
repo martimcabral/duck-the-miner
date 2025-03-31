@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
 [ext_resource type="Texture2D" uid="uid://dfllye01n6j7y" path="res://assets/textures/universe/orbits_and_fields/thumbs/not_selected.png" id="3_copxc"]
-[ext_resource type="Script" uid="uid://dl7wcahr1wixr" path="res://scripts/Menus/stock_market_label.gd" id="3_elco0"]
+[ext_resource type="Script" uid="uid://dl7wcahr1wixr" path="res://scripts/Menus/StockMarket/stock_market_label.gd" id="3_elco0"]
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/backgrounds/universe_background.png" id="3_k2cb4"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="4_8r1et"]
 [ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/skins/0/duck.png" id="5_enoir"]
