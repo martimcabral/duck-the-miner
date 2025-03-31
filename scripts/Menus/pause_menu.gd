@@ -24,10 +24,12 @@ func _on_feedback_button_pressed() -> void:
 	OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 
 func _on_go_to_desktop_button_pressed() -> void:
+	more_days()
 	keep_inventory()
 	get_tree().quit()
 
 func _on_abort_mission_button_pressed() -> void:
+	more_days()
 	keep_inventory()
 	
 	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
@@ -131,6 +133,16 @@ func enable_all_rigid_body_physics():
 			body.angular_velocity = state["angular_velocity"]
 			body.freeze = false
 	saved_states.clear()  # Clear stored states
+
+func more_days():
+	var random_advance = randi_range(1, 3)
+	var day_path = str("res://save/", GetSaveFile.save_being_used, "/day.cfg")
+	var day_file = ConfigFile.new()
+	day_file.load(day_path)
+	var current_day = day_file.get_value("day", "current", 0)
+	current_day += random_advance
+	day_file.set_value("day", "current", current_day)
+	day_file.save(day_path)
 
 func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):

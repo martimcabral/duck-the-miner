@@ -32,6 +32,10 @@ func get_save_files():
 	for i in range(0, 100):
 		if directories.has(str(i)) == true:
 			var SaveButton = Button.new()
+			var getday_file = ConfigFile.new()
+			
+			getday_file.load(str("res://save/", i, "/day.cfg"))
+			var current_day = str(getday_file.get_value("day", "current", "what"))
 			
 			getmoney_config.load(str("res://save/", i, "/money.cfg"))
 			var current_money = str(getmoney_config.get_value("money", "current", 0))
@@ -43,7 +47,7 @@ func get_save_files():
 				counter += 1
 				if counter % 3 == 0 and x != 0:
 					formatted_number = " " + formatted_number
-			SaveButton.text = "Save " + str(i) + " - " + str(formatted_number) + " €"
+			SaveButton.text = "Save " + str(i) + " ─ " + str(formatted_number) + " € ─ Day: " + current_day 
 			
 			create_styleboxes()
 			SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
@@ -101,6 +105,7 @@ func _on_create_game_pressed() -> void:
 	
 	var inv_path = str("res://save/", saves_number, "/inventory_resources.cfg")
 	var inv_config = ConfigFile.new()
+	inv_config.set_value("[inventory", "new_file", null)
 	inv_config.save(inv_path)
 
 	################################################################################
@@ -131,6 +136,13 @@ func _on_create_game_pressed() -> void:
 	var skin_config = ConfigFile.new()
 	skin_config.set_value("skin", "selected", 1)
 	skin_config.save(skin_path)
+	
+	################################################################################
+	
+	var day_path = str("res://save/", saves_number, "/day.cfg")
+	var day_config = ConfigFile.new()
+	day_config.set_value("day", "current", 1)
+	day_config.save(day_path)
 	
 	################################################################################
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=67 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -125,57 +125,12 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mjmxu"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 6.0
-expand_margin_right = 12.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tro2"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 6.0
-expand_margin_right = 12.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqj1l"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 6.0
-expand_margin_right = 12.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb7cd"]
 bg_color = Color(0.07, 0.07, 0.07, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -189,28 +144,36 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ou6c"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mek4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhto6"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ht5e"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7bje"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuh25"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmbym"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8tmsf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icb1v"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gxh4y"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4rar"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_30fw8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rn74"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_30el1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s3vw1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_busoe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iwv5h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gufxi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arjad"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6q8t"]
 bg_color = Color(1, 1, 1, 0)
@@ -274,6 +237,7 @@ position = Vector2(-1.90735e-06, -9.53674e-07)
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 
 [node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD" groups=["Buttons"]]
+visible = false
 z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -354,7 +318,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="MoneyPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 68.0
 offset_top = 35.0
@@ -362,26 +325,50 @@ offset_right = 788.0
 offset_bottom = 113.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
+[node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
+position = Vector2(-32, 0)
+points = PackedVector2Array(468, 76, 468, 2)
+width = 4.0
+
+[node name="Line2D2" type="Line2D" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
+position = Vector2(-344, 0)
+points = PackedVector2Array(468, 76, 468, 2)
+width = 4.0
+
+[node name="DaysLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/MoneyPanel" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -35.0
+offset_right = 122.0
+offset_bottom = 35.0
+grow_vertical = 2
+tooltip_text = "Current Day"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 48
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 129
+
 [node name="MoneyLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/MoneyPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 54.0
+offset_left = 126.0
 offset_top = -22.0
-offset_right = 411.0
+offset_right = 434.0
 offset_bottom = 26.0
 grow_vertical = 2
 tooltip_text = "Your Debt"
 mouse_filter = 0
 theme_override_font_sizes/font_size = 48
-text = "€ 9 999 999 999"
+text = "€ 9 999 999"
 horizontal_alignment = 1
-
-[node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/MoneyPanel"]
-position = Vector2(-32, 0)
-points = PackedVector2Array(468.044, 76.5015, 468, 2)
-width = 4.0
+vertical_alignment = 1
 
 [node name="StockMarketLabel" type="RichTextLabel" parent="Camera2D/HUD/LobbyPanel/MoneyPanel" groups=["Buttons"]]
 layout_mode = 1
@@ -392,7 +379,7 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -281.0
 offset_top = -22.0
-offset_right = -6.0
+offset_right = -4.0
 offset_bottom = 27.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -404,16 +391,15 @@ text = " SLA -8.88%"
 script = ExtResource("3_elco0")
 
 [node name="StockMarketTimer" type="Timer" parent="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel"]
-wait_time = 15.0
+wait_time = 5.0
 autostart = true
 
 [node name="CompanyTrustPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 68.0
-offset_top = 156.0
+offset_top = 159.0
 offset_right = 788.0
-offset_bottom = 505.0
+offset_bottom = 553.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/LobbyPanel/CompanyTrustPanel"]
@@ -448,50 +434,22 @@ text = "Company Trust"
 horizontal_alignment = 1
 
 [node name="UniverseMapPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 68.0
-offset_top = 546.0
+offset_top = 612.0
 offset_right = 788.0
-offset_bottom = 933.0
+offset_bottom = 999.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
-
-[node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel" groups=["Buttons"]]
-z_index = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -158.0
-offset_top = -28.0
-offset_right = 166.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 48
-theme_override_styles/focus = SubResource("StyleBoxFlat_mjmxu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6tro2")
-theme_override_styles/normal = SubResource("StyleBoxFlat_mqj1l")
-text = "Select Mission"
-
-[node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
-position = Vector2(8, 0.492674)
-scale = Vector2(1, 1.24633)
-points = PackedVector2Array(356, 1.20941, 356, 283.639)
-width = 4.0
 
 [node name="FieldLobbyThumbnail" type="TextureRect" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 24.0
-offset_top = -106.0
-offset_right = 344.0
-offset_bottom = 74.0
+offset_left = 33.0
+offset_top = -103.0
+offset_right = 353.0
+offset_bottom = 77.0
 grow_vertical = 2
 texture = ExtResource("3_copxc")
 
@@ -513,19 +471,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rb7cd")
 
 [node name="FielName" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 layout_mode = 1
-offset_left = 29.0
-offset_top = 52.0
-offset_right = 338.0
-offset_bottom = 84.0
+offset_left = 38.0
+offset_top = 47.0
+offset_right = 347.0
+offset_bottom = 79.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
 [node name="AsteroidName" type="Label" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 layout_mode = 1
-offset_left = 35.0
-offset_top = 300.0
-offset_right = 335.0
-offset_bottom = 332.0
+offset_left = 44.0
+offset_top = 286.0
+offset_right = 344.0
+offset_bottom = 318.0
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
@@ -536,10 +494,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -336.0
-offset_top = -162.0
-offset_right = -23.0
-offset_bottom = 114.0
+offset_left = -338.0
+offset_top = -167.0
+offset_right = -25.0
+offset_bottom = 109.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
@@ -547,66 +505,98 @@ text = "No Mission Selected"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ControlPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
-modulate = Color(1, 1, 1, 0)
+[node name="ControlPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 295.0
-offset_top = -121.0
-offset_right = 571.0
-offset_bottom = -59.0
+offset_left = -308.5
+offset_top = -26.0
+offset_right = 308.5
+offset_bottom = 36.0
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_e17u6")
 
-[node name="BackButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel" groups=["Buttons"]]
+[node name="BackButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 17.3213
-offset_top = -29.5
-offset_right = 126.321
-offset_bottom = 34.5
+offset_left = 4.0
+offset_top = -27.0
+offset_right = 134.0
+offset_bottom = 27.0
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 48
-theme_override_styles/focus = SubResource("StyleBoxFlat_4ou6c")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qhto6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_h7bje")
-theme_override_styles/normal = SubResource("StyleBoxFlat_kmbym")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6mek4")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ht5e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tuh25")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8tmsf")
 text = "Back"
 
-[node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/ControlPanel"]
-position = Vector2(-175, 0.150002)
-scale = Vector2(1, 1.05)
-points = PackedVector2Array(311, 3, 310.97, 58.1774)
+[node name="Line2D2" type="Line2D" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel"]
+position = Vector2(170, 0.307556)
+scale = Vector2(1, 1.1025)
+points = PackedVector2Array(311, 3, 310.97, 54.1428)
 width = 4.0
 
-[node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/ControlPanel" groups=["Buttons"]]
+[node name="SelectMissionButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel" groups=["Buttons"]]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.5
+offset_top = -27.0
+offset_right = 170.5
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gxh4y")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_30fw8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7rn74")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_30el1")
+text = "Select Mission"
+
+[node name="Line2D" type="Line2D" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel"]
+position = Vector2(-175, 0.150002)
+scale = Vector2(1, 1.05)
+points = PackedVector2Array(311, 3, 310.97, 57)
+width = 4.0
+
+[node name="StartButton" type="Button" parent="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = -30.5
-offset_right = -8.0
-offset_bottom = 33.5
+offset_left = -134.0
+offset_top = -27.0
+offset_right = -4.0
+offset_bottom = 27.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0.31, 0.31, 0.31, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 48
-theme_override_styles/focus = SubResource("StyleBoxFlat_icb1v")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qhto6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_e4rar")
-theme_override_styles/normal = SubResource("StyleBoxFlat_kmbym")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s3vw1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_busoe")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_iwv5h")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gufxi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_arjad")
+disabled = true
 text = "Start"
 
 [node name="CraftingPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -649,7 +639,6 @@ theme_override_font_sizes/font_size = 52
 text = "Unavailable"
 
 [node name="SkinSelectionPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -725,7 +714,6 @@ grow_vertical = 2
 texture = ExtResource("5_enoir")
 
 [node name="InventoryPanel" type="Panel" parent="Camera2D/HUD/LobbyPanel"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -1621,9 +1609,9 @@ text = "Field Name"
 [connection signal="pressed" from="Camera2D/HUD/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/RerollButton" to="." method="_on_reroll_button_pressed"]
 [connection signal="timeout" from="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel/StockMarketTimer" to="Camera2D/HUD/LobbyPanel/MoneyPanel/StockMarketLabel" method="_on_stock_market_timer_timeout"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinPreviousButton" to="." method="_on_skin_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinNextButton" to="." method="_on_skin_next_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]

@@ -26,16 +26,16 @@ func _on_body_entered(body : Node2D):
 				var goldIcon = load("res://assets/textures/items/ores/raw_gold.png")
 				add_item_to_inventory("Gold", goldIcon)
 			"Emerald":
-				var emeraldIcon = load("res://assets/textures/items/ores/emerald.png")
+				var emeraldIcon = load("res://assets/textures/items/gems/emerald.png")
 				add_item_to_inventory("Emerald", emeraldIcon)
 			"Ruby":
-				var rubyIcon = load("res://assets/textures/items/ores/ruby.png")
+				var rubyIcon = load("res://assets/textures/items/gems/ruby.png")
 				add_item_to_inventory("Ruby", rubyIcon)
 			"Sapphire":
-				var sapphireIcon = load("res://assets/textures/items/ores/sapphire.png")
+				var sapphireIcon = load("res://assets/textures/items/gems/sapphire.png")
 				add_item_to_inventory("Sapphire", sapphireIcon)
 			"Diamond":
-				var diamondIcon = load("res://assets/textures/items/ores/diamond.png")
+				var diamondIcon = load("res://assets/textures/items/gems/diamond.png")
 				add_item_to_inventory("Diamond", diamondIcon)
 			"Ice":
 				var iceIcon = load("res://assets/textures/items/ores/ice.png")
@@ -47,13 +47,13 @@ func _on_body_entered(body : Node2D):
 				var bauxiteIcon = load("res://assets/textures/items/ores/raw_bauxite.png")
 				add_item_to_inventory("Bauxite", bauxiteIcon)
 			"Topaz":
-				var topazIcon = load("res://assets/textures/items/ores/topaz.png")
+				var topazIcon = load("res://assets/textures/items/gems/topaz.png")
 				add_item_to_inventory("Topaz", topazIcon)
 			"Garnet":
-				var garnetIcon = load("res://assets/textures/items/ores/garnet.png")
+				var garnetIcon = load("res://assets/textures/items/gems/garnet.png")
 				add_item_to_inventory("Garnet", garnetIcon)
 			"Tsavorite":
-				var tsavoriteIcon = load("res://assets/textures/items/ores/tsavorite.png")
+				var tsavoriteIcon = load("res://assets/textures/items/gems/tsavorite.png")
 				add_item_to_inventory("Tsavorire", tsavoriteIcon)
 			"LavaCluster":
 				var lavaClusterIcon = load("res://assets/textures/items/ores/lava_cluster.png")
@@ -62,16 +62,16 @@ func _on_body_entered(body : Node2D):
 				var denseIceIcon = load("res://assets/textures/items/ores/dense_ice.png")
 				add_item_to_inventory("Dense Ice", denseIceIcon)
 			"Amazonite":
-				var amazoniteIcon = load("res://assets/textures/items/ores/amazonite.png")
+				var amazoniteIcon = load("res://assets/textures/items/gems/amazonite.png")
 				add_item_to_inventory("Amazonite", amazoniteIcon)
 			"Ametrine":
-				var ametrineIcon = load("res://assets/textures/items/ores/ametrine.png")
+				var ametrineIcon = load("res://assets/textures/items/gems/ametrine.png")
 				add_item_to_inventory("Ametrine", ametrineIcon)
 			"Apatite":
-				var apatiteIcon = load("res://assets/textures/items/ores/apatite.png")
+				var apatiteIcon = load("res://assets/textures/items/gems/apatite.png")
 				add_item_to_inventory("Apatite", apatiteIcon)
 			"FrozenDiamond":
-				var frozenDiamondIcon = load("res://assets/textures/items/ores/frozen_diamond.png")
+				var frozenDiamondIcon = load("res://assets/textures/items/gems/frozen_diamond.png")
 				add_item_to_inventory("Frozen Diamond", frozenDiamondIcon)
 			"Galena":
 				var galenaIcon = load("res://assets/textures/items/ores/raw_galena.png")

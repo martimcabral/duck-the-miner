@@ -7,22 +7,22 @@ var item_icons = {
 	"Copper": "res://assets/textures/items/ores/raw_copper.png",
 	"Iron": "res://assets/textures/items/ores/raw_iron.png",
 	"Raw Gold": "res://assets/textures/items/ores/raw_gold.png",
-	"Emerald": "res://assets/textures/items/ores/emerald.png",
-	"Ruby": "res://assets/textures/items/ores/ruby.png",
-	"Sapphire": "res://assets/textures/items/ores/sapphire.png",
-	"Diamond": "res://assets/textures/items/ores/diamond.png",
+	"Emerald": "res://assets/textures/items/gems/emerald.png",
+	"Ruby": "res://assets/textures/items/gems/ruby.png",
+	"Sapphire": "res://assets/textures/items/gems/sapphire.png",
+	"Diamond": "res://assets/textures/items/gems/diamond.png",
 	"Ice": "res://assets/textures/items/ores/ice.png",
 	"Magnetite": "res://assets/textures/items/ores/raw_magnetite.png",
 	"Bauxite": "res://assets/textures/items/ores/raw_bauxite.png",
-	"Topaz": "res://assets/textures/items/ores/topaz.png",
-	"Garnet": "res://assets/textures/items/ores/garnet.png",
-	"Tsavorite": "res://assets/textures/items/ores/tsavorite.png",
+	"Topaz": "res://assets/textures/items/gems/topaz.png",
+	"Garnet": "res://assets/textures/items/gems/garnet.png",
+	"Tsavorite": "res://assets/textures/items/gems/tsavorite.png",
 	"Lava Cluster": "res://assets/textures/items/ores/lava_cluster.png",
 	"Dense Ice": "res://assets/textures/items/ores/dense_ice.png",
-	"Amazonite": "res://assets/textures/items/ores/amazonite.png",
-	"Ametrine": "res://assets/textures/items/ores/ametrine.png",
-	"Apatite": "res://assets/textures/items/ores/apatite.png",
-	"Frozen Diamond": "res://assets/textures/items/ores/frozen_diamond.png",
+	"Amazonite": "res://assets/textures/items/gems/amazonite.png",
+	"Ametrine": "res://assets/textures/items/gems/ametrine.png",
+	"Apatite": "res://assets/textures/items/gems/apatite.png",
+	"Frozen Diamond": "res://assets/textures/items/gems/frozen_diamond.png",
 	"Raw Galena": "res://assets/textures/items/ores/raw_galena.png",
 	"Raw Silver": "res://assets/textures/items/ores/raw_silver.png",
 	"Raw Wolframite": "res://assets/textures/items/ores/raw_wolframite.png",
@@ -71,18 +71,21 @@ var omega_ammount : int = 0
 var koppa_ammount : int = 0
 
 @onready var item_list = $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList
-
 func _ready():
 	$Camera2D/HUD/LobbyPanel/MoneyPanel.visible = true
 	$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.visible = true
 	$Camera2D/HUD/LobbyPanel/UniverseMapPanel.visible = true
-	$Camera2D/HUD/LobbyPanel/ControlPanel.visible = true
 	$Camera2D/HUD/LobbyPanel/CraftingPanel.visible = true
 	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.visible = true
 	$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = true
 	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
+		
+	var day_file = ConfigFile.new()
+	day_file.load(str("res://save/", GetSaveFile.save_being_used, "/day.cfg"))
+	var current_day = str(day_file.get_value("day", "current", "what"))
+	$Camera2D/HUD/LobbyPanel/MoneyPanel/DaysLabel.text = current_day
 	
 	var save_file = ConfigFile.new()
 	save_file.load(str("res://save/", GetSaveFile.save_being_used, "/money.cfg"))
@@ -187,7 +190,6 @@ func _process(_delta: float) -> void:
 	$Camera2D/HUD/LobbyPanel/MoneyPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/LobbyPanel/UniverseMapPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/LobbyPanel/ControlPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/LobbyPanel/CraftingPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/LobbyPanel/InventoryPanel.modulate.a8 = lobby_fade_in
@@ -245,6 +247,7 @@ func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Delta Belt"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
@@ -259,6 +262,7 @@ func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Gamma Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
@@ -273,6 +277,7 @@ func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Omega Field"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
@@ -287,6 +292,7 @@ func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Koppa Belt"
 		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
 		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func show_all_info():
 		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
@@ -444,7 +450,7 @@ func get_asteroid_info():
 			asteroid_temperature = temperature
 			var primary = asteroid_info["Objectites"]["Primary"]
 			var secondary = asteroid_info["Objectites"]["Secondary"]
-			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 		else:
 			print("An error ocurred trying to parse asteroid content, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
@@ -493,6 +499,7 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/RerollButton.visible = true
 	$Camera2D/HUD/ZoomRuler.visible = false
 	$Camera2D/HUD/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
+	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
@@ -505,7 +512,6 @@ func _on_start_button_pressed() -> void:
 		$Camera2D/HUD/LobbyPanel/MoneyPanel.visible = false
 		$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.visible = false
 		$Camera2D/HUD/LobbyPanel/UniverseMapPanel.visible = false
-		$Camera2D/HUD/LobbyPanel/ControlPanel.visible = false
 		$Camera2D/HUD/LobbyPanel/CraftingPanel.visible = false
 		$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.visible = false
 		$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = false
@@ -546,6 +552,7 @@ func _select_mission_button_info_panel_pressed() -> void:
 	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
 	$Camera2D/HUD/ZoomRuler.visible = false
 	$Camera2D/HUD/RerollButton.visible = false
+	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):
