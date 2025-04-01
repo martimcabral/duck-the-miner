@@ -305,6 +305,7 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -944,6 +945,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
 step = 5.0
 
 [node name="MenusLabel" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
+layout_mode = 0
 offset_left = 21.0
 offset_top = 262.0
 offset_right = 179.0
@@ -952,6 +954,7 @@ theme_override_font_sizes/normal_font_size = 48
 text = "Menus"
 
 [node name="CurrentMenusVolume" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
+layout_mode = 0
 offset_left = 358.0
 offset_top = 261.0
 offset_right = 443.0
@@ -961,6 +964,7 @@ text = "n/a"
 
 [node name="MenusVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel" groups=["Buttons"]]
 z_index = 1
+layout_mode = 0
 offset_left = 451.0
 offset_top = 261.0
 offset_right = 938.0
@@ -1341,7 +1345,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
 
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1384,8 +1387,9 @@ Portato
 PROGRAMMING:
 Sr. Patinho
 
-FONT:
-Digital Disco - from fontenddev.com
+FONTS:
+Digital Disco - From: fontenddev.com
+Venice Classic - By: soixantedeux
 
 MUSIC:
 \"Enter\"

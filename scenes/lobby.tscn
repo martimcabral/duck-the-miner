@@ -14,12 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
-[ext_resource type="Texture2D" uid="uid://pyum8i4h4glr" path="res://assets/textures/universe/planets/earth.png" id="9_3r2xp"]
 [ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moons/moon.png" id="10_kuvf8"]
 [ext_resource type="Texture2D" uid="uid://dgr4m0cb5jal2" path="res://assets/textures/universe/planets/mars.png" id="11_d4ry4"]
 [ext_resource type="Texture2D" uid="uid://bjbbbpyuplr0u" path="res://assets/textures/universe/moons/phobos.png" id="12_d28p1"]
 [ext_resource type="Texture2D" uid="uid://cmum2wfcr83m7" path="res://assets/textures/universe/moons/deimos.png" id="13_ydjex"]
 [ext_resource type="Texture2D" uid="uid://do0rardstouqs" path="res://assets/textures/universe/planets/jupiter.png" id="14_ky8ae"]
+[ext_resource type="Texture2D" uid="uid://cui82h30clygs" path="res://assets/textures/universe/planets/earth/earth1.png" id="14_tuh25"]
 [ext_resource type="Texture2D" uid="uid://i7q6fayubeqv" path="res://assets/textures/universe/moons/io.png" id="15_cuebt"]
 [ext_resource type="Texture2D" uid="uid://dmfbgkg6pvpn2" path="res://assets/textures/universe/moons/europa.png" id="16_j2t8x"]
 [ext_resource type="Texture2D" uid="uid://b0tu3gvsthbh5" path="res://assets/textures/universe/moons/ganymede.png" id="17_no1l0"]
@@ -1420,7 +1420,7 @@ offset_right = -175.555
 offset_bottom = -143.0
 scale = Vector2(0.75, 0.75)
 pivot_offset = Vector2(207.704, 176.368)
-texture = ExtResource("9_3r2xp")
+texture = ExtResource("14_tuh25")
 
 [node name="Moon" type="TextureRect" parent="SolarSystem/Earth"]
 z_index = 3

@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjvurleq55hl2"]
+
+[ext_resource type="Script" uid="uid://bfpwsu635c73s" path="res://scripts/cutscenes.gd" id="1_5khjm"]
+[ext_resource type="FontFile" uid="uid://5b4g4ugjtc6q" path="res://assets/fonts/VeniceClassic.ttf" id="2_2o8o2"]
+
+[node name="Cutscenes" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5khjm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="Camera2D"]
+
+[node name="ColorBackground" type="ColorRect" parent="Camera2D/HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.03, 0.03, 1)
+
+[node name="TextDisplay" type="RichTextLabel" parent="Camera2D/HUD"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -545.0
+offset_top = -48.5
+offset_right = 545.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_2o8o2")
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 14.0
+autostart = true
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 0.075
+autostart = true
+
+[connection signal="timeout" from="TextTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
