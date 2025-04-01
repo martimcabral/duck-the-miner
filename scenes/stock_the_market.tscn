@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhdhfo2d28cox"]
-
-[ext_resource type="Script" uid="uid://buxcv83prgodf" path="res://scripts/Menus/StockMarket/stock_the_market.gd" id="1_0bc1u"]
-
-[node name="StockTheMarket" type="Node2D"]
-script = ExtResource("1_0bc1u")

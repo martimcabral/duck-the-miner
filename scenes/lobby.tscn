@@ -1347,7 +1347,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
-bus = &"Player"
+bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
 script = ExtResource("8_dovll")

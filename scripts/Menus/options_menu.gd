@@ -43,6 +43,7 @@ func _ready():
 		$AudioPanel/MusicVolumeSlider.value = config.get_value("audio", "music")
 		$AudioPanel/AmbientVolumeSlider.value = config.get_value("audio", "ambient")
 		$AudioPanel/PlayerVolumeSlider.value = config.get_value("audio", "player")
+		$AudioPanel/MenusVolumeSlider.value = config.get_value("audio", "menus")
 		
 		############# Controls #############
 		$ControlsPanel/FlyUpButton.text = config.get_value("controls", "Fly_Up")
@@ -206,6 +207,13 @@ func _on_player_volume_slider_value_changed(value: float) -> void:
 	config.set_value("audio", "player", value)
 	config.save(file_path)
 
+func _on_menus_volume_slider_value_changed(value: float) -> void:
+	var db_value = convert_to_db(value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Menus"), db_value)
+	$AudioPanel/CurrentMenusVolume.text = str(int(value))
+	config.set_value("audio", "menus", value)
+	config.save(file_path)
+
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		key_name = event
@@ -320,7 +328,6 @@ func _on_universe_zoom_out_button_pressed() -> void:
 	previous_keybutton = $ControlsPanel/UniverseZoomOutButton
 	change_keybind_of = "Universe_Zoom_Out"
 	previous_keybutton.text = "..."
-
 
 func _on_use_flashlight_button_pressed() -> void:
 	previous_keybutton = $ControlsPanel/UseFlashlightButton

@@ -23,6 +23,7 @@ func create_config_file():
 	config.set_value("audio", "music", 100)
 	config.set_value("audio", "ambient", 100)
 	config.set_value("audio", "player", 100)
+	config.set_value("audio", "menus", 100)
 	
 	# Controls
 	config.set_value("controls", "Fly_Up", "W")

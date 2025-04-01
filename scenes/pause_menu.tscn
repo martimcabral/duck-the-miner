@@ -168,6 +168,7 @@ flat = true
 
 [node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(947, 575)
+bus = &"Menus"
 
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="GUI_Pause/PauseMenuPanel/FeedbackButton" to="." method="_on_feedback_button_pressed"]

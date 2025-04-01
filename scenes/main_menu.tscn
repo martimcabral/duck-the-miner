@@ -831,7 +831,7 @@ offset_bottom = 668.0
 layout_mode = 0
 offset_left = 21.0
 offset_top = 19.0
-offset_right = 534.0
+offset_right = 194.0
 offset_bottom = 74.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Volume"
@@ -839,9 +839,9 @@ text = "Volume"
 [node name="CurrentVolume" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
 layout_mode = 0
 offset_left = 358.0
-offset_top = 17.0
+offset_top = 18.0
 offset_right = 443.0
-offset_bottom = 72.0
+offset_bottom = 73.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
@@ -849,9 +849,9 @@ text = "n/a"
 z_index = 1
 layout_mode = 0
 offset_left = 450.0
-offset_top = 16.0
+offset_top = 18.0
 offset_right = 938.0
-offset_bottom = 67.0
+offset_bottom = 69.0
 mouse_default_cursor_shape = 7
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_l4w4d")
 step = 5.0
@@ -860,7 +860,7 @@ step = 5.0
 layout_mode = 0
 offset_left = 21.0
 offset_top = 79.0
-offset_right = 505.0
+offset_right = 158.0
 offset_bottom = 131.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Music"
@@ -868,9 +868,9 @@ text = "Music"
 [node name="CurrentMusicVolume" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
 layout_mode = 0
 offset_left = 358.0
-offset_top = 77.0
+offset_top = 78.0
 offset_right = 443.0
-offset_bottom = 132.0
+offset_bottom = 133.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
@@ -878,9 +878,9 @@ text = "n/a"
 z_index = 1
 layout_mode = 0
 offset_left = 451.0
-offset_top = 76.0
+offset_top = 78.0
 offset_right = 938.0
-offset_bottom = 127.0
+offset_bottom = 129.0
 mouse_default_cursor_shape = 7
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_agotv")
 step = 5.0
@@ -889,7 +889,7 @@ step = 5.0
 layout_mode = 0
 offset_left = 21.0
 offset_top = 139.0
-offset_right = 505.0
+offset_right = 212.0
 offset_bottom = 191.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Ambient"
@@ -897,9 +897,9 @@ text = "Ambient"
 [node name="CurrentAmbientVolume" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
 layout_mode = 0
 offset_left = 358.0
-offset_top = 137.0
+offset_top = 138.0
 offset_right = 443.0
-offset_bottom = 192.0
+offset_bottom = 193.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
@@ -907,9 +907,9 @@ text = "n/a"
 z_index = 1
 layout_mode = 0
 offset_left = 451.0
-offset_top = 136.0
+offset_top = 138.0
 offset_right = 938.0
-offset_bottom = 187.0
+offset_bottom = 189.0
 mouse_default_cursor_shape = 7
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_p380b")
 step = 5.0
@@ -918,7 +918,7 @@ step = 5.0
 layout_mode = 0
 offset_left = 21.0
 offset_top = 201.0
-offset_right = 505.0
+offset_right = 169.0
 offset_bottom = 253.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Player"
@@ -926,9 +926,9 @@ text = "Player"
 [node name="CurrentPlayerVolume" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
 layout_mode = 0
 offset_left = 358.0
-offset_top = 199.0
+offset_top = 200.0
 offset_right = 443.0
-offset_bottom = 254.0
+offset_bottom = 255.0
 theme_override_font_sizes/normal_font_size = 48
 text = "n/a"
 
@@ -936,9 +936,35 @@ text = "n/a"
 z_index = 1
 layout_mode = 0
 offset_left = 451.0
-offset_top = 198.0
+offset_top = 200.0
 offset_right = 938.0
-offset_bottom = 249.0
+offset_bottom = 251.0
+mouse_default_cursor_shape = 7
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
+step = 5.0
+
+[node name="MenusLabel" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
+offset_left = 21.0
+offset_top = 262.0
+offset_right = 179.0
+offset_bottom = 314.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Menus"
+
+[node name="CurrentMenusVolume" type="RichTextLabel" parent="GUI/Center/OptionsMenu/AudioPanel"]
+offset_left = 358.0
+offset_top = 261.0
+offset_right = 443.0
+offset_bottom = 316.0
+theme_override_font_sizes/normal_font_size = 48
+text = "n/a"
+
+[node name="MenusVolumeSlider" type="HSlider" parent="GUI/Center/OptionsMenu/AudioPanel" groups=["Buttons"]]
+z_index = 1
+offset_left = 451.0
+offset_top = 261.0
+offset_right = 938.0
+offset_bottom = 312.0
 mouse_default_cursor_shape = 7
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
 step = 5.0
@@ -1437,7 +1463,7 @@ parameters/looping = true
 [node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(976, 575)
 stream = ExtResource("5_08a1y")
-bus = &"Player"
+bus = &"Menus"
 
 [connection signal="timeout" from="TimeToPlay" to="GUI/Center/StartMenu" method="_on_time_to_play_timeout"]
 [connection signal="pressed" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_pressed"]
@@ -1464,6 +1490,7 @@ bus = &"Player"
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/MusicVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/AmbientVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_ambient_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/PlayerVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_player_volume_slider_value_changed"]
+[connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/MenusVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_menus_volume_slider_value_changed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/FlyUpButton" to="GUI/Center/OptionsMenu" method="_on_fly_up_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/FlyDownButton" to="GUI/Center/OptionsMenu" method="_on_fly_down_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/WalkLeftButton" to="GUI/Center/OptionsMenu" method="_on_walk_left_button_pressed"]
