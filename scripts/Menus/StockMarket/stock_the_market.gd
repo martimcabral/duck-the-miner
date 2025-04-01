@@ -1,4 +1,4 @@
-extends Control
+extends Panel
 
 var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
 
@@ -14,7 +14,7 @@ var companies_logos : Dictionary = {
 }
 
 func _process(_delta):
-	for linha in $StockPanel.get_children():
+	for linha in $Background/StockPanel.get_children():
 		if linha is Line2D:
 			if linha.is_in_group("PressedStock"):
 				linha.visible = true
@@ -43,7 +43,8 @@ func _on_octane_button_toggled(toggled_on: bool) -> void:
 	check_graph(toggled_on, "Octane")
 
 func _on_close_market_button_pressed() -> void:
-	get_tree().quit()
+	$"../Lobby".visible = true
+	$".".visible = false
 
 func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):
@@ -53,8 +54,8 @@ func _ready() -> void:
 	else : DiscordRPC.details = "📉 Watching Stock the Market"
 	DiscordRPC.refresh()
 	
-	for x in range(0, $StockPanel.size.x, 100):
-		for y in range(0, $StockPanel.size.y, 100):
+	for x in range(0, $Background/StockPanel.size.x, 100):
+		for y in range(0, $Background/StockPanel.size.y, 100):
 			var vline = Line2D.new()
 			vline.default_color = Color("36014d")
 			vline.set_meta("linename", "vline")
@@ -71,21 +72,21 @@ func _ready() -> void:
 				Vector2(x + 10, y + 18),
 				Vector2(1190, y + 18)
 			])
-			$StockPanel.add_child(vline)
-			$StockPanel.add_child(hline)
+			$Background/StockPanel.add_child(vline)
+			$Background/StockPanel.add_child(hline)
 	
 	create_chart("00CFFF", "Fyction")
 	create_chart("e0163e", "Haznuclear")
 	create_chart("d63ffc", "Owlwing")
 	create_chart("ffc858", "Bill")
-	#create_chart("e45c24", "Interstellar")
-	#create_chart("14c020", "Anura")
-	#create_chart("e0d5d5", "Octane")
+	create_chart("e45c24", "Interstellar")
+	create_chart("14c020", "Anura")
+	create_chart("e0d5d5", "Octane")
 
 func create_chart(cor : Color, nome : String):
 	var stored_chart_points : Array = []
 	
-	var get_stock_path = "res://save/1/stock.cfg"
+	var get_stock_path = str("res://save/", GetSaveFile.save_being_used, "/stock.cfg")
 	var get_stock = ConfigFile.new()
 	get_stock.load(get_stock_path)
 	
@@ -109,17 +110,16 @@ func create_chart(cor : Color, nome : String):
 	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	
-	$StockPanel.add_child(line)
-
+	$Background/StockPanel.add_child(line)
 func check_graph(toggled_on : bool, nome : String):
 	$CompanyLogo.texture = load(companies_logos[nome])
 	if toggled_on == true:
-		for linha in $StockPanel.get_children():
+		for linha in $Background/StockPanel.get_children():
 			if linha is Line2D:
 				if linha.get_meta("linename") == nome:
 					linha.add_to_group("PressedStock")
 	elif toggled_on == false:
-		for linha in $StockPanel.get_children():
+		for linha in $Background/StockPanel.get_children():
 			if linha is Line2D:
 				if linha.get_meta("linename") == nome:
 					linha.remove_from_group("PressedStock")

@@ -70,14 +70,15 @@ var gamma_ammount : int = 0
 var omega_ammount : int = 0
 var koppa_ammount : int = 0
 
-@onready var item_list = $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList
+@onready var item_list = $Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList
+
 func _ready():
-	$Camera2D/HUD/LobbyPanel/MoneyPanel.visible = true
-	$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.visible = true
-	$Camera2D/HUD/LobbyPanel/UniverseMapPanel.visible = true
-	$Camera2D/HUD/LobbyPanel/CraftingPanel.visible = true
-	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.visible = true
-	$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = true
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = true
+	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.visible = true
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.visible = true
+	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.visible = true
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.visible = true
+	$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.visible = true
 	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
@@ -85,7 +86,7 @@ func _ready():
 	var day_file = ConfigFile.new()
 	day_file.load(str("res://save/", GetSaveFile.save_being_used, "/day.cfg"))
 	var current_day = str(day_file.get_value("day", "current", "what"))
-	$Camera2D/HUD/LobbyPanel/MoneyPanel/DaysLabel.text = current_day
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/DaysLabel.text = current_day
 	
 	var save_file = ConfigFile.new()
 	save_file.load(str("res://save/", GetSaveFile.save_being_used, "/money.cfg"))
@@ -103,7 +104,7 @@ func _ready():
 		# Add a space after every 3 digits, but not after the last group
 		if counter % 3 == 0 and i != 0:
 			formatted_number = " " + formatted_number
-	$Camera2D/HUD/LobbyPanel/MoneyPanel/MoneyLabel.text = "€ " + formatted_number
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "€ " + formatted_number
 	# Path to the CFG file
 	var inv_path = str("res://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	
@@ -132,20 +133,20 @@ func _ready():
 	
 	load_skin()
 	
-	if $Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.item_count == 0:
-		$Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.visible = false
-		$Camera2D/HUD/LobbyPanel/InventoryPanel/UnavailableLabel.visible = true
+	if $Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList.item_count == 0:
+		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = true
 	else: 
-		$Camera2D/HUD/LobbyPanel/InventoryPanel/ItemList.visible = true
-		$Camera2D/HUD/LobbyPanel/InventoryPanel/UnavailableLabel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList.visible = true
+		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = false
 	
-	$Camera2D/HUD/BackToLobbyButton.visible = false
-	$Camera2D/HUD/InfoPanel.visible = false
-	$Camera2D/HUD/SystemInfoPanel.visible = false
-	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
-	$Camera2D/HUD/ZoomRuler.visible = false
-	$Camera2D/HUD/LoadingPanel.visible = false
-	$Camera2D/HUD/RerollButton.visible = false
+	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel.visible = false
+	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = false
+	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
+	$Camera2D/HUD/Lobby/LoadingPanel.visible = false
+	$Camera2D/HUD/Lobby/RerollButton.visible = false
 	
 	var file = FileAccess.open(str("res://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.READ)
 	if file:
@@ -160,13 +161,13 @@ func _ready():
 	
 	get_pages()
 	
-	$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text = "[center]%s[/center]" % "00/00"
-	$Camera2D/HUD/InfoPanel/Description.text = ""
-	$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = false
-	$Camera2D/HUD/InfoPanel/FieldImage.visible = false
-	$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = false
-	$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "[ ! ] Select an Asteroid Field"
-	$Camera2D/HUD/InfoPanel.size = Vector2i(387, 146)
+	$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/Numberization.text = "[center]%s[/center]" % "00/00"
+	$Camera2D/HUD/Lobby/InfoPanel/Description.text = ""
+	$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel/FieldImage.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel/FieldImage/ImageBorders.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "[ ! ] Select an Asteroid Field"
+	$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 146)
 	
 	$FieldNameLabel.text = ""
 	
@@ -187,51 +188,51 @@ func _ready():
 func _process(_delta: float) -> void:
 	lobby_fade_in = 255 * (1 - clamp($FadeInLobby.time_left, 0.0, 1.0))
 
-	$Camera2D/HUD/LobbyPanel/MoneyPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/LobbyPanel/UniverseMapPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/LobbyPanel/CraftingPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/LobbyPanel/InventoryPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.modulate.a8 = lobby_fade_in
 	
-	if mission_selected : $Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = true
+	if mission_selected : $Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = true
 	
 	if current_page >= 1 :
 		match current_field:
 			"Delta Belt":
 				if current_page > delta_ammount:
 					current_page = delta_ammount
-				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
+				$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(delta_ammount)
 			"Gamma Field":
 				if current_page > gamma_ammount:
 					current_page = gamma_ammount
-				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(gamma_ammount)
+				$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(gamma_ammount)
 			"Omega Field":
 				if current_page > omega_ammount:
 					current_page = omega_ammount
-				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(omega_ammount)
+				$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(omega_ammount)
 			"Koppa Belt":
 				if current_page > koppa_ammount:
 					current_page = koppa_ammount
-				$Camera2D/HUD/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(koppa_ammount)
+				$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(koppa_ammount)
 	else: 
 		current_page = 1
 	
 	if selecting_mission == true:
-		$Camera2D/HUD/ZoomRuler.visible = true
+		$Camera2D/HUD/Lobby/ZoomRuler.visible = true
 		if Input.is_action_just_pressed("Universe_Zoom_In") and $SolarSystem.scale.x <= max_zoom:
 			$SolarSystem.scale += Vector2(0.05, 0.05)
-			$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 5) + 'x'
-			$Camera2D/HUD/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
+			$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 5) + 'x'
+			$Camera2D/HUD/Lobby/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
 		if Input.is_action_just_pressed("Universe_Zoom_Out") and $SolarSystem.scale.x >= min_zoom:
 			$SolarSystem.scale -= Vector2(0.05, 0.05)
-			$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
-			$Camera2D/HUD/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
+			$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
+			$Camera2D/HUD/Lobby/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
 		$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
 
 func _on_ZoomSlider_value_changed(value: float) -> void:
 	$SolarSystem.scale = Vector2(value / 39.215, value / 39.215)
-	$Camera2D/HUD/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
+	$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
 
 # This works by when clicking on an Asteroid Field it will put the world scene in this current scene and then after it will free the Universe from the Memory
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -240,14 +241,14 @@ func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		current_field = "Delta Belt"
 		get_asteroid_info()
 		show_all_info()
-		$Camera2D/HUD/InfoPanel/FieldImage.texture = delta_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = delta_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Delta Belt"
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
-		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Delta Belt"
-		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
-		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = delta_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = delta_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Delta Belt"
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Delta Belt"
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
+		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
@@ -255,14 +256,14 @@ func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		current_field = "Gamma Field"
 		get_asteroid_info()
 		show_all_info()
-		$Camera2D/HUD/InfoPanel/FieldImage.texture = gamma_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = gamma_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Gamma Field"
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
-		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Gamma Field"
-		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
-		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = gamma_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = gamma_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Gamma Field"
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Gamma Field"
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
+		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
@@ -270,14 +271,14 @@ func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		current_field = "Omega Field"
 		get_asteroid_info()
 		show_all_info()
-		$Camera2D/HUD/InfoPanel/FieldImage.texture = omega_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = omega_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Omega Field"
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
-		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Omega Field"
-		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
-		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = omega_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = omega_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Omega Field"
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Omega Field"
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
+		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
@@ -285,20 +286,20 @@ func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 		current_field = "Koppa Belt"
 		get_asteroid_info()
 		show_all_info()
-		$Camera2D/HUD/InfoPanel/FieldImage.texture = koppa_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = koppa_thumbnail
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.text = "Koppa Belt"
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
-		$Camera2D/HUD/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Koppa Belt"
-		$Camera2D/HUD/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
-		$Camera2D/HUD/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = koppa_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = koppa_thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Koppa Belt"
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Koppa Belt"
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
+		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func show_all_info():
-		$Camera2D/HUD/InfoPanel/AsteroidGUIder.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage.visible = true
-		$Camera2D/HUD/InfoPanel/FieldImage/ImageBorders.visible = true
-		$Camera2D/HUD/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = true
+		$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder.visible = true
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.visible = true
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage/ImageBorders.visible = true
+		$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = true
 
 func change_to_world(field):
 	var new_world = preload("res://scenes/world.tscn").instantiate()
@@ -444,14 +445,14 @@ func get_asteroid_info():
 			
 			var asteroid_info = parse_result[current_field][str(current_page)]
 			current_asteroid_name = asteroid_info["Name"]
-			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidName.text = "Going to: " + current_asteroid_name
+			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidName.text = "Going to: " + current_asteroid_name
 			current_asteroid_biome = asteroid_info["Biome"]
 			var temperature = asteroid_info["Temperature"]
 			asteroid_temperature = temperature
 			var primary = asteroid_info["Objectites"]["Primary"]
 			var secondary = asteroid_info["Objectites"]["Secondary"]
-			$Camera2D/HUD/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
-			$Camera2D/HUD/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+			$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 		else:
 			print("An error ocurred trying to parse asteroid content, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
 
@@ -492,14 +493,14 @@ func get_asteroids_per_field(field : String):
 
 func _on_select_mission_button_pressed() -> void:
 	selecting_mission = true
-	$Camera2D/HUD/LobbyPanel.visible = false
-	$Camera2D/HUD/BackToLobbyButton.visible = true
-	$Camera2D/HUD/InfoPanel.visible = true
-	$Camera2D/HUD/SystemInfoPanel.visible = true
-	$Camera2D/HUD/RerollButton.visible = true
-	$Camera2D/HUD/ZoomRuler.visible = false
-	$Camera2D/HUD/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
-	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+	$Camera2D/HUD/Lobby/LobbyPanel.visible = false
+	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = true
+	$Camera2D/HUD/Lobby/InfoPanel.visible = true
+	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = true
+	$Camera2D/HUD/Lobby/RerollButton.visible = true
+	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
+	$Camera2D/HUD/Lobby/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
@@ -509,16 +510,16 @@ func _on_back_button_pressed() -> void:
 
 func _on_start_button_pressed() -> void:
 	if mission_selected == true:
-		$Camera2D/HUD/LobbyPanel/MoneyPanel.visible = false
-		$Camera2D/HUD/LobbyPanel/CompanyTrustPanel.visible = false
-		$Camera2D/HUD/LobbyPanel/UniverseMapPanel.visible = false
-		$Camera2D/HUD/LobbyPanel/CraftingPanel.visible = false
-		$Camera2D/HUD/LobbyPanel/SkinSelectionPanel.visible = false
-		$Camera2D/HUD/LobbyPanel/InventoryPanel.visible = false
-		$Camera2D/HUD/LoadingPanel.visible = true
-		$Camera2D/HUD/BackToLobbyButton.text = "Loading ..."
-		$Camera2D/HUD/BackToLobbyButton.position = Vector2(858, 510)
-		$Camera2D/HUD/BackToLobbyButton.scale = Vector2(1.5, 1.5)
+		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.visible = false
+		$Camera2D/HUD/Lobby/LoadingPanel.visible = true
+		$Camera2D/HUD/Lobby/BackToLobbyButton.text = "Loading ..."
+		$Camera2D/HUD/Lobby/BackToLobbyButton.position = Vector2(858, 510)
+		$Camera2D/HUD/Lobby/BackToLobbyButton.scale = Vector2(1.5, 1.5)
 		$TimeToStart.start()
 
 func _on_time_to_start_timeout() -> void:
@@ -536,30 +537,30 @@ func _on_back_to_lobby_button_pressed() -> void:
 	$MouseSoundEffects.play()
 	
 	selecting_mission = false
-	$Camera2D/HUD/LobbyPanel.visible = true
-	$Camera2D/HUD/BackToLobbyButton.visible = false
-	$Camera2D/HUD/InfoPanel.visible = false
-	$Camera2D/HUD/SystemInfoPanel.visible = false
-	$Camera2D/HUD/ZoomRuler.visible = false
-	$Camera2D/HUD/RerollButton.visible = false
+	$Camera2D/HUD/Lobby/LobbyPanel.visible = true
+	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel.visible = false
+	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false
+	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
+	$Camera2D/HUD/Lobby/RerollButton.visible = false
 
 func _select_mission_button_info_panel_pressed() -> void:
 	selecting_mission = false
-	$Camera2D/HUD/LobbyPanel.visible = true
-	$Camera2D/HUD/BackToLobbyButton.visible = false
-	$Camera2D/HUD/InfoPanel.visible = false
-	$Camera2D/HUD/SystemInfoPanel.visible = false
-	$Camera2D/HUD/InfoPanel/SelectMissionPanel.visible = false
-	$Camera2D/HUD/ZoomRuler.visible = false
-	$Camera2D/HUD/RerollButton.visible = false
-	$Camera2D/HUD/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+	$Camera2D/HUD/Lobby/LobbyPanel.visible = true
+	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel.visible = false
+	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false
+	$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = false
+	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
+	$Camera2D/HUD/Lobby/RerollButton.visible = false
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
-	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
 	DiscordRPC.refresh()
 
@@ -567,7 +568,7 @@ func _on_skin_previous_button_pressed() -> void:
 	skin_selected -= 1
 	if skin_selected < 1 : skin_selected = 1
 	
-	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
 	DiscordRPC.refresh()
 	
@@ -581,7 +582,7 @@ func _on_skin_next_button_pressed() -> void:
 	skin_selected += 1
 	if skin_selected >= 4 : skin_selected = 4
 	
-	$Camera2D/HUD/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
 	DiscordRPC.refresh()
 	
@@ -610,3 +611,7 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
+
+func _on_stock_market_label_pressed() -> void:
+	$Camera2D/HUD/StockTheMarket.visible = true
+	$Camera2D/HUD/Lobby.visible = false

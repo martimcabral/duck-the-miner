@@ -37,16 +37,12 @@ func _on_play_button_pressed() -> void:
 	set_loading_screen()
 
 func set_loading_screen():
-	$"../SaveFilesMenu/PlayButton".text = "Loading..."
-	$"../SaveFilesMenu/PlayButton".add_theme_color_override("font_hover_color", Color(1, 1, 1, 1))
-	$"../SaveFilesMenu/CreateGame".visible = false
-	$"../SaveFilesMenu/DeleteGame".visible = false
-	$"../SaveFilesMenu/BackButton".visible = false
-	$"../SaveFilesMenu/ScrollContainer".visible = false
-	$"../SaveFilesMenu/Line2D".visible = false
+	$".".visible = false 
+	$"../SaveFilesMenu".visible = false
+	$"../OptionsMenu".visible = false 
+	$"../CreditsMenu".visible = false
 	
-	$"../SaveFilesMenu".size = Vector2i(325, 100)
-	$"../SaveFilesMenu".position = Vector2i(774, 500)
+	$"../LoadingPanel".visible = true
 	
 	$"../../../TimeToPlay".start()
 	
