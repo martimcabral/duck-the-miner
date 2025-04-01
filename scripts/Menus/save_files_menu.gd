@@ -144,10 +144,17 @@ func _on_create_game_pressed() -> void:
 	day_config.save(day_path)
 	
 	################################################################################
-		
+	
 	var stock_path = str("res://save/", saves_number, "/stock.cfg")
 	var stock_config = ConfigFile.new()
-	stock_config.set_value("stock", "idk", 1)
+	
+	var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
+	var random_x : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1188]
+	for i in companies_names:
+		for num in range(1, 14):
+			for x in random_x.size():
+				var random_vector2 = str(Vector2(x, randf_range(0, 800)))
+				stock_config.set_value("stock", str(companies_names, num), random_vector2)
 	stock_config.save(stock_path)
 	
 	################################################################################

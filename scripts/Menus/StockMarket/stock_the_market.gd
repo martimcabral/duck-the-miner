@@ -78,9 +78,9 @@ func _ready() -> void:
 	create_chart("e0163e", "Haznuclear")
 	create_chart("d63ffc", "Owlwing")
 	create_chart("ffc858", "Bill")
-	create_chart("e45c24", "Interstellar")
-	create_chart("14c020", "Anura")
-	create_chart("e0d5d5", "Octane")
+	#create_chart("e45c24", "Interstellar")
+	#create_chart("14c020", "Anura")
+	#create_chart("e0d5d5", "Octane")
 
 func create_chart(cor : Color, nome : String):
 	var stored_chart_points : Array = []
@@ -89,13 +89,12 @@ func create_chart(cor : Color, nome : String):
 	var get_stock = ConfigFile.new()
 	get_stock.load(get_stock_path)
 	
-	for i in range(1, 4):amsdhasdhgasud it 8qt ew8[]8
+	for i in range(1, 14):
 		stored_chart_points.append(get_stock.get_value("stock", nome + str(i), -1))
 	
-	print(stored_chart_points)
-	'
 	var curve = Curve2D.new()
-	for i in range(stored_chart_points.size()):
+	for i in stored_chart_points.size():
+		print("asd", stored_chart_points[i])
 		curve.add_point(Vector2(stored_chart_points[i]))
 	var curve_points = curve.get_baked_points()
 	
@@ -110,7 +109,7 @@ func create_chart(cor : Color, nome : String):
 	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	
-	$StockPanel.add_child(line)'
+	$StockPanel.add_child(line)
 
 func check_graph(toggled_on : bool, nome : String):
 	$CompanyLogo.texture = load(companies_logos[nome])
