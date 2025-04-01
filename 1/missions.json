@@ -1,0 +1,199 @@
+{
+	"Delta Belt": {
+		"1": {
+			"Biome": "Swamp",
+			"Name": "Zig",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 5
+		},
+		"2": {
+			"Biome": "Swamp",
+			"Name": "Vuiyogi",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 9
+		},
+		"3": {
+			"Biome": "Stony",
+			"Name": "Bigzuf",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 21
+		},
+		"4": {
+			"Biome": "Vulcanic",
+			"Name": "Limoyiyiine",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 86
+		}
+	},
+	"Gamma Field": {
+		"1": {
+			"Biome": "Stony",
+			"Name": "Emtii",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 27
+		},
+		"2": {
+			"Biome": "Swamp",
+			"Name": "Olmaa",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 3
+		},
+		"3": {
+			"Biome": "Frozen",
+			"Name": "Qsebii",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -47
+		},
+		"4": {
+			"Biome": "Stony",
+			"Name": "Wedxas",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 20
+		},
+		"5": {
+			"Biome": "Stony",
+			"Name": "Bih",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 30
+		}
+	},
+	"Koppa Belt": {
+		"1": {
+			"Biome": "Swamp",
+			"Name": "Ivye-Puhi",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 1
+		},
+		"2": {
+			"Biome": "Vulcanic",
+			"Name": "Zadgoc",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 76
+		},
+		"3": {
+			"Biome": "Frozen",
+			"Name": "Wixapupeaso",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -46
+		},
+		"4": {
+			"Biome": "Frozen",
+			"Name": "Qaefa",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -48
+		},
+		"5": {
+			"Biome": "Stony",
+			"Name": "Ved",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 19
+		},
+		"6": {
+			"Biome": "Swamp",
+			"Name": "Rexpij",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 3
+		},
+		"7": {
+			"Biome": "Vulcanic",
+			"Name": "Nuiyixe",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 76
+		},
+		"8": {
+			"Biome": "Stony",
+			"Name": "Foq",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 20
+		}
+	},
+	"Omega Field": {
+		"1": {
+			"Biome": "Vulcanic",
+			"Name": "Onfo-Jovi",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 80
+		},
+		"2": {
+			"Biome": "Vulcanic",
+			"Name": "Ijme-Sofu",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 81
+		},
+		"3": {
+			"Biome": "Stony",
+			"Name": "Zoh",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": 25
+		},
+		"4": {
+			"Biome": "Frozen",
+			"Name": "Lop",
+			"Objectites": {
+				"Primary": "n/a",
+				"Secondary": "n/a"
+			},
+			"Temperature": -53
+		}
+	}
+}

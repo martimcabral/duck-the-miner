@@ -89,7 +89,7 @@ func _ready():
 	
 	var save_file = ConfigFile.new()
 	save_file.load(str("res://save/", GetSaveFile.save_being_used, "/money.cfg"))
-	var current_money = str(save_file.get_value("money", "current", null))
+	var current_money = str(save_file.get_value("money", "current", 0))
 	var number_str = str(current_money)
 	# Create an empty list to store the parts of the formatted number
 	var formatted_number = ""

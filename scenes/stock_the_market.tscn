@@ -69,6 +69,8 @@ points = PackedVector2Array(415, -59, 415, 1195)
 position = Vector2(-64, 16)
 points = PackedVector2Array(-268, 133, 2010, 133)
 joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="SecondHorizontalLine2D" type="Line2D" parent="VerticalLine2D"]
 position = Vector2(0, 720)
@@ -124,7 +126,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_gkr41")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1gffw")
 theme_override_icons/checked = SubResource("ImageTexture_j38w6")
 theme_override_icons/unchecked = SubResource("ImageTexture_hv22f")
-button_pressed = true
 text = "HAZNUCLEAR POWER"
 alignment = 1
 
@@ -144,7 +145,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_gkr41")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1gffw")
 theme_override_icons/checked = SubResource("ImageTexture_j38w6")
 theme_override_icons/unchecked = SubResource("ImageTexture_hv22f")
-button_pressed = true
 text = "OWLWING LABORATORIES"
 alignment = 1
 
@@ -164,7 +164,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_gkr41")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1gffw")
 theme_override_icons/checked = SubResource("ImageTexture_j38w6")
 theme_override_icons/unchecked = SubResource("ImageTexture_hv22f")
-button_pressed = true
 text = "BILL INDUSTRIES"
 alignment = 1
 
@@ -184,7 +183,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_gkr41")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1gffw")
 theme_override_icons/checked = SubResource("ImageTexture_j38w6")
 theme_override_icons/unchecked = SubResource("ImageTexture_hv22f")
-button_pressed = true
 text = "INTERSTELLAR LOGISTICS"
 alignment = 1
 
@@ -204,7 +202,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_gkr41")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1gffw")
 theme_override_icons/checked = SubResource("ImageTexture_j38w6")
 theme_override_icons/unchecked = SubResource("ImageTexture_hv22f")
-button_pressed = true
 text = "ANURA JEWERLY"
 alignment = 1
 
@@ -224,7 +221,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_gkr41")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1gffw")
 theme_override_icons/checked = SubResource("ImageTexture_j38w6")
 theme_override_icons/unchecked = SubResource("ImageTexture_hv22f")
-button_pressed = true
 text = "OCTANE WORKS"
 alignment = 1
 
@@ -278,7 +274,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0bc1u")
 [node name="MarginContainer" type="ScrollContainer" parent="."]
 layout_direction = 2
 layout_mode = 0
-offset_left = 607.0
+offset_left = 623.0
 offset_top = 18.0
 offset_right = 1794.0
 offset_bottom = 95.0

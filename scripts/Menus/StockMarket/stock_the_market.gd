@@ -1,5 +1,7 @@
 extends Control
 
+var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
+
 var companies_logos : Dictionary = {
 	"Fyction": "res://assets/textures/companies/fyction_enterprise.png",
 	"Haznuclear": "res://assets/textures/companies/haznuclear_power.png",
@@ -51,14 +53,6 @@ func _ready() -> void:
 	else : DiscordRPC.details = "📉 Watching Stock the Market"
 	DiscordRPC.refresh()
 	
-	create_chart("00CFFF", "Fyction")
-	create_chart("e0163e", "Haznuclear")
-	create_chart("d63ffc", "Owlwing")
-	create_chart("ffc858", "Bill")
-	create_chart("e45c24", "Interstellar")
-	create_chart("14c020", "Anura")
-	create_chart("e0d5d5", "Octane")
-	
 	for x in range(0, $StockPanel.size.x, 100):
 		for y in range(0, $StockPanel.size.y, 100):
 			var vline = Line2D.new()
@@ -79,25 +73,44 @@ func _ready() -> void:
 			])
 			$StockPanel.add_child(vline)
 			$StockPanel.add_child(hline)
+	
+	create_chart("00CFFF", "Fyction")
+	create_chart("e0163e", "Haznuclear")
+	create_chart("d63ffc", "Owlwing")
+	create_chart("ffc858", "Bill")
+	create_chart("e45c24", "Interstellar")
+	create_chart("14c020", "Anura")
+	create_chart("e0d5d5", "Octane")
 
 func create_chart(cor : Color, nome : String):
+	var stored_chart_points : Array = []
+	
+	var get_stock_path = "res://save/1/stock.cfg"
+	var get_stock = ConfigFile.new()
+	get_stock.load(get_stock_path)
+	
+	for i in range(1, 4):amsdhasdhgasud it 8qt ew8[]8
+		stored_chart_points.append(get_stock.get_value("stock", nome + str(i), -1))
+	
+	print(stored_chart_points)
+	'
+	var curve = Curve2D.new()
+	for i in range(stored_chart_points.size()):
+		curve.add_point(Vector2(stored_chart_points[i]))
+	var curve_points = curve.get_baked_points()
+	
 	var line = Line2D.new()
+	line.points = curve_points
 	line.set_meta("linename", nome)
 	line.add_to_group("PressedStock")
 	line.width = 8
-	line.default_color = Color(cor)
 	line.z_index = 1
-	
-	var curve = Curve2D.new()
-	for i in range(0, $StockPanel.size.x, 117.5):
-		curve.add_point(Vector2(i + 12.5, randi_range(0, 800)))
-	var curve_points = curve.get_baked_points()
-	
+	line.default_color = cor
+	line.joint_mode = Line2D.LINE_JOINT_ROUND
 	line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	line.end_cap_mode = Line2D.LINE_CAP_ROUND
-	line.joint_mode = Line2D.LINE_JOINT_ROUND
-	line.points = curve_points
-	$StockPanel.add_child(line)
+	
+	$StockPanel.add_child(line)'
 
 func check_graph(toggled_on : bool, nome : String):
 	$CompanyLogo.texture = load(companies_logos[nome])
