@@ -203,43 +203,28 @@ func random_bullshit_go():
 	return rbg
 
 func create_styleboxes():
-	normal_stylebox.border_color = Color("555555")
-	normal_stylebox.border_width_bottom = 3
-	normal_stylebox.border_width_top = 3
-	normal_stylebox.border_width_left = 3
-	normal_stylebox.border_width_right = 3
-	normal_stylebox.corner_radius_bottom_left = 4
-	normal_stylebox.corner_radius_bottom_right = 4
-	normal_stylebox.corner_radius_top_left = 4
-	normal_stylebox.corner_radius_top_right = 4
-	normal_stylebox.content_margin_bottom = 10
-	normal_stylebox.content_margin_top = 10
-	normal_stylebox.content_margin_left = 20
-	normal_stylebox.content_margin_right = 20
-	normal_stylebox.bg_color = Color.BLACK
+	var StyleBoxes : Array = [normal_stylebox, focus_stylebox, hover_stylebox]
+	for s in StyleBoxes.size():
+		StyleBoxes[s].border_width_bottom = 3
+		StyleBoxes[s].border_width_top = 3
+		StyleBoxes[s].border_width_left = 3
+		StyleBoxes[s].border_width_right = 3
+		StyleBoxes[s].corner_radius_bottom_left = 4
+		StyleBoxes[s].corner_radius_bottom_right = 4
+		StyleBoxes[s].corner_radius_top_left = 4
+		StyleBoxes[s].corner_radius_top_right = 4
+		StyleBoxes[s].content_margin_bottom = 10
+		StyleBoxes[s].content_margin_top = 10
+		StyleBoxes[s].content_margin_left = 20
+		StyleBoxes[s].content_margin_right = 20
+		StyleBoxes[s].bg_color = Color.BLACK
 	
+	normal_stylebox = StyleBoxes[0]
+	focus_stylebox = StyleBoxes[1]
+	focus_stylebox = StyleBoxes[2]
+	normal_stylebox.border_color = Color("555555")
 	focus_stylebox.border_color = Color("f9b53f")
-	focus_stylebox.border_width_bottom = 3
-	focus_stylebox.border_width_top = 3
-	focus_stylebox.border_width_left = 3
-	focus_stylebox.border_width_right = 3
-	focus_stylebox.corner_radius_bottom_left = 4
-	focus_stylebox.corner_radius_bottom_right = 4
-	focus_stylebox.corner_radius_top_left = 4
-	focus_stylebox.corner_radius_top_right = 4
-	focus_stylebox.bg_color = Color.BLACK
-
-	hover_stylebox.border_color = Color.WHITE
-	hover_stylebox.border_width_bottom = 3
-	hover_stylebox.border_width_top = 3
-	hover_stylebox.border_width_left = 3
-	hover_stylebox.border_width_right = 3
-	hover_stylebox.corner_radius_bottom_left = 4
-	hover_stylebox.corner_radius_bottom_right = 4
-	hover_stylebox.corner_radius_top_left = 4
-	hover_stylebox.corner_radius_top_right = 4
-	hover_stylebox.bg_color = Color.BLACK
-	return hover_stylebox
+	focus_stylebox.border_color = Color.WHITE
 
 func _on_play_button_mouse_entered() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")

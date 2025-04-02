@@ -9,7 +9,7 @@ var companies_logos : Dictionary = {
 	"Bill": "res://assets/textures/companies/bill_industries.png",
 	"Interstellar": "res://assets/textures/companies/interstellar_logistics.png",
 	"Anura": "res://assets/textures/companies/anura_jewelry.png",
-	"Octane": "res://assets/textures/equipment/others/the_nothing.png",
+	"Octane": "res://assets/textures/companies/octane_works.png",
 	"Nothing": "res://assets/textures/equipment/others/the_nothing.png"
 }
 
