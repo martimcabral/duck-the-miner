@@ -4,22 +4,6 @@
 [ext_resource type="FontFile" uid="uid://5b4g4ugjtc6q" path="res://assets/fonts/VeniceClassic.ttf" id="2_2o8o2"]
 [ext_resource type="Texture2D" uid="uid://3ev3ewev31fl" path="res://assets/textures/companies/contracts/fyction_first.png" id="2_465o6"]
 
-[sub_resource type="Animation" id="Animation_465o6"]
-resource_name = "go_up"
-length = 6.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.36667, 2.83333, 3.53333, 5.36667, 6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(651, 1236), Vector2(651, 868), Vector2(651, 724), Vector2(651, 476), Vector2(651, 268), Vector2(651, 92)]
-}
-
 [sub_resource type="Animation" id="Animation_75cy6"]
 length = 0.001
 tracks/0/type = "value"
@@ -35,46 +19,35 @@ tracks/0/keys = {
 "values": [Vector2(651, 1236)]
 }
 
+[sub_resource type="Animation" id="Animation_465o6"]
+resource_name = "go_up"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.36667, 2.83333, 3.53333, 5.36667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(651, 1236), Vector2(651, 868), Vector2(651, 724), Vector2(651, 476), Vector2(651, 268), Vector2(651, 40)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_feyoj"]
 _data = {
 &"RESET": SubResource("Animation_75cy6"),
 &"go_up": SubResource("Animation_465o6")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_465o6"]
-radius = 342.086
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_465o6"]
+size = Vector2(345.5, 128)
 
 [node name="Cutscenes" type="Node2D"]
 script = ExtResource("1_5khjm")
 
 [node name="Lines" type="Node2D" parent="."]
-
-[node name="FyctionContract" type="TextureRect" parent="."]
-z_index = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 651.0
-offset_top = 1236.0
-offset_right = 2405.0
-offset_bottom = 3716.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.359749, 0.359749)
-texture = ExtResource("2_465o6")
-
-[node name="PrintingAnimation" type="AnimationPlayer" parent="FyctionContract"]
-libraries = {
-&"": SubResource("AnimationLibrary_feyoj")
-}
-
-[node name="BlockRange" type="Area2D" parent="FyctionContract"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FyctionContract/BlockRange"]
-position = Vector2(422.517, 2351.64)
-shape = SubResource("CircleShape2D_465o6")
 
 [node name="TextDisplay" type="RichTextLabel" parent="."]
 z_index = 1
@@ -98,15 +71,37 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorBackground" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="FyctionContract" type="TextureRect" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 651.0
+offset_top = 1236.0
+offset_right = 2405.0
+offset_bottom = 3716.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.03, 0.03, 0.03, 1)
+scale = Vector2(0.4, 0.4)
+mouse_filter = 2
+texture = ExtResource("2_465o6")
+
+[node name="PrintingAnimation" type="AnimationPlayer" parent="FyctionContract"]
+libraries = {
+&"": SubResource("AnimationLibrary_feyoj")
+}
+
+[node name="BlockRange" type="Area2D" parent="."]
+z_index = 7
+position = Vector2(6.10352e-05, 0)
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockRange"]
+position = Vector2(825.25, 966)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_465o6")
 
 [node name="TextTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -119,20 +114,33 @@ autostart = true
 [node name="AcceptButton" type="CheckBox" parent="." groups=["Buttons"]]
 z_index = 20
 offset_left = 687.0
-offset_top = 768.0
+offset_top = 791.0
 offset_right = 711.0
-offset_bottom = 792.0
+offset_bottom = 815.0
 scale = Vector2(1.5, 1.5)
 
 [node name="RefuseButton" type="CheckBox" parent="." groups=["Buttons"]]
 z_index = 20
 offset_left = 687.0
-offset_top = 807.0
+offset_top = 835.0
 offset_right = 711.0
-offset_bottom = 831.0
+offset_bottom = 859.0
 scale = Vector2(1.5, 1.5)
 
+[node name="ColorBackground" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.03, 0.03, 1)
+
 [connection signal="animation_finished" from="FyctionContract/PrintingAnimation" to="." method="_on_printing_animation_animation_finished"]
+[connection signal="mouse_entered" from="BlockRange" to="." method="_on_block_range_mouse_entered"]
+[connection signal="mouse_exited" from="BlockRange" to="." method="_on_block_range_mouse_exited"]
 [connection signal="timeout" from="TextTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
 [connection signal="toggled" from="AcceptButton" to="." method="_on_accept_button_toggled"]

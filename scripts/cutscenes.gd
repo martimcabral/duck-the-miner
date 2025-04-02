@@ -6,6 +6,8 @@ var current_text : String = "S2T5"
 var fadein = -20
 var year = Time.get_datetime_dict_from_system().year
 var signature_available : bool = false
+var above_sign : bool = false
+var lines_number : int = 0
 
 var IntroCusceneTexts : Dictionary = {
 	"NOTEXT": "",
@@ -62,35 +64,39 @@ func _on_printing_animation_animation_finished(_anim_name: StringName) -> void:
 	$RefuseButton.visible = true
 	signature_available = true
 
-@onready var _lines_container := $Lines 
-
 var _is_drawing := false 
 var _current_line : Line2D = null 
 
 func _input(event: InputEvent) -> void:
-	var mouse_pos = get_global_mouse_position()
-	var local_mouse_pos = $FyctionContract/BlockRange.to_local(mouse_pos)
-	var collision_shape = $FyctionContract/BlockRange.get_node("CollisionShape2D").shape
-	var radius = (collision_shape as CircleShape2D).radius
-	if local_mouse_pos.length() <= radius:
-		print("A")
-		if event is InputEventMouseButton and signature_available == true:
-			if event.button_index == MOUSE_BUTTON_LEFT:
-				if event.pressed:
-					_is_drawing = true
-					_current_line = Line2D.new()
-					_current_line.default_color = Color("080808")
-					_current_line.width = 6
-					_current_line.joint_mode = Line2D.LINE_JOINT_ROUND
-					_current_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
-					_current_line.end_cap_mode = Line2D.LINE_CAP_ROUND
-					_current_line.z_index = 10
-					_current_line.add_point(get_local_mouse_position()) 
-					_lines_container.add_child(_current_line)
-				else:
-					_is_drawing = false
-					_current_line = null
+	if event is InputEventMouseButton and signature_available == true and above_sign == true:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				_is_drawing = true
+				_current_line = Line2D.new()
+				_current_line.default_color = Color("080808")
+				_current_line.width = 6
+				_current_line.joint_mode = Line2D.LINE_JOINT_ROUND
+				_current_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+				_current_line.end_cap_mode = Line2D.LINE_CAP_ROUND
+				_current_line.z_index = 10
+				_current_line.set_meta("line", "line")
+				_current_line.add_point(get_local_mouse_position()) 
+				lines_number += 1
+				$Lines.add_child(_current_line)
+			else:
+				_is_drawing = false
+				_current_line = null
+	if event is InputEventMouseMotion:
+		if _is_drawing and _current_line != null:
+			_current_line.add_point(get_local_mouse_position())
 
-		if event is InputEventMouseMotion:
-			if _is_drawing and _current_line != null:
-				_current_line.add_point(get_local_mouse_position())
+
+func _on_block_range_mouse_entered() -> void:
+	above_sign = true
+
+func _on_block_range_mouse_exited() -> void:
+	above_sign = false
+	_is_drawing = false
+
+func _process(delta: float) -> void:
+	print(lines_number)
