@@ -1,0 +1,320 @@
+[gd_scene load_steps=23 format=3 uid="uid://bjvurleq55hl2"]
+
+[ext_resource type="Script" uid="uid://bfpwsu635c73s" path="res://scripts/cutscenes.gd" id="1_5khjm"]
+[ext_resource type="FontFile" uid="uid://5b4g4ugjtc6q" path="res://assets/fonts/VeniceClassic.ttf" id="2_2o8o2"]
+[ext_resource type="Texture2D" uid="uid://3ev3ewev31fl" path="res://assets/textures/companies/contracts/fyction_first.png" id="2_465o6"]
+[ext_resource type="AudioStream" uid="uid://bwgwkvtcl6fsm" path="res://sounds/sound_effects/mining3.ogg" id="3_feyoj"]
+[ext_resource type="Texture2D" uid="uid://ccovw7201b8cq" path="res://assets/textures/main_menu/rubber.png" id="4_5wt6c"]
+[ext_resource type="AudioStream" uid="uid://dh5bvg4h0k67m" path="res://sounds/sound_effects/printing.ogg" id="4_75cy6"]
+[ext_resource type="Texture2D" uid="uid://bujtnd32au7um" path="res://assets/textures/main_menu/rubber_hover.png" id="5_pyic4"]
+[ext_resource type="AudioStream" uid="uid://dwbbwpto5nca0" path="res://sounds/sound_effects/whoosh.ogg" id="6_wp7x2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75cy6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_top = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feyoj"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.231373, 0.231373, 0.231373, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_top = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ght7f"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_top = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dc4pn"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_top = 6.0
+
+[sub_resource type="Animation" id="Animation_75cy6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(651, 1236)]
+}
+
+[sub_resource type="Animation" id="Animation_pfeoa"]
+resource_name = "deliver"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(651, 50), Vector2(651, 100), Vector2(651, -3000)]
+}
+
+[sub_resource type="Animation" id="Animation_465o6"]
+resource_name = "go_up"
+length = 5.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.16667, 2.16667, 2.86667, 4.26667, 5.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(651, 1236), Vector2(651, 868), Vector2(651, 724), Vector2(651, 476), Vector2(651, 268), Vector2(651, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_feyoj"]
+_data = {
+&"RESET": SubResource("Animation_75cy6"),
+&"deliver": SubResource("Animation_pfeoa"),
+&"go_up": SubResource("Animation_465o6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_465o6"]
+size = Vector2(345.5, 128)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_feyoj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ght7f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dc4pn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfeoa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qrnwy"]
+
+[node name="Cutscenes" type="Node2D"]
+script = ExtResource("1_5khjm")
+
+[node name="TextDisplay" type="RichTextLabel" parent="."]
+z_index = 1
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 415.0
+offset_top = 491.5
+offset_right = 1505.0
+offset_bottom = 588.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_2o8o2")
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReadyButton" type="Button" parent="." groups=["Buttons"]]
+z_index = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1408.0
+offset_top = 957.0
+offset_right = 1631.0
+offset_bottom = 1033.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_disabled_color = Color(0.231373, 0.231373, 0.231373, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_75cy6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_feyoj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ght7f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dc4pn")
+disabled = true
+text = "READY"
+
+[node name="MouseEffectButton" type="AudioStreamPlayer2D" parent="ReadyButton"]
+position = Vector2(-407, -394)
+stream = ExtResource("3_feyoj")
+volume_db = -2.0
+pitch_scale = 1.5
+bus = &"Menus"
+
+[node name="RubberButton" type="TextureButton" parent="." groups=["Buttons"]]
+z_index = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 534.0
+offset_top = 950.0
+offset_right = 550.0
+offset_bottom = 966.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("4_5wt6c")
+texture_pressed = ExtResource("5_pyic4")
+texture_hover = ExtResource("5_pyic4")
+
+[node name="FyctionContract" type="TextureRect" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 651.0
+offset_top = 1236.0
+offset_right = 2405.0
+offset_bottom = 3716.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+mouse_filter = 2
+texture = ExtResource("2_465o6")
+
+[node name="Lines" type="Node2D" parent="FyctionContract"]
+position = Vector2(-1627.5, -125)
+scale = Vector2(2.5, 2.5)
+
+[node name="PrintingAnimation" type="AnimationPlayer" parent="FyctionContract" groups=["Buttons"]]
+libraries = {
+&"": SubResource("AnimationLibrary_feyoj")
+}
+
+[node name="PrintingSoundEffect" type="AudioStreamPlayer2D" parent="FyctionContract"]
+position = Vector2(845, 2412.5)
+scale = Vector2(2.5, 2.5)
+stream = ExtResource("4_75cy6")
+volume_db = -2.0
+bus = &"Menus"
+
+[node name="WhooshSoundEffect" type="AudioStreamPlayer2D" parent="FyctionContract"]
+position = Vector2(861, 1081)
+scale = Vector2(6.25, 6.25)
+stream = ExtResource("6_wp7x2")
+bus = &"Menus"
+
+[node name="BlockRange" type="Area2D" parent="FyctionContract"]
+z_index = 7
+position = Vector2(-1627.5, -3090)
+scale = Vector2(2.5, 2.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FyctionContract/BlockRange"]
+position = Vector2(825.25, 2165)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_465o6")
+
+[node name="AcceptButton" type="CheckBox" parent="FyctionContract" groups=["Buttons"]]
+z_index = 20
+layout_mode = 0
+offset_left = 112.5
+offset_top = 1887.5
+offset_right = 136.5
+offset_bottom = 1911.5
+scale = Vector2(3.5, 3.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_feyoj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ght7f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dc4pn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pfeoa")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qrnwy")
+
+[node name="RefuseButton" type="CheckBox" parent="FyctionContract" groups=["Buttons"]]
+z_index = 20
+layout_mode = 0
+offset_left = 112.5
+offset_top = 1992.5
+offset_right = 136.5
+offset_bottom = 2016.5
+scale = Vector2(3.5, 3.5)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_feyoj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ght7f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dc4pn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_pfeoa")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qrnwy")
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 14.0
+autostart = true
+
+[node name="FadeTimer" type="Timer" parent="."]
+wait_time = 0.075
+autostart = true
+
+[node name="GoToLobby" type="Timer" parent="."]
+one_shot = true
+
+[node name="ColorBackground" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0.03, 0.03, 0.03, 1)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SkipProgressLine" type="Line2D" parent="."]
+position = Vector2(-6, -5)
+points = PackedVector2Array(-12, 1078, 1, 1078)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[connection signal="mouse_entered" from="ReadyButton" to="." method="_on_ready_button_mouse_entered"]
+[connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="mouse_entered" from="RubberButton" to="." method="_on_rubber_button_mouse_entered"]
+[connection signal="pressed" from="RubberButton" to="." method="_on_rubber_button_pressed"]
+[connection signal="animation_finished" from="FyctionContract/PrintingAnimation" to="." method="_on_printing_animation_animation_finished"]
+[connection signal="mouse_entered" from="FyctionContract/BlockRange" to="." method="_on_block_range_mouse_entered"]
+[connection signal="mouse_exited" from="FyctionContract/BlockRange" to="." method="_on_block_range_mouse_exited"]
+[connection signal="mouse_entered" from="FyctionContract/AcceptButton" to="." method="_on_accept_button_mouse_entered"]
+[connection signal="toggled" from="FyctionContract/AcceptButton" to="." method="_on_accept_button_toggled"]
+[connection signal="mouse_entered" from="FyctionContract/RefuseButton" to="." method="_on_refuse_button_mouse_entered"]
+[connection signal="toggled" from="FyctionContract/RefuseButton" to="." method="_on_refuse_button_toggled"]
+[connection signal="timeout" from="TextTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]
+[connection signal="timeout" from="GoToLobby" to="." method="_on_go_to_lobby_timeout"]

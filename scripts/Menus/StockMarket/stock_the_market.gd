@@ -75,13 +75,14 @@ func _ready() -> void:
 			$Background/StockPanel.add_child(vline)
 			$Background/StockPanel.add_child(hline)
 	
-	create_chart("00CFFF", "Fyction")
-	create_chart("e0163e", "Haznuclear")
-	create_chart("d63ffc", "Owlwing")
-	create_chart("ffc858", "Bill")
-	create_chart("e45c24", "Interstellar")
-	create_chart("14c020", "Anura")
-	create_chart("e0d5d5", "Octane")
+	if GetSaveFile.save_being_used != 0:
+		create_chart("00CFFF", "Fyction")
+		create_chart("e0163e", "Haznuclear")
+		create_chart("d63ffc", "Owlwing")
+		create_chart("ffc858", "Bill")
+		create_chart("e45c24", "Interstellar")
+		create_chart("14c020", "Anura")
+		create_chart("e0d5d5", "Octane")
 
 func create_chart(cor : Color, nome : String):
 	var stored_chart_points : Array = []

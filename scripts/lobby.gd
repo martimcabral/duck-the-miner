@@ -104,7 +104,7 @@ func _ready():
 		# Add a space after every 3 digits, but not after the last group
 		if counter % 3 == 0 and i != 0:
 			formatted_number = " " + formatted_number
-	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "€ " + formatted_number
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: -" + formatted_number + " €"
 	# Path to the CFG file
 	var inv_path = str("res://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	
@@ -173,7 +173,7 @@ func _ready():
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Money: " + formatted_number + " €" 
+		DiscordRPC.small_image_text = "Debt: -" + formatted_number + " €" 
 		var random = randi_range(1, 2)
 		match random:
 			1:

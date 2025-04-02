@@ -32,11 +32,7 @@ func _on_back_button_pressed() -> void:
 	$".".visible = true
 	$"../CreditsMenu".visible = false
 
-
 func _on_play_button_pressed() -> void:
-	set_loading_screen()
-
-func set_loading_screen():
 	$".".visible = false 
 	$"../SaveFilesMenu".visible = false
 	$"../OptionsMenu".visible = false 
@@ -45,6 +41,10 @@ func set_loading_screen():
 	$"../LoadingPanel".visible = true
 	
 	$"../../../TimeToPlay".start()
-	
+
 func _on_time_to_play_timeout() -> void:
-	get_tree().change_scene_to_packed(load("res://scenes/lobby.tscn"))
+	if DirAccess.dir_exists_absolute(str("res://save/", GetSaveFile.save_being_used, "/new")):
+		DirAccess.remove_absolute(str("res://save/", GetSaveFile.save_being_used, "/new"))
+		get_tree().change_scene_to_packed(load("res://scenes/cutscenes/intro.tscn"))
+	else:
+		get_tree().change_scene_to_packed(load("res://scenes/lobby.tscn"))

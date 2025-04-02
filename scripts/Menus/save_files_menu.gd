@@ -113,7 +113,7 @@ func _on_create_game_pressed() -> void:
 	var money_path = str("res://save/", saves_number, "/money.cfg")
 	var money_config = ConfigFile.new()
 	
-	var new_money = int(randf_range(1_000, 10_000))
+	var new_money = int(randf_range(88_888_888, 99_999_999))
 	money_config.set_value("money", "start", new_money)
 	money_config.set_value("money", "current", new_money)
 	money_config.save(money_path)
@@ -158,24 +158,33 @@ func _on_create_game_pressed() -> void:
 	stock_config.save(stock_path)
 	
 	################################################################################
+	
+	var new_path = str("res://save/", saves_number, "/new")
+	DirAccess.make_dir_absolute(new_path)
+	
+	################################################################################
 
 func _on_delete_game_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 0.75
 	$"../../../MouseSoundEffects".play()
-	
+
 	var button = find_button_by_save(selected_save)
-	if button:
-		button.queue_free()
-		if savedir:
-			var new_name = "DELETED-" + random_bullshit_go()
-			if savedir.rename(str(selected_save), new_name):
-				print("Rename successful to: ", new_name)
-			else:
-				print("Rename failed")
-		else:
-			print("Failed to access directory")
-		print("Deleted Save: ", selected_save)
+	button.queue_free()
+	
+	var folder_path = "res://save/" + str(selected_save)
+	var folder_save = DirAccess.open(folder_path)
+	
+	folder_save.list_dir_begin() 
+	var file_name = folder_save.get_next()
+	while file_name != "":
+		var file_path = folder_path + "/" + file_name
+		DirAccess.remove_absolute(file_path)
+		file_name = folder_save.get_next()
+	folder_save.list_dir_end()
+	
+	DirAccess.remove_absolute(folder_path)
+	print("Removed Save: ", selected_save)
 
 func find_button_by_save(save_id: int) -> Button:
 	for button in $ScrollContainer/SaveList.get_children():
@@ -194,13 +203,6 @@ func _on_delete_game_mouse_entered() -> void:
 	$DeleteGame.icon = preload("res://assets/textures/main_menu/trash_can_hover.png")
 func _on_delete_game_mouse_exited() -> void:
 	$DeleteGame.icon = preload("res://assets/textures/main_menu/trash_can.png")
-
-func random_bullshit_go():
-	var symbols : Array = ["#", "@", "$", "€", "%", "&", "£", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "A", "E", "I", "O", "U"]
-	var rbg : String = ""
-	for i in range(24):
-		rbg += symbols[randi() % symbols.size()]
-	return rbg
 
 func create_styleboxes():
 	var StyleBoxes : Array = [normal_stylebox, focus_stylebox, hover_stylebox]
