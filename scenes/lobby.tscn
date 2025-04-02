@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=88 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -114,6 +114,14 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_835bk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ucbax"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ixomp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8kv63"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rb7cd"]
 bg_color = Color(0.07, 0.07, 0.07, 0)
@@ -336,7 +344,7 @@ layout_mode = 0
 offset_left = 68.0
 offset_top = 35.0
 offset_right = 788.0
-offset_bottom = 113.0
+offset_bottom = 185.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
@@ -346,7 +354,12 @@ width = 4.0
 
 [node name="Line2D2" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
 position = Vector2(-344, 0)
-points = PackedVector2Array(468, 76, 468, 2)
+points = PackedVector2Array(346, 76, 1062, 76)
+width = 4.0
+
+[node name="Line2D3" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
+position = Vector2(-776, 0)
+points = PackedVector2Array(1062, 147, 1062, 76)
 width = 4.0
 
 [node name="DaysLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel" groups=["Buttons"]]
@@ -355,14 +368,14 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = -35.0
-offset_right = 122.0
-offset_bottom = 35.0
+offset_top = 2.0
+offset_right = 284.0
+offset_bottom = 72.0
 grow_vertical = 2
 tooltip_text = "Current Day"
 mouse_filter = 0
 theme_override_font_sizes/font_size = 48
-text = "123"
+text = "Days: 9999"
 horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 129
@@ -372,10 +385,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 126.0
-offset_top = -22.0
+offset_left = 4.0
+offset_top = -61.0
 offset_right = 434.0
-offset_bottom = 26.0
+offset_bottom = -13.0
 grow_vertical = 2
 tooltip_text = "Your Debt"
 mouse_filter = 0
@@ -392,19 +405,48 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -281.0
-offset_top = -22.0
+offset_top = -59.0
 offset_right = -4.0
-offset_bottom = 27.0
+offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 2
 tooltip_text = "Stock Market"
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_835bk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ucbax")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ixomp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8kv63")
 text = " SLA -8.88%"
+
+[node name="CompanyLiscence" type="Button" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -431.0
+offset_top = 13.0
+offset_right = -3.0
+offset_bottom = 62.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "Stock Market"
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_835bk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ucbax")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ixomp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8kv63")
+text = "Company Licence"
 
 [node name="CompanyLicensePanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 0
 offset_left = 68.0
-offset_top = 159.0
+offset_top = 229.0
 offset_right = 788.0
 offset_bottom = 553.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
@@ -420,7 +462,7 @@ offset_right = 189.0
 offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "Company License"
+text = "Multiplayer Lobby"
 horizontal_alignment = 1
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel"]

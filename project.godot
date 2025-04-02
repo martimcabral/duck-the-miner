@@ -27,7 +27,6 @@ buses/channel_disable_threshold_db=-80.0
 
 [autoload]
 
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 DiscordRp="*res://scripts/Discord/discordRP.gd"
 GameSettings="*res://scripts/game_settings.gd"
 GetSaveFile="*res://scripts/get_save_file.gd"
@@ -41,10 +40,6 @@ window/size/initial_position_type=0
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/textures/players/main_cursor.png"
 mouse_cursor/tooltip_position_offset=Vector2(0, 0)
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 [file_customization]
 

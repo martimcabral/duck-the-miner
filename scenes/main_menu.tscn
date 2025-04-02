@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=39 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dt2nt4vg6abkt" path="res://scripts/Menus/options_menu.gd" id="3_vt73r"]
 [ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/main_menu/trash_can.png" id="4_oa1go"]
 [ext_resource type="AudioStream" uid="uid://dx8qvewqg7pwy" path="res://sounds/sound_effects/play.ogg" id="5_08a1y"]
+[ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness_shader.gdshader" id="8_tbmy8"]
 
 [sub_resource type="Shader" id="Shader_o5xol"]
 code = "shader_type canvas_item;
@@ -269,6 +270,10 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
+shader = ExtResource("8_tbmy8")
+shader_parameter/mode = 2
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -305,7 +310,6 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1345,6 +1349,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
 
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1381,7 +1386,6 @@ bbcode_enabled = true
 text = "[center]TEXTURES:
 Sr. Patinho
 Split
-DragonKey
 Portato
 
 PROGRAMMING:
@@ -1455,6 +1459,9 @@ mouse_filter = 0
 theme_override_font_sizes/font_size = 64
 text = "Loading..."
 horizontal_alignment = 1
+
+[node name="ColorRect" type="CanvasModulate" parent="GUI"]
+material = SubResource("ShaderMaterial_jk1qb")
 
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(981, 577)

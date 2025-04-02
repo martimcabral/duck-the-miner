@@ -86,7 +86,7 @@ func _ready():
 	var day_file = ConfigFile.new()
 	day_file.load(str("res://save/", GetSaveFile.save_being_used, "/day.cfg"))
 	var current_day = str(day_file.get_value("day", "current", "what"))
-	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/DaysLabel.text = current_day
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/DaysLabel.text = str("Day: ", current_day)
 	
 	var save_file = ConfigFile.new()
 	save_file.load(str("res://save/", GetSaveFile.save_being_used, "/money.cfg"))
