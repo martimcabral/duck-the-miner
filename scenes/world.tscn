@@ -585,6 +585,7 @@ collision_visibility_mode = 2
 tile_set = SubResource("TileSet_inx3v")
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

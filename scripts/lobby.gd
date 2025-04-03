@@ -185,6 +185,14 @@ func _ready():
 	else:
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
+func _enter_tree() -> void:
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.modulate.a8 = 0
+	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.modulate.a8 = 0
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.modulate.a8 = 0
+	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.modulate.a8 = 0
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.modulate.a8 = 0
+	$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.modulate.a8 = 0
+
 func _process(_delta: float) -> void:
 	lobby_fade_in = 255 * (1 - clamp($FadeInLobby.time_left, 0.0, 1.0))
 

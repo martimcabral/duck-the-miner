@@ -56,14 +56,14 @@ func fyction_contract():
 	$FyctionContract/PrintingSoundEffect.play()
 
 func _on_accept_button_toggled(toggled_on: bool) -> void:
-	terms = "Aceitado"
 	if toggled_on == true:
+		terms = "Aceitado"
 		$FyctionContract/AcceptButton.button_pressed = true
 		$FyctionContract/RefuseButton.button_pressed = false
 
 func _on_refuse_button_toggled(toggled_on: bool) -> void:
-	terms = "Recusado"
 	if toggled_on == true:
+		terms = "Recusado"
 		$FyctionContract/AcceptButton.button_pressed = false
 		$FyctionContract/RefuseButton.button_pressed = true
 
@@ -144,6 +144,7 @@ func _on_ready_button_pressed() -> void:
 	$GoToLobby.start()
 
 func _on_go_to_lobby_timeout() -> void:
+	print(terms)
 	match terms:
 		"Recusado": $".".get_tree().quit()
 		"Aceitado": get_tree().change_scene_to_packed(load("res://scenes/lobby.tscn"))

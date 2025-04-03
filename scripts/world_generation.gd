@@ -6,6 +6,8 @@ var world_width # Default: 300
 var world_height # Default:  1000
 var world_height_border # Always: world_height + 20
 
+var world_seed = randi_range(0, 2147483646)
+
 const world_border_up_and_down = 10
 const world_border_sides = 12
 
@@ -110,8 +112,6 @@ func _ready():
 	
 	start_music()
 	
-	var fnl = FastNoiseLite.new()
-	
 	match asteroid_field:
 		"Delta Belt":
 			world_width = randi_range(200, 300)
@@ -134,7 +134,8 @@ func _ready():
 	
 	var asteroid_size = Vector2i(world_width, world_height)
 	
-	fnl.seed = randi_range(0, 2147483646)
+	var fnl = FastNoiseLite.new()
+	fnl.seed = world_seed
 	fnl.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	fnl.fractal_octaves = 4 #4
 	fnl.fractal_lacunarity = 2.25 #2.5
@@ -188,8 +189,7 @@ func _ready():
 			put_gold()
 			put_diamond()
 			put_gems()
-			put_ice()
-		
+			
 		"Vulcanic":
 			put_coal()
 			put_magnetite()
@@ -199,7 +199,7 @@ func _ready():
 			put_diamond()
 			put_gems()
 			put_lava_sockets()
-		
+			
 		"Frozen":
 			put_galena()
 			put_silver()
@@ -247,93 +247,101 @@ func create_world_borders():
 			y -= 9
 			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
 
-func put_ore(ore_height_min, ore_height_max, spawn_chance, biome, atlas_coords):
+func put_procedural_ore(ore_height_min, ore_height_max, rarity, biome, atlas_coords):
+	var noise = FastNoiseLite.new()
+	noise.seed = randi_range(0, 2147483646)
+	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	noise.frequency = 0.1
+	noise.fractal_octaves = 5
+	noise.fractal_lacunarity = 4
+	noise.fractal_gain = 1
+	noise.fractal_weighted_strength = 0.5
+	
 	for x in range(world_width):
 		for y in range(ore_height_min, ore_height_max):
-			if randi_range(0, spawn_chance) == 1:
+			var noise_value = noise.get_noise_2d(x, y)
+			if noise_value < (0.15 - (rarity / 100.0)):
 				var tile_pos = Vector2i(x, y)
 				if CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
 					CaveSystem.set_cell(tile_pos, biome, atlas_coords)
 
 func put_coal():
 	if asteroid_biome == "Stony":
-		put_ore(0, 200, 35, 0, Vector2i(1, 0))
+		put_procedural_ore(0, 200, 40, 0, Vector2i(1, 0))
 	elif asteroid_biome == "Vulcanic":
-		put_ore(0, 200, 35, 1, Vector2i(1, 0))
+		put_procedural_ore(0, 200, 40, 1, Vector2i(1, 0))
 
 func put_copper():
 	if asteroid_biome == "Stony":
-		put_ore(0, 500, 35, 0, Vector2i(1, 2))
+		put_procedural_ore(0, 500, 40, 0, Vector2i(1, 2))
 
 func put_magnetite():
 	if asteroid_biome == "Vulcanic":
-		put_ore(0, 500, 35, 1, Vector2i(1, 2))
+		put_procedural_ore(0, 500, 40, 1, Vector2i(1, 2))
 
 func put_iron():
 	if asteroid_biome == "Stony":
-		put_ore(200, 600, 60, 0, Vector2i(2, 0))
+		put_procedural_ore(200, 600, 45, 0, Vector2i(2, 0))
 	elif asteroid_biome == "Vulcanic":
-		put_ore(200, 600, 60, 1, Vector2i(2, 0))
+		put_procedural_ore(200, 600, 45, 1, Vector2i(2, 0))
 
 func put_bauxite():
 	if asteroid_biome == "Vulcanic":
-		put_ore(200, 600, 60, 1, Vector2i(0, 3))
+		put_procedural_ore(200, 600, 45, 1, Vector2i(0, 3))
 
 func put_gold():
 	if asteroid_biome == "Stony":
-		put_ore(500, 800, 200, 0, Vector2i(0, 2))
+		put_procedural_ore(500, 800, 50, 0, Vector2i(0, 2))
 	elif asteroid_biome == "Vulcanic":
-		put_ore(500, 800, 200, 1, Vector2i(0, 2))
+		put_procedural_ore(500, 800, 50, 1, Vector2i(0, 2))
 
 func put_diamond():
 	if asteroid_biome == "Stony":
-		put_ore(900, 1000, 425, 0, Vector2i(3, 0))
+		put_procedural_ore(900, 1000, 45, 0, Vector2i(3, 0))
 	elif asteroid_biome == "Vulcanic":
-		put_ore(900, 1000, 425, 1, Vector2i(3, 0))
+		put_procedural_ore(900, 1000, 45, 1, Vector2i(3, 0))
 	elif asteroid_biome == "Frozen":
-		put_ore(900, 1000, 425, 2, Vector2i(3, 0))
+		put_procedural_ore(900, 1000, 45, 2, Vector2i(3, 0))
 
 func put_ice():
-	if asteroid_biome == "Stony":
-		put_ore(0, 1000, 300, 0, Vector2i(3, 2))
-	elif asteroid_biome == "Frozen":
-		put_ore(0, 1000, 100, 2, Vector2i(3, 2))
+	if asteroid_biome == "Frozen":
+		put_procedural_ore(0, 1000, 35, 2, Vector2i(3, 2))
 
 func put_lava_sockets():
-	put_ore(0, 1000, 300, 1, Vector2i(3, 2))
+	put_procedural_ore(0, 1000, 35, 1, Vector2i(3, 2))
 
 func put_galena():
-	put_ore(500, 800, 200, 2, Vector2i(1, 0))
+	put_procedural_ore(500, 800, 40, 2, Vector2i(1, 0))
 	
 func put_silver():
-	put_ore(150, 1200, 100, 2, Vector2i(2, 0))
+	put_procedural_ore(150, 1200, 40, 2, Vector2i(2, 0))
 	
 func put_wolframite():
-	put_ore(0, 400, 150, 2, Vector2i(0, 2))
+	put_procedural_ore(0, 400, 40, 2, Vector2i(0, 2))
 	
 func put_pyrolustite():
-	put_ore(600, 1000, 50, 2, Vector2i(1, 2))
+	put_procedural_ore(600, 1000, 40, 2, Vector2i(1, 2))
 	
 func put_nickel():
-	put_ore(350, 650, 125, 2, Vector2i(0, 3))
+	put_procedural_ore(350, 650, 40, 2, Vector2i(0, 3))
 
 func put_graphite():
-	put_ore(0, 1500, 175, 3, Vector2i(1, 0))
+	put_procedural_ore(0, 1500, 40, 3, Vector2i(1, 0))
 
 func put_cobalt():
-	put_ore(0, 425, 80, 3, Vector2i(2, 0))
+	put_procedural_ore(0, 425, 40, 3, Vector2i(2, 0))
 
 func put_uranium():
-	put_ore(750, 950, 75, 3, Vector2i(3, 0))
+	put_procedural_ore(750, 950, 40, 3, Vector2i(3, 0))
 
 func put_platinum():
-	put_ore(250, 550, 225, 3, Vector2i(0, 2))
+	put_procedural_ore(250, 550, 40, 3, Vector2i(0, 2))
 
 func put_zirconium():
-	put_ore(0, 1100, 115, 3, Vector2i(1, 2))
+	put_procedural_ore(0, 1100, 40, 3, Vector2i(1, 2))
 
 func put_sulfur():
-	put_ore(350, 625, 50, 3, Vector2i(3, 2))
+	put_procedural_ore(350, 625, 40, 3, Vector2i(3, 2))
 
 func put_gems():
 	for x in range(world_width):
