@@ -96,7 +96,7 @@ func create_chart(cor : Color, nome : String):
 	
 	var curve = Curve2D.new()
 	for i in stored_chart_points.size():
-		print("asd", stored_chart_points[i])
+		#print("STOCKMARKET: ", stored_chart_points[i])
 		curve.add_point(Vector2(stored_chart_points[i]))
 	var curve_points = curve.get_baked_points()
 	

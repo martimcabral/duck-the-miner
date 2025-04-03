@@ -41,13 +41,13 @@ func keep_inventory():
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
 	
-	var file = FileAccess.open(str("res://save", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
+	var file = FileAccess.open(str("res://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
 	if file:
 		file.store_string(result)
 		file.close()
-		print("[start.gd/missions.json] Asteroid data emptied")
+		print("[pause_menu.gd/missions.json] Asteroid data emptied")
 	else:
-		print("[start.gd/missions.json] Failed to open file for emptying stage.")
+		print("[pause_menu.gd/missions.json] Failed to open file for emptying stage.")
 	
 	var file_path = str("res://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	var current_inventory = load_inventory(file_path)

@@ -13,6 +13,9 @@ var focus_stylebox = StyleBoxFlat.new()
 var hover_stylebox = StyleBoxFlat.new()
 
 func _ready() -> void:
+	if not DirAccess.get_directories_at("res://save"):
+		DirAccess.make_dir_absolute("res://save")
+	
 	if not FileAccess.file_exists(saves_path):
 		print("[save/save.cfg] not found. Creating a new one....")
 		saves_config.set_value("saves", "selected", 0)
