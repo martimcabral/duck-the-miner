@@ -170,6 +170,8 @@ func _process(delta):
 						CaveSystem.set_cell(tile_pos, 2, Vector2i(0, 0))
 					elif world.asteroid_biome == "Swamp":
 						CaveSystem.set_cell(tile_pos, 3, Vector2i(0, 0))
+					elif world.asteroid_biome == "Desert":
+						CaveSystem.set_cell(tile_pos, 4, Vector2i(0, 0))
 					$"../Player/PlayerSounds/PlaceBlock".play()
 					print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
 					
@@ -303,6 +305,8 @@ func destroy_block():
 							CaveSystem.set_cell(tile_pos, 2, Vector2i(0, 1))
 						elif world.asteroid_biome == "Swamp":
 							CaveSystem.set_cell(tile_pos, 3, Vector2i(0, 1))
+						elif world.asteroid_biome == "Desert":
+							CaveSystem.set_cell(tile_pos, 4, Vector2i(0, 1))
 
 ##################################################################################################################################################
 ##################################################################################################################################################

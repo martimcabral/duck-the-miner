@@ -348,7 +348,7 @@ offset_bottom = 185.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
-position = Vector2(-32, 0)
+position = Vector2(-18, 0)
 points = PackedVector2Array(468, 76, 468, 2)
 width = 4.0
 
@@ -385,9 +385,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 4.0
+offset_left = 11.0
 offset_top = -61.0
-offset_right = 434.0
+offset_right = 441.0
 offset_bottom = -13.0
 grow_vertical = 2
 tooltip_text = "Your Debt"
@@ -1052,14 +1052,10 @@ text = "Insert System"
 z_index = 1
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
 offset_left = 32.0
-offset_top = 228.0
-offset_right = 131.0
-offset_bottom = 797.0
-grow_vertical = 2
+offset_top = 32.0
+offset_right = 305.0
+offset_bottom = 100.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n0xh0")
 
 [node name="ZoomLabel" type="Label" parent="Camera2D/HUD/Lobby/ZoomRuler"]
@@ -1073,25 +1069,9 @@ offset_right = 40.5
 offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "9x"
+text = "Zoom: 9x"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ZoomSlider" type="VSlider" parent="Camera2D/HUD/Lobby/ZoomRuler" groups=["Buttons"]]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -211.5
-offset_right = 36.5
-offset_bottom = 251.5
-grow_horizontal = 2
-grow_vertical = 2
-min_value = 5.85
-value = 38.85
 
 [node name="LoadingPanel" type="Panel" parent="Camera2D/HUD/Lobby"]
 z_index = 1
@@ -1957,7 +1937,6 @@ text = "Field Name"
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton" to="." method="_select_mission_button_info_panel_pressed"]
-[connection signal="value_changed" from="Camera2D/HUD/Lobby/ZoomRuler/ZoomSlider" to="." method="_on_ZoomSlider_value_changed"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/FyctionButton" to="Camera2D/HUD/StockTheMarket" method="_on_fyction_button_toggled"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/HaznuclearButton" to="Camera2D/HUD/StockTheMarket" method="_on_haznuclear_button_toggled"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/OwlwingButton" to="Camera2D/HUD/StockTheMarket" method="_on_owlwing_button_toggled"]

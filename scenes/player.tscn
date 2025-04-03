@@ -362,7 +362,7 @@ fractal_lacunarity = 10.0
 fractal_gain = 1.5
 fractal_weighted_strength = 1.0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_an66h"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gl8cc"]
 invert = true
 seamless = true
 seamless_blend_skirt = 0.65
@@ -373,7 +373,7 @@ noise = SubResource("FastNoiseLite_mngom")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7yboj"]
 shader = ExtResource("7_0l1qt")
 shader_parameter/color = Color(1, 0.694118, 0.243137, 0)
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_an66h")
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_gl8cc")
 shader_parameter/speed = Vector2(0, 0.03)
 shader_parameter/wave_strength = 0.5
 
@@ -384,7 +384,7 @@ fractal_type = 2
 fractal_gain = 1.0
 fractal_weighted_strength = 0.75
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j8csy"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_487ah"]
 seamless = true
 seamless_blend_skirt = 0.65
 noise = SubResource("FastNoiseLite_xk1yn")
@@ -392,7 +392,7 @@ noise = SubResource("FastNoiseLite_xk1yn")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gkgns"]
 shader = ExtResource("7_0l1qt")
 shader_parameter/color = Color(0, 0, 0.4, 1)
-shader_parameter/fast_noise = SubResource("NoiseTexture2D_j8csy")
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_487ah")
 shader_parameter/speed = Vector2(0.02, 0.02)
 shader_parameter/wave_strength = 1.0
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=64 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
@@ -37,6 +37,15 @@
 [ext_resource type="Texture2D" uid="uid://bnpcuukfkoims" path="res://assets/textures/items/ores/sulfur.png" id="35_nv61g"]
 [ext_resource type="Texture2D" uid="uid://cu3ctfwj0wblm" path="res://assets/textures/items/ores/raw_zirconium.png" id="36_22w3o"]
 [ext_resource type="Texture2D" uid="uid://bfyndhyjsae6s" path="res://assets/textures/items/ores/raw_platinum.png" id="37_n7np7"]
+[ext_resource type="Texture2D" uid="uid://cx21mi1agfjw2" path="res://assets/textures/items/ores/sandstone.png" id="38_0x1n8"]
+[ext_resource type="Texture2D" uid="uid://bl83wmy7dnsdq" path="res://assets/textures/items/ores/oil_shale.png" id="39_uqw7h"]
+[ext_resource type="Texture2D" uid="uid://dituta54faqg" path="res://assets/textures/items/ores/gypsum.png" id="40_480p7"]
+[ext_resource type="Texture2D" uid="uid://blc2d7w3n5tw6" path="res://assets/textures/items/ores/kaolinite.png" id="41_03jck"]
+[ext_resource type="Texture2D" uid="uid://gmv7crja63oe" path="res://assets/textures/items/ores/raw_scheelite.png" id="42_5e0ib"]
+[ext_resource type="Texture2D" uid="uid://ddpdr7c8cwlqg" path="res://assets/textures/items/ores/vanadinite.png" id="43_553bn"]
+[ext_resource type="Texture2D" uid="uid://co1038c5gn86c" path="res://assets/textures/items/gems/azurite.png" id="44_cx7r6"]
+[ext_resource type="Texture2D" uid="uid://dd7fa5y0qoqi8" path="res://assets/textures/items/gems/bloodstone.png" id="45_k50mr"]
+[ext_resource type="Texture2D" uid="uid://b27tsvxqa5nh6" path="res://assets/textures/items/gems/chalcedony.png" id="46_31qkd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
 size = Vector2(6.33902, 5.5559)
@@ -78,7 +87,16 @@ radius = 2.87772
 radius = 2.72521
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y5rc7"]
-radius = 4.23098
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdu10"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n186u"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_redaq"]
+radius = 3.16228
 
 [node name="Items" type="Node2D"]
 
@@ -654,3 +672,138 @@ texture = ExtResource("37_n7np7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RawPlatinum"]
 shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Sandstone" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Sandstone"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Sandstone"]
+texture_filter = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("38_0x1n8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sandstone"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="OilShale" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "OilShale"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="OilShale"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("39_uqw7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OilShale"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Gypsum" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Gypsum"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Gypsum"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("40_480p7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gypsum"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Kaolinite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Kaolinite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Kaolinite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("41_03jck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Kaolinite"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="RawScheelite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "RawScheelite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RawScheelite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("42_5e0ib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RawScheelite"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Vanadinite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Vanadinite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Vanadinite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("43_553bn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vanadinite"]
+shape = SubResource("CircleShape2D_y5rc7")
+
+[node name="Azurite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Azurite"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Azurite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("44_cx7r6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Azurite"]
+shape = SubResource("CircleShape2D_tdu10")
+
+[node name="PointLight2D" type="PointLight2D" parent="Azurite"]
+energy = 0.5
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Bloodstone" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Bloodstone"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Bloodstone"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("45_k50mr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bloodstone"]
+shape = SubResource("CircleShape2D_n186u")
+
+[node name="PointLight2D" type="PointLight2D" parent="Bloodstone"]
+energy = 0.5
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Chalcedony" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Chalcedony"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Chalcedony"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("46_31qkd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chalcedony"]
+shape = SubResource("CircleShape2D_redaq")
+
+[node name="PointLight2D" type="PointLight2D" parent="Chalcedony"]
+energy = 0.5
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")

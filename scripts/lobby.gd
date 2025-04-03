@@ -36,13 +36,24 @@ var item_icons = {
 	"Graphite": "res://assets/textures/items/ores/graphite.png",
 	"Charoite": "res://assets/textures/items/gems/charoite.png",
 	"Sugilite": "res://assets/textures/items/gems/sugilite.png",
-	"Peridot": "res://assets/textures/items/gems/peridot.png"
+	"Peridot": "res://assets/textures/items/gems/peridot.png",
+	"Sandstone": "res://assets/textures/items/ores/sandstone.png",
+	"Gypsum": "res://assets/textures/items/ores/gypsum.png",
+	"Kaolinite": "res://assets/textures/items/ores/kaolinite.png",
+	"Raw Scheelite": "res://assets/textures/items/ores/raw_scheelite.png",
+	"Vanadinite": "res://assets/textures/items/ores/vanadinite.png",
+	"Oil Shale": "res://assets/textures/items/ores/oil_shale.png",
+	"Azurite": "res://assets/textures/items/gems/azurite.png",
+	"Bloodstone": "res://assets/textures/items/gems/bloodstone.png",
+	"Chalcedony": "res://assets/textures/items/gems/chalcedony.png"
 }
 
 var selecting_mission = false
 var mission_selected = false
 var skin_selected : int = 0
 
+var target_zoom: float = 1.0
+const ZOOM_FACTOR: float = 25
 var min_zoom = 0.15
 var max_zoom = 2.5
 
@@ -192,10 +203,19 @@ func _enter_tree() -> void:
 	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.modulate.a8 = 0
+	target_zoom = $SolarSystem.scale.x
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if selecting_mission :
+		$Camera2D/HUD/Lobby/ZoomRuler.visible = true
+		if Input.is_action_just_pressed("Universe_Zoom_In"):
+			target_zoom = clamp(target_zoom + 0.05, min_zoom, max_zoom)
+		if Input.is_action_just_pressed("Universe_Zoom_Out"):
+			target_zoom = clamp(target_zoom - 0.05, min_zoom, max_zoom)
+		$SolarSystem.scale = lerp($SolarSystem.scale, Vector2(target_zoom, target_zoom), 5 * delta)
+	$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = "Zoom: " + str(snapped(target_zoom * ZOOM_FACTOR, 0) / 4) + "x"
+	
 	lobby_fade_in = 255 * (1 - clamp($FadeInLobby.time_left, 0.0, 1.0))
-
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.modulate.a8 = lobby_fade_in
@@ -225,22 +245,6 @@ func _process(_delta: float) -> void:
 				$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/Numberization.text =  "[center]%s[/center]" % str(current_page) + "/" + str(koppa_ammount)
 	else: 
 		current_page = 1
-	
-	if selecting_mission == true:
-		$Camera2D/HUD/Lobby/ZoomRuler.visible = true
-		if Input.is_action_just_pressed("Universe_Zoom_In") and $SolarSystem.scale.x <= max_zoom:
-			$SolarSystem.scale += Vector2(0.05, 0.05)
-			$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 5) + 'x'
-			$Camera2D/HUD/Lobby/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
-		if Input.is_action_just_pressed("Universe_Zoom_Out") and $SolarSystem.scale.x >= min_zoom:
-			$SolarSystem.scale -= Vector2(0.05, 0.05)
-			$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
-			$Camera2D/HUD/Lobby/ZoomRuler/ZoomSlider.value = int(round($SolarSystem.scale.x * 39.215))
-		$UniverseBackground.position = (get_global_mouse_position() * 0.008) + Vector2(-1200, -600)
-
-func _on_ZoomSlider_value_changed(value: float) -> void:
-	$SolarSystem.scale = Vector2(value / 39.215, value / 39.215)
-	$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = str(snapped($SolarSystem.scale.x * 39.215, 0) / 4) + 'x'
 
 # This works by when clicking on an Asteroid Field it will put the world scene in this current scene and then after it will free the Universe from the Memory
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -382,7 +386,7 @@ func create_asteroid_name():
 func generate_asteroid_data() -> Dictionary:
 	var fields = {}  # Dictionary to store asteroid fields
 	var field_names = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
-	var biomes = ["Stony", "Vulcanic", "Frozen", "Swamp"]
+	var biomes = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert"]
 	var objectites_primary = ["n/a"]
 	var objectites_secondary = ["n/a"]
 	
@@ -390,7 +394,7 @@ func generate_asteroid_data() -> Dictionary:
 		var asteroids = {}  # Dictionary to store asteroids in the current field
 		var asteroid_id = 1  # Reset asteroid ID counter for each field
 			
-		for asteroid_num in range(1, randi_range(4, 9) + 1):
+		for asteroid_num in range(1, randi_range(4, 10) + 1):
 			var as_name = create_asteroid_name()
 			var biome = biomes[randi() % biomes.size()]
 			match biome:
@@ -398,6 +402,7 @@ func generate_asteroid_data() -> Dictionary:
 				"Vulcanic": asteroid_temperature = randi_range(75, 90)
 				"Frozen": asteroid_temperature = randi_range(-45, -65)
 				"Swamp": asteroid_temperature = randi_range(-5, 12)
+				"Desert": asteroid_temperature = randi_range(50, 65)
 			var primary_objectite = objectites_primary[randi() % objectites_primary.size()]
 			var secondary_objectite = objectites_secondary[randi() % objectites_secondary.size()]
 			

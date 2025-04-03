@@ -115,6 +115,33 @@ func _on_body_entered(body : Node2D):
 			"RawPlatinum":
 				var platinumIcon = load("res://assets/textures/items/ores/raw_platinum.png")
 				add_item_to_inventory("Raw Platinum", platinumIcon)
+			"Sandstone":
+				var sandstoneIcon = load("res://assets/textures/items/ores/sandstone.png")
+				add_item_to_inventory("Sandstone", sandstoneIcon)
+			"Azurite":
+				var azuriteIcon = load("res://assets/textures/items/gems/azurite.png")
+				add_item_to_inventory("Azurite", azuriteIcon)
+			"Bloodstone":
+				var bloodstoneIcon = load("res://assets/textures/items/gems/bloodstone.png")
+				add_item_to_inventory("Bloodstone", bloodstoneIcon)
+			"Chalcedony":
+				var chalcedonyIcon = load("res://assets/textures/items/gems/chalcedony.png")
+				add_item_to_inventory("Chalcedony", chalcedonyIcon)
+			"OilShale":
+				var oilshaleIcon = load("res://assets/textures/items/ores/oil_shale.png")
+				add_item_to_inventory("Oil Shale", oilshaleIcon)
+			"Gypsum":
+				var gypsumIcon = load("res://assets/textures/items/ores/gypsum.png")
+				add_item_to_inventory("Gypsum", gypsumIcon)
+			"Kaolinite":
+				var kaolitineIcon = load("res://assets/textures/items/ores/kaolinite.png")
+				add_item_to_inventory("Kaolinite", kaolitineIcon)
+			"RawScheelite":
+				var scheeliteIcon = load("res://assets/textures/items/ores/raw_scheelite.png")
+				add_item_to_inventory("Raw Scheelite", scheeliteIcon)
+			"Vanadinite":
+				var vanadiniteIcon = load("res://assets/textures/items/ores/vanadinite.png")
+				add_item_to_inventory("Vanadinite", vanadiniteIcon)
 		body.queue_free()
 		$PickupItem.play()
 
