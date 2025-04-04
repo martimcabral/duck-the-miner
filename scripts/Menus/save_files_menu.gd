@@ -3,8 +3,8 @@ extends Panel
 var saves_number : int = 1
 var selected_save : int = 0
 
-var savedir = DirAccess.open("res://save")
-var saves_path = str("res://save/saves.cfg")
+var savedir = DirAccess.open(OS.get_user_data_dir() + "/save")
+var saves_path = OS.get_user_data_dir() + "/save"
 var saves_config = ConfigFile.new()
 var getmoney_config = ConfigFile.new()
 
@@ -13,9 +13,11 @@ var focus_stylebox = StyleBoxFlat.new()
 var hover_stylebox = StyleBoxFlat.new()
 
 func _ready() -> void:
-	if not DirAccess.get_directories_at("res://save"):
-		DirAccess.make_dir_absolute("res://save")
+	if not DirAccess.dir_exists_absolute(saves_path):
+		print("[save] Directory not found. Creating directory: ", savedir)
+		DirAccess.make_dir_absolute(saves_path)
 	
+	# Check if the saves configuration file exists
 	if not FileAccess.file_exists(saves_path):
 		print("[save/save.cfg] not found. Creating a new one....")
 		saves_config.set_value("saves", "selected", 0)
@@ -23,47 +25,56 @@ func _ready() -> void:
 		saves_config.save(saves_path)
 	else:
 		print("[save/save.cfg] was detected successfully")
-		saves_number = savedir.get_directories().size()
-		saves_config.set_value("saves", "ammount", saves_number)
-		selected_save = saves_config.get_value("saves", "selected", 0)
+		var saves_numbers = savedir.get_files().size()
+		saves_config.set_value("saves", "ammount", saves_numbers)
+		#var selected_saved = saves_config.get_value("saves", "selected", 0)
 		saves_config.save(saves_path)
-		print("[save_files_menu.gd] Number of SaveFolders: ", saves_number)
+		print("[save_files_menu.gd] Number of Save Folders: ", saves_numbers)
 	get_save_files()
 
 func get_save_files():
-	var directories = savedir.get_directories()
-	for i in range(0, 100):
-		if directories.has(str(i)) == true:
-			var SaveButton = Button.new()
-			var getday_file = ConfigFile.new()
-			
-			getday_file.load(str("res://save/", i, "/day.cfg"))
-			var current_day = str(getday_file.get_value("day", "current", "what"))
-			
-			getmoney_config.load(str("res://save/", i, "/money.cfg"))
-			var current_money = str(getmoney_config.get_value("money", "current", 0))
-			var number_str = str(current_money)
-			var formatted_number = ""
-			var counter = 0
-			for x in range(number_str.length() - 1, -1, -1):
-				formatted_number = number_str[x] + formatted_number
-				counter += 1
-				if counter % 3 == 0 and x != 0:
-					formatted_number = " " + formatted_number
-			SaveButton.text = "Save " + str(i) + " ─ " + str(formatted_number) + " € ─ Day: " + current_day 
-			
-			create_styleboxes()
-			SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
-			SaveButton.add_theme_stylebox_override("focus", focus_stylebox)
-			SaveButton.add_theme_stylebox_override("hover", hover_stylebox)
-			
-			SaveButton.add_theme_color_override("font_color", Color.WHITE)
-			SaveButton.add_theme_font_size_override("font_size", 48)
-			SaveButton.set_meta("save", i)
-			SaveButton.pressed.connect(func(): set_selected_save(SaveButton))
-			SaveButton.mouse_entered.connect(func(): _on_button_mouse_entered())
-			$ScrollContainer/SaveList.add_child(SaveButton)
-			SaveButton.add_to_group("Buttons")
+	if savedir == null:
+		print("Failed to open the directory.")
+	else:
+		var directories = savedir.get_files()
+		for i in range(0, 100):
+			if directories.has(str(i)):
+				var SaveButton = Button.new()
+				var getday_file = ConfigFile.new()
+				
+				# Load the day config file from the user data save directory
+				getday_file.load(OS.get_user_data_dir() + "/save/" + str(i) + "/day.cfg")
+				var current_day = str(getday_file.get_value("day", "current", "what"))
+				
+				# Load the money config file from the user data save directory
+				getmoney_config.load(OS.get_user_data_dir() + "/save/" + str(i) + "/money.cfg")
+				var current_money = str(getmoney_config.get_value("money", "current", 0))
+				
+				# Format money with spaces
+				var number_str = str(current_money)
+				var formatted_number = ""
+				var counter = 0
+				for x in range(number_str.length() - 1, -1, -1):
+					formatted_number = number_str[x] + formatted_number
+					counter += 1
+					if counter % 3 == 0 and x != 0:
+						formatted_number = " " + formatted_number
+				SaveButton.text = "Save " + str(i) + " ─ " + str(formatted_number) + " € ─ Day: " + current_day 
+				
+				# Create and apply styleboxes
+				create_styleboxes()
+				SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
+				SaveButton.add_theme_stylebox_override("focus", focus_stylebox)
+				SaveButton.add_theme_stylebox_override("hover", hover_stylebox)
+				
+				SaveButton.add_theme_color_override("font_color", Color.WHITE)
+				SaveButton.add_theme_font_size_override("font_size", 48)
+				SaveButton.set_meta("save", i)
+				SaveButton.pressed.connect(func(): set_selected_save(SaveButton))
+				SaveButton.mouse_entered.connect(func(): _on_button_mouse_entered())
+				$ScrollContainer/SaveList.add_child(SaveButton)
+				SaveButton.add_to_group("Buttons")
+
 
 func _on_verify_files_timeout() -> void:
 	saves_number = savedir.get_directories().size()
@@ -106,14 +117,14 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var inv_path = str("res://save/", saves_number, "/inventory_resources.cfg")
+	var inv_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/inventory_resources.cfg")
 	var inv_config = ConfigFile.new()
 	inv_config.set_value("[inventory", "new_file", null)
 	inv_config.save(inv_path)
 
 	################################################################################
 	
-	var money_path = str("res://save/", saves_number, "/money.cfg")
+	var money_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/money.cfg")
 	var money_config = ConfigFile.new()
 	
 	var new_money = int(randf_range(88_888_888, 99_999_999))
@@ -123,25 +134,28 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var missions_path = str("res://save/", saves_number, "/missions.json")
+	var missions_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/missions.json")
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
-	
+
 	var file = FileAccess.open(missions_path, FileAccess.WRITE)
-	file.store_string(result)
-	file.close()
-	print("[start.gd/missions.json] Asteroid data emptied")
+	if file != null:
+		file.store_string(result)
+		file.close()
+		print("[start.gd/missions.json] Asteroid data emptied")
+	else:
+		print("Failed to open the file for writing: " + missions_path)
 	
 	################################################################################
 	
-	var skin_path = str("res://save/", saves_number, "/skin.cfg")
+	var skin_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/skin.cfg")
 	var skin_config = ConfigFile.new()
 	skin_config.set_value("skin", "selected", 1)
 	skin_config.save(skin_path)
 	
 	################################################################################
 	
-	var day_path = str("res://save/", saves_number, "/day.cfg")
+	var day_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/day.cfg")
 	var day_config = ConfigFile.new()
 	day_config.set_value("day", "current", 1)
 	day_config.save(day_path)
@@ -151,7 +165,7 @@ func _on_create_game_pressed() -> void:
 	var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
 	var vlines : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1188]
 
-	var stock_path = str("res://save/", saves_number, "/stock.cfg")
+	var stock_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/stock.cfg")
 	var stock_config = ConfigFile.new()
 	
 	for i in range(companies_names.size()):
@@ -162,7 +176,7 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var new_path = str("res://save/", saves_number, "/new")
+	var new_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/new")
 	DirAccess.make_dir_absolute(new_path)
 	
 	################################################################################
@@ -175,7 +189,7 @@ func _on_delete_game_pressed() -> void:
 	var button = find_button_by_save(selected_save)
 	button.queue_free()
 	
-	var folder_path = "res://save/" + str(selected_save)
+	var folder_path = OS.get_user_data_dir() + "/save/" + str(selected_save)
 	var folder_save = DirAccess.open(folder_path)
 	
 	folder_save.list_dir_begin() 

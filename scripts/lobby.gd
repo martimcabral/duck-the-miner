@@ -246,79 +246,43 @@ func _process(delta: float) -> void:
 	else: 
 		current_page = 1
 
-# This works by when clicking on an Asteroid Field it will put the world scene in this current scene and then after it will free the Universe from the Memory
+# Event functions for each area
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		current_page = 1
-		current_field = "Delta Belt"
-		get_asteroid_info()
-		show_all_info()
-		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = delta_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = delta_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Delta Belt"
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Delta Belt"
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
-		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		update_field_ui("Delta Belt", delta_thumbnail, Color(0.788, 0.161, 0.161, 1))
 
 func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		current_page = 1
-		current_field = "Gamma Field"
-		get_asteroid_info()
-		show_all_info()
-		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = gamma_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = gamma_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Gamma Field"
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Gamma Field"
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
-		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		update_field_ui("Gamma Field", gamma_thumbnail, Color(0.157, 0.349, 0.788, 1))
 
 func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		current_page = 1
-		current_field = "Omega Field"
-		get_asteroid_info()
-		show_all_info()
-		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = omega_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = omega_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Omega Field"
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Omega Field"
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
-		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		update_field_ui("Omega Field", omega_thumbnail, Color(0.157, 0.788, 0.549, 1))
 
 func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		current_page = 1
-		current_field = "Koppa Belt"
-		get_asteroid_info()
-		show_all_info()
-		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = koppa_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = koppa_thumbnail
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = "Koppa Belt"
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % "Koppa Belt"
-		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
-		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
-		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		update_field_ui("Koppa Belt", koppa_thumbnail, Color(0.659, 0.157, 0.788, 1))
 
-func show_all_info():
-		$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder.visible = true
-		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.visible = true
-		$Camera2D/HUD/Lobby/InfoPanel/FieldImage/ImageBorders.visible = true
-		$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = true
+func update_field_ui(field_name: String, thumbnail: Texture, shadow_color: Color) -> void:
+	current_page = 1
+	current_field = field_name
+	get_asteroid_info()
+	
+	# Mostrar toda a info:
+	$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder.visible = true
+	$Camera2D/HUD/Lobby/InfoPanel/FieldImage.visible = true
+	$Camera2D/HUD/Lobby/InfoPanel/FieldImage/ImageBorders.visible = true
+	$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = true
 
-func change_to_world(field):
-	var new_world = preload("res://scenes/world.tscn").instantiate()
-	new_world.asteroid_field = field
-	get_tree().root.add_child(new_world)
-	get_tree().current_scene.call_deferred("free")
-	get_tree().current_scene = new_world
+	# Atualizar Imagem, Texto, Cores e o InfoPanel
+	$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = thumbnail
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = thumbnail
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = field_name
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", shadow_color)
+	$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % field_name
+	$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", shadow_color)
+	$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
+	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_delta_area_2d_mouse_entered() -> void:
 	$FieldNameLabel.text = "[center]%s[/center]" % "Delta Belt"
@@ -347,6 +311,13 @@ func _on_omega_area_2d_mouse_exited() -> void:
 
 func _on_yotta_area_2d_mouse_exited() -> void:
 	$FieldNameLabel.text = ""
+
+func change_to_world(field):
+	var new_world = preload("res://scenes/world.tscn").instantiate()
+	new_world.asteroid_field = field
+	get_tree().root.add_child(new_world)
+	get_tree().current_scene.call_deferred("free")
+	get_tree().current_scene = new_world
 
 func create_asteroid_name():
 	var consoante1 = consoantes[randi() % consoantes.size()]
