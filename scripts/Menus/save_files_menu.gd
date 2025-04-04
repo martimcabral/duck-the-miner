@@ -74,7 +74,6 @@ func get_save_files():
 			$ScrollContainer/SaveList.add_child(SaveButton)
 			SaveButton.add_to_group("Buttons")
 
-
 func _on_verify_files_timeout() -> void:
 	saves_number = savedir.get_directories().size()
 	saves_config.set_value("saves", "ammount", saves_number)
@@ -175,6 +174,11 @@ func _on_create_game_pressed() -> void:
 	
 	var new_path = str(saves_path + str(saves_number) + "/new")
 	DirAccess.make_dir_absolute(new_path)
+	
+	################################################################################
+	
+	var version_path = str(saves_path + str(saves_number) + "/new")
+	var version_file = FileAccess.open(str("user://save/", str(saves_number) ,"/version-beta", ProjectSettings.get_setting("application/config/version")), FileAccess.WRITE) # Open file in write mode
 	
 	################################################################################
 
