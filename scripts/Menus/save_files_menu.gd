@@ -3,8 +3,9 @@ extends Panel
 var saves_number : int = 1
 var selected_save : int = 0
 
-var savedir = DirAccess.open(OS.get_user_data_dir() + "/save")
-var saves_path = OS.get_user_data_dir() + "/save"
+var AppData = OS.get
+var savedir = DirAccess.open(AppData + "/save")
+var saves_path = AppData + "/save"
 var saves_config = ConfigFile.new()
 var getmoney_config = ConfigFile.new()
 
@@ -25,11 +26,11 @@ func _ready() -> void:
 		saves_config.save(saves_path)
 	else:
 		print("[save/save.cfg] was detected successfully")
-		var saves_numbers = savedir.get_files().size()
-		saves_config.set_value("saves", "ammount", saves_numbers)
-		#var selected_saved = saves_config.get_value("saves", "selected", 0)
+		saves_number = savedir.get_files().size()
+		saves_config.set_value("saves", "ammount", saves_number)
+		var selected_saved = saves_config.get_value("saves", "selected", 0)
 		saves_config.save(saves_path)
-		print("[save_files_menu.gd] Number of Save Folders: ", saves_numbers)
+		print("[save_files_menu.gd] Number of Save Folders: ", saves_number)
 	get_save_files()
 
 func get_save_files():
@@ -43,11 +44,11 @@ func get_save_files():
 				var getday_file = ConfigFile.new()
 				
 				# Load the day config file from the user data save directory
-				getday_file.load(OS.get_user_data_dir() + "/save/" + str(i) + "/day.cfg")
+				getday_file.load(AppData + "/save/" + str(i) + "/day.cfg")
 				var current_day = str(getday_file.get_value("day", "current", "what"))
 				
 				# Load the money config file from the user data save directory
-				getmoney_config.load(OS.get_user_data_dir() + "/save/" + str(i) + "/money.cfg")
+				getmoney_config.load(AppData + "/save/" + str(i) + "/money.cfg")
 				var current_money = str(getmoney_config.get_value("money", "current", 0))
 				
 				# Format money with spaces
@@ -117,14 +118,14 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var inv_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/inventory_resources.cfg")
+	var inv_path = str(AppData + "/save/" + str(saves_number) + "/inventory_resources.cfg")
 	var inv_config = ConfigFile.new()
 	inv_config.set_value("[inventory", "new_file", null)
 	inv_config.save(inv_path)
 
 	################################################################################
 	
-	var money_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/money.cfg")
+	var money_path = str(AppData + "/save/" + str(saves_number) + "/money.cfg")
 	var money_config = ConfigFile.new()
 	
 	var new_money = int(randf_range(88_888_888, 99_999_999))
@@ -134,7 +135,7 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var missions_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/missions.json")
+	var missions_path = str(AppData + "/save/" + str(saves_number) + "/missions.json")
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
 
@@ -148,14 +149,14 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var skin_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/skin.cfg")
+	var skin_path = str(AppData + "/save/" + str(saves_number) + "/skin.cfg")
 	var skin_config = ConfigFile.new()
 	skin_config.set_value("skin", "selected", 1)
 	skin_config.save(skin_path)
 	
 	################################################################################
 	
-	var day_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/day.cfg")
+	var day_path = str(AppData + "/save/" + str(saves_number) + "/day.cfg")
 	var day_config = ConfigFile.new()
 	day_config.set_value("day", "current", 1)
 	day_config.save(day_path)
@@ -165,7 +166,7 @@ func _on_create_game_pressed() -> void:
 	var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
 	var vlines : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1188]
 
-	var stock_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/stock.cfg")
+	var stock_path = str(AppData + "/save/" + str(saves_number) + "/stock.cfg")
 	var stock_config = ConfigFile.new()
 	
 	for i in range(companies_names.size()):
@@ -176,7 +177,7 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var new_path = str(OS.get_user_data_dir() + "/save/" + str(saves_number) + "/new")
+	var new_path = str(AppData + "/save/" + str(saves_number) + "/new")
 	DirAccess.make_dir_absolute(new_path)
 	
 	################################################################################
@@ -189,7 +190,7 @@ func _on_delete_game_pressed() -> void:
 	var button = find_button_by_save(selected_save)
 	button.queue_free()
 	
-	var folder_path = OS.get_user_data_dir() + "/save/" + str(selected_save)
+	var folder_path = AppData + "/save/" + str(selected_save)
 	var folder_save = DirAccess.open(folder_path)
 	
 	folder_save.list_dir_begin() 
