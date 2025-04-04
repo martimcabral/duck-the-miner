@@ -1,7 +1,7 @@
 extends Panel
 
 var config = ConfigFile.new()
-var file_path = "res://game_settings.cfg"
+var file_path = "user://game_settings.cfg"
 
 var key_name
 var previous_keybutton

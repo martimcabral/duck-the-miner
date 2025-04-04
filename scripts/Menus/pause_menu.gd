@@ -41,7 +41,7 @@ func keep_inventory():
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
 	
-	var file = FileAccess.open(str("res://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
+	var file = FileAccess.open(str("user://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
 	if file:
 		file.store_string(result)
 		file.close()
@@ -49,7 +49,7 @@ func keep_inventory():
 	else:
 		print("[pause_menu.gd/missions.json] Failed to open file for emptying stage.")
 	
-	var file_path = str("res://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+	var file_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	var current_inventory = load_inventory(file_path)
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	var updated_inventory = merge_items(current_inventory, new_items)
@@ -136,7 +136,7 @@ func enable_all_rigid_body_physics():
 
 func more_days():
 	var random_advance = randi_range(1, 3)
-	var day_path = str("res://save/", GetSaveFile.save_being_used, "/day.cfg")
+	var day_path = str("user://save/", GetSaveFile.save_being_used, "/day.cfg")
 	var day_file = ConfigFile.new()
 	day_file.load(day_path)
 	var current_day = day_file.get_value("day", "current", 0)

@@ -549,6 +549,7 @@ flat = true
 
 [node name="VerifyFiles" type="Timer" parent="GUI/Center/SaveFilesMenu"]
 wait_time = 0.25
+autostart = true
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
 visible = false

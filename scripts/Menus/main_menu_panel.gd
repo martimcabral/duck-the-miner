@@ -43,8 +43,8 @@ func _on_play_button_pressed() -> void:
 	$"../../../TimeToPlay".start()
 
 func _on_time_to_play_timeout() -> void:
-	if DirAccess.dir_exists_absolute(str("res://save/", GetSaveFile.save_being_used, "/new")):
-		DirAccess.remove_absolute(str("res://save/", GetSaveFile.save_being_used, "/new"))
+	if DirAccess.dir_exists_absolute(str("user://save/", GetSaveFile.save_being_used, "/new")):
+		DirAccess.remove_absolute(str("user://save/", GetSaveFile.save_being_used, "/new"))
 		get_tree().change_scene_to_packed(load("res://scenes/cutscenes/intro.tscn"))
 	else:
 		get_tree().change_scene_to_packed(load("res://scenes/lobby.tscn"))

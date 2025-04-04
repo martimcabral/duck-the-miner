@@ -2,8 +2,8 @@ extends Node
 
 var skin_selected = get_skin()
 
-func get_skin():
-	var skin_path = "res://save/skin.cfg"
+func get_skin(): # GetSaveFile.save_being_used
+	var skin_path = str("user://save/1/skin.cfg")
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)

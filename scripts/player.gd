@@ -22,7 +22,7 @@ var flashlight : bool = false
 
 @onready var world = $".."
 
-var skin_path : String = str("res://save/", GetSaveFile.save_being_used, "/skin.cfg")
+var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
 var skin_selected : int
 
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")

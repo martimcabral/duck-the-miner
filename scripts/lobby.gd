@@ -67,9 +67,9 @@ var gamma_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/omega.png")
 var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/koppa.png")
 
-var skin_path : String = str("res://save/", GetSaveFile.save_being_used, "/skin.cfg")
+var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
 
-var json_path : String = str("res://save/", GetSaveFile.save_being_used, "/missions.json")
+var json_path : String = str("user://save/", GetSaveFile.save_being_used, "/missions.json")
 var current_page = 1
 var current_asteroid_name : String
 var current_asteroid_biome : String
@@ -95,12 +95,12 @@ func _ready():
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
 		
 	var day_file = ConfigFile.new()
-	day_file.load(str("res://save/", GetSaveFile.save_being_used, "/day.cfg"))
+	day_file.load(str("user://save/", GetSaveFile.save_being_used, "/day.cfg"))
 	var current_day = str(day_file.get_value("day", "current", "what"))
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/DaysLabel.text = str("Day: ", current_day)
 	
 	var save_file = ConfigFile.new()
-	save_file.load(str("res://save/", GetSaveFile.save_being_used, "/money.cfg"))
+	save_file.load(str("user://save/", GetSaveFile.save_being_used, "/money.cfg"))
 	var current_money = str(save_file.get_value("money", "current", 0))
 	var number_str = str(current_money)
 	# Create an empty list to store the parts of the formatted number
@@ -117,7 +117,7 @@ func _ready():
 			formatted_number = " " + formatted_number
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: -" + formatted_number + " €"
 	# Path to the CFG file
-	var inv_path = str("res://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+	var inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	
 	# Load the CFG file
 	var config = ConfigFile.new()
@@ -159,7 +159,7 @@ func _ready():
 	$Camera2D/HUD/Lobby/LoadingPanel.visible = false
 	$Camera2D/HUD/Lobby/RerollButton.visible = false
 	
-	var file = FileAccess.open(str("res://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.READ)
+	var file = FileAccess.open(str("user://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.READ)
 	if file:
 		var result = file.get_as_text()
 		if result == str(0):
@@ -399,7 +399,7 @@ func save_asteroid_data():
 	
 	var result = JSON.stringify(asteroid_data, "\t")
 	
-	var file = FileAccess.open(str("res://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
+	var file = FileAccess.open(str("user://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.WRITE)
 	if file:
 		file.store_string(result)
 		file.close()

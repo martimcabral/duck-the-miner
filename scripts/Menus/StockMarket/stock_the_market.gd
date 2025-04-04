@@ -87,7 +87,7 @@ func _ready() -> void:
 func create_chart(cor : Color, nome : String):
 	var stored_chart_points : Array = []
 	
-	var get_stock_path = str("res://save/", GetSaveFile.save_being_used, "/stock.cfg")
+	var get_stock_path = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
 	var get_stock = ConfigFile.new()
 	get_stock.load(get_stock_path)
 	

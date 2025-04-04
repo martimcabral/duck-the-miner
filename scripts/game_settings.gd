@@ -1,6 +1,6 @@
 extends Node
 
-var file_path = "res://game_settings.cfg"
+var file_path = "user://game_settings.cfg"
 var config = ConfigFile.new()
 
 func _ready():

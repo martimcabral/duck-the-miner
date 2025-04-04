@@ -7,7 +7,7 @@ func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
 	
-	var file_path = "res://game_settings.cfg"
+	var file_path = "user://game_settings.cfg"
 	var config = ConfigFile.new()
 	
 	if FileAccess.file_exists(file_path):
