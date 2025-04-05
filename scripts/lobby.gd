@@ -82,8 +82,13 @@ var omega_ammount : int = 0
 var koppa_ammount : int = 0
 
 @onready var item_list = $Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList
+var SelectedItems : Array = ["Empty"]
 
 func _ready():
+	var raw_config = ConfigFile.new()
+	raw_config.load(str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg"))
+	populate_inventory_tab(raw_config)
+	
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.visible = true
@@ -116,31 +121,6 @@ func _ready():
 		if counter % 3 == 0 and i != 0:
 			formatted_number = " " + formatted_number
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: -" + formatted_number + " €"
-	# Path to the CFG file
-	var inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
-	
-	# Load the CFG file
-	var config = ConfigFile.new()
-	var load_result = config.load(inv_path)
-	
-	# Check if the file was successfully loaded
-	if load_result == OK:
-		# Get all items from the "inventory" section
-		var inventory_data = config.get_section_keys("inventory")
-		
-		# Populate the ItemList with items and their icons
-		for item_name in inventory_data:
-			var quantity = config.get_value("inventory", item_name, 0)  # Default quantity is 0
-			var item_text = "%s: %d" % [item_name, quantity]
-			
-			# Add the item to the ItemList
-			var icon = load(item_icons.get(item_name, "res://assets/textures/items/no_texture.png"))  # Default icon if not found
-			var item_index = item_list.add_item(item_text)  # Add item text to the list
-			
-			# Set the icon for the item
-			item_list.set_item_icon(item_index, icon)
-	else:
-		print("Failed to load CFG file: ", inv_path)
 	
 	load_skin()
 	
@@ -599,3 +579,48 @@ func _on_button_mouse_entered() -> void:
 func _on_stock_market_label_pressed() -> void:
 	$Camera2D/HUD/StockTheMarket.visible = true
 	$Camera2D/HUD/Lobby.visible = false
+
+func _on_tab_bar_item_selected(index: int) -> void:
+	print("Inventory Selected: ", index)
+	
+	var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+	var raw_config = ConfigFile.new()
+	var raw_load_result = raw_config.load(raw_inv_path)
+	
+	var crafted_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
+	var crafted_config = ConfigFile.new()
+	var crafted_load_result = crafted_config.load(crafted_inv_path)
+	
+	if raw_load_result == OK and crafted_load_result == OK:
+		print("Detected both Inventories Successfully")
+		item_list.clear()
+		match index:
+			0:
+				populate_inventory_tab(raw_config)
+			1:
+				populate_inventory_tab(crafted_config)
+	else:
+		print("Failed to load CFG file: ", raw_inv_path)
+		print("or")
+		print("Failed to load CFG file: ", crafted_inv_path)
+
+func populate_inventory_tab(config: ConfigFile) -> void:
+	var inventory_data = config.get_section_keys("inventory")
+	if inventory_data and inventory_data.size() > 0:
+		for item_name in inventory_data:
+			var quantity = config.get_value("inventory", item_name, 0)
+			var item_text = "%s: %d" % [item_name, quantity]
+			
+			var icon = load(item_icons.get(item_name, "res://assets/textures/items/no_texture.png"))
+			var item_index = item_list.add_item(item_text)
+			item_list.set_item_icon(item_index, icon)
+		
+		item_list.visible = true
+		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = false
+	else:
+		item_list.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = true
+
+func _on_item_list_multi_selected(_index: int, _selected: bool) -> void:
+	print("Selected Items: ", item_list.get_selected_items())
+	SelectedItems = item_list.get_selected_items()

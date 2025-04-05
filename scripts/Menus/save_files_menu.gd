@@ -65,7 +65,6 @@ func get_save_files():
 			SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
 			SaveButton.add_theme_stylebox_override("focus", focus_stylebox)
 			SaveButton.add_theme_stylebox_override("hover", hover_stylebox)
-			
 			SaveButton.add_theme_color_override("font_color", Color.WHITE)
 			SaveButton.add_theme_font_size_override("font_size", 48)
 			SaveButton.set_meta("save", i)
@@ -113,10 +112,15 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var inv_path = str(saves_path + str(saves_number) + "/inventory_resources.cfg")
-	var inv_config = ConfigFile.new()
-	inv_config.set_value("inventory", "new_file", null)
-	inv_config.save(inv_path)
+	var raw_inv_path = str(saves_path + str(saves_number) + "/inventory_resources.cfg")
+	var raw_inv_config = ConfigFile.new()
+	raw_inv_config.set_value("inventory", "new_file", null)
+	raw_inv_config.save(raw_inv_path)
+	
+	var crafted_inv_path = str(saves_path + str(saves_number) + "/inventory_crafted.cfg")
+	var crafted_inv_config = ConfigFile.new()
+	crafted_inv_config.set_value("inventory", "new_file", null)
+	crafted_inv_config.save(crafted_inv_path)
 
 	################################################################################
 	
@@ -177,8 +181,7 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var version_path = str(saves_path + str(saves_number) + "/new")
-	var version_file = FileAccess.open(str("user://save/", str(saves_number) ,"/version-beta", ProjectSettings.get_setting("application/config/version")), FileAccess.WRITE) # Open file in write mode
+	FileAccess.open(str("user://save/", str(saves_number) ,"/version-beta", ProjectSettings.get_setting("application/config/version")), FileAccess.WRITE) # Open file in write mode
 	
 	################################################################################
 
