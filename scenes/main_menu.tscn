@@ -1,6 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=47 format=3 uid="uid://ibqx3yfikbc2"]
 
-[ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/Menus/start.gd" id="1_0o5ht"]
+[ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" uid="uid://bsjsgdqygu8x5" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" uid="uid://bbygtdu0v3de8" path="res://scripts/Menus/save_files_menu.gd" id="3_rtw2f"]
@@ -50,7 +50,7 @@ shader = SubResource("Shader_o5xol")
 shader_parameter/mode = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
-bg_color = Color(0, 0, 0, 0.556863)
+bg_color = Color(0, 0, 0, 0.564706)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -72,6 +72,68 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
 bg_color = Color(0.59, 0.59, 0.59, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk1qb"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dd4i"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dd4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev00f"]
 bg_color = Color(0.6, 0.6, 1, 0)
@@ -289,8 +351,8 @@ wait_time = 0.75
 [node name="Background" type="TextureRect" parent="GUI/Center"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_846s3")
-offset_right = 1921.0
-offset_bottom = 1080.0
+offset_right = 72.0
+offset_bottom = 77.0
 expand_mode = 1
 
 [node name="Title" type="RichTextLabel" parent="GUI/Center"]
@@ -310,6 +372,7 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -418,7 +481,6 @@ text = "Exit"
 flat = true
 
 [node name="SaveFilesMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -426,9 +488,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -403.0
-offset_top = -245.0
+offset_top = -283.0
 offset_right = 404.0
-offset_bottom = 369.0
+offset_bottom = 426.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -436,25 +498,26 @@ size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
 script = ExtResource("3_rtw2f")
 
+[node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu"]
+position = Vector2(0, 94)
+points = PackedVector2Array(806.5, 520.5, 3.5, 520.5)
+width = 4.0
+
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/Center/SaveFilesMenu"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -398.5
-offset_top = 12.0
+offset_top = 21.0
 offset_right = 399.5
-offset_bottom = 503.0
+offset_bottom = 587.0
 grow_horizontal = 2
 
 [node name="SaveList" type="VBoxContainer" parent="GUI/Center/SaveFilesMenu/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 2
-
-[node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu"]
-points = PackedVector2Array(806.5, 520.5, 3.5, 520.5)
-width = 4.0
 
 [node name="PlayButton" type="Button" parent="GUI/Center/SaveFilesMenu" groups=["Buttons"]]
 z_index = 1
@@ -550,6 +613,105 @@ flat = true
 [node name="VerifyFiles" type="Timer" parent="GUI/Center/SaveFilesMenu"]
 wait_time = 0.25
 autostart = true
+
+[node name="SaveScreationPanel" type="Panel" parent="GUI/Center/SaveFilesMenu"]
+layout_mode = 0
+offset_left = 842.0
+offset_top = 364.0
+offset_right = 1322.0
+offset_bottom = 709.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tbmy8")
+
+[node name="DifficultyLabel" type="Label" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.5
+offset_top = 16.0
+offset_right = 100.5
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Difficulty:"
+
+[node name="DifficultyTabBar" type="TabBar" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 72.0
+offset_right = 476.0
+offset_bottom = 128.0
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_5dd4i")
+current_tab = 1
+tab_alignment = 1
+scrolling_enabled = false
+tab_count = 3
+tab_0/title = "Easy"
+tab_1/title = "Normal"
+tab_2/title = "Hard"
+
+[node name="CheatingLabel" type="Label" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.5
+offset_top = -29.0
+offset_right = 79.5
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Cheats:"
+
+[node name="CheatingTabBar" type="TabBar" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+offset_left = 8.0
+offset_top = 192.0
+offset_right = 480.0
+offset_bottom = 248.0
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_5dd4i")
+current_tab = 1
+tab_alignment = 1
+scrolling_enabled = false
+tab_count = 2
+tab_0/title = "Disabled"
+tab_1/title = "Enabled"
+
+[node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+position = Vector2(-31, 267)
+points = PackedVector2Array(33, -2, 508, -2)
+width = 4.0
+
+[node name="CreatorButton" type="Button" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -63.0
+offset_right = 72.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tbmy8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jk1qb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5dd4i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
+text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
 visible = false

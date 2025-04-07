@@ -5,12 +5,24 @@ var selected_save : int = 0
 
 var saves_path = "user://save/"
 var savedir
+
 var saves_config = ConfigFile.new()
 var getmoney_config = ConfigFile.new()
+var raw_inv_config = ConfigFile.new()
+var crafted_inv_config = ConfigFile.new()
+var money_config = ConfigFile.new()
+var skin_config = ConfigFile.new()
+var day_config = ConfigFile.new()
+var difficulty_config = ConfigFile.new()
+var cheating_config = ConfigFile.new()
+var stock_config = ConfigFile.new()
 
 var normal_stylebox = StyleBoxFlat.new()
 var focus_stylebox = StyleBoxFlat.new()
 var hover_stylebox = StyleBoxFlat.new()
+
+var choosen_difficulty : String = "normal"
+var choosen_cheating : bool = false
 
 func _ready() -> void:
 	# Check if the save directory exists, if not, create it
@@ -115,19 +127,16 @@ func _on_create_game_pressed() -> void:
 	################################################################################
 	
 	var raw_inv_path = str(saves_path + str(saves_number) + "/inventory_resources.cfg")
-	var raw_inv_config = ConfigFile.new()
 	raw_inv_config.set_value("inventory", "new_file", null)
 	raw_inv_config.save(raw_inv_path)
 	
 	var crafted_inv_path = str(saves_path + str(saves_number) + "/inventory_crafted.cfg")
-	var crafted_inv_config = ConfigFile.new()
 	crafted_inv_config.set_value("inventory", "new_file", null)
 	crafted_inv_config.save(crafted_inv_path)
 
 	################################################################################
 	
 	var money_path = str(saves_path + str(saves_number) + "/money.cfg")
-	var money_config = ConfigFile.new()
 	
 	var new_money = int(randf_range(-88_888_888, -99_999_999))
 	money_config.set_value("money", "start", new_money)
@@ -151,16 +160,26 @@ func _on_create_game_pressed() -> void:
 	################################################################################
 	
 	var skin_path = str(saves_path + str(saves_number) + "/skin.cfg")
-	var skin_config = ConfigFile.new()
 	skin_config.set_value("skin", "selected", 1)
 	skin_config.save(skin_path)
 	
 	################################################################################
 	
 	var day_path = str(saves_path + str(saves_number) + "/day.cfg")
-	var day_config = ConfigFile.new()
 	day_config.set_value("day", "current", 1)
 	day_config.save(day_path)
+	
+	################################################################################
+	
+	var difficulty_path = str(saves_path + str(saves_number) + "/difficulty.cfg")
+	difficulty_config.set_value("difficulty", "current", choosen_difficulty)
+	difficulty_config.save(difficulty_path)
+	
+	################################################################################
+	
+	var cheating_path = str(saves_path + str(saves_number) + "/cheating.cfg")
+	cheating_config.set_value("cheating", "enabled", choosen_cheating)
+	cheating_config.save(cheating_path)
 	
 	################################################################################
 	
@@ -168,7 +187,6 @@ func _on_create_game_pressed() -> void:
 	var vlines : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1188]
 
 	var stock_path = str(saves_path+ str(saves_number) + "/stock.cfg")
-	var stock_config = ConfigFile.new()
 	
 	for i in range(companies_names.size()):
 		for num in range(1, 14):
@@ -194,21 +212,21 @@ func _on_delete_game_pressed() -> void:
 	$"../../../MouseSoundEffects".play()
 
 	var button = find_button_by_save(selected_save)
-	button.queue_free()
-	
-	var folder_path = saves_path + str(selected_save)
-	var folder_save = DirAccess.open(folder_path)
-	
-	folder_save.list_dir_begin() 
-	var file_name = folder_save.get_next()
-	while file_name != "":
-		var file_path = folder_path + "/" + file_name
-		DirAccess.remove_absolute(file_path)
-		file_name = folder_save.get_next()
-	folder_save.list_dir_end()
-	
-	DirAccess.remove_absolute(folder_path)
-	print("Removed Save: ", selected_save)
+	if button != null:
+		button.queue_free()
+		var folder_path = saves_path + str(selected_save)
+		var folder_save = DirAccess.open(folder_path)
+		
+		folder_save.list_dir_begin() 
+		var file_name = folder_save.get_next()
+		while file_name != "":
+			var file_path = folder_path + "/" + file_name
+			DirAccess.remove_absolute(file_path)
+			file_name = folder_save.get_next()
+		folder_save.list_dir_end()
+
+		DirAccess.remove_absolute(folder_path)
+		print("Removed Save: ", selected_save)
 
 func find_button_by_save(save_id: int) -> Button:
 	for button in $ScrollContainer/SaveList.get_children():
