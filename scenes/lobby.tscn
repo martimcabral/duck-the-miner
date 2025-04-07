@@ -1530,7 +1530,6 @@ parameters/looping = true
 bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
-visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
@@ -2050,7 +2049,6 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
-visible = false
 z_index = -2
 anchors_preset = 8
 anchor_left = 0.5

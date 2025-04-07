@@ -72,7 +72,7 @@ var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/mon
 var missions_path : String = str("user://save/", GetSaveFile.save_being_used, "/missions.json")
 var resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
-var pricing_path : String = str("user://save/pricing.json")
+var pricing_path : String = str("user://pricing.cfg")
 
 var selected_item_name : String = ""
 var selected_item_quantity : int = 0
@@ -115,20 +115,7 @@ func _ready():
 	var save_file = ConfigFile.new()
 	save_file.load(str("user://save/", GetSaveFile.save_being_used, "/money.cfg"))
 	var current_money = str(save_file.get_value("money", "current", 0))
-	var number_str = str(current_money)
-	# Create an empty list to store the parts of the formatted number
-	var formatted_number = ""
-	var counter = 0
-	
-	# Loop through the string representation of the number backwards
-	for i in range(number_str.length() - 1, -1, -1):
-		formatted_number = number_str[i] + formatted_number
-		counter += 1
-		
-		# Add a space after every 3 digits, but not after the last group
-		if counter % 3 == 0 and i != 0:
-			formatted_number = " " + formatted_number
-	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: -" + formatted_number + " €"
+	update_money(str(current_money))
 	
 	load_skin()
 	
@@ -172,7 +159,7 @@ func _ready():
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Debt: -" + formatted_number + " €" 
+		DiscordRPC.small_image_text = "Debt: " + "<null>" + " €" 
 		var random = randi_range(1, 2)
 		match random:
 			1:
@@ -641,13 +628,24 @@ func _on_item_list_item_selected(index: int) -> void:
 
 func _on_sell_button_pressed() -> void:
 	item_list.remove_item(item_selected)
-	
 	var price = get_price(selected_item_name)
 	remove_item_from_inventory(selected_item_name)
 	
-	var pricing = ConfigFile.new()
-	pricing.load(pricing_path)
-	var price = pricing.get_value("pricing", item_name, 1)
+	var money_earned = price * selected_item_quantity
+	print("Item Price: ", price)
+	print("Money Earned: ", money_earned)
+	
+	var money = ConfigFile.new()
+	money.load(money_path)
+	var current_money = money.get_value("money", "current")
+	var new_money = current_money + money_earned
+	money.set_value("money", "current", new_money)
+	money.save(money_path)
+	
+	update_money(str(new_money))
+	item_selected = -1
+	selected_item_name = ""
+	selected_item_quantity = 0
 
 func get_price(item_name):
 	var pricing = ConfigFile.new()
@@ -666,3 +664,17 @@ func remove_item_from_inventory(item_name):
 		crafted.load(crafted_path)
 		crafted.erase_section_key("inventory", item_name)
 		crafted.save(crafted_path)
+
+func update_money(strinfied_money):
+	var formatted_number = ""
+	var counter = 0
+	
+	for i in range(strinfied_money.length() - 1, -1, -1):
+		formatted_number = strinfied_money[i] + formatted_number
+		counter += 1
+		
+		if counter % 3 == 0 and i != 0:
+			formatted_number = " " + formatted_number
+		
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + formatted_number + " €"
+	return formatted_number

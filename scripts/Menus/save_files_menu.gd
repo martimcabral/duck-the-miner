@@ -129,7 +129,7 @@ func _on_create_game_pressed() -> void:
 	var money_path = str(saves_path + str(saves_number) + "/money.cfg")
 	var money_config = ConfigFile.new()
 	
-	var new_money = int(randf_range(88_888_888, 99_999_999))
+	var new_money = int(randf_range(-88_888_888, -99_999_999))
 	money_config.set_value("money", "start", new_money)
 	money_config.set_value("money", "current", new_money)
 	money_config.save(money_path)
