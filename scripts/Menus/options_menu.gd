@@ -38,6 +38,16 @@ func _ready():
 		
 		$DisplayPanel/FPSType.selected = config.get_value("display", "fps_limiter")
 		
+		var monitors = DisplayServer.get_screen_count()
+		print("Number of screens available: ", monitors)
+		
+		for monitor in monitors:
+			$DisplayPanel/MonitorSelectorDropdown.add_item(str("Monitor: ", monitor), monitor)
+		
+		var selected_monitor = config.get_value("display", "monitor")
+		DisplayServer.window_set_current_screen(selected_monitor)
+		$DisplayPanel/MonitorSelectorDropdown.selected = selected_monitor
+		
 		############# Audio #############
 		$AudioPanel/MasterVolumeSlider.value = config.get_value("audio", "master")
 		$AudioPanel/MusicVolumeSlider.value = config.get_value("audio", "music")
@@ -114,32 +124,24 @@ func _on_fps_type_item_selected(index: int) -> void:
 	config.set_value("display", "fps_limiter", index)
 	config.save(file_path)
 	match index:
-		0:
-			Engine.max_fps = -1
-		1:
-			Engine.max_fps = 360
-		2:
-			Engine.max_fps = 240
-		3:
-			Engine.max_fps = 165
-		4:
-			Engine.max_fps = 144
-		5: 
-			Engine.max_fps = 120
-		6:
-			Engine.max_fps = 100
-		7:
-			Engine.max_fps = 75
-		8:
-			Engine.max_fps = 60
-		9:
-			Engine.max_fps = 45
-		10:
-			Engine.max_fps = 30
-		11:
-			Engine.max_fps = 15
-		12:
-			Engine.max_fps = 1
+		0: Engine.max_fps = -1
+		1: Engine.max_fps = 360
+		2: Engine.max_fps = 240
+		3: Engine.max_fps = 165
+		4: Engine.max_fps = 144
+		5: Engine.max_fps = 120
+		6: Engine.max_fps = 100
+		7: Engine.max_fps = 75
+		8: Engine.max_fps = 60
+		9: Engine.max_fps = 45
+		10: Engine.max_fps = 30
+		11: Engine.max_fps = 15
+		12: Engine.max_fps = 1
+
+func _on_monitor_selector_dropdown_item_selected(index: int) -> void:
+	DisplayServer.window_set_current_screen(index)
+	config.set_value("display", "monitor", index)
+	config.save(file_path)
 
 func _on_audio_button_pressed() -> void:
 	$DisplayPanel.visible = false
@@ -153,28 +155,17 @@ func _on_controls_button_pressed() -> void:
 
 func change_resolution(index):
 	match index:
-		1:
-			DisplayServer.window_set_size(Vector2i(2560, 1440))
-		2:
-			DisplayServer.window_set_size(Vector2i(1920, 1080))
-		3:
-			DisplayServer.window_set_size(Vector2i(1600, 900))
-		4:
-			DisplayServer.window_set_size(Vector2i(1360, 768))
-		5:
-			DisplayServer.window_set_size(Vector2i(1280, 720))
-		6:
-			DisplayServer.window_set_size(Vector2i(1024, 576))
-		8:
-			DisplayServer.window_set_size(Vector2i(2048, 1536))
-		9:
-			DisplayServer.window_set_size(Vector2i(1920, 1440))
-		10:
-			DisplayServer.window_set_size(Vector2i(1600, 1200))
-		11:
-			DisplayServer.window_set_size(Vector2i(1280, 960))
-		12:
-			DisplayServer.window_set_size(Vector2i(1024, 768))
+		1: DisplayServer.window_set_size(Vector2i(2560, 1440))
+		2: DisplayServer.window_set_size(Vector2i(1920, 1080))
+		3: DisplayServer.window_set_size(Vector2i(1600, 900))
+		4: DisplayServer.window_set_size(Vector2i(1360, 768))
+		5: DisplayServer.window_set_size(Vector2i(1280, 720))
+		6: DisplayServer.window_set_size(Vector2i(1024, 576))
+		8: DisplayServer.window_set_size(Vector2i(2048, 1536))
+		9: DisplayServer.window_set_size(Vector2i(1920, 1440))
+		10: DisplayServer.window_set_size(Vector2i(1600, 1200))
+		11: DisplayServer.window_set_size(Vector2i(1280, 960))
+		12: DisplayServer.window_set_size(Vector2i(1024, 768))
 
 func convert_to_db(value: float) -> float:
 	return lerp(-50, 0, value / 100.0)

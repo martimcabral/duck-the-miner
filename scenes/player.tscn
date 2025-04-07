@@ -1,8 +1,9 @@
-[gd_scene load_steps=81 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=83 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/skins/1/duck_walking.png" id="2_815s6"]
 [ext_resource type="Texture2D" uid="uid://cp17yyvfj1o5u" path="res://assets/textures/players/skins/1/duck_squat.png" id="2_bkd5y"]
+[ext_resource type="Texture2D" uid="uid://be284ak1gvlj3" path="res://assets/textures/players/skins/1/dead.png" id="2_gl8cc"]
 [ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/players/lights/point_light.png" id="3_jwt0r"]
 [ext_resource type="Texture2D" uid="uid://cbhiqpcmuwp47" path="res://assets/textures/players/skins/1/duck_flying.png" id="3_twhi0"]
 [ext_resource type="Texture2D" uid="uid://cvesw4kr1dsav" path="res://assets/textures/players/lights/flashlight_beam_larger.png" id="4_83sd1"]
@@ -31,6 +32,10 @@
 [ext_resource type="AudioStream" uid="uid://bo14ppma24hbf" path="res://sounds/sound_effects/quack.ogg" id="13_2b2kh"]
 [ext_resource type="Texture2D" uid="uid://b0f58cyexu4f4" path="res://assets/textures/players/status/oxygen_full.png" id="13_fiy22"]
 [ext_resource type="Texture2D" uid="uid://bekjnl7clpv2l" path="res://assets/textures/players/status/uv_full.png" id="14_6fg1g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_487ah"]
+atlas = ExtResource("2_gl8cc")
+region = Rect2(0, 0, 21, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7eb2"]
 atlas = ExtResource("3_twhi0")
@@ -178,6 +183,14 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ajs5q"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_487ah")
+}],
+"loop": true,
+"name": &"1_dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x7eb2")
@@ -469,7 +482,8 @@ script = ExtResource("1_ym5y2")
 position = Vector2(-2.98023e-08, -4.76837e-07)
 scale = Vector2(0.875, 0.875)
 sprite_frames = SubResource("SpriteFrames_ajs5q")
-animation = &"2_walking"
+animation = &"1_walking"
+frame_progress = 0.654247
 
 [node name="BlockRange" type="Area2D" parent="."]
 position = Vector2(-5.96046e-08, -2.98023e-08)

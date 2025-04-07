@@ -68,6 +68,9 @@ func player_movement(input, delta):
 		velocity.y += falling_speed * delta * 1.1
 
 func _process(delta):
+	if Input.is_action_just_pressed("Cheat_Menu"):
+		death()
+	
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 	
@@ -363,3 +366,8 @@ func load_skin():
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 1))
 		print("[player.gd] Current Skin: " + str(skin_selected))
+
+func death():
+	print("Death Activated")
+	$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
+	# Get all the items and drop

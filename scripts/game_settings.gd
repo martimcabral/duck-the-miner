@@ -17,6 +17,7 @@ func create_config_file():
 	config.set_value("display", "windows_type", 0)
 	config.set_value("display", "vsync", false)
 	config.set_value("display", "fps_limiter", 0)
+	config.set_value("display", "monitor", 0)
 	
 	# Audio
 	config.set_value("audio", "master", 100)
