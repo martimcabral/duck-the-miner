@@ -23,8 +23,10 @@ var hover_stylebox = StyleBoxFlat.new()
 
 var choosen_difficulty : String = "normal"
 var choosen_cheating : bool = false
+var choosen_intro : bool = true
 
 func _ready() -> void:
+	$SaveScreationPanel.visible = false
 	# Check if the save directory exists, if not, create it
 	if not DirAccess.dir_exists_absolute(saves_path):
 		print("[save] Directory not found. Creating directory: ", saves_path)
@@ -98,7 +100,8 @@ func _on_back_button_pressed() -> void:
 	$"../StartMenu".visible = true
 	$".".visible = false
 
-func _on_create_game_pressed() -> void:
+func _on_creator_button_pressed() -> void:
+	$SaveScreationPanel.visible = false
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/play.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 1.25
 	$"../../../MouseSoundEffects".play()
@@ -196,8 +199,9 @@ func _on_create_game_pressed() -> void:
 	
 	################################################################################
 	
-	var new_path = str(saves_path + str(saves_number) + "/new")
-	DirAccess.make_dir_absolute(new_path)
+	if choosen_intro == true:
+		var new_path = str(saves_path + str(saves_number) + "/new")
+		DirAccess.make_dir_absolute(new_path)
 	
 	################################################################################
 	
@@ -281,3 +285,25 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
+
+func _on_create_game_pressed() -> void:
+	$SaveScreationPanel/DifficultyTabBar.current_tab = 1
+	$SaveScreationPanel/CheatingTabBar.current_tab = 0
+	$SaveScreationPanel/IntroTabBar.current_tab = 1
+	$SaveScreationPanel.visible = true
+
+func _on_difficulty_tab_bar_tab_selected(tab: int) -> void:
+	match tab:
+		0: choosen_difficulty = "easy"
+		1: choosen_difficulty = "normal"
+		2: choosen_difficulty = "hard"
+
+func _on_cheating_tab_bar_tab_selected(tab: int) -> void:
+	match tab:
+		0: choosen_cheating = false
+		1: choosen_cheating = true
+
+func _on_intro_tab_bar_tab_selected(tab: int) -> void:
+	match tab:
+		0: choosen_intro = false
+		1: choosen_intro = true

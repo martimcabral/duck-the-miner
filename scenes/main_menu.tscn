@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=51 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
@@ -74,7 +74,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.59, 0.59, 0.59, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
-bg_color = Color(0, 0, 0, 0.564706)
+bg_color = Color(0, 0, 0, 0.705882)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -95,7 +95,27 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.298039, 0.298039, 0.298039, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgwnu"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.766223, 0.766224, 0.766223, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -115,7 +135,7 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -124,6 +144,30 @@ expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rcqid"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ajci"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.764706, 0.764706, 0.764706, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
 
@@ -617,7 +661,7 @@ autostart = true
 [node name="SaveScreationPanel" type="Panel" parent="GUI/Center/SaveFilesMenu"]
 layout_mode = 0
 offset_left = 842.0
-offset_top = 364.0
+offset_top = 173.0
 offset_right = 1322.0
 offset_bottom = 709.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tbmy8")
@@ -628,23 +672,27 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -100.5
-offset_top = 16.0
+offset_top = 20.0
 offset_right = 100.5
-offset_bottom = 64.0
+offset_bottom = 68.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
 text = "Difficulty:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DifficultyTabBar" type="TabBar" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+[node name="DifficultyTabBar" type="TabBar" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel" groups=["Buttons"]]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 72.0
+offset_top = 73.0
 offset_right = 476.0
-offset_bottom = 128.0
+offset_bottom = 137.0
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_lgwnu")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_5dd4i")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_rcqid")
 current_tab = 1
 tab_alignment = 1
 scrolling_enabled = false
@@ -655,29 +703,66 @@ tab_2/title = "Hard"
 
 [node name="CheatingLabel" type="Label" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -79.5
-offset_top = -29.0
+offset_top = 163.0
 offset_right = 79.5
-offset_bottom = 19.0
+offset_bottom = 211.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 text = "Cheats:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="CheatingTabBar" type="TabBar" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+[node name="CheatingTabBar" type="TabBar" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel" groups=["Buttons"]]
+layout_mode = 0
 offset_left = 8.0
-offset_top = 192.0
+offset_top = 222.0
 offset_right = 480.0
-offset_bottom = 248.0
+offset_bottom = 286.0
+theme_override_colors/font_unselected_color = Color(0.299266, 0.299266, 0.299266, 1)
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_1ajci")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_5dd4i")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_1ajci")
+current_tab = 0
+tab_alignment = 1
+scrolling_enabled = false
+tab_count = 2
+tab_0/title = "Disabled"
+tab_1/title = "Enabled"
+
+[node name="IntroLabel" type="Label" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -79.5
+offset_top = 308.0
+offset_right = 79.5
+offset_bottom = 356.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Intro:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntroTabBar" type="TabBar" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel" groups=["Buttons"]]
+offset_left = 4.5
+offset_top = 364.0
+offset_right = 476.5
+offset_bottom = 428.0
+theme_override_colors/font_unselected_color = Color(0.299266, 0.299266, 0.299266, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_jk1qb")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_1ajci")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_5dd4i")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_1ajci")
 current_tab = 1
 tab_alignment = 1
 scrolling_enabled = false
@@ -686,7 +771,7 @@ tab_0/title = "Disabled"
 tab_1/title = "Enabled"
 
 [node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
-position = Vector2(-31, 267)
+position = Vector2(-31, 459)
 points = PackedVector2Array(33, -2, 508, -2)
 width = 4.0
 
@@ -1650,6 +1735,10 @@ bus = &"Menus"
 [connection signal="pressed" from="GUI/Center/SaveFilesMenu/DeleteGame" to="GUI/Center/SaveFilesMenu" method="_on_delete_game_pressed"]
 [connection signal="pressed" from="GUI/Center/SaveFilesMenu/BackButton" to="GUI/Center/SaveFilesMenu" method="_on_back_button_pressed"]
 [connection signal="timeout" from="GUI/Center/SaveFilesMenu/VerifyFiles" to="GUI/Center/SaveFilesMenu" method="_on_verify_files_timeout"]
+[connection signal="tab_selected" from="GUI/Center/SaveFilesMenu/SaveScreationPanel/DifficultyTabBar" to="GUI/Center/SaveFilesMenu" method="_on_difficulty_tab_bar_tab_selected"]
+[connection signal="tab_selected" from="GUI/Center/SaveFilesMenu/SaveScreationPanel/CheatingTabBar" to="GUI/Center/SaveFilesMenu" method="_on_cheating_tab_bar_tab_selected"]
+[connection signal="tab_selected" from="GUI/Center/SaveFilesMenu/SaveScreationPanel/IntroTabBar" to="GUI/Center/SaveFilesMenu" method="_on_intro_tab_bar_tab_selected"]
+[connection signal="pressed" from="GUI/Center/SaveFilesMenu/SaveScreationPanel/CreatorButton" to="GUI/Center/SaveFilesMenu" method="_on_creator_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayButton" to="GUI/Center/OptionsMenu" method="_on_display_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/AudioButton" to="GUI/Center/OptionsMenu" method="_on_audio_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsButton" to="GUI/Center/OptionsMenu" method="_on_controls_button_pressed"]

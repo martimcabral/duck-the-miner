@@ -18,7 +18,7 @@ boot_splash/bg_color=Color(0.848606, 0.517103, 0.071148, 1)
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/image="res://assets/textures/loading_screen.png"
-config/icon="res://assets/textures/icon.png"
+config/icon="uid://ykrf84q2i0t4"
 
 [audio]
 

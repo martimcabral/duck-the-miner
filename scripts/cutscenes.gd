@@ -9,6 +9,9 @@ var above_sign : bool = false
 var lines_number : int = 0
 var terms : String = "NaoRespondido"
 
+var _is_drawing := false 
+var _current_line : Line2D = null
+
 func _ready() -> void:
 	$ReadyButton.visible = false
 	$RubberButton.visible = false
@@ -65,10 +68,7 @@ func _on_refuse_button_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		terms = "Recusado"
 		$FyctionContract/AcceptButton.button_pressed = false
-		$FyctionContract/RefuseButton.button_pressed = true
-
-var _is_drawing := false 
-var _current_line : Line2D = null 
+		$FyctionContract/RefuseButton.button_pressed = true 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and above_sign == true:
@@ -104,7 +104,6 @@ func _on_printing_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "go_up":
 		$ReadyButton.visible = true
 		$RubberButton.visible = true
-		
 
 func _on_ready_button_mouse_entered() -> void:
 	$ReadyButton/MouseEffectButton.play()
@@ -131,10 +130,13 @@ func _process(delta: float) -> void:
 		$TextTimer.stop()
 		$FadeTimer.stop()
 	
-	if terms != "NaoRespondido":
-		for lines in $FyctionContract/Lines.get_children():
-			if lines is Line2D:
-				$ReadyButton.disabled = false
+	if terms == "Aceitado" or terms == "Recusado":
+		if $FyctionContract/AcceptButton.button_pressed == true or $FyctionContract/RefuseButton.button_pressed == true:
+			for lines in $FyctionContract/Lines.get_children():
+				if lines is Line2D:
+					$ReadyButton.disabled = false
+		else:
+			$ReadyButton.disabled = true
 
 func _on_ready_button_pressed() -> void:
 	$ReadyButton.visible = false
