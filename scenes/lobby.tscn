@@ -870,7 +870,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_enoir")
 
-[node name="InventoryPanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
+[node name="StoragePanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -885,7 +885,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
-[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel" groups=["Buttons"]]
+[node name="LobbyLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -896,9 +896,11 @@ offset_right = 136.0
 offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
-text = "Inventory"
+text = "Storage"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ItemList" type="ItemList" parent="Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel" groups=["Buttons"]]
+[node name="ItemList" type="ItemList" parent="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -924,7 +926,6 @@ theme_override_styles/hovered = SubResource("StyleBoxFlat_7rn74")
 theme_override_styles/hovered_selected_focus = SubResource("StyleBoxFlat_30el1")
 theme_override_styles/selected_focus = SubResource("StyleBoxFlat_busoe")
 theme_override_styles/cursor = SubResource("StyleBoxEmpty_6yc8v")
-select_mode = 1
 max_text_lines = 3
 max_columns = 999
 same_column_width = true
@@ -932,7 +933,7 @@ fixed_column_width = 173
 icon_mode = 0
 icon_scale = 5.0
 
-[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel"]
+[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -950,11 +951,11 @@ theme_override_colors/font_shadow_color = Color(0.48, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Empty"
 
-[node name="SellButton" type="Button" parent="Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel"]
+[node name="SellButton" type="Button" parent="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel"]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 28.0
-offset_right = 218.0
+offset_right = 204.0
 offset_bottom = 80.0
 theme_override_colors/font_hover_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -963,9 +964,9 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_yb58j")
 theme_override_styles/hover = SubResource("StyleBoxFlat_4pkyx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rievh")
 theme_override_styles/normal = SubResource("StyleBoxFlat_olier")
-text = "Sell Gems"
+text = "Sell Item"
 
-[node name="TabBar" type="OptionButton" parent="Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel" groups=["Buttons"]]
+[node name="TabBar" type="OptionButton" parent="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -2093,8 +2094,9 @@ text = "Field Name"
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinPreviousButton" to="." method="_on_skin_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinNextButton" to="." method="_on_skin_next_button_pressed"]
-[connection signal="multi_selected" from="Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList" to="." method="_on_item_list_multi_selected"]
-[connection signal="item_selected" from="Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/TabBar" to="." method="_on_tab_bar_item_selected"]
+[connection signal="item_selected" from="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="item_selected" from="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/TabBar" to="." method="_on_tab_bar_item_selected"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton" to="." method="_select_mission_button_info_panel_pressed"]

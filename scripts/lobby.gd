@@ -68,8 +68,15 @@ var omega_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/thumbs/koppa.png")
 
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
+var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
+var missions_path : String = str("user://save/", GetSaveFile.save_being_used, "/missions.json")
+var resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
+var pricing_path : String = str("user://save/pricing.json")
 
-var json_path : String = str("user://save/", GetSaveFile.save_being_used, "/missions.json")
+var selected_item_name : String = ""
+var selected_item_quantity : int = 0
+
 var current_page = 1
 var current_asteroid_name : String
 var current_asteroid_biome : String
@@ -81,8 +88,9 @@ var gamma_ammount : int = 0
 var omega_ammount : int = 0
 var koppa_ammount : int = 0
 
-@onready var item_list = $Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList
-var SelectedItems : Array = ["Empty"]
+@onready var item_list = $Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/ItemList
+var item_selected : int = -1
+var selected_inventory = 0
 
 func _ready():
 	var raw_config = ConfigFile.new()
@@ -94,7 +102,7 @@ func _ready():
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.visible = true
-	$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.visible = true
+	$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.visible = true
 	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
@@ -124,12 +132,12 @@ func _ready():
 	
 	load_skin()
 	
-	if $Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList.item_count == 0:
-		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList.visible = false
-		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = true
+	if $Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/ItemList.item_count == 0:
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/ItemList.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 	else: 
-		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/ItemList.visible = true
-		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/ItemList.visible = true
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
 	
 	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = false
 	$Camera2D/HUD/Lobby/InfoPanel.visible = false
@@ -139,7 +147,7 @@ func _ready():
 	$Camera2D/HUD/Lobby/LoadingPanel.visible = false
 	$Camera2D/HUD/Lobby/RerollButton.visible = false
 	
-	var file = FileAccess.open(str("user://save/", GetSaveFile.save_being_used, "/missions.json"), FileAccess.READ)
+	var file = FileAccess.open(missions_path, FileAccess.READ)
 	if file:
 		var result = file.get_as_text()
 		if result == str(0):
@@ -182,7 +190,7 @@ func _enter_tree() -> void:
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.modulate.a8 = 0
-	$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.modulate.a8 = 0
+	$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.modulate.a8 = 0
 	target_zoom = $SolarSystem.scale.x
 
 func _process(delta: float) -> void:
@@ -201,7 +209,7 @@ func _process(delta: float) -> void:
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.modulate.a8 = lobby_fade_in
 	
 	if mission_selected : $Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = true
 	
@@ -338,8 +346,8 @@ func generate_asteroid_data() -> Dictionary:
 	var fields = {}  # Dictionary to store asteroid fields
 	var field_names = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
 	var biomes = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert"]
-	var objectites_primary = ["n/a"]
-	var objectites_secondary = ["n/a"]
+	var objectives_primary = ["n/a"]
+	var objectives_secondary = ["n/a"]
 	
 	for field_name in field_names:
 		var asteroids = {}  # Dictionary to store asteroids in the current field
@@ -354,17 +362,17 @@ func generate_asteroid_data() -> Dictionary:
 				"Frozen": asteroid_temperature = randi_range(-45, -65)
 				"Swamp": asteroid_temperature = randi_range(-5, 12)
 				"Desert": asteroid_temperature = randi_range(50, 65)
-			var primary_objectite = objectites_primary[randi() % objectites_primary.size()]
-			var secondary_objectite = objectites_secondary[randi() % objectites_secondary.size()]
+			var primary_objective = objectives_primary[randi() % objectives_primary.size()]
+			var secondary_objective = objectives_secondary[randi() % objectives_secondary.size()]
 			
 			# Create asteroid entry
 			asteroids[asteroid_id] = {
 				"Name": as_name,
 				"Biome": biome,
 				"Temperature": asteroid_temperature,
-				"Objectites": {
-					"Primary": primary_objectite,
-					"Secondary": secondary_objectite
+				"Objectives": {
+					"Primary": primary_objective,
+					"Secondary": secondary_objective
 				}
 			}
 			asteroid_id += 1  # Increment the ID for the next asteroid
@@ -398,7 +406,7 @@ func _on_previous_button_pressed() -> void:
 func get_asteroid_info():
 	if current_page >= 1:
 		mission_selected = true
-		var file = FileAccess.open(json_path, FileAccess.READ)
+		var file = FileAccess.open(missions_path, FileAccess.READ)
 		var parse_result = JSON.parse_string(file.get_as_text())
 		file.close()
 		
@@ -413,8 +421,8 @@ func get_asteroid_info():
 			current_asteroid_biome = asteroid_info["Biome"]
 			var temperature = asteroid_info["Temperature"]
 			asteroid_temperature = temperature
-			var primary = asteroid_info["Objectites"]["Primary"]
-			var secondary = asteroid_info["Objectites"]["Secondary"]
+			var primary = asteroid_info["Objectives"]["Primary"]
+			var secondary = asteroid_info["Objectives"]["Secondary"]
 			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 			$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
 		else:
@@ -423,7 +431,7 @@ func get_asteroid_info():
 func get_asteroids_per_field(field : String):
 	# This Code in the Second Half was completly remade due to a error of impossibility of reading the asteroid data on the JSON File
 	# Ensure the file is opened and read correctly
-	var file = FileAccess.open(json_path, FileAccess.READ)
+	var file = FileAccess.open(missions_path, FileAccess.READ)
 	if file:
 		var json_string = file.get_as_text()
 		file.close()
@@ -452,7 +460,7 @@ func get_asteroids_per_field(field : String):
 			print("Parsed data is not a dictionary!")
 			return 0
 	else:
-		print("Failed to open file: ", json_path)
+		print("Failed to open file: ", missions_path)
 		return 0
 
 func _on_select_mission_button_pressed() -> void:
@@ -479,7 +487,7 @@ func _on_start_button_pressed() -> void:
 		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.visible = false
 		$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.visible = false
 		$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.visible = false
-		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.visible = false
 		$Camera2D/HUD/Lobby/LoadingPanel.visible = true
 		$Camera2D/HUD/Lobby/BackToLobbyButton.text = "Loading ..."
 		$Camera2D/HUD/Lobby/BackToLobbyButton.position = Vector2(858, 510)
@@ -582,6 +590,7 @@ func _on_stock_market_label_pressed() -> void:
 
 func _on_tab_bar_item_selected(index: int) -> void:
 	print("Inventory Selected: ", index)
+	selected_inventory = index
 	
 	var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	var raw_config = ConfigFile.new()
@@ -616,11 +625,44 @@ func populate_inventory_tab(config: ConfigFile) -> void:
 			item_list.set_item_icon(item_index, icon)
 		
 		item_list.visible = true
-		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
 	else:
 		item_list.visible = false
-		$Camera2D/HUD/Lobby/LobbyPanel/InventoryPanel/UnavailableLabel.visible = true
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 
-func _on_item_list_multi_selected(_index: int, _selected: bool) -> void:
-	print("Selected Items: ", item_list.get_selected_items())
-	SelectedItems = item_list.get_selected_items()
+func _on_item_list_item_selected(index: int) -> void:
+	item_selected = index
+	var item_selected_string = item_list.get_item_text(index)
+	var parts = item_selected_string.split(":")
+	selected_item_name = parts[0].strip_edges()
+	selected_item_quantity = int(parts[1].strip_edges())
+	print("\nItem Name: ", selected_item_name)
+	print("Item Quantity: ", selected_item_quantity)
+
+func _on_sell_button_pressed() -> void:
+	item_list.remove_item(item_selected)
+	
+	var price = get_price(selected_item_name)
+	remove_item_from_inventory(selected_item_name)
+	
+	var pricing = ConfigFile.new()
+	pricing.load(pricing_path)
+	var price = pricing.get_value("pricing", item_name, 1)
+
+func get_price(item_name):
+	var pricing = ConfigFile.new()
+	pricing.load(pricing_path)
+	var price = pricing.get_value("pricing", item_name, 1)
+	return price
+
+func remove_item_from_inventory(item_name):
+	if selected_inventory == 0:
+		var resources = ConfigFile.new()
+		resources.load(resources_path)
+		resources.erase_section_key("inventory", item_name)
+		resources.save(resources_path)
+	elif selected_inventory == 1:
+		var crafted = ConfigFile.new()
+		crafted.load(crafted_path)
+		crafted.erase_section_key("inventory", item_name)
+		crafted.save(crafted_path)

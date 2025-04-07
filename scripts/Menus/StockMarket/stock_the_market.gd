@@ -104,7 +104,7 @@ func create_chart(cor : Color, nome : String):
 	line.points = curve_points
 	line.set_meta("linename", nome)
 	line.add_to_group("PressedStock")
-	line.width = 8
+	line.width = 6
 	line.z_index = 1
 	line.default_color = cor
 	line.joint_mode = Line2D.LINE_JOINT_ROUND

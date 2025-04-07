@@ -4,7 +4,7 @@ var saves_number : int = 1
 var selected_save : int = 0
 
 var saves_path = "user://save/"
-var savedir = DirAccess.open("user://save")
+var savedir
 var saves_config = ConfigFile.new()
 var getmoney_config = ConfigFile.new()
 
@@ -17,6 +17,9 @@ func _ready() -> void:
 	if not DirAccess.dir_exists_absolute(saves_path):
 		print("[save] Directory not found. Creating directory: ", saves_path)
 		DirAccess.make_dir_absolute(saves_path)
+		savedir = DirAccess.open("user://save")
+	else: 
+		savedir = DirAccess.open("user://save")
 	
 	var config_path = saves_path + "saves.cfg"
 	# Check if the saves configuration file exists
@@ -31,11 +34,10 @@ func _ready() -> void:
 		saves_config.set_value("saves", "ammount", saves_number)
 		saves_config.save(config_path)
 		print("[save_files_menu.gd] Number of Save Folders: ", saves_number)
-
 	get_save_files()
 
 func get_save_files():
-	var directories = DirAccess.get_directories_at("user://save")
+	var directories = DirAccess.get_directories_at(saves_path)
 	for i in range(0, 100):
 		if directories.has(str(i)):
 			var SaveButton = Button.new()
