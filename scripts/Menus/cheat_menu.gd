@@ -1,10 +1,18 @@
 extends Control
 
+var cheats : bool = false
+var cheated_item_icon = preload("res://assets/textures/items/cheated_item.png")
+
 func _ready():
 	visible = false
+	var cheats_path = str("user://save/", GetSaveFile.save_being_used, "/cheats.cfg")
+	var cheats_config = ConfigFile.new()
+	cheats_config.load(cheats_path)
+	cheats = cheats_config.get_value("cheating", "enabled", false)
+	print(cheats)
 
 func _input(_event):
-	if Input.is_action_just_pressed("Cheat_Menu"):
+	if Input.is_action_just_pressed("Cheat_Menu") and cheats == true:
 		match get_tree().current_scene.name:
 			"AsteroidSelector":
 				position = Vector2(960, 600)
@@ -15,7 +23,7 @@ func _input(_event):
 				$Container/WorldLabel/ChangeUVBattery.disabled = true
 				$Container/WorldLabel/DuckTheDeath.disabled = true
 			"World":
-				position = Vector2(640, 0)
+				position = Vector2(0, 0)
 				$Container/LobbyLabel/GiveItem.disabled = true
 				$Container/LobbyLabel/ChangeDay.disabled = true
 				$Container/LobbyLabel/ChangeMoney.disabled = true
@@ -60,9 +68,15 @@ func _on_reroll_missions_pressed() -> void:
 		$"../../../..".get_asteroid_info()
 		$"../../../..".get_pages()
 
+####################################################################################################
+####################################################################################################
+####################################################################################################
+
 func _on_give_items_pressed() -> void:
 	if get_tree().current_scene.name == "World":
-		pass
+		var new_item = $Container/WorldLabel/GiveItems/ItemTextEdit.text
+		var new_amount = $Container/WorldLabel/GiveItems/AmountTextEdit.text
+		$"../ItemList".add_item(str(new_item, " ", new_amount), cheated_item_icon)
 
 func _on_change_position_pressed() -> void:
 	if get_tree().current_scene.name == "World":

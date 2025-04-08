@@ -180,7 +180,7 @@ func _on_creator_button_pressed() -> void:
 	
 	################################################################################
 	
-	var cheating_path = str(saves_path + str(saves_number) + "/cheating.cfg")
+	var cheating_path = str(saves_path + str(saves_number) + "/cheats.cfg")
 	cheating_config.set_value("cheating", "enabled", choosen_cheating)
 	cheating_config.save(cheating_path)
 	

@@ -25,9 +25,9 @@ buses/channel_disable_threshold_db=-80.0
 
 [autoload]
 
-DiscordRp="*res://scripts/Discord/discordRP.gd"
-GameSettings="*res://scripts/game_settings.gd"
-GetSaveFile="*res://scripts/get_save_file.gd"
+DiscordRp="*res://scripts/Autoload/discordRP.gd"
+GameSettings="*res://scripts/Menus/Options/game_settings.gd"
+GetSaveFile="*res://scripts/Autoload/get_save_file.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
