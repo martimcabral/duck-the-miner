@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=101 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://jmvxxfp8t62v" path="res://assets/textures/universe/orbits_and_fields/gamma_field.png" id="30_e4ddj"]
 [ext_resource type="Texture2D" uid="uid://6hh31hvrlif1" path="res://assets/textures/universe/orbits_and_fields/omega_field.png" id="31_832n6"]
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/koppa_belt.png" id="34_qqdto"]
+[ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/cheat_menu.tscn" id="39_8tmsf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq7us"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -395,6 +396,17 @@ one_shot = true
 position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
+
+[node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = 28.0
+offset_right = -44.0
+offset_bottom = 28.0
 
 [node name="Lobby" type="Panel" parent="Camera2D/HUD"]
 

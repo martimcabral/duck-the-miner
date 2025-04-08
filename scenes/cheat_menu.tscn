@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3 uid="uid://cff2dwgei60p0"]
+
+[ext_resource type="Script" uid="uid://bfc4nr5x0kpsu" path="res://scripts/Menus/CheatMenu/draggable.gd" id="1_fpibp"]
+[ext_resource type="FontFile" uid="uid://rsp42f6c2xb0" path="res://assets/fonts/liner-BMP14.ttf" id="2_6vqmr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpibp"]
+bg_color = Color(0, 0, 0, 0.941176)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.709804, 0.298039, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="CheatMenu" type="Control"]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpibp")
+
+[node name="Container" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -309.0
+offset_top = -310.5
+offset_right = 309.0
+offset_bottom = 310.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_fpibp")
+
+[node name="TitleLabel" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -87.0
+offset_top = 16.0
+offset_right = 87.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_fonts/font = ExtResource("2_6vqmr")
+theme_override_font_sizes/font_size = 42
+text = "Cheat Menu - CRTL + L"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleLine" type="Line2D" parent="Container"]
+position = Vector2(-4, -13)
+points = PackedVector2Array(6.5, 82.5, 620, 82.5)
+width = 4.0
+default_color = Color(0, 0.709804, 0.298039, 1)
+
+[node name="MiddleLine" type="Line2D" parent="Container"]
+position = Vector2(296, 72)
+points = PackedVector2Array(13, -1.5, 13, 545.5)
+width = 4.0
+default_color = Color(0, 0.709804, 0.298039, 1)
+
+[node name="TitlesLine" type="Line2D" parent="Container"]
+position = Vector2(-5, 62)
+points = PackedVector2Array(6.5, 82.5, 620, 82.5)
+width = 4.0
+default_color = Color(0, 0.709804, 0.298039, 1)
+
+[node name="LobbyLabel" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.0
+offset_top = 85.0
+offset_right = -76.0
+offset_bottom = 128.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_fonts/font = ExtResource("2_6vqmr")
+theme_override_font_sizes/font_size = 42
+text = "Lobby"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WorldLabel" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 75.0
+offset_top = 86.0
+offset_right = 234.0
+offset_bottom = 129.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_fonts/font = ExtResource("2_6vqmr")
+theme_override_font_sizes/font_size = 42
+text = "World"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Container"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 170.0
+offset_right = 156.0
+offset_bottom = 203.0
+text = "Give Items"
