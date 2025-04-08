@@ -397,18 +397,20 @@ position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 
-[node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
+[node name="Lobby" type="Panel" parent="Camera2D/HUD"]
+mouse_filter = 2
+
+[node name="CheatMenu" parent="Camera2D/HUD/Lobby" instance=ExtResource("39_8tmsf")]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = 28.0
-offset_right = -44.0
-offset_bottom = 28.0
-
-[node name="Lobby" type="Panel" parent="Camera2D/HUD"]
+offset_left = 916.0
+offset_top = 528.0
+offset_right = 916.0
+offset_bottom = 528.0
 
 [node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD/Lobby" groups=["Buttons"]]
 z_index = 1
@@ -428,29 +430,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_syqgr")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3jcuy")
 theme_override_styles/normal = SubResource("StyleBoxFlat_w2ah2")
 text = "Go Back"
-
-[node name="RerollButton" type="Button" parent="Camera2D/HUD/Lobby" groups=["Buttons"]]
-z_index = 1
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1693.0
-offset_top = 964.0
-offset_right = 1840.0
-offset_bottom = 1024.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 48
-theme_override_styles/focus = SubResource("StyleBoxFlat_aq7us")
-theme_override_styles/hover = SubResource("StyleBoxFlat_syqgr")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_3jcuy")
-theme_override_styles/normal = SubResource("StyleBoxFlat_w2ah2")
-text = "Reroll
-"
 
 [node name="LobbyPanel" type="Panel" parent="Camera2D/HUD/Lobby"]
 self_modulate = Color(1, 1, 1, 0)
@@ -2097,7 +2076,6 @@ text = "Field Name"
 
 [connection signal="timeout" from="TimeToStart" to="." method="_on_time_to_start_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
-[connection signal="pressed" from="Camera2D/HUD/Lobby/RerollButton" to="." method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/StockMarketLabel" to="." method="_on_stock_market_label_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]

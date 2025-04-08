@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cff2dwgei60p0"]
+[gd_scene load_steps=7 format=3 uid="uid://cff2dwgei60p0"]
 
-[ext_resource type="Script" uid="uid://bfc4nr5x0kpsu" path="res://scripts/Menus/CheatMenu/draggable.gd" id="1_fpibp"]
+[ext_resource type="Script" uid="uid://bfc4nr5x0kpsu" path="res://scripts/Menus/cheat_menu.gd" id="1_fpibp"]
 [ext_resource type="FontFile" uid="uid://rsp42f6c2xb0" path="res://assets/fonts/liner-BMP14.ttf" id="2_6vqmr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpibp"]
@@ -15,12 +15,20 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vqmr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glt2k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqi5g"]
+
 [node name="CheatMenu" type="Control"]
 z_index = 4096
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -23.0
+offset_right = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fpibp")
@@ -32,10 +40,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -309.0
-offset_top = -206.5
-offset_right = 309.0
-offset_bottom = 206.5
+offset_left = -463.0
+offset_top = -199.0
+offset_right = 395.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fpibp")
@@ -59,19 +67,19 @@ vertical_alignment = 1
 
 [node name="TitleLine" type="Line2D" parent="Container"]
 position = Vector2(-4, -13)
-points = PackedVector2Array(6.5, 82.5, 620, 82.5)
+points = PackedVector2Array(6.5, 82.5, 859, 82.5)
 width = 4.0
 default_color = Color(0, 0.709804, 0.298039, 1)
 
 [node name="MiddleLine" type="Line2D" parent="Container"]
-position = Vector2(296, 72)
+position = Vector2(399, 72)
 points = PackedVector2Array(13, -1.5, 13, 339)
 width = 4.0
 default_color = Color(0, 0.709804, 0.298039, 1)
 
 [node name="TitlesLine" type="Line2D" parent="Container"]
 position = Vector2(-5, 62)
-points = PackedVector2Array(6.5, 82.5, 620, 82.5)
+points = PackedVector2Array(6.5, 82.5, 860, 82.5)
 width = 4.0
 default_color = Color(0, 0.709804, 0.298039, 1)
 
@@ -80,9 +88,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -241.0
+offset_left = -322.0
 offset_top = 85.0
-offset_right = -76.0
+offset_right = -157.0
 offset_bottom = 128.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
@@ -97,55 +105,106 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -79.0
-offset_top = 72.0
-offset_right = 79.0
-offset_bottom = 112.0
+offset_left = -177.5
+offset_top = 87.0
+offset_right = 47.5
+offset_bottom = 127.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.244867, 0.0834205, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Give Items"
 
+[node name="ItemTextEdit" type="TextEdit" parent="Container/LobbyLabel/GiveItem"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 237.0
+offset_top = -17.0
+offset_right = 394.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "String"
+emoji_menu_enabled = false
+
 [node name="ChangeDay" type="Button" parent="Container/LobbyLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -91.0
-offset_top = 106.0
-offset_right = 91.0
-offset_bottom = 146.0
+offset_left = -178.5
+offset_top = 127.0
+offset_right = 47.5
+offset_bottom = 167.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Change Day"
 
+[node name="DayTextEdit" type="TextEdit" parent="Container/LobbyLabel/ChangeDay"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 238.0
+offset_top = -17.0
+offset_right = 393.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "Int"
+emoji_menu_enabled = false
+
 [node name="ChangeMoney" type="Button" parent="Container/LobbyLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -113.0
-offset_top = 146.0
-offset_right = 113.0
-offset_bottom = 186.0
+offset_left = -179.0
+offset_top = 167.0
+offset_right = 47.0
+offset_bottom = 207.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Change Money"
 
+[node name="MoneyTextEdit" type="TextEdit" parent="Container/LobbyLabel/ChangeMoney"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 239.0
+offset_top = -17.0
+offset_right = 394.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "Int"
+emoji_menu_enabled = false
+
 [node name="AdvanceStockMartket" type="Button" parent="Container/LobbyLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -98.0
-offset_top = 184.0
-offset_right = 98.0
-offset_bottom = 224.0
+offset_left = -178.5
+offset_top = 207.0
+offset_right = 47.5
+offset_bottom = 247.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
@@ -157,10 +216,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -113.0
-offset_top = 224.0
-offset_right = 113.0
-offset_bottom = 264.0
+offset_left = -179.0
+offset_top = 247.0
+offset_right = 47.0
+offset_bottom = 287.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
@@ -172,9 +231,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 75.0
+offset_left = 139.0
 offset_top = 86.0
-offset_right = 234.0
+offset_right = 298.0
 offset_bottom = 129.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
@@ -189,87 +248,238 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -79.0
+offset_left = -209.5
 offset_top = 72.0
-offset_right = 79.0
+offset_right = 32.5
 offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Give Items"
+alignment = 0
+
+[node name="ItemTextEdit" type="TextEdit" parent="Container/WorldLabel/GiveItems"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -18.0
+offset_right = 166.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "String"
+emoji_menu_enabled = false
 
 [node name="ChangePosition" type="Button" parent="Container/WorldLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -91.0
-offset_top = 111.0
-offset_right = 91.0
-offset_bottom = 151.0
+offset_left = -210.0
+offset_top = 112.0
+offset_right = 32.0
+offset_bottom = 152.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Change Position"
+alignment = 0
+
+[node name="X_PositionTextEdit" type="TextEdit" parent="Container/WorldLabel/ChangePosition"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -18.0
+offset_right = 78.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "VectorX"
+emoji_menu_enabled = false
+
+[node name="Y_PositionTextEdit" type="TextEdit" parent="Container/WorldLabel/ChangePosition"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = -18.0
+offset_right = 162.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "VectorY"
+emoji_menu_enabled = false
 
 [node name="ChangeOxygen" type="Button" parent="Container/WorldLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -113.0
-offset_top = 151.0
-offset_right = 113.0
-offset_bottom = 191.0
+offset_left = -209.5
+offset_top = 152.0
+offset_right = 32.5
+offset_bottom = 192.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Change Oxygen"
+alignment = 0
+
+[node name="OxygenTextEdit" type="TextEdit" parent="Container/WorldLabel/ChangeOxygen"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -18.0
+offset_right = 166.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "Int"
+emoji_menu_enabled = false
 
 [node name="ChangeHealth" type="Button" parent="Container/WorldLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -98.0
-offset_top = 189.0
-offset_right = 98.0
-offset_bottom = 229.0
+offset_left = -209.5
+offset_top = 192.0
+offset_right = 31.5
+offset_bottom = 232.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Change Health"
+alignment = 0
+
+[node name="HealthTextEdit" type="TextEdit" parent="Container/WorldLabel/ChangeHealth"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -18.0
+offset_right = 166.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "Int"
+emoji_menu_enabled = false
 
 [node name="ChangeUVBattery" type="Button" parent="Container/WorldLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -113.0
-offset_top = 229.0
-offset_right = 113.0
-offset_bottom = 269.0
+offset_left = -209.5
+offset_top = 232.0
+offset_right = 31.5
+offset_bottom = 272.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
-text = "Change UV Battery"
+text = "Change Battery"
+alignment = 0
+
+[node name="uvBatteryTextEdit" type="TextEdit" parent="Container/WorldLabel/ChangeUVBattery"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -18.0
+offset_right = 166.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "Int"
+emoji_menu_enabled = false
 
 [node name="DuckTheDeath" type="Button" parent="Container/WorldLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -113.0
-offset_top = 269.0
-offset_right = 113.0
-offset_bottom = 309.0
+offset_left = -208.5
+offset_top = 272.0
+offset_right = 30.5
+offset_bottom = 312.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
 theme_override_font_sizes/font_size = 32
 text = "Duck the Death"
+alignment = 0
+
+[node name="DeathTextEdit" type="TextEdit" parent="Container/WorldLabel/DuckTheDeath"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -18.0
+offset_right = 166.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
+placeholder_text = "Bool"
+emoji_menu_enabled = false
+
+[connection signal="pressed" from="Container/LobbyLabel/GiveItem" to="." method="_on_give_item_pressed"]
+[connection signal="pressed" from="Container/LobbyLabel/ChangeDay" to="." method="_on_change_day_pressed"]
+[connection signal="pressed" from="Container/LobbyLabel/ChangeMoney" to="." method="_on_change_money_pressed"]
+[connection signal="pressed" from="Container/LobbyLabel/AdvanceStockMartket" to="." method="_on_advance_stock_martket_pressed"]
+[connection signal="pressed" from="Container/LobbyLabel/RerollMissions" to="." method="_on_reroll_missions_pressed"]
+[connection signal="pressed" from="Container/WorldLabel/GiveItems" to="." method="_on_give_items_pressed"]
+[connection signal="pressed" from="Container/WorldLabel/ChangePosition" to="." method="_on_change_position_pressed"]
+[connection signal="pressed" from="Container/WorldLabel/ChangeOxygen" to="." method="_on_change_oxygen_pressed"]
+[connection signal="pressed" from="Container/WorldLabel/ChangeHealth" to="." method="_on_change_health_pressed"]
+[connection signal="pressed" from="Container/WorldLabel/ChangeUVBattery" to="." method="_on_change_uv_battery_pressed"]
+[connection signal="pressed" from="Container/WorldLabel/DuckTheDeath" to="." method="_on_duck_the_death_pressed"]

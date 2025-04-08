@@ -132,7 +132,6 @@ func _ready():
 	$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = false
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
 	$Camera2D/HUD/Lobby/LoadingPanel.visible = false
-	$Camera2D/HUD/Lobby/RerollButton.visible = false
 	
 	var file = FileAccess.open(missions_path, FileAccess.READ)
 	if file:
@@ -456,7 +455,6 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = true
 	$Camera2D/HUD/Lobby/InfoPanel.visible = true
 	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = true
-	$Camera2D/HUD/Lobby/RerollButton.visible = true
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
 	$Camera2D/HUD/Lobby/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
@@ -501,7 +499,6 @@ func _on_back_to_lobby_button_pressed() -> void:
 	$Camera2D/HUD/Lobby/InfoPanel.visible = false
 	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
-	$Camera2D/HUD/Lobby/RerollButton.visible = false
 
 func _select_mission_button_info_panel_pressed() -> void:
 	selecting_mission = false
@@ -511,7 +508,6 @@ func _select_mission_button_info_panel_pressed() -> void:
 	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false
 	$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = false
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
-	$Camera2D/HUD/Lobby/RerollButton.visible = false
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func load_skin():
@@ -556,13 +552,6 @@ func get_pages():
 	gamma_ammount =  get_asteroids_per_field("Gamma Field")
 	omega_ammount =  get_asteroids_per_field("Omega Field")
 	koppa_ammount =  get_asteroids_per_field("Koppa Belt")
-	
-func _on_reroll_button_pressed() -> void:
-	current_page = 1
-	save_asteroid_data()
-	get_asteroid_info()
-	get_asteroid_info()
-	get_pages()
 
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects
