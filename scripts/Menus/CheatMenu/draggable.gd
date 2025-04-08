@@ -11,6 +11,21 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_pressed("Cheat_Menu"):
+		match get_tree().current_scene.name:
+			"AsteroidSelector": 
+				$Container/WorldLabel/GiveItems.disabled = true
+				$Container/WorldLabel/ChangePosition.disabled = true
+				$Container/WorldLabel/ChangeOxygen.disabled = true
+				$Container/WorldLabel/ChangeHealth.disabled = true
+				$Container/WorldLabel/ChangeUVBattery.disabled = true
+				$Container/WorldLabel/DuckTheDeath.disabled = true
+			"World":
+				$Container/LobbyLabel/GiveItem.disabled = true
+				$Container/LobbyLabel/ChangeDay.disabled = true
+				$Container/LobbyLabel/ChangeMoney.disabled = true
+				$Container/LobbyLabel/AdvanceStockMartket.disabled = true
+				$Container/LobbyLabel/RerollMissions.disabled = true
+		
 		if visible == true:
 			visible = false
 		elif visible == false:
