@@ -26,10 +26,12 @@ func _on_feedback_button_pressed() -> void:
 func _on_go_to_desktop_button_pressed() -> void:
 	more_days()
 	keep_inventory()
+	advance_stock_the_market()
 	get_tree().quit()
 
 func _on_abort_mission_button_pressed() -> void:
 	more_days()
+	advance_stock_the_market()
 	keep_inventory()
 	
 	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
@@ -154,3 +156,22 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
 		mouse_sound.pitch_scale = 0.75
 		mouse_sound.play()
+
+func advance_stock_the_market():
+	var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
+	var vlines : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100]
+	var market_path = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
+	var market_config = ConfigFile.new()
+	market_config.load(market_path)
+	var new_market : Dictionary = {}
+
+	for companie in companies_names:
+		for i in range(1, 13):
+			var stock_value = market_config.get_value("stock", companie + str(i + 1))
+			stock_value = Vector2(vlines[i - 1], stock_value.y)  
+			new_market[companie + str(i)] = stock_value
+		new_market[companie + str(13)] = Vector2(1188, randi_range(0, 800))
+	
+	for key in new_market.keys():
+		market_config.set_value("stock", key, new_market[key])
+	market_config.save(market_path)

@@ -561,6 +561,9 @@ offset_top = -243.0
 offset_right = 2391.0
 offset_bottom = 1198.0
 
+[node name="BaWFadeInTimer" type="Timer" parent="Player/HUD/BlackAndWhite"]
+one_shot = true
+
 [node name="CheatMenu" parent="Player/HUD" instance=ExtResource("7_7iits")]
 offset_left = 7.0
 offset_top = 3.0

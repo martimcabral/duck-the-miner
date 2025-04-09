@@ -75,14 +75,7 @@ func _ready() -> void:
 			$Background/StockPanel.add_child(vline)
 			$Background/StockPanel.add_child(hline)
 	
-	if GetSaveFile.save_being_used != 0:
-		create_chart("00CFFF", "Fyction")
-		create_chart("e0163e", "Haznuclear")
-		create_chart("d63ffc", "Owlwing")
-		create_chart("ffc858", "Bill")
-		create_chart("e45c24", "Interstellar")
-		create_chart("14c020", "Anura")
-		create_chart("e0d5d5", "Octane")
+	create_all_charts()
 
 func create_chart(cor : Color, nome : String):
 	var stored_chart_points : Array = []
@@ -112,6 +105,7 @@ func create_chart(cor : Color, nome : String):
 	line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	
 	$Background/StockPanel.add_child(line)
+
 func check_graph(toggled_on : bool, nome : String):
 	$CompanyLogo.texture = load(companies_logos[nome])
 	if toggled_on == true:
@@ -131,3 +125,21 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.stream = load("res://sounds/sound_effects/mining2.ogg")
 		mouse_sound.pitch_scale = 5
 		mouse_sound.play()
+
+func create_all_charts():
+	if GetSaveFile.save_being_used != 0:
+		create_chart("00CFFF", "Fyction")
+		create_chart("e0163e", "Haznuclear")
+		create_chart("d63ffc", "Owlwing")
+		create_chart("ffc858", "Bill")
+		create_chart("e45c24", "Interstellar")
+		create_chart("14c020", "Anura")
+		create_chart("e0d5d5", "Octane")
+
+func delete_older_graph():
+	if GetSaveFile.save_being_used != 0:
+		for linha in $Background/StockPanel.get_children():
+			for nome in companies_names:
+				if linha is Line2D:
+					if linha.get_meta("linename") == nome:
+						linha.queue_free()

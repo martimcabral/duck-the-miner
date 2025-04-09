@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cff2dwgei60p0"]
+[gd_scene load_steps=12 format=3 uid="uid://cff2dwgei60p0"]
 
 [ext_resource type="Script" uid="uid://bfc4nr5x0kpsu" path="res://scripts/Menus/cheat_menu.gd" id="1_fpibp"]
 [ext_resource type="FontFile" uid="uid://rsp42f6c2xb0" path="res://assets/fonts/liner-BMP14.ttf" id="2_6vqmr"]
@@ -14,6 +14,20 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vqmr"]
+bg_color = Color(0, 0, 0, 0.564706)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wpthk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7uu3y"]
+bg_color = Color(0.0846899, 0.0846899, 0.0846899, 0.564706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glt2k"]
+bg_color = Color(7.58059e-07, 0.360965, 0.137013, 0.564706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xd6md"]
+bg_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vqmr"]
 
@@ -100,69 +114,27 @@ text = "Lobby"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GiveItem" type="Button" parent="Container/LobbyLabel" groups=["Buttons"]]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -177.5
-offset_top = 87.0
-offset_right = 47.5
-offset_bottom = 127.0
-grow_horizontal = 2
-theme_override_colors/font_disabled_color = Color(0, 0.244867, 0.0834205, 1)
-theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
-theme_override_font_sizes/font_size = 32
-text = "Give Items"
-alignment = 0
-
-[node name="ItemTextEdit" type="TextEdit" parent="Container/LobbyLabel/GiveItem"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 237.0
-offset_top = -17.0
-offset_right = 311.0
-offset_bottom = 18.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
-placeholder_text = "String"
-emoji_menu_enabled = false
-
-[node name="AmountTextEdit" type="TextEdit" parent="Container/LobbyLabel/GiveItem"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 320.0
-offset_top = -16.0
-offset_right = 390.0
-offset_bottom = 19.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
-placeholder_text = "Int"
-emoji_menu_enabled = false
-
 [node name="ChangeDay" type="Button" parent="Container/LobbyLabel" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -178.5
-offset_top = 127.0
+offset_top = 106.0
 offset_right = 47.5
-offset_bottom = 167.0
+offset_bottom = 146.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Change Day"
 alignment = 0
 
@@ -189,13 +161,21 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -179.0
-offset_top = 167.0
+offset_top = 146.0
 offset_right = 47.0
-offset_bottom = 207.0
+offset_bottom = 186.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Change Money"
 alignment = 0
 
@@ -222,13 +202,21 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -98.5
-offset_top = 219.0
+offset_top = 198.0
 offset_right = 127.5
-offset_bottom = 259.0
+offset_bottom = 238.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Foward Market"
 alignment = 0
 
@@ -238,13 +226,21 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -99.0
-offset_top = 261.0
+offset_top = 240.0
 offset_right = 127.0
-offset_bottom = 301.0
+offset_bottom = 280.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Reroll Missions"
 alignment = 0
 
@@ -276,8 +272,16 @@ offset_right = 32.5
 offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Give Items"
 alignment = 0
 
@@ -330,8 +334,16 @@ offset_right = 32.0
 offset_bottom = 152.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Change Position"
 alignment = 0
 
@@ -384,8 +396,16 @@ offset_right = 32.5
 offset_bottom = 192.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Change Oxygen"
 alignment = 0
 
@@ -419,8 +439,16 @@ offset_right = 31.5
 offset_bottom = 232.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Change Health"
 alignment = 0
 
@@ -454,8 +482,16 @@ offset_right = 31.5
 offset_bottom = 272.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Change Battery"
 alignment = 0
 
@@ -489,8 +525,16 @@ offset_right = 30.5
 offset_bottom = 312.0
 grow_horizontal = 2
 theme_override_colors/font_disabled_color = Color(0, 0.243137, 0.0823529, 1)
+theme_override_colors/font_hover_color = Color(0, 0.819608, 0.337255, 1)
 theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_colors/font_focus_color = Color(0, 0.780392, 0.431373, 1)
+theme_override_colors/font_pressed_color = Color(6.59391e-06, 0.780138, 0.433279, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxFlat_6vqmr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wpthk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7uu3y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_glt2k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_xd6md")
 text = "Duck the Death"
 alignment = 0
 
@@ -513,7 +557,6 @@ theme_override_styles/read_only = SubResource("StyleBoxEmpty_dqi5g")
 placeholder_text = "Bool"
 emoji_menu_enabled = false
 
-[connection signal="pressed" from="Container/LobbyLabel/GiveItem" to="." method="_on_give_item_pressed"]
 [connection signal="pressed" from="Container/LobbyLabel/ChangeDay" to="." method="_on_change_day_pressed"]
 [connection signal="pressed" from="Container/LobbyLabel/ChangeMoney" to="." method="_on_change_money_pressed"]
 [connection signal="pressed" from="Container/LobbyLabel/AdvanceStockMartket" to="." method="_on_advance_stock_martket_pressed"]
