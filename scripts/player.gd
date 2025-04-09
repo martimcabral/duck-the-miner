@@ -385,6 +385,23 @@ func load_skin():
 
 func explotanato():
 	var items = []
-	for i in $HUD/ItemList.item_count:
-		items.append($HUD/ItemList.get_item_text(i))
+	
+	for i in range($HUD/ItemList.item_count):
+		var item = $HUD/ItemList.get_item_text(i)
+		var parts = item.rsplit(" ", 1) asdas
+		if parts.size() == 2:
+			var nome = parts[0]asd
+			var quantity = int(parts[1])
+			items.append([nome, quantity])asd
+
+			var packed_scene = load("res://scenes/misc/items.tscn")
+			var instance = packed_scene.instantiate()
+
+			for body in instance.get_children():
+				if body is RigidBody2D:
+					if body.editor_description == nome:
+						instance.position = Vector2(16, 16) 
+						get_parent().add_child(instance)
+						break 
+
 	print(items)
