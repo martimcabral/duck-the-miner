@@ -388,11 +388,11 @@ func explotanato():
 	
 	for i in range($HUD/ItemList.item_count):
 		var item = $HUD/ItemList.get_item_text(i)
-		var parts = item.rsplit(" ", 1) asdas
+		var parts = item.rsplit(" ", 1) #asdas
 		if parts.size() == 2:
-			var nome = parts[0]asd
+			var nome = parts[0] #asd
 			var quantity = int(parts[1])
-			items.append([nome, quantity])asd
+			items.append([nome, quantity]) #asd
 
 			var packed_scene = load("res://scenes/misc/items.tscn")
 			var instance = packed_scene.instantiate()

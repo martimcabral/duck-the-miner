@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=76 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/skins/1/duck_walking.png" id="2_815s6"]
@@ -21,17 +21,10 @@
 [ext_resource type="Texture2D" uid="uid://bq5r4ddf8jb43" path="res://assets/textures/players/skins/4/duck_flying.png" id="8_jrggs"]
 [ext_resource type="AudioStream" uid="uid://c3kmi1pd30e6n" path="res://sounds/sound_effects/mining4.ogg" id="9_4jbyg"]
 [ext_resource type="Texture2D" uid="uid://cu34mbjei30p7" path="res://assets/textures/players/skins/3/duck_squat.png" id="9_tbdlt"]
-[ext_resource type="Texture2D" uid="uid://cjtat8pahmy7l" path="res://assets/textures/players/status/health_empty.png" id="9_xk1ih"]
 [ext_resource type="Texture2D" uid="uid://dmhdheeiafvk1" path="res://assets/textures/players/skins/3/duck_walking.png" id="10_hal6l"]
-[ext_resource type="Texture2D" uid="uid://dlgpxnlf8ckyo" path="res://assets/textures/players/status/temperature_empty.png" id="10_krbit"]
-[ext_resource type="Texture2D" uid="uid://cedbcgmeyqrbb" path="res://assets/textures/players/status/health_full.png" id="10_mkla5"]
 [ext_resource type="Texture2D" uid="uid://b4qfd8lqkop46" path="res://assets/textures/players/skins/4/duck_walking.png" id="10_s8yc6"]
-[ext_resource type="Texture2D" uid="uid://th7mth63l2ha" path="res://assets/textures/players/status/empty_circle.png" id="11_f2tsg"]
-[ext_resource type="Texture2D" uid="uid://6qb1b4n54kt8" path="res://assets/textures/players/status/temperature_full.png" id="11_xclme"]
 [ext_resource type="AudioStream" uid="uid://by78b6htnt5ir" path="res://sounds/sound_effects/place_block.ogg" id="12_r1vvj"]
 [ext_resource type="AudioStream" uid="uid://bo14ppma24hbf" path="res://sounds/sound_effects/quack.ogg" id="13_2b2kh"]
-[ext_resource type="Texture2D" uid="uid://b0f58cyexu4f4" path="res://assets/textures/players/status/oxygen_full.png" id="13_fiy22"]
-[ext_resource type="Texture2D" uid="uid://bekjnl7clpv2l" path="res://assets/textures/players/status/uv_full.png" id="14_6fg1g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
 atlas = ExtResource("2_gl8cc")
@@ -582,128 +575,81 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
 
-[node name="HealthStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 40.1533
-offset_top = -232.062
-offset_right = 296.153
-offset_bottom = 23.9384
-grow_vertical = 0
-scale = Vector2(0.75, 0.75)
-tooltip_text = "Health"
-value = 100.0
-fill_mode = 4
-radial_initial_angle = 127.0
-radial_fill_degrees = 285.0
-texture_under = ExtResource("9_xk1ih")
-texture_progress = ExtResource("10_mkla5")
-
-[node name="HealthText" type="RichTextLabel" parent="Camera2D/HUD/Stats/HealthStat"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 91.0
-offset_right = 159.0
-offset_bottom = 131.0
+[node name="MaxHealth" type="Label" parent="Camera2D/HUD/Stats"]
+offset_left = 112.847
+offset_top = 962.062
+offset_right = 149.847
+offset_bottom = 978.062
 tooltip_text = "Health"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/normal_font_size = 38
-bbcode_enabled = true
-text = "n/a"
+text = "/ 999"
 
-[node name="TemperatureStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
-editor_description = "This progress bar is not supposed to actually do any progress."
+[node name="CurrentHealth" type="Label" parent="Camera2D/HUD/Stats"]
+offset_left = 79.0
+offset_top = 962.25
+offset_right = 106.0
+offset_bottom = 978.25
+tooltip_text = "Health"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TemperatureCurrent" type="Label" parent="Camera2D/HUD/Stats"]
 texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 40.1533
-offset_top = -232.062
-offset_right = 296.153
-offset_bottom = 23.9384
+offset_top = -33.0
+offset_right = 20.0
+offset_bottom = -10.0
 grow_vertical = 0
-scale = Vector2(0.75, 0.75)
-tooltip_text = "Temperature"
-value = 100.0
-fill_mode = 4
-texture_under = ExtResource("10_krbit")
-texture_progress = ExtResource("11_xclme")
-tint_progress = Color(0.266667, 0.8, 0.16, 1)
-
-[node name="TemperatureText" type="RichTextLabel" parent="Camera2D/HUD/Stats/TemperatureStat"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 77.0
-offset_top = 125.0
-offset_right = 180.0
-offset_bottom = 182.0
 tooltip_text = "Temperature"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/normal_font_size = 38
-bbcode_enabled = true
 text = "0ᵒ"
 
-[node name="OxygenStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 53.0
-offset_top = -311.0
-offset_right = 309.0
-offset_bottom = -55.0
-grow_vertical = 0
-scale = Vector2(0.25, 0.25)
-tooltip_text = "Oxygen"
-max_value = 300.0
-value = 300.0
-fill_mode = 4
-texture_under = ExtResource("11_f2tsg")
-texture_progress = ExtResource("13_fiy22")
-
-[node name="OxygenText" type="RichTextLabel" parent="Camera2D/HUD/Stats/OxygenStat"]
-layout_mode = 0
-offset_left = 70.0
-offset_top = 97.0
-offset_right = 191.0
-offset_bottom = 163.0
+[node name="OxygenCurrent" type="Label" parent="Camera2D/HUD/Stats"]
+offset_left = 31.0
+offset_top = 713.0
+offset_right = 58.0
+offset_bottom = 729.0
 tooltip_text = "Oxygen"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/normal_font_size = 65
-bbcode_enabled = true
 text = "000"
 
-[node name="uvStat" type="TextureProgressBar" parent="Camera2D/HUD/Stats"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 159.0
-offset_top = -311.0
-offset_right = 415.0
-offset_bottom = -55.0
-grow_vertical = 0
-scale = Vector2(0.25, 0.25)
-tooltip_text = "UV Flashlight Battery"
-value = 100.0
-fill_mode = 4
-texture_under = ExtResource("11_f2tsg")
-texture_progress = ExtResource("14_6fg1g")
+[node name="OxygenMax" type="Label" parent="Camera2D/HUD/Stats"]
+offset_left = 71.0
+offset_top = 713.0
+offset_right = 98.0
+offset_bottom = 729.0
+tooltip_text = "Oxygen"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+text = "/ 999"
 
-[node name="uvText" type="RichTextLabel" parent="Camera2D/HUD/Stats/uvStat"]
-layout_mode = 0
-offset_left = 69.0
-offset_top = 98.0
-offset_right = 194.0
-offset_bottom = 164.0
+[node name="UvCurrent" type="Label" parent="Camera2D/HUD/Stats"]
+offset_left = 176.0
+offset_top = 714.0
+offset_right = 203.0
+offset_bottom = 730.0
 tooltip_text = "UV Flashlight Battery"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/normal_font_size = 65
-bbcode_enabled = true
 text = "000"
+
+[node name="UvMax" type="Label" parent="Camera2D/HUD/Stats"]
+offset_left = 208.0
+offset_top = 714.0
+offset_right = 245.0
+offset_bottom = 730.0
+tooltip_text = "UV Flashlight Battery"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+text = "/ 999"
 
 [node name="Hotbar" type="CanvasLayer" parent="Camera2D/HUD"]
 
