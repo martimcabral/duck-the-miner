@@ -574,82 +574,135 @@ Y: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
 
-[node name="MaxHealth" type="Label" parent="Camera2D/HUD/Stats"]
-offset_left = 112.847
-offset_top = 962.062
-offset_right = 149.847
-offset_bottom = 978.062
-tooltip_text = "Health"
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-text = "/ 999"
-
-[node name="CurrentHealth" type="Label" parent="Camera2D/HUD/Stats"]
-offset_left = 79.0
-offset_top = 962.25
-offset_right = 106.0
-offset_bottom = 978.25
-tooltip_text = "Health"
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-text = "000"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TemperatureCurrent" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="Temperature" type="Label" parent="Camera2D/HUD/Stats"]
 texture_filter = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -33.0
-offset_right = 20.0
-offset_bottom = -10.0
+offset_left = 174.0
+offset_top = -592.0
+offset_right = 203.0
+offset_bottom = -548.0
 grow_vertical = 0
 tooltip_text = "Temperature"
+mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
 text = "0ᵒ"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="OxygenCurrent" type="Label" parent="Camera2D/HUD/Stats"]
-offset_left = 31.0
-offset_top = 713.0
-offset_right = 58.0
-offset_bottom = 729.0
-tooltip_text = "Oxygen"
+[node name="MaxHealth" type="Label" parent="Camera2D/HUD/Stats"]
+modulate = Color(1, 0.314659, 0.204057, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -581.0
+offset_right = 96.0
+offset_bottom = -549.0
+grow_vertical = 0
+tooltip_text = "Health"
+mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "999"
+vertical_alignment = 1
+
+[node name="CurrentHealth" type="Label" parent="Camera2D/HUD/Stats"]
+modulate = Color(1, 0.314659, 0.204057, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -581.0
+offset_right = 134.0
+offset_bottom = -549.0
+grow_vertical = 0
+tooltip_text = "Health"
+mouse_filter = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
 text = "000"
+vertical_alignment = 1
 
-[node name="OxygenMax" type="Label" parent="Camera2D/HUD/Stats"]
-offset_left = 71.0
-offset_top = 713.0
-offset_right = 98.0
-offset_bottom = 729.0
+[node name="MaxOxygen" type="Label" parent="Camera2D/HUD/Stats"]
+modulate = Color(0.176, 0.88, 0.305067, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -616.0
+offset_right = 96.0
+offset_bottom = -584.0
+grow_vertical = 0
 tooltip_text = "Oxygen"
+mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
-text = "/ 999"
+theme_override_font_sizes/font_size = 32
+text = "999"
+vertical_alignment = 1
 
-[node name="UvCurrent" type="Label" parent="Camera2D/HUD/Stats"]
-offset_left = 176.0
-offset_top = 714.0
-offset_right = 203.0
-offset_bottom = 730.0
-tooltip_text = "UV Flashlight Battery"
+[node name="CurrentOxygen" type="Label" parent="Camera2D/HUD/Stats"]
+modulate = Color(0.176, 0.88, 0.305067, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -616.0
+offset_right = 134.0
+offset_bottom = -584.0
+grow_vertical = 0
+tooltip_text = "Oxygen"
+mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
 text = "000"
+vertical_alignment = 1
 
-[node name="UvMax" type="Label" parent="Camera2D/HUD/Stats"]
-offset_left = 208.0
-offset_top = 714.0
-offset_right = 245.0
-offset_bottom = 730.0
+[node name="MaxUv" type="Label" parent="Camera2D/HUD/Stats"]
+modulate = Color(0.706873, 0.203922, 1, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -652.0
+offset_right = 96.0
+offset_bottom = -620.0
+grow_vertical = 0
 tooltip_text = "UV Flashlight Battery"
+mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
-text = "/ 999"
+theme_override_font_sizes/font_size = 32
+text = "999"
+vertical_alignment = 1
+
+[node name="CurrentUv" type="Label" parent="Camera2D/HUD/Stats"]
+modulate = Color(0.706873, 0.203922, 1, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -652.0
+offset_right = 134.0
+offset_bottom = -620.0
+grow_vertical = 0
+tooltip_text = "UV Flashlight Battery"
+mouse_filter = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "000"
+vertical_alignment = 1
 
 [node name="Hotbar" type="CanvasLayer" parent="Camera2D/HUD"]
 

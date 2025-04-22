@@ -1,6 +1,12 @@
 extends CharacterBody2D
 
 var current_item = 1
+var current_health : int = 100
+var current_oxygen : int = 300
+var current_uv : int = 100
+var max_health : int = 100
+var max_oxygen : int = 300
+var max_uv : int = 100
 var flashlight : bool = false
 
 var speed : int = 100
@@ -35,6 +41,10 @@ var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin
 var window_mode = 0
 
 func _ready():
+	var current_health = 999
+	var current_oxygen = 999
+	var current_uv = 999
+	
 	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
 	
@@ -68,17 +78,23 @@ func player_movement(input, delta):
 			velocity.y += falling_speed * delta
 
 func _process(delta):
+	$Camera2D/HUD/Stats/CurrentHealth.text = " / " + str(current_health)
+	$Camera2D/HUD/Stats/CurrentOxygen.text = " / " + str(current_oxygen)
+	$Camera2D/HUD/Stats/CurrentUv.text = " / " + str(current_uv)
+	$Camera2D/HUD/Stats/MaxHealth.text = str(max_health)
+	$Camera2D/HUD/Stats/MaxOxygen.text = str(max_oxygen)
+	$Camera2D/HUD/Stats/MaxUv.text = str(max_uv)
+	
 	BaW_time_remaining =  $HUD/BlackAndWhite/BaWFadeInTimer.wait_time - $HUD/BlackAndWhite/BaWFadeInTimer.time_left
 	
 	if is_duck_dead == true:
-		$Camera2D/HUD/Stats/HealthStat.value = 0
+		current_health = 0
 		$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
 		$HUD/BlackAndWhite.visible = true
 		if do_death_once == false:
 			$HUD/BlackAndWhite/BaWFadeInTimer.start()
 			$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
 			do_death_once = true
-			explotanato()
 		$HUD/BlackAndWhite.material.set_shader_parameter("intensity", BaW_time_remaining)
 	else:
 		$HUD/BlackAndWhite.material.set_shader_parameter("intensity", 0)
@@ -98,18 +114,13 @@ func _process(delta):
 					$Flashlight.energy = 1.75
 					flashlight = true
 	
-	if $Camera2D/HUD/Stats/uvStat.value == 0:
+	if current_uv == 0:
 		flashlight = false
 		$Flashlight.energy = 0
 	
-	$Camera2D/HUD/Stats/uvStat/uvText.text = "[center]%s[/center]" % str(int($Camera2D/HUD/Stats/uvStat.value))
-	
-	if $Camera2D/HUD/Stats/OxygenStat.value == 0:
-		$Camera2D/HUD/Stats/OxygenStat.value = 300
-		$Camera2D/HUD/Stats/HealthStat.value -= 5
-		
-	$Camera2D/HUD/Stats/OxygenStat/OxygenText.text = "[center]%s[/center]" % str(int($Camera2D/HUD/Stats/OxygenStat.value))
-	$Camera2D/HUD/Stats/HealthStat/HealthText.text = "[center]%s[/center]" % str(int($Camera2D/HUD/Stats/HealthStat.value * 1))
+	if current_oxygen == 0:
+		current_oxygen = 300
+		current_health -= 5
 	
 	if $"../PauseMenu/GUI_Pause".visible == false:
 		if is_duck_dead == false:
@@ -350,11 +361,11 @@ func _on_minning_cooldown_timeout() -> void:
 func _on_uv_battery_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
 		if flashlight == true:
-			$Camera2D/HUD/Stats/uvStat.value -= 1
+			current_uv -= 1
 
 func _on_oxygen_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
-		$Camera2D/HUD/Stats/OxygenStat.value -= 1
+		current_oxygen -= 1
 
 func _on_tab_bar_tab_clicked(tab: int) -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
@@ -382,26 +393,3 @@ func load_skin():
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 1))
 		print("[player.gd] Current Skin: " + str(skin_selected))
-
-func explotanato():
-	var items = []
-	
-	for i in range($HUD/ItemList.item_count):
-		var item = $HUD/ItemList.get_item_text(i)
-		var parts = item.rsplit(" ", 1) #asdas
-		if parts.size() == 2:
-			var nome = parts[0] #asd
-			var quantity = int(parts[1])
-			items.append([nome, quantity]) #asd
-
-			var packed_scene = load("res://scenes/misc/items.tscn")
-			var instance = packed_scene.instantiate()
-
-			for body in instance.get_children():
-				if body is RigidBody2D:
-					if body.editor_description == nome:
-						instance.position = Vector2(16, 16) 
-						get_parent().add_child(instance)
-						break 
-
-	print(items)

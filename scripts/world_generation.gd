@@ -40,13 +40,19 @@ func _process(_delta: float) -> void:
 	$Player/HUD/ItemList.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/VersionDisplay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/PlayerPosition.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/HealthStat.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/TemperatureStat.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/OxygenStat.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/uvStat.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
 	
+	$Player/Camera2D/HUD/Stats/Temperature.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/MaxHealth.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/CurrentHealth.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/MaxOxygen.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/CurrentOxygen.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/MaxUv.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/CurrentUv.modulate.a8 = fade_in
+
+
+
 func start_music():
 	var random_music = randi_range(1, 3)
 	if asteroid_biome == "Stony":
@@ -99,9 +105,9 @@ func _ready():
 	var inverted_temperature_value = 1.0 - temperature_color_value
 	var hue = inverted_temperature_value * max_hue
 	var temperature_color = Color.from_hsv(hue / 360.0, 0.8, 0.8, 1)  # Convert hue to 0-1 range
-	$Player/Camera2D/HUD/Stats/TemperatureStat.tint_progress = temperature_color
+	$Player/Camera2D/HUD/Stats/Temperature.modulate = temperature_color
 	
-	$Player/Camera2D/HUD/Stats/TemperatureStat/TemperatureText.text = "[center]%s[/center]" % str(int(asteroid_temperature)) + "ᵒC"
+	$Player/Camera2D/HUD/Stats/Temperature.text = str(asteroid_temperature) + "ᵒC"
 	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true
