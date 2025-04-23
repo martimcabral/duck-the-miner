@@ -193,7 +193,7 @@ func _on_creator_button_pressed() -> void:
 	
 	for i in range(companies_names.size()):
 		for num in range(1, 14):
-			var random_point = Vector2(vlines[num-1], randi_range(1, 800))
+			var random_point = Vector2(vlines[num-1], randi_range(16, 800))
 			stock_config.set_value("stock", str(companies_names[i] + str(num)), random_point)
 	stock_config.save(stock_path)
 	

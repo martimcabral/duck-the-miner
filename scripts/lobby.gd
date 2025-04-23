@@ -72,6 +72,7 @@ var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/mon
 var missions_path : String = str("user://save/", GetSaveFile.save_being_used, "/missions.json")
 var resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
+var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
 var pricing_path : String = str("user://pricing.cfg")
 
 var selected_item_name : String = ""
@@ -91,6 +92,8 @@ var koppa_ammount : int = 0
 @onready var item_list = $Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/ItemList
 var item_selected : int = -1
 var selected_inventory = 0
+
+var difficulty : String
 
 func _ready():
 	var raw_config = ConfigFile.new()
@@ -180,7 +183,10 @@ func _enter_tree() -> void:
 	target_zoom = $SolarSystem.scale.x
 
 func _process(delta: float) -> void:
-	if selecting_mission :
+	if selecting_mission:
+		$UniverseBackground.position = get_global_mouse_position() * 0.01 - Vector2(1500, 1500)
+	
+	if selecting_mission:
 		$Camera2D/HUD/Lobby/ZoomRuler.visible = true
 		if Input.is_action_just_pressed("Universe_Zoom_In"):
 			target_zoom = clamp(target_zoom + 0.05, min_zoom, max_zoom)
@@ -619,8 +625,18 @@ func _on_sell_button_pressed() -> void:
 	item_list.remove_item(item_selected)
 	var price = get_price(selected_item_name)
 	remove_item_from_inventory(selected_item_name)
-	
 	var money_earned = price * selected_item_quantity
+	
+	var difficulty_file = ConfigFile.new()
+	difficulty_file.load(difficulty_path)
+	difficulty = difficulty_file.get_value("difficulty", "current")
+	print("[lobby.gd/_on_sell_button_pressed] Current Difficulty: ", difficulty)
+	match difficulty:
+		"easy": money_earned *= 1.10
+		"hard": money_earned *= 0.9
+	
+	money_earned = round(money_earned)
+	
 	print("Item Price: ", price)
 	print("Money Earned: ", money_earned)
 	

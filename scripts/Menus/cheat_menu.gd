@@ -79,6 +79,7 @@ func _on_advance_stock_martket_pressed() -> void:
 		
 		$"../../StockTheMarket".delete_older_graph()
 		$"../../StockTheMarket".create_all_charts()
+		$"../../StockTheMarket".get_companies_values()
 
 func _on_reroll_missions_pressed() -> void:
 	if get_tree().current_scene.name == "AsteroidSelector":

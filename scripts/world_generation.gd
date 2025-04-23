@@ -51,62 +51,46 @@ func _process(_delta: float) -> void:
 	$Player/Camera2D/HUD/Stats/MaxUv.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/CurrentUv.modulate.a8 = fade_in
 
-
-
 func start_music():
 	var random_music = randi_range(1, 3)
 	if asteroid_biome == "Stony":
 		match random_music:
-			1:
-				$WorldMusic/Enter.play()
-			2:
-				$WorldMusic/Wave.play()
-			3:
-				$WorldMusic/Void.play()
+			1: $WorldMusic/Enter.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Void.play()
 	elif asteroid_biome == "Vulcanic":
 		match random_music:
-			1:
-				$WorldMusic/Rift.play()
-			2:
-				$WorldMusic/Wave.play()
-			3:
-				$WorldMusic/Void.play()
+			1: $WorldMusic/Rift.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Void.play()
 	elif asteroid_biome == "Frozen":
 		match random_music:
-			1:
-				$WorldMusic/Portal.play()
-			2:
-				$WorldMusic/Enter.play()
-			3:
-				$WorldMusic/Rift.play()
+			1: $WorldMusic/Portal.play()
+			2: $WorldMusic/Enter.play()
+			3: $WorldMusic/Rift.play()
 	elif asteroid_biome == "Swamp":
 		match random_music:
-			1:
-				$WorldMusic/Void.play()
-			2:
-				$WorldMusic/Enter.play()
-			3:
-				$WorldMusic/Wave.play()
+			1: $WorldMusic/Void.play()
+			2: $WorldMusic/Enter.play()
+			3: $WorldMusic/Wave.play()
 	elif asteroid_biome == "Desert":
 		match random_music:
-			1:
-				$WorldMusic/Rift.play()
-			2:
-				$WorldMusic/Wave.play()
-			3:
-				$WorldMusic/Portal.play()
+			1: $WorldMusic/Rift.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Portal.play()
 
 func _ready():
 	var min_temp = -10  # Minimum temperature
 	var max_temp = 40   # Maximum temperature
-	var max_hue = 235   # Maximum hue value in your system
+	var max_hue = 255   # Maximum hue value in your system
+	
 	var clamped_temp = clamp(asteroid_temperature, min_temp, max_temp)
 	var temperature_color_value = (clamped_temp - min_temp) / (max_temp - min_temp)
 	var inverted_temperature_value = 1.0 - temperature_color_value
 	var hue = inverted_temperature_value * max_hue
 	var temperature_color = Color.from_hsv(hue / 360.0, 0.8, 0.8, 1)  # Convert hue to 0-1 range
-	$Player/Camera2D/HUD/Stats/Temperature.modulate = temperature_color
 	
+	$Player/Camera2D/HUD/Stats/Temperature.modulate = temperature_color
 	$Player/Camera2D/HUD/Stats/Temperature.text = "T: " + str(int(asteroid_temperature)) + "°C"
 	
 	$Player/HUD/AsteroidTitle.visible = true

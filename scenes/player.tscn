@@ -486,7 +486,11 @@ shape = SubResource("CircleShape2D_ig4b6")
 debug_color = Color(1, 0, 0, 0.203922)
 
 [node name="MiningCooldown" type="Timer" parent="BlockRange"]
-wait_time = 0.05
+wait_time = 0.02
+autostart = true
+
+[node name="ResetUsedTiles" type="Timer" parent="BlockRange"]
+wait_time = 60.0
 autostart = true
 
 [node name="ColissionShape" type="CollisionShape2D" parent="."]
@@ -594,7 +598,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MaxHealth" type="Label" parent="Camera2D/HUD/Stats"]
-modulate = Color(1, 0.314659, 0.204057, 1)
+modulate = Color(1, 0.215686, 0.215686, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -612,7 +616,7 @@ text = "999"
 vertical_alignment = 1
 
 [node name="CurrentHealth" type="Label" parent="Camera2D/HUD/Stats"]
-modulate = Color(1, 0.314659, 0.204057, 1)
+modulate = Color(1, 0.215686, 0.215686, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -767,6 +771,7 @@ wait_time = 0.4
 autostart = true
 
 [connection signal="timeout" from="BlockRange/MiningCooldown" to="." method="_on_minning_cooldown_timeout"]
+[connection signal="timeout" from="BlockRange/ResetUsedTiles" to="." method="_on_reset_used_tiles_timeout"]
 [connection signal="tab_clicked" from="Camera2D/HUD/Hotbar/TabBar" to="." method="_on_tab_bar_tab_clicked"]
 [connection signal="timeout" from="uvBatteryConsumption" to="." method="_on_uv_battery_consumption_timeout"]
 [connection signal="timeout" from="OxygenConsumption" to="." method="_on_oxygen_consumption_timeout"]

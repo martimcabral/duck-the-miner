@@ -39,7 +39,7 @@ func _ready():
 		$DisplayPanel/FPSType.selected = config.get_value("display", "fps_limiter")
 		
 		var monitors = DisplayServer.get_screen_count()
-		print("Number of screens available: ", monitors)
+		print("[options_menu.gd] Number of screens found: ", monitors)
 		
 		for monitor in monitors:
 			$DisplayPanel/MonitorSelectorDropdown.add_item(str("Monitor: ", monitor), monitor)

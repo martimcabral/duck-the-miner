@@ -1,7 +1,9 @@
 extends Panel
 
-var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
+var stock_label_string : String = ""
 
+var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
+var companies_names_short : Array = ["FYC", "HAZ", "OWL", "BIL", "INT", "ANU", "OCT"]
 var companies_logos : Dictionary = {
 	"Fyction": "res://assets/textures/companies/fyction_enterprise.png",
 	"Haznuclear": "res://assets/textures/companies/haznuclear_power.png",
@@ -11,6 +13,26 @@ var companies_logos : Dictionary = {
 	"Anura": "res://assets/textures/companies/anura_jewelry.png",
 	"Octane": "res://assets/textures/companies/octane_works.png",
 	"Nothing": "res://assets/textures/equipment/others/the_nothing.png"
+}
+
+var companies_values : Dictionary = {
+	"Fyction": 0.0,
+	"Haznuclear": 0.0,
+	"Owlwing": 0.0,
+	"Bill": 0.0,
+	"Interstellar": 0.0,
+	"Anura": 0.0,
+	"Octane": 0.0,
+}
+
+var companies_comparisons : Dictionary = {
+	"Fyction": 0.0,
+	"Haznuclear": 0.0,
+	"Owlwing": 0.0,
+	"Bill": 0.0,
+	"Interstellar": 0.0,
+	"Anura": 0.0,
+	"Octane": 0.0,
 }
 
 func _process(_delta):
@@ -76,6 +98,7 @@ func _ready() -> void:
 			$Background/StockPanel.add_child(hline)
 	
 	create_all_charts()
+	get_companies_values()
 
 func create_chart(cor : Color, nome : String):
 	var stored_chart_points : Array = []
@@ -89,7 +112,6 @@ func create_chart(cor : Color, nome : String):
 	
 	var curve = Curve2D.new()
 	for i in stored_chart_points.size():
-		#print("STOCKMARKET: ", stored_chart_points[i])
 		curve.add_point(Vector2(stored_chart_points[i]))
 	var curve_points = curve.get_baked_points()
 	
@@ -143,3 +165,40 @@ func delete_older_graph():
 				if linha is Line2D:
 					if linha.get_meta("linename") == nome:
 						linha.queue_free()
+
+func get_companies_values():
+	if GetSaveFile.save_being_used != 0:
+		var get_stock_path = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
+		var get_stock = ConfigFile.new()
+		get_stock.load(get_stock_path)
+		
+		for companie in companies_names:
+			companies_values[companie] = get_stock.get_value("stock", companie + "13").y
+			companies_comparisons[companie] = get_stock.get_value("stock", companie + "12").y
+			companies_comparisons[companie] = companies_comparisons[companie] - companies_values[companie]
+			
+			companies_comparisons[companie] = clamp_stock(companies_comparisons[companie], -40, 40, -800, 800)
+			companies_values[companie] = clamp_stock(companies_values[companie], -20, 20, 0, 800.0) * -1
+		
+		stock_label_string = ""
+		stock_label_string += _colored(companies_comparisons["Fyction"], "FYC") + " | "
+		stock_label_string += _colored(companies_comparisons["Haznuclear"], "HAZ") + " | "
+		stock_label_string += _colored(companies_comparisons["Owlwing"], "OWL") + "\n"
+		stock_label_string += _colored(companies_comparisons["Bill"], "BIL") + " | "
+		stock_label_string += _colored(companies_comparisons["Interstellar"], "INT") + " | "
+		stock_label_string += _colored(companies_comparisons["Anura"], "ANU") + " | "
+		stock_label_string += _colored(companies_comparisons["Octane"], "OCT")
+			
+		$CurrentStockLabel.text = stock_label_string
+		print(stock_label_string)
+		print("Companie Stocks: ", companies_values)
+		print("Companie Comparisons: ", companies_comparisons)
+
+func clamp_stock(value: float, to_min : float, to_max : float, from_min : float, from_max):
+	var new_value = (value - from_min) / (from_max - from_min) * (to_max - to_min) + to_min
+	return clamp(new_value, to_min, to_max)
+
+func _colored(value: float, ticker: String) -> String: 
+	var color := "#00b54c" if value >= 0 else "#ff3737"
+	var plus_sign := "+" if value > 0 else ""
+	return "[color=%s]%s %s%.1f%%[/color]" % [color, ticker, plus_sign, value]

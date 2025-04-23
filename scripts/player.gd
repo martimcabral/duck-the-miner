@@ -305,16 +305,13 @@ func destroy_block():
 				# Check for specific tile ID
 				if not (tile_id == Vector2i(0, 1)):
 					var mining_sound_effect = randi_range(1, 4)  # Adjusted range to match sound clips
-					match mining_sound_effect:
-						1:
-							$"../Player/PlayerSounds/Mining1".play()
-						2:
-							$"../Player/PlayerSounds/Mining2".play()
-						3:
-							$"../Player/PlayerSounds/Mining3".play()
-						4:
-							$"../Player/PlayerSounds/Mining4".play()
-				
+					if randi_range(0, 2) == 1:
+						match mining_sound_effect:
+							1: $"../Player/PlayerSounds/Mining1".play()
+							2: $"../Player/PlayerSounds/Mining2".play()
+							3: $"../Player/PlayerSounds/Mining3".play()
+							4: $"../Player/PlayerSounds/Mining4".play()
+						
 					# Reduce health of the tile
 					if used_tiles[tile_pos]["health"] > 0:
 						used_tiles[tile_pos]["health"] -= 125  # Reduce health here // Pickaxe Damage
@@ -409,3 +406,7 @@ func _on_go_to_menu_timer_timeout() -> void:
 	var new_game_scene = load("res://scenes/lobby.tscn")
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
+
+func _on_reset_used_tiles_timeout() -> void:
+	print("[player.gd] Used Tiles Reseted")
+	used_tiles = {}

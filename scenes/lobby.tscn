@@ -1,16 +1,15 @@
-[gd_scene load_steps=101 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=102 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
 [ext_resource type="Texture2D" uid="uid://dfllye01n6j7y" path="res://assets/textures/universe/orbits_and_fields/thumbs/not_selected.png" id="3_copxc"]
 [ext_resource type="Texture2D" uid="uid://cf60f1i20jkyy" path="res://assets/textures/universe/backgrounds/universe_background.png" id="3_k2cb4"]
 [ext_resource type="AudioStream" uid="uid://0lcolq3mx2yw" path="res://sounds/musics/journal.ogg" id="4_8r1et"]
-[ext_resource type="Script" uid="uid://buxcv83prgodf" path="res://scripts/Menus/StockMarket/stock_the_market.gd" id="5_8ht5e"]
+[ext_resource type="Script" uid="uid://buxcv83prgodf" path="res://scripts/Menus/stock_the_market.gd" id="5_8ht5e"]
 [ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/skins/0/duck.png" id="5_enoir"]
 [ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/planets/sun.png" id="5_qdeo3"]
 [ext_resource type="Texture2D" uid="uid://bk85po3p8meqx" path="res://assets/textures/companies/fyction_enterprise.png" id="6_8tmsf"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
-[ext_resource type="Script" uid="uid://cb4mekjaghesd" path="res://scripts/Menus/StockMarket/flowing_stock_label.gd" id="6_tuh25"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
@@ -297,10 +296,10 @@ expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0xh0"]
 bg_color = Color(0.07, 0.07, 0.07, 0.823529)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -341,7 +340,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tmsf"]
-bg_color = Color(0.138909, 8.43792e-05, 0.190874, 1)
+bg_color = Color(0.1025, 0, 0.15, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
@@ -380,6 +379,10 @@ corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st18m"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oysm8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pkyx"]
+
 [node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
 
@@ -400,6 +403,7 @@ position = Vector2(-1.90735e-06, -9.53674e-07)
 [node name="Lobby" type="Panel" parent="Camera2D/HUD"]
 
 [node name="CheatMenu" parent="Camera2D/HUD/Lobby" instance=ExtResource("39_8tmsf")]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -417,10 +421,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 956.0
-offset_right = 226.0
-offset_bottom = 1016.0
+offset_left = 42.0
+offset_top = 994.0
+offset_right = 228.0
+offset_bottom = 1054.0
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 48
@@ -446,7 +450,7 @@ offset_bottom = 185.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
-position = Vector2(-18, 0)
+position = Vector2(18, 0)
 points = PackedVector2Array(468, 76, 468, 2)
 width = 4.0
 
@@ -467,7 +471,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 4.0
 offset_top = 2.0
-offset_right = 284.0
+offset_right = 285.0
 offset_bottom = 72.0
 grow_vertical = 2
 tooltip_text = "Current Day"
@@ -483,9 +487,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 11.0
+offset_left = 4.0
 offset_top = -61.0
-offset_right = 441.0
+offset_right = 484.0
 offset_bottom = -13.0
 grow_vertical = 2
 tooltip_text = "Your Debt"
@@ -502,7 +506,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -281.0
+offset_left = -432.0
+offset_top = 15.0
+offset_right = -4.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+tooltip_text = "Stock Market"
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_835bk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ucbax")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ixomp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8kv63")
+text = "Stock the Market"
+
+[node name="CompanyLiscence" type="Button" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -232.0
 offset_top = -59.0
 offset_right = -4.0
 offset_bottom = -10.0
@@ -516,30 +543,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_835bk")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ucbax")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_ixomp")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8kv63")
-text = " SLA -8.88%"
-
-[node name="CompanyLiscence" type="Button" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel" groups=["Buttons"]]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -431.0
-offset_top = 13.0
-offset_right = -3.0
-offset_bottom = 62.0
-grow_horizontal = 0
-grow_vertical = 2
-tooltip_text = "Stock Market"
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 48
-theme_override_styles/focus = SubResource("StyleBoxEmpty_835bk")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_ucbax")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ixomp")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_8kv63")
-text = "Company Licence"
+text = "Contract"
 
 [node name="CompanyLicensePanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 0
@@ -1269,7 +1273,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1075, 0, 0.15, 1)
+color = Color(0.0780225, 3.30418e-05, 0.112795, 1)
 
 [node name="StockPanel" type="Panel" parent="Camera2D/HUD/StockTheMarket/Background"]
 z_index = 1
@@ -1467,12 +1471,19 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 1796.0
-offset_top = 4.0
-offset_right = 1899.0
-offset_bottom = 108.0
+offset_left = 1806.0
+offset_top = 6.0
+offset_right = 1909.0
+offset_bottom = 110.0
 grow_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.73, 0.52925, 0.1825, 1)
 theme_override_font_sizes/font_size = 96
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y8bta")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_st18m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_oysm8")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4pkyx")
 text = "X"
 
 [node name="CompanyLogo" type="TextureRect" parent="Camera2D/HUD/StockTheMarket"]
@@ -1489,26 +1500,25 @@ grow_vertical = 0
 texture = ExtResource("6_8tmsf")
 stretch_mode = 5
 
-[node name="MarginContainer" type="ScrollContainer" parent="Camera2D/HUD/StockTheMarket"]
-layout_direction = 2
-layout_mode = 0
-offset_left = 623.0
-offset_top = 18.0
-offset_right = 1794.0
-offset_bottom = 95.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_y8bta")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_st18m")
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 3
-
-[node name="CurrentStockLabel" type="Label" parent="Camera2D/HUD/StockTheMarket/MarginContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "  FYC +3% | HAZ -3% | OWL +3% | BIL -3% | INT +3% | ANU -3% | OCT -3%  "
+[node name="CurrentStockLabel" type="RichTextLabel" parent="Camera2D/HUD/StockTheMarket"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 688.0
+offset_top = 3.0
+offset_right = 1793.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "FYC [color=#00b54c]30.6[/color]% - HAZ [color=#00b54c]39.05[/color]% - OWL [color=#ff3737]-12.15[/color]% 
+BIL [color=#ff3737]-19.6[/color]% | INT [color=#ff3737]-10.4[/color]% | ANU [color=#00b54c]16.6[/color]% | OCT [color=#00b54c]19.3[/color]
+"
+scroll_following = true
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_tuh25")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_8r1et")
