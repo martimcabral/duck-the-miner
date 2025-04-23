@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 var current_item = 1
-var current_health : int = 100
-var current_oxygen : int = 300
-var current_uv : int = 100
+var current_health : int
+var current_oxygen : int
+var current_uv : int
 var max_health : int = 100
 var max_oxygen : int = 300
 var max_uv : int = 100
@@ -41,9 +41,9 @@ var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin
 var window_mode = 0
 
 func _ready():
-	var current_health = 999
-	var current_oxygen = 999
-	var current_uv = 999
+	current_health = 100
+	current_oxygen = 300
+	current_uv = 100
 	
 	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
@@ -78,27 +78,38 @@ func player_movement(input, delta):
 			velocity.y += falling_speed * delta
 
 func _process(delta):
-	$Camera2D/HUD/Stats/CurrentHealth.text = " / " + str(current_health)
-	$Camera2D/HUD/Stats/CurrentOxygen.text = " / " + str(current_oxygen)
-	$Camera2D/HUD/Stats/CurrentUv.text = " / " + str(current_uv)
-	$Camera2D/HUD/Stats/MaxHealth.text = str(max_health)
-	$Camera2D/HUD/Stats/MaxOxygen.text = str(max_oxygen)
-	$Camera2D/HUD/Stats/MaxUv.text = str(max_uv)
+	$Camera2D/HUD/Stats/CurrentHealth.text = str(current_health)
+	$Camera2D/HUD/Stats/CurrentOxygen.text = str(current_oxygen)
+	$Camera2D/HUD/Stats/CurrentUv.text =  str(current_uv)
+	$Camera2D/HUD/Stats/MaxHealth.text = " / " + str(max_health) 
+	$Camera2D/HUD/Stats/MaxOxygen.text = " / " + str(max_oxygen)
+	$Camera2D/HUD/Stats/MaxUv.text = " / " + str(max_uv)
 	
 	BaW_time_remaining =  $HUD/BlackAndWhite/BaWFadeInTimer.wait_time - $HUD/BlackAndWhite/BaWFadeInTimer.time_left
 	
 	if is_duck_dead == true:
+		Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
+		$HUD/DeathLabel.visible = true
 		current_health = 0
 		$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
 		$HUD/BlackAndWhite.visible = true
+		velocity.y += (falling_speed / 2.5) * delta
+		move_and_slide()
 		if do_death_once == false:
 			$HUD/BlackAndWhite/BaWFadeInTimer.start()
 			$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
 			do_death_once = true
 		$HUD/BlackAndWhite.material.set_shader_parameter("intensity", BaW_time_remaining)
 	else:
+		$HUD/DeathLabel/GoToMenuTimer.start()
 		$HUD/BlackAndWhite.material.set_shader_parameter("intensity", 0)
 		do_death_once = false
+		$HUD/DeathLabel.visible = false
+	
+	if $HUD/DeathLabel/GoToMenuTimer.time_left >= 0.5 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 7:
+		$HUD/DeathLabel/TimingLabel.text = "Going to Menu in ..." + str(int(round($HUD/DeathLabel/GoToMenuTimer.time_left)))
+	elif $HUD/DeathLabel/GoToMenuTimer.time_left >= 0 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 0.49:
+		$HUD/DeathLabel/TimingLabel.text = "Going to Menu!"
 	
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
@@ -306,11 +317,11 @@ func destroy_block():
 				
 					# Reduce health of the tile
 					if used_tiles[tile_pos]["health"] > 0:
-						used_tiles[tile_pos]["health"] -= 350  # Reduce health
+						used_tiles[tile_pos]["health"] -= 125  # Reduce health here // Pickaxe Damage
 					
 					# Detect percentage of the health of the Tile here:
 					var percentage = float(used_tiles[tile_pos]["health"]) / tile_health * 100
-					#print(percentage, "%")
+					print("Block Health: ", percentage, "%")
 					if (percentage >= 76 and percentage <= 100):
 						BreakingStages.set_cell(tile_pos, 0, Vector2i(0, 0))
 					elif (percentage >= 50 and percentage <= 75):
@@ -393,3 +404,8 @@ func load_skin():
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 1))
 		print("[player.gd] Current Skin: " + str(skin_selected))
+
+func _on_go_to_menu_timer_timeout() -> void:
+	var new_game_scene = load("res://scenes/lobby.tscn")
+	get_tree().change_scene_to_packed(new_game_scene)
+	new_game_scene.instantiate()

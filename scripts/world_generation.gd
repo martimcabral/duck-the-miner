@@ -107,7 +107,7 @@ func _ready():
 	var temperature_color = Color.from_hsv(hue / 360.0, 0.8, 0.8, 1)  # Convert hue to 0-1 range
 	$Player/Camera2D/HUD/Stats/Temperature.modulate = temperature_color
 	
-	$Player/Camera2D/HUD/Stats/Temperature.text = str(asteroid_temperature) + "ᵒC"
+	$Player/Camera2D/HUD/Stats/Temperature.text = "T: " + str(int(asteroid_temperature)) + "°C"
 	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true

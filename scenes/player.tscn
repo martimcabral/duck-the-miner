@@ -486,7 +486,7 @@ shape = SubResource("CircleShape2D_ig4b6")
 debug_color = Color(1, 0, 0, 0.203922)
 
 [node name="MiningCooldown" type="Timer" parent="BlockRange"]
-wait_time = 0.01
+wait_time = 0.05
 autostart = true
 
 [node name="ColissionShape" type="CollisionShape2D" parent="."]
@@ -561,17 +561,17 @@ bbcode_enabled = true
 text = "version h"
 tab_size = 5
 
-[node name="PlayerPosition" type="RichTextLabel" parent="Camera2D/HUD"]
-offset_left = 11.0
-offset_top = 10.0
-offset_right = 175.0
-offset_bottom = 109.0
+[node name="PlayerPosition" type="Label" parent="Camera2D/HUD"]
+texture_filter = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 180.0
+offset_bottom = 80.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/font_size = 32
 text = "X: 0
 Y: 0"
-metadata/_edit_use_anchors_ = true
 
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
 scale = Vector2(2, 2)
@@ -579,20 +579,17 @@ transform = Transform2D(2, 0, 0, 2, 0, 0)
 
 [node name="Temperature" type="Label" parent="Camera2D/HUD/Stats"]
 texture_filter = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 174.0
-offset_top = -592.0
-offset_right = 203.0
-offset_bottom = -548.0
-grow_vertical = 0
+offset_left = 9.5
+offset_top = 42.0
+offset_right = 67.5
+offset_bottom = 74.0
+scale = Vector2(0.5, 0.5)
 tooltip_text = "Temperature"
 mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 3
 theme_override_font_sizes/font_size = 32
-text = "0ᵒ"
+text = "T: 0°"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -601,9 +598,9 @@ modulate = Color(1, 0.314659, 0.204057, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 22.0
+offset_left = 71.0
 offset_top = -581.0
-offset_right = 96.0
+offset_right = 145.0
 offset_bottom = -549.0
 grow_vertical = 0
 tooltip_text = "Health"
@@ -619,9 +616,9 @@ modulate = Color(1, 0.314659, 0.204057, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 80.0
+offset_left = 22.0
 offset_top = -581.0
-offset_right = 134.0
+offset_right = 76.0
 offset_bottom = -549.0
 grow_vertical = 0
 tooltip_text = "Health"
@@ -637,9 +634,9 @@ modulate = Color(0.176, 0.88, 0.305067, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 22.0
+offset_left = 71.0
 offset_top = -616.0
-offset_right = 96.0
+offset_right = 145.0
 offset_bottom = -584.0
 grow_vertical = 0
 tooltip_text = "Oxygen"
@@ -655,9 +652,9 @@ modulate = Color(0.176, 0.88, 0.305067, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 80.0
+offset_left = 22.0
 offset_top = -616.0
-offset_right = 134.0
+offset_right = 76.0
 offset_bottom = -584.0
 grow_vertical = 0
 tooltip_text = "Oxygen"
@@ -673,9 +670,9 @@ modulate = Color(0.706873, 0.203922, 1, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 22.0
+offset_left = 71.0
 offset_top = -652.0
-offset_right = 96.0
+offset_right = 145.0
 offset_bottom = -620.0
 grow_vertical = 0
 tooltip_text = "UV Flashlight Battery"
@@ -691,9 +688,9 @@ modulate = Color(0.706873, 0.203922, 1, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 80.0
+offset_left = 22.0
 offset_top = -652.0
-offset_right = 134.0
+offset_right = 76.0
 offset_bottom = -620.0
 grow_vertical = 0
 tooltip_text = "UV Flashlight Battery"

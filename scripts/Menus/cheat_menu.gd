@@ -3,6 +3,8 @@ extends Control
 var cheats : bool = false
 var cheated_item_icon = preload("res://assets/textures/items/cheated_item.png")
 
+@onready var player = $"../.."
+
 func _ready():
 	visible = false
 	var cheats_path = str("user://save/", GetSaveFile.save_being_used, "/cheats.cfg")
@@ -128,9 +130,9 @@ func _on_duck_the_death_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var get_bool = $Container/WorldLabel/DuckTheDeath/DeathTextEdit.text
 		if get_bool == "true":
-			$"../..".is_duck_dead = true
-			$"../.."/Camera2D/HUD/Stats/HealthStat.value = 0
+			player.is_duck_dead = true
+			player.current_health = 0
 		elif get_bool == "false":
-			$"../..".is_duck_dead = false
-			$"../.."/Camera2D/HUD/Stats/HealthStat.value = 25
+			player.is_duck_dead = false
+			player.current_health = 25
 		print("[cheat_menu.gd] Duck the Death triggered")
