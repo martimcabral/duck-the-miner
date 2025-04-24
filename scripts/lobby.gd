@@ -161,7 +161,7 @@ func _ready():
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Debt: " + "<null>" + " €" 
+		DiscordRPC.small_image_text = "Debt: " + update_money(current_money) + " €" 
 		var random = randi_range(1, 2)
 		match random:
 			1:
@@ -523,6 +523,7 @@ func load_skin():
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
+	print(DiscordRPC.large_image)
 	DiscordRPC.refresh()
 
 func _on_skin_previous_button_pressed() -> void:
@@ -531,6 +532,7 @@ func _on_skin_previous_button_pressed() -> void:
 	
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
+	print(DiscordRPC.large_image)
 	DiscordRPC.refresh()
 	
 	if FileAccess.file_exists(skin_path):
@@ -541,7 +543,7 @@ func _on_skin_previous_button_pressed() -> void:
 
 func _on_skin_next_button_pressed() -> void:
 	skin_selected += 1
-	if skin_selected >= 4 : skin_selected = 4
+	if skin_selected >= 6 : skin_selected = 6
 	
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
