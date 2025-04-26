@@ -32,9 +32,8 @@ DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=3
+window/size/viewport_width=1800
+window/size/viewport_height=1000
 window/size/initial_position_type=0
 window/vsync/vsync_mode=0
 mouse_cursor/custom_image="res://assets/textures/players/main_cursor.png"

@@ -1,6 +1,6 @@
 extends Node2D
 
-var debug_info : bool = true
+var debug_info : bool = false
 
 var speed : int = 50
 var current_health : int = 100
@@ -22,7 +22,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	update_debug_info()
-
+	
+	if current_health <= 0:
+		queue_free()
+	
 	# Attack cooldown effects
 	if $TimeToAttackAgain.time_left > 0:
 		attack_cooldown = true
@@ -30,7 +33,7 @@ func _process(delta: float) -> void:
 	else:
 		attack_cooldown = false
 		speed = 50
-
+	
 	# Movement logic
 	if player_chase:
 		if attack_cooldown:
@@ -100,6 +103,7 @@ func _on_reset_modulate_red_hit_timeout() -> void:
 
 func _on_time_to_wander_timeout() -> void:
 	print("Going to new Location")
+	$TimeToWander.wait_time = randi_range(8, 25)
 	var random_offset = Vector2(
 		randf_range(-200, 200),
 		randf_range(-200, 200)

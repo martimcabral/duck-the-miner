@@ -428,4 +428,12 @@ func start_position():
 				CaveSystem.set_cell(Vector2i(x,y), 3, Vector2i(0, 1))
 			elif asteroid_biome == "Desert":
 				CaveSystem.set_cell(Vector2i(x,y), 4, Vector2i(0, 1))
-			
+
+func _on_spawn_enemies_timeout() -> void:
+	print("Enemy Spawned")
+	var EnemyScene = preload("res://scenes/enemy.tscn")
+	var enemy = EnemyScene.instantiate()
+	enemy.name = str(randi_range(0, 12312123))
+	add_child(enemy)
+	print(enemy)
+	enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))

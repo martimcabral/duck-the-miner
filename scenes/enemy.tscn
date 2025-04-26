@@ -56,6 +56,7 @@ radius = 147.003
 radius = 16.0312
 
 [node name="Enemy" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_q4yn1")
 
 [node name="TimeToWander" type="Timer" parent="."]
@@ -71,7 +72,6 @@ wait_time = 10.0
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_q4yn1")
 debug_color = Color(0, 0.472581, 0.7, 0.42)
 
@@ -81,7 +81,6 @@ animation = &"bat_flying"
 frame_progress = 0.824404
 
 [node name="DetectionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_wbw6b")
@@ -90,7 +89,6 @@ debug_color = Color(0.7, 0.529003, 0, 0.247059)
 [node name="EnemyHitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
-visible = false
 shape = SubResource("CircleShape2D_ad2ka")
 debug_color = Color(0.7, 0.0441309, 0, 0.42)
 
