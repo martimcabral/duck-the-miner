@@ -16,6 +16,7 @@ const falling_speed : int = 250
 
 var is_duck_dead : bool = false
 var do_death_once : bool = false
+var touched_enemy
 var BaW_time_remaining : float = 0
 
 var used_tiles = {}
@@ -415,11 +416,10 @@ func _on_reset_used_tiles_timeout() -> void:
 	used_tiles = {}
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body == $"../Enemy":
+	if body.has_meta("Enemy"):
 		$AnimatedSprite2D.modulate = Color("ff6666")
-		
 		current_health -= 10
-		$"../Enemy".run_away()
+		body.run_away()
 
 func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")
@@ -428,7 +428,5 @@ func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if current_item == 1:
 			print("Player attacked Player's Attack Range")
-			$"../Enemy".attacked()
-
-func _on_attack_cooldown_timeout() -> void:
-	pass # Replace with function body.
+			if touched_enemy != null:
+				touched_enemy.attacked()

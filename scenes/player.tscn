@@ -1020,9 +1020,6 @@ autostart = true
 wait_time = 0.33
 autostart = true
 
-[node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.5
-
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="BlockRange/MiningCooldown" to="." method="_on_minning_cooldown_timeout"]
 [connection signal="timeout" from="BlockRange/ResetUsedTiles" to="." method="_on_reset_used_tiles_timeout"]
@@ -1031,4 +1028,3 @@ wait_time = 0.5
 [connection signal="timeout" from="uvBatteryConsumption" to="." method="_on_uv_battery_consumption_timeout"]
 [connection signal="timeout" from="OxygenConsumption" to="." method="_on_oxygen_consumption_timeout"]
 [connection signal="timeout" from="ResetModulateRedHit" to="." method="_on_reset_modulate_red_hit_timeout"]
-[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
