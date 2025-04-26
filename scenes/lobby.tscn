@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=103 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c1kipa50klspv" path="res://assets/textures/players/skins/0/duck.png" id="5_enoir"]
 [ext_resource type="Texture2D" uid="uid://8rx8ix5ob8p5" path="res://assets/textures/universe/planets/sun.png" id="5_qdeo3"]
 [ext_resource type="Texture2D" uid="uid://bk85po3p8meqx" path="res://assets/textures/companies/fyction_enterprise.png" id="6_8tmsf"]
+[ext_resource type="Texture2D" uid="uid://cvbxl4pcjtstk" path="res://assets/textures/players/skins/0/white_duck.png" id="6_gxh4y"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Systems/solar_system.gd" id="8_dovll"]
@@ -850,6 +851,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_a75e2")
 text = ">"
 
 [node name="SkinDisplay" type="TextureRect" parent="Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel"]
+z_index = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -863,6 +865,22 @@ offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_enoir")
+
+[node name="SkinBackground" type="TextureRect" parent="Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -65.0
+offset_right = 80.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_gxh4y")
 
 [node name="StoragePanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 1

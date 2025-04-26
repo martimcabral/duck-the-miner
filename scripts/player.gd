@@ -87,6 +87,9 @@ func _process(delta):
 	
 	BaW_time_remaining =  $HUD/BlackAndWhite/BaWFadeInTimer.wait_time - $HUD/BlackAndWhite/BaWFadeInTimer.time_left
 	
+	if current_health <= 0:
+		is_duck_dead = true
+	
 	if is_duck_dead == true:
 		Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
 		$HUD/DeathLabel.visible = true
@@ -410,3 +413,22 @@ func _on_go_to_menu_timer_timeout() -> void:
 func _on_reset_used_tiles_timeout() -> void:
 	print("[player.gd] Used Tiles Reseted")
 	used_tiles = {}
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body == $"../Enemy":
+		$AnimatedSprite2D.modulate = Color("ff6666")
+		
+		current_health -= 10
+		$"../Enemy".run_away()
+
+func _on_reset_modulate_red_hit_timeout() -> void:
+	$AnimatedSprite2D.modulate = Color("ffffff")
+
+func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if current_item == 1:
+			print("Player attacked Player's Attack Range")
+			$"../Enemy".attacked()
+
+func _on_attack_cooldown_timeout() -> void:
+	pass # Replace with function body.

@@ -80,6 +80,8 @@ func start_music():
 			3: $WorldMusic/Portal.play()
 
 func _ready():
+	
+	
 	var min_temp = -10  # Minimum temperature
 	var max_temp = 40   # Maximum temperature
 	var max_hue = 255   # Maximum hue value in your system

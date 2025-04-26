@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=112 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/skins/1/duck_walking.png" id="2_815s6"]
@@ -580,8 +580,14 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jc3p3"]
+radius = 11.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_ig4b6"]
 radius = 38.4908
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hax0n"]
+radius = 88.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5m53"]
 size = Vector2(12, 13)
@@ -704,13 +710,19 @@ scale = Vector2(0.875, 0.875)
 sprite_frames = SubResource("SpriteFrames_ajs5q")
 animation = &"6_walking"
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_jc3p3")
+debug_color = Color(0.7, 0, 0.0325815, 0.42)
+
 [node name="BlockRange" type="Area2D" parent="."]
 position = Vector2(-5.96046e-08, -2.98023e-08)
 scale = Vector2(1.27409, 1.27409)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlockRange"]
 shape = SubResource("CircleShape2D_ig4b6")
-debug_color = Color(1, 0, 0, 0.203922)
+debug_color = Color(1, 0, 0.986779, 0.203922)
 
 [node name="MiningCooldown" type="Timer" parent="BlockRange"]
 wait_time = 0.02
@@ -719,6 +731,13 @@ autostart = true
 [node name="ResetUsedTiles" type="Timer" parent="BlockRange"]
 wait_time = 60.0
 autostart = true
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_hax0n")
+debug_color = Color(0.0181658, 0.7, 0, 0.42)
 
 [node name="ColissionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -997,8 +1016,19 @@ autostart = true
 wait_time = 0.4
 autostart = true
 
+[node name="ResetModulateRedHit" type="Timer" parent="."]
+wait_time = 0.33
+autostart = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="BlockRange/MiningCooldown" to="." method="_on_minning_cooldown_timeout"]
 [connection signal="timeout" from="BlockRange/ResetUsedTiles" to="." method="_on_reset_used_tiles_timeout"]
+[connection signal="input_event" from="AttackArea" to="." method="_on_attack_area_input_event"]
 [connection signal="tab_clicked" from="Camera2D/HUD/Hotbar/TabBar" to="." method="_on_tab_bar_tab_clicked"]
 [connection signal="timeout" from="uvBatteryConsumption" to="." method="_on_uv_battery_consumption_timeout"]
 [connection signal="timeout" from="OxygenConsumption" to="." method="_on_oxygen_consumption_timeout"]
+[connection signal="timeout" from="ResetModulateRedHit" to="." method="_on_reset_modulate_red_hit_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
