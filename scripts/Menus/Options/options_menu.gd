@@ -44,7 +44,7 @@ func _ready():
 		for monitor in monitors:
 			$DisplayPanel/MonitorSelectorDropdown.add_item(str("Monitor: ", monitor), monitor)
 		
-		var selected_monitor = config.get_value("display", "monitor")
+		var selected_monitor = config.get_value("display", "monitor", 0)
 		DisplayServer.window_set_current_screen(selected_monitor)
 		$DisplayPanel/MonitorSelectorDropdown.selected = selected_monitor
 		

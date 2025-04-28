@@ -6,7 +6,7 @@ var current_oxygen : int
 var current_uv : int
 var max_health : int = 100
 var max_oxygen : int = 300
-var max_uv : int = 100
+var max_uv : int = 200
 var flashlight : bool = false
 
 var speed : int = 100
@@ -18,7 +18,7 @@ var is_duck_dead : bool = false
 var do_death_once : bool = false
 var touched_enemy
 var BaW_time_remaining : float = 0
-
+var ghost_mode : bool = false
 var used_tiles = {}
 var block_selection_default = preload("res://assets/textures/selected_block.png")
 var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
@@ -37,14 +37,18 @@ var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/
 var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
 var cursor_default = preload("res://assets/textures/players/main_cursor.png")
 
+var bloddy_overlay1 = preload("res://assets/textures/bloody_overlay/overlay_1.png")
+var bloddy_overlay2 = preload("res://assets/textures/bloody_overlay/overlay_2.png")
+var bloddy_overlay3 = preload("res://assets/textures/bloody_overlay/overlay_3.png")
+
 var skin_selected : int
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
 var window_mode = 0
 
 func _ready():
-	current_health = 100
-	current_oxygen = 300
-	current_uv = 100
+	current_health = max_health
+	current_oxygen = max_oxygen
+	current_uv = max_uv
 	
 	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
@@ -79,6 +83,7 @@ func player_movement(input, delta):
 			velocity.y += falling_speed * delta
 
 func _process(delta):
+	do_bloddy_overlay()
 	$Camera2D/HUD/Stats/CurrentHealth.text = str(current_health)
 	$Camera2D/HUD/Stats/CurrentOxygen.text = str(current_oxygen)
 	$Camera2D/HUD/Stats/CurrentUv.text =  str(current_uv)
@@ -416,7 +421,7 @@ func _on_reset_used_tiles_timeout() -> void:
 	used_tiles = {}
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_meta("Enemy"):
+	if body.has_meta("Enemy") and ghost_mode == false:
 		$AnimatedSprite2D.modulate = Color("ff6666")
 		current_health -= 10
 		body.run_away()
@@ -430,3 +435,13 @@ func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 			print("Player attacked Player's Attack Range")
 			if touched_enemy != null:
 				touched_enemy.attacked()
+
+func do_bloddy_overlay():
+	if  current_health >= 11% max_health and current_health <= 20% max_health:
+		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay1
+	elif  current_health >= 6% max_health and current_health <= 10% max_health:
+		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay2
+	elif current_health >= 1% max_health and current_health <= 5% max_health:
+		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay3
+	else: 
+		$Camera2D/HUD/BloddyOverlay.texture = null

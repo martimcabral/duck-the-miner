@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		speed = 50
 	
 	# Movement logic
-	if player_chase:
+	if player_chase and $"../Player".ghost_mode == false:
 		if attack_cooldown:
 			direction = (position - player.position).normalized()
 		else:
@@ -96,7 +96,7 @@ func attacked():
 	if was_enemy_atacked == true:
 		print(was_enemy_atacked)
 		print("Enemy Attacked")
-		current_health -= 5
+		current_health -= 15
 		was_enemy_atacked = false
 		$AnimatedSprite2D.modulate = Color("ff0000")
 
@@ -104,7 +104,6 @@ func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")
 
 func _on_time_to_wander_timeout() -> void:
-	print("Going to new Location")
 	$TimeToWander.wait_time = randi_range(8, 25)
 	var random_offset = Vector2(
 		randf_range(-200, 200),

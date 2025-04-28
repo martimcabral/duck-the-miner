@@ -4,6 +4,7 @@ var cheats : bool = false
 var cheated_item_icon = preload("res://assets/textures/items/cheated_item.png")
 
 @onready var player = $"../.."
+@onready var world = $"../../.."
 
 func _ready():
 	visible = false
@@ -103,37 +104,53 @@ func _on_give_items_pressed() -> void:
 func _on_change_position_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_position = Vector2(float($Container/WorldLabel/ChangePosition/X_PositionTextEdit.text) * 16, float($Container/WorldLabel/ChangePosition/Y_PositionTextEdit.text) * 16)
-		$"../..".position = new_position
+		player.position = new_position
 		print("[cheat_menu.gd] Position changed to: ", new_position)
 
 func _on_change_oxygen_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_oxygen = $Container/WorldLabel/ChangeOxygen/OxygenTextEdit.text
-		$"../.."/Camera2D/HUD/Stats/OxygenStat.value = int(new_oxygen) 
-		$"../.."/Camera2D/HUD/Stats/OxygenStat/OxygenText.text = new_oxygen
+		player.current_oxygen = int(new_oxygen) 
 		print("[cheat_menu.gd] Oxygen changed to: ", new_oxygen)
 
 func _on_change_health_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_health = $Container/WorldLabel/ChangeHealth/HealthTextEdit.text
-		$"../.."/Camera2D/HUD/Stats/HealthStat.value = int(new_health)
-		$"../.."/Camera2D/HUD/Stats/HealthStat/HealthText.text = new_health
+		player.current_health = int(new_health)
 		print("[cheat_menu.gd] Health changed to: ", new_health)
 
 func _on_change_uv_battery_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_uv_battery = $Container/WorldLabel/ChangeUVBattery/uvBatteryTextEdit.text
-		$"../.."/Camera2D/HUD/Stats/uvStat.value = int(new_uv_battery)
+		player.current_uv = int(new_uv_battery)
 		$"../.."/Camera2D/HUD/Stats/uvStat/uvText.text = new_uv_battery
 		print("[cheat_menu.gd] UV Battery changed to: ", new_uv_battery)
 
-func _on_duck_the_death_pressed() -> void:
+func _on_death_toggler_toggled(toggled_on: bool) -> void:
 	if get_tree().current_scene.name == "World":
-		var get_bool = $Container/WorldLabel/DuckTheDeath/DeathTextEdit.text
-		if get_bool == "true":
-			player.is_duck_dead = true
-			player.current_health = 0
-		elif get_bool == "false":
-			player.is_duck_dead = false
-			player.current_health = 25
-		print("[cheat_menu.gd] Duck the Death triggered")
+		print("[cheat_menu.gd] Duck the Death changed to: ", toggled_on)
+		match toggled_on:
+			true:
+				player.is_duck_dead = true
+				player.current_health = 0
+			false:
+				player.is_duck_dead = false
+				player.current_health = 25
+
+func _on_ghost_toggler_toggled(toggled_on: bool) -> void:
+	if get_tree().current_scene.name == "World":
+		match toggled_on:
+			true: 
+				player.ghost_mode = true
+				player.modulate = Color("ffffff3c")
+			false:
+				player.ghost_mode = false
+				player.modulate = Color("ffffffff")
+
+func _on_shadow_toggler_toggled(toggled_on: bool) -> void:
+	if get_tree().current_scene.name == "World":
+		match toggled_on:
+			true: 
+				$"../../../GlobalShadow".visible = true
+			false:
+				$"../../../GlobalShadow".visible = false
