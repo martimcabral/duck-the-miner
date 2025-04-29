@@ -76,6 +76,7 @@ func update_debug_info():
 	var debug_text : String = ""
 	debug_text += "Health: " + str(current_health) + "\n"
 	debug_text += "Speed: " + str(speed) + "\n"
+	debug_text += "Scale: " + str(scale) + "\n"
 	debug_text += "Velocity: " + str(round(velocity)) + "\n"
 	debug_text += "PlayerInArea: " + str(player_chase) + "\n"
 	debug_text += "AttackCooldown: " +  str(round($TimeToAttackAgain.time_left)) + "\n"
@@ -98,7 +99,7 @@ func attacked():
 		print("Enemy Attacked")
 		current_health -= 15
 		was_enemy_atacked = false
-		$AnimatedSprite2D.modulate = Color("ff0000")
+		$AnimatedSprite2D.modulate = Color(2, 0, 0)
 
 func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")

@@ -435,4 +435,6 @@ func _on_spawn_enemies_timeout() -> void:
 	var enemy = EnemyScene.instantiate()
 	enemy.set_meta("Enemy", "Enemy")
 	enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))
+	var scale_factor = randf_range(0.8, 1.2)
+	enemy.scale = Vector2(scale_factor, scale_factor)
 	add_child(enemy)

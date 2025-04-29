@@ -123,7 +123,6 @@ func _on_change_uv_battery_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_uv_battery = $Container/WorldLabel/ChangeUVBattery/uvBatteryTextEdit.text
 		player.current_uv = int(new_uv_battery)
-		$"../.."/Camera2D/HUD/Stats/uvStat/uvText.text = new_uv_battery
 		print("[cheat_menu.gd] UV Battery changed to: ", new_uv_battery)
 
 func _on_death_toggler_toggled(toggled_on: bool) -> void:

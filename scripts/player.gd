@@ -4,12 +4,14 @@ var current_item = 1
 var current_health : int
 var current_oxygen : int
 var current_uv : int
-var max_health : int = 100
-var max_oxygen : int = 300
-var max_uv : int = 200
+var max_health : int
+var max_oxygen : int
+var max_uv : int
 var flashlight : bool = false
 
-var speed : int = 100
+var speed : int
+var walking_speed : int
+var running_speed : int 
 const accel : int = 400
 const friction : int = 375
 const falling_speed : int = 250
@@ -43,9 +45,18 @@ var bloddy_overlay3 = preload("res://assets/textures/bloody_overlay/overlay_3.pn
 
 var skin_selected : int
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
+var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var window_mode = 0
 
 func _ready():
+	var player_config = ConfigFile.new()
+	player_config.load(player_path)
+	max_health = player_config.get_value("player", "max_health", 100)
+	max_oxygen = player_config.get_value("player", "max_oxygen", 300)
+	max_uv = player_config.get_value("player", "max_uv_battery", 200)
+	walking_speed = player_config.get_value("player", "walking_speed", 55)
+	running_speed = player_config.get_value("player", "running_speed", 90)
+	
 	current_health = max_health
 	current_oxygen = max_oxygen
 	current_uv = max_uv
@@ -73,10 +84,10 @@ func player_movement(input, delta):
 					speed = 0
 					velocity = velocity.move_toward(input * speed , delta * accel)
 				elif Input.is_action_pressed("Run"):
-					speed = 90
+					speed = running_speed
 					velocity = velocity.move_toward(input * speed , delta * accel)
 				else:
-					speed = 55
+					speed = walking_speed
 					velocity = velocity.move_toward(input * speed , delta * accel)
 			else: 
 				velocity = velocity.move_toward(Vector2(0,0), delta * friction)
@@ -238,10 +249,10 @@ func _process(delta):
 		
 			if not is_on_floor():
 				$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
-			if not is_on_floor() and Input.is_action_pressed("Walk_Right"):
-				$AnimatedSprite2D.flip_h = true
-			elif not is_on_floor() and Input.is_action_pressed("Walk_Left"):
-				$AnimatedSprite2D.flip_h = false
+				if Input.is_action_pressed("Walk_Right"):
+					$AnimatedSprite2D.flip_h = true
+				elif Input.is_action_pressed("Walk_Left"):
+					$AnimatedSprite2D.flip_h = false
 				
 			if is_on_floor() and Input.is_action_pressed("Agachar"):
 				$AnimatedSprite2D.animation = str(skin_selected) + "_squat"
@@ -422,7 +433,7 @@ func _on_reset_used_tiles_timeout() -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_meta("Enemy") and ghost_mode == false:
-		$AnimatedSprite2D.modulate = Color("ff6666")
+		$AnimatedSprite2D.modulate = Color(1, 0, 0)
 		current_health -= 10
 		body.run_away()
 

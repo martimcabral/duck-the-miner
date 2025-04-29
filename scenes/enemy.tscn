@@ -65,7 +65,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="ResetModulateRedHit" type="Timer" parent="."]
-wait_time = 0.33
+wait_time = 0.2
 autostart = true
 
 [node name="TimeToAttackAgain" type="Timer" parent="."]

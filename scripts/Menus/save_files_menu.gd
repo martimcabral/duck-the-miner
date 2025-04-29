@@ -16,6 +16,7 @@ var day_config = ConfigFile.new()
 var difficulty_config = ConfigFile.new()
 var cheating_config = ConfigFile.new()
 var stock_config = ConfigFile.new()
+var player_config = ConfigFile.new()
 
 var normal_stylebox = StyleBoxFlat.new()
 var focus_stylebox = StyleBoxFlat.new()
@@ -206,6 +207,18 @@ func _on_creator_button_pressed() -> void:
 	################################################################################
 	
 	FileAccess.open(str("user://save/", str(saves_number) ,"/version-beta", ProjectSettings.get_setting("application/config/version")), FileAccess.WRITE) # Open file in write mode
+	
+	################################################################################
+	
+	var player_path = str(saves_path + str(saves_number) + "/player.cfg")
+	player_config.set_value("player", "max_health", 100)
+	player_config.set_value("player", "max_oxygen", 300)
+	player_config.set_value("player", "max_uv_battery", 200)
+	player_config.set_value("player", "walking_speed", 55)
+	player_config.set_value("player", "running_speed", 90)
+	player_config.set_value("player", "radiatian_tolerance", 0)
+	player_config.set_value("player", "temperature_tolerance", 0)
+	player_config.save(player_path)
 	
 	################################################################################
 
