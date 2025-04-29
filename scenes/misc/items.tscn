@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=66 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://co1038c5gn86c" path="res://assets/textures/items/gems/azurite.png" id="44_cx7r6"]
 [ext_resource type="Texture2D" uid="uid://dd7fa5y0qoqi8" path="res://assets/textures/items/gems/bloodstone.png" id="45_k50mr"]
 [ext_resource type="Texture2D" uid="uid://b27tsvxqa5nh6" path="res://assets/textures/items/gems/chalcedony.png" id="46_31qkd"]
+[ext_resource type="Texture2D" uid="uid://bksbjv705sawi" path="res://assets/textures/items/misc/biomass.png" id="47_480p7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
 size = Vector2(6.33902, 5.5559)
@@ -97,6 +98,9 @@ radius = 3.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_redaq"]
 radius = 3.16228
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03jck"]
+radius = 4.0
 
 [node name="Items" type="Node2D"]
 
@@ -807,3 +811,17 @@ energy = 0.5
 texture = ExtResource("2_nq3r8")
 texture_scale = 0.05
 script = ExtResource("3_reukg")
+
+[node name="Biomass" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Biomass"
+gravity_scale = 0.05
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Biomass"]
+texture_filter = 1
+position = Vector2(-0.2, -0.3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("47_480p7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Biomass"]
+shape = SubResource("CircleShape2D_03jck")

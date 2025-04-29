@@ -15,52 +15,67 @@ var player = null
 var direction
 var target_position : Vector2
 
+@onready var world = $".."
+
 func _ready() -> void:
 	$AnimatedSprite2D.play("bat_flying")
 	if debug_info == true:
 		$DebugInfoLabel.visible = true
 
 func _process(delta: float) -> void:
-	update_debug_info()
-	
-	if current_health <= 0:
-		queue_free()
-	
-	# Attack cooldown effects
-	if $TimeToAttackAgain.time_left > 0:
-		attack_cooldown = true
-		speed = 65
-	else:
-		attack_cooldown = false
-		speed = 50
-	
-	# Movement logic
-	if player_chase and $"../Player".ghost_mode == false:
-		if attack_cooldown:
-			direction = (position - player.position).normalized()
+	if $"../PauseMenu/GUI_Pause".visible == false:
+		$AnimatedSprite2D.play("bat_flying")
+		update_debug_info()
+		if current_health <= 0: # Enemy Death Sequence
+			for i in randi_range(1, 3):
+				var packed_scene = load("res://scenes/misc/items.tscn")
+				var instance = packed_scene.instantiate()
+				var biomass = instance.get_node("Biomass")
+				biomass.get_parent().remove_child(biomass)
+				biomass.owner = null
+				biomass.linear_velocity = self.velocity
+				biomass.position = self.position
+				biomass.position += Vector2(randf_range(-0.05, 0.05), randf_range(-0.05, 0.05))
+				biomass.rotation = randi_range(0, 360)
+				world.add_child(biomass)
+			queue_free()
+		
+		# Attack cooldown effects
+		if $TimeToAttackAgain.time_left > 0:
+			attack_cooldown = true
+			speed = 65
 		else:
-			direction = (player.position - position).normalized()
-		velocity = direction * speed
-	else:
-		if target_position != Vector2.ZERO:
-			direction = (target_position - position).normalized()
+			attack_cooldown = false
+			speed = 50
+		
+		# Movement logic
+		if player_chase and $"../Player".ghost_mode == false:
+			if attack_cooldown:
+				direction = (position - player.position).normalized()
+			else:
+				direction = (player.position - position).normalized()
 			velocity = direction * speed
 		else:
-			velocity = velocity.move_toward(Vector2.ZERO, stop_smoothness * delta)
-	
-	# Update position
-	position += velocity * delta
-
-	# Stop wandering if close to the target
-	if not player_chase and target_position != Vector2.ZERO and position.distance_to(target_position) < 5.0:
-		target_position = Vector2.ZERO
-
-	# Flip sprite based on movement
-	if velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
-	elif velocity.x > 0:
-		$AnimatedSprite2D.flip_h = false
-
+			if target_position != Vector2.ZERO:
+				direction = (target_position - position).normalized()
+				velocity = direction * speed
+			else:
+				velocity = velocity.move_toward(Vector2.ZERO, stop_smoothness * delta)
+		
+		# Update position
+		position += velocity * delta
+		
+		# Stop wandering if close to the target
+		if not player_chase and target_position != Vector2.ZERO and position.distance_to(target_position) < 5.0:
+			target_position = Vector2.ZERO
+		
+		# Flip sprite based on movement
+		if velocity.x < 0:
+			$AnimatedSprite2D.flip_h = true
+		elif velocity.x > 0:
+			$AnimatedSprite2D.flip_h = false
+	else:
+		$AnimatedSprite2D.stop()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body == $"../Player":

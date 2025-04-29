@@ -191,8 +191,8 @@ func get_companies_values():
 			
 		$CurrentStockLabel.text = stock_label_string
 		print(stock_label_string)
-		print("Companie Stocks: ", companies_values)
-		print("Companie Comparisons: ", companies_comparisons)
+		print("[stock_the_market.gd] Companie Stocks: ", companies_values)
+		print("[stock_the_market.gd] Companie Comparisons: ", companies_comparisons)
 
 func clamp_stock(value: float, to_min : float, to_max : float, from_min : float, from_max):
 	var new_value = (value - from_min) / (from_max - from_min) * (to_max - to_min) + to_min

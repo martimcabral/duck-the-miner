@@ -256,7 +256,7 @@ func set_selected_save(button: Button):
 	selected_save = button.get_meta("save")
 	saves_config.set_value("saves", "selected", selected_save)
 	saves_config.save("user://save/saves.cfg")
-	print("Selected Save: ", selected_save)
+	print("[save_files_menu.gd] Selected Save: ", selected_save)
 
 func _on_delete_game_mouse_entered() -> void:
 	$DeleteGame.icon = preload("res://assets/textures/main_menu/trash_can_hover.png")

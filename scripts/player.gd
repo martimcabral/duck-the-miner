@@ -393,7 +393,8 @@ func _on_uv_battery_consumption_timeout() -> void:
 
 func _on_oxygen_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
-		current_oxygen -= 1
+		if is_duck_dead == false:
+			current_oxygen -= 1
 
 func _on_tab_bar_tab_clicked(tab: int) -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:

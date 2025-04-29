@@ -1,7 +1,7 @@
 extends Control
 
 var cheats : bool = false
-var cheated_item_icon = preload("res://assets/textures/items/cheated_item.png")
+var cheated_item_icon = preload("res://assets/textures/items/misc/cheated_item.png")
 
 @onready var player = $"../.."
 @onready var world = $"../../.."
@@ -12,7 +12,7 @@ func _ready():
 	var cheats_config = ConfigFile.new()
 	cheats_config.load(cheats_path)
 	cheats = cheats_config.get_value("cheating", "enabled", false)
-	print(cheats)
+	print("[cheat_menu.gd] Current Cheats Config: ", cheats)
 
 func _input(_event):
 	if Input.is_action_just_pressed("Cheat_Menu") and cheats == true:

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b1kqlqe1hger3"]
 
-[ext_resource type="Script" uid="uid://dvwc1smtvn27o" path="res://scripts/enemies.gd" id="1_q4yn1"]
+[ext_resource type="Script" uid="uid://dvwc1smtvn27o" path="res://scripts/enemy.gd" id="1_q4yn1"]
 [ext_resource type="Texture2D" uid="uid://wyj0v68onqkk" path="res://assets/textures/enemies/bat_flying.png" id="2_ad2ka"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q4yn1"]

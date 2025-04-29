@@ -12,9 +12,9 @@ func _ready() -> void:
 	var config = ConfigFile.new()
 	
 	if FileAccess.file_exists(file_path):
-		print("[game_settings.cfg] was detected successfully")
+		print("[start.cfg] was detected successfully")
 	else:
-		print("[game_settings.cfg] not found. Creating a new one...")
+		print("[start.cfg] not found. Creating a new one...")
 		# Save the file
 		var save_error = config.save(file_path)
 		if save_error != OK:
@@ -90,9 +90,9 @@ func _on_button_mouse_entered() -> void:
 func create_pricing_json():
 	var pricing_path = "user://pricing.cfg"
 	if FileAccess.file_exists(pricing_path):
-		print("Pricing File found successfully!")
+		print("[start.gd] Pricing File found successfully!")
 	else:
-		print("Pricing File not found! Creating a new one...")
+		print("[start.gd] Pricing File not found! Creating a new one...")
 		var pricing_file = ConfigFile.new()
 		pricing_file.load(pricing_path)
 		pricing_file.set_value("pricing", "Stone", 20)
@@ -139,4 +139,5 @@ func create_pricing_json():
 		pricing_file.set_value("pricing", "Sugilite", 15000)
 		pricing_file.set_value("pricing", "Topaz", 15000)
 		pricing_file.set_value("pricing", "Tsavorite", 15000)
+		pricing_file.set_value("pricing", "Biomass", 115)
 		pricing_file.save(pricing_path)

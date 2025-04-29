@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bksbjv705sawi"
-path="res://.godot/imported/biomass.png-43c8185530c4ccad1e692380db548577.ctex"
+path="res://.godot/imported/biomass.png-23e969756b04f5afbdbe9734019b5c9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/biomass.png"
-dest_files=["res://.godot/imported/biomass.png-43c8185530c4ccad1e692380db548577.ctex"]
+source_file="res://assets/textures/items/misc/biomass.png"
+dest_files=["res://.godot/imported/biomass.png-23e969756b04f5afbdbe9734019b5c9f.ctex"]
 
 [params]
 

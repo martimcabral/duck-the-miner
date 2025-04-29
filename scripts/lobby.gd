@@ -45,7 +45,8 @@ var item_icons = {
 	"Oil Shale": "res://assets/textures/items/ores/oil_shale.png",
 	"Azurite": "res://assets/textures/items/gems/azurite.png",
 	"Bloodstone": "res://assets/textures/items/gems/bloodstone.png",
-	"Chalcedony": "res://assets/textures/items/gems/chalcedony.png"
+	"Chalcedony": "res://assets/textures/items/gems/chalcedony.png",
+	"Biomass": "res://assets/textures/items/misc/biomass.png"
 }
 
 var selecting_mission = false
@@ -523,7 +524,7 @@ func load_skin():
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
-	print(DiscordRPC.large_image)
+	print("[lobby.gd] Changed Discord Large Image to: ", DiscordRPC.large_image)
 	DiscordRPC.refresh()
 
 func _on_skin_previous_button_pressed() -> void:
@@ -573,7 +574,7 @@ func _on_stock_market_label_pressed() -> void:
 	$Camera2D/HUD/Lobby.visible = false
 
 func _on_tab_bar_item_selected(index: int) -> void:
-	print("Inventory Selected: ", index)
+	print("[lobby.gd] Inventory Selected: ", index)
 	selected_inventory = index
 	
 	var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
@@ -588,31 +589,32 @@ func _on_tab_bar_item_selected(index: int) -> void:
 		print("Detected both Inventories Successfully")
 		item_list.clear()
 		match index:
-			0:
-				populate_inventory_tab(raw_config)
-			1:
-				populate_inventory_tab(crafted_config)
+			0: populate_inventory_tab(raw_config)
+			1: populate_inventory_tab(crafted_config)
 	else:
-		print("Failed to load CFG file: ", raw_inv_path)
-		print("or")
-		print("Failed to load CFG file: ", crafted_inv_path)
+		print("[lobby.gd] Failed to load CFG file: ", raw_inv_path)
+		print("[lobby.gd] or")
+		print("[lobby.gd] Failed to load CFG file: ", crafted_inv_path)
 
 func populate_inventory_tab(config: ConfigFile) -> void:
-	var inventory_data = config.get_section_keys("inventory")
-	if inventory_data and inventory_data.size() > 0:
-		for item_name in inventory_data:
-			var quantity = config.get_value("inventory", item_name, 0)
-			var item_text = "%s: %d" % [item_name, quantity]
+	if config.has_section("inventory"):
+		var inventory_data = config.get_section_keys("inventory")
+		if inventory_data and inventory_data.size() > 0:
+			for item_name in inventory_data:
+				var quantity = config.get_value("inventory", item_name, 0)
+				var item_text = "%s: %d" % [item_name, quantity]
+				
+				var icon = load(item_icons.get(item_name, "res://assets/textures/items/no_texture.png"))
+				var item_index = item_list.add_item(item_text)
+				item_list.set_item_icon(item_index, icon)
 			
-			var icon = load(item_icons.get(item_name, "res://assets/textures/items/no_texture.png"))
-			var item_index = item_list.add_item(item_text)
-			item_list.set_item_icon(item_index, icon)
-		
-		item_list.visible = true
-		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
+			item_list.visible = true
+			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
+		else:
+			item_list.visible = false
+			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 	else:
-		item_list.visible = false
-		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
+		print("[lobby.gd] Config: ", config, " does not have section Inventory.")
 
 func _on_item_list_item_selected(index: int) -> void:
 	item_selected = index

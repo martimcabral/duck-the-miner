@@ -142,6 +142,9 @@ func _on_body_entered(body : Node2D):
 			"Vanadinite":
 				var vanadiniteIcon = load("res://assets/textures/items/ores/vanadinite.png")
 				add_item_to_inventory("Vanadinite", vanadiniteIcon)
+			"Biomass":
+				var biomassIcon = load("res://assets/textures/items/misc/biomass.png")
+				add_item_to_inventory("Biomass", biomassIcon)
 		body.queue_free()
 		$PickupItem.play()
 
