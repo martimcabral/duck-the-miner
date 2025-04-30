@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=109 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -509,6 +509,12 @@ corner_radius_bottom_left = 25
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oysm8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pkyx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_30fw8"]
+
+[sub_resource type="Environment" id="Environment_8tmsf"]
+glow_enabled = true
+glow_bloom = 0.4
 
 [node name="AsteroidSelector" type="Node2D"]
 script = ExtResource("1_13iuh")
@@ -2204,6 +2210,7 @@ polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.5
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
 z_index = -2
+material = SubResource("ShaderMaterial_30fw8")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2236,6 +2243,9 @@ theme_override_constants/shadow_outline_size = 4
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Field Name"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8tmsf")
 
 [connection signal="timeout" from="TimeToStart" to="." method="_on_time_to_start_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]

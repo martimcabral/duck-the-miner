@@ -1,22 +1,40 @@
 shader_type canvas_item;
+render_mode world_vertex_coords;
 
-uniform float blur_size = 2.0;
-uniform float intensity = 1.2;
+uniform float outline_width;
+uniform vec2 lower_limit;
+uniform vec2 upper_limit;
+
+uniform vec4 color : source_color;
+
+void vertex() {
+	vec2 disp;
+	
+	// resizes the 
+	switch (VERTEX_ID)
+	{
+		case 0:
+			disp = vec2(lower_limit.x, lower_limit.y);
+			break;
+		case 1:
+			disp = vec2(lower_limit.x, upper_limit.y);
+			break;
+		case 2:
+			disp = vec2(upper_limit.x, upper_limit.y);
+			break;
+		case 3:
+			disp = vec2(upper_limit.x, lower_limit.y);
+			break;
+	}
+	
+	VERTEX = disp;
+}
 
 void fragment() {
-    vec4 base_color = texture(TEXTURE, UV);
-    vec4 glow = vec4(0.0);
-
-    // Simple box blur around the current pixel
-    for (int x = -2; x <= 2; x++) {
-        for (int y = -2; y <= 2; y++) {
-            vec2 offset = vec2(x, y) * blur_size / vec2(textureSize(TEXTURE, 0));
-            glow += texture(TEXTURE, UV + offset);
-        }
-    }
-
-    glow /= 25.0;
-    glow *= intensity;
-
-    COLOR = glow;
+	float alpha;
+	
+	// use sdf to calculate the alpha of the highlight
+	alpha = 1.0 - texture_sdf(screen_uv_to_sdf(SCREEN_UV)) / float(outline_width);
+	COLOR = color;
+	COLOR.a = alpha;
 }

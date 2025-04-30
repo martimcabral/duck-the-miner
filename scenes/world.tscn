@@ -504,13 +504,11 @@ gradient = SubResource("Gradient_wtjrx")
 
 [sub_resource type="Environment" id="Environment_jiaeb"]
 background_mode = 3
-tonemap_mode = 2
-tonemap_exposure = 0.86
-tonemap_white = 5.58
 ssil_radius = 6.9
 ssil_intensity = 5.85
 ssil_sharpness = 0.0
 ssil_normal_rejection = 0.0
+glow_bloom = 0.61
 glow_blend_mode = 0
 fog_height = 417.19
 adjustment_color_correction = SubResource("GradientTexture2D_4634m")
