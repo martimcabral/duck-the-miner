@@ -48,7 +48,14 @@ var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var window_mode = 0
 
+var radar_width : int = $HUD/RadarPanel/WorldPanel.size.x
+var radar_height : int = $HUD/RadarPanel/WorldPanel.size.y
+
 func _ready():
+	$Camera2D/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.position = Vector2(0, 0)
+	world.world_width
+	world.world_height
+	
 	var player_config = ConfigFile.new()
 	player_config.load(player_path)
 	max_health = player_config.get_value("player", "max_health", 100)
@@ -60,6 +67,10 @@ func _ready():
 	current_health = max_health
 	current_oxygen = max_oxygen
 	current_uv = max_uv
+	
+	$Camera2D/HUD/Stats/Beautiful/Health.max_value = max_health
+	$Camera2D/HUD/Stats/Beautiful/Oxygen.max_value = max_oxygen
+	$Camera2D/HUD/Stats/Beautiful/UV.max_value = max_uv
 	
 	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
@@ -74,7 +85,6 @@ func _ready():
 	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(3, cursor_texture_flashlight)
 	
 	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "beta." + str(ProjectSettings.get_setting("application/config/version"))
-	$HUD/ItemList/TeamInventoryLabel.text = "[center]%s[/center]" % "Duck's Pockets"
 
 func player_movement(input, delta):
 	if is_duck_dead == false:
@@ -95,12 +105,16 @@ func player_movement(input, delta):
 
 func _process(delta):
 	do_bloddy_overlay()
-	$Camera2D/HUD/Stats/CurrentHealth.text = str(current_health)
-	$Camera2D/HUD/Stats/CurrentOxygen.text = str(current_oxygen)
-	$Camera2D/HUD/Stats/CurrentUv.text =  str(current_uv)
-	$Camera2D/HUD/Stats/MaxHealth.text = " / " + str(max_health) 
-	$Camera2D/HUD/Stats/MaxOxygen.text = " / " + str(max_oxygen)
-	$Camera2D/HUD/Stats/MaxUv.text = " / " + str(max_uv)
+	$Camera2D/HUD/Stats/Text/CurrentHealth.text = str(current_health)
+	$Camera2D/HUD/Stats/Text/CurrentOxygen.text = str(current_oxygen)
+	$Camera2D/HUD/Stats/Text/CurrentUv.text =  str(current_uv)
+	$Camera2D/HUD/Stats/Text/MaxHealth.text = " / " + str(max_health) 
+	$Camera2D/HUD/Stats/Text/MaxOxygen.text = " / " + str(max_oxygen)
+	$Camera2D/HUD/Stats/Text/MaxUv.text = " / " + str(max_uv)
+	
+	$Camera2D/HUD/Stats/Beautiful/Health.value = current_health
+	$Camera2D/HUD/Stats/Beautiful/Oxygen.value = current_oxygen
+	$Camera2D/HUD/Stats/Beautiful/UV.value = current_uv
 	
 	BaW_time_remaining =  $HUD/BlackAndWhite/BaWFadeInTimer.wait_time - $HUD/BlackAndWhite/BaWFadeInTimer.time_left
 	

@@ -19,8 +19,8 @@ var target_position : Vector2
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("bat_flying")
-	if debug_info == true:
-		$DebugInfoLabel.visible = true
+	if debug_info == true: $DebugInfoLabel.visible = true
+	else: $DebugInfoLabel.visible = false
 
 func _process(delta: float) -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:

@@ -2,8 +2,8 @@ extends Node2D
 
 var register_logs = true
 
-var world_width # Default: 300
-var world_height # Default:  1000
+var world_width # Previous: 300
+var world_height # Previous: 1000
 var world_height_border # Always: world_height + 20
 
 var world_seed = randi_range(0, 2147483646)
@@ -44,12 +44,16 @@ func _process(_delta: float) -> void:
 	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
 	
-	$Player/Camera2D/HUD/Stats/MaxHealth.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/CurrentHealth.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/MaxOxygen.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/CurrentOxygen.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/MaxUv.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/CurrentUv.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/MaxHealth.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/CurrentHealth.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/MaxOxygen.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/CurrentOxygen.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/MaxUv.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/CurrentUv.modulate.a8 = fade_in
+	
+	$Player/Camera2D/HUD/Stats/Text/HeartTexture.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/Oxygen.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Text/UVTexture.modulate.a8 = fade_in
 
 func start_music():
 	var random_music = randi_range(1, 3)
@@ -80,8 +84,6 @@ func start_music():
 			3: $WorldMusic/Portal.play()
 
 func _ready():
-	
-	
 	var min_temp = -10  # Minimum temperature
 	var max_temp = 40   # Maximum temperature
 	var max_hue = 255   # Maximum hue value in your system
