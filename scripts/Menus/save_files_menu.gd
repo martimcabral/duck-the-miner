@@ -142,7 +142,7 @@ func _on_creator_button_pressed() -> void:
 	
 	var money_path = str(saves_path + str(saves_number) + "/money.cfg")
 	
-	var new_money = int(randf_range(-88_888_888, -99_999_999))
+	var new_money = int(randf_range(-95_000_000, -98_999_999))
 	money_config.set_value("money", "start", new_money)
 	money_config.set_value("money", "current", new_money)
 	money_config.save(money_path)
@@ -212,7 +212,7 @@ func _on_creator_button_pressed() -> void:
 	
 	var player_path = str(saves_path + str(saves_number) + "/player.cfg")
 	player_config.set_value("player", "max_health", 100)
-	player_config.set_value("player", "max_oxygen", 300)
+	player_config.set_value("player", "max_oxygen", 360)
 	player_config.set_value("player", "max_uv_battery", 200)
 	player_config.set_value("player", "walking_speed", 55)
 	player_config.set_value("player", "running_speed", 90)

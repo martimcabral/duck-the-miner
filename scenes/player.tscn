@@ -596,7 +596,7 @@ radius = 11.0
 radius = 38.4908
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hax0n"]
-radius = 88.0
+radius = 117.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n5m53"]
 size = Vector2(12, 13)
@@ -762,6 +762,8 @@ texture_scale = 0.3
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 texture_filter = 1
+position = Vector2(0.169849, -0.305)
+scale = Vector2(1.03817, 1.03817)
 color = Color(0.630067, 0.268899, 0.999979, 1)
 energy = 0.0
 texture = ExtResource("4_83sd1")
@@ -1111,11 +1113,13 @@ wait_time = 0.5
 autostart = true
 
 [node name="OxygenConsumption" type="Timer" parent="."]
-wait_time = 0.4
 autostart = true
 
 [node name="ResetModulateRedHit" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="TakeDamageFromOxygen" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
@@ -1126,3 +1130,4 @@ autostart = true
 [connection signal="timeout" from="uvBatteryConsumption" to="." method="_on_uv_battery_consumption_timeout"]
 [connection signal="timeout" from="OxygenConsumption" to="." method="_on_oxygen_consumption_timeout"]
 [connection signal="timeout" from="ResetModulateRedHit" to="." method="_on_reset_modulate_red_hit_timeout"]
+[connection signal="timeout" from="TakeDamageFromOxygen" to="." method="_on_take_damage_from_oxygen_timeout"]

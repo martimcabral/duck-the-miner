@@ -48,14 +48,7 @@ var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var window_mode = 0
 
-var radar_width : int = $HUD/RadarPanel/WorldPanel.size.x
-var radar_height : int = $HUD/RadarPanel/WorldPanel.size.y
-
 func _ready():
-	$Camera2D/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.position = Vector2(0, 0)
-	world.world_width
-	world.world_height
-	
 	var player_config = ConfigFile.new()
 	player_config.load(player_path)
 	max_health = player_config.get_value("player", "max_health", 100)
@@ -101,7 +94,7 @@ func player_movement(input, delta):
 					velocity = velocity.move_toward(input * speed , delta * accel)
 			else: 
 				velocity = velocity.move_toward(Vector2(0,0), delta * friction)
-			velocity.y += falling_speed * delta
+			velocity.y += (falling_speed * delta) * 0.75
 
 func _process(delta):
 	do_bloddy_overlay()
@@ -162,10 +155,6 @@ func _process(delta):
 	if current_uv == 0:
 		flashlight = false
 		$Flashlight.energy = 0
-	
-	if current_oxygen == 0:
-		current_oxygen = 300
-		current_health -= 5
 	
 	if $"../PauseMenu/GUI_Pause".visible == false:
 		if is_duck_dead == false:
@@ -448,6 +437,7 @@ func _on_reset_used_tiles_timeout() -> void:
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_meta("Enemy") and ghost_mode == false:
+		$ResetModulateRedHit.start()
 		$AnimatedSprite2D.modulate = Color(1, 0, 0)
 		current_health -= 10
 		body.run_away()
@@ -471,3 +461,10 @@ func do_bloddy_overlay():
 		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay3
 	else: 
 		$Camera2D/HUD/BloddyOverlay.texture = null
+
+func _on_take_damage_from_oxygen_timeout() -> void:
+	if current_oxygen <= 0:
+		if is_duck_dead == false:
+			current_health -= 1
+			$ResetModulateRedHit.start()
+			$AnimatedSprite2D.modulate = Color(1, 0, 0)

@@ -26,6 +26,7 @@ var fade_out : float = 0.0
 
 func _process(_delta: float) -> void:
 	$WorldMusic.position = $Player.position
+	update_radar_tool()
 	
 	time_remaining_Title_Timer = $TitleTimer.time_left
 	time_remaining_HUD_Fade_In = $HUDFadeIn.time_left
@@ -54,6 +55,12 @@ func _process(_delta: float) -> void:
 	$Player/Camera2D/HUD/Stats/Text/HeartTexture.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/Text/Oxygen.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/Text/UVTexture.modulate.a8 = fade_in
+	
+	$Player/HUD/RadarPanel.modulate.a8 = fade_in
+	$Player/HUD/MissionList.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Beautiful/Health.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Beautiful/UV.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/Beautiful/Oxygen.modulate.a8 = fade_in
 
 func start_music():
 	var random_music = randi_range(1, 3)
@@ -113,6 +120,7 @@ func _ready():
 		print("[world_generation.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
 	
 	start_music()
+	create_radar_lines()
 	
 	match asteroid_field:
 		"Delta Belt":
@@ -440,3 +448,35 @@ func _on_spawn_enemies_timeout() -> void:
 	var scale_factor = randf_range(0.8, 1.2)
 	enemy.scale = Vector2(scale_factor, scale_factor)
 	add_child(enemy)
+
+func create_radar_lines():
+	var radar_width: float = $Player/HUD/RadarPanel/WorldPanel.size.x
+	var radar_height: float = $Player/HUD/RadarPanel/WorldPanel.size.y
+
+	for x in range(0, int(radar_width), 35):
+		var vertical_line := Line2D.new()
+		vertical_line.points = [Vector2(x, 0), Vector2(x, radar_height)]
+		vertical_line.default_color = Color("353535")
+		vertical_line.z_index = 1
+		vertical_line.width = 4
+		vertical_line.position += Vector2(2, 0)
+		$Player/HUD/RadarPanel/WorldPanel.add_child(vertical_line)
+
+	for y in range(0, int(radar_height), 40):
+		var horizontal_line := Line2D.new()
+		horizontal_line.points = [Vector2(0, y), Vector2(radar_width, y)]
+		horizontal_line.default_color = Color("353535")
+		horizontal_line.z_index = 1
+		horizontal_line.width = 4
+		horizontal_line.position += Vector2(0, 5)
+		$Player/HUD/RadarPanel/WorldPanel.add_child(horizontal_line)
+
+func update_radar_tool():
+	var radar_width : float = $Player/HUD/RadarPanel/WorldPanel.size.x - $Player/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.size.x
+	var radar_height : float = $Player/HUD/RadarPanel/WorldPanel.size.y - $Player/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.size.y
+	
+	var player_world_pos : Vector2 = $Player.position / 16
+	
+	var radar_pos_x = clamp(player_world_pos.x / world_width * radar_width, 0, radar_width)
+	var radar_pos_y = clamp(player_world_pos.y / world_height * radar_height, 0, radar_height)
+	$Player/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.position = Vector2(radar_pos_x, radar_pos_y)
