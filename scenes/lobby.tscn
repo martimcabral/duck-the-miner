@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=107 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -340,6 +340,132 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="Animation" id="Animation_gxh4y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_30fw8"]
+resource_name = "stock_the_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8tmsf"]
+resource_name = "stock_the_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7rn74"]
+_data = {
+&"RESET": SubResource("Animation_gxh4y"),
+&"stock_the_down": SubResource("Animation_30fw8"),
+&"stock_the_up": SubResource("Animation_8tmsf")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tmsf"]
 bg_color = Color(0.1025, 0, 0.15, 1)
 border_width_left = 10
@@ -401,20 +527,18 @@ position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 
-[node name="Lobby" type="Panel" parent="Camera2D/HUD"]
-
-[node name="CheatMenu" parent="Camera2D/HUD/Lobby" instance=ExtResource("39_8tmsf")]
-visible = false
-layout_mode = 1
+[node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 916.0
-offset_top = 528.0
-offset_right = 916.0
-offset_bottom = 528.0
+offset_left = 0.0
+offset_top = 4.0
+offset_right = 0.0
+offset_bottom = 4.0
+
+[node name="Lobby" type="Panel" parent="Camera2D/HUD"]
 
 [node name="BackToLobbyButton" type="Button" parent="Camera2D/HUD/Lobby" groups=["Buttons"]]
 z_index = 1
@@ -428,6 +552,7 @@ offset_right = 228.0
 offset_bottom = 1054.0
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_aq7us")
 theme_override_styles/hover = SubResource("StyleBoxFlat_syqgr")
@@ -683,6 +808,7 @@ offset_right = 134.0
 offset_bottom = 27.0
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6mek4")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8ht5e")
@@ -711,6 +837,7 @@ offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gxh4y")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_30fw8")
@@ -739,6 +866,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_disabled_color = Color(0.31, 0.31, 0.31, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_s3vw1")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_busoe")
@@ -1238,6 +1366,7 @@ offset_top = 12.0
 offset_right = 40.5
 offset_bottom = 60.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "Zoom: 9x"
 horizontal_alignment = 1
@@ -1281,7 +1410,15 @@ horizontal_alignment = 1
 
 [node name="StockTheMarket" type="Panel" parent="Camera2D/HUD"]
 visible = false
+z_index = 20
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(960, 540)
 script = ExtResource("5_8ht5e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/HUD/StockTheMarket"]
+libraries = {
+&"": SubResource("AnimationLibrary_7rn74")
+}
 
 [node name="Background" type="ColorRect" parent="Camera2D/HUD/StockTheMarket"]
 layout_mode = 1
@@ -1312,18 +1449,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8tmsf")
 
 [node name="VerticalLine2D" type="Line2D" parent="Camera2D/HUD/StockTheMarket"]
 position = Vector2(172, -32)
-points = PackedVector2Array(415, -59, 415, 1195)
+points = PackedVector2Array(415, 32, 415, 1112)
 
 [node name="FirstHorizontalLine2D" type="Line2D" parent="Camera2D/HUD/StockTheMarket/VerticalLine2D"]
 position = Vector2(-64, 16)
-points = PackedVector2Array(-268, 133, 2010, 133)
-joint_mode = 2
-begin_cap_mode = 2
-end_cap_mode = 2
+points = PackedVector2Array(-108, 133, 1812, 133)
 
 [node name="SecondHorizontalLine2D" type="Line2D" parent="Camera2D/HUD/StockTheMarket/VerticalLine2D"]
 position = Vector2(0, 720)
-points = PackedVector2Array(-447, 133, 411, 133)
+points = PackedVector2Array(-172, 133, 411, 133)
 
 [node name="StockTheMarketLabel" type="Label" parent="Camera2D/HUD/StockTheMarket"]
 layout_mode = 0

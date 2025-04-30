@@ -40,10 +40,10 @@ func _process(_delta: float) -> void:
 	$Player/HUD/ItemList.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/VersionDisplay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/PlayerPosition.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Temperature.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
 	
-	$Player/Camera2D/HUD/Stats/Temperature.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/MaxHealth.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/CurrentHealth.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/MaxOxygen.modulate.a8 = fade_in
@@ -92,8 +92,8 @@ func _ready():
 	var hue = inverted_temperature_value * max_hue
 	var temperature_color = Color.from_hsv(hue / 360.0, 0.8, 0.8, 1)  # Convert hue to 0-1 range
 	
-	$Player/Camera2D/HUD/Stats/Temperature.modulate = temperature_color
-	$Player/Camera2D/HUD/Stats/Temperature.text = "T: " + str(int(asteroid_temperature)) + "°C"
+	$Player/Camera2D/HUD/Temperature.modulate = temperature_color
+	$Player/Camera2D/HUD/Temperature.text = "T: " + str(int(asteroid_temperature)) + "°C"
 	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true

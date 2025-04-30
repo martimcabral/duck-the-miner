@@ -570,8 +570,7 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.play()
 
 func _on_stock_market_label_pressed() -> void:
-	$Camera2D/HUD/StockTheMarket.visible = true
-	$Camera2D/HUD/Lobby.visible = false
+	$Camera2D/HUD/StockTheMarket/AnimationPlayer.play("stock_the_up")
 
 func _on_tab_bar_item_selected(index: int) -> void:
 	print("[lobby.gd] Inventory Selected: ", index)
@@ -610,10 +609,9 @@ func populate_inventory_tab(config: ConfigFile) -> void:
 			
 			item_list.visible = true
 			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
-		else:
-			item_list.visible = false
-			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 	else:
+		item_list.visible = false
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 		print("[lobby.gd] Config: ", config, " does not have section Inventory.")
 
 func _on_item_list_item_selected(index: int) -> void:

@@ -65,8 +65,7 @@ func _on_octane_button_toggled(toggled_on: bool) -> void:
 	check_graph(toggled_on, "Octane")
 
 func _on_close_market_button_pressed() -> void:
-	$"../Lobby".visible = true
-	$".".visible = false
+	$AnimationPlayer.play("stock_the_down")
 
 func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):

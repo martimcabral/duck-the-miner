@@ -191,7 +191,7 @@ func _process(delta):
 	
 	if is_duck_dead == false:
 		if $"../PauseMenu/GUI_Pause".visible == false:
-			if Input.is_action_pressed("Destroy_Block"):
+			if Input.is_action_pressed("Destroy_Block") and current_item == 2:
 				var offset = Vector2i(-8, -8)
 				var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
 				

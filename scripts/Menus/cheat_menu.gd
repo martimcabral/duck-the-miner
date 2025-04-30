@@ -24,7 +24,9 @@ func _input(_event):
 				$Container/WorldLabel/ChangeOxygen.disabled = true
 				$Container/WorldLabel/ChangeHealth.disabled = true
 				$Container/WorldLabel/ChangeUVBattery.disabled = true
-				$Container/WorldLabel/DuckTheDeath.disabled = true
+				$Container/WorldLabel/DuckTheDeath/DeathToggler.disabled = true
+				$"Container/WorldLabel/Duck the Ghost/GhostToggler".disabled = true
+				$Container/WorldLabel/GlobalShadow/ShadowToggler.disabled = true
 			"World":
 				position = Vector2(0, 0)
 				$Container/LobbyLabel/ChangeDay.disabled = true
@@ -44,7 +46,7 @@ func _on_change_day_pressed() -> void:
 		var day_config = ConfigFile.new()
 		day_config.set_value("day", "current", int(new_day))
 		day_config.save(day_path)
-		$"../LobbyPanel/MoneyPanel/DaysLabel".text = "Day: " + new_day
+		$"../Lobby/LobbyPanel/MoneyPanel/DaysLabel".text = "Day: " + new_day
 		print("[cheat_menu.gd] Day changed to: ", new_day)
 
 func _on_change_money_pressed() -> void:
@@ -54,7 +56,7 @@ func _on_change_money_pressed() -> void:
 		var money_config = ConfigFile.new()
 		money_config.set_value("money", "current", int(new_money))
 		money_config.save(money_path)
-		$"../LobbyPanel/MoneyPanel/MoneyLabel".text = "Money: " + new_money + " €"
+		$"../Lobby/LobbyPanel/MoneyPanel/MoneyLabel".text = "Money: " + new_money + " €"
 		print("[cheat_menu.gd] Money changed to: ", new_money)
 
 func _on_advance_stock_martket_pressed() -> void:
@@ -78,16 +80,16 @@ func _on_advance_stock_martket_pressed() -> void:
 			market_config.set_value("stock", key, new_market[key])
 		market_config.save(market_path)
 		
-		$"../../StockTheMarket".delete_older_graph()
-		$"../../StockTheMarket".create_all_charts()
-		$"../../StockTheMarket".get_companies_values()
+		$"../StockTheMarket".delete_older_graph()
+		$"../StockTheMarket".create_all_charts()
+		$"../StockTheMarket".get_companies_values()
 
 func _on_reroll_missions_pressed() -> void:
 	if get_tree().current_scene.name == "AsteroidSelector":
-		$"../../../..".current_page = 1
-		$"../../../..".save_asteroid_data()
-		$"../../../..".get_asteroid_info()
-		$"../../../..".get_pages()
+		$"../../..".current_page = 1
+		$"../../..".save_asteroid_data()
+		$"../../..".get_asteroid_info()
+		$"../../..".get_pages()
 		print("[cheat_menu.gd] Rerolled Missions")
 
 ####################################################################################################

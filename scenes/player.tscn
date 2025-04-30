@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=117 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/skins/1/duck_walking.png" id="2_815s6"]
@@ -36,6 +36,10 @@
 [ext_resource type="Texture2D" uid="uid://cxdj6ht58ac1v" path="res://assets/textures/players/skins/6/duck_flying.png" id="23_hax0n"]
 [ext_resource type="Texture2D" uid="uid://bqyxjp0xgejys" path="res://assets/textures/players/skins/6/duck_squat.png" id="24_t4otl"]
 [ext_resource type="Texture2D" uid="uid://cfkvpy26721el" path="res://assets/textures/players/skins/6/duck_walking.png" id="25_j2b1d"]
+[ext_resource type="Texture2D" uid="uid://ug2xoqmhnbuq" path="res://assets/textures/players/status/heart.png" id="31_t4otl"]
+[ext_resource type="Shader" uid="uid://cod51ekhyme6j" path="res://scripts/Shaders/text_glow.gdshader" id="32_2dvfe"]
+[ext_resource type="Texture2D" uid="uid://qqq78gpdvgw0" path="res://assets/textures/players/status/oxygen.png" id="32_cs1tg"]
+[ext_resource type="Texture2D" uid="uid://bv1bpwf18raeb" path="res://assets/textures/players/status/battery_energy.png" id="32_j2b1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
 atlas = ExtResource("2_gl8cc")
@@ -635,6 +639,9 @@ shader_parameter/fast_noise = SubResource("NoiseTexture2D_487ah")
 shader_parameter/speed = Vector2(0.02, 0.02)
 shader_parameter/wave_strength = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_giy8y"]
+shader = ExtResource("32_2dvfe")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0r2e0"]
 content_margin_left = 16.0
 content_margin_top = 16.0
@@ -830,17 +837,12 @@ theme_override_font_sizes/font_size = 32
 text = "X: 0
 Y: 0"
 
-[node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
-
-[node name="Temperature" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="Temperature" type="Label" parent="Camera2D/HUD"]
 texture_filter = 1
-offset_left = 9.5
-offset_top = 42.0
-offset_right = 67.5
-offset_bottom = 74.0
-scale = Vector2(0.5, 0.5)
+offset_left = 18.5
+offset_top = 84.0
+offset_right = 76.5
+offset_bottom = 116.0
 tooltip_text = "Temperature"
 mouse_filter = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -850,14 +852,30 @@ text = "T: 0°"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MaxHealth" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="SubViewport" type="SubViewport" parent="Camera2D/HUD"]
+transparent_bg = true
+use_hdr_2d = true
+
+[node name="Stats" type="CanvasLayer" parent="Camera2D/HUD/SubViewport"]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="HeartTexture" type="TextureRect" parent="Camera2D/HUD/SubViewport/Stats"]
+offset_left = 3.0
+offset_top = 491.0
+offset_right = 43.0
+offset_bottom = 531.0
+texture = ExtResource("31_t4otl")
+
+[node name="MaxHealth" type="Label" parent="Camera2D/HUD/SubViewport/Stats"]
 modulate = Color(1, 0.215686, 0.215686, 1)
+material = SubResource("ShaderMaterial_giy8y")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 71.0
+offset_left = 99.0
 offset_top = -581.0
-offset_right = 145.0
+offset_right = 173.0
 offset_bottom = -549.0
 grow_vertical = 0
 tooltip_text = "Health"
@@ -868,14 +886,14 @@ theme_override_font_sizes/font_size = 32
 text = "999"
 vertical_alignment = 1
 
-[node name="CurrentHealth" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="CurrentHealth" type="Label" parent="Camera2D/HUD/SubViewport/Stats"]
 modulate = Color(1, 0.215686, 0.215686, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 22.0
+offset_left = 50.0
 offset_top = -581.0
-offset_right = 76.0
+offset_right = 104.0
 offset_bottom = -549.0
 grow_vertical = 0
 tooltip_text = "Health"
@@ -886,14 +904,21 @@ theme_override_font_sizes/font_size = 32
 text = "000"
 vertical_alignment = 1
 
-[node name="MaxOxygen" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="Oxygen" type="TextureRect" parent="Camera2D/HUD/SubViewport/Stats"]
+offset_left = 4.5
+offset_top = 459.0
+offset_right = 41.5
+offset_bottom = 496.0
+texture = ExtResource("32_cs1tg")
+
+[node name="MaxOxygen" type="Label" parent="Camera2D/HUD/SubViewport/Stats"]
 modulate = Color(0.176, 0.88, 0.305067, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 71.0
+offset_left = 99.0
 offset_top = -616.0
-offset_right = 145.0
+offset_right = 173.0
 offset_bottom = -584.0
 grow_vertical = 0
 tooltip_text = "Oxygen"
@@ -904,14 +929,14 @@ theme_override_font_sizes/font_size = 32
 text = "999"
 vertical_alignment = 1
 
-[node name="CurrentOxygen" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="CurrentOxygen" type="Label" parent="Camera2D/HUD/SubViewport/Stats"]
 modulate = Color(0.176, 0.88, 0.305067, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 22.0
+offset_left = 50.0
 offset_top = -616.0
-offset_right = 76.0
+offset_right = 104.0
 offset_bottom = -584.0
 grow_vertical = 0
 tooltip_text = "Oxygen"
@@ -922,14 +947,22 @@ theme_override_font_sizes/font_size = 32
 text = "000"
 vertical_alignment = 1
 
-[node name="MaxUv" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="UVTexture" type="TextureRect" parent="Camera2D/HUD/SubViewport/Stats"]
+offset_left = 8.0
+offset_top = 423.0
+offset_right = 48.0
+offset_bottom = 463.0
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("32_j2b1d")
+
+[node name="MaxUv" type="Label" parent="Camera2D/HUD/SubViewport/Stats"]
 modulate = Color(0.706873, 0.203922, 1, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 71.0
+offset_left = 99.0
 offset_top = -652.0
-offset_right = 145.0
+offset_right = 173.0
 offset_bottom = -620.0
 grow_vertical = 0
 tooltip_text = "UV Flashlight Battery"
@@ -940,14 +973,14 @@ theme_override_font_sizes/font_size = 32
 text = "999"
 vertical_alignment = 1
 
-[node name="CurrentUv" type="Label" parent="Camera2D/HUD/Stats"]
+[node name="CurrentUv" type="Label" parent="Camera2D/HUD/SubViewport/Stats"]
 modulate = Color(0.706873, 0.203922, 1, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 22.0
+offset_left = 50.0
 offset_top = -652.0
-offset_right = 76.0
+offset_right = 104.0
 offset_bottom = -620.0
 grow_vertical = 0
 tooltip_text = "UV Flashlight Battery"
