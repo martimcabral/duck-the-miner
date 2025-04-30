@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=115 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/players/skins/1/duck_walking.png" id="2_815s6"]
@@ -37,7 +37,6 @@
 [ext_resource type="Texture2D" uid="uid://bqyxjp0xgejys" path="res://assets/textures/players/skins/6/duck_squat.png" id="24_t4otl"]
 [ext_resource type="Texture2D" uid="uid://cfkvpy26721el" path="res://assets/textures/players/skins/6/duck_walking.png" id="25_j2b1d"]
 [ext_resource type="Texture2D" uid="uid://ug2xoqmhnbuq" path="res://assets/textures/players/status/heart.png" id="31_t4otl"]
-[ext_resource type="Shader" uid="uid://cod51ekhyme6j" path="res://scripts/Shaders/text_glow.gdshader" id="32_2dvfe"]
 [ext_resource type="Texture2D" uid="uid://qqq78gpdvgw0" path="res://assets/textures/players/status/oxygen.png" id="32_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://bv1bpwf18raeb" path="res://assets/textures/players/status/battery_energy.png" id="32_j2b1d"]
 
@@ -639,20 +638,6 @@ shader_parameter/fast_noise = SubResource("NoiseTexture2D_487ah")
 shader_parameter/speed = Vector2(0.03, 0.07)
 shader_parameter/wave_strength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2dvfe"]
-shader = ExtResource("32_2dvfe")
-shader_parameter/outline_width = 2.0
-shader_parameter/lower_limit = Vector2(2, 0)
-shader_parameter/upper_limit = Vector2(2, 2)
-shader_parameter/color = Color(1, 1, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cs1tg"]
-shader = ExtResource("32_2dvfe")
-shader_parameter/outline_width = 0.0
-shader_parameter/lower_limit = Vector2(0, 0)
-shader_parameter/upper_limit = Vector2(0, 0)
-shader_parameter/color = Color(0, 0, 0, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0r2e0"]
 content_margin_left = 16.0
 content_margin_top = 16.0
@@ -801,12 +786,6 @@ position = Vector2(926, 570)
 scale = Vector2(14.3262, 14.3262)
 texture = ExtResource("8_3vols")
 
-[node name="UnderwaterOverlay2" type="Sprite2D" parent="Camera2D/HUD"]
-material = SubResource("ShaderMaterial_2dvfe")
-position = Vector2(926, 570)
-scale = Vector2(14.3262, 14.3262)
-texture = ExtResource("8_3vols")
-
 [node name="FreezingOverlay" type="TextureRect" parent="Camera2D/HUD"]
 visible = false
 self_modulate = Color(1, 1, 1, 0.462745)
@@ -874,21 +853,20 @@ follow_viewport_scale = 1.78
 
 [node name="HeartTexture" type="TextureRect" parent="Camera2D/HUD/Stats"]
 offset_left = 3.0
-offset_top = 491.0
+offset_top = 496.333
 offset_right = 43.0
-offset_bottom = 531.0
+offset_bottom = 536.333
 texture = ExtResource("31_t4otl")
 
 [node name="MaxHealth" type="Label" parent="Camera2D/HUD/Stats"]
 modulate = Color(1, 0.215686, 0.215686, 1)
-material = SubResource("ShaderMaterial_cs1tg")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 99.0
-offset_top = -581.0
+offset_top = -577.0
 offset_right = 173.0
-offset_bottom = -549.0
+offset_bottom = -545.0
 grow_vertical = 0
 tooltip_text = "Health"
 mouse_filter = 0
@@ -904,9 +882,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = -581.0
-offset_right = 104.0
-offset_bottom = -549.0
+offset_top = -576.667
+offset_right = 125.0
+offset_bottom = -543.667
 grow_vertical = 0
 tooltip_text = "Health"
 mouse_filter = 0
@@ -918,9 +896,9 @@ vertical_alignment = 1
 
 [node name="Oxygen" type="TextureRect" parent="Camera2D/HUD/Stats"]
 offset_left = 4.5
-offset_top = 459.0
+offset_top = 464.333
 offset_right = 41.5
-offset_bottom = 496.0
+offset_bottom = 501.333
 texture = ExtResource("32_cs1tg")
 
 [node name="MaxOxygen" type="Label" parent="Camera2D/HUD/Stats"]
@@ -929,9 +907,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 99.0
-offset_top = -616.0
+offset_top = -612.0
 offset_right = 173.0
-offset_bottom = -584.0
+offset_bottom = -580.0
 grow_vertical = 0
 tooltip_text = "Oxygen"
 mouse_filter = 0
@@ -947,9 +925,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = -616.0
-offset_right = 104.0
-offset_bottom = -584.0
+offset_top = -611.667
+offset_right = 125.0
+offset_bottom = -578.667
 grow_vertical = 0
 tooltip_text = "Oxygen"
 mouse_filter = 0
@@ -961,9 +939,9 @@ vertical_alignment = 1
 
 [node name="UVTexture" type="TextureRect" parent="Camera2D/HUD/Stats"]
 offset_left = 8.0
-offset_top = 423.0
+offset_top = 428.333
 offset_right = 48.0
-offset_bottom = 463.0
+offset_bottom = 468.333
 scale = Vector2(0.85, 0.85)
 texture = ExtResource("32_j2b1d")
 
@@ -973,9 +951,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 99.0
-offset_top = -652.0
+offset_top = -648.0
 offset_right = 173.0
-offset_bottom = -620.0
+offset_bottom = -616.0
 grow_vertical = 0
 tooltip_text = "UV Flashlight Battery"
 mouse_filter = 0
@@ -991,9 +969,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 50.0
-offset_top = -652.0
-offset_right = 104.0
-offset_bottom = -620.0
+offset_top = -647.667
+offset_right = 125.0
+offset_bottom = -614.667
 grow_vertical = 0
 tooltip_text = "UV Flashlight Battery"
 mouse_filter = 0
@@ -1012,9 +990,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -558.0
-offset_top = -129.0
+offset_top = -97.0
 offset_right = 559.0
-offset_bottom = -56.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/outline_size = 6
