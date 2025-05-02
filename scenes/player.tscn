@@ -1073,11 +1073,8 @@ theme_override_styles/tab_selected = SubResource("StyleBoxFlat_n53tx")
 theme_override_styles/tab_focus = SubResource("StyleBoxFlat_isjhl")
 current_tab = 0
 tab_alignment = 1
-tab_count = 4
-tab_0/title = "Sword"
-tab_1/title = "Pickaxe"
-tab_2/title = "Light"
-tab_3/title = "UV Flashlight"
+tab_count = 1
+tab_0/title = "IF THIS APPEARS THAT THE HOTBAR HAS ERRORS"
 
 [node name="PlayerSounds" type="Node2D" parent="."]
 

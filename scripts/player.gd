@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var current_item = 1
+var current_item = "Sword"
 var current_health : int
 var current_oxygen : int
 var current_uv : int
@@ -31,13 +31,14 @@ var block_selection_out = preload("res://assets/textures/selected_block_out_of_r
 @onready var BreakingStages = $"../WorldTileMap/BreakingStages"
 @onready var InventoryAtWorld = $HUD/ItemList
 @onready var world = $".."
+@onready var hotbar = $Camera2D/HUD/Hotbar/TabBar
 
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
 var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/flashlight_item.png")
-var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
 var cursor_default = preload("res://assets/textures/players/main_cursor.png")
+var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
 
 var bloddy_overlay1 = preload("res://assets/textures/bloody_overlay/overlay_1.png")
 var bloddy_overlay2 = preload("res://assets/textures/bloody_overlay/overlay_2.png")
@@ -45,17 +46,17 @@ var bloddy_overlay3 = preload("res://assets/textures/bloody_overlay/overlay_3.pn
 
 var skin_selected : int
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
+var player_config = ConfigFile.new()
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var window_mode = 0
 
 func _ready():
-	var player_config = ConfigFile.new()
 	player_config.load(player_path)
-	max_health = player_config.get_value("player", "max_health", 100)
-	max_oxygen = player_config.get_value("player", "max_oxygen", 300)
-	max_uv = player_config.get_value("player", "max_uv_battery", 200)
-	walking_speed = player_config.get_value("player", "walking_speed", 55)
-	running_speed = player_config.get_value("player", "running_speed", 90)
+	max_health = player_config.get_value("status", "max_health", 100)
+	max_oxygen = player_config.get_value("status", "max_oxygen", 300)
+	max_uv = player_config.get_value("status", "max_uv_battery", 200)
+	walking_speed = player_config.get_value("status", "walking_speed", 55)
+	running_speed = player_config.get_value("status", "running_speed", 90)
 	
 	current_health = max_health
 	current_oxygen = max_oxygen
@@ -65,17 +66,21 @@ func _ready():
 	$Camera2D/HUD/Stats/Beautiful/Oxygen.max_value = max_oxygen
 	$Camera2D/HUD/Stats/Beautiful/UV.max_value = max_uv
 	
+	hotbar.remove_tab(0)
+	hotbar.add_tab(player_config.get_value("hotbar_slots", "0"))
+	hotbar.add_tab(player_config.get_value("hotbar_slots", "1"))
+	hotbar.add_tab(player_config.get_value("hotbar_slots", "2"))
+	hotbar.add_tab(player_config.get_value("hotbar_slots", "3"))
+	
+	for i in range(0, 4):
+		hotbar.set_tab_icon(i, set_custom_cursor(i))
+	
 	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
 	
 	match world.asteroid_biome:
 		"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
 		"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
-	
-	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(0, cursor_texture_sword)
-	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(1, cursor_texture_pickaxe)
-	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(2, cursor_texture_light)
-	$Camera2D/HUD/Hotbar/TabBar.set_tab_icon(3, cursor_texture_flashlight)
 	
 	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "beta." + str(ProjectSettings.get_setting("application/config/version"))
 
@@ -97,6 +102,13 @@ func player_movement(input, delta):
 			velocity.y += (falling_speed * delta) * 0.75
 
 func _process(delta):
+	if $"../PauseMenu/GUI_Pause".visible == false:
+		match current_item: # Set cursor after after despausing the game
+			"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
+			"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
+			"Light": Input.set_custom_mouse_cursor(cursor_texture_light)
+			"UV Flashlight": Input.set_custom_mouse_cursor(cursor_texture_flashlight)
+	
 	do_bloddy_overlay()
 	$Camera2D/HUD/Stats/Text/CurrentHealth.text = str(current_health)
 	$Camera2D/HUD/Stats/Text/CurrentOxygen.text = str(current_oxygen)
@@ -143,14 +155,10 @@ func _process(delta):
 	
 	if is_duck_dead == false:
 		$Flashlight.look_at(get_global_mouse_position())
-		if Input.is_action_just_pressed("Use_Flashlight") and self.current_item == 4:
+		if Input.is_action_just_pressed("Use_Flashlight") and current_item == "UV Flashlight":
 			match (flashlight):
-				true:
-					$Flashlight.energy = 0
-					flashlight = false
-				false:
-					$Flashlight.energy = 1.75
-					flashlight = true
+				true: $Flashlight.energy = 0; flashlight = false
+				false: $Flashlight.energy = 1.75; flashlight = true
 	
 	if current_uv == 0:
 		flashlight = false
@@ -159,30 +167,20 @@ func _process(delta):
 	if $"../PauseMenu/GUI_Pause".visible == false:
 		if is_duck_dead == false:
 			if Input.is_action_just_pressed("Hide_Show_Inventory"):
-				if InventoryAtWorld.visible == true:
-					InventoryAtWorld.visible = false
-				else:
-					InventoryAtWorld.visible = true
+				if InventoryAtWorld.visible == true: InventoryAtWorld.visible = false
+				else: InventoryAtWorld.visible = true
 			
 			if Input.is_action_just_pressed("Quack"):
 				var random_pitch = randi_range(1, 3)
 				match random_pitch:
-					1:
-						$"PlayerSounds/Quack".pitch_scale = 0.9
-					2:
-						$"PlayerSounds/Quack".pitch_scale = 1
-					3:
-						$"PlayerSounds/Quack".pitch_scale = 1.1
+					1: $"PlayerSounds/Quack".pitch_scale = 0.9
+					2: $"PlayerSounds/Quack".pitch_scale = 1
+					3: $"PlayerSounds/Quack".pitch_scale = 1.1
 				$"PlayerSounds/Quack".play()
 		
 	if Input.is_action_just_pressed("PauseMenu"):
 		if $"../PauseMenu/GUI_Pause".visible == true:
 			$"../PauseMenu/GUI_Pause".visible = false
-			match current_item:
-				1: Input.set_custom_mouse_cursor(cursor_texture_sword)
-				2: Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
-				3: Input.set_custom_mouse_cursor(cursor_texture_light)
-				4: Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 		elif $"../PauseMenu/GUI_Pause".visible == false:
 			$"../PauseMenu/GUI_Pause".visible = true
 			Input.set_custom_mouse_cursor(cursor_default)
@@ -194,7 +192,7 @@ func _process(delta):
 	
 	if is_duck_dead == false:
 		if $"../PauseMenu/GUI_Pause".visible == false:
-			if Input.is_action_pressed("Destroy_Block") and current_item == 2:
+			if Input.is_action_pressed("Destroy_Block") and current_item == "Pickaxe":
 				var offset = Vector2i(-8, -8)
 				var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
 				
@@ -216,7 +214,7 @@ func _process(delta):
 				$"../WorldTileMap/BlockSelection".position = Vector2(-128, -128)
 				$"../WorldTileMap/BlockSelection".texture = block_selection_default
 				
-			if Input.is_action_just_pressed("Place_Block") and current_item != 3:
+			if Input.is_action_just_pressed("Place_Block") and current_item != "Light":
 				var mouse_pos = get_global_mouse_position()
 				var local_mouse_pos = $BlockRange.to_local(mouse_pos)
 				var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
@@ -274,26 +272,27 @@ func _process(delta):
 				
 			# Mudar o Cursor dependendo do Item selecinado da Hotbar
 			if Input.is_action_just_pressed("Hotbar_1"):
-				current_item = 1
-				Input.set_custom_mouse_cursor(cursor_texture_sword)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
+				hotbar.current_tab = 0
+				current_item = player_config.get_value("hotbar_slots", "0")
+				Input.set_custom_mouse_cursor(set_custom_cursor(0))
 			if Input.is_action_just_pressed("Hotbar_2"):
-				current_item = 2
-				Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
+				hotbar.current_tab = 1
+				current_item = player_config.get_value("hotbar_slots", "1")
+				Input.set_custom_mouse_cursor(set_custom_cursor(1))
 			if Input.is_action_just_pressed("Hotbar_3"):
-				current_item = 3
-				Input.set_custom_mouse_cursor(cursor_texture_light)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 2
+				hotbar.current_tab = 2
+				current_item = player_config.get_value("hotbar_slots", "2")
+				Input.set_custom_mouse_cursor(set_custom_cursor(2))
 			if Input.is_action_just_pressed("Hotbar_4"):
-				current_item = 4
-				Input.set_custom_mouse_cursor(cursor_texture_flashlight)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 3
+				hotbar.current_tab = 3
+				current_item = player_config.get_value("hotbar_slots", "3")
+				Input.set_custom_mouse_cursor(set_custom_cursor(3))
 		else:
 			$AnimatedSprite2D.stop()
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):
+		print("[player.gd] Fullscreen Key Pressed")
 		if window_mode == 0:
 			window_mode = 1
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -314,7 +313,7 @@ func destroy_block():
 		var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
 		var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 		
-		if player.current_item == 2:
+		if player.current_item == "Pickaxe":
 			#print("Data: ", used_tiles, " ", tile_id)
 			if tile_data != null:
 				var tile_health = tile_data.get_custom_data("health")
@@ -403,21 +402,21 @@ func _on_tab_bar_tab_clicked(tab: int) -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
 		match tab:
 			0:
-				current_item = 1
-				Input.set_custom_mouse_cursor(cursor_texture_sword)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 0
+				hotbar.current_tab = tab
+				current_item = player_config.get_value("hotbar_slots", str(tab))
+				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 			1: 
-				current_item = 2
-				Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 1
+				hotbar.current_tab = tab
+				current_item = player_config.get_value("hotbar_slots", str(tab))
+				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 			2:
-				current_item = 3
-				Input.set_custom_mouse_cursor(cursor_texture_light)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 2
+				hotbar.current_tab = tab
+				current_item = player_config.get_value("hotbar_slots", str(tab))
+				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 			3: 
-				current_item = 4
-				Input.set_custom_mouse_cursor(cursor_texture_flashlight)
-				$Camera2D/HUD/Hotbar/TabBar.current_tab = 3
+				hotbar.current_tab = tab
+				current_item = player_config.get_value("hotbar_slots", str(tab))
+				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):
@@ -447,7 +446,7 @@ func _on_reset_modulate_red_hit_timeout() -> void:
 
 func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if current_item == 1:
+		if current_item == "Sword":
 			print("Player attacked Player's Attack Range")
 			if touched_enemy != null:
 				touched_enemy.attacked()
@@ -468,3 +467,11 @@ func _on_take_damage_from_oxygen_timeout() -> void:
 			current_health -= 1
 			$ResetModulateRedHit.start()
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
+
+func set_custom_cursor(hotbar_slot):
+	var hotbar_slot_name = player_config.get_value("hotbar_slots", str(hotbar_slot))
+	match hotbar_slot_name:
+		"Sword": return cursor_texture_sword
+		"Pickaxe": return cursor_texture_pickaxe
+		"Light": return cursor_texture_light
+		"UV Flashlight": return cursor_texture_flashlight

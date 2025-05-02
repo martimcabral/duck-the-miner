@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 	var radius = (collision_shape as CircleShape2D).radius
 		
 	if local_mouse_pos.length() <= radius:
-		if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == 3:
+		if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":
 			if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 				var torch_scene : PackedScene = preload("res://scenes/misc/light.tscn")
 				var torch = torch_scene.instantiate()
