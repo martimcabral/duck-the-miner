@@ -18,6 +18,7 @@ func create_config_file():
 	config.set_value("display", "vsync", false)
 	config.set_value("display", "fps_limiter", 0)
 	config.set_value("display", "monitor", 0)
+	config.set_value("display", "bloom", true)
 	
 	# Audio
 	config.set_value("audio", "master", 100)
@@ -44,6 +45,11 @@ func create_config_file():
 	config.set_value("controls", "Universe_Zoom_In", "MWU")
 	config.set_value("controls", "Universe_Zoom_Out", "MWD")
 	config.set_value("controls", "Use_Flashlight", "RMB")
+	
+	# Accessibility
+	config.set_value("accessibility", "subtiles", true)
+	config.set_value("accessibility", "colorblindness", 0)
+	config.set_value("accessibility", "Language", 0)
 	
 	# Save the file
 	var save_error = config.save(file_path)

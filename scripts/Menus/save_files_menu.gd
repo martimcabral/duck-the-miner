@@ -216,13 +216,12 @@ func _on_creator_button_pressed() -> void:
 	player_config.set_value("status", "max_uv_battery", 200)
 	player_config.set_value("status", "walking_speed", 55)
 	player_config.set_value("status", "running_speed", 90)
-	player_config.set_value("status", "radiatian_tolerance", 0)
-	player_config.set_value("status", "temperature_tolerance", 0)
 	
+	player_config.set_value("hotbar_slots", "number", 4)
 	player_config.set_value("hotbar_slots", "0", "Sword")
 	player_config.set_value("hotbar_slots", "1", "Pickaxe")
 	player_config.set_value("hotbar_slots", "2", "Light")
-	player_config.set_value("hotbar_slots", "3", "UV_Flashlight")
+	player_config.set_value("hotbar_slots", "3", "UV Flashlight")
 	player_config.save(player_path)
 	
 	################################################################################

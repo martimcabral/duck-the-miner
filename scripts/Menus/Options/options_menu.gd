@@ -48,6 +48,11 @@ func _ready():
 		DisplayServer.window_set_current_screen(selected_monitor)
 		$DisplayPanel/MonitorSelectorDropdown.selected = selected_monitor
 		
+		if config.get_value("display", "bloom", true) == true:
+			$DisplayPanel/BloomCheckButton.button_pressed = true
+		else:
+			$DisplayPanel/BloomCheckButton.button_pressed = false
+		
 		############# Audio #############
 		$AudioPanel/MasterVolumeSlider.value = config.get_value("audio", "master")
 		$AudioPanel/MusicVolumeSlider.value = config.get_value("audio", "music")
@@ -85,14 +90,6 @@ func _on_back_button_pressed() -> void:
 	$"../StartMenu".visible = true
 	$".".visible = false
 
-func _on_display_button_pressed() -> void:
-	$DisplayPanel.visible = true
-	$AudioPanel.visible = false
-	$ControlsPanel.visible = false
-	print(get_viewport().get_visible_rect().size)
-	if get_viewport().get_visible_rect().size == Vector2(1921, 1080):
-		$DisplayPanel/WindowsSizeDropDown.selected = 2
-
 func _on_windows_type_drop_down_item_selected(index: int) -> void:
 	config.set_value("display", "windows_type", index)
 	config.save(file_path)
@@ -114,9 +111,11 @@ func _on_windows_size_drop_down_item_selected(index: int) -> void:
 func _on_vsync_check_button_toggled(toggled_on: bool) -> void:
 	match toggled_on:
 		true:
+			config.set_value("display", "vsync", toggled_on)
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 			print("[options_menu.gd] Vsync Enabled")
 		false:
+			config.set_value("display", "vsync", toggled_on)
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 			print("[options_menu.gd] Vsync Disabled")
 
@@ -143,15 +142,32 @@ func _on_monitor_selector_dropdown_item_selected(index: int) -> void:
 	config.set_value("display", "monitor", index)
 	config.save(file_path)
 
+func _on_display_button_pressed() -> void:
+	$DisplayPanel.visible = true
+	$AudioPanel.visible = false
+	$ControlsPanel.visible = false
+	$AccessibilityPanel.visible = false
+	print(get_viewport().get_visible_rect().size)
+	if get_viewport().get_visible_rect().size == Vector2(1921, 1080):
+		$DisplayPanel/WindowsSizeDropDown.selected = 2
+
 func _on_audio_button_pressed() -> void:
 	$DisplayPanel.visible = false
 	$AudioPanel.visible = true
 	$ControlsPanel.visible = false
+	$AccessibilityPanel.visible = false
 
 func _on_controls_button_pressed() -> void:
 	$DisplayPanel.visible = false
 	$AudioPanel.visible = false
 	$ControlsPanel.visible = true
+	$AccessibilityPanel.visible = false
+
+func _on_accessebility_pressed() -> void:
+	$DisplayPanel.visible = false
+	$AudioPanel.visible = false
+	$ControlsPanel.visible = false
+	$AccessibilityPanel.visible = true
 
 func change_resolution(index):
 	match index:
@@ -324,3 +340,17 @@ func _on_use_flashlight_button_pressed() -> void:
 	previous_keybutton = $ControlsPanel/UseFlashlightButton
 	change_keybind_of = "Use_Flashlight"
 	previous_keybutton.text = "..."
+
+func _on_bloom_check_button_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_bloom_check_button_toggled(toggled_on: bool) -> void:
+	match toggled_on:
+		true:
+			config.set_value("display", "bloom", toggled_on)
+			config.save(file_path)
+			print("[options_menu.gd] Bloom Enabled")
+		false:
+			config.set_value("display", "bloom", toggled_on)
+			config.save(file_path)
+			print("[options_menu.gd] Bloom Disabled")

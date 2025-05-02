@@ -182,10 +182,10 @@ expand_margin_bottom = 3.0
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev00f"]
 bg_color = Color(0.6, 0.6, 1, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qy33"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l6o4"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l6o4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qy33"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgfrk"]
@@ -802,7 +802,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
 text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -838,30 +837,10 @@ offset_bottom = -578.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_ev00f")
 text = "Display"
-flat = true
-
-[node name="AudioButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
-z_index = 1
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -626.0
-offset_top = -518.0
-offset_right = -341.0
-offset_bottom = -430.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxFlat_8qy33")
-text = "Audio"
 flat = true
 
 [node name="ControlsButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
@@ -880,9 +859,55 @@ offset_bottom = -502.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_8l6o4")
 text = "Controls"
+flat = true
+
+[node name="AudioButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -626.0
+offset_top = -518.0
+offset_right = -341.0
+offset_bottom = -430.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxFlat_8qy33")
+text = "Audio"
+flat = true
+
+[node name="Accessebility" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -628.0
+offset_top = -455.0
+offset_right = -334.0
+offset_bottom = -367.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_8qy33")
+text = "Accessibility
+"
 flat = true
 
 [node name="BackButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
@@ -901,6 +926,7 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"
@@ -1032,9 +1058,9 @@ text = "FPS Limiter"
 [node name="FPSType" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
-offset_left = 707.0
+offset_left = 718.0
 offset_top = 184.0
-offset_right = 883.0
+offset_right = 894.0
 offset_bottom = 235.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
@@ -1082,9 +1108,9 @@ text = "Monitor"
 [node name="MonitorSelectorDropdown" type="OptionButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
 z_index = 1
 layout_mode = 0
-offset_left = 707.0
+offset_left = 718.0
 offset_top = 248.0
-offset_right = 883.0
+offset_right = 894.0
 offset_bottom = 299.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
@@ -1092,6 +1118,25 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_mivfx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_a3wfw")
 alignment = 1
+
+[node name="Bloom" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 296.0
+offset_right = 343.0
+offset_bottom = 351.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Bloom"
+
+[node name="BloomCheckButton" type="CheckButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
+z_index = 1
+layout_mode = 0
+offset_left = 764.0
+offset_top = 303.0
+offset_right = 808.0
+offset_bottom = 327.0
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="AudioPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
 visible = false
@@ -1622,7 +1667,59 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
 
+[node name="AccessibilityPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 5.0
+offset_right = 304.0
+offset_bottom = 5.0
+
+[node name="ColorblindnessLabel" type="Label" parent="GUI/Center/OptionsMenu/AccessibilityPanel"]
+offset_left = 11.0
+offset_top = 16.0
+offset_right = 332.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 48
+text = "Colorblindness"
+
+[node name="WindowsSizeDropDown" type="OptionButton" parent="GUI/Center/OptionsMenu/AccessibilityPanel" groups=["Buttons"]]
+z_index = 1
+offset_left = 662.0
+offset_top = 14.0
+offset_right = 927.0
+offset_bottom = 65.0
+mouse_default_cursor_shape = 7
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dnwve")
+flat = true
+alignment = 1
+item_count = 3
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/id = 1
+popup/item_2/id = 2
+
+[node name="LanguageLabel" type="Label" parent="GUI/Center/OptionsMenu/AccessibilityPanel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 80.0
+offset_right = 218.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 48
+text = "Language"
+
+[node name="SubtitlesLabel" type="Label" parent="GUI/Center/OptionsMenu/AccessibilityPanel"]
+offset_left = 11.0
+offset_top = 142.0
+offset_right = 197.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 48
+text = "Subtitles"
+
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1767,8 +1864,9 @@ bus = &"Menus"
 [connection signal="tab_selected" from="GUI/Center/SaveFilesMenu/SaveScreationPanel/IntroTabBar" to="GUI/Center/SaveFilesMenu" method="_on_intro_tab_bar_tab_selected"]
 [connection signal="pressed" from="GUI/Center/SaveFilesMenu/SaveScreationPanel/CreatorButton" to="GUI/Center/SaveFilesMenu" method="_on_creator_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayButton" to="GUI/Center/OptionsMenu" method="_on_display_button_pressed"]
-[connection signal="pressed" from="GUI/Center/OptionsMenu/AudioButton" to="GUI/Center/OptionsMenu" method="_on_audio_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsButton" to="GUI/Center/OptionsMenu" method="_on_controls_button_pressed"]
+[connection signal="pressed" from="GUI/Center/OptionsMenu/AudioButton" to="GUI/Center/OptionsMenu" method="_on_audio_button_pressed"]
+[connection signal="pressed" from="GUI/Center/OptionsMenu/Accessebility" to="GUI/Center/OptionsMenu" method="_on_accessebility_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/BackButton" to="GUI/Center/OptionsMenu" method="_on_back_button_pressed"]
 [connection signal="item_selected" from="GUI/Center/OptionsMenu/DisplayPanel/WindowsSizeDropDown" to="GUI/Center/OptionsMenu" method="_on_windows_size_drop_down_item_selected"]
 [connection signal="item_selected" from="GUI/Center/OptionsMenu/DisplayPanel/WindowsTypeDropDown" to="GUI/Center/OptionsMenu" method="_on_windows_type_drop_down_item_selected"]
@@ -1776,6 +1874,8 @@ bus = &"Menus"
 [connection signal="toggled" from="GUI/Center/OptionsMenu/DisplayPanel/VsyncCheckButton" to="GUI/Center/OptionsMenu" method="_on_vsync_check_button_toggled"]
 [connection signal="item_selected" from="GUI/Center/OptionsMenu/DisplayPanel/FPSType" to="GUI/Center/OptionsMenu" method="_on_fps_type_item_selected"]
 [connection signal="item_selected" from="GUI/Center/OptionsMenu/DisplayPanel/MonitorSelectorDropdown" to="GUI/Center/OptionsMenu" method="_on_monitor_selector_dropdown_item_selected"]
+[connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayPanel/BloomCheckButton" to="GUI/Center/OptionsMenu" method="_on_bloom_check_button_pressed"]
+[connection signal="toggled" from="GUI/Center/OptionsMenu/DisplayPanel/BloomCheckButton" to="GUI/Center/OptionsMenu" method="_on_bloom_check_button_toggled"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/MasterVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/MusicVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/AmbientVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_ambient_volume_slider_value_changed"]
@@ -1797,4 +1897,5 @@ bus = &"Menus"
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UniverseZoomInButton" to="GUI/Center/OptionsMenu" method="_on_universe_zoom_in_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UniverseZoomOutButton" to="GUI/Center/OptionsMenu" method="_on_universe_zoom_out_button_pressed"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/ControlsPanel/UseFlashlightButton" to="GUI/Center/OptionsMenu" method="_on_use_flashlight_button_pressed"]
+[connection signal="item_selected" from="GUI/Center/OptionsMenu/AccessibilityPanel/WindowsSizeDropDown" to="GUI/Center/OptionsMenu" method="_on_windows_size_drop_down_item_selected"]
 [connection signal="pressed" from="GUI/Center/CreditsMenu/BackButton" to="GUI/Center/StartMenu" method="_on_back_button_pressed"]

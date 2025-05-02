@@ -757,7 +757,7 @@ allow_search = false
 auto_height = true
 item_count = 3
 icon_scale = 2.0
-item_0/text = "Collect Good: 0/100"
+item_0/text = "Collect Goods: 0/100"
 item_1/text = "Kill Enemies: 0/20"
 
 [node name="MissionListTitle" type="Label" parent="Player/HUD/MissionList"]

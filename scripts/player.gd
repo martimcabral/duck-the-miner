@@ -8,6 +8,7 @@ var max_health : int
 var max_oxygen : int
 var max_uv : int
 var flashlight : bool = false
+var hotbar_slots_number : int = 4
 
 var speed : int
 var walking_speed : int
@@ -48,6 +49,7 @@ var skin_selected : int
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
 var player_config = ConfigFile.new()
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
+var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
 var window_mode = 0
 
 func _ready():
@@ -67,12 +69,9 @@ func _ready():
 	$Camera2D/HUD/Stats/Beautiful/UV.max_value = max_uv
 	
 	hotbar.remove_tab(0)
-	hotbar.add_tab(player_config.get_value("hotbar_slots", "0"))
-	hotbar.add_tab(player_config.get_value("hotbar_slots", "1"))
-	hotbar.add_tab(player_config.get_value("hotbar_slots", "2"))
-	hotbar.add_tab(player_config.get_value("hotbar_slots", "3"))
-	
-	for i in range(0, 4):
+	hotbar_slots_number = player_config.get_value("hotbar_slots", "number")
+	for i in range(0, hotbar_slots_number):
+		hotbar.add_tab(player_config.get_value("hotbar_slots", str(i)))
 		hotbar.set_tab_icon(i, set_custom_cursor(i))
 	
 	Input.set_custom_mouse_cursor(cursor_default)
@@ -177,6 +176,9 @@ func _process(delta):
 					2: $"PlayerSounds/Quack".pitch_scale = 1
 					3: $"PlayerSounds/Quack".pitch_scale = 1.1
 				$"PlayerSounds/Quack".play()
+				var new_quack = quack_scene.instantiate()
+				new_quack.position -= Vector2(0, 8)
+				add_child(new_quack)
 		
 	if Input.is_action_just_pressed("PauseMenu"):
 		if $"../PauseMenu/GUI_Pause".visible == true:
@@ -271,19 +273,19 @@ func _process(delta):
 					$AnimatedSprite2D.stop()
 				
 			# Mudar o Cursor dependendo do Item selecinado da Hotbar
-			if Input.is_action_just_pressed("Hotbar_1"):
+			if Input.is_action_just_pressed("Hotbar_1") and hotbar_slots_number >= 1:
 				hotbar.current_tab = 0
 				current_item = player_config.get_value("hotbar_slots", "0")
 				Input.set_custom_mouse_cursor(set_custom_cursor(0))
-			if Input.is_action_just_pressed("Hotbar_2"):
+			if Input.is_action_just_pressed("Hotbar_2") and hotbar_slots_number >= 2:
 				hotbar.current_tab = 1
 				current_item = player_config.get_value("hotbar_slots", "1")
 				Input.set_custom_mouse_cursor(set_custom_cursor(1))
-			if Input.is_action_just_pressed("Hotbar_3"):
+			if Input.is_action_just_pressed("Hotbar_3") and hotbar_slots_number >= 3:
 				hotbar.current_tab = 2
 				current_item = player_config.get_value("hotbar_slots", "2")
 				Input.set_custom_mouse_cursor(set_custom_cursor(2))
-			if Input.is_action_just_pressed("Hotbar_4"):
+			if Input.is_action_just_pressed("Hotbar_4") and hotbar_slots_number >= 4:
 				hotbar.current_tab = 3
 				current_item = player_config.get_value("hotbar_slots", "3")
 				Input.set_custom_mouse_cursor(set_custom_cursor(3))
@@ -340,7 +342,7 @@ func destroy_block():
 					
 					# Detect percentage of the health of the Tile here:
 					var percentage = float(used_tiles[tile_pos]["health"]) / tile_health * 100
-					print("Block Health: ", percentage, "%")
+					#print("Block Health: ", percentage, "%")
 					if (percentage >= 76 and percentage <= 100):
 						BreakingStages.set_cell(tile_pos, 0, Vector2i(0, 0))
 					elif (percentage >= 50 and percentage <= 75):

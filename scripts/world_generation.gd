@@ -24,6 +24,9 @@ var fade_out : float = 0.0
 
 @onready var CaveSystem = $WorldTileMap/CaveSystem
 
+var config_path = "user://game_settings.cfg"
+var config_file = ConfigFile.new()
+
 func _process(_delta: float) -> void:
 	$WorldMusic.position = $Player.position
 	update_radar_tool()
@@ -91,6 +94,9 @@ func start_music():
 			3: $WorldMusic/Portal.play()
 
 func _ready():
+	config_file.load(config_path)
+	$WorldEnvironment.environment.glow_enabled = config_file.get_value("display", "bloom")
+	
 	var min_temp = -10  # Minimum temperature
 	var max_temp = 40   # Maximum temperature
 	var max_hue = 255   # Maximum hue value in your system

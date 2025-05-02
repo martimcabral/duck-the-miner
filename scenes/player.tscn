@@ -756,7 +756,7 @@ shape = SubResource("RectangleShape2D_n5m53")
 position = Vector2(-5.96046e-08, -5.96046e-08)
 scale = Vector2(1.27409, 1.27409)
 color = Color(1, 0.937423, 0.860978, 1)
-energy = 0.75
+energy = 0.5
 texture = ExtResource("3_jwt0r")
 texture_scale = 0.3
 
