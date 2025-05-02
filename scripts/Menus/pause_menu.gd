@@ -149,6 +149,11 @@ func more_days():
 func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
+	
+	var file_path = "user://game_settings.cfg"
+	var config = ConfigFile.new()
+	config.load(file_path)
+	$GUI_Pause/Colorblindness.material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness", 4))
 
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects

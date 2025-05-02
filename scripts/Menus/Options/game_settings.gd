@@ -47,9 +47,9 @@ func create_config_file():
 	config.set_value("controls", "Use_Flashlight", "RMB")
 	
 	# Accessibility
-	config.set_value("accessibility", "subtiles", true)
 	config.set_value("accessibility", "colorblindness", 0)
-	config.set_value("accessibility", "Language", 0)
+	config.set_value("accessibility", "language", 0)
+	config.set_value("accessibility", "subtitles", true)
 	
 	# Save the file
 	var save_error = config.save(file_path)

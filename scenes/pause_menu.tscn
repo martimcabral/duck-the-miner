@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbyiibgv0sxte"]
+[gd_scene load_steps=8 format=3 uid="uid://bbyiibgv0sxte"]
 
 [ext_resource type="Script" uid="uid://n0kjraecvul5" path="res://scripts/Menus/pause_menu.gd" id="1_br3yh"]
+[ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="2_kukqi"]
+[ext_resource type="Texture2D" uid="uid://nilyubfe1cx1" path="res://rcedit/game_dependency.png" id="2_myx47"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5d2l8"]
+shader = ExtResource("2_kukqi")
+shader_parameter/mode = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
 bg_color = Color(0, 0, 0, 0.686275)
@@ -25,7 +31,16 @@ script = ExtResource("1_br3yh")
 
 [node name="GUI_Pause" type="CanvasLayer" parent="."]
 layer = 3
-visible = false
+
+[node name="Colorblindness" type="TextureRect" parent="GUI_Pause"]
+z_index = 2
+material = SubResource("ShaderMaterial_5d2l8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_myx47")
 
 [node name="ColorRect" type="ColorRect" parent="GUI_Pause"]
 anchors_preset = 15

@@ -51,8 +51,14 @@ var player_config = ConfigFile.new()
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
 var window_mode = 0
+var subtitles : bool
 
 func _ready():
+	var file_path = "user://game_settings.cfg"
+	var config = ConfigFile.new()
+	config.load(file_path)
+	subtitles = config.get_value("accessibility", "subtitles", true)
+	
 	player_config.load(player_path)
 	max_health = player_config.get_value("status", "max_health", 100)
 	max_oxygen = player_config.get_value("status", "max_oxygen", 300)
@@ -176,9 +182,10 @@ func _process(delta):
 					2: $"PlayerSounds/Quack".pitch_scale = 1
 					3: $"PlayerSounds/Quack".pitch_scale = 1.1
 				$"PlayerSounds/Quack".play()
-				var new_quack = quack_scene.instantiate()
-				new_quack.position -= Vector2(0, 8)
-				add_child(new_quack)
+				if subtitles == true:
+					var new_quack = quack_scene.instantiate()
+					new_quack.position -= Vector2(0, 8)
+					add_child(new_quack)
 		
 	if Input.is_action_just_pressed("PauseMenu"):
 		if $"../PauseMenu/GUI_Pause".visible == true:

@@ -96,6 +96,7 @@ func start_music():
 func _ready():
 	config_file.load(config_path)
 	$WorldEnvironment.environment.glow_enabled = config_file.get_value("display", "bloom")
+	$Player/HUD/Colorblindness.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
 	
 	var min_temp = -10  # Minimum temperature
 	var max_temp = 40   # Maximum temperature

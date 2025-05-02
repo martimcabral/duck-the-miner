@@ -78,8 +78,14 @@ func _ready():
 		$ControlsPanel/UniverseZoomOutButton.text = config.get_value("controls", "Universe_Zoom_Out")
 		$ControlsPanel/UseFlashlightButton.text = config.get_value("controls", "Use_Flashlight")
 		
+		############# Accessibility #############
+		$AccessibilityPanel/ColorblindnessDropDown.selected = config.get_value("accessibility", "colorblindness")
+		$AccessibilityPanel/LanguageDropDown.selected = config.get_value("accessibility", "language")
+		$AccessibilityPanel/SubtitlesCheckButton.button_pressed = config.get_value("accessibility", "subtitles")
+		$"../../ColorblindFilter".material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness"))
+		
 	else:
-		print("[options_menu.gd] Failed to load config file. Error:", err)
+		print("[options_menu.gd] ERROR: Failed to load config file. Error:", err)
 
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
@@ -341,16 +347,20 @@ func _on_use_flashlight_button_pressed() -> void:
 	change_keybind_of = "Use_Flashlight"
 	previous_keybutton.text = "..."
 
-func _on_bloom_check_button_pressed() -> void:
-	pass # Replace with function body.
-
 func _on_bloom_check_button_toggled(toggled_on: bool) -> void:
-	match toggled_on:
-		true:
-			config.set_value("display", "bloom", toggled_on)
-			config.save(file_path)
-			print("[options_menu.gd] Bloom Enabled")
-		false:
-			config.set_value("display", "bloom", toggled_on)
-			config.save(file_path)
-			print("[options_menu.gd] Bloom Disabled")
+		config.set_value("display", "bloom", toggled_on)
+		config.save(file_path)
+		print("[options_menu.gd] Bloom Enabled")
+
+func _on_colorblindness_drop_down_item_selected(index: int) -> void:
+	$"../../ColorblindFilter".material.set_shader_parameter("mode", index)
+	config.set_value("accessibility", "colorblindness", index)
+	config.save(file_path)
+
+func _on_language_drop_down_item_selected(index: int) -> void:
+	config.set_value("accessibility", "language", index)
+	config.save(file_path)
+
+func _on_subtitles_check_button_toggled(toggled_on: bool) -> void:
+	config.set_value("accessibility", "subtitles", toggled_on)
+	config.save(file_path)
