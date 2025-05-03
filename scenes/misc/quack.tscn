@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyu4ulofypeaq"]
 
-[ext_resource type="Texture2D" uid="uid://dakxuxecs4mpi" path="res://assets/textures/players/quack.png" id="1_apohy"]
+[ext_resource type="Texture2D" uid="uid://dakxuxecs4mpi" path="res://assets/textures/player/quack.png" id="1_apohy"]
 [ext_resource type="Script" uid="uid://deukjofo28yi6" path="res://scripts/Misc/quack.gd" id="1_r18lw"]
 
 [sub_resource type="Curve" id="Curve_r18lw"]

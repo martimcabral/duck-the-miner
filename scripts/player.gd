@@ -23,8 +23,8 @@ var touched_enemy
 var BaW_time_remaining : float = 0
 var ghost_mode : bool = false
 var used_tiles = {}
-var block_selection_default = preload("res://assets/textures/selected_block.png")
-var block_selection_out = preload("res://assets/textures/selected_block_out_of_range.png")
+var block_selection_default = preload("res://assets/textures/tilemaps/selected_block/selected_block.png")
+var block_selection_out = preload("res://assets/textures/tilemaps/selected_block/selected_block_out_of_range.png")
 
 @onready var block_selection = $"../WorldTileMap/BlockSelection"
 @onready var player = $"../Player"
@@ -38,12 +38,12 @@ var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
 var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/flashlight_item.png")
-var cursor_default = preload("res://assets/textures/players/main_cursor.png")
+var cursor_default = preload("res://assets/textures/player/main_cursor.png")
 var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
 
-var bloddy_overlay1 = preload("res://assets/textures/bloody_overlay/overlay_1.png")
-var bloddy_overlay2 = preload("res://assets/textures/bloody_overlay/overlay_2.png")
-var bloddy_overlay3 = preload("res://assets/textures/bloody_overlay/overlay_3.png")
+var bloddy_overlay1 = preload("res://assets/textures/player/overlays/overlay_1.png")
+var bloddy_overlay2 = preload("res://assets/textures/player/overlays/overlay_2.png")
+var bloddy_overlay3 = preload("res://assets/textures/player/overlays/overlay_3.png")
 
 var skin_selected : int
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")

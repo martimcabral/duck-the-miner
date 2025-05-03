@@ -31,6 +31,7 @@ script = ExtResource("1_br3yh")
 
 [node name="GUI_Pause" type="CanvasLayer" parent="."]
 layer = 3
+visible = false
 
 [node name="Colorblindness" type="TextureRect" parent="GUI_Pause"]
 z_index = 2

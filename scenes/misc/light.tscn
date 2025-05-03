@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddu4kp3hwti45"]
 
-[ext_resource type="Texture2D" uid="uid://ccnl4eoru32e0" path="res://assets/textures/bulkhead_light.png" id="1_vjsog"]
-[ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/players/lights/point_light.png" id="2_ibwq3"]
+[ext_resource type="Texture2D" uid="uid://ccnl4eoru32e0" path="res://assets/textures/equipment/others/bulkhead_light_wall.png" id="1_vjsog"]
+[ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/player/lights/point_light.png" id="2_ibwq3"]
 
 [node name="BulkheadLight" type="Node2D"]
 texture_filter = 1

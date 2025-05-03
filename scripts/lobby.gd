@@ -467,7 +467,7 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_back_button_pressed() -> void:
-	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
+	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 	var new_game_scene = load("res://scenes/main_menu.tscn")
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
@@ -522,7 +522,7 @@ func load_skin():
 		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
-	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/player/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
 	print("[lobby.gd] Changed Discord Large Image to: ", DiscordRPC.large_image)
 	DiscordRPC.refresh()
@@ -531,7 +531,7 @@ func _on_skin_previous_button_pressed() -> void:
 	skin_selected -= 1
 	if skin_selected < 1 : skin_selected = 1
 	
-	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/player/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
 	print(DiscordRPC.large_image)
 	DiscordRPC.refresh()
@@ -546,7 +546,7 @@ func _on_skin_next_button_pressed() -> void:
 	skin_selected += 1
 	if skin_selected >= 6 : skin_selected = 6
 	
-	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/players/skins/" + str(skin_selected) + "/duck.png")
+	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/player/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
 	DiscordRPC.refresh()
 	

@@ -1,11 +1,11 @@
 [gd_scene load_steps=53 format=3 uid="uid://ibqx3yfikbc2"]
 
-[ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/start.gd" id="1_0o5ht"]
+[ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/Misc/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
 [ext_resource type="Script" uid="uid://bsjsgdqygu8x5" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" uid="uid://bbygtdu0v3de8" path="res://scripts/Menus/save_files_menu.gd" id="3_rtw2f"]
 [ext_resource type="Script" uid="uid://dt2nt4vg6abkt" path="res://scripts/Menus/Options/options_menu.gd" id="3_vt73r"]
-[ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/main_menu/trash_can.png" id="4_oa1go"]
+[ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/menus/trash_can.png" id="4_oa1go"]
 [ext_resource type="AudioStream" uid="uid://dx8qvewqg7pwy" path="res://sounds/sound_effects/play.ogg" id="5_08a1y"]
 [ext_resource type="Texture2D" uid="uid://nilyubfe1cx1" path="res://rcedit/game_dependency.png" id="7_jk1qb"]
 [ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="8_tbmy8"]

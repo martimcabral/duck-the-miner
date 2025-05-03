@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
-[ext_resource type="Texture2D" uid="uid://bd4o6j02nkuus" path="res://assets/textures/players/lights/white-glow-light-effect-free-png.png" id="2_nq3r8"]
+[ext_resource type="Texture2D" uid="uid://bd4o6j02nkuus" path="res://assets/textures/player/lights/white-glow-light-effect-free-png.png" id="2_nq3r8"]
 [ext_resource type="Texture2D" uid="uid://c5swk404rbin3" path="res://assets/textures/items/gems/diamond.png" id="3_j7l03"]
 [ext_resource type="Script" uid="uid://jgv8b7ltguss" path="res://scripts/Items/rare_item_light_rotation.gd" id="3_reukg"]
 [ext_resource type="Texture2D" uid="uid://k3vcrgovwbdr" path="res://assets/textures/items/gems/ruby.png" id="5_hkxh7"]
