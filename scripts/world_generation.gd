@@ -44,27 +44,12 @@ func _process(_delta: float) -> void:
 	$Player/HUD/ItemList.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/VersionDisplay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/PlayerPosition.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Temperature.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
 	
-	$Player/Camera2D/HUD/Stats/Text/MaxHealth.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Text/CurrentHealth.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Text/MaxOxygen.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Text/CurrentOxygen.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Text/MaxUv.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Text/CurrentUv.modulate.a8 = fade_in
-	
-	$Player/Camera2D/HUD/Stats/Text/HeartTexture.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Text/Oxygen.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Text/UVTexture.modulate.a8 = fade_in
-	
 	$Player/HUD/RadarPanel.modulate.a8 = fade_in
 	$Player/HUD/MissionList.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Beautiful/Health.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Beautiful/UV.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/Beautiful/Oxygen.modulate.a8 = fade_in
-
+	
 func start_music():
 	var random_music = randi_range(1, 3)
 	if asteroid_biome == "Stony":
@@ -96,20 +81,7 @@ func start_music():
 func _ready():
 	config_file.load(config_path)
 	$WorldEnvironment.environment.glow_enabled = config_file.get_value("display", "bloom")
-	$Player/HUD/Colorblindness.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
-	
-	var min_temp = -10  # Minimum temperature
-	var max_temp = 40   # Maximum temperature
-	var max_hue = 255   # Maximum hue value in your system
-	
-	var clamped_temp = clamp(asteroid_temperature, min_temp, max_temp)
-	var temperature_color_value = (clamped_temp - min_temp) / (max_temp - min_temp)
-	var inverted_temperature_value = 1.0 - temperature_color_value
-	var hue = inverted_temperature_value * max_hue
-	var temperature_color = Color.from_hsv(hue / 360.0, 0.8, 0.8, 1)  # Convert hue to 0-1 range
-	
-	$Player/Camera2D/HUD/Temperature.modulate = temperature_color
-	$Player/Camera2D/HUD/Temperature.text = "T: " + str(int(asteroid_temperature)) + "°C"
+	$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
 	
 	$Player/HUD/AsteroidTitle.visible = true
 	$Player/HUD/FieldTitle.visible = true
@@ -131,20 +103,20 @@ func _ready():
 	
 	match asteroid_field:
 		"Delta Belt":
-			world_width = randi_range(200, 300)
+			world_width = randi_range(100, 150)
 			world_height = randi_range(800, 950)
 		"Gamma Field":
-			world_width = randi_range(250, 400)
+			world_width = randi_range(125, 200)
 			world_height = randi_range(850, 1025)
 		"Omega Field":
-			world_width = randi_range(250, 350)
+			world_width = randi_range(125, 225)
 			world_height = randi_range(850, 1000)
 		"Koppa Belt":
-			world_width = randi_range(150, 250)
+			world_width = randi_range(125, 175)
 			world_height = randi_range(1050, 1250)
 		_:
-			world_width = 300
-			world_height = 300
+			world_width = 150
+			world_height = 150
 	
 	world_height_border = world_height + 20
 	create_world_borders()
@@ -423,7 +395,7 @@ func start_position():
 	var spawn_cube_size = 3
 	
 	# Random Position to the player Spawn
-	var player_position = Vector2(randi_range(750,1000), 750)
+	var player_position = Vector2((world_width * 16) / 2, randi_range(10 * 16, 100 * 16))
 	
 	$Player.position = player_position
 	

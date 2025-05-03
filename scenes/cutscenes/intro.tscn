@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bfpwsu635c73s" path="res://scripts/Misc/cutscenes.gd" id="1_5khjm"]
 [ext_resource type="FontFile" uid="uid://5b4g4ugjtc6q" path="res://assets/fonts/VeniceClassic.ttf" id="2_2o8o2"]
-[ext_resource type="Texture2D" uid="uid://3ev3ewev31fl" path="res://assets/textures/companies/contracts/fyction_first.png" id="2_465o6"]
 [ext_resource type="AudioStream" uid="uid://bwgwkvtcl6fsm" path="res://sounds/sound_effects/mining3.ogg" id="3_feyoj"]
 [ext_resource type="Texture2D" uid="uid://ccovw7201b8cq" path="res://assets/textures/menus/rubber.png" id="4_5wt6c"]
 [ext_resource type="AudioStream" uid="uid://dh5bvg4h0k67m" path="res://sounds/sound_effects/printing.ogg" id="4_75cy6"]
 [ext_resource type="Texture2D" uid="uid://bujtnd32au7um" path="res://assets/textures/menus/rubber_hover.png" id="5_pyic4"]
+[ext_resource type="Texture2D" uid="uid://c5pdvryi4ts0f" path="res://assets/textures/companies/contracts/fyction_new_first.png" id="6_5wt6c"]
 [ext_resource type="AudioStream" uid="uid://dwbbwpto5nca0" path="res://sounds/sound_effects/whoosh.ogg" id="6_wp7x2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75cy6"]
@@ -216,7 +216,34 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 mouse_filter = 2
-texture = ExtResource("2_465o6")
+texture = ExtResource("6_5wt6c")
+
+[node name="ContractText" type="Label" parent="FyctionContract"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 597.5
+offset_right = 1680.0
+offset_bottom = 2399.5
+theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
+theme_override_font_sizes/font_size = 92
+text = "1. Must be alive
+2. Has to yearn for the mines
+3. Give Steam Account to Fyction
+4. Needs physical strength
+5. Must breath in space
+6. Be able to fly, walk and swim
+7. Must not care for death
+8. Licensed Spaceship Driver
+9. Contract can be broken at any time
+10. 30% of all earnings go to Fyction
+
+
+Terms & Conditions:
+
+   Accept
+   Refuse
+
+New Fyctioneer:           Fyction CEO:"
 
 [node name="Lines" type="Node2D" parent="FyctionContract"]
 position = Vector2(-1627.5, -125)
@@ -252,11 +279,12 @@ shape = SubResource("RectangleShape2D_465o6")
 
 [node name="AcceptButton" type="CheckBox" parent="FyctionContract" groups=["Buttons"]]
 z_index = 20
+texture_filter = 1
 layout_mode = 0
 offset_left = 112.5
-offset_top = 1887.5
+offset_top = 1922.5
 offset_right = 136.5
-offset_bottom = 1911.5
+offset_bottom = 1946.5
 scale = Vector2(3.5, 3.5)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_feyoj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ght7f")
@@ -266,11 +294,12 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_qrnwy")
 
 [node name="RefuseButton" type="CheckBox" parent="FyctionContract" groups=["Buttons"]]
 z_index = 20
+texture_filter = 1
 layout_mode = 0
 offset_left = 112.5
-offset_top = 1992.5
+offset_top = 2027.5
 offset_right = 136.5
-offset_bottom = 2016.5
+offset_bottom = 2051.5
 scale = Vector2(3.5, 3.5)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_feyoj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ght7f")

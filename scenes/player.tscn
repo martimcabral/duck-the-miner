@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=117 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/player/skins/1/duck_walking.png" id="2_815s6"]
@@ -36,15 +36,9 @@
 [ext_resource type="Texture2D" uid="uid://cxdj6ht58ac1v" path="res://assets/textures/player/skins/6/duck_flying.png" id="23_hax0n"]
 [ext_resource type="Texture2D" uid="uid://bqyxjp0xgejys" path="res://assets/textures/player/skins/6/duck_squat.png" id="24_t4otl"]
 [ext_resource type="Texture2D" uid="uid://cfkvpy26721el" path="res://assets/textures/player/skins/6/duck_walking.png" id="25_j2b1d"]
-[ext_resource type="Texture2D" uid="uid://ca6peow08cjax" path="res://assets/textures/player/status/old/health_empty.png" id="31_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://ug2xoqmhnbuq" path="res://assets/textures/player/status/icons/heart.png" id="31_t4otl"]
 [ext_resource type="Texture2D" uid="uid://qqq78gpdvgw0" path="res://assets/textures/player/status/icons/oxygen.png" id="32_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://bv1bpwf18raeb" path="res://assets/textures/player/status/icons/battery_energy.png" id="32_j2b1d"]
-[ext_resource type="Texture2D" uid="uid://cgh5eamxy3ge1" path="res://assets/textures/player/status/old/health_full.png" id="32_mx1m4"]
-[ext_resource type="Texture2D" uid="uid://bmru4wgdqctwy" path="res://assets/textures/player/status/old/uv_empty.png" id="35_6e8lb"]
-[ext_resource type="Texture2D" uid="uid://bbqvkifvi34gx" path="res://assets/textures/player/status/old/uv_full.png" id="36_2gdjj"]
-[ext_resource type="Texture2D" uid="uid://c4tl2hrhvhaxe" path="res://assets/textures/player/status/old/oxygen_empty.png" id="37_sc3ue"]
-[ext_resource type="Texture2D" uid="uid://c1bet1bct63yk" path="res://assets/textures/player/status/old/oxygen_full.png" id="38_lxlsd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
 atlas = ExtResource("2_gl8cc")
@@ -644,6 +638,30 @@ shader_parameter/fast_noise = SubResource("NoiseTexture2D_487ah")
 shader_parameter/speed = Vector2(0.03, 0.07)
 shader_parameter/wave_strength = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5jhy"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_holxr"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0r2e0"]
 content_margin_left = 16.0
 content_margin_top = 16.0
@@ -654,7 +672,7 @@ border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.25, 0.25, 0.25, 1)
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -674,7 +692,7 @@ border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.89059, 0.89059, 0.89059, 1)
+border_color = Color(0.399313, 0.399313, 0.399313, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -704,9 +722,7 @@ expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isjhl"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_color = Color(0.8, 0.8, 0.8, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cs1tg"]
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -839,217 +855,176 @@ theme_override_font_sizes/font_size = 32
 text = "X: 0
 Y: 0"
 
-[node name="Temperature" type="Label" parent="Camera2D/HUD"]
-texture_filter = 1
-offset_left = 449.5
-offset_top = 1004.0
-offset_right = 507.5
-offset_bottom = 1036.0
-tooltip_text = "Temperature"
-mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
-text = "T: 0°"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 follow_viewport_scale = 1.78
 
-[node name="Text" type="Control" parent="Camera2D/HUD/Stats"]
-visible = false
+[node name="UI" type="Control" parent="Camera2D/HUD/Stats"]
 layout_mode = 3
-anchors_preset = 0
-offset_top = -208.0
-offset_right = 40.0
-offset_bottom = -168.0
-
-[node name="HeartTexture" type="TextureRect" parent="Camera2D/HUD/Stats/Text"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 496.333
-offset_right = 43.0
-offset_bottom = 536.333
-texture = ExtResource("31_t4otl")
-
-[node name="MaxHealth" type="Label" parent="Camera2D/HUD/Stats/Text"]
-modulate = Color(1, 0.215686, 0.215686, 1)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 99.0
-offset_top = 463.0
-offset_right = 173.0
-offset_bottom = 495.0
-grow_vertical = 0
-tooltip_text = "Health"
-mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
-text = "999"
-vertical_alignment = 1
-
-[node name="CurrentHealth" type="Label" parent="Camera2D/HUD/Stats/Text"]
-modulate = Color(1, 0.215686, 0.215686, 1)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 463.333
-offset_right = 125.0
-offset_bottom = 496.333
-grow_vertical = 0
-tooltip_text = "Health"
-mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
-text = "000"
-vertical_alignment = 1
-
-[node name="Oxygen" type="TextureRect" parent="Camera2D/HUD/Stats/Text"]
-layout_mode = 0
-offset_left = 4.5
-offset_top = 464.333
-offset_right = 41.5
-offset_bottom = 501.333
-texture = ExtResource("32_cs1tg")
-
-[node name="MaxOxygen" type="Label" parent="Camera2D/HUD/Stats/Text"]
-modulate = Color(0.176, 0.88, 0.305067, 1)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 99.0
-offset_top = 428.0
-offset_right = 173.0
-offset_bottom = 460.0
-grow_vertical = 0
-tooltip_text = "Oxygen"
-mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
-text = "999"
-vertical_alignment = 1
-
-[node name="CurrentOxygen" type="Label" parent="Camera2D/HUD/Stats/Text"]
-modulate = Color(0.176, 0.88, 0.305067, 1)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 428.333
-offset_right = 125.0
-offset_bottom = 461.333
-grow_vertical = 0
-tooltip_text = "Oxygen"
-mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
-text = "000"
-vertical_alignment = 1
-
-[node name="UVTexture" type="TextureRect" parent="Camera2D/HUD/Stats/Text"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 428.333
-offset_right = 48.0
-offset_bottom = 468.333
-scale = Vector2(0.85, 0.85)
-texture = ExtResource("32_j2b1d")
-
-[node name="MaxUv" type="Label" parent="Camera2D/HUD/Stats/Text"]
-modulate = Color(0.706873, 0.203922, 1, 1)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 99.0
-offset_top = 392.0
-offset_right = 173.0
-offset_bottom = 424.0
-grow_vertical = 0
-tooltip_text = "UV Flashlight Battery"
-mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
-text = "999"
-vertical_alignment = 1
-
-[node name="CurrentUv" type="Label" parent="Camera2D/HUD/Stats/Text"]
-modulate = Color(0.706873, 0.203922, 1, 1)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 50.0
-offset_top = 392.333
-offset_right = 125.0
-offset_bottom = 425.333
-grow_vertical = 0
-tooltip_text = "UV Flashlight Battery"
-mouse_filter = 0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
-text = "000"
-vertical_alignment = 1
-
-[node name="Beautiful" type="Control" parent="Camera2D/HUD/Stats"]
-layout_mode = 3
-anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -102.0
-offset_right = 77.0
-offset_bottom = -68.0001
+offset_top = -231.0
+offset_right = 190.0
+offset_bottom = 25.0
+grow_vertical = 0
+scale = Vector2(0.9, 0.9)
+
+[node name="HealthPanel" type="Panel" parent="Camera2D/HUD/Stats/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = -220.0
+offset_right = 60.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5jhy")
+
+[node name="HealthBar" type="Line2D" parent="Camera2D/HUD/Stats/UI/HealthPanel"]
+position = Vector2(0, 9.5)
+points = PackedVector2Array(16, 160, 16, 6)
+width = 24.75
+default_color = Color(1, 0.215686, 0.215686, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 32
+
+[node name="IconPanel" type="Panel" parent="Camera2D/HUD/Stats/UI/HealthPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -35.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_holxr")
+
+[node name="Icon" type="TextureRect" parent="Camera2D/HUD/Stats/UI/HealthPanel/IconPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.0
+offset_top = -13.0
+offset_right = 11.0
+offset_bottom = 11.0
+grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+texture = ExtResource("31_t4otl")
 
-[node name="Health" type="TextureProgressBar" parent="Camera2D/HUD/Stats/Beautiful"]
-layout_mode = 0
-offset_left = 5.99999
-offset_top = 8.0
-offset_right = 26.0
-offset_bottom = 29.0
-value = 56.0
-fill_mode = 3
-texture_under = ExtResource("31_cs1tg")
-texture_progress = ExtResource("32_mx1m4")
-texture_progress_offset = Vector2(3, 3)
+[node name="OxygenPanel" type="Panel" parent="Camera2D/HUD/Stats/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_top = -220.0
+offset_right = 100.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5jhy")
 
-[node name="UV" type="TextureProgressBar" parent="Camera2D/HUD/Stats/Beautiful"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 12.0
-offset_right = 73.0
-offset_bottom = 19.0
-value = 40.0
-texture_under = ExtResource("35_6e8lb")
-texture_progress = ExtResource("36_2gdjj")
-texture_progress_offset = Vector2(1, 3)
+[node name="OxygenBar" type="Line2D" parent="Camera2D/HUD/Stats/UI/OxygenPanel"]
+position = Vector2(0, 9.5)
+points = PackedVector2Array(16, 160, 16, 6)
+width = 24.75
+default_color = Color(0.176471, 0.878431, 0.305882, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 32
 
-[node name="Oxygen" type="TextureProgressBar" parent="Camera2D/HUD/Stats/Beautiful"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 18.3334
-offset_right = 73.0
-offset_bottom = 25.3334
-value = 20.0
-texture_under = ExtResource("37_sc3ue")
-texture_progress = ExtResource("38_lxlsd")
-texture_progress_offset = Vector2(1, 1)
+[node name="IconPanel" type="Panel" parent="Camera2D/HUD/Stats/UI/OxygenPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -35.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_holxr")
+
+[node name="Icon" type="TextureRect" parent="Camera2D/HUD/Stats/UI/OxygenPanel/IconPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -11.5555
+offset_right = 11.0
+offset_bottom = 10.4445
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_cs1tg")
+
+[node name="BatteryPanel" type="Panel" parent="Camera2D/HUD/Stats/UI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = -220.0
+offset_right = 140.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g5jhy")
+
+[node name="BatteryBar" type="Line2D" parent="Camera2D/HUD/Stats/UI/BatteryPanel"]
+position = Vector2(0, 9.5)
+points = PackedVector2Array(16, 160, 16, 159)
+width = 24.75
+default_color = Color(0.705882, 0.203922, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 32
+
+[node name="IconPanel" type="Panel" parent="Camera2D/HUD/Stats/UI/BatteryPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -35.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_holxr")
+
+[node name="Icon" type="TextureRect" parent="Camera2D/HUD/Stats/UI/BatteryPanel/IconPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -11.5555
+offset_right = 11.0
+offset_bottom = 10.4445
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("32_j2b1d")
 
 [node name="Hotbar" type="CanvasLayer" parent="Camera2D/HUD"]
 
@@ -1070,9 +1045,10 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_0r2e0")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_oakyk")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_n53tx")
-theme_override_styles/tab_focus = SubResource("StyleBoxFlat_isjhl")
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_cs1tg")
 current_tab = 0
 tab_alignment = 1
+scrolling_enabled = false
 tab_count = 1
 tab_0/title = "IF THIS APPEARS THAT THE HOTBAR HAS ERRORS"
 

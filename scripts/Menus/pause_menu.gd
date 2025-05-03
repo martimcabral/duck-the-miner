@@ -34,7 +34,7 @@ func _on_abort_mission_button_pressed() -> void:
 	advance_stock_the_market()
 	keep_inventory()
 	
-	Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
+	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 	var new_game_scene = load("res://scenes/lobby.tscn")
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()

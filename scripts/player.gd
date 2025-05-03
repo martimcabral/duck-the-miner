@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
 var current_item = "Sword"
-var current_health : int
-var current_oxygen : int
-var current_uv : int
-var max_health : int
-var max_oxygen : int
-var max_uv : int
+var current_health : float
+var current_oxygen : float
+var current_uv : float
+var max_health : float
+var max_oxygen : float
+var max_uv : float
+var health_ratio : float
+var oxygen_ratio : float
+var uv_ratio : float
 var flashlight : bool = false
 var hotbar_slots_number : int = 4
 
@@ -70,10 +73,6 @@ func _ready():
 	current_oxygen = max_oxygen
 	current_uv = max_uv
 	
-	$Camera2D/HUD/Stats/Beautiful/Health.max_value = max_health
-	$Camera2D/HUD/Stats/Beautiful/Oxygen.max_value = max_oxygen
-	$Camera2D/HUD/Stats/Beautiful/UV.max_value = max_uv
-	
 	hotbar.remove_tab(0)
 	hotbar_slots_number = player_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
@@ -107,24 +106,14 @@ func player_movement(input, delta):
 			velocity.y += (falling_speed * delta) * 0.75
 
 func _process(delta):
-	if $"../PauseMenu/GUI_Pause".visible == false:
-		match current_item: # Set cursor after after despausing the game
-			"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
-			"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
-			"Light": Input.set_custom_mouse_cursor(cursor_texture_light)
-			"UV Flashlight": Input.set_custom_mouse_cursor(cursor_texture_flashlight)
-	
 	do_bloddy_overlay()
-	$Camera2D/HUD/Stats/Text/CurrentHealth.text = str(current_health)
-	$Camera2D/HUD/Stats/Text/CurrentOxygen.text = str(current_oxygen)
-	$Camera2D/HUD/Stats/Text/CurrentUv.text =  str(current_uv)
-	$Camera2D/HUD/Stats/Text/MaxHealth.text = " / " + str(max_health) 
-	$Camera2D/HUD/Stats/Text/MaxOxygen.text = " / " + str(max_oxygen)
-	$Camera2D/HUD/Stats/Text/MaxUv.text = " / " + str(max_uv)
+	health_ratio = current_health / max_health
+	oxygen_ratio = current_oxygen / max_oxygen
+	uv_ratio = current_uv / max_uv
 	
-	$Camera2D/HUD/Stats/Beautiful/Health.value = current_health
-	$Camera2D/HUD/Stats/Beautiful/Oxygen.value = current_oxygen
-	$Camera2D/HUD/Stats/Beautiful/UV.value = current_uv
+	$Camera2D/HUD/Stats/UI/HealthPanel/HealthBar.set_point_position(1, Vector2(16, lerp(160.0, 6.0, health_ratio)))
+	$Camera2D/HUD/Stats/UI/OxygenPanel/OxygenBar.set_point_position(1, Vector2(16, lerp(160.0, 6.0, oxygen_ratio)))
+	$Camera2D/HUD/Stats/UI/BatteryPanel/BatteryBar.set_point_position(1, Vector2(16, lerp(160.0, 6.0, uv_ratio)))
 	
 	BaW_time_remaining =  $HUD/BlackAndWhite/BaWFadeInTimer.wait_time - $HUD/BlackAndWhite/BaWFadeInTimer.time_left
 	
@@ -132,7 +121,7 @@ func _process(delta):
 		is_duck_dead = true
 	
 	if is_duck_dead == true:
-		Input.set_custom_mouse_cursor(load("res://assets/textures/players/main_cursor.png"))
+		Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 		$HUD/DeathLabel.visible = true
 		current_health = 0
 		$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
@@ -170,6 +159,12 @@ func _process(delta):
 		$Flashlight.energy = 0
 	
 	if $"../PauseMenu/GUI_Pause".visible == false:
+		match current_item: # Set cursor after after despausing the game
+			"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
+			"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
+			"Light": Input.set_custom_mouse_cursor(cursor_texture_light)
+			"UV Flashlight": Input.set_custom_mouse_cursor(cursor_texture_flashlight)
+		
 		if is_duck_dead == false:
 			if Input.is_action_just_pressed("Hide_Show_Inventory"):
 				if InventoryAtWorld.visible == true: InventoryAtWorld.visible = false
@@ -461,11 +456,11 @@ func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 				touched_enemy.attacked()
 
 func do_bloddy_overlay():
-	if  current_health >= 11% max_health and current_health <= 20% max_health:
+	if health_ratio >= 0.11 and health_ratio <= 0.2:
 		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay1
-	elif  current_health >= 6% max_health and current_health <= 10% max_health:
+	elif health_ratio >= 0.05 and health_ratio <= 0.1:
 		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay2
-	elif current_health >= 1% max_health and current_health <= 5% max_health:
+	elif health_ratio >= 0.0001 and health_ratio <= 0.04:
 		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay3
 	else: 
 		$Camera2D/HUD/BloddyOverlay.texture = null
@@ -473,6 +468,7 @@ func do_bloddy_overlay():
 func _on_take_damage_from_oxygen_timeout() -> void:
 	if current_oxygen <= 0:
 		if is_duck_dead == false:
+			current_oxygen = 0
 			current_health -= 1
 			$ResetModulateRedHit.start()
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
