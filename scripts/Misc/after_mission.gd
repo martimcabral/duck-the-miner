@@ -19,7 +19,7 @@ var habitat_rental : int = 8500
 var did_player_died : bool = false
 var health_insurance : int = 0
 
-var travel_destiny : String = "Delta"
+var travel_destiny : String = "Delta Belt"
 var travel_rental : int = 2400
 
 var oxygen_used : int = 0
@@ -67,13 +67,13 @@ func _ready() -> void:
 	forward_stock()
 	get_items()
 	
-	fees_label += "> Fyction aInterest\n"
-	fees_values += stra("[", fyctaion_tax, "%, -", fyction_interest,"€]\n")
+	fees_label += "> Fyction Interest\n"
+	fees_values += str("[", fyction_tax, "%, -", fyction_interest,"€]\n")
 	total += fyction_interest
-	a
+
 	fees_label += "> Habitat Rental\n"
-	fees_values += str("[-", ahabitat_rental,"€]\n")
-	total += habitat_rentala
+	fees_values += str("[-", habitat_rental,"€]\n")
+	total += habitat_rental
 	
 	if did_player_died == true:
 		health_insurance = randi_range(36000, 48000)
@@ -82,18 +82,27 @@ func _ready() -> void:
 		fees_values += str("[-", health_insurance,"€]\n")
 	
 	fees_label += "> Travel Costs\n"
-	fees_values += str("[]\n")
+	match travel_destiny:
+		"Delta Belt": travel_rental = randi_range(1500, 2750)
+		"Gamma Field": travel_rental = randi_range(4300, 5200)
+		"Omega Field": travel_rental = randi_range(4300, 5200)
+		"Koppa Belt": travel_rental = randi_range(9400, 1155)
+	fees_values += str("[", travel_destiny, ", -", travel_rental, "€]\n")
+	total += travel_rental
 	
 	fees_label += "> Oxygen Supply\n"
-	fees_values += str("[]\n")
+	oxygen_rental = oxygen_used * oxygen_price
+	fees_values += str("[",oxygen_used, ", -", oxygen_rental ,"€]\n")
+	total += oxygen_rental
+	
 	
 	if has_sword == true:
 		fees_label += "> Sword Rental\n"
-		fees_values += str("[-", sword_rental,"]\n")
+		fees_values += str("[-", sword_rental,"€]\n")
 		total += sword_rental
 	if has_pickaxe == true:
 		fees_label += "> Pickaxe Rental\n"
-		fees_values += str("[-", pickaxe_rental,"]\n")
+		fees_values += str("[-", pickaxe_rental,"€]\n")
 		total += sword_rental
 	if has_lights == true:
 		light_rental = lights_used * light_price
@@ -102,15 +111,15 @@ func _ready() -> void:
 		total += light_rental
 	if has_uv_flashlight == true:
 		fees_label += "> UV Flashlight Rental\n"
-		fees_values += str("[-", uv_flashlight_rental,"]\n")
+		fees_values += str("[-", uv_flashlight_rental,"€]\n")
 		total += uv_flashlight_rental
 	if has_radar_the_tool == true:
 		fees_label += "> Radar the Tool Rental\n"
-		fees_values += str("[-", radar_the_tool_rental,"]\n")
+		fees_values += str("[-", radar_the_tool_rental,"€]\n")
 		total += radar_the_tool_rental
 	if has_radar_the_enemies == true:
 		fees_label += "> Radar the Enemies Rental\n"
-		fees_values += str("[-", radar_the_enemies_rental,"]\n")
+		fees_values += str("[-", radar_the_enemies_rental,"€]\n")
 		total += radar_the_enemies_rental
 	
 	$FyctionTax/FeesText.text = fees_label
