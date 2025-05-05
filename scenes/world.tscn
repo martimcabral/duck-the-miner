@@ -1,7 +1,7 @@
 [gd_scene load_steps=96 format=4 uid="uid://ur4yarmj6ihc"]
 
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
-[ext_resource type="Script" uid="uid://dioj2q65coldg" path="res://scripts/world_generation.gd" id="1_nmwod"]
+[ext_resource type="Script" uid="uid://dioj2q65coldg" path="res://scripts/world.gd" id="1_nmwod"]
 [ext_resource type="Texture2D" uid="uid://wmyay6n05p4m" path="res://assets/textures/equipment/others/radio_duck.png" id="2_kpybi"]
 [ext_resource type="Texture2D" uid="uid://ddhoinlyvlc4s" path="res://assets/textures/tilemaps/stony_ore_tilemap.png" id="3_ty73d"]
 [ext_resource type="Script" uid="uid://cpdm0b6v1snrj" path="res://scripts/Items/detect_items.gd" id="4_rt7d7"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://vykc0p7hqfye" path="res://sounds/sound_effects/pickup_item.ogg" id="5_j2snb"]
 [ext_resource type="Shader" uid="uid://cvls2vcwl4lxt" path="res://scripts/Shaders/black_and_white.gdshader" id="5_oo54l"]
 [ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="6_jiuwp"]
-[ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/cheat_menu.tscn" id="7_7iits"]
+[ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/menus/cheat_menu.tscn" id="7_7iits"]
 [ext_resource type="Texture2D" uid="uid://cufhaafrsv6og" path="res://assets/textures/tilemaps/frozen_ore_tilemap.png" id="8_4k1tf"]
 [ext_resource type="AudioStream" uid="uid://ddw2qlonthtr" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
 [ext_resource type="AudioStream" uid="uid://dho2rcdc7tiba" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bl5abihwkrfiu" path="res://assets/textures/tilemaps/destroy_stages/new_stages.png" id="17_oo54l"]
 [ext_resource type="Texture2D" uid="uid://4cnr4s1c3kmj" path="res://assets/textures/tilemaps/vulcanic_ore_tilemap.png" id="18_bpr86"]
 [ext_resource type="Shader" uid="uid://dooao40uvhcy2" path="res://scripts/Shaders/chromatic_aberration.gdshader" id="21_kpybi"]
-[ext_resource type="PackedScene" uid="uid://bbyiibgv0sxte" path="res://scenes/pause_menu.tscn" id="24_dvxve"]
+[ext_resource type="PackedScene" uid="uid://bbyiibgv0sxte" path="res://scenes/menus/pause_menu.tscn" id="24_dvxve"]
 
 [sub_resource type="Environment" id="Environment_jiaeb"]
 background_mode = 3
@@ -579,7 +579,6 @@ pitch_scale = 0.2
 [node name="HUD" type="CanvasLayer" parent="Player"]
 
 [node name="ColorblindnessColorRect" type="ColorRect" parent="Player/HUD"]
-visible = false
 z_index = 6
 texture_filter = 1
 material = SubResource("ShaderMaterial_wbqqk")

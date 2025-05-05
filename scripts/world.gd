@@ -420,7 +420,7 @@ func start_position():
 
 func _on_spawn_enemies_timeout() -> void:
 	print("Enemy Spawned")
-	var EnemyScene = preload("res://scenes/enemy.tscn")
+	var EnemyScene = preload("res://scenes/misc/enemy.tscn")
 	var enemy = EnemyScene.instantiate()
 	enemy.set_meta("Enemy", "Enemy")
 	enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))

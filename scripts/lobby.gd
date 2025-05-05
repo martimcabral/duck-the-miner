@@ -75,6 +75,8 @@ var resources_path : String = str("user://save/", GetSaveFile.save_being_used, "
 var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
 var pricing_path : String = str("user://pricing.cfg")
+var config_path : String = "user://game_settings.cfg"
+var config_file := ConfigFile.new()
 
 var selected_item_name : String = ""
 var selected_item_quantity : int = 0
@@ -97,6 +99,9 @@ var selected_inventory = 0
 var difficulty : String
 
 func _ready():
+	config_file.load(config_path)
+	$CanvasLayer/ColorblindnessColorRect.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
+	
 	var raw_config = ConfigFile.new()
 	raw_config.load(str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg"))
 	populate_inventory_tab(raw_config)
@@ -468,7 +473,7 @@ func _on_select_mission_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
-	var new_game_scene = load("res://scenes/main_menu.tscn")
+	var new_game_scene = load("res://scenes/menus/main_menu.tscn")
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
 

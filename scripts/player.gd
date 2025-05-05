@@ -13,6 +13,9 @@ var uv_ratio : float
 var flashlight : bool = false
 var hotbar_slots_number : int = 4
 
+var oxygen_used : int = 0
+var lights_used : int = 0
+
 var speed : int
 var walking_speed : int
 var running_speed : int 
@@ -56,7 +59,17 @@ var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
 var window_mode = 0
 var subtitles : bool
 
+var collision_shape
+var radius
+var mouse_pos
+var local_mouse_pos
+
 func _ready():
+	collision_shape = $BlockRange.get_node("CollisionShape2D").shape
+	radius = (collision_shape as CircleShape2D).radius
+	mouse_pos = get_global_mouse_position()
+	local_mouse_pos = $BlockRange.to_local(mouse_pos)
+	
 	var file_path = "user://game_settings.cfg"
 	var config = ConfigFile.new()
 	config.load(file_path)
@@ -194,39 +207,39 @@ func _process(delta):
 	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/PlayerSounds".position = tile_pos
 	
-	if is_duck_dead == false:
-		if $"../PauseMenu/GUI_Pause".visible == false:
-			if Input.is_action_pressed("Destroy_Block") and current_item == "Pickaxe":
-				var offset = Vector2i(-8, -8)
-				var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
-				
-				var tile_size = Vector2(16, 16)
-				var mouse_pos = get_global_mouse_position()
-				var local_mouse_pos = $BlockRange.to_local(mouse_pos)
-				
-				block_selection_position = block_selection_position.snapped(tile_size)
-				$"../WorldTileMap/BlockSelection".position = block_selection_position
-				
-				var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
-				var radius = (collision_shape as CircleShape2D).radius
-				
-				if local_mouse_pos.length() <= radius:
-					$"../WorldTileMap/BlockSelection".texture = block_selection_default
-				else:
-					$"../WorldTileMap/BlockSelection".texture = block_selection_out
-			else:
-				$"../WorldTileMap/BlockSelection".position = Vector2(-128, -128)
+	if is_duck_dead == false and $"../PauseMenu/GUI_Pause".visible == false:
+		mouse_pos = get_global_mouse_position()
+		local_mouse_pos = $BlockRange.to_local(mouse_pos)
+		
+		if Input.is_action_pressed("Destroy_Block") and current_item == "Pickaxe":
+			var offset = Vector2i(-8, -8)
+			var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
+			
+			var tile_size = Vector2(16, 16)
+			
+			block_selection_position = block_selection_position.snapped(tile_size)
+			$"../WorldTileMap/BlockSelection".position = block_selection_position
+			
+			if local_mouse_pos.length() <= radius:
 				$"../WorldTileMap/BlockSelection".texture = block_selection_default
+			else:
+				$"../WorldTileMap/BlockSelection".texture = block_selection_out
+		else:
+			$"../WorldTileMap/BlockSelection".position = Vector2(-128, -128)
+			$"../WorldTileMap/BlockSelection".texture = block_selection_default
+			
+		if local_mouse_pos.length() <= radius:
+			if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":
+				if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
+					var torch_scene : PackedScene = preload("res://scenes/misc/light.tscn")
+					var torch = torch_scene.instantiate()
 				
+					torch.position = CaveSystem.map_to_local(tile_pos)
+					add_child(torch)
+					$"../Player/PlayerSounds/PlaceBlock".play()
+					#print("Torch Placed: ", tile_pos)
 			if Input.is_action_just_pressed("Place_Block") and current_item != "Light":
-				var mouse_pos = get_global_mouse_position()
-				var local_mouse_pos = $BlockRange.to_local(mouse_pos)
-				var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
-				var radius = (collision_shape as CircleShape2D).radius
-				
-				if local_mouse_pos.length() <= radius:
-					if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)): #and $"../MissionInventory".inventory[0] >= 1):
-						#$"../MissionInventory".inventory[0] -= 1
+					if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 						print(tile_data, " ", tile_id)
 						if world.asteroid_biome == "Stony":
 							CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
@@ -379,14 +392,14 @@ func destroy_block():
 func _on_minning_cooldown_timeout() -> void:
 	if Input.is_action_pressed("Destroy_Block"):
 		# 1. Get the global position of the mouse
-		var mouse_pos = get_global_mouse_position()
+		mouse_pos = get_global_mouse_position()
 		# 2. Convert the global mouse position to the local position of the Area2D
-		var local_mouse_pos = $BlockRange.to_local(mouse_pos)
+		local_mouse_pos = $BlockRange.to_local(mouse_pos)
 		# 3. Get the CollisionShape2D's shape
-		var collision_shape = $BlockRange.get_node("CollisionShape2D").shape
+		collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 		
 		# 4. Get CollisionShape2D's size
-		var radius = (collision_shape as CircleShape2D).radius
+		radius = (collision_shape as CircleShape2D).radius
 		
 		# 5. If the mouse is within the Area2D/BlockRange than start to destroy EVERYTHING
 		if local_mouse_pos.length() <= radius:
@@ -401,6 +414,7 @@ func _on_oxygen_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
 		if is_duck_dead == false:
 			current_oxygen -= 1
+			oxygen_used += 1
 
 func _on_tab_bar_tab_clicked(tab: int) -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:

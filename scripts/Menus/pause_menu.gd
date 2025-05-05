@@ -24,14 +24,14 @@ func _on_feedback_button_pressed() -> void:
 	OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 
 func _on_go_to_desktop_button_pressed() -> void:
-	more_days()
+	#more_days()
+	#forward_stock()
 	keep_inventory()
-	advance_stock_the_market()
 	get_tree().quit()
 
 func _on_abort_mission_button_pressed() -> void:
-	more_days()
-	advance_stock_the_market()
+	#more_days()
+	#forward_stock()
 	keep_inventory()
 	
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
@@ -136,16 +136,6 @@ func enable_all_rigid_body_physics():
 			body.freeze = false
 	saved_states.clear()  # Clear stored states
 
-func more_days():
-	var random_advance = randi_range(1, 3)
-	var day_path = str("user://save/", GetSaveFile.save_being_used, "/day.cfg")
-	var day_file = ConfigFile.new()
-	day_file.load(day_path)
-	var current_day = day_file.get_value("day", "current", 0)
-	current_day += random_advance
-	day_file.set_value("day", "current", current_day)
-	day_file.save(day_path)
-
 func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
@@ -161,22 +151,3 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
 		mouse_sound.pitch_scale = 0.75
 		mouse_sound.play()
-
-func advance_stock_the_market():
-	var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
-	var vlines : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100]
-	var market_path = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
-	var market_config = ConfigFile.new()
-	market_config.load(market_path)
-	var new_market : Dictionary = {}
-
-	for companie in companies_names:
-		for i in range(1, 13):
-			var stock_value = market_config.get_value("stock", companie + str(i + 1))
-			stock_value = Vector2(vlines[i - 1], stock_value.y)  
-			new_market[companie + str(i)] = stock_value
-		new_market[companie + str(13)] = Vector2(1188, randi_range(0, 800))
-	
-	for key in new_market.keys():
-		market_config.set_value("stock", key, new_market[key])
-	market_config.save(market_path)

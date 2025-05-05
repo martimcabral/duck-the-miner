@@ -17,7 +17,7 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("Cheat_Menu") and cheats == true:
 		match get_tree().current_scene.name:
-			"AsteroidSelector":
+			"Lobby":
 				position = Vector2(960, 600)
 				$Container/WorldLabel/GiveItems.disabled = true
 				$Container/WorldLabel/ChangePosition.disabled = true
@@ -40,7 +40,7 @@ func _input(_event):
 			visible = true
 
 func _on_change_day_pressed() -> void:
-	if get_tree().current_scene.name == "AsteroidSelector":
+	if get_tree().current_scene.name == "Lobby":
 		var new_day = $Container/LobbyLabel/ChangeDay/DayTextEdit.text
 		var day_path = str("user://save/", GetSaveFile.save_being_used, "/day.cfg")
 		var day_config = ConfigFile.new()
@@ -50,7 +50,7 @@ func _on_change_day_pressed() -> void:
 		print("[cheat_menu.gd] Day changed to: ", new_day)
 
 func _on_change_money_pressed() -> void:
-	if get_tree().current_scene.name == "AsteroidSelector":
+	if get_tree().current_scene.name == "Lobby":
 		var new_money = $Container/LobbyLabel/ChangeMoney/MoneyTextEdit.text
 		var money_path = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
 		var money_config = ConfigFile.new()
@@ -60,7 +60,7 @@ func _on_change_money_pressed() -> void:
 		print("[cheat_menu.gd] Money changed to: ", new_money)
 
 func _on_advance_stock_martket_pressed() -> void:
-	if get_tree().current_scene.name == "AsteroidSelector":
+	if get_tree().current_scene.name == "Lobby":
 		# This code is from pause_menu.gd
 		var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
 		var hlines : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100]
@@ -85,7 +85,7 @@ func _on_advance_stock_martket_pressed() -> void:
 		$"../StockTheMarket".get_companies_values()
 
 func _on_reroll_missions_pressed() -> void:
-	if get_tree().current_scene.name == "AsteroidSelector":
+	if get_tree().current_scene.name == "Lobby":
 		$"../../..".current_page = 1
 		$"../../..".save_asteroid_data()
 		$"../../..".get_asteroid_info()

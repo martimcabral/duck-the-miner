@@ -862,6 +862,7 @@ follow_viewport_scale = 1.78
 
 [node name="UI" type="Control" parent="Camera2D/HUD/Stats"]
 layout_mode = 3
+anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -231.0

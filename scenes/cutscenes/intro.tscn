@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bjvurleq55hl2"]
+[gd_scene load_steps=22 format=3 uid="uid://bjvurleq55hl2"]
 
 [ext_resource type="Script" uid="uid://bfpwsu635c73s" path="res://scripts/Misc/cutscenes.gd" id="1_5khjm"]
 [ext_resource type="FontFile" uid="uid://5b4g4ugjtc6q" path="res://assets/fonts/VeniceClassic.ttf" id="2_2o8o2"]
@@ -60,7 +60,23 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 expand_margin_top = 6.0
 
-[sub_resource type="Animation" id="Animation_75cy6"]
+[sub_resource type="Animation" id="Animation_aysxd"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1000, 34), Vector2(670, 33.9999), Vector2(598, 33.9999)]
+}
+
+[sub_resource type="Animation" id="Animation_7ndrm"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -72,46 +88,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(651, 1236)]
-}
-
-[sub_resource type="Animation" id="Animation_pfeoa"]
-resource_name = "deliver"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(651, 50), Vector2(651, 100), Vector2(651, -3000)]
-}
-
-[sub_resource type="Animation" id="Animation_465o6"]
-resource_name = "go_up"
-length = 5.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.16667, 2.16667, 2.86667, 4.26667, 5.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(651, 1236), Vector2(651, 868), Vector2(651, 724), Vector2(651, 476), Vector2(651, 268), Vector2(651, 40)]
+"values": [Vector2(-754, 33.9999)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_feyoj"]
 _data = {
-&"RESET": SubResource("Animation_75cy6"),
-&"deliver": SubResource("Animation_pfeoa"),
-&"go_up": SubResource("Animation_465o6")
+&"RESET": SubResource("Animation_7ndrm"),
+&"appear": SubResource("Animation_aysxd")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_465o6"]
@@ -208,10 +191,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 651.0
-offset_top = 1236.0
-offset_right = 2405.0
-offset_bottom = 3716.0
+offset_left = -754.0
+offset_top = 33.9999
+offset_right = 1000.0
+offset_bottom = 2514.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
@@ -322,7 +305,7 @@ one_shot = true
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
-color = Color(0.03, 0.03, 0.03, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 

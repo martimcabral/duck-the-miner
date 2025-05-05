@@ -1,0 +1,146 @@
+[gd_scene load_steps=7 format=3 uid="uid://kycqdgovse80"]
+
+[ext_resource type="Script" uid="uid://bq3nkgsknoskh" path="res://scripts/Misc/after_mission.gd" id="1_aysxd"]
+[ext_resource type="Texture2D" uid="uid://6emnmb6feqxc" path="res://assets/textures/companies/contracts/fyction_tax.png" id="1_d3vxp"]
+[ext_resource type="AudioStream" uid="uid://dwbbwpto5nca0" path="res://sounds/sound_effects/whoosh.ogg" id="3_3jvrh"]
+
+[sub_resource type="Animation" id="Animation_7ndrm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-754, 33.9999)]
+}
+
+[sub_resource type="Animation" id="Animation_aysxd"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1000, 125), Vector2(670, 125), Vector2(620, 125)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_feyoj"]
+_data = {
+&"RESET": SubResource("Animation_7ndrm"),
+&"appear": SubResource("Animation_aysxd")
+}
+
+[node name="AfterMission" type="Node2D"]
+script = ExtResource("1_aysxd")
+
+[node name="ColorBackground" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FyctionTax" type="TextureRect" parent="."]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1000.0
+offset_top = 125.0
+offset_right = 754.0
+offset_bottom = 2225.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+mouse_filter = 2
+texture = ExtResource("1_d3vxp")
+
+[node name="PrintingAnimation" type="AnimationPlayer" parent="FyctionTax"]
+libraries = {
+&"": SubResource("AnimationLibrary_feyoj")
+}
+
+[node name="FeesText" type="Label" parent="FyctionTax"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 540.0
+offset_right = 1608.0
+offset_bottom = 1772.0
+theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
+theme_override_font_sizes/font_size = 92
+text = "> Fyction Interest
+> Habitat Rental
+> Health Insurance
+> Travel Rental
+> Oxygen Rental
+> Sword Rental
+> Pickaxe Rental
+> Light Rental * 87
+> UV FLashlight Rental
+> Radar the Tool Rental
+
+
+"
+text_overrun_behavior = 3
+
+[node name="FeesValuesText" type="Label" parent="FyctionTax"]
+layout_mode = 0
+offset_left = 173.0
+offset_top = 540.0
+offset_right = 1720.0
+offset_bottom = 1772.0
+theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
+theme_override_font_sizes/font_size = 92
+text = "[0,001%, -998€]
+[-12 000€]
+[false, 0€]
+[-32 000€]
+[360, -15 000€]
+ [- 3 000€]
+ [- 2 575€]
+[125€, -10 875€]
+[- 4 600€]
+[- 6580€]
+
+
+"
+horizontal_alignment = 2
+text_overrun_behavior = 3
+
+[node name="Fees Total" type="Label" parent="FyctionTax"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -536.5
+offset_top = -167.0
+offset_right = 536.5
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
+theme_override_font_sizes/font_size = 92
+text = "Fees Total:  -92 998€"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="WhooshSoundEffect" type="AudioStreamPlayer2D" parent="FyctionTax"]
+position = Vector2(861, 1081)
+scale = Vector2(6.25, 6.25)
+stream = ExtResource("3_3jvrh")
+bus = &"Menus"
