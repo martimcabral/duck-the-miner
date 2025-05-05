@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://kycqdgovse80"]
+[gd_scene load_steps=8 format=3 uid="uid://kycqdgovse80"]
 
 [ext_resource type="Script" uid="uid://bq3nkgsknoskh" path="res://scripts/Misc/after_mission.gd" id="1_aysxd"]
 [ext_resource type="Texture2D" uid="uid://6emnmb6feqxc" path="res://assets/textures/companies/contracts/fyction_tax.png" id="1_d3vxp"]
 [ext_resource type="AudioStream" uid="uid://dwbbwpto5nca0" path="res://sounds/sound_effects/whoosh.ogg" id="3_3jvrh"]
+[ext_resource type="Texture2D" uid="uid://bk85po3p8meqx" path="res://assets/textures/companies/fyction_enterprise.png" id="3_7ndrm"]
 
 [sub_resource type="Animation" id="Animation_7ndrm"]
 length = 0.001
@@ -57,15 +58,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1000.0
-offset_top = 125.0
-offset_right = 754.0
-offset_bottom = 2225.0
+offset_left = -754.0
+offset_top = 33.9999
+offset_right = 1000.0
+offset_bottom = 2134.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 mouse_filter = 2
 texture = ExtResource("1_d3vxp")
+
+[node name="CompanyLogo" type="TextureRect" parent="FyctionTax"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -678.0
+offset_top = 80.0
+offset_right = 678.0
+offset_bottom = 387.0
+grow_horizontal = 2
+texture = ExtResource("3_7ndrm")
 
 [node name="PrintingAnimation" type="AnimationPlayer" parent="FyctionTax"]
 libraries = {
@@ -87,9 +100,8 @@ text = "> Fyction Interest
 > Oxygen Rental
 > Sword Rental
 > Pickaxe Rental
-> Light Rental * 87
 > UV FLashlight Rental
-> Radar the Tool Rental
+> Light Rental * 87
 
 
 "
@@ -110,31 +122,31 @@ text = "[0,001%, -998€]
 [360, -15 000€]
  [- 3 000€]
  [- 2 575€]
-[125€, -10 875€]
 [- 4 600€]
 [- 6580€]
+[125€, -10 875€]
 
 
 "
 horizontal_alignment = 2
 text_overrun_behavior = 3
 
-[node name="Fees Total" type="Label" parent="FyctionTax"]
+[node name="FeesTotal" type="Label" parent="FyctionTax"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -536.5
+offset_left = -874.0
 offset_top = -167.0
-offset_right = 536.5
+offset_right = 875.0
 offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
 theme_override_font_sizes/font_size = 92
-text = "Fees Total:  -92 998€"
+text = "Fees Total:  - ERROR€"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3

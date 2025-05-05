@@ -207,26 +207,67 @@ func _process(delta):
 	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/PlayerSounds".position = tile_pos
 	
+	var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
+	player_movement(input, delta)
+	move_and_slide()
+	$AnimatedSprite2D.play()
+
+	if not is_on_floor():
+		$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
+		if Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+		elif Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		
+	if is_on_floor() and Input.is_action_pressed("Agachar"):
+		$AnimatedSprite2D.animation = str(skin_selected) + "_squat"
+		if Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		elif Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+	elif is_on_floor():
+		$AnimatedSprite2D.animation = str(skin_selected) + "_walking"
+		if Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+		elif Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.stop()
+	
+	# Mudar o Cursor dependendo do Item selecinado da Hotbar
+	if Input.is_action_just_pressed("Hotbar_1") and hotbar_slots_number >= 1:
+		hotbar.current_tab = 0
+		current_item = player_config.get_value("hotbar_slots", "0")
+		Input.set_custom_mouse_cursor(set_custom_cursor(0))
+	if Input.is_action_just_pressed("Hotbar_2") and hotbar_slots_number >= 2:
+		hotbar.current_tab = 1
+		current_item = player_config.get_value("hotbar_slots", "1")
+		Input.set_custom_mouse_cursor(set_custom_cursor(1))
+	if Input.is_action_just_pressed("Hotbar_3") and hotbar_slots_number >= 3:
+		hotbar.current_tab = 2
+		current_item = player_config.get_value("hotbar_slots", "2")
+		Input.set_custom_mouse_cursor(set_custom_cursor(2))
+	if Input.is_action_just_pressed("Hotbar_4") and hotbar_slots_number >= 4:
+		hotbar.current_tab = 3
+		current_item = player_config.get_value("hotbar_slots", "3")
+		Input.set_custom_mouse_cursor(set_custom_cursor(3))
+	
 	if is_duck_dead == false and $"../PauseMenu/GUI_Pause".visible == false:
 		mouse_pos = get_global_mouse_position()
 		local_mouse_pos = $BlockRange.to_local(mouse_pos)
 		
-		if Input.is_action_pressed("Destroy_Block") and current_item == "Pickaxe":
-			var offset = Vector2i(-8, -8)
-			var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
-			
-			var tile_size = Vector2(16, 16)
-			
-			block_selection_position = block_selection_position.snapped(tile_size)
-			$"../WorldTileMap/BlockSelection".position = block_selection_position
-			
-			if local_mouse_pos.length() <= radius:
-				$"../WorldTileMap/BlockSelection".texture = block_selection_default
-			else:
-				$"../WorldTileMap/BlockSelection".texture = block_selection_out
-		else:
-			$"../WorldTileMap/BlockSelection".position = Vector2(-128, -128)
+		var offset = Vector2i(-9, -9)
+		var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
+		
+		var tile_size = Vector2(16, 16)
+		
+		block_selection_position = block_selection_position.snapped(tile_size)
+		$"../WorldTileMap/BlockSelection".position = block_selection_position
+		
+		if local_mouse_pos.length() <= radius:
 			$"../WorldTileMap/BlockSelection".texture = block_selection_default
+		else:
+			$"../WorldTileMap/BlockSelection".texture = block_selection_out
 			
 		if local_mouse_pos.length() <= radius:
 			if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":
@@ -236,8 +277,8 @@ func _process(delta):
 				
 					torch.position = CaveSystem.map_to_local(tile_pos)
 					add_child(torch)
+					lights_used += 1
 					$"../Player/PlayerSounds/PlaceBlock".play()
-					#print("Torch Placed: ", tile_pos)
 			if Input.is_action_just_pressed("Place_Block") and current_item != "Light":
 					if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 						print(tile_data, " ", tile_id)
@@ -259,53 +300,6 @@ func _process(delta):
 						used_tiles[tile_pos] = {"pos" : tile_pos}
 						used_tiles[tile_pos] = {"health": tile_health} 
 						used_tiles[tile_pos]["health"] = tile_health
-			
-			var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
-			player_movement(input, delta)
-			move_and_slide()
-			$AnimatedSprite2D.play()
-		
-			if not is_on_floor():
-				$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
-				if Input.is_action_pressed("Walk_Right"):
-					$AnimatedSprite2D.flip_h = true
-				elif Input.is_action_pressed("Walk_Left"):
-					$AnimatedSprite2D.flip_h = false
-				
-			if is_on_floor() and Input.is_action_pressed("Agachar"):
-				$AnimatedSprite2D.animation = str(skin_selected) + "_squat"
-				if Input.is_action_pressed("Walk_Left"):
-					$AnimatedSprite2D.flip_h = false
-				elif Input.is_action_pressed("Walk_Right"):
-					$AnimatedSprite2D.flip_h = true
-			elif is_on_floor():
-				$AnimatedSprite2D.animation = str(skin_selected) + "_walking"
-				if Input.is_action_pressed("Walk_Right"):
-					$AnimatedSprite2D.flip_h = true
-				elif Input.is_action_pressed("Walk_Left"):
-					$AnimatedSprite2D.flip_h = false
-				else:
-					$AnimatedSprite2D.stop()
-				
-			# Mudar o Cursor dependendo do Item selecinado da Hotbar
-			if Input.is_action_just_pressed("Hotbar_1") and hotbar_slots_number >= 1:
-				hotbar.current_tab = 0
-				current_item = player_config.get_value("hotbar_slots", "0")
-				Input.set_custom_mouse_cursor(set_custom_cursor(0))
-			if Input.is_action_just_pressed("Hotbar_2") and hotbar_slots_number >= 2:
-				hotbar.current_tab = 1
-				current_item = player_config.get_value("hotbar_slots", "1")
-				Input.set_custom_mouse_cursor(set_custom_cursor(1))
-			if Input.is_action_just_pressed("Hotbar_3") and hotbar_slots_number >= 3:
-				hotbar.current_tab = 2
-				current_item = player_config.get_value("hotbar_slots", "2")
-				Input.set_custom_mouse_cursor(set_custom_cursor(2))
-			if Input.is_action_just_pressed("Hotbar_4") and hotbar_slots_number >= 4:
-				hotbar.current_tab = 3
-				current_item = player_config.get_value("hotbar_slots", "3")
-				Input.set_custom_mouse_cursor(set_custom_cursor(3))
-		else:
-			$AnimatedSprite2D.stop()
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):

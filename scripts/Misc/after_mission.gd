@@ -1,10 +1,10 @@
 extends Node2D
 
-var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
-var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
-var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
-var stock_path : String = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
-var day_path : String = str("user://save/", GetSaveFile.save_being_used, "/day.cfg")
+var difficulty_path : String = str("user://save/", 1, "/difficulty.cfg")
+var player_path : String = str("user://save/", 1, "/player.cfg")
+var money_path : String = str("user://save/", 1, "/money.cfg")
+var stock_path : String = str("user://save/", 1, "/stock.cfg")
+var day_path : String = str("user://save/", 1, "/day.cfg")
 
 var difficulty_config : ConfigFile = ConfigFile.new()
 var player_config : ConfigFile = ConfigFile.new()
@@ -12,23 +12,44 @@ var money_config : ConfigFile = ConfigFile.new()
 var stock_config : ConfigFile = ConfigFile.new()
 var day_config : ConfigFile = ConfigFile.new()
 
-var fyction_tax : float = 0.001
+var fyction_tax : float = 0.0001
 var fyction_interest : int = 0
-var habitat_rental : int = 12000
-var enable_health_insurance : bool = false
-var health_insurance : int = 24000
+
+var habitat_rental : int = 8500
+var did_player_died : bool = false
+var health_insurance : int = 0
+
 var travel_destiny : String = "Delta"
 var travel_rental : int = 2400
-var oxygen_used : int = 360
+
+var oxygen_used : int = 0
 var oxygen_price : int = 5
 var oxygen_rental : int = 0
+
 var sword_rental : int = 3000
+var has_sword : bool = false
+
 var pickaxe_rental : int = 2575
-var light_used : int = 87
+var has_pickaxe : bool = false
+
+var uv_flashlight_rental : int = 4500
+var has_uv_flashlight : bool = false
+
+var radar_the_tool_rental : int = 6375
+var has_radar_the_tool : bool = false
+
+var radar_the_enemies_rental : int = 8500
+var has_radar_the_enemies : bool = false
+
+var lights_used : int = 12
 var light_price : int = 125
 var light_rental : int = 0
-var uv_flashlight_rental : int = 4600
-var radar_the_tool_rental : int = 6580
+
+var has_lights : bool = false
+
+var total : int = 0
+var fees_label : String = ""
+var fees_values : String = ""
 
 func _ready() -> void:
 	difficulty_config.load(difficulty_path)
@@ -37,10 +58,64 @@ func _ready() -> void:
 	stock_config.load(stock_path)
 	day_config.load(day_path)
 	
+	var current_money = money_config.get_value("money", "current")
+	fyction_interest = (current_money * fyction_tax) * -1
+	
 	var difficulty = difficulty_config.get_value("difficulty", "current")
 	print("[after_mission.gd] Difficulty: ", difficulty)
 	more_days()
 	forward_stock()
+	get_items()
+	
+	fees_label += "> Fyction aInterest\n"
+	fees_values += stra("[", fyctaion_tax, "%, -", fyction_interest,"€]\n")
+	total += fyction_interest
+	a
+	fees_label += "> Habitat Rental\n"
+	fees_values += str("[-", ahabitat_rental,"€]\n")
+	total += habitat_rentala
+	
+	if did_player_died == true:
+		health_insurance = randi_range(36000, 48000)
+		total += health_insurance
+		fees_label += "> Health Insurance\n"
+		fees_values += str("[-", health_insurance,"€]\n")
+	
+	fees_label += "> Travel Costs\n"
+	fees_values += str("[]\n")
+	
+	fees_label += "> Oxygen Supply\n"
+	fees_values += str("[]\n")
+	
+	if has_sword == true:
+		fees_label += "> Sword Rental\n"
+		fees_values += str("[-", sword_rental,"]\n")
+		total += sword_rental
+	if has_pickaxe == true:
+		fees_label += "> Pickaxe Rental\n"
+		fees_values += str("[-", pickaxe_rental,"]\n")
+		total += sword_rental
+	if has_lights == true:
+		light_rental = lights_used * light_price
+		fees_label += str("> ", lights_used, " * Lights Rental\n")
+		fees_values += str("[", light_price, "€, -", light_rental,"€]\n")
+		total += light_rental
+	if has_uv_flashlight == true:
+		fees_label += "> UV Flashlight Rental\n"
+		fees_values += str("[-", uv_flashlight_rental,"]\n")
+		total += uv_flashlight_rental
+	if has_radar_the_tool == true:
+		fees_label += "> Radar the Tool Rental\n"
+		fees_values += str("[-", radar_the_tool_rental,"]\n")
+		total += radar_the_tool_rental
+	if has_radar_the_enemies == true:
+		fees_label += "> Radar the Enemies Rental\n"
+		fees_values += str("[-", radar_the_enemies_rental,"]\n")
+		total += radar_the_enemies_rental
+	
+	$FyctionTax/FeesText.text = fees_label
+	$FyctionTax/FeesValuesText.text = fees_values
+	$FyctionTax/FeesTotal.text = str("Fees Total: ", total, "€")
 	
 	$FyctionTax/PrintingAnimation.play("appear")
 	$FyctionTax/WhooshSoundEffect.play()
@@ -66,3 +141,15 @@ func forward_stock():
 	for key in new_market.keys():
 		stock_config.set_value("stock", key, new_market[key])
 	stock_config.save(stock_path)
+
+func get_items():
+	var hotbar_slots_number = player_config.get_value("hotbar_slots", "number")
+	for i in range(0, hotbar_slots_number):
+		match player_config.get_value("hotbar_slots", str(i)):
+			"Sword": has_sword = true
+			"Pickaxe": has_pickaxe = true
+			"Light": has_lights = true
+			"UV Flashlight": has_uv_flashlight = true
+			"Radar the Tool": has_radar_the_tool = true
+			"Radar the Enemies": has_radar_the_enemies = true
+	print("[after_mission.gd] Sword: ", has_sword, "; Pickaxe: ", has_pickaxe, "; Light: ", has_lights, "; UV Flashlight: ", has_uv_flashlight, "; Radar the Tool: ", has_radar_the_tool, "; Radar the Enemies: ", has_radar_the_enemies)
