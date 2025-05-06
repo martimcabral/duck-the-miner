@@ -1,10 +1,10 @@
 extends Node2D
 
-var difficulty_path : String = str("user://save/", 1, "/difficulty.cfg")
-var player_path : String = str("user://save/", 1, "/player.cfg")
-var money_path : String = str("user://save/", 1, "/money.cfg")
-var stock_path : String = str("user://save/", 1, "/stock.cfg")
-var day_path : String = str("user://save/", 1, "/day.cfg")
+var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
+var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
+var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
+var stock_path : String = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
+var day_path : String = str("user://save/", GetSaveFile.save_being_used, "/day.cfg")
 
 var difficulty_config : ConfigFile = ConfigFile.new()
 var player_config : ConfigFile = ConfigFile.new()

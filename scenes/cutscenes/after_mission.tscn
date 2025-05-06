@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://kycqdgovse80"]
 
-[ext_resource type="Script" uid="uid://bq3nkgsknoskh" path="res://scripts/Misc/after_mission.gd" id="1_aysxd"]
+[ext_resource type="Script" uid="uid://bq3nkgsknoskh" path="res://scripts/Menus/after_mission.gd" id="1_aysxd"]
 [ext_resource type="Texture2D" uid="uid://6emnmb6feqxc" path="res://assets/textures/companies/contracts/fyction_tax.png" id="1_d3vxp"]
 [ext_resource type="AudioStream" uid="uid://dwbbwpto5nca0" path="res://sounds/sound_effects/whoosh.ogg" id="3_3jvrh"]
 [ext_resource type="Texture2D" uid="uid://bk85po3p8meqx" path="res://assets/textures/companies/fyction_enterprise.png" id="3_7ndrm"]

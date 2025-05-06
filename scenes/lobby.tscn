@@ -1167,9 +1167,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 1509.0
-offset_top = 189.5
+offset_top = 190.0
 offset_right = 1896.0
-offset_bottom = 850.5
+offset_bottom = 961.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n0xh0")
@@ -1195,9 +1195,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -164.0
-offset_top = -240.5
+offset_top = -296.5
 offset_right = 156.0
-offset_bottom = -60.5
+offset_bottom = -116.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1226,9 +1226,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.5
-offset_top = -45.5
+offset_top = -85.5
 offset_right = 76.5
-offset_bottom = 7.5
+offset_bottom = -32.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pff5p")
@@ -1332,17 +1332,19 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -168.5
-offset_top = -294.0
+offset_top = -381.0
 offset_right = 165.5
-offset_bottom = -106.0
+offset_bottom = -127.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Name: Xuuseeygo
 Biome: Vulcanic
 Temperature: 120ºC
-Primary: Unknown
-Secundary: Unknown"
+
+Objectives:
+1. Unknown
+2. Unknown"
 horizontal_alignment = 1
 
 [node name="SystemInfoPanel" type="Panel" parent="Camera2D/HUD/Lobby"]

@@ -85,6 +85,8 @@ var current_page = 1
 var current_asteroid_name : String
 var current_asteroid_biome : String
 var current_field : String
+var primary_objective : String = ""
+var secundary_objective : String = ""
 var asteroid_temperature
 
 var delta_ammount : int = 0
@@ -267,7 +269,7 @@ func update_field_ui(field_name: String, thumbnail: Texture, shadow_color: Color
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", shadow_color)
 	$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % field_name
 	$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", shadow_color)
-	$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 661)
+	$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 770)
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_delta_area_2d_mouse_entered() -> void:
@@ -341,27 +343,31 @@ func create_asteroid_name():
 
 # Function to generate asteroid data
 func generate_asteroid_data() -> Dictionary:
-	var fields = {}  # Dictionary to store asteroid fields
-	var field_names = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
-	var biomes = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert"]
-	var objectives_primary = ["n/a"]
-	var objectives_secondary = ["n/a"]
+	var fields : Dictionary = {}  # Dictionary to store asteroid fields
+	var field_names : Array = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
+	var biomes : Array = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert"]
+	var objectives_primary : Array = ["Get Goods", "Kill Enemies", "Fine Jewelry"]
+	var objectives_secondary_stony : Array = ["More Infrastructure", "Powering the Future"]
+	var objectives_secondary_vulcanic : Array = ["Heat Extraction", "More Infrastructure"]
+	var objectives_secondary_frozen : Array = ["Cold Extraction", "Powering the Future"]
+	var objectives_secondary_swamp : Array = ["Fuel the Company", "Powering the Future"]
+	var objectives_secondary_desert : Array = ["Fuel the Company", "Cold Extraction"]
 	
 	for field_name in field_names:
-		var asteroids = {}  # Dictionary to store asteroids in the current field
-		var asteroid_id = 1  # Reset asteroid ID counter for each field
+		var asteroids : Dictionary = {}  # Dictionary to store asteroids in the current field
+		var asteroid_id : int = 1  # Reset asteroid ID counter for each field
 			
 		for asteroid_num in range(1, randi_range(4, 10) + 1):
-			var as_name = create_asteroid_name()
-			var biome = biomes[randi() % biomes.size()]
+			var as_name : String = create_asteroid_name()
+			var biome : String = biomes[randi() % biomes.size()]
+			var primary_objective : String = objectives_primary[randi() % objectives_primary.size()]
+			var secondary_objective : String = ""
 			match biome:
-				"Stony": asteroid_temperature = randi_range(15, 30)
-				"Vulcanic": asteroid_temperature = randi_range(75, 90)
-				"Frozen": asteroid_temperature = randi_range(-45, -65)
-				"Swamp": asteroid_temperature = randi_range(-5, 12)
-				"Desert": asteroid_temperature = randi_range(50, 65)
-			var primary_objective = objectives_primary[randi() % objectives_primary.size()]
-			var secondary_objective = objectives_secondary[randi() % objectives_secondary.size()]
+				"Stony": asteroid_temperature = randi_range(15, 30); secondary_objective = objectives_secondary_stony[randi() % objectives_secondary_stony.size()]
+				"Vulcanic": asteroid_temperature = randi_range(75, 90); secondary_objective = objectives_secondary_vulcanic[randi() % objectives_secondary_vulcanic.size()]
+				"Frozen": asteroid_temperature = randi_range(-45, -65); secondary_objective = objectives_secondary_frozen[randi() % objectives_secondary_frozen.size()]
+				"Swamp": asteroid_temperature = randi_range(-5, 12); secondary_objective = objectives_secondary_swamp[randi() % objectives_secondary_swamp.size()]
+				"Desert": asteroid_temperature = randi_range(50, 65); secondary_objective = objectives_secondary_desert[randi() % objectives_secondary_desert.size()]
 			
 			# Create asteroid entry
 			asteroids[asteroid_id] = {
@@ -376,7 +382,6 @@ func generate_asteroid_data() -> Dictionary:
 			asteroid_id += 1  # Increment the ID for the next asteroid
 		
 		fields[field_name] = asteroids  # Add the field with its asteroids to the fields dictionary
-	
 	return fields
 
 # Save data to a JSON file
@@ -419,10 +424,10 @@ func get_asteroid_info():
 			current_asteroid_biome = asteroid_info["Biome"]
 			var temperature = asteroid_info["Temperature"]
 			asteroid_temperature = temperature
-			var primary = asteroid_info["Objectives"]["Primary"]
-			var secondary = asteroid_info["Objectives"]["Secondary"]
-			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\n\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
-			$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "ᵒC\nPrimary: " + str(primary) +  "\nSecundary: " + str(secondary)
+			primary_objective = asteroid_info["Objectives"]["Primary"]
+			secundary_objective = asteroid_info["Objectives"]["Secondary"]
+			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(primary_objective) +  "\n" + str(secundary_objective)
+			$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(primary_objective) +  "\n" + str(secundary_objective)
 		else:
 			print("An error ocurred trying to parse asteroid content, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
 
@@ -497,6 +502,8 @@ func _on_time_to_start_timeout() -> void:
 	new_world.asteroid_name = current_asteroid_name
 	new_world.asteroid_biome = current_asteroid_biome
 	new_world.asteroid_temperature = asteroid_temperature
+	new_world.primary_objective = primary_objective
+	new_world.secundary_objective = secundary_objective
 	get_tree().root.add_child(new_world)
 	get_tree().current_scene.call_deferred("free")
 	get_tree().current_scene = new_world

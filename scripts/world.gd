@@ -24,10 +24,17 @@ var fade_out : float = 0.0
 
 @onready var CaveSystem = $WorldTileMap/CaveSystem
 
-var config_path = "user://game_settings.cfg"
-var config_file = ConfigFile.new()
+var config_path : String = "user://game_settings.cfg"
+var config_file : ConfigFile = ConfigFile.new()
+
+var difficulty_path : String = "user://game_settings.cfg"
+var difficulty_file : ConfigFile = ConfigFile.new()
+
+var primary_objective : String = ""
+var secundary_objective : String = ""
 
 func _process(_delta: float) -> void:
+	print(primary_objective, secundary_objective)
 	$WorldMusic.position = $Player.position
 	update_radar_tool()
 	

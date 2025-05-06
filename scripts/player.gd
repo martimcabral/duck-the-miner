@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var current_item = "Sword"
+var current_item = ""
 var current_health : float
 var current_oxygen : float
 var current_uv : float
@@ -66,6 +66,7 @@ var mouse_pos
 var local_mouse_pos
 
 func _ready():
+	Input.set_custom_mouse_cursor(cursor_default)
 	collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 	radius = (collision_shape as CircleShape2D).radius
 	mouse_pos = get_global_mouse_position()
@@ -93,7 +94,6 @@ func _ready():
 		hotbar.add_tab(player_config.get_value("hotbar_slots", str(i)))
 		hotbar.set_tab_icon(i, set_custom_cursor(i))
 	
-	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
 	
 	match world.asteroid_biome:
