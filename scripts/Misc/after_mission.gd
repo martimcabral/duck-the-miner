@@ -16,32 +16,33 @@ var fyction_tax : float = 0.0001
 var fyction_interest : int = 0
 
 var habitat_rental : int = 8500
+
 var did_player_died : bool = false
 var health_insurance : int = 0
 
-var travel_destiny : String = "Delta Belt"
+var travel_destiny : String
 var travel_rental : int = 2400
 
 var oxygen_used : int = 0
 var oxygen_price : int = 5
 var oxygen_rental : int = 0
 
-var sword_rental : int = 3000
+var sword_rental : int = 1500
 var has_sword : bool = false
 
-var pickaxe_rental : int = 2575
+var pickaxe_rental : int = 1575
 var has_pickaxe : bool = false
 
-var uv_flashlight_rental : int = 4500
+var uv_flashlight_rental : int = 2500
 var has_uv_flashlight : bool = false
 
-var radar_the_tool_rental : int = 6375
+var radar_the_tool_rental : int = 4500
 var has_radar_the_tool : bool = false
 
-var radar_the_enemies_rental : int = 8500
+var radar_the_enemies_rental : int = 6500
 var has_radar_the_enemies : bool = false
 
-var lights_used : int = 12
+var lights_used : int = 0
 var light_price : int = 125
 var light_rental : int = 0
 
@@ -76,17 +77,17 @@ func _ready() -> void:
 	total += habitat_rental
 	
 	if did_player_died == true:
-		health_insurance = randi_range(36000, 48000)
+		health_insurance = randi_range(48000, 60000)
 		total += health_insurance
 		fees_label += "> Health Insurance\n"
 		fees_values += str("[-", health_insurance,"€]\n")
 	
 	fees_label += "> Travel Costs\n"
 	match travel_destiny:
-		"Delta Belt": travel_rental = randi_range(1500, 2750)
-		"Gamma Field": travel_rental = randi_range(4300, 5200)
-		"Omega Field": travel_rental = randi_range(4300, 5200)
-		"Koppa Belt": travel_rental = randi_range(9400, 1155)
+		"Delta Belt": travel_rental = randi_range(1500, 2000)
+		"Gamma Field": travel_rental = randi_range(4000, 4500)
+		"Omega Field": travel_rental = randi_range(4000, 4500)
+		"Koppa Belt": travel_rental = randi_range(9000, 1000)
 	fees_values += str("[", travel_destiny, ", -", travel_rental, "€]\n")
 	total += travel_rental
 	
@@ -94,7 +95,6 @@ func _ready() -> void:
 	oxygen_rental = oxygen_used * oxygen_price
 	fees_values += str("[",oxygen_used, ", -", oxygen_rental ,"€]\n")
 	total += oxygen_rental
-	
 	
 	if has_sword == true:
 		fees_label += "> Sword Rental\n"
@@ -104,11 +104,6 @@ func _ready() -> void:
 		fees_label += "> Pickaxe Rental\n"
 		fees_values += str("[-", pickaxe_rental,"€]\n")
 		total += sword_rental
-	if has_lights == true:
-		light_rental = lights_used * light_price
-		fees_label += str("> ", lights_used, " * Lights Rental\n")
-		fees_values += str("[", light_price, "€, -", light_rental,"€]\n")
-		total += light_rental
 	if has_uv_flashlight == true:
 		fees_label += "> UV Flashlight Rental\n"
 		fees_values += str("[-", uv_flashlight_rental,"€]\n")
@@ -121,13 +116,20 @@ func _ready() -> void:
 		fees_label += "> Radar the Enemies Rental\n"
 		fees_values += str("[-", radar_the_enemies_rental,"€]\n")
 		total += radar_the_enemies_rental
+	if has_lights == true:
+		light_rental = lights_used * light_price
+		fees_label += str("> ", lights_used, " * Lights Cost\n")
+		fees_values += str("[", light_price, "€, -", light_rental,"€]\n")
+		total += light_rental
 	
 	$FyctionTax/FeesText.text = fees_label
 	$FyctionTax/FeesValuesText.text = fees_values
-	$FyctionTax/FeesTotal.text = str("Fees Total: ", total, "€")
+	$FyctionTax/FeesTotal.text = str("Fees Total: -", total, "€")
 	
 	$FyctionTax/PrintingAnimation.play("appear")
 	$FyctionTax/WhooshSoundEffect.play()
+	
+	remove_money()
 
 func more_days():
 	var current_day = day_config.get_value("day", "current")
@@ -162,3 +164,25 @@ func get_items():
 			"Radar the Tool": has_radar_the_tool = true
 			"Radar the Enemies": has_radar_the_enemies = true
 	print("[after_mission.gd] Sword: ", has_sword, "; Pickaxe: ", has_pickaxe, "; Light: ", has_lights, "; UV Flashlight: ", has_uv_flashlight, "; Radar the Tool: ", has_radar_the_tool, "; Radar the Enemies: ", has_radar_the_enemies)
+
+func remove_money():
+	var current_money = money_config.get_value("money", "current")
+	current_money -= total
+	money_config.set_value("money", "current", current_money)
+	money_config.save(money_path)
+
+func go_to_lobby():
+	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
+	var new_game_scene = load("res://scenes/lobby.tscn")
+	get_tree().change_scene_to_packed(new_game_scene)
+	new_game_scene.instantiate()
+
+func _on_printing_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "appear":
+		$ColorBackground/GoToLobby.visible = true
+
+func _on_go_to_lobby_pressed() -> void:
+	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
+	var new_game_scene = load("res://scenes/lobby.tscn")
+	get_tree().change_scene_to_packed(new_game_scene)
+	new_game_scene.instantiate()

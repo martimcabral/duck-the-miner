@@ -50,6 +50,10 @@ func _process(_delta: float) -> void:
 	$Player/HUD/RadarPanel.modulate.a8 = fade_in
 	$Player/HUD/MissionList.modulate.a8 = fade_in
 	
+	$Player/Camera2D/HUD/Stats/UI/HealthPanel.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/UI/OxygenPanel.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/UI/BatteryPanel.modulate.a8 = fade_in
+	
 func start_music():
 	var random_music = randi_range(1, 3)
 	if asteroid_biome == "Stony":
@@ -389,7 +393,7 @@ func put_gems():
 							3: CaveSystem.set_cell(tile_pos, 4, Vector2i(3, 1))
 
 func _on_music_timer_timeout() -> void:
-	start_music()
+	$PauseMenu.go_to_after_mission()
 
 func start_position():
 	var spawn_cube_size = 3

@@ -136,7 +136,7 @@ func _on_death_toggler_toggled(toggled_on: bool) -> void:
 				player.current_health = 0
 			false:
 				player.is_duck_dead = false
-				player.current_health = 25
+				player.current_health = player.max_health
 
 func _on_ghost_toggler_toggled(toggled_on: bool) -> void:
 	if get_tree().current_scene.name == "World":

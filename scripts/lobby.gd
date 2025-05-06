@@ -6,7 +6,7 @@ var item_icons = {
 	"Coal": "res://assets/textures/items/ores/coal.png",
 	"Copper": "res://assets/textures/items/ores/raw_copper.png",
 	"Iron": "res://assets/textures/items/ores/raw_iron.png",
-	"Raw Gold": "res://assets/textures/items/ores/raw_gold.png",
+	"Gold": "res://assets/textures/items/ores/raw_gold.png",
 	"Emerald": "res://assets/textures/items/gems/emerald.png",
 	"Ruby": "res://assets/textures/items/gems/ruby.png",
 	"Sapphire": "res://assets/textures/items/gems/sapphire.png",

@@ -212,7 +212,7 @@ func _on_creator_button_pressed() -> void:
 	
 	var player_path = str(saves_path + str(saves_number) + "/player.cfg")
 	player_config.set_value("status", "max_health", 100)
-	player_config.set_value("status", "max_oxygen", 360)
+	player_config.set_value("status", "max_oxygen", 480)
 	player_config.set_value("status", "max_uv_battery", 200)
 	player_config.set_value("status", "walking_speed", 55)
 	player_config.set_value("status", "running_speed", 90)
