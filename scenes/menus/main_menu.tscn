@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=54 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/Misc/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
@@ -77,6 +77,8 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeob8"]
 bg_color = Color(0.59, 0.59, 0.59, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50h1w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
 bg_color = Color(0, 0, 0, 0.705882)
@@ -655,7 +657,7 @@ scale = Vector2(3.5, 3.5)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
-theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_50h1w")
 icon = ExtResource("4_oa1go")
 flat = true
 

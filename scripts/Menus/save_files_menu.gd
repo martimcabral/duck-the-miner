@@ -55,7 +55,7 @@ func get_save_files():
 	var directories = DirAccess.get_directories_at(saves_path)
 	for i in range(0, 100):
 		if directories.has(str(i)):
-			var SaveButton = Button.new()
+			var SaveFileButton = Button.new()
 			var getday_file = ConfigFile.new()
 			
 			# Load the day config file from the user data save directory
@@ -75,20 +75,35 @@ func get_save_files():
 				counter += 1
 				if counter % 3 == 0 and x != 0:
 					formatted_number = " " + formatted_number
-			SaveButton.text = "Save " + str(i) + " ─ " + str(formatted_number) + " € ─ Day: " + current_day 
+			SaveFileButton.text = "Save " + str(i) + " ─ " + str(formatted_number) + " € ─ Day: " + current_day 
 			
-			# Create and apply styleboxes
 			create_styleboxes()
-			SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
-			SaveButton.add_theme_stylebox_override("focus", focus_stylebox)
-			SaveButton.add_theme_stylebox_override("hover", hover_stylebox)
-			SaveButton.add_theme_color_override("font_color", Color.WHITE)
-			SaveButton.add_theme_font_size_override("font_size", 48)
-			SaveButton.set_meta("save", i)
-			SaveButton.pressed.connect(func(): set_selected_save(SaveButton))
-			SaveButton.mouse_entered.connect(func(): _on_button_mouse_entered())
-			$ScrollContainer/SaveList.add_child(SaveButton)
-			SaveButton.add_to_group("Buttons")
+			
+			var normal = normal_stylebox.duplicate()
+			var focus = focus_stylebox.duplicate()
+			var hover = hover_stylebox.duplicate()
+		
+			var version_trajectory = "user://save/%d/version-beta%s" % [i, ProjectSettings.get_setting("application/config/version")]
+			if FileAccess.file_exists(version_trajectory):
+				normal.border_color = Color("555555")
+				focus.border_color = Color.WHITE
+				hover.border_color = Color.WHITE
+			else:
+				normal.border_color = Color("A50000")
+				focus.border_color = Color.RED
+				hover.border_color = Color("590000")
+			
+			SaveFileButton.add_theme_stylebox_override("normal", normal)
+			SaveFileButton.add_theme_stylebox_override("focus", focus)
+			SaveFileButton.add_theme_stylebox_override("hover", hover)
+			
+			SaveFileButton.add_theme_color_override("font_color", Color.WHITE)
+			SaveFileButton.add_theme_font_size_override("font_size", 48)
+			SaveFileButton.set_meta("save", i)
+			SaveFileButton.pressed.connect(func(): set_selected_save(SaveFileButton))
+			SaveFileButton.mouse_entered.connect(func(): _on_button_mouse_entered())
+			$ScrollContainer/SaveList.add_child(SaveFileButton)
+			SaveFileButton.add_to_group("Buttons")
 
 func _on_verify_files_timeout() -> void:
 	saves_number = savedir.get_directories().size()
@@ -109,21 +124,21 @@ func _on_creator_button_pressed() -> void:
 	
 	# Create SaveGame Button
 	saves_number += 1
-	var SaveButton = Button.new()
-	SaveButton.text = "Save " + str(saves_number) + " - New"
-	SaveButton.add_theme_color_override("font_color", Color.WHITE)
-	SaveButton.add_theme_font_size_override("font_size", 48)
+	var SaveFileButton = Button.new()
+	SaveFileButton.text = "Save " + str(saves_number) + " - New"
+	SaveFileButton.add_theme_color_override("font_color", Color.WHITE)
+	SaveFileButton.add_theme_font_size_override("font_size", 48)
 	
 	create_styleboxes()
 	
-	SaveButton.add_theme_stylebox_override("normal", normal_stylebox)
-	SaveButton.add_theme_stylebox_override("focus", focus_stylebox)
-	SaveButton.add_theme_stylebox_override("hover", hover_stylebox)
-	SaveButton.set_meta("save", saves_number)
-	SaveButton.pressed.connect(func(): set_selected_save(SaveButton))
-	SaveButton.mouse_entered.connect(func(): _on_button_mouse_entered())
-	$ScrollContainer/SaveList.add_child(SaveButton)
-	SaveButton.add_to_group("Buttons")
+	SaveFileButton.add_theme_stylebox_override("normal", normal_stylebox)
+	SaveFileButton.add_theme_stylebox_override("focus", focus_stylebox)
+	SaveFileButton.add_theme_stylebox_override("hover", hover_stylebox)
+	SaveFileButton.set_meta("save", saves_number)
+	SaveFileButton.pressed.connect(func(): set_selected_save(SaveFileButton))
+	SaveFileButton.mouse_entered.connect(func(): _on_button_mouse_entered())
+	$ScrollContainer/SaveList.add_child(SaveFileButton)
+	SaveFileButton.add_to_group("Buttons")
 	
 	# Create the actual file
 	DirAccess.make_dir_absolute("user://save/" + str(saves_number))
@@ -287,9 +302,6 @@ func create_styleboxes():
 	normal_stylebox = StyleBoxes[0]
 	focus_stylebox = StyleBoxes[1]
 	focus_stylebox = StyleBoxes[2]
-	normal_stylebox.border_color = Color("555555")
-	focus_stylebox.border_color = Color("f9b53f")
-	focus_stylebox.border_color = Color.WHITE
 
 func _on_play_button_mouse_entered() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
