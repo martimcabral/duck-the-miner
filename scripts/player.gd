@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var current_item = "Sword"
+var current_item = ""
 var current_health : float
 var current_oxygen : float
 var current_uv : float
@@ -37,6 +37,7 @@ var block_selection_out = preload("res://assets/textures/tilemaps/selected_block
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var BreakingStages = $"../WorldTileMap/BreakingStages"
 @onready var InventoryAtWorld = $HUD/ItemList
+@onready var MissionListAtWorld = $HUD/MissionList
 @onready var world = $".."
 @onready var hotbar = $Camera2D/HUD/Hotbar/TabBar
 
@@ -65,6 +66,7 @@ var mouse_pos
 var local_mouse_pos
 
 func _ready():
+	Input.set_custom_mouse_cursor(cursor_default)
 	collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 	radius = (collision_shape as CircleShape2D).radius
 	mouse_pos = get_global_mouse_position()
@@ -77,7 +79,7 @@ func _ready():
 	
 	player_config.load(player_path)
 	max_health = player_config.get_value("status", "max_health", 100)
-	max_oxygen = player_config.get_value("status", "max_oxygen", 300)
+	max_oxygen = player_config.get_value("status", "max_oxygen", 480)
 	max_uv = player_config.get_value("status", "max_uv_battery", 200)
 	walking_speed = player_config.get_value("status", "walking_speed", 55)
 	running_speed = player_config.get_value("status", "running_speed", 90)
@@ -92,7 +94,6 @@ func _ready():
 		hotbar.add_tab(player_config.get_value("hotbar_slots", str(i)))
 		hotbar.set_tab_icon(i, set_custom_cursor(i))
 	
-	Input.set_custom_mouse_cursor(cursor_default)
 	load_skin()
 	
 	match world.asteroid_biome:
@@ -132,11 +133,12 @@ func _process(delta):
 	
 	if current_health <= 0:
 		is_duck_dead = true
+	elif current_health > 0:
+		is_duck_dead = false
 	
 	if is_duck_dead == true:
 		Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 		$HUD/DeathLabel.visible = true
-		current_health = 0
 		$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
 		$HUD/BlackAndWhite.visible = true
 		velocity.y += (falling_speed / 2.5) * delta
@@ -152,48 +154,51 @@ func _process(delta):
 		do_death_once = false
 		$HUD/DeathLabel.visible = false
 	
-	if $HUD/DeathLabel/GoToMenuTimer.time_left >= 0.5 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 7:
-		$HUD/DeathLabel/TimingLabel.text = "Going to Menu in ..." + str(int(round($HUD/DeathLabel/GoToMenuTimer.time_left)))
+	if $HUD/DeathLabel/GoToMenuTimer.time_left >= 0.5 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 5.5:
+		$HUD/DeathLabel/TimingLabel.text = "Ending Mission in ..." + str(int(round($HUD/DeathLabel/GoToMenuTimer.time_left)))
 	elif $HUD/DeathLabel/GoToMenuTimer.time_left >= 0 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 0.49:
-		$HUD/DeathLabel/TimingLabel.text = "Going to Menu!"
+		$HUD/DeathLabel/TimingLabel.text = "Mission Ended!"
+		$"../PauseMenu".go_to_after_mission()
 	
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
-	
-	if is_duck_dead == false:
-		$Flashlight.look_at(get_global_mouse_position())
-		if Input.is_action_just_pressed("Use_Flashlight") and current_item == "UV Flashlight":
-			match (flashlight):
-				true: $Flashlight.energy = 0; flashlight = false
-				false: $Flashlight.energy = 1.75; flashlight = true
 	
 	if current_uv == 0:
 		flashlight = false
 		$Flashlight.energy = 0
 	
-	if $"../PauseMenu/GUI_Pause".visible == false:
+	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
+		$Flashlight.look_at(get_global_mouse_position())
+		if Input.is_action_just_pressed("Use_Flashlight") and current_item == "UV Flashlight":
+			match (flashlight):
+				true: $Flashlight.energy = 0; flashlight = false
+				false: $Flashlight.energy = 1.75; flashlight = true
+			
 		match current_item: # Set cursor after after despausing the game
 			"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
 			"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 			"Light": Input.set_custom_mouse_cursor(cursor_texture_light)
 			"UV Flashlight": Input.set_custom_mouse_cursor(cursor_texture_flashlight)
 		
-		if is_duck_dead == false:
-			if Input.is_action_just_pressed("Hide_Show_Inventory"):
-				if InventoryAtWorld.visible == true: InventoryAtWorld.visible = false
-				else: InventoryAtWorld.visible = true
-			
-			if Input.is_action_just_pressed("Quack"):
-				var random_pitch = randi_range(1, 3)
-				match random_pitch:
-					1: $"PlayerSounds/Quack".pitch_scale = 0.9
-					2: $"PlayerSounds/Quack".pitch_scale = 1
-					3: $"PlayerSounds/Quack".pitch_scale = 1.1
-				$"PlayerSounds/Quack".play()
-				if subtitles == true:
-					var new_quack = quack_scene.instantiate()
-					new_quack.position -= Vector2(0, 8)
-					add_child(new_quack)
+		if Input.is_action_just_pressed("Hide_Show_Inventory"):
+			if InventoryAtWorld.visible == true: 
+				InventoryAtWorld.visible = false
+				MissionListAtWorld.visible = false
+			else: 
+				InventoryAtWorld.visible = true
+				MissionListAtWorld.visible = true
+		
+		if Input.is_action_just_pressed("Quack"):
+			var random_pitch = randi_range(1, 3)
+			match random_pitch:
+				1: $"PlayerSounds/Quack".pitch_scale = 0.9
+				2: $"PlayerSounds/Quack".pitch_scale = 1
+				3: $"PlayerSounds/Quack".pitch_scale = 1.1
+			$"PlayerSounds/Quack".play()
+			if subtitles == true:
+				var new_quack = quack_scene.instantiate()
+				new_quack.position -= Vector2(0, 8)
+				add_child(new_quack)
 		
 	if Input.is_action_just_pressed("PauseMenu"):
 		if $"../PauseMenu/GUI_Pause".visible == true:
@@ -207,26 +212,67 @@ func _process(delta):
 	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/PlayerSounds".position = tile_pos
 	
+	var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
+	player_movement(input, delta)
+	move_and_slide()
+	$AnimatedSprite2D.play()
+	
+	if not is_on_floor() and is_duck_dead == false:
+		$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
+		if Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+		elif Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		
+	if is_on_floor() and Input.is_action_pressed("Agachar")  and is_duck_dead == false:
+		$AnimatedSprite2D.animation = str(skin_selected) + "_squat"
+		if Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		elif Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+	elif is_on_floor() and is_duck_dead == false:
+		$AnimatedSprite2D.animation = str(skin_selected) + "_walking"
+		if Input.is_action_pressed("Walk_Right"):
+			$AnimatedSprite2D.flip_h = true
+		elif Input.is_action_pressed("Walk_Left"):
+			$AnimatedSprite2D.flip_h = false
+		else:
+			$AnimatedSprite2D.stop()
+	
+	# Mudar o Cursor dependendo do Item selecinado da Hotbar
+	if Input.is_action_just_pressed("Hotbar_1") and hotbar_slots_number >= 1:
+		hotbar.current_tab = 0
+		current_item = player_config.get_value("hotbar_slots", "0")
+		Input.set_custom_mouse_cursor(set_custom_cursor(0))
+	if Input.is_action_just_pressed("Hotbar_2") and hotbar_slots_number >= 2:
+		hotbar.current_tab = 1
+		current_item = player_config.get_value("hotbar_slots", "1")
+		Input.set_custom_mouse_cursor(set_custom_cursor(1))
+	if Input.is_action_just_pressed("Hotbar_3") and hotbar_slots_number >= 3:
+		hotbar.current_tab = 2
+		current_item = player_config.get_value("hotbar_slots", "2")
+		Input.set_custom_mouse_cursor(set_custom_cursor(2))
+	if Input.is_action_just_pressed("Hotbar_4") and hotbar_slots_number >= 4:
+		hotbar.current_tab = 3
+		current_item = player_config.get_value("hotbar_slots", "3")
+		Input.set_custom_mouse_cursor(set_custom_cursor(3))
+	
 	if is_duck_dead == false and $"../PauseMenu/GUI_Pause".visible == false:
 		mouse_pos = get_global_mouse_position()
 		local_mouse_pos = $BlockRange.to_local(mouse_pos)
 		
-		if Input.is_action_pressed("Destroy_Block") and current_item == "Pickaxe":
-			var offset = Vector2i(-8, -8)
-			var block_selection_position = (Vector2i(CaveSystem.get_global_mouse_position()) - offset)
-			
-			var tile_size = Vector2(16, 16)
-			
-			block_selection_position = block_selection_position.snapped(tile_size)
-			$"../WorldTileMap/BlockSelection".position = block_selection_position
-			
-			if local_mouse_pos.length() <= radius:
-				$"../WorldTileMap/BlockSelection".texture = block_selection_default
-			else:
-				$"../WorldTileMap/BlockSelection".texture = block_selection_out
-		else:
-			$"../WorldTileMap/BlockSelection".position = Vector2(-128, -128)
+		var offset = Vector2(-9.5, -9.5)
+		var block_selection_position = (Vector2(CaveSystem.get_global_mouse_position()) - offset)
+		
+		var tile_size = Vector2(16, 16)
+		
+		block_selection_position = block_selection_position.snapped(tile_size)
+		$"../WorldTileMap/BlockSelection".position = block_selection_position
+		
+		if local_mouse_pos.length() <= radius:
 			$"../WorldTileMap/BlockSelection".texture = block_selection_default
+		else:
+			$"../WorldTileMap/BlockSelection".texture = block_selection_out
 			
 		if local_mouse_pos.length() <= radius:
 			if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":
@@ -236,8 +282,8 @@ func _process(delta):
 				
 					torch.position = CaveSystem.map_to_local(tile_pos)
 					add_child(torch)
+					lights_used += 1
 					$"../Player/PlayerSounds/PlaceBlock".play()
-					#print("Torch Placed: ", tile_pos)
 			if Input.is_action_just_pressed("Place_Block") and current_item != "Light":
 					if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 						print(tile_data, " ", tile_id)
@@ -259,53 +305,6 @@ func _process(delta):
 						used_tiles[tile_pos] = {"pos" : tile_pos}
 						used_tiles[tile_pos] = {"health": tile_health} 
 						used_tiles[tile_pos]["health"] = tile_health
-			
-			var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
-			player_movement(input, delta)
-			move_and_slide()
-			$AnimatedSprite2D.play()
-		
-			if not is_on_floor():
-				$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
-				if Input.is_action_pressed("Walk_Right"):
-					$AnimatedSprite2D.flip_h = true
-				elif Input.is_action_pressed("Walk_Left"):
-					$AnimatedSprite2D.flip_h = false
-				
-			if is_on_floor() and Input.is_action_pressed("Agachar"):
-				$AnimatedSprite2D.animation = str(skin_selected) + "_squat"
-				if Input.is_action_pressed("Walk_Left"):
-					$AnimatedSprite2D.flip_h = false
-				elif Input.is_action_pressed("Walk_Right"):
-					$AnimatedSprite2D.flip_h = true
-			elif is_on_floor():
-				$AnimatedSprite2D.animation = str(skin_selected) + "_walking"
-				if Input.is_action_pressed("Walk_Right"):
-					$AnimatedSprite2D.flip_h = true
-				elif Input.is_action_pressed("Walk_Left"):
-					$AnimatedSprite2D.flip_h = false
-				else:
-					$AnimatedSprite2D.stop()
-				
-			# Mudar o Cursor dependendo do Item selecinado da Hotbar
-			if Input.is_action_just_pressed("Hotbar_1") and hotbar_slots_number >= 1:
-				hotbar.current_tab = 0
-				current_item = player_config.get_value("hotbar_slots", "0")
-				Input.set_custom_mouse_cursor(set_custom_cursor(0))
-			if Input.is_action_just_pressed("Hotbar_2") and hotbar_slots_number >= 2:
-				hotbar.current_tab = 1
-				current_item = player_config.get_value("hotbar_slots", "1")
-				Input.set_custom_mouse_cursor(set_custom_cursor(1))
-			if Input.is_action_just_pressed("Hotbar_3") and hotbar_slots_number >= 3:
-				hotbar.current_tab = 2
-				current_item = player_config.get_value("hotbar_slots", "2")
-				Input.set_custom_mouse_cursor(set_custom_cursor(2))
-			if Input.is_action_just_pressed("Hotbar_4") and hotbar_slots_number >= 4:
-				hotbar.current_tab = 3
-				current_item = player_config.get_value("hotbar_slots", "3")
-				Input.set_custom_mouse_cursor(set_custom_cursor(3))
-		else:
-			$AnimatedSprite2D.stop()
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):
@@ -444,9 +443,7 @@ func load_skin():
 		print("[player.gd] Current Skin: " + str(skin_selected))
 
 func _on_go_to_menu_timer_timeout() -> void:
-	var new_game_scene = load("res://scenes/lobby.tscn")
-	get_tree().change_scene_to_packed(new_game_scene)
-	new_game_scene.instantiate()
+	$"../PauseMenu".go_to_after_mission()
 
 func _on_reset_used_tiles_timeout() -> void:
 	print("[player.gd] Used Tiles Reseted")

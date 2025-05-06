@@ -3,6 +3,9 @@ extends Node2D
 var pause_menu_visible = false
 var saved_states = {}
 
+@onready var player = $"../Player"
+@onready var world = $".."
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("PauseMenu"):
 		match pause_menu_visible:
@@ -24,20 +27,13 @@ func _on_feedback_button_pressed() -> void:
 	OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 
 func _on_go_to_desktop_button_pressed() -> void:
-	#more_days()
-	#forward_stock()
 	keep_inventory()
 	get_tree().quit()
 
 func _on_abort_mission_button_pressed() -> void:
-	#more_days()
-	#forward_stock()
 	keep_inventory()
-	
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
-	var new_game_scene = load("res://scenes/lobby.tscn")
-	get_tree().change_scene_to_packed(new_game_scene)
-	new_game_scene.instantiate()
+	go_to_after_mission()
 
 func keep_inventory():
 	var empty_file = 0
@@ -103,9 +99,11 @@ func load_inventory(file_path):
 	var config = ConfigFile.new()
 	if config.load(file_path) == OK:
 		var inventory_data = {}
-		for item_name in config.get_section_keys("inventory"):
-			inventory_data[item_name] = config.get_value("inventory", item_name, 0)  # Default to 0 if not found
-		return inventory_data
+		if config.has_section("inventory"):
+			for item_name in config.get_section_keys("inventory"):
+				inventory_data[item_name] = config.get_value("inventory", item_name, 0)  # Default to 0 if not found
+			return inventory_data
+		else: print("[pause_menu.gd] Config: ", config," does not have section Inventory.")
 	return {}
 
 # Function to save inventory to a CFG file
@@ -151,3 +149,15 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
 		mouse_sound.pitch_scale = 0.75
 		mouse_sound.play()
+
+func go_to_after_mission():
+	var after_mission = load("res://scenes/cutscenes/after_mission.tscn").instantiate()
+	
+	after_mission.travel_destiny = world.asteroid_field
+	after_mission.oxygen_used = player.oxygen_used
+	after_mission.lights_used = player.lights_used
+	after_mission.did_player_died = player.is_duck_dead
+	
+	get_tree().root.add_child(after_mission)
+	get_tree().current_scene.call_deferred("free")
+	get_tree().current_scene = after_mission

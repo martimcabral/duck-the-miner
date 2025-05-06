@@ -1,8 +1,59 @@
-[gd_scene load_steps=7 format=3 uid="uid://kycqdgovse80"]
+[gd_scene load_steps=13 format=3 uid="uid://kycqdgovse80"]
 
-[ext_resource type="Script" uid="uid://bq3nkgsknoskh" path="res://scripts/Misc/after_mission.gd" id="1_aysxd"]
+[ext_resource type="Script" uid="uid://bq3nkgsknoskh" path="res://scripts/Menus/after_mission.gd" id="1_aysxd"]
 [ext_resource type="Texture2D" uid="uid://6emnmb6feqxc" path="res://assets/textures/companies/contracts/fyction_tax.png" id="1_d3vxp"]
 [ext_resource type="AudioStream" uid="uid://dwbbwpto5nca0" path="res://sounds/sound_effects/whoosh.ogg" id="3_3jvrh"]
+[ext_resource type="Texture2D" uid="uid://bk85po3p8meqx" path="res://assets/textures/companies/fyction_enterprise.png" id="3_7ndrm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ndrm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jvrh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vl84"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hxvh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
 
 [sub_resource type="Animation" id="Animation_7ndrm"]
 length = 0.001
@@ -32,13 +83,30 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(-1000, 125), Vector2(670, 125), Vector2(620, 125)]
+"values": [Vector2(-1000, 60), Vector2(670, 60), Vector2(620, 60)]
+}
+
+[sub_resource type="Animation" id="Animation_3jvrh"]
+resource_name = "bye_bye"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(620, 60), Vector2(620, 120), Vector2(620, -1500)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_feyoj"]
 _data = {
 &"RESET": SubResource("Animation_7ndrm"),
-&"appear": SubResource("Animation_aysxd")
+&"appear": SubResource("Animation_aysxd"),
+&"bye_bye": SubResource("Animation_3jvrh")
 }
 
 [node name="AfterMission" type="Node2D"]
@@ -50,6 +118,30 @@ offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
+[node name="GoToLobby" type="Button" parent="ColorBackground" groups=["Buttons"]]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.5
+offset_top = -121.0
+offset_right = 133.5
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7ndrm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3jvrh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5vl84")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8hxvh")
+text = "Go to Lobby
+"
+
 [node name="FyctionTax" type="TextureRect" parent="."]
 z_index = 1
 anchors_preset = 8
@@ -57,10 +149,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1000.0
-offset_top = 125.0
-offset_right = 754.0
-offset_bottom = 2225.0
+offset_left = -754.0
+offset_top = 33.9999
+offset_right = 1000.0
+offset_bottom = 2134.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
@@ -72,6 +164,18 @@ libraries = {
 &"": SubResource("AnimationLibrary_feyoj")
 }
 
+[node name="CompanyLogo" type="TextureRect" parent="FyctionTax"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -678.0
+offset_top = 80.0
+offset_right = 678.0
+offset_bottom = 387.0
+grow_horizontal = 2
+texture = ExtResource("3_7ndrm")
+
 [node name="FeesText" type="Label" parent="FyctionTax"]
 layout_mode = 2
 offset_left = 40.0
@@ -80,19 +184,7 @@ offset_right = 1608.0
 offset_bottom = 1772.0
 theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
 theme_override_font_sizes/font_size = 92
-text = "> Fyction Interest
-> Habitat Rental
-> Health Insurance
-> Travel Rental
-> Oxygen Rental
-> Sword Rental
-> Pickaxe Rental
-> Light Rental * 87
-> UV FLashlight Rental
-> Radar the Tool Rental
-
-
-"
+text = "ERROR 41"
 text_overrun_behavior = 3
 
 [node name="FeesValuesText" type="Label" parent="FyctionTax"]
@@ -103,38 +195,26 @@ offset_right = 1720.0
 offset_bottom = 1772.0
 theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
 theme_override_font_sizes/font_size = 92
-text = "[0,001%, -998€]
-[-12 000€]
-[false, 0€]
-[-32 000€]
-[360, -15 000€]
- [- 3 000€]
- [- 2 575€]
-[125€, -10 875€]
-[- 4 600€]
-[- 6580€]
-
-
-"
+text = "ERROR 42"
 horizontal_alignment = 2
 text_overrun_behavior = 3
 
-[node name="Fees Total" type="Label" parent="FyctionTax"]
+[node name="FeesTotal" type="Label" parent="FyctionTax"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -536.5
+offset_left = -874.0
 offset_top = -167.0
-offset_right = 536.5
+offset_right = 875.0
 offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
 theme_override_font_sizes/font_size = 92
-text = "Fees Total:  -92 998€"
+text = "Fees Total:  - ERROR 43"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
@@ -144,3 +224,6 @@ position = Vector2(861, 1081)
 scale = Vector2(6.25, 6.25)
 stream = ExtResource("3_3jvrh")
 bus = &"Menus"
+
+[connection signal="pressed" from="ColorBackground/GoToLobby" to="." method="_on_go_to_lobby_pressed"]
+[connection signal="animation_finished" from="FyctionTax/PrintingAnimation" to="." method="_on_printing_animation_animation_finished"]
