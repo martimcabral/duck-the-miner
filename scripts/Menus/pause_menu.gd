@@ -151,15 +151,13 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.play()
 
 func go_to_after_mission():
-	var after_mission_scene = load("res://scenes/cutscenes/after_mission.tscn") as PackedScene
-	var after_mission = after_mission_scene.instantiate()
+	var after_mission = load("res://scenes/cutscenes/after_mission.tscn").instantiate()
 	
 	after_mission.travel_destiny = world.asteroid_field
 	after_mission.oxygen_used = player.oxygen_used
 	after_mission.lights_used = player.lights_used
 	after_mission.did_player_died = player.is_duck_dead
 	
-	var tree = get_tree()
-	tree.root.add_child(after_mission)
-	tree.current_scene.free()
-	tree.current_scene = after_mission
+	get_tree().root.add_child(after_mission)
+	get_tree().current_scene.call_deferred("free")
+	get_tree().current_scene = after_mission

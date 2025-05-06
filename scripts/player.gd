@@ -154,10 +154,11 @@ func _process(delta):
 		do_death_once = false
 		$HUD/DeathLabel.visible = false
 	
-	if $HUD/DeathLabel/GoToMenuTimer.time_left >= 0.5 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 6.5:
+	if $HUD/DeathLabel/GoToMenuTimer.time_left >= 0.5 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 5.5:
 		$HUD/DeathLabel/TimingLabel.text = "Ending Mission in ..." + str(int(round($HUD/DeathLabel/GoToMenuTimer.time_left)))
 	elif $HUD/DeathLabel/GoToMenuTimer.time_left >= 0 and $HUD/DeathLabel/GoToMenuTimer.time_left <= 0.49:
 		$HUD/DeathLabel/TimingLabel.text = "Mission Ended!"
+		$"../PauseMenu".go_to_after_mission()
 	
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")

@@ -53,6 +53,9 @@ var fees_label : String = ""
 var fees_values : String = ""
 
 func _ready() -> void:
+	$FyctionTax/PrintingAnimation.play("appear")
+	$FyctionTax/WhooshSoundEffect.play()
+	
 	difficulty_config.load(difficulty_path)
 	player_config.load(player_path)
 	money_config.load(money_path)
@@ -126,9 +129,6 @@ func _ready() -> void:
 	$FyctionTax/FeesValuesText.text = fees_values
 	$FyctionTax/FeesTotal.text = str("Fees Total: -", total, "€")
 	
-	$FyctionTax/PrintingAnimation.play("appear")
-	$FyctionTax/WhooshSoundEffect.play()
-	
 	remove_money()
 
 func more_days():
@@ -180,9 +180,10 @@ func go_to_lobby():
 func _on_printing_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "appear":
 		$ColorBackground/GoToLobby.visible = true
+	elif anim_name == "bye_bye":
+		go_to_lobby()
 
 func _on_go_to_lobby_pressed() -> void:
-	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
-	var new_game_scene = load("res://scenes/lobby.tscn")
-	get_tree().change_scene_to_packed(new_game_scene)
-	new_game_scene.instantiate()
+	$ColorBackground/GoToLobby.visible = false
+	$FyctionTax/PrintingAnimation.play("bye_bye")
+	$FyctionTax/WhooshSoundEffect.play()

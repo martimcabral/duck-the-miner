@@ -393,7 +393,7 @@ func put_gems():
 							3: CaveSystem.set_cell(tile_pos, 4, Vector2i(3, 1))
 
 func _on_music_timer_timeout() -> void:
-	$PauseMenu.go_to_after_mission()
+	start_music()
 
 func start_position():
 	var spawn_cube_size = 3
