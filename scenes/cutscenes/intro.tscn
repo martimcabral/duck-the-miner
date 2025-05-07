@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bjvurleq55hl2"]
+[gd_scene load_steps=24 format=3 uid="uid://bjvurleq55hl2"]
 
 [ext_resource type="Script" uid="uid://bfpwsu635c73s" path="res://scripts/Misc/cutscenes.gd" id="1_5khjm"]
 [ext_resource type="FontFile" uid="uid://5b4g4ugjtc6q" path="res://assets/fonts/VeniceClassic.ttf" id="2_2o8o2"]
@@ -78,7 +78,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_pyic4"]
 resource_name = "go_up"
-length = 3.0
+length = 5.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -86,15 +86,32 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.16, 2.1, 2.8, 4.25, 5.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(664, 1194)]
+"values": [Vector2(651, 1236), Vector2(651, 868), Vector2(651, 724), Vector2(651, 476), Vector2(651, 268), Vector2(651, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_fcqgi"]
+resource_name = "deliver"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(651, 39), Vector2(651, 71), Vector2(651, -1577)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fcqgi"]
 _data = {
 &"RESET": SubResource("Animation_h08c8"),
+&"deliver": SubResource("Animation_fcqgi"),
 &"go_up": SubResource("Animation_pyic4")
 }
 
@@ -192,23 +209,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 664.0
-offset_top = 1194.0
-offset_right = 2418.0
-offset_bottom = 3674.0
+offset_left = 651.0
+offset_top = 39.0
+offset_right = 2405.0
+offset_bottom = 2519.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 mouse_filter = 2
 texture = ExtResource("6_5wt6c")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FyctionContract"]
+[node name="PrintingAnimation" type="AnimationPlayer" parent="FyctionContract"]
 libraries = {
 &"": SubResource("AnimationLibrary_fcqgi")
 }
 
 [node name="Lines" type="Node2D" parent="FyctionContract"]
-position = Vector2(-1947.5, -2165)
+position = Vector2(-1627.5, -102.5)
 scale = Vector2(2.5, 2.5)
 
 [node name="ContractText" type="Label" parent="FyctionContract"]
@@ -228,7 +245,7 @@ text = "1. Must be alive
 7. Must not care for death
 8. Licensed Spaceship Driver
 9. Contract can be broken at any time
-10. Get 0,0001% of Interest on Debt
+10. Any Equipment belongs by Fyction
 
 
 Terms & Conditions:
@@ -333,6 +350,7 @@ end_cap_mode = 2
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ready_button_pressed"]
 [connection signal="mouse_entered" from="RubberButton" to="." method="_on_rubber_button_mouse_entered"]
 [connection signal="pressed" from="RubberButton" to="." method="_on_rubber_button_pressed"]
+[connection signal="animation_finished" from="FyctionContract/PrintingAnimation" to="." method="_on_printing_animation_animation_finished"]
 [connection signal="mouse_entered" from="FyctionContract/BlockRange" to="." method="_on_block_range_mouse_entered"]
 [connection signal="mouse_exited" from="FyctionContract/BlockRange" to="." method="_on_block_range_mouse_exited"]
 [connection signal="mouse_entered" from="FyctionContract/AcceptButton" to="." method="_on_accept_button_mouse_entered"]
