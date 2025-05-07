@@ -458,6 +458,7 @@ func _on_spawn_enemies_timeout() -> void:
 	var EnemyScene = preload("res://scenes/misc/enemy.tscn")
 	var enemy = EnemyScene.instantiate()
 	enemy.set_meta("Enemy", "Enemy")
+	enemy.add_to_group("Enemy")
 	enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))
 	var scale_factor = randf_range(0.8, 1.2)
 	enemy.scale = Vector2(scale_factor, scale_factor)
@@ -499,9 +500,45 @@ func _on_update_enemy_radar_timer_timeout() -> void:
 	update_enemies_radar_tool()
 
 func update_enemies_radar_tool():
-	var _radar_width = $Player/HUD/RadarPanelEnemies/RadarPanel.size.x - $Player/HUD/RadarPanelEnemies/RadarPanel/EnemyNearby.size.x
-	var _radar_height = $Player/HUD/RadarPanelEnemies/RadarPanel.size.y - $Player/HUD/RadarPanelEnemies/RadarPanel/EnemyNearby.size.y
+	var radar_panel = $Player/HUD/RadarPanelEnemies/RadarPanel
+	var radar_size = radar_panel.size
+	var max_distance := 360.0  # match the spawn range
+	var player_pos = $Player.position
+	
+	# Clear only previous radar dots, leave static UI intact
+	for child in radar_panel.get_children():
+		if child.has_meta("is_enemy_dot"):
+			child.queue_free()
+	
+	# Load enemy radar dot texture
+	var enemy_dot_texture = preload("res://assets/textures/equipment/others/enemy_dot.png")
+	
+	for enemy in get_tree().get_nodes_in_group("Enemy"):
+		var rel_pos = enemy.position - player_pos
 
-	var _player_pos = $Player.position
-	var enemies = get_tree().get_meta("Enemy", "Enemy")
-	print(enemies)
+		# Normalize relative position to [-1, 1]
+		var norm_x = rel_pos.x / max_distance
+		var norm_y = rel_pos.y / max_distance
+
+		# Skip if outside [-1, 1] range (i.e. beyond max_distance in either axis)
+		if abs(norm_x) > 1.0 or abs(norm_y) > 1.0:
+			continue
+	
+		# Convert to radar coordinates
+		var radar_x = radar_size.x / 2 + norm_x * (radar_size.x / 2)
+		var radar_y = radar_size.y / 2 + norm_y * (radar_size.y / 2)
+
+		# Additional optional safety check: skip if outside panel bounds
+		if radar_x < 0 or radar_x > radar_size.x or radar_y < 0 or radar_y > radar_size.y:
+			continue
+	
+		# Create and place enemy dot
+		var dot = TextureRect.new()
+		dot.texture = enemy_dot_texture
+		dot.z_index = 1
+		dot.size = Vector2(8, 8)
+		dot.position = Vector2(radar_x, radar_y)
+		dot.pivot_offset = dot.size / 2
+		dot.set_meta("is_enemy_dot", true)  # tag so we only remove these later
+	
+		radar_panel.add_child(dot)

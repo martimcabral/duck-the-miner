@@ -61,6 +61,7 @@ folder_colors={
 Pickable=""
 Buttons=""
 PressedStock=""
+Enemy=""
 
 [gui]
 
