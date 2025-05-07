@@ -501,7 +501,7 @@ func _on_update_enemy_radar_timer_timeout() -> void:
 
 func update_enemies_radar_tool():
 	var radar_panel = $Player/HUD/RadarPanelEnemies/RadarPanel
-	var radar_size = radar_panel.size
+	var radar_size = radar_panel.size - Vector2(14, 14)
 	var max_distance := 360.0  # match the spawn range
 	var player_pos = $Player.position
 	

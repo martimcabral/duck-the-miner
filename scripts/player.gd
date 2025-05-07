@@ -62,6 +62,10 @@ var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin
 var player_config = ConfigFile.new()
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
+var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
+var difficulty_config = ConfigFile.new()
+var current_difficulty : String = ""
+
 var window_mode = 0
 var subtitles : bool
 
@@ -72,6 +76,9 @@ var local_mouse_pos
 
 func _ready():
 	Input.set_custom_mouse_cursor(cursor_default)
+	
+	difficulty_config.load(difficulty_path)
+	current_difficulty = difficulty_config.get_value("difficulty", "current", "normal")
 	
 	$HUD/RadarPanel.visible = false
 	$HUD/RadarPanelEnemies.visible = false
@@ -179,6 +186,7 @@ func _process(delta):
 	if current_battery <= 0:
 		is_flashlight_being_used = false
 		$HUD/RadarPanel.visible = false
+		$HUD/RadarPanelEnemies.visible = false
 		$Flashlight.energy = 0
 	elif $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
 		if Input.is_action_just_pressed("Use_Item") and current_item == "UV Flashlight":
@@ -448,11 +456,11 @@ func _on_minning_cooldown_timeout() -> void:
 			destroy_block()
 
 func _on_uv_battery_consumption_timeout() -> void:
-	if $"../PauseMenu/GUI_Pause".visible == false:
+	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
 		if is_flashlight_being_used == true:
 			current_battery -= 0.75
 		if is_radar_the_tool_being_used == true:
-			current_battery -= 2
+			current_battery -= 1.25
 		if is_radar_the_enemies_being_used == true:
 			current_battery -= 2
 
@@ -500,7 +508,10 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_meta("Enemy") and ghost_mode == false:
 		$ResetModulateRedHit.start()
 		$AnimatedSprite2D.modulate = Color(1, 0, 0)
-		current_health -= 10
+		match current_difficulty:
+			"easy": current_health -= randi_range(3, 6)
+			"normal": current_health -= randi_range(5, 9)
+			"hard": current_health -= randi_range(7, 11)
 		body.run_away()
 
 func _on_reset_modulate_red_hit_timeout() -> void:

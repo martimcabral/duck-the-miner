@@ -21,7 +21,7 @@ var did_player_died : bool = false
 var health_insurance : int = 0
 
 var travel_destiny : String
-var travel_rental : int = 2400
+var travel_rental : float = 2400
 
 var oxygen_used : int = 0
 var oxygen_price : int = 5
@@ -80,7 +80,10 @@ func _ready() -> void:
 	total += habitat_rental
 	
 	if did_player_died == true:
-		health_insurance = randi_range(48000, 60000)
+		match difficulty:
+			"easy": health_insurance = randi_range(24000, 32000)
+			"normal": health_insurance = randi_range(48000, 64000)
+			"hard": health_insurance = randi_range(72000, 96000)
 		total += health_insurance
 		fees_label += "> Health Insurance\n"
 		fees_values += str("[-", health_insurance,"€]\n")
@@ -90,11 +93,19 @@ func _ready() -> void:
 		"Delta Belt": travel_rental = randi_range(1500, 2000)
 		"Gamma Field": travel_rental = randi_range(4000, 4500)
 		"Omega Field": travel_rental = randi_range(4000, 4500)
-		"Koppa Belt": travel_rental = randi_range(9000, 1000)
+		"Koppa Belt": travel_rental = randi_range(9000, 10000)
+	match difficulty:
+		"easy": travel_rental * 0.8
+		"normal": travel_rental * 1
+		"hard": travel_rental * 1.2
 	fees_values += str("[", travel_destiny, ", -", travel_rental, "€]\n")
 	total += travel_rental
 	
 	fees_label += "> Oxygen Supply\n"
+	match difficulty:
+		"easy": oxygen_price = 4
+		"normal": oxygen_price = 5
+		"hard": oxygen_price = 6
 	oxygen_rental = oxygen_used * oxygen_price
 	fees_values += str("[",oxygen_used, ", -", oxygen_rental ,"€]\n")
 	total += oxygen_rental
@@ -120,6 +131,10 @@ func _ready() -> void:
 		fees_values += str("[-", radar_the_enemies_rental,"€]\n")
 		total += radar_the_enemies_rental
 	if has_lights == true:
+		match difficulty:
+			"easy": light_price = 115
+			"normal": light_price = 125
+			"hard": light_price = 135
 		light_rental = lights_used * light_price
 		fees_label += str("> ", lights_used, " * Lights Cost\n")
 		fees_values += str("[", light_price, "€, -", light_rental,"€]\n")

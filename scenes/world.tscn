@@ -548,7 +548,7 @@ script = ExtResource("1_nmwod")
 environment = SubResource("Environment_jiaeb")
 
 [node name="SpawnEnemies" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 18.0
 autostart = true
 
 [node name="PauseMenu" parent="." instance=ExtResource("24_dvxve")]

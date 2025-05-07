@@ -3,8 +3,8 @@ extends Node2D
 var debug_info : bool = false
 
 var speed : int = 50
-var current_health : int = 100
-var max_health : int = 100
+var current_health : int
+var max_health : int
 var is_wandering : bool = false
 var player_chase : bool = false
 var attack_cooldown : bool = false
@@ -17,7 +17,19 @@ var target_position : Vector2
 
 @onready var world = $".."
 
+var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
+var difficulty_config = ConfigFile.new()
+var current_difficulty : String = ""
+
 func _ready() -> void:
+	difficulty_config.load(difficulty_path)
+	current_difficulty = difficulty_config.get_value("difficulty", "current", "normal")
+	match current_difficulty:
+		"easy": max_health = 80
+		"normal": max_health = 100
+		"hard": max_health = 120
+	current_health = max_health
+	
 	$AnimatedSprite2D.play("bat_flying")
 	if debug_info == true: $DebugInfoLabel.visible = true
 	else: $DebugInfoLabel.visible = false
