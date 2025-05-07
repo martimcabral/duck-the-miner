@@ -615,6 +615,23 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_glt2k")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_6vqmr")
 button_pressed = true
 
+[node name="PlayerPosition" type="Label" parent="Container/WorldLabel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 109.5
+offset_top = -8.0
+offset_right = 168.5
+offset_bottom = 53.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0.709804, 0.298039, 1)
+theme_override_fonts/font = ExtResource("2_6vqmr")
+theme_override_font_sizes/font_size = 28
+text = "X: ?
+Y: ?"
+
 [connection signal="pressed" from="Container/LobbyLabel/ChangeDay" to="." method="_on_change_day_pressed"]
 [connection signal="pressed" from="Container/LobbyLabel/ChangeMoney" to="." method="_on_change_money_pressed"]
 [connection signal="pressed" from="Container/LobbyLabel/AdvanceStockMartket" to="." method="_on_advance_stock_martket_pressed"]

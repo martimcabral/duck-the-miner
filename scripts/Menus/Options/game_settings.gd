@@ -44,7 +44,7 @@ func create_config_file():
 	config.set_value("controls", "Open_Feedback_Page", "F9")
 	config.set_value("controls", "Universe_Zoom_In", "MWU")
 	config.set_value("controls", "Universe_Zoom_Out", "MWD")
-	config.set_value("controls", "Use_Flashlight", "RMB")
+	config.set_value("controls", "Use_Item", "RMB")
 	
 	# Accessibility
 	config.set_value("accessibility", "colorblindness", 0)

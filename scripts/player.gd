@@ -3,14 +3,16 @@ extends CharacterBody2D
 var current_item = ""
 var current_health : float
 var current_oxygen : float
-var current_uv : float
+var current_battery : float
 var max_health : float
 var max_oxygen : float
-var max_uv : float
+var max_battery : float
 var health_ratio : float
 var oxygen_ratio : float
-var uv_ratio : float
-var flashlight : bool = false
+var battery_ratio : float
+var is_flashlight_being_used : bool = false
+var is_radar_the_tool_being_used : bool = false
+var is_radar_the_enemies_being_used : bool = false
 var hotbar_slots_number : int = 4
 
 var oxygen_used : int = 0
@@ -45,6 +47,9 @@ var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
 var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/flashlight_item.png")
+var cursor_texture_radar_the_tool = preload("res://assets/textures/equipment/others/radio_the_tool.png")
+var cursor_texture_radar_the_enemies = preload("res://assets/textures/equipment/others/radio_the_enemies.png")
+
 var cursor_default = preload("res://assets/textures/player/main_cursor.png")
 var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
 
@@ -67,6 +72,10 @@ var local_mouse_pos
 
 func _ready():
 	Input.set_custom_mouse_cursor(cursor_default)
+	
+	$HUD/RadarPanel.visible = false
+	$HUD/RadarPanelEnemies.visible = false
+	
 	collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 	radius = (collision_shape as CircleShape2D).radius
 	mouse_pos = get_global_mouse_position()
@@ -80,13 +89,13 @@ func _ready():
 	player_config.load(player_path)
 	max_health = player_config.get_value("status", "max_health", 100)
 	max_oxygen = player_config.get_value("status", "max_oxygen", 480)
-	max_uv = player_config.get_value("status", "max_uv_battery", 200)
+	max_battery = player_config.get_value("status", "max_battery_battery", 200)
 	walking_speed = player_config.get_value("status", "walking_speed", 55)
 	running_speed = player_config.get_value("status", "running_speed", 90)
 	
 	current_health = max_health
 	current_oxygen = max_oxygen
-	current_uv = max_uv
+	current_battery = max_battery
 	
 	hotbar.remove_tab(0)
 	hotbar_slots_number = player_config.get_value("hotbar_slots", "number")
@@ -123,11 +132,14 @@ func _process(delta):
 	do_bloddy_overlay()
 	health_ratio = current_health / max_health
 	oxygen_ratio = current_oxygen / max_oxygen
-	uv_ratio = current_uv / max_uv
+	battery_ratio = current_battery / max_battery
 	
 	$Camera2D/HUD/Stats/UI/HealthPanel/HealthBar.set_point_position(1, Vector2(16, lerp(160.0, 6.0, health_ratio)))
 	$Camera2D/HUD/Stats/UI/OxygenPanel/OxygenBar.set_point_position(1, Vector2(16, lerp(160.0, 6.0, oxygen_ratio)))
-	$Camera2D/HUD/Stats/UI/BatteryPanel/BatteryBar.set_point_position(1, Vector2(16, lerp(160.0, 6.0, uv_ratio)))
+	$Camera2D/HUD/Stats/UI/BatteryPanel/BatteryBar.set_point_position(1, Vector2(16, lerp(160.0, 6.0, battery_ratio)))
+	
+	if battery_ratio <= 0:
+		$Camera2D/HUD/Stats/UI/BatteryPanel/BatteryBar.set_point_position(1, Vector2(16, 160))
 	
 	BaW_time_remaining =  $HUD/BlackAndWhite/BaWFadeInTimer.wait_time - $HUD/BlackAndWhite/BaWFadeInTimer.time_left
 	
@@ -163,22 +175,53 @@ func _process(delta):
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 	
-	if current_uv == 0:
-		flashlight = false
+	$Flashlight.look_at(get_global_mouse_position())
+	if current_battery <= 0:
+		is_flashlight_being_used = false
+		$HUD/RadarPanel.visible = false
 		$Flashlight.energy = 0
-	
-	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
-		$Flashlight.look_at(get_global_mouse_position())
-		if Input.is_action_just_pressed("Use_Flashlight") and current_item == "UV Flashlight":
-			match (flashlight):
-				true: $Flashlight.energy = 0; flashlight = false
-				false: $Flashlight.energy = 1.75; flashlight = true
+	elif $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
+		if Input.is_action_just_pressed("Use_Item") and current_item == "UV Flashlight":
+			print("[player.gd] UV Flashlight used!")
+			match is_flashlight_being_used:
+				true: $Flashlight.energy = 0; is_flashlight_being_used = false
+				false: $Flashlight.energy = 1.75; is_flashlight_being_used = true
+		
+		if Input.is_action_just_pressed("Use_Item") and current_item == "Radar the Tool":
+			print("[player.gd] Radar the Tool used!")
+			match is_radar_the_tool_being_used:
+				false: 
+					$HUD/RadarPanel.visible = true
+					is_radar_the_tool_being_used = true
+					$HUD/RadarPanelEnemies.visible = false
+					is_radar_the_enemies_being_used = false
+				true:
+					$HUD/RadarPanel.visible = false
+					is_radar_the_tool_being_used = false
+					$HUD/RadarPanelEnemies.visible = false
+					is_radar_the_enemies_being_used = false
+		
+		if Input.is_action_just_pressed("Use_Item") and current_item == "Radar the Enemies":
+			print("[player.gd] Radar the Enemies used!")
+			match is_radar_the_enemies_being_used:
+				false: 
+					$HUD/RadarPanel.visible = false
+					is_radar_the_tool_being_used = false
+					$HUD/RadarPanelEnemies.visible = true
+					is_radar_the_enemies_being_used = true
+				true:
+					$HUD/RadarPanel.visible = false
+					is_radar_the_tool_being_used = false
+					$HUD/RadarPanelEnemies.visible = false
+					is_radar_the_enemies_being_used = false
 			
 		match current_item: # Set cursor after after despausing the game
 			"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
 			"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 			"Light": Input.set_custom_mouse_cursor(cursor_texture_light)
 			"UV Flashlight": Input.set_custom_mouse_cursor(cursor_texture_flashlight)
+			"Radar the Tool": Input.set_custom_mouse_cursor(cursor_texture_radar_the_tool)
+			"Radar the Enemies": Input.set_custom_mouse_cursor(cursor_texture_radar_the_enemies)
 		
 		if Input.is_action_just_pressed("Hide_Show_Inventory"):
 			if InventoryAtWorld.visible == true: 
@@ -315,8 +358,8 @@ func _process(delta):
 		elif window_mode == 1:
 			window_mode = 0
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		
-	$Camera2D/HUD/PlayerPosition.text = "X: " + str(int($".".position.x / 16)) + \
+			
+	$"HUD/CheatMenu/Container/WorldLabel/PlayerPosition".text = "X: " + str(int($".".position.x / 16)) + \
 	"\nY: " + str(int($".".position.y / 16))
 
 ####################################################################################################################################################
@@ -406,8 +449,12 @@ func _on_minning_cooldown_timeout() -> void:
 
 func _on_uv_battery_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
-		if flashlight == true:
-			current_uv -= 1
+		if is_flashlight_being_used == true:
+			current_battery -= 0.75
+		if is_radar_the_tool_being_used == true:
+			current_battery -= 2
+		if is_radar_the_enemies_being_used == true:
+			current_battery -= 2
 
 func _on_oxygen_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
@@ -491,3 +538,5 @@ func set_custom_cursor(hotbar_slot):
 		"Pickaxe": return cursor_texture_pickaxe
 		"Light": return cursor_texture_light
 		"UV Flashlight": return cursor_texture_flashlight
+		"Radar the Tool": return cursor_texture_radar_the_tool
+		"Radar the Enemies": return cursor_texture_radar_the_enemies

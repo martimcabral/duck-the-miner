@@ -443,6 +443,7 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -828,7 +829,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
 text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1329,7 +1329,6 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
 step = 5.0
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
 layout_mode = 2
 offset_left = 304.0
 offset_top = 5.0
@@ -1686,7 +1685,7 @@ offset_bottom = 488.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
-text = "Flashlight"
+text = "Use Item"
 
 [node name="UseFlashlightButton" type="Button" parent="GUI/Center/OptionsMenu/ControlsPanel" groups=["Buttons"]]
 layout_mode = 0

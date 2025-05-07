@@ -34,7 +34,6 @@ var primary_objective : String = ""
 var secundary_objective : String = ""
 
 func _process(_delta: float) -> void:
-	print(primary_objective, secundary_objective)
 	$WorldMusic.position = $Player.position
 	update_radar_tool()
 	
@@ -48,14 +47,16 @@ func _process(_delta: float) -> void:
 	
 	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, fade_out))
 	$Player/HUD/FieldTitle.add_theme_color_override("default_color", Color(0.509, 0.509, 0.509, fade_out))
-	$Player/HUD/ItemList.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/VersionDisplay.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/PlayerPosition.modulate.a8 = fade_in
+	
 	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
 	
 	$Player/HUD/RadarPanel.modulate.a8 = fade_in
+	$Player/HUD/RadarPanelEnemies.modulate.a8 = fade_in
+	
 	$Player/HUD/MissionList.modulate.a8 = fade_in
+	$Player/HUD/ItemList.modulate.a8 = fade_in
 	
 	$Player/Camera2D/HUD/Stats/UI/HealthPanel.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/UI/OxygenPanel.modulate.a8 = fade_in

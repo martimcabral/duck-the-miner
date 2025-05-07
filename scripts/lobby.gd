@@ -85,8 +85,8 @@ var current_page = 1
 var current_asteroid_name : String
 var current_asteroid_biome : String
 var current_field : String
-var primary_objective : String = ""
-var secundary_objective : String = ""
+var current_primary_objective : String = ""
+var current_secundary_objective : String = ""
 var asteroid_temperature
 
 var delta_ammount : int = 0
@@ -424,10 +424,10 @@ func get_asteroid_info():
 			current_asteroid_biome = asteroid_info["Biome"]
 			var temperature = asteroid_info["Temperature"]
 			asteroid_temperature = temperature
-			primary_objective = asteroid_info["Objectives"]["Primary"]
-			secundary_objective = asteroid_info["Objectives"]["Secondary"]
-			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(primary_objective) +  "\n" + str(secundary_objective)
-			$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(primary_objective) +  "\n" + str(secundary_objective)
+			current_primary_objective = asteroid_info["Objectives"]["Primary"]
+			current_secundary_objective = asteroid_info["Objectives"]["Secondary"]
+			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(current_primary_objective) +  "\n" + str(current_secundary_objective)
+			$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(current_primary_objective) +  "\n" + str(current_secundary_objective)
 		else:
 			print("An error ocurred trying to parse asteroid content, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
 
@@ -502,8 +502,8 @@ func _on_time_to_start_timeout() -> void:
 	new_world.asteroid_name = current_asteroid_name
 	new_world.asteroid_biome = current_asteroid_biome
 	new_world.asteroid_temperature = asteroid_temperature
-	new_world.primary_objective = primary_objective
-	new_world.secundary_objective = secundary_objective
+	new_world.primary_objective = current_primary_objective
+	new_world.secundary_objective = current_secundary_objective
 	get_tree().root.add_child(new_world)
 	get_tree().current_scene.call_deferred("free")
 	get_tree().current_scene = new_world

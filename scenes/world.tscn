@@ -51,7 +51,7 @@ radius = 14.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wbqqk"]
 shader = ExtResource("6_jiuwp")
-shader_parameter/mode = 2
+shader_parameter/mode = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kpybi"]
 shader = ExtResource("5_oo54l")
@@ -645,6 +645,31 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
 text = "Radar the Tool"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RadarPanelEnemies" type="Panel" parent="Player/HUD"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 352.0
+offset_bottom = 392.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ctatt")
+
+[node name="RadarTitleLabel" type="Label" parent="Player/HUD/RadarPanelEnemies"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -42.0
+offset_right = 107.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Radar the Enemies"
 horizontal_alignment = 1
 vertical_alignment = 1
 

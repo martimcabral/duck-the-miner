@@ -123,9 +123,9 @@ func _on_change_health_pressed() -> void:
 
 func _on_change_uv_battery_pressed() -> void:
 	if get_tree().current_scene.name == "World":
-		var new_uv_battery = $Container/WorldLabel/ChangeUVBattery/uvBatteryTextEdit.text
-		player.current_uv = int(new_uv_battery)
-		print("[cheat_menu.gd] UV Battery changed to: ", new_uv_battery)
+		var new_battery = $Container/WorldLabel/ChangeUVBattery/uvBatteryTextEdit.text
+		player.current_battery= int(new_battery)
+		print("[cheat_menu.gd] UV Battery changed to: ", new_battery)
 
 func _on_death_toggler_toggled(toggled_on: bool) -> void:
 	if get_tree().current_scene.name == "World":

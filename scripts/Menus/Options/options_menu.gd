@@ -228,7 +228,7 @@ func _on_menus_volume_slider_value_changed(value: float) -> void:
 	config.save(file_path)
 
 func _input(event):
-	if event is InputEventKey and event.pressed:
+	if (event is InputEventKey or event is InputEventJoypadButton) and event.pressed:
 		key_name = event
 		if change_keybind_of != null:
 			InputMap.action_erase_events(change_keybind_of)
@@ -344,7 +344,7 @@ func _on_universe_zoom_out_button_pressed() -> void:
 
 func _on_use_flashlight_button_pressed() -> void:
 	previous_keybutton = $ControlsPanel/UseFlashlightButton
-	change_keybind_of = "Use_Flashlight"
+	change_keybind_of = "Use_Item"
 	previous_keybutton.text = "..."
 
 func _on_bloom_check_button_toggled(toggled_on: bool) -> void:

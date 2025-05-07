@@ -106,7 +106,11 @@ func get_save_files():
 			SaveFileButton.add_to_group("Buttons")
 
 func _on_verify_files_timeout() -> void:
-	saves_number = savedir.get_directories().size()
+	var directories = savedir.get_directories()
+	directories.sort()
+	if directories.size() > 0:
+		var last_save = directories[-1]
+		saves_number = int(last_save)
 	saves_config.set_value("saves", "ammount", saves_number)
 	saves_config.save(saves_path)
 
