@@ -112,6 +112,7 @@ func _ready():
 	
 	start_music()
 	create_radar_lines()
+	create_radar_enemies_lines()
 	
 	match asteroid_field:
 		"Delta Belt":
@@ -430,8 +431,30 @@ func start_position():
 			elif asteroid_biome == "Desert":
 				CaveSystem.set_cell(Vector2i(x,y), 4, Vector2i(0, 1))
 
+func create_radar_lines():
+	var radar_width: float = $Player/HUD/RadarPanel/WorldPanel.size.x
+	var radar_height: float = $Player/HUD/RadarPanel/WorldPanel.size.y
+
+	for x in range(0, int(radar_width), 35):
+		var vertical_line := Line2D.new()
+		vertical_line.points = [Vector2(x, 0), Vector2(x, radar_height)]
+		vertical_line.default_color = Color("515151")
+		vertical_line.z_index = -1
+		vertical_line.width = 4
+		vertical_line.position += Vector2(2, 0)
+		$Player/HUD/RadarPanel/WorldPanel.add_child(vertical_line)
+
+	for y in range(0, int(radar_height), 40):
+		var horizontal_line := Line2D.new()
+		horizontal_line.points = [Vector2(0, y), Vector2(radar_width, y)]
+		horizontal_line.default_color = Color("515151")
+		horizontal_line.z_index = -1
+		horizontal_line.width = 4
+		horizontal_line.position += Vector2(0, 5)
+		$Player/HUD/RadarPanel/WorldPanel.add_child(horizontal_line)
+
 func _on_spawn_enemies_timeout() -> void:
-	print("Enemy Spawned")
+	print("[world.gd] Enemy Spawned")
 	var EnemyScene = preload("res://scenes/misc/enemy.tscn")
 	var enemy = EnemyScene.instantiate()
 	enemy.set_meta("Enemy", "Enemy")
@@ -440,27 +463,27 @@ func _on_spawn_enemies_timeout() -> void:
 	enemy.scale = Vector2(scale_factor, scale_factor)
 	add_child(enemy)
 
-func create_radar_lines():
-	var radar_width: float = $Player/HUD/RadarPanel/WorldPanel.size.x
-	var radar_height: float = $Player/HUD/RadarPanel/WorldPanel.size.y
-
-	for x in range(0, int(radar_width), 35):
+func create_radar_enemies_lines():
+	var radar_width: float = $Player/HUD/RadarPanelEnemies/RadarPanel.size.x
+	var radar_height: float = $Player/HUD/RadarPanelEnemies/RadarPanel.size.y
+	
+	for x in range(0, int(radar_width), 40):
 		var vertical_line := Line2D.new()
 		vertical_line.points = [Vector2(x, 0), Vector2(x, radar_height)]
-		vertical_line.default_color = Color("353535")
-		vertical_line.z_index = 1
+		vertical_line.default_color = Color("515151")
+		vertical_line.z_index = -1
 		vertical_line.width = 4
 		vertical_line.position += Vector2(2, 0)
-		$Player/HUD/RadarPanel/WorldPanel.add_child(vertical_line)
-
+		$Player/HUD/RadarPanelEnemies/RadarPanel.add_child(vertical_line)
+	
 	for y in range(0, int(radar_height), 40):
 		var horizontal_line := Line2D.new()
 		horizontal_line.points = [Vector2(0, y), Vector2(radar_width, y)]
-		horizontal_line.default_color = Color("353535")
-		horizontal_line.z_index = 1
+		horizontal_line.default_color = Color("515151")
+		horizontal_line.z_index = -1
 		horizontal_line.width = 4
 		horizontal_line.position += Vector2(0, 5)
-		$Player/HUD/RadarPanel/WorldPanel.add_child(horizontal_line)
+		$Player/HUD/RadarPanelEnemies/RadarPanel.add_child(horizontal_line)
 
 func update_radar_tool():
 	var radar_width : float = $Player/HUD/RadarPanel/WorldPanel.size.x - $Player/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.size.x
@@ -471,3 +494,14 @@ func update_radar_tool():
 	var radar_pos_x = clamp(player_world_pos.x / world_width * radar_width, 0, radar_width)
 	var radar_pos_y = clamp(player_world_pos.y / world_height * radar_height, 0, radar_height)
 	$Player/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.position = Vector2(radar_pos_x, radar_pos_y)
+
+func _on_update_enemy_radar_timer_timeout() -> void:
+	update_enemies_radar_tool()
+
+func update_enemies_radar_tool():
+	var _radar_width = $Player/HUD/RadarPanelEnemies/RadarPanel.size.x - $Player/HUD/RadarPanelEnemies/RadarPanel/EnemyNearby.size.x
+	var _radar_height = $Player/HUD/RadarPanelEnemies/RadarPanel.size.y - $Player/HUD/RadarPanelEnemies/RadarPanel/EnemyNearby.size.y
+
+	var _player_pos = $Player.position
+	var enemies = get_tree().get_meta("Enemy", "Enemy")
+	print(enemies)
