@@ -95,10 +95,11 @@ func _ready() -> void:
 		"Omega Field": travel_rental = randi_range(4000, 4500)
 		"Koppa Belt": travel_rental = randi_range(9000, 10000)
 	match difficulty:
-		"easy": travel_rental * 0.8
-		"normal": travel_rental * 1
-		"hard": travel_rental * 1.2
+		"easy": travel_rental *= 0.8
+		"normal": travel_rental *= 1
+		"hard": travel_rental *= 1.2
 	fees_values += str("[", travel_destiny, ", -", travel_rental, "€]\n")
+	@warning_ignore("narrowing_conversion")
 	total += travel_rental
 	
 	fees_label += "> Oxygen Supply\n"

@@ -76,7 +76,7 @@ func _ready():
 		$ControlsPanel/OpenFeedbackButton.text = config.get_value("controls", "Open_Feedback_Page")
 		$ControlsPanel/UniverseZoomInButton.text = config.get_value("controls", "Universe_Zoom_In")
 		$ControlsPanel/UniverseZoomOutButton.text = config.get_value("controls", "Universe_Zoom_Out")
-		$ControlsPanel/UseFlashlightButton.text = config.get_value("controls", "Use_Flashlight")
+		$ControlsPanel/UseFlashlightButton.text = config.get_value("controls", "Use_Item")
 		
 		############# Accessibility #############
 		$AccessibilityPanel/ColorblindnessDropDown.selected = config.get_value("accessibility", "colorblindness")

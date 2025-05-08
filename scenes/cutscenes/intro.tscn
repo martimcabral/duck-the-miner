@@ -76,22 +76,6 @@ tracks/0/keys = {
 "values": [Vector2(664, 1194)]
 }
 
-[sub_resource type="Animation" id="Animation_pyic4"]
-resource_name = "go_up"
-length = 5.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.16, 2.1, 2.8, 4.25, 5.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(651, 1236), Vector2(651, 868), Vector2(651, 724), Vector2(651, 476), Vector2(651, 268), Vector2(651, 40)]
-}
-
 [sub_resource type="Animation" id="Animation_fcqgi"]
 resource_name = "deliver"
 length = 0.4
@@ -106,6 +90,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(651, 39), Vector2(651, 71), Vector2(651, -1577)]
+}
+
+[sub_resource type="Animation" id="Animation_pyic4"]
+resource_name = "go_up"
+length = 5.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.16, 2.1, 2.8, 4.25, 5.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(651, 1236), Vector2(651, 868), Vector2(651, 724), Vector2(651, 476), Vector2(651, 268), Vector2(651, 40)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fcqgi"]
@@ -209,10 +209,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 651.0
-offset_top = 39.0
-offset_right = 2405.0
-offset_bottom = 2519.0
+offset_left = 664.0
+offset_top = 1194.0
+offset_right = 2418.0
+offset_bottom = 3674.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)

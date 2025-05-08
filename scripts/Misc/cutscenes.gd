@@ -15,6 +15,7 @@ var _current_line : Line2D = null
 func _ready() -> void:
 	$ReadyButton.visible = false
 	$RubberButton.visible = false
+	$FyctionContract/PrintingAnimation.play("RESET")
 
 var IntroCusceneTexts : Dictionary = {
 	"NOTEXT": "",

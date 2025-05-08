@@ -615,7 +615,7 @@ func populate_inventory_tab(config: ConfigFile) -> void:
 				var quantity = config.get_value("inventory", item_name, 0)
 				var item_text = "%s: %d" % [item_name, quantity]
 				
-				var icon = load(item_icons.get(item_name, "res://assets/textures/items/no_texture.png"))
+				var icon = load(item_icons.get(item_name, "res://assets/textures/items/misc/no_texture.png"))
 				var item_index = item_list.add_item(item_text)
 				item_list.set_item_icon(item_index, icon)
 			
@@ -639,17 +639,15 @@ func _on_sell_button_pressed() -> void:
 	item_list.remove_item(item_selected)
 	var price = get_price(selected_item_name)
 	remove_item_from_inventory(selected_item_name)
-	var money_earned = price * selected_item_quantity
+	var money_earned : int = price * selected_item_quantity
 	
 	var difficulty_file = ConfigFile.new()
 	difficulty_file.load(difficulty_path)
 	difficulty = difficulty_file.get_value("difficulty", "current")
 	print("[lobby.gd/_on_sell_button_pressed] Current Difficulty: ", difficulty)
 	match difficulty:
-		"easy": money_earned *= 1.10
-		"hard": money_earned *= 0.9
-	
-	money_earned = round(money_earned)
+		"easy": money_earned = round(money_earned * 1.10)
+		"hard": money_earned = round(money_earned * 0.9)
 	
 	print("Item Price: ", price)
 	print("Money Earned: ", money_earned)
