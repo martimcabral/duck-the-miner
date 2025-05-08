@@ -444,7 +444,7 @@ func create_radar_lines():
 		vertical_line.position += Vector2(2, 0)
 		$Player/HUD/RadarPanel/WorldPanel.add_child(vertical_line)
 
-	for y in range(0, int(radar_height), 40):
+	for y in range(0, int(radar_height), 35):
 		var horizontal_line := Line2D.new()
 		horizontal_line.points = [Vector2(0, y), Vector2(radar_width, y)]
 		horizontal_line.default_color = Color("515151")
@@ -452,17 +452,6 @@ func create_radar_lines():
 		horizontal_line.width = 4
 		horizontal_line.position += Vector2(0, 5)
 		$Player/HUD/RadarPanel/WorldPanel.add_child(horizontal_line)
-
-func _on_spawn_enemies_timeout() -> void:
-	print("[world.gd] Enemy Spawned")
-	var EnemyScene = preload("res://scenes/misc/enemy.tscn")
-	var enemy = EnemyScene.instantiate()
-	enemy.set_meta("Enemy", "Enemy")
-	enemy.add_to_group("Enemy")
-	enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))
-	var scale_factor = randf_range(0.8, 1.2)
-	enemy.scale = Vector2(scale_factor, scale_factor)
-	add_child(enemy)
 
 func create_radar_enemies_lines():
 	var radar_width: float = $Player/HUD/RadarPanelEnemies/RadarPanel.size.x
@@ -485,6 +474,17 @@ func create_radar_enemies_lines():
 		horizontal_line.width = 4
 		horizontal_line.position += Vector2(0, 5)
 		$Player/HUD/RadarPanelEnemies/RadarPanel.add_child(horizontal_line)
+
+func _on_spawn_enemies_timeout() -> void:
+	print("[world.gd] Enemy Spawned")
+	var EnemyScene = preload("res://scenes/misc/enemy.tscn")
+	var enemy = EnemyScene.instantiate()
+	enemy.set_meta("Enemy", "Enemy")
+	enemy.add_to_group("Enemy")
+	enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))
+	var scale_factor = randf_range(0.8, 1.2)
+	enemy.scale = Vector2(scale_factor, scale_factor)
+	add_child(enemy)
 
 func update_radar_tool():
 	var radar_width : float = $Player/HUD/RadarPanel/WorldPanel.size.x - $Player/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.size.x
