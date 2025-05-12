@@ -711,3 +711,5 @@ func update_money(strinfied_money):
 
 func _on_company_liscence_pressed() -> void:
 	$Camera2D/HUD/Contract/AnimationPlayer.play("appear")
+
+# © Martim Cabral 🦆⛏️
