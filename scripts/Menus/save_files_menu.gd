@@ -203,12 +203,11 @@ func _on_creator_button_pressed() -> void:
 	
 	var statistics_path = str(saves_path + str(saves_number) + "/statistics.cfg")
 	statistics_config.set_value("statistics", "oxygen", 0)
+	statistics_config.set_value("statistics", "battery", 0)
 	statistics_config.set_value("statistics", "damage_received", 0)
 	statistics_config.set_value("statistics", "damage_dealt", 0)
-	statistics_config.set_value("statistics", "battery", 0)
 	statistics_config.set_value("statistics", "enemies", 0)
 	statistics_config.set_value("statistics", "blocks", 0)
-	statistics_config.set_value("statistics", "money", 0)
 	statistics_config.set_value("statistics", "time_working", 0)
 	statistics_config.set_value("statistics", "time_resting", 0)
 	statistics_config.set_value("statistics", "days", 0)

@@ -59,12 +59,18 @@ var bloddy_overlay3 = preload("res://assets/textures/player/overlays/overlay_3.p
 
 var skin_selected : int
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
-var player_config = ConfigFile.new()
+
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
-var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
+var player_config = ConfigFile.new()
+
+var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
+var statistics_config = ConfigFile.new()
+
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var difficulty_config = ConfigFile.new()
 var current_difficulty : String = ""
+
+var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
 
 var window_mode = 0
 var subtitles : bool
@@ -422,6 +428,11 @@ func destroy_block():
 					# Check if the tile's health drops to 0 or below
 					if used_tiles[tile_pos]["health"] <= 0:
 						if not used_tiles[tile_pos]["health"] == -1:
+							statistics_config.load(statistics_path)
+							statistics_config.set_value("statistics", "blocks", \
+							statistics_config.get_value("statistics", "blocks") + 1)
+							statistics_config.save(statistics_path)
+							
 							var drop_the_item = get_node("%WorldTileMap")
 							drop_the_item.drop_items()
 							if world.asteroid_biome == "Stony":
@@ -459,16 +470,33 @@ func _on_uv_battery_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
 		if is_flashlight_being_used == true:
 			current_battery -= 0.75
+			statistics_config.load(statistics_path)
+			statistics_config.set_value("statistics", "battery", \
+			statistics_config.get_value("statistics", "battery") + 0.75)
+			statistics_config.save(statistics_path)
 		if is_radar_the_tool_being_used == true:
 			current_battery -= 1.25
+			statistics_config.load(statistics_path)
+			statistics_config.set_value("statistics", "battery", \
+			statistics_config.get_value("statistics", "battery") + 1.25)
+			statistics_config.save(statistics_path)
 		if is_radar_the_enemies_being_used == true:
 			current_battery -= 2
+			statistics_config.load(statistics_path)
+			statistics_config.set_value("statistics", "battery", \
+			statistics_config.get_value("statistics", "battery") + 2)
+			statistics_config.save(statistics_path)
+			
 
 func _on_oxygen_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
 		if is_duck_dead == false:
 			current_oxygen -= 1
 			oxygen_used += 1
+			statistics_config.load(statistics_path)
+			statistics_config.set_value("statistics", "oxygen", \
+			statistics_config.get_value("statistics", "oxygen") + 1)
+			statistics_config.save(statistics_path)
 
 func _on_tab_bar_tab_clicked(tab: int) -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:
@@ -508,11 +536,18 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_meta("Enemy") and ghost_mode == false:
 		$ResetModulateRedHit.start()
 		$AnimatedSprite2D.modulate = Color(1, 0, 0)
+		var damage : int = 0
 		match current_difficulty:
-			"easy": current_health -= randi_range(3, 6)
-			"normal": current_health -= randi_range(5, 9)
-			"hard": current_health -= randi_range(7, 11)
+			"easy": damage = randi_range(3, 6)
+			"normal": damage = randi_range(5, 9)
+			"hard": damage = randi_range(7, 11)
+		current_health -= damage
 		body.run_away()
+		
+		statistics_config.load(statistics_path)
+		statistics_config.set_value("statistics", "damage_received", \
+		statistics_config.get_value("statistics", "damage_received") + damage)
+		statistics_config.save(statistics_path)
 
 func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")
@@ -537,8 +572,13 @@ func do_bloddy_overlay():
 func _on_take_damage_from_oxygen_timeout() -> void:
 	if current_oxygen <= 0:
 		if is_duck_dead == false:
+			var damage = 1
 			current_oxygen = 0
-			current_health -= 1
+			current_health -= damage
+			statistics_config.load(statistics_path)
+			statistics_config.set_value("statistics", "damage_received", \
+			statistics_config.get_value("statistics", "damage_received") + damage)
+			statistics_config.save(statistics_path)
 			$ResetModulateRedHit.start()
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
 

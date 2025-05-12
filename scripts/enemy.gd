@@ -21,6 +21,9 @@ var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, 
 var difficulty_config = ConfigFile.new()
 var current_difficulty : String = ""
 
+var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
+var statistics_config = ConfigFile.new()
+
 func _ready() -> void:
 	difficulty_config.load(difficulty_path)
 	current_difficulty = difficulty_config.get_value("difficulty", "current", "normal")
@@ -50,6 +53,10 @@ func _process(delta: float) -> void:
 				biomass.position += Vector2(randf_range(-0.05, 0.05), randf_range(-0.05, 0.05))
 				biomass.rotation = randi_range(0, 360)
 				world.add_child(biomass)
+			statistics_config.load(statistics_path)
+			statistics_config.set_value("statistics", "enemies", \
+			statistics_config.get_value("statistics", "enemies") + 1)
+			statistics_config.save(statistics_path)
 			queue_free()
 		
 		# Attack cooldown effects
@@ -124,9 +131,15 @@ func attacked():
 	if was_enemy_atacked == true:
 		print(was_enemy_atacked)
 		print("Enemy Attacked")
-		current_health -= 15
+		var damage = 15
+		current_health -= damage
 		was_enemy_atacked = false
 		$AnimatedSprite2D.modulate = Color(2, 0, 0)
+		
+		statistics_config.load(statistics_path)
+		statistics_config.set_value("statistics", "damage_dealt", \
+		statistics_config.get_value("statistics", "damage_dealt") + damage)
+		statistics_config.save(statistics_path)
 
 func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")

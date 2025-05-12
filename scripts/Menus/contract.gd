@@ -5,6 +5,7 @@ var player_config : ConfigFile = ConfigFile.new()
 
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var statistics_config : ConfigFile = ConfigFile.new()
+var statistics_text : String = ""
 
 var hotbar_slots : Array = []
 var hotbar_slots_number : int = 0
@@ -18,6 +19,29 @@ func _ready() -> void:
 	$SecondHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[1])
 	$ThirdHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[2])
 	$FourthHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[3])
+	
+	statistics_config.load(statistics_path)
+	var oxygen_used : String = str(statistics_config.get_value("statistics", "oxygen"))
+	var battery_used : String = str(statistics_config.get_value("statistics", "battery"))
+	var damage_received : String = str(statistics_config.get_value("statistics", "damage_received"))
+	var damage_dealt : String = str(statistics_config.get_value("statistics", "damage_dealt"))
+	var enemies_killed : String = str(statistics_config.get_value("statistics", "enemies"))
+	var blocks_mined : String = str(statistics_config.get_value("statistics", "blocks"))
+	var time_working : String = str(statistics_config.get_value("statistics", "time_working"))
+	var time_resting : String = str(statistics_config.get_value("statistics", "time_resting"))
+	var current_day : String = str(statistics_config.get_value("statistics", "days", "ERROR:396"))
+	
+	statistics_text += str("Oxygen Consumed: ", oxygen_used,"u\n")
+	statistics_text += str("Energy Battery Used: ", battery_used,"W\n")
+	statistics_text += str("Damage Received: ", damage_received, "\n")
+	statistics_text += str("Damage Dealt: ", damage_dealt, "\n")
+	statistics_text += str("Enemies Killed: ", enemies_killed, "\n")
+	statistics_text += str("Blocks Mined: ", blocks_mined,"\n")
+	statistics_text += str("Time Working: ", time_working, "s\n")
+	statistics_text += str("Time Resting: ", time_resting, "s\n")
+	statistics_text += str("Days at Fyction: ", current_day)
+	$StatisticsLabel.text = statistics_text
+	
 
 func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
 	change_hotbar_slot(index, 0)

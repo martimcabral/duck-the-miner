@@ -518,23 +518,23 @@ func update_enemies_radar_tool():
 	
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
 		var rel_pos = enemy.position - player_pos
-
+		
 		# Normalize relative position to [-1, 1]
 		var norm_x = rel_pos.x / max_distance
 		var norm_y = rel_pos.y / max_distance
-
+		
 		# Skip if outside [-1, 1] range (i.e. beyond max_distance in either axis)
 		if abs(norm_x) > 1.0 or abs(norm_y) > 1.0:
 			continue
-	
+		
 		# Convert to radar coordinates
 		var radar_x = radar_size.x / 2 + norm_x * (radar_size.x / 2)
 		var radar_y = radar_size.y / 2 + norm_y * (radar_size.y / 2)
-
+		
 		# Additional optional safety check: skip if outside panel bounds
 		if radar_x < 0 or radar_x > radar_size.x or radar_y < 0 or radar_y > radar_size.y:
 			continue
-	
+		
 		# Create and place enemy dot
 		var dot = TextureRect.new()
 		dot.texture = enemy_dot_texture
@@ -543,12 +543,11 @@ func update_enemies_radar_tool():
 		dot.position = Vector2(radar_x, radar_y)
 		dot.pivot_offset = dot.size / 2
 		dot.set_meta("is_enemy_dot", true)  # tag so we only remove these later
-	
+		
 		radar_panel.add_child(dot)
-
 
 func _on_more_working_time_timeout() -> void:
 	statistics_config.load(statistics_path)
-	var new_time_working = 1 + statistics_config.get_value("statistics", "time_working")
-	statistics_config.set_value("statistics", "time_working", new_time_working)
+	statistics_config.set_value("statistics", "time_working", \
+	statistics_config.get_value("statistics", "time_working") + 1)
 	statistics_config.save(statistics_path)

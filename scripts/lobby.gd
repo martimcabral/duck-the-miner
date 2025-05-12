@@ -52,7 +52,6 @@ var item_icons = {
 var selecting_mission : bool = false
 var mission_selected : bool = false
 var skin_selected : int = 0
-var statistics_text : String = ""
 
 var target_zoom: float = 1.0
 const ZOOM_FACTOR: float = 25
@@ -77,13 +76,11 @@ var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/i
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
 var pricing_path : String = "user://pricing.cfg"
 var config_path : String = "user://game_settings.cfg"
-var statistics_path = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 var crafted_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
 
 var difficulty_file = ConfigFile.new()
 var money = ConfigFile.new()
-var statistics_config = ConfigFile.new()
 var config_file = ConfigFile.new()
 var money_config = ConfigFile.new()
 var skin_file = ConfigFile.new()
@@ -132,21 +129,6 @@ func _ready():
 	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
-	
-	statistics_config.load(statistics_path)
-	var current_day = str(statistics_config.get_value("statistics", "days", "ERROR:396"))
-	
-	statistics_text += str("Oxygen Consumed: 0u\n")
-	statistics_text += str("Energy Battery Used: 0u\n")
-	statistics_text += str("Damage Received: 0u\n")
-	statistics_text += str("Damage Dealt: 0u\n")
-	statistics_text += str("Enemies Killed: 0u\n")
-	statistics_text += str("Blocks Broken: 0u\n")
-	statistics_text += str("Money Earned: 0€\n")
-	statistics_text += str("Time Working: ", statistics_config.get_value("statistics", "time_working"), "s\n")
-	statistics_text += str("Time Resting: ", statistics_config.get_value("statistics", "time_resting"), "s\n")
-	statistics_text += str("Days at Fyction: ", current_day)
-	$Camera2D/HUD/Contract/StatisticsLabel.text = statistics_text
 	
 	money_config.load(money_path)
 	var current_money = str(money_config.get_value("money", "current", 0))
