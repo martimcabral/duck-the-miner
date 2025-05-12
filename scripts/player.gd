@@ -47,8 +47,8 @@ var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
 var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
 var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/flashlight_item.png")
-var cursor_texture_radar_the_tool = preload("res://assets/textures/equipment/others/radio_the_tool.png")
-var cursor_texture_radar_the_enemies = preload("res://assets/textures/equipment/others/radio_the_enemies.png")
+var cursor_texture_radar_the_tool = preload("res://assets/textures/equipment/others/radar_the_tool.png")
+var cursor_texture_radar_the_enemies = preload("res://assets/textures/equipment/others/radar_the_enemies.png")
 
 var cursor_default = preload("res://assets/textures/player/main_cursor.png")
 var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")

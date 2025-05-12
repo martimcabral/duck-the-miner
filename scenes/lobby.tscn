@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=133 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -13,11 +13,18 @@
 [ext_resource type="Texture2D" uid="uid://cvbxl4pcjtstk" path="res://assets/textures/player/skins/0/white_duck.png" id="6_gxh4y"]
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
+[ext_resource type="Script" uid="uid://ddebba1a64mjg" path="res://scripts/Menus/contract.gd" id="8_arjad"]
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Misc/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
+[ext_resource type="Texture2D" uid="uid://bh1dlvkx30f3a" path="res://assets/textures/equipment/swords/debug_sword.png" id="8_gufxi"]
+[ext_resource type="Texture2D" uid="uid://c7njuvmbuaqqf" path="res://assets/textures/equipment/pickaxes/debug_pickaxe.png" id="9_arjad"]
+[ext_resource type="Texture2D" uid="uid://cgum6gl0wbg1e" path="res://assets/textures/equipment/others/bulkhead_light.png" id="10_busoe"]
 [ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moons/moon.png" id="10_kuvf8"]
+[ext_resource type="Texture2D" uid="uid://coqirkcawixar" path="res://assets/textures/equipment/others/flashlight_item.png" id="11_8mpuv"]
 [ext_resource type="Texture2D" uid="uid://dgr4m0cb5jal2" path="res://assets/textures/universe/planets/mars.png" id="11_d4ry4"]
 [ext_resource type="Texture2D" uid="uid://bjbbbpyuplr0u" path="res://assets/textures/universe/moons/phobos.png" id="12_d28p1"]
+[ext_resource type="Texture2D" uid="uid://1u6ens7p4bdq" path="res://assets/textures/equipment/others/radar_the_tool.png" id="12_gd4oi"]
+[ext_resource type="Texture2D" uid="uid://cuoxvonybts8h" path="res://assets/textures/equipment/others/radar_the_enemies.png" id="13_u7tfn"]
 [ext_resource type="Texture2D" uid="uid://cmum2wfcr83m7" path="res://assets/textures/universe/moons/deimos.png" id="13_ydjex"]
 [ext_resource type="Texture2D" uid="uid://do0rardstouqs" path="res://assets/textures/universe/planets/jupiter.png" id="14_ky8ae"]
 [ext_resource type="Texture2D" uid="uid://cui82h30clygs" path="res://assets/textures/universe/planets/earth/earth1.png" id="14_tuh25"]
@@ -344,6 +351,182 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arjad"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
+[sub_resource type="Animation" id="Animation_busoe"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.74533, 0.0872665, -0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4.76837e-07, -32), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8mpuv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.74533]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.76837e-07, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_gd4oi"]
+resource_name = "bread"
+length = 0.3667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -70), Vector2(0, 1200)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7tfn"]
+_data = {
+&"RESET": SubResource("Animation_8mpuv"),
+&"appear": SubResource("Animation_busoe"),
+&"bread": SubResource("Animation_gd4oi")
+}
+
+[sub_resource type="Theme" id="Theme_gufxi"]
+OptionButton/colors/font_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rievh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olier"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jb2g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s0n6j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_87ggl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_agxrn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l7nca"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vfec7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mpuv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 12.0
+expand_margin_top = 12.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
 
 [sub_resource type="Animation" id="Animation_gxh4y"]
 length = 0.001
@@ -1435,11 +1618,284 @@ theme_override_font_sizes/font_size = 64
 text = "Loading..."
 horizontal_alignment = 1
 
+[node name="Contract" type="Panel" parent="Camera2D/HUD"]
+z_index = 21
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.74533
+theme_override_styles/panel = SubResource("StyleBoxFlat_arjad")
+script = ExtResource("8_arjad")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/HUD/Contract"]
+libraries = {
+&"": SubResource("AnimationLibrary_u7tfn")
+}
+
+[node name="MoneyHistoryLabel" type="Label" parent="Camera2D/HUD/Contract"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 165.0
+offset_top = 21.0
+offset_right = 763.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 96
+text = "Money History"
+vertical_alignment = 1
+
+[node name="MoneyHistoryLabel2" type="Label" parent="Camera2D/HUD/Contract"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 51.0
+offset_top = -233.0
+offset_right = 909.0
+offset_bottom = -137.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 96
+text = "Equipment Manager"
+vertical_alignment = 1
+
+[node name="HoriLine2D" type="Line2D" parent="Camera2D/HUD/Contract"]
+position = Vector2(-122, 952)
+points = PackedVector2Array(122, 2, 2042, 2)
+width = 12.0
+
+[node name="VertiLine2D" type="Line2D" parent="Camera2D/HUD/Contract"]
+position = Vector2(159, 0)
+points = PackedVector2Array(801, 1080, 801, 0)
+width = 12.0
+
+[node name="HoriLine2D2" type="Line2D" parent="Camera2D/HUD/Contract"]
+position = Vector2(-122, 136)
+points = PackedVector2Array(1083, 2, 2042, 2)
+width = 12.0
+
+[node name="VertiLine2D2" type="Line2D" parent="Camera2D/HUD/Contract"]
+position = Vector2(-320, 0)
+points = PackedVector2Array(801, 1080, 801, 958)
+width = 12.0
+
+[node name="VertiLine2D3" type="Line2D" parent="Camera2D/HUD/Contract"]
+position = Vector2(640, 0)
+points = PackedVector2Array(801, 1080, 801, 956)
+width = 12.0
+
+[node name="FirstHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -942.0
+offset_top = -92.0
+offset_right = -485.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_gufxi")
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rievh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_olier")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
+alignment = 1
+text_overrun_behavior = 3
+selected = 0
+item_count = 6
+popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("8_gufxi")
+popup/item_0/id = 0
+popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("9_arjad")
+popup/item_1/id = 1
+popup/item_2/text = "Light"
+popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/id = 2
+popup/item_3/text = " UV Flashlight"
+popup/item_3/icon = ExtResource("11_8mpuv")
+popup/item_3/id = 3
+popup/item_4/text = "Radar the Tool"
+popup/item_4/icon = ExtResource("12_gd4oi")
+popup/item_4/id = 4
+popup/item_5/text = " Radar the Enemies"
+popup/item_5/icon = ExtResource("13_u7tfn")
+popup/item_5/id = 5
+
+[node name="SecondHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -451.0
+offset_top = -92.0
+offset_right = -6.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_gufxi")
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rievh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_olier")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
+alignment = 1
+text_overrun_behavior = 3
+selected = 1
+item_count = 6
+popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("8_gufxi")
+popup/item_0/id = 0
+popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("9_arjad")
+popup/item_1/id = 1
+popup/item_2/text = "Light"
+popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/id = 2
+popup/item_3/text = " UV Flashlight"
+popup/item_3/icon = ExtResource("11_8mpuv")
+popup/item_3/id = 3
+popup/item_4/text = "Radar the Tool"
+popup/item_4/icon = ExtResource("12_gd4oi")
+popup/item_4/id = 4
+popup/item_5/text = " Radar the Enemies"
+popup/item_5/icon = ExtResource("13_u7tfn")
+popup/item_5/id = 5
+
+[node name="ThirdHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -92.0
+offset_right = 475.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_gufxi")
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rievh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_olier")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
+alignment = 1
+text_overrun_behavior = 3
+selected = 4
+item_count = 6
+popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("8_gufxi")
+popup/item_0/id = 0
+popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("9_arjad")
+popup/item_1/id = 1
+popup/item_2/text = "Light"
+popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/id = 2
+popup/item_3/text = " UV Flashlight"
+popup/item_3/icon = ExtResource("11_8mpuv")
+popup/item_3/id = 3
+popup/item_4/text = "Radar the Tool"
+popup/item_4/icon = ExtResource("12_gd4oi")
+popup/item_4/id = 4
+popup/item_5/text = " Radar the Enemies"
+popup/item_5/icon = ExtResource("13_u7tfn")
+popup/item_5/id = 5
+
+[node name="FourthHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 499.0
+offset_top = -92.0
+offset_right = 959.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_gufxi")
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rievh")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_olier")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
+alignment = 1
+text_overrun_behavior = 3
+selected = 5
+item_count = 6
+popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("8_gufxi")
+popup/item_0/id = 0
+popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("9_arjad")
+popup/item_1/id = 1
+popup/item_2/text = "Light"
+popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/id = 2
+popup/item_3/text = " UV Flashlight"
+popup/item_3/icon = ExtResource("11_8mpuv")
+popup/item_3/id = 3
+popup/item_4/text = "Radar the Tool"
+popup/item_4/icon = ExtResource("12_gd4oi")
+popup/item_4/id = 4
+popup/item_5/text = " Radar the Enemies"
+popup/item_5/icon = ExtResource("13_u7tfn")
+popup/item_5/id = 5
+
+[node name="ExitButton" type="Button" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
+z_index = 30
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 18.0
+offset_right = -16.0
+offset_bottom = 120.0
+grow_horizontal = 0
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_87ggl")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_agxrn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_l7nca")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vfec7")
+text = "X"
+
 [node name="StockTheMarket" type="Panel" parent="Camera2D/HUD"]
 visible = false
 z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(960, 540)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8mpuv")
 script = ExtResource("5_8ht5e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/HUD/StockTheMarket"]
@@ -1452,8 +1908,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1920.0
-offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0780225, 3.30418e-05, 0.112795, 1)
@@ -1672,10 +2126,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = 850.0
-offset_right = 556.0
-offset_bottom = 1056.0
+offset_left = 32.0
+offset_top = -230.0
+offset_right = 559.0
+offset_bottom = -24.0
 grow_vertical = 0
 texture = ExtResource("6_8tmsf")
 stretch_mode = 5
@@ -1687,8 +2141,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 688.0
 offset_top = 3.0
-offset_right = 1793.0
-offset_bottom = 114.0
+offset_right = -123.0
+offset_bottom = -968.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 48
@@ -2271,6 +2725,7 @@ environment = SubResource("Environment_8tmsf")
 [connection signal="timeout" from="TimeToStart" to="." method="_on_time_to_start_timeout"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/StockMarketLabel" to="." method="_on_stock_market_label_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/CompanyLiscence" to="." method="_on_company_liscence_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/SelectMissionButton" to="." method="_on_select_mission_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton" to="." method="_on_start_button_pressed"]
@@ -2282,6 +2737,11 @@ environment = SubResource("Environment_8tmsf")
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton" to="." method="_select_mission_button_info_panel_pressed"]
+[connection signal="item_selected" from="Camera2D/HUD/Contract/FirstHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_first_hotbar_dropdown_item_selected"]
+[connection signal="item_selected" from="Camera2D/HUD/Contract/SecondHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_second_hotbar_dropdown_item_selected"]
+[connection signal="item_selected" from="Camera2D/HUD/Contract/ThirdHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_third_hotbar_dropdown_item_selected"]
+[connection signal="item_selected" from="Camera2D/HUD/Contract/FourthHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_fourth_hotbar_dropdown_item_selected"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ExitButton" to="Camera2D/HUD/Contract" method="_on_exit_button_pressed"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/FyctionButton" to="Camera2D/HUD/StockTheMarket" method="_on_fyction_button_toggled"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/HaznuclearButton" to="Camera2D/HUD/StockTheMarket" method="_on_haznuclear_button_toggled"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/OwlwingButton" to="Camera2D/HUD/StockTheMarket" method="_on_owlwing_button_toggled"]

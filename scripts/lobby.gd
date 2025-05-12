@@ -636,33 +636,34 @@ func _on_item_list_item_selected(index: int) -> void:
 	print("Item Quantity: ", selected_item_quantity)
 
 func _on_sell_button_pressed() -> void:
-	item_list.remove_item(item_selected)
-	var price = get_price(selected_item_name)
-	remove_item_from_inventory(selected_item_name)
-	var money_earned : int = price * selected_item_quantity
-	
-	var difficulty_file = ConfigFile.new()
-	difficulty_file.load(difficulty_path)
-	difficulty = difficulty_file.get_value("difficulty", "current")
-	print("[lobby.gd/_on_sell_button_pressed] Current Difficulty: ", difficulty)
-	match difficulty:
-		"easy": money_earned = round(money_earned * 1.10)
-		"hard": money_earned = round(money_earned * 0.9)
-	
-	print("Item Price: ", price)
-	print("Money Earned: ", money_earned)
-	
-	var money = ConfigFile.new()
-	money.load(money_path)
-	var current_money = money.get_value("money", "current")
-	var new_money = current_money + money_earned
-	money.set_value("money", "current", new_money)
-	money.save(money_path)
-	
-	update_money(str(new_money))
-	item_selected = -1
-	selected_item_name = ""
-	selected_item_quantity = 0
+	if item_list.item_count > 0:
+		item_list.remove_item(item_selected)
+		var price = get_price(selected_item_name)
+		remove_item_from_inventory(selected_item_name)
+		var money_earned : int = price * selected_item_quantity
+		
+		var difficulty_file = ConfigFile.new()
+		difficulty_file.load(difficulty_path)
+		difficulty = difficulty_file.get_value("difficulty", "current")
+		print("[lobby.gd/_on_sell_button_pressed] Current Difficulty: ", difficulty)
+		match difficulty:
+			"easy": money_earned = round(money_earned * 1.10)
+			"hard": money_earned = round(money_earned * 0.9)
+		
+		print("Item Price: ", price)
+		print("Money Earned: ", money_earned)
+		
+		var money = ConfigFile.new()
+		money.load(money_path)
+		var current_money = money.get_value("money", "current")
+		var new_money = current_money + money_earned
+		money.set_value("money", "current", new_money)
+		money.save(money_path)
+		
+		update_money(str(new_money))
+		item_selected = -1
+		selected_item_name = ""
+		selected_item_quantity = 0
 
 func get_price(item_name):
 	var pricing = ConfigFile.new()
@@ -695,3 +696,6 @@ func update_money(strinfied_money):
 		
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + formatted_number + " €"
 	return formatted_number
+
+func _on_company_liscence_pressed() -> void:
+	$Camera2D/HUD/Contract/AnimationPlayer.play("appear")

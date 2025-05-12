@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wmyay6n05p4m"
-path="res://.godot/imported/radio_duck.png-45cfba4c06a3ddccdcc4d7e57f2f4515.ctex"
+uid="uid://1u6ens7p4bdq"
+path="res://.godot/imported/radar_the_tool.png-4b06537337ad3f37c869cfed45117cf4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/others/radio_duck.png"
-dest_files=["res://.godot/imported/radio_duck.png-45cfba4c06a3ddccdcc4d7e57f2f4515.ctex"]
+source_file="res://assets/textures/equipment/others/radar_the_tool.png"
+dest_files=["res://.godot/imported/radar_the_tool.png-4b06537337ad3f37c869cfed45117cf4.ctex"]
 
 [params]
 
