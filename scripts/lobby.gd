@@ -49,9 +49,10 @@ var item_icons = {
 	"Biomass": "res://assets/textures/items/misc/biomass.png"
 }
 
-var selecting_mission = false
-var mission_selected = false
+var selecting_mission : bool = false
+var mission_selected : bool = false
 var skin_selected : int = 0
+var statistics_text : String = ""
 
 var target_zoom: float = 1.0
 const ZOOM_FACTOR: float = 25
@@ -74,9 +75,24 @@ var missions_path : String = str("user://save/", GetSaveFile.save_being_used, "/
 var resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
-var pricing_path : String = str("user://pricing.cfg")
+var pricing_path : String = "user://pricing.cfg"
 var config_path : String = "user://game_settings.cfg"
-var config_file := ConfigFile.new()
+var statistics_path = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
+var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+var crafted_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
+
+var difficulty_file = ConfigFile.new()
+var money = ConfigFile.new()
+var statistics_config = ConfigFile.new()
+var config_file = ConfigFile.new()
+var money_config = ConfigFile.new()
+var skin_file = ConfigFile.new()
+var pricing = ConfigFile.new()
+
+var raw_config = ConfigFile.new()
+var resources = ConfigFile.new()
+var crafted_config = ConfigFile.new()
+var crafted = ConfigFile.new()
 
 var selected_item_name : String = ""
 var selected_item_quantity : int = 0
@@ -104,7 +120,6 @@ func _ready():
 	config_file.load(config_path)
 	$CanvasLayer/ColorblindnessColorRect.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
 	
-	var raw_config = ConfigFile.new()
 	raw_config.load(str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg"))
 	populate_inventory_tab(raw_config)
 	
@@ -117,15 +132,24 @@ func _ready():
 	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
-		
-	var day_file = ConfigFile.new()
-	day_file.load(str("user://save/", GetSaveFile.save_being_used, "/day.cfg"))
-	var current_day = str(day_file.get_value("day", "current", "what"))
-	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/DaysLabel.text = str("Day: ", current_day)
 	
-	var save_file = ConfigFile.new()
-	save_file.load(str("user://save/", GetSaveFile.save_being_used, "/money.cfg"))
-	var current_money = str(save_file.get_value("money", "current", 0))
+	statistics_config.load(statistics_path)
+	var current_day = str(statistics_config.get_value("statistics", "days", "ERROR:396"))
+	
+	statistics_text += str("Oxygen Consumed: 0u\n")
+	statistics_text += str("Energy Battery Used: 0u\n")
+	statistics_text += str("Damage Received: 0u\n")
+	statistics_text += str("Damage Dealt: 0u\n")
+	statistics_text += str("Enemies Killed: 0u\n")
+	statistics_text += str("Blocks Broken: 0u\n")
+	statistics_text += str("Money Earned: 0€\n")
+	statistics_text += str("Time Working: ", statistics_config.get_value("statistics", "time_working"), "s\n")
+	statistics_text += str("Time Resting: ", statistics_config.get_value("statistics", "time_resting"), "s\n")
+	statistics_text += str("Days at Fyction: ", current_day)
+	$Camera2D/HUD/Contract/StatisticsLabel.text = statistics_text
+	
+	money_config.load(money_path)
+	var current_money = str(money_config.get_value("money", "current", 0))
 	update_money(str(current_money))
 	
 	load_skin()
@@ -531,7 +555,6 @@ func _select_mission_button_info_panel_pressed() -> void:
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):
-		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/player/skins/" + str(skin_selected) + "/duck.png")
@@ -549,7 +572,6 @@ func _on_skin_previous_button_pressed() -> void:
 	DiscordRPC.refresh()
 	
 	if FileAccess.file_exists(skin_path):
-		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_file.set_value("skin", "selected", skin_selected)
 		skin_file.save(skin_path)
@@ -563,7 +585,6 @@ func _on_skin_next_button_pressed() -> void:
 	DiscordRPC.refresh()
 	
 	if FileAccess.file_exists(skin_path):
-		var skin_file = ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_file.set_value("skin", "selected", skin_selected)
 		skin_file.save(skin_path)
@@ -588,12 +609,8 @@ func _on_tab_bar_item_selected(index: int) -> void:
 	print("[lobby.gd] Inventory Selected: ", index)
 	selected_inventory = index
 	
-	var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
-	var raw_config = ConfigFile.new()
 	var raw_load_result = raw_config.load(raw_inv_path)
 	
-	var crafted_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
-	var crafted_config = ConfigFile.new()
 	var crafted_load_result = crafted_config.load(crafted_inv_path)
 	
 	if raw_load_result == OK and crafted_load_result == OK:
@@ -642,7 +659,6 @@ func _on_sell_button_pressed() -> void:
 		remove_item_from_inventory(selected_item_name)
 		var money_earned : int = price * selected_item_quantity
 		
-		var difficulty_file = ConfigFile.new()
 		difficulty_file.load(difficulty_path)
 		difficulty = difficulty_file.get_value("difficulty", "current")
 		print("[lobby.gd/_on_sell_button_pressed] Current Difficulty: ", difficulty)
@@ -653,7 +669,6 @@ func _on_sell_button_pressed() -> void:
 		print("Item Price: ", price)
 		print("Money Earned: ", money_earned)
 		
-		var money = ConfigFile.new()
 		money.load(money_path)
 		var current_money = money.get_value("money", "current")
 		var new_money = current_money + money_earned
@@ -666,19 +681,16 @@ func _on_sell_button_pressed() -> void:
 		selected_item_quantity = 0
 
 func get_price(item_name):
-	var pricing = ConfigFile.new()
 	pricing.load(pricing_path)
 	var price = pricing.get_value("pricing", item_name, 1)
 	return price
 
 func remove_item_from_inventory(item_name):
 	if selected_inventory == 0:
-		var resources = ConfigFile.new()
 		resources.load(resources_path)
 		resources.erase_section_key("inventory", item_name)
 		resources.save(resources_path)
 	elif selected_inventory == 1:
-		var crafted = ConfigFile.new()
 		crafted.load(crafted_path)
 		crafted.erase_section_key("inventory", item_name)
 		crafted.save(crafted_path)

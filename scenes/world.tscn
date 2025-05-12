@@ -571,10 +571,6 @@ script = ExtResource("1_nmwod")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jiaeb")
 
-[node name="SpawnEnemies" type="Timer" parent="."]
-wait_time = 18.0
-autostart = true
-
 [node name="PauseMenu" parent="." instance=ExtResource("24_dvxve")]
 
 [node name="Player" parent="." instance=ExtResource("1_5mm4o")]
@@ -1015,8 +1011,16 @@ wait_time = 10.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="SpawnEnemies" to="." method="_on_spawn_enemies_timeout"]
+[node name="SpawnEnemies" type="Timer" parent="."]
+wait_time = 18.0
+autostart = true
+
+[node name="MoreWorkingTime" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="Player/PickupItemsRange2" to="Player/PickupItemsRange2" method="_on_body_entered"]
 [connection signal="timeout" from="Player/HUD/RadarPanelEnemies/UpdateEnemyRadarTimer" to="." method="_on_update_enemy_radar_timer_timeout"]
 [connection signal="timeout" from="Player/HUD/DeathLabel/GoToMenuTimer" to="Player" method="_on_go_to_menu_timer_timeout"]
 [connection signal="timeout" from="WorldMusic/MusicTimer" to="." method="_on_music_timer_timeout"]
+[connection signal="timeout" from="SpawnEnemies" to="." method="_on_spawn_enemies_timeout"]
+[connection signal="timeout" from="MoreWorkingTime" to="." method="_on_more_working_time_timeout"]

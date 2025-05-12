@@ -363,49 +363,6 @@ corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
-expand_margin_left = 12.0
-expand_margin_top = 12.0
-expand_margin_right = 12.0
-expand_margin_bottom = 12.0
-
-[sub_resource type="Animation" id="Animation_busoe"]
-resource_name = "appear"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-1.74533, 0.0872665, -0.0872665, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.14),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-4.76837e-07, -32), Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_8mpuv"]
 length = 0.001
@@ -444,6 +401,45 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-4.76837e-07, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_busoe"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.74533, 0.0872665, -0.0872665, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-4.76837e-07, -32), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gd4oi"]
@@ -721,22 +717,12 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="FadeInLobby" type="Timer" parent="."]
-wait_time = 1.1
-one_shot = true
-autostart = true
-
-[node name="TimeToStart" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-1.90735e-06, -9.53674e-07)
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
 
 [node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -785,48 +771,25 @@ offset_bottom = 185.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
 
 [node name="Line2D" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
-position = Vector2(18, 0)
+position = Vector2(-10, 72)
 points = PackedVector2Array(468, 76, 468, 2)
 width = 4.0
 
 [node name="Line2D2" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
-position = Vector2(-344, 0)
+position = Vector2(-344, -1)
 points = PackedVector2Array(346, 76, 1062, 76)
 width = 4.0
 
-[node name="Line2D3" type="Line2D" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel"]
-position = Vector2(-776, 0)
-points = PackedVector2Array(1062, 147, 1062, 76)
-width = 4.0
-
-[node name="DaysLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel" groups=["Buttons"]]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 285.0
-offset_bottom = 72.0
-grow_vertical = 2
-tooltip_text = "Current Day"
-mouse_filter = 0
-theme_override_font_sizes/font_size = 48
-text = "Days: 9999"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 129
-
 [node name="MoneyLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel" groups=["Buttons"]]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 4.0
-offset_top = -61.0
-offset_right = 484.0
-offset_bottom = -13.0
-grow_vertical = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -356.0
+offset_top = 18.0
+offset_right = 356.0
+offset_bottom = 66.0
+grow_horizontal = 2
 tooltip_text = "Your Debt"
 mouse_filter = 0
 theme_override_font_sizes/font_size = 48
@@ -836,17 +799,17 @@ vertical_alignment = 1
 
 [node name="StockMarketLabel" type="Button" parent="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel" groups=["Buttons"]]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -432.0
-offset_top = 15.0
-offset_right = -4.0
-offset_bottom = 64.0
-grow_horizontal = 0
-grow_vertical = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -356.0
+offset_top = -61.0
+offset_right = 96.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
 tooltip_text = "Stock Market"
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -864,10 +827,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -232.0
-offset_top = -59.0
+offset_left = -260.0
+offset_top = 13.0
 offset_right = -4.0
-offset_bottom = -10.0
+offset_bottom = 62.0
 grow_horizontal = 0
 grow_vertical = 2
 tooltip_text = "Stock Market"
@@ -1557,6 +1520,7 @@ bbcode_enabled = true
 text = "Insert System"
 
 [node name="ZoomRuler" type="Panel" parent="Camera2D/HUD/Lobby"]
+visible = false
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -1586,17 +1550,8 @@ vertical_alignment = 1
 visible = false
 z_index = 1
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -179.0
-offset_top = -63.5
-offset_right = 179.0
-offset_bottom = 63.5
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 358.0
+offset_bottom = 127.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_21jdc")
 
 [node name="LoadingText" type="Label" parent="Camera2D/HUD/Lobby/LoadingPanel"]
@@ -1623,8 +1578,6 @@ z_index = 21
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -32.0
-offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -1.74533
@@ -1636,58 +1589,99 @@ libraries = {
 &"": SubResource("AnimationLibrary_u7tfn")
 }
 
-[node name="MoneyHistoryLabel" type="Label" parent="Camera2D/HUD/Contract"]
+[node name="LicenseUpgrading" type="Label" parent="Camera2D/HUD/Contract"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 165.0
-offset_top = 21.0
-offset_right = 763.0
-offset_bottom = 113.0
+offset_left = -873.0
+offset_top = 29.0
+offset_right = -87.0
+offset_bottom = 125.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 96
-text = "Money History"
+text = "License Upgrading"
 vertical_alignment = 1
 
-[node name="MoneyHistoryLabel2" type="Label" parent="Camera2D/HUD/Contract"]
+[node name="FyctionStatistics" type="Label" parent="Camera2D/HUD/Contract"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 51.0
-offset_top = -233.0
-offset_right = 909.0
-offset_bottom = -137.0
-grow_vertical = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 101.0
+offset_top = 30.0
+offset_right = 827.0
+offset_bottom = 126.0
+grow_horizontal = 2
 theme_override_font_sizes/font_size = 96
-text = "Equipment Manager"
+text = "Fyction Statistics"
 vertical_alignment = 1
 
-[node name="HoriLine2D" type="Line2D" parent="Camera2D/HUD/Contract"]
+[node name="StatisticsLabel" type="Label" parent="Camera2D/HUD/Contract"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -954.0
+offset_top = -398.0
+offset_right = -12.0
+offset_bottom = 407.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "ERROR:156"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lines" type="Node2D" parent="Camera2D/HUD/Contract"]
+
+[node name="HoriLine2D" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(-122, 952)
 points = PackedVector2Array(122, 2, 2042, 2)
-width = 12.0
 
-[node name="VertiLine2D" type="Line2D" parent="Camera2D/HUD/Contract"]
+[node name="HoriLine2D2" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+position = Vector2(-122, 136)
+points = PackedVector2Array(131, 2, 2042, 2)
+
+[node name="HoriLine2D3" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+visible = false
+position = Vector2(-122, 832)
+points = PackedVector2Array(130, 2, 1079, 2)
+
+[node name="HoriLine2D4" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+visible = false
+position = Vector2(-122, 696)
+points = PackedVector2Array(129, 2, 1079, 2)
+
+[node name="HoriLine2D5" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+visible = false
+position = Vector2(-122, 552)
+points = PackedVector2Array(127, 2, 1079, 2)
+
+[node name="HoriLine2D6" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+visible = false
+position = Vector2(-122, 408)
+points = PackedVector2Array(127, 2, 1079, 2)
+
+[node name="HoriLine2D7" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+visible = false
+position = Vector2(-122, 264)
+points = PackedVector2Array(126, 2, 1079, 2)
+
+[node name="VertiLine2D" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(159, 0)
 points = PackedVector2Array(801, 1080, 801, 0)
-width = 12.0
 
-[node name="HoriLine2D2" type="Line2D" parent="Camera2D/HUD/Contract"]
-position = Vector2(-122, 136)
-points = PackedVector2Array(1083, 2, 2042, 2)
-width = 12.0
-
-[node name="VertiLine2D2" type="Line2D" parent="Camera2D/HUD/Contract"]
+[node name="VertiLine2D2" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(-320, 0)
 points = PackedVector2Array(801, 1080, 801, 958)
-width = 12.0
 
-[node name="VertiLine2D3" type="Line2D" parent="Camera2D/HUD/Contract"]
+[node name="VertiLine2D3" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(640, 0)
 points = PackedVector2Array(801, 1080, 801, 956)
-width = 12.0
 
 [node name="FirstHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1696,10 +1690,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -942.0
-offset_top = -92.0
-offset_right = -485.0
-offset_bottom = -20.0
+offset_left = -944.0
+offset_top = -99.0
+offset_right = -487.0
+offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_gufxi")
@@ -1733,6 +1727,15 @@ popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
 
+[node name="Label" type="Label" parent="Camera2D/HUD/Contract/FirstHotbarDropdown"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -16.0
+offset_right = 45.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 32
+text = "1"
+
 [node name="SecondHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 7
@@ -1740,10 +1743,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -451.0
-offset_top = -92.0
-offset_right = -6.0
-offset_bottom = -20.0
+offset_left = -460.0
+offset_top = -97.0
+offset_right = -15.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_gufxi")
@@ -1777,6 +1780,15 @@ popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
 
+[node name="Label" type="Label" parent="Camera2D/HUD/Contract/SecondHotbarDropdown"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -16.0
+offset_right = 36.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 32
+text = "2"
+
 [node name="ThirdHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 7
@@ -1784,10 +1796,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = -92.0
-offset_right = 475.0
-offset_bottom = -20.0
+offset_left = 9.0
+offset_top = -99.0
+offset_right = 469.0
+offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_gufxi")
@@ -1821,6 +1833,15 @@ popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
 
+[node name="Label" type="Label" parent="Camera2D/HUD/Contract/ThirdHotbarDropdown"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -16.0
+offset_right = 45.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 32
+text = "3"
+
 [node name="FourthHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 7
@@ -1828,10 +1849,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 499.0
-offset_top = -92.0
-offset_right = 959.0
-offset_bottom = -20.0
+offset_left = 488.0
+offset_top = -99.0
+offset_right = 948.0
+offset_bottom = -27.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_gufxi")
@@ -1865,6 +1886,15 @@ popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
 
+[node name="Label" type="Label" parent="Camera2D/HUD/Contract/FourthHotbarDropdown"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -16.0
+offset_right = 47.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 32
+text = "4"
+
 [node name="ExitButton" type="Button" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 z_index = 30
 layout_mode = 1
@@ -1884,6 +1914,20 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_agxrn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_l7nca")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vfec7")
 text = "X"
+
+[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/Contract"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 291.0
+offset_top = -38.0
+offset_right = 690.0
+offset_bottom = 38.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
+theme_override_font_sizes/font_size = 76
+text = "Unavailable"
 
 [node name="StockTheMarket" type="Panel" parent="Camera2D/HUD"]
 visible = false
@@ -2722,7 +2766,18 @@ text = "Field Name"
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8tmsf")
 
-[connection signal="timeout" from="TimeToStart" to="." method="_on_time_to_start_timeout"]
+[node name="FadeInLobby" type="Timer" parent="."]
+wait_time = 1.1
+one_shot = true
+autostart = true
+
+[node name="TimeToStart" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="MoreRestingTime" type="Timer" parent="."]
+autostart = true
+
 [connection signal="pressed" from="Camera2D/HUD/Lobby/BackToLobbyButton" to="." method="_on_back_to_lobby_button_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/StockMarketLabel" to="." method="_on_stock_market_label_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/CompanyLiscence" to="." method="_on_company_liscence_pressed"]
@@ -2762,3 +2817,5 @@ environment = SubResource("Environment_8tmsf")
 [connection signal="input_event" from="SolarSystem/KoppaBelt/YottaArea2D" to="." method="_on_yotta_area_2d_input_event"]
 [connection signal="mouse_entered" from="SolarSystem/KoppaBelt/YottaArea2D" to="." method="_on_yotta_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="SolarSystem/KoppaBelt/YottaArea2D" to="." method="_on_yotta_area_2d_mouse_exited"]
+[connection signal="timeout" from="TimeToStart" to="." method="_on_time_to_start_timeout"]
+[connection signal="timeout" from="MoreRestingTime" to="Camera2D/HUD/Contract" method="_on_more_resting_time_timeout"]

@@ -4,13 +4,13 @@ var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, 
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
 var stock_path : String = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
-var day_path : String = str("user://save/", GetSaveFile.save_being_used, "/day.cfg")
+var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 
 var difficulty_config : ConfigFile = ConfigFile.new()
 var player_config : ConfigFile = ConfigFile.new()
 var money_config : ConfigFile = ConfigFile.new()
 var stock_config : ConfigFile = ConfigFile.new()
-var day_config : ConfigFile = ConfigFile.new()
+var statistics_config : ConfigFile = ConfigFile.new()
 
 var fyction_tax : float = 0.0001
 var fyction_interest : int = 0
@@ -60,7 +60,7 @@ func _ready() -> void:
 	player_config.load(player_path)
 	money_config.load(money_path)
 	stock_config.load(stock_path)
-	day_config.load(day_path)
+	statistics_config.load(statistics_path)
 	
 	var current_money = money_config.get_value("money", "current")
 	fyction_interest = (current_money * fyction_tax) * -1
@@ -148,10 +148,9 @@ func _ready() -> void:
 	remove_money()
 
 func more_days():
-	var current_day = day_config.get_value("day", "current")
-	current_day += randi_range(1, 3)
-	day_config.set_value("day", "current", current_day)
-	day_config.save(day_path)
+	var new_current_day = randi_range(1, 3) + statistics_config.get_value("statistics", "days")
+	statistics_config.set_value("statistics", "days", new_current_day)
+	statistics_config.save(statistics_path)
 
 func forward_stock():
 	var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]

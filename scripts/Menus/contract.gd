@@ -3,6 +3,9 @@ extends Panel
 var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var player_config : ConfigFile = ConfigFile.new()
 
+var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
+var statistics_config : ConfigFile = ConfigFile.new()
+
 var hotbar_slots : Array = []
 var hotbar_slots_number : int = 0
 
@@ -50,3 +53,10 @@ func select_hotbar_slot(hotbar_slot):
 
 func _on_exit_button_pressed() -> void:
 	$AnimationPlayer.play("bread")
+
+func _on_more_resting_time_timeout() -> void:
+	statistics_config.load(statistics_path)
+	var new_time_resting = 1 + statistics_config.get_value("statistics", "time_resting")
+	statistics_config.set_value("statistics", "time_resting", new_time_resting)
+	statistics_config.save(statistics_path)
+	

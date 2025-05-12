@@ -30,6 +30,9 @@ var config_file : ConfigFile = ConfigFile.new()
 var difficulty_path : String = "user://game_settings.cfg"
 var difficulty_file : ConfigFile = ConfigFile.new()
 
+var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
+var statistics_config : ConfigFile = ConfigFile.new()
+
 var primary_objective : String = ""
 var secundary_objective : String = ""
 
@@ -542,3 +545,10 @@ func update_enemies_radar_tool():
 		dot.set_meta("is_enemy_dot", true)  # tag so we only remove these later
 	
 		radar_panel.add_child(dot)
+
+
+func _on_more_working_time_timeout() -> void:
+	statistics_config.load(statistics_path)
+	var new_time_working = 1 + statistics_config.get_value("statistics", "time_working")
+	statistics_config.set_value("statistics", "time_working", new_time_working)
+	statistics_config.save(statistics_path)

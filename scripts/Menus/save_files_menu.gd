@@ -17,6 +17,7 @@ var difficulty_config = ConfigFile.new()
 var cheating_config = ConfigFile.new()
 var stock_config = ConfigFile.new()
 var player_config = ConfigFile.new()
+var statistics_config = ConfigFile.new()
 
 var normal_stylebox = StyleBoxFlat.new()
 var focus_stylebox = StyleBoxFlat.new()
@@ -59,8 +60,8 @@ func get_save_files():
 			var getday_file = ConfigFile.new()
 			
 			# Load the day config file from the user data save directory
-			getday_file.load(saves_path + str(i) + "/day.cfg")
-			var current_day = str(getday_file.get_value("day", "current", "what"))
+			getday_file.load(saves_path + str(i) + "/statistics.cfg")
+			var current_day = str(getday_file.get_value("statistics", "days", "ERROR:728"))
 			
 			# Load the money config file from the user data save directory
 			getmoney_config.load(saves_path + str(i) + "/money.cfg")
@@ -188,12 +189,6 @@ func _on_creator_button_pressed() -> void:
 	
 	################################################################################
 	
-	var day_path = str(saves_path + str(saves_number) + "/day.cfg")
-	day_config.set_value("day", "current", 1)
-	day_config.save(day_path)
-	
-	################################################################################
-	
 	var difficulty_path = str(saves_path + str(saves_number) + "/difficulty.cfg")
 	difficulty_config.set_value("difficulty", "current", choosen_difficulty)
 	difficulty_config.save(difficulty_path)
@@ -203,6 +198,21 @@ func _on_creator_button_pressed() -> void:
 	var cheating_path = str(saves_path + str(saves_number) + "/cheats.cfg")
 	cheating_config.set_value("cheating", "enabled", choosen_cheating)
 	cheating_config.save(cheating_path)
+	
+	################################################################################
+	
+	var statistics_path = str(saves_path + str(saves_number) + "/statistics.cfg")
+	statistics_config.set_value("statistics", "oxygen", 0)
+	statistics_config.set_value("statistics", "damage_received", 0)
+	statistics_config.set_value("statistics", "damage_dealt", 0)
+	statistics_config.set_value("statistics", "battery", 0)
+	statistics_config.set_value("statistics", "enemies", 0)
+	statistics_config.set_value("statistics", "blocks", 0)
+	statistics_config.set_value("statistics", "money", 0)
+	statistics_config.set_value("statistics", "time_working", 0)
+	statistics_config.set_value("statistics", "time_resting", 0)
+	statistics_config.set_value("statistics", "days", 0)
+	statistics_config.save(statistics_path)
 	
 	################################################################################
 	
