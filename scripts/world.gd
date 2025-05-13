@@ -174,6 +174,8 @@ func _ready():
 				CaveSystem.set_cell(Vector2i(x, y), 3, Vector2i(0, 0))
 			elif asteroid_biome == "Desert":
 				CaveSystem.set_cell(Vector2i(x, y), 4, Vector2i(0, 0))
+			elif asteroid_biome == "Radioactive":
+				CaveSystem.set_cell(Vector2i(x, y), 5, Vector2i(0, 0))
 			var noise = floor(fnl.get_noise_2d(x, y) * 5)
 			if noise == 0 and asteroid_biome == "Stony":
 				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
@@ -185,6 +187,8 @@ func _ready():
 				CaveSystem.set_cell(Vector2i(x, y), 3, Vector2i(0, 1))
 			elif noise == 0 and asteroid_biome == "Desert":
 				CaveSystem.set_cell(Vector2i(x, y), 4, Vector2i(0, 1))
+			elif noise == 0 and asteroid_biome == "Radioactive":
+				CaveSystem.set_cell(Vector2i(x, y), 5, Vector2i(0, 1))
 	
 	#Create safe Cube
 	start_position()
@@ -217,7 +221,7 @@ func _ready():
 			put_nickel()
 			put_diamond()
 			put_gems()
-			put_ice()
+			put_dense_ice()
 			
 		"Swamp":
 			put_graphite()
@@ -235,6 +239,9 @@ func _ready():
 			put_scheelite()
 			put_vanadite()
 			put_gems()
+		
+		"Radioactive":
+			pass
 	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
 
 func create_world_borders():
@@ -316,9 +323,8 @@ func put_diamond():
 	elif asteroid_biome == "Frozen":
 		put_ore(900, 2000, 750, 2, Vector2i(3, 0), 20)
 
-func put_ice():
-	if asteroid_biome == "Frozen":
-		put_ore(0, 1000, 350, 2, Vector2i(3, 2), 20)
+func put_dense_ice():
+	put_ore(0, 1000, 350, 2, Vector2i(3, 2), 20)
 
 func put_lava_sockets():
 	put_ore(0, 1000, 500, 1, Vector2i(3, 2), 20)
@@ -403,6 +409,11 @@ func put_gems():
 							1: CaveSystem.set_cell(tile_pos, 4, Vector2i(1, 1))
 							2: CaveSystem.set_cell(tile_pos, 4, Vector2i(2, 1))
 							3: CaveSystem.set_cell(tile_pos, 4, Vector2i(3, 1))
+					if asteroid_biome == "Radioactive":
+						match random_gem:
+							1: CaveSystem.set_cell(tile_pos, 5, Vector2i(1, 1))
+							2: CaveSystem.set_cell(tile_pos, 5, Vector2i(2, 1))
+							3: CaveSystem.set_cell(tile_pos, 5, Vector2i(3, 1))
 
 func _on_music_timer_timeout() -> void:
 	start_music()
@@ -433,6 +444,8 @@ func start_position():
 				CaveSystem.set_cell(Vector2i(x,y), 3, Vector2i(0, 1))
 			elif asteroid_biome == "Desert":
 				CaveSystem.set_cell(Vector2i(x,y), 4, Vector2i(0, 1))
+			elif asteroid_biome == "Radioactive":
+				CaveSystem.set_cell(Vector2i(x,y), 5, Vector2i(0, 1))
 
 func create_radar_lines():
 	var radar_width: float = $Player/HUD/RadarPanel/WorldPanel.size.x

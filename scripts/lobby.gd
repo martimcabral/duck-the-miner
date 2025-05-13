@@ -351,7 +351,7 @@ func create_asteroid_name():
 func generate_asteroid_data() -> Dictionary:
 	var fields : Dictionary = {}  # Dictionary to store asteroid fields
 	var field_names : Array = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
-	var biomes : Array = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert"]
+	var biomes : Array = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert", "Radioactive"]
 	var objectives_primary : Array = ["Get Goods", "Kill Enemies", "Fine Jewelry"]
 	var objectives_secondary_stony : Array = ["More Infrastructure", "Powering the Future"]
 	var objectives_secondary_vulcanic : Array = ["Heat Extraction", "More Infrastructure"]
