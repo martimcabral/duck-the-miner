@@ -778,8 +778,8 @@ texture_scale = 0.3
 
 [node name="Flashlight" type="PointLight2D" parent="."]
 texture_filter = 1
-position = Vector2(0.169849, -0.305)
-scale = Vector2(1.03817, 1.03817)
+position = Vector2(4.2588, 0.695036)
+scale = Vector2(1.95704, 2.32977)
 color = Color(0.630067, 0.268899, 0.999979, 1)
 energy = 0.0
 texture = ExtResource("4_83sd1")

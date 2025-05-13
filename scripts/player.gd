@@ -121,6 +121,7 @@ func _ready():
 	match world.asteroid_biome:
 		"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
 		"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
+		"Radioactive": $ChromaticAberration.visible = true
 	
 	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "beta." + str(ProjectSettings.get_setting("application/config/version"))
 
@@ -199,7 +200,7 @@ func _process(delta):
 			print("[player.gd] UV Flashlight used!")
 			match is_flashlight_being_used:
 				true: $Flashlight.energy = 0; is_flashlight_being_used = false
-				false: $Flashlight.energy = 1.75; is_flashlight_being_used = true
+				false: $Flashlight.energy = 2; is_flashlight_being_used = true
 		
 		if Input.is_action_just_pressed("Use_Item") and current_item == "Radar the Tool":
 			print("[player.gd] Radar the Tool used!")
@@ -445,6 +446,8 @@ func destroy_block():
 								CaveSystem.set_cell(tile_pos, 3, Vector2i(0, 1))
 							elif world.asteroid_biome == "Desert":
 								CaveSystem.set_cell(tile_pos, 4, Vector2i(0, 1))
+							elif world.asteroid_biome == "Radioactive":
+								CaveSystem.set_cell(tile_pos, 5, Vector2i(0, 1))
 
 ##################################################################################################################################################
 ##################################################################################################################################################
