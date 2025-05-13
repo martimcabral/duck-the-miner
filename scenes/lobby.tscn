@@ -444,18 +444,18 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_gd4oi"]
 resource_name = "bread"
-length = 0.3667
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.366667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -70), Vector2(0, 1200)]
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -464,22 +464,22 @@ tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.166667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.0872665, -1.74533]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 0
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3667),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -20)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u7tfn"]
@@ -1648,31 +1648,6 @@ points = PackedVector2Array(122, 2, 2042, 2)
 [node name="HoriLine2D2" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(-122, 136)
 points = PackedVector2Array(131, 2, 2042, 2)
-
-[node name="HoriLine2D3" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
-visible = false
-position = Vector2(-122, 832)
-points = PackedVector2Array(130, 2, 1079, 2)
-
-[node name="HoriLine2D4" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
-visible = false
-position = Vector2(-122, 696)
-points = PackedVector2Array(129, 2, 1079, 2)
-
-[node name="HoriLine2D5" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
-visible = false
-position = Vector2(-122, 552)
-points = PackedVector2Array(127, 2, 1079, 2)
-
-[node name="HoriLine2D6" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
-visible = false
-position = Vector2(-122, 408)
-points = PackedVector2Array(127, 2, 1079, 2)
-
-[node name="HoriLine2D7" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
-visible = false
-position = Vector2(-122, 264)
-points = PackedVector2Array(126, 2, 1079, 2)
 
 [node name="VertiLine2D" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(159, 0)
