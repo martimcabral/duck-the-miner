@@ -90,54 +90,66 @@ func _on_button_mouse_entered() -> void:
 func create_pricing_json():
 	var pricing_path = "user://pricing.cfg"
 	if FileAccess.file_exists(pricing_path):
-		print("[start.gd] Pricing File found successfully!")
-	else:
-		print("[start.gd] Pricing File not found! Creating a new one...")
+		print("[start.gd] Checking pricing file!")
 		var pricing_file = ConfigFile.new()
 		pricing_file.load(pricing_path)
-		pricing_file.set_value("pricing", "Stone", 50)
-		pricing_file.set_value("pricing", "Coal", 250)
-		pricing_file.set_value("pricing", "Dense Ice", 450)
-		pricing_file.set_value("pricing", "Graphite", 850)
-		pricing_file.set_value("pricing", "Gypsum", 175)
-		pricing_file.set_value("pricing", "Ice", 125)
-		pricing_file.set_value("pricing", "Kaolinite", 175)
-		pricing_file.set_value("pricing", "Lava Cluster", 350)
-		pricing_file.set_value("pricing", "Oil Shale", 850)
-		pricing_file.set_value("pricing", "Gold", 3600)
-		pricing_file.set_value("pricing", "Iron", 800)
-		pricing_file.set_value("pricing", "Raw Bauxite", 800)
-		pricing_file.set_value("pricing", "Raw Cobalt", 800)
-		pricing_file.set_value("pricing", "Raw Copper", 800)
-		pricing_file.set_value("pricing", "Raw Galena", 800)
-		pricing_file.set_value("pricing", "Raw Magnetite", 800)
-		pricing_file.set_value("pricing", "Raw Nickel", 800)
-		pricing_file.set_value("pricing", "Raw Platinum", 800)
-		pricing_file.set_value("pricing", "Raw Pyrolusite", 800)
-		pricing_file.set_value("pricing", "Raw Scheelite", 800)
-		pricing_file.set_value("pricing", "Raw Silver", 800)
-		pricing_file.set_value("pricing", "Raw Uranium", 800)
-		pricing_file.set_value("pricing", "Raw Wolframite", 800)
-		pricing_file.set_value("pricing", "Raw Zirconium", 800)
-		pricing_file.set_value("pricing", "Sandstone", 60)
-		pricing_file.set_value("pricing", "Sulfur", 625)
-		pricing_file.set_value("pricing", "Vanadinite", 25000)
-		pricing_file.set_value("pricing", "Amazonite", 25000)
-		pricing_file.set_value("pricing", "Ametrine", 25000)
-		pricing_file.set_value("pricing", "Apatite", 25000)
-		pricing_file.set_value("pricing", "Azurite", 25000)
-		pricing_file.set_value("pricing", "Bloodstone", 25000)
-		pricing_file.set_value("pricing", "Chalcedony", 25000)
-		pricing_file.set_value("pricing", "Charoite", 25000)
-		pricing_file.set_value("pricing", "Diamond", 25000)
-		pricing_file.set_value("pricing", "Emerald", 25000)
-		pricing_file.set_value("pricing", "Frozen Diamond", 37500)
-		pricing_file.set_value("pricing", "Garnet", 25000)
-		pricing_file.set_value("pricing", "Peridot", 25000)
-		pricing_file.set_value("pricing", "Ruby", 25000)
-		pricing_file.set_value("pricing", "Sapphire", 25000)
-		pricing_file.set_value("pricing", "Sugilite", 25000)
-		pricing_file.set_value("pricing", "Topaz", 25000)
-		pricing_file.set_value("pricing", "Tsavorite", 25000)
-		pricing_file.set_value("pricing", "Biomass", 500)
-		pricing_file.save(pricing_path)
+		
+		var prices = {
+			"Stone": 50,
+			"Coal": 250,
+			"Dense Ice": 450,
+			"Graphite": 850,
+			"Gypsum": 175,
+			"Kaolinite": 175,
+			"Lava Cluster": 350,
+			"Oil Shale": 850,
+			"Gold": 3600,
+			"Iron": 800,
+			"Raw Bauxite": 800,
+			"Raw Cobalt": 800,
+			"Raw Copper": 800,
+			"Raw Galena": 800,
+			"Raw Magnetite": 800,
+			"Raw Nickel": 800,
+			"Raw Platinum": 800,
+			"Raw Pyrolusite": 800,
+			"Raw Scheelite": 800,
+			"Raw Silver": 800,
+			"Raw Uranium": 800,
+			"Raw Wolframite": 800,
+			"Raw Zirconium": 800,
+			"Sandstone": 60,
+			"Sulfur": 625,
+			"Vanadinite": 25000,
+			"Amazonite": 25000,
+			"Ametrine": 25000,
+			"Apatite": 25000,
+			"Azurite": 25000,
+			"Bloodstone": 25000,
+			"Chalcedony": 25000,
+			"Charoite": 25000,
+			"Diamond": 25000,
+			"Emerald": 25000,
+			"Frozen Diamond": 37500,
+			"Garnet": 25000,
+			"Peridot": 25000,
+			"Ruby": 25000,
+			"Sapphire": 25000,
+			"Sugilite": 25000,
+			"Topaz": 25000,
+			"Tsavorite": 25000,
+			"Biomass": 500,
+			"Ice": 150,
+			"Chrysocolla": 25000,
+			"Pietersite": 25000,
+			"Labradorite": 25000,
+			"Jeremejevite": 40000,
+			"Pitchblende": 800,
+			"Phosphorite": 800,
+			"Hematite": 800,
+		}
+		
+		for ore in prices:
+			if not pricing_file.has_section_key("pricing", ore):
+				pricing_file.set_value("pricing", ore, prices[ore])
+				pricing_file.save(pricing_path)

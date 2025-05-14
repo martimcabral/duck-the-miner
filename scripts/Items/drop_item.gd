@@ -5,8 +5,6 @@ extends TileMap
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var world = $".."
 
-var packed_scene = load("res://scenes/misc/items.tscn")
-
 # TIRAR ISTO DAQUI NAO FAZ SENTIDO NENHUM E COMO E QUE AINDA ISTO TA AQUI ISSO DA TP PA AQUI DE NOVO
 # EU JA METI ESTE CODIGO NO PLAYER.GD 10 VEZES E COMO E QUE ISTO VEM PARA PRAQUI WTF
 func _process(_delta: float) -> void:
@@ -28,8 +26,6 @@ func _process(_delta: float) -> void:
 					#print("Torch Placed: ", tile_pos)
 
 func drop_items():
-	var instance = packed_scene.instantiate()
-	
 	var tile_pos = get_global_mouse_position() / 16
 	var block = CaveSystem.get_cell_atlas_coords(tile_pos)
 	
@@ -156,17 +152,17 @@ func drop_items():
 			Vector2i(0, 0):
 				item_name = "Stone"
 			Vector2i(1, 0):
-				item_name = "Cupper"
+				item_name = "RawCopper"
 			Vector2i(2, 0):
-				item_name = "Irun"
+				item_name = "RawIron"
 			Vector2i(3, 0):
 				item_name = "Jeremejevite"
 			Vector2i(1, 1):
 				item_name = "Chrysocolla"
 			Vector2i(2, 1):
-				item_name = "Pietersite"
-			Vector2i(3, 1):
 				item_name = "Labradorite"
+			Vector2i(3, 1):
+				item_name = "Pietersite"
 			Vector2i(0, 2):
 				item_name = "Phosphorite"
 			Vector2i(1, 2):
@@ -175,13 +171,16 @@ func drop_items():
 				item_name = "Ice"
 			Vector2i(0, 3):
 				item_name = "Hematite"
-
+	
 	if item_name != "":
-		var target_node = instance.get_node(item_name)
-		target_node.get_parent().remove_child(target_node)  # Remove the item from its original parent
-		target_node.owner = null  # Unset the owner to avoid inconsistency
-		add_child(target_node)  # Add the item to the current scene
-		target_node.position = CaveSystem.map_to_local(tile_pos + Vector2(randf_range(-0.05, 0.05), randf_range(-0.05, 0.05)))
-		target_node.rotation = randi_range(0, 360)
+		for i in range(randi_range(1, 3)):
+			var packed_scene = load("res://scenes/misc/items.tscn")
+			var instance = packed_scene.instantiate()
+			var target_node = instance.get_node(item_name)
+			target_node.get_parent().remove_child(target_node)
+			target_node.owner = null
+			add_child(target_node)
+			target_node.position = CaveSystem.map_to_local(tile_pos)
+			target_node.rotation = randi_range(0, 360)
 
 # © Sr. Patinho // 2007-2025 🦆

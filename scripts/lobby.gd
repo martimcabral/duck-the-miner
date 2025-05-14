@@ -11,7 +11,6 @@ var item_icons = {
 	"Ruby": "res://assets/textures/items/gems/ruby.png",
 	"Sapphire": "res://assets/textures/items/gems/sapphire.png",
 	"Diamond": "res://assets/textures/items/gems/diamond.png",
-	"Ice": "res://assets/textures/items/ores/ice.png",
 	"Magnetite": "res://assets/textures/items/ores/raw_magnetite.png",
 	"Bauxite": "res://assets/textures/items/ores/raw_bauxite.png",
 	"Topaz": "res://assets/textures/items/gems/topaz.png",
@@ -46,7 +45,15 @@ var item_icons = {
 	"Azurite": "res://assets/textures/items/gems/azurite.png",
 	"Bloodstone": "res://assets/textures/items/gems/bloodstone.png",
 	"Chalcedony": "res://assets/textures/items/gems/chalcedony.png",
-	"Biomass": "res://assets/textures/items/misc/biomass.png"
+	"Biomass": "res://assets/textures/items/misc/biomass.png",
+	"Ice": "res://assets/textures/items/ores/ice.png",
+	"Chrysocolla": "res://assets/textures/items/gems/chrysocolla.png",
+	"Pietersite": "res://assets/textures/items/gems/pietersite.png",
+	"Labradorite": "res://assets/textures/items/gems/labradorite.png",
+	"Jeremejevite": "res://assets/textures/items/gems/jeremejevite.png",
+	"Hematite": "res://assets/textures/items/ores/hematite.png",
+	"Pitchblende": "res://assets/textures/items/ores/pitchblende.png",
+	"Phosphorite": "res://assets/textures/items/ores/phosphorite.png"
 }
 
 var selecting_mission : bool = false
@@ -357,7 +364,8 @@ func generate_asteroid_data() -> Dictionary:
 	var objectives_secondary_vulcanic : Array = ["Heat Extraction", "More Infrastructure"]
 	var objectives_secondary_frozen : Array = ["Cold Extraction", "Powering the Future"]
 	var objectives_secondary_swamp : Array = ["Fuel the Company", "Powering the Future"]
-	var objectives_secondary_desert : Array = ["Fuel the Company", "Cold Extraction"]
+	var objectives_secondary_desert : Array = ["Fuel the Company", "Build the Future"]
+	var objectives_secondary_radioactive : Array = ["Fuel the Company", "Cold Extraction"]
 	
 	for field_name in field_names:
 		var asteroids : Dictionary = {}  # Dictionary to store asteroids in the current field
@@ -374,6 +382,7 @@ func generate_asteroid_data() -> Dictionary:
 				"Frozen": asteroid_temperature = randi_range(-45, -65); secondary_objective = objectives_secondary_frozen[randi() % objectives_secondary_frozen.size()]
 				"Swamp": asteroid_temperature = randi_range(-5, 12); secondary_objective = objectives_secondary_swamp[randi() % objectives_secondary_swamp.size()]
 				"Desert": asteroid_temperature = randi_range(50, 65); secondary_objective = objectives_secondary_desert[randi() % objectives_secondary_desert.size()]
+				"Radioactive": asteroid_temperature = randi_range(-25, -10); secondary_objective = objectives_secondary_radioactive[randi() % objectives_secondary_radioactive.size()]
 			
 			# Create asteroid entry
 			asteroids[asteroid_id] = {

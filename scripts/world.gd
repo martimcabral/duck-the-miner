@@ -16,6 +16,8 @@ var asteroid_field
 var asteroid_biome
 var asteroid_temperature
 
+var biome_id = 0
+
 var time_remaining_Title_Timer
 var time_remaining_HUD_Fade_In
 
@@ -92,8 +94,21 @@ func start_music():
 			1: $WorldMusic/Rift.play()
 			2: $WorldMusic/Wave.play()
 			3: $WorldMusic/Portal.play()
+	elif asteroid_biome == "Radioactive":
+		match random_music:
+			1: $WorldMusic/Rift.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Void.play()
 
 func _ready():
+	match asteroid_biome:
+		"Stony": biome_id = 0
+		"Vulcanic": biome_id = 1
+		"Frozen": biome_id = 2
+		"Swamp": biome_id = 3
+		"Desert": biome_id = 4
+		"Radioactive": biome_id = 5
+	
 	config_file.load(config_path)
 	$WorldEnvironment.environment.glow_enabled = config_file.get_value("display", "bloom")
 	$Player/HUD/ColorblindnessColorRect.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
@@ -164,31 +179,10 @@ func _ready():
 	# Make Caverns
 	for x in range(world_width):
 		for y in range(world_height):
-			if asteroid_biome == "Stony":
-				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 0))
-			elif asteroid_biome == "Vulcanic":
-				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 0))
-			elif asteroid_biome == "Frozen":
-				CaveSystem.set_cell(Vector2i(x, y), 2, Vector2i(0, 0))
-			elif asteroid_biome == "Swamp":
-				CaveSystem.set_cell(Vector2i(x, y), 3, Vector2i(0, 0))
-			elif asteroid_biome == "Desert":
-				CaveSystem.set_cell(Vector2i(x, y), 4, Vector2i(0, 0))
-			elif asteroid_biome == "Radioactive":
-				CaveSystem.set_cell(Vector2i(x, y), 5, Vector2i(0, 0))
+			CaveSystem.set_cell(Vector2i(x, y), biome_id, Vector2i(0, 0))
 			var noise = floor(fnl.get_noise_2d(x, y) * 5)
-			if noise == 0 and asteroid_biome == "Stony":
-				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
-			elif noise == 0 and asteroid_biome == "Vulcanic":
-				CaveSystem.set_cell(Vector2i(x, y), 1, Vector2i(0, 1))
-			elif noise == 0 and asteroid_biome == "Frozen":
-				CaveSystem.set_cell(Vector2i(x, y), 2, Vector2i(0, 1))
-			elif noise == 0 and asteroid_biome == "Swamp":
-				CaveSystem.set_cell(Vector2i(x, y), 3, Vector2i(0, 1))
-			elif noise == 0 and asteroid_biome == "Desert":
-				CaveSystem.set_cell(Vector2i(x, y), 4, Vector2i(0, 1))
-			elif noise == 0 and asteroid_biome == "Radioactive":
-				CaveSystem.set_cell(Vector2i(x, y), 5, Vector2i(0, 1))
+			if noise == 0:
+				CaveSystem.set_cell(Vector2i(x, y), biome_id, Vector2i(0, 1))
 	
 	#Create safe Cube
 	start_position()
@@ -241,35 +235,44 @@ func _ready():
 			put_gems()
 		
 		"Radioactive":
-			pass
+			put_copper()
+			put_iron()
+			put_ice()
+			put_pitchblende()
+			put_phosphorite()
+			put_hematite()
+			put_jeremejevite()
+			put_gems()
+			
 	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
 
 func create_world_borders():
-# Above Map Border
+	# Above Map Border
 	for y in range(world_border_up_and_down):
 		y = -abs(y)
 		for x in range(world_width):
-			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
+			 
+			CaveSystem.set_cell(Vector2i(x, y), biome_id, Vector2i(2, 2))
 	
 	# Below Map Border
 	for y in range(world_border_up_and_down):
 		y += world_height
 		for x in range(world_width):
-			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
+			CaveSystem.set_cell(Vector2i(x, y), biome_id, Vector2i(2, 2))
 	
 	# Left Map Border
 	for x in range(world_border_sides):
 		x += world_width
 		for y in range(world_height_border):
 			y -= 9
-			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
+			CaveSystem.set_cell(Vector2i(x, y), biome_id, Vector2i(2, 2))
 	
 	# Right Map Border
 	for x in range(world_border_sides):
 		x = -abs(x)
 		for y in range(world_height_border):
 			y -= 9
-			CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(2, 2))
+			CaveSystem.set_cell(Vector2i(x, y), biome_id, Vector2i(2, 2))
 
 func put_ore(ore_height_min, ore_height_max, spawn_chance, biome, atlas_coords, clustering):
 	for x in range(world_width):
@@ -294,6 +297,8 @@ func put_coal():
 func put_copper():
 	if asteroid_biome == "Stony":
 		put_ore(0, 500, 175, 0, Vector2i(1, 2), 20)
+	elif asteroid_biome == "Radioactive":
+		put_ore(0, 375, 200, 5, Vector2i(1, 0), 20)
 
 func put_magnetite():
 	if asteroid_biome == "Vulcanic":
@@ -304,6 +309,8 @@ func put_iron():
 		put_ore(200, 600, 200, 0, Vector2i(2, 0), 20)
 	elif asteroid_biome == "Vulcanic":
 		put_ore(200, 600, 200, 1, Vector2i(2, 0), 20)
+	elif asteroid_biome == "Radioactive":
+		put_ore(0, 750, 190, 5, Vector2i(2, 0), 20)
 
 func put_bauxite():
 	if asteroid_biome == "Vulcanic":
@@ -377,43 +384,31 @@ func put_scheelite():
 func put_vanadite():
 	put_ore(600, 1200, 475, 4, Vector2i(3, 0), 20)
 
+func put_ice():
+	put_ore(0, 1600, 500, 5, Vector2i(3, 2), 20)
+
+func put_pitchblende():
+	put_ore(450, 1600, 375, 5, Vector2i(1, 2), 20)
+
+func put_phosphorite():
+	put_ore(525, 1600, 400, 5, Vector2i(0, 2), 20)
+
+func put_hematite():
+	put_ore(325, 750, 325, 5, Vector2i(0, 3), 20)
+
+func put_jeremejevite():
+	put_ore(850, 1600, 500, 5, Vector2i(3, 0), 20)
+
 func put_gems():
 	for x in range(world_width):
-		for y in range(700, 1600):
+		for y in range(0, 1600):
 			if randi_range(0, 625) == 1:
 				var tile_pos = Vector2i(x, y)
 				if CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 0):
-					var random_gem = randi_range(1, 3)
-					if asteroid_biome == "Stony":
-						match random_gem:
-							1: CaveSystem.set_cell(tile_pos, 0, Vector2i(1, 1))
-							2: CaveSystem.set_cell(tile_pos, 0, Vector2i(2, 1))
-							3: CaveSystem.set_cell(tile_pos, 0, Vector2i(3, 1))
-					if asteroid_biome == "Vulcanic":
-						match random_gem:
-							1: CaveSystem.set_cell(tile_pos, 1, Vector2i(1, 1))
-							2: CaveSystem.set_cell(tile_pos, 1, Vector2i(2, 1))
-							3: CaveSystem.set_cell(tile_pos, 1, Vector2i(3, 1))
-					if asteroid_biome == "Frozen":
-						match random_gem:
-							1: CaveSystem.set_cell(tile_pos, 2, Vector2i(1, 1))
-							2: CaveSystem.set_cell(tile_pos, 2, Vector2i(2, 1))
-							3: CaveSystem.set_cell(tile_pos, 2, Vector2i(3, 1))
-					if asteroid_biome == "Swamp":
-						match random_gem:
-							1: CaveSystem.set_cell(tile_pos, 3, Vector2i(1, 1))
-							2: CaveSystem.set_cell(tile_pos, 3, Vector2i(2, 1))
-							3: CaveSystem.set_cell(tile_pos, 3, Vector2i(3, 1))
-					if asteroid_biome == "Desert":
-						match random_gem:
-							1: CaveSystem.set_cell(tile_pos, 4, Vector2i(1, 1))
-							2: CaveSystem.set_cell(tile_pos, 4, Vector2i(2, 1))
-							3: CaveSystem.set_cell(tile_pos, 4, Vector2i(3, 1))
-					if asteroid_biome == "Radioactive":
-						match random_gem:
-							1: CaveSystem.set_cell(tile_pos, 5, Vector2i(1, 1))
-							2: CaveSystem.set_cell(tile_pos, 5, Vector2i(2, 1))
-							3: CaveSystem.set_cell(tile_pos, 5, Vector2i(3, 1))
+					match randi_range(1, 3):
+						1: CaveSystem.set_cell(tile_pos, biome_id, Vector2i(1, 1))
+						2: CaveSystem.set_cell(tile_pos, biome_id, Vector2i(2, 1))
+						3: CaveSystem.set_cell(tile_pos, biome_id, Vector2i(3, 1))
 
 func _on_music_timer_timeout() -> void:
 	start_music()
@@ -434,18 +429,7 @@ func start_position():
 		x += player_at_tilemap_position.x -1
 		for y in range(spawn_cube_size):
 			y += player_at_tilemap_position.y -2
-			if asteroid_biome == "Stony":
-				CaveSystem.set_cell(Vector2i(x, y), 0, Vector2i(0, 1))
-			elif asteroid_biome == "Vulcanic":
-				CaveSystem.set_cell(Vector2i(x,y), 1, Vector2i(0, 1))
-			elif asteroid_biome == "Frozen":
-				CaveSystem.set_cell(Vector2i(x,y), 2, Vector2i(0, 1))
-			elif asteroid_biome == "Swamp":
-				CaveSystem.set_cell(Vector2i(x,y), 3, Vector2i(0, 1))
-			elif asteroid_biome == "Desert":
-				CaveSystem.set_cell(Vector2i(x,y), 4, Vector2i(0, 1))
-			elif asteroid_biome == "Radioactive":
-				CaveSystem.set_cell(Vector2i(x,y), 5, Vector2i(0, 1))
+			CaveSystem.set_cell(Vector2i(x, y), biome_id, Vector2i(0, 1))
 
 func create_radar_lines():
 	var radar_width: float = $Player/HUD/RadarPanel/WorldPanel.size.x

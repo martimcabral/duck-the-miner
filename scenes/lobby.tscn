@@ -1705,15 +1705,6 @@ popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
 
-[node name="Label" type="Label" parent="Camera2D/HUD/Contract/FirstHotbarDropdown"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = -16.0
-offset_right = 45.0
-offset_bottom = 16.0
-theme_override_font_sizes/font_size = 32
-text = "1"
-
 [node name="SecondHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 7
@@ -1757,15 +1748,6 @@ popup/item_4/id = 4
 popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
-
-[node name="Label" type="Label" parent="Camera2D/HUD/Contract/SecondHotbarDropdown"]
-layout_mode = 0
-offset_left = -4.0
-offset_top = -16.0
-offset_right = 36.0
-offset_bottom = 16.0
-theme_override_font_sizes/font_size = 32
-text = "2"
 
 [node name="ThirdHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1811,15 +1793,6 @@ popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
 
-[node name="Label" type="Label" parent="Camera2D/HUD/Contract/ThirdHotbarDropdown"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = -16.0
-offset_right = 45.0
-offset_bottom = 16.0
-theme_override_font_sizes/font_size = 32
-text = "3"
-
 [node name="FourthHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 7
@@ -1863,15 +1836,6 @@ popup/item_4/id = 4
 popup/item_5/text = " Radar the Enemies"
 popup/item_5/icon = ExtResource("13_u7tfn")
 popup/item_5/id = 5
-
-[node name="Label" type="Label" parent="Camera2D/HUD/Contract/FourthHotbarDropdown"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = -16.0
-offset_right = 47.0
-offset_bottom = 16.0
-theme_override_font_sizes/font_size = 32
-text = "4"
 
 [node name="ExitButton" type="Button" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 z_index = 30

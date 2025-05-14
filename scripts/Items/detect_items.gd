@@ -145,6 +145,27 @@ func _on_body_entered(body : Node2D):
 			"Biomass":
 				var biomassIcon = load("res://assets/textures/items/misc/biomass.png")
 				add_item_to_inventory("Biomass", biomassIcon)
+			"Jeremejevite":
+				var jeremejeviteIcon = load("res://assets/textures/items/gems/jeremejevite.png")
+				add_item_to_inventory("Jeremejevite", jeremejeviteIcon)
+			"Chrysocolla":
+				var chrysocollaIcon = load("res://assets/textures/items/gems/chrysocolla.png")
+				add_item_to_inventory("Chrysocolla", chrysocollaIcon)
+			"Pietersite":
+				var pietersiteIcon = load("res://assets/textures/items/gems/pietersite.png")
+				add_item_to_inventory("Pietersite", pietersiteIcon)
+			"Labradorite":
+				var labradoriteIcon = load("res://assets/textures/items/gems/labradorite.png")
+				add_item_to_inventory("Labradorite", labradoriteIcon)
+			"Phosphorite":
+				var phosphoriteIcon = load("res://assets/textures/items/ores/phosphorite.png")
+				add_item_to_inventory("Phosphorite", phosphoriteIcon)
+			"Pitchblende":
+				var pitchblendeIcon = load("res://assets/textures/items/ores/pitchblende.png")
+				add_item_to_inventory("Pitchblende", pitchblendeIcon)
+			"Hematite":
+				var hematiteIcon = load("res://assets/textures/items/ores/hematite.png")
+				add_item_to_inventory("Hematite", hematiteIcon)
 		body.queue_free()
 		$PickupItem.play()
 

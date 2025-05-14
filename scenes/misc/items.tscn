@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bt6nq358dvhmj"]
+[gd_scene load_steps=74 format=3 uid="uid://bt6nq358dvhmj"]
 
 [ext_resource type="Texture2D" uid="uid://18s5p2gy0pwb" path="res://assets/textures/items/ores/coal.png" id="1_62rds"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="2_m5k01"]
@@ -47,6 +47,13 @@
 [ext_resource type="Texture2D" uid="uid://dd7fa5y0qoqi8" path="res://assets/textures/items/gems/bloodstone.png" id="45_k50mr"]
 [ext_resource type="Texture2D" uid="uid://b27tsvxqa5nh6" path="res://assets/textures/items/gems/chalcedony.png" id="46_31qkd"]
 [ext_resource type="Texture2D" uid="uid://bksbjv705sawi" path="res://assets/textures/items/misc/biomass.png" id="47_480p7"]
+[ext_resource type="Texture2D" uid="uid://bogq8vf0j8xfn" path="res://assets/textures/items/ores/pitchblende.png" id="48_tdu10"]
+[ext_resource type="Texture2D" uid="uid://d38rk2qfr4ysq" path="res://assets/textures/items/ores/phosphorite.png" id="49_n186u"]
+[ext_resource type="Texture2D" uid="uid://b0c60vx8tpgu5" path="res://assets/textures/items/ores/hematite.png" id="50_redaq"]
+[ext_resource type="Texture2D" uid="uid://bjck3x6ralstd" path="res://assets/textures/items/gems/chrysocolla.png" id="51_7eojn"]
+[ext_resource type="Texture2D" uid="uid://clp1hj5xdf1p6" path="res://assets/textures/items/gems/pietersite.png" id="52_iqore"]
+[ext_resource type="Texture2D" uid="uid://ddt1d7sr0m5aa" path="res://assets/textures/items/gems/labradorite.png" id="53_n5rex"]
+[ext_resource type="Texture2D" uid="uid://cc6q4ee7x0ki8" path="res://assets/textures/items/gems/jeremejevite.png" id="54_cbe5g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5sde2"]
 size = Vector2(6.33902, 5.5559)
@@ -101,6 +108,9 @@ radius = 3.16228
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_03jck"]
 radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ropjv"]
+radius = 2.82843
 
 [node name="Items" type="Node2D"]
 
@@ -189,7 +199,6 @@ texture = ExtResource("6_yo33a")
 shape = SubResource("CircleShape2D_s7pjy")
 
 [node name="PointLight2D" type="PointLight2D" parent="Emerald"]
-blend_mode = 1
 texture = ExtResource("2_nq3r8")
 texture_scale = 0.05
 script = ExtResource("3_reukg")
@@ -250,22 +259,6 @@ shape = SubResource("CircleShape2D_en54b")
 texture = ExtResource("2_nq3r8")
 texture_scale = 0.05
 script = ExtResource("3_reukg")
-
-[node name="Ice" type="RigidBody2D" parent="." groups=["Pickable"]]
-editor_description = "Ice"
-gravity_scale = 0.05
-center_of_mass_mode = 1
-can_sleep = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Ice"]
-texture_filter = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_m5k01")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ice"]
-position = Vector2(-2.98023e-08, -1.49012e-08)
-rotation = -0.785398
-shape = SubResource("RectangleShape2D_bx5wy")
 
 [node name="RawMagnetite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Magnetite"
@@ -825,3 +818,151 @@ texture = ExtResource("47_480p7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Biomass"]
 shape = SubResource("CircleShape2D_03jck")
+
+[node name="Ice" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Ice"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Ice"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_m5k01")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ice"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="Pitchblende" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Pitchblende"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Pitchblende"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("48_tdu10")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pitchblende"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="Phosphorite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Phosphorite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Phosphorite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("49_n186u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Phosphorite"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="Hematite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Hematite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Hematite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("50_redaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hematite"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="Chrysocolla" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Chrysocolla"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Chrysocolla"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("51_7eojn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chrysocolla"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="PointLight2D" type="PointLight2D" parent="Chrysocolla"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Pietersite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Pietersite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Pietersite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("52_iqore")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pietersite"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="PointLight2D" type="PointLight2D" parent="Pietersite"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Labradorite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Labradorite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Labradorite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("53_n5rex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Labradorite"]
+position = Vector2(-2.98023e-08, -1.49012e-08)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="PointLight2D" type="PointLight2D" parent="Labradorite"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
+
+[node name="Jeremejevite" type="RigidBody2D" parent="." groups=["Pickable"]]
+editor_description = "Jeremejevite"
+gravity_scale = 0.05
+center_of_mass_mode = 1
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Jeremejevite"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("54_cbe5g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jeremejevite"]
+position = Vector2(0.205975, 0.470533)
+rotation = -0.785398
+shape = SubResource("CircleShape2D_ropjv")
+
+[node name="PointLight2D" type="PointLight2D" parent="Jeremejevite"]
+texture = ExtResource("2_nq3r8")
+texture_scale = 0.05
+script = ExtResource("3_reukg")
