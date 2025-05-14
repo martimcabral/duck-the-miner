@@ -150,6 +150,31 @@ func drop_items():
 				item_name = "RawScheelite"
 			Vector2i(3, 0):
 				item_name = "Vanadinite"
+	
+	elif world.asteroid_biome == "Radioactive":
+		match block:
+			Vector2i(0, 0):
+				item_name = "Stone"
+			Vector2i(1, 0):
+				item_name = "Cupper"
+			Vector2i(2, 0):
+				item_name = "Irun"
+			Vector2i(3, 0):
+				item_name = "Jeremejevite"
+			Vector2i(1, 1):
+				item_name = "Chrysocolla"
+			Vector2i(2, 1):
+				item_name = "Pietersite"
+			Vector2i(3, 1):
+				item_name = "Labradorite"
+			Vector2i(0, 2):
+				item_name = "Phosphorite"
+			Vector2i(1, 2):
+				item_name = "Pitchblende"
+			Vector2i(3, 2):
+				item_name = "Ice"
+			Vector2i(0, 3):
+				item_name = "Hematite"
 
 	if item_name != "":
 		var target_node = instance.get_node(item_name)

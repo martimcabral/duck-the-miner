@@ -1009,7 +1009,7 @@ tile_map_data = PackedByteArray("AAAFAAAAAwADAAAAAAAGAAAAAwADAAAAAAAHAAAAAwADAAA
 tile_set = SubResource("TileSet_inx3v")
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
+color = Color(0, 0, 0, 0.862745)
 
 [node name="WorldMusic" type="Node2D" parent="."]
 
