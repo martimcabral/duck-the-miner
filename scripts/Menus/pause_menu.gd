@@ -135,6 +135,8 @@ func enable_all_rigid_body_physics():
 	saved_states.clear()  # Clear stored states
 
 func _ready() -> void:
+	$GUI_Pause/VersionDisplay.text = "Version: beta." + str(ProjectSettings.get_setting("application/config/version"))
+	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
 	

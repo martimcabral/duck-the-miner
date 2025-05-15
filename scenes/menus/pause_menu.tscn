@@ -31,7 +31,6 @@ script = ExtResource("1_br3yh")
 
 [node name="GUI_Pause" type="CanvasLayer" parent="."]
 layer = 3
-visible = false
 
 [node name="Colorblindness" type="TextureRect" parent="GUI_Pause"]
 z_index = 2
@@ -165,6 +164,26 @@ theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Exit to Desktop"
 flat = true
+
+[node name="VersionDisplay" type="Label" parent="GUI_Pause"]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -286.0
+offset_right = 93.0
+offset_bottom = -245.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "version.error"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(947, 575)

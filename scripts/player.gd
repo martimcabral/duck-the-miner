@@ -122,8 +122,6 @@ func _ready():
 		"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
 		"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
 		"Radioactive": $ChromaticAberration.visible = true
-	
-	$Camera2D/HUD/VersionDisplay.text = "[center]%s[/center]" % "beta." + str(ProjectSettings.get_setting("application/config/version"))
 
 func player_movement(input, delta):
 	if is_duck_dead == false:
