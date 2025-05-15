@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://cpdm0b6v1snrj" path="res://scripts/Items/detect_items.gd" id="4_rt7d7"]
 [ext_resource type="Script" uid="uid://yswvgk54s8cd" path="res://scripts/Items/drop_item.gd" id="4_ys0ii"]
 [ext_resource type="Texture2D" uid="uid://b8523lkw1l4p7" path="res://assets/textures/tilemaps/selected_block/selected_block.png" id="5_16s1h"]
-[ext_resource type="AudioStream" uid="uid://vykc0p7hqfye" path="res://sounds/sound_effects/pickup_item.ogg" id="5_j2snb"]
+[ext_resource type="AudioStream" uid="uid://vykc0p7hqfye" path="res://sounds/effects/duck/pickup_item.ogg" id="5_j2snb"]
 [ext_resource type="Shader" uid="uid://cvls2vcwl4lxt" path="res://scripts/Shaders/black_and_white.gdshader" id="5_oo54l"]
 [ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="6_jiuwp"]
 [ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/menus/cheat_menu.tscn" id="7_7iits"]
@@ -1009,7 +1009,7 @@ tile_map_data = PackedByteArray("AAAFAAAAAwADAAAAAAAGAAAAAwADAAAAAAAHAAAAAwADAAA
 tile_set = SubResource("TileSet_inx3v")
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 0.862745)
+color = Color(0.0605303, 0.0605303, 0.0605303, 1)
 
 [node name="WorldMusic" type="Node2D" parent="."]
 

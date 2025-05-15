@@ -31,8 +31,11 @@ var touched_enemy
 var BaW_time_remaining : float = 0
 var ghost_mode : bool = false
 var used_tiles = {}
+
 var block_selection_default = preload("res://assets/textures/tilemaps/selected_block/selected_block.png")
 var block_selection_out = preload("res://assets/textures/tilemaps/selected_block/selected_block_out_of_range.png")
+var highlighted_block_selection_default = preload("res://assets/textures/tilemaps/selected_block/highlighted_selected_block.png")
+var highlighted_block_selection_out = preload("res://assets/textures/tilemaps/selected_block/highlighted_selected_block_out_of_range.png")
 
 @onready var block_selection = $"../WorldTileMap/BlockSelection"
 @onready var player = $"../Player"
@@ -69,6 +72,9 @@ var statistics_config = ConfigFile.new()
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
 var difficulty_config = ConfigFile.new()
 var current_difficulty : String = ""
+
+var settings_path : String = str("user://game_settings.cfg")
+var settings_config = ConfigFile.new()
 
 var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
 
@@ -325,10 +331,17 @@ func _process(delta):
 		block_selection_position = block_selection_position.snapped(tile_size)
 		$"../WorldTileMap/BlockSelection".position = block_selection_position
 		
+		settings_config.load(settings_path)
 		if local_mouse_pos.length() <= radius:
-			$"../WorldTileMap/BlockSelection".texture = block_selection_default
+			if settings_config.get_value("accessibility", "highlight_block_selection") == false:
+				$"../WorldTileMap/BlockSelection".texture = block_selection_default
+			else:
+				$"../WorldTileMap/BlockSelection".texture = highlighted_block_selection_default
 		else:
-			$"../WorldTileMap/BlockSelection".texture = block_selection_out
+			if settings_config.get_value("accessibility", "highlight_block_selection") == false:
+				$"../WorldTileMap/BlockSelection".texture = block_selection_out
+			else:
+				$"../WorldTileMap/BlockSelection".texture = highlighted_block_selection_out
 			
 		if local_mouse_pos.length() <= radius:
 			if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":

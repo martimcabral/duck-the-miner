@@ -143,7 +143,7 @@ func check_graph(toggled_on : bool, nome : String):
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $Companies/MouseSoundEffects
 	if mouse_sound:
-		mouse_sound.stream = load("res://sounds/sound_effects/mining2.ogg")
+		mouse_sound.stream = load("res://sounds/effects/mining/mining2.ogg")
 		mouse_sound.pitch_scale = 5
 		mouse_sound.play()
 

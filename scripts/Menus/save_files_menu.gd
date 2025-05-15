@@ -116,14 +116,14 @@ func _on_verify_files_timeout() -> void:
 	saves_config.save(saves_path)
 
 func _on_back_button_pressed() -> void:
-	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
 	$"../../../MouseSoundEffects".play()
 	$"../StartMenu".visible = true
 	$".".visible = false
 
 func _on_creator_button_pressed() -> void:
 	$SaveScreationPanel.visible = false
-	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/play.ogg")
+	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/play.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 1.25
 	$"../../../MouseSoundEffects".play()
 	
@@ -256,7 +256,7 @@ func _on_creator_button_pressed() -> void:
 
 func _on_delete_game_pressed() -> void:
 	$PlayButton.disabled = true
-	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 0.75
 	$"../../../MouseSoundEffects".play()
 
@@ -317,14 +317,14 @@ func create_styleboxes():
 	focus_stylebox = StyleBoxes[2]
 
 func _on_play_button_mouse_entered() -> void:
-	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 1
 	$"../../../MouseSoundEffects".play()
 
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $"../../../MouseSoundEffects"
 	if mouse_sound:
-		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
+		mouse_sound.stream = load("res://sounds/effects/mining/mining1.ogg")
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
 

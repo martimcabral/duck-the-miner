@@ -83,12 +83,12 @@ func _ready():
 		$AccessibilityPanel/LanguageDropDown.selected = config.get_value("accessibility", "language")
 		$AccessibilityPanel/SubtitlesCheckButton.button_pressed = config.get_value("accessibility", "subtitles")
 		$"../../ColorblindFilter".material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness"))
-		
+		$AccessibilityPanel/HighlightBlockSelectionCheckbox.button_pressed = config.get_value("accessibility", "highlight_block_selection")
 	else:
 		print("[options_menu.gd] ERROR: Failed to load config file. Error:", err)
 
 func _on_back_button_pressed() -> void:
-	$"../../../MouseSoundEffects".stream = load("res://sounds/sound_effects/back.ogg")
+	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 1
 	$"../../../MouseSoundEffects".play()
 	
@@ -363,4 +363,8 @@ func _on_language_drop_down_item_selected(index: int) -> void:
 
 func _on_subtitles_check_button_toggled(toggled_on: bool) -> void:
 	config.set_value("accessibility", "subtitles", toggled_on)
+	config.save(file_path)
+
+func _on_highlight_block_selection_checkbox_toggled(toggled_on: bool) -> void:
+	config.set_value("accessibility", "highlight_block_selection", toggled_on)
 	config.save(file_path)

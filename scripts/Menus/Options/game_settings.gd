@@ -50,6 +50,7 @@ func create_config_file():
 	config.set_value("accessibility", "colorblindness", 0)
 	config.set_value("accessibility", "language", 0)
 	config.set_value("accessibility", "subtitles", true)
+	config.set_value("accessibility", "highlight_block_selection", false)
 	
 	# Save the file
 	var save_error = config.save(file_path)

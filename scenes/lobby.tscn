@@ -1548,11 +1548,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LoadingPanel" type="Panel" parent="Camera2D/HUD/Lobby"]
-visible = false
 z_index = 1
 layout_mode = 1
-offset_right = 358.0
-offset_bottom = 127.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 768.0
+offset_top = 468.0
+offset_right = 1126.0
+offset_bottom = 595.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_21jdc")
 
 [node name="LoadingText" type="Label" parent="Camera2D/HUD/Lobby/LoadingPanel"]

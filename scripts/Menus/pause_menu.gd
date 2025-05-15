@@ -148,7 +148,7 @@ func _ready() -> void:
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects
 	if mouse_sound:
-		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
+		mouse_sound.stream = load("res://sounds/effects/mining/mining1.ogg")
 		mouse_sound.pitch_scale = 0.75
 		mouse_sound.play()
 

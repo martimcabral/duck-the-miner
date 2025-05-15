@@ -31,6 +31,7 @@ script = ExtResource("1_br3yh")
 
 [node name="GUI_Pause" type="CanvasLayer" parent="."]
 layer = 3
+visible = false
 
 [node name="Colorblindness" type="TextureRect" parent="GUI_Pause"]
 z_index = 2
@@ -173,9 +174,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -93.0
-offset_top = -286.0
+offset_top = -282.0
 offset_right = 93.0
-offset_bottom = -245.0
+offset_bottom = -241.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

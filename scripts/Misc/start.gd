@@ -49,11 +49,11 @@ func _ready() -> void:
 	if random_side == 1:
 		$GUI/Center/Background.flip_h = true
 			
-	var random_flip_y = randi_range(1, 100)
+	var random_flip_y = randi_range(1, 25)
 	if random_flip_y == 1:
 		$GUI/Center/Background.flip_v = true
 	
-	var easter_egg_title = randi_range(1, 25)
+	var easter_egg_title = randi_range(1, 100)
 	if easter_egg_title == 25:
 		$GUI/Center/Title.text = "Miner the Duck"
 
@@ -66,10 +66,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Agachar"):
 		if agachado == 0:
 			agachado = 1
-			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/main_menu/main_menu_down.png")
+			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/menus/main_menu_down.png")
 		elif agachado == 1:
 			agachado = 0
-			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/main_menu/main_menu_up.png")
+			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/menus/main_menu_up.png")
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):
@@ -83,7 +83,7 @@ func _process(_delta: float) -> void:
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects
 	if mouse_sound:
-		mouse_sound.stream = load("res://sounds/sound_effects/mining1.ogg")
+		mouse_sound.stream = load("res://sounds/effects/mining/mining1.ogg")
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
 
