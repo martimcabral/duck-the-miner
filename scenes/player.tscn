@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=115 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/player/skins/1/duck_walking.png" id="2_815s6"]
@@ -15,12 +15,9 @@
 [ext_resource type="Shader" uid="uid://c7yls7leu4r2t" path="res://scripts/Shaders/mirage.gdshader" id="7_0l1qt"]
 [ext_resource type="Texture2D" uid="uid://bsmkp35fh8md3" path="res://assets/textures/player/skins/2/duck_walking.png" id="7_487ah"]
 [ext_resource type="Texture2D" uid="uid://cvf6kq6fnv7y1" path="res://assets/textures/player/overlays/freezing_effect.png" id="7_i24mp"]
-[ext_resource type="AudioStream" uid="uid://8weydkx10qqi" path="res://sounds/effects/mining/mining2.ogg" id="7_lpuh6"]
 [ext_resource type="Texture2D" uid="uid://nilyubfe1cx1" path="res://rcedit/game_dependency.png" id="8_3vols"]
-[ext_resource type="AudioStream" uid="uid://bwgwkvtcl6fsm" path="res://sounds/effects/mining/mining3.ogg" id="8_avynl"]
 [ext_resource type="Texture2D" uid="uid://dds2rssbdnqbj" path="res://assets/textures/player/skins/3/duck_flying.png" id="8_jb8qh"]
 [ext_resource type="Texture2D" uid="uid://bq5r4ddf8jb43" path="res://assets/textures/player/skins/4/duck_flying.png" id="8_jrggs"]
-[ext_resource type="AudioStream" uid="uid://c3kmi1pd30e6n" path="res://sounds/effects/mining/mining4.ogg" id="9_4jbyg"]
 [ext_resource type="Texture2D" uid="uid://cu34mbjei30p7" path="res://assets/textures/player/skins/3/duck_squat.png" id="9_tbdlt"]
 [ext_resource type="Texture2D" uid="uid://cd8he760f8fvc" path="res://assets/textures/player/skins/3/dead.png" id="10_dt7fs"]
 [ext_resource type="Texture2D" uid="uid://dmhdheeiafvk1" path="res://assets/textures/player/skins/3/duck_walking.png" id="10_hal6l"]
@@ -39,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://ug2xoqmhnbuq" path="res://assets/textures/player/status/icons/heart.png" id="31_t4otl"]
 [ext_resource type="Texture2D" uid="uid://qqq78gpdvgw0" path="res://assets/textures/player/status/icons/oxygen.png" id="32_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://bv1bpwf18raeb" path="res://assets/textures/player/status/icons/battery_energy.png" id="32_j2b1d"]
+[ext_resource type="AudioStream" uid="uid://vcsr6uhohb12" path="res://sounds/effects/duck/duck_death.mp3" id="37_hax0n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
 atlas = ExtResource("2_gl8cc")
@@ -1025,20 +1023,8 @@ tab_0/title = "IF THIS APPEARS THAT THE HOTBAR HAS ERRORS"
 
 [node name="PlayerSounds" type="Node2D" parent="."]
 
-[node name="Mining1" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+[node name="Mining" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("6_754b5")
-bus = &"Player"
-
-[node name="Mining2" type="AudioStreamPlayer2D" parent="PlayerSounds"]
-stream = ExtResource("7_lpuh6")
-bus = &"Player"
-
-[node name="Mining3" type="AudioStreamPlayer2D" parent="PlayerSounds"]
-stream = ExtResource("8_avynl")
-bus = &"Player"
-
-[node name="Mining4" type="AudioStreamPlayer2D" parent="PlayerSounds"]
-stream = ExtResource("9_4jbyg")
 bus = &"Player"
 
 [node name="PlaceBlock" type="AudioStreamPlayer2D" parent="PlayerSounds"]
@@ -1051,6 +1037,9 @@ stream = ExtResource("13_2b2kh")
 volume_db = -5.0
 max_distance = 2e+06
 bus = &"Player"
+
+[node name="Death" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("37_hax0n")
 
 [node name="uvBatteryConsumption" type="Timer" parent="."]
 wait_time = 0.5

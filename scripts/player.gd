@@ -256,7 +256,14 @@ func _process(delta):
 				1: $"PlayerSounds/Quack".pitch_scale = 0.9
 				2: $"PlayerSounds/Quack".pitch_scale = 1
 				3: $"PlayerSounds/Quack".pitch_scale = 1.1
-			$"PlayerSounds/Quack".play()
+			var easter_egg = randi_range(1, 10)
+			if easter_egg == 10:
+				$"PlayerSounds/Quack".stream = load("res://sounds/effects/duck/quack_easter_egg.ogg")
+				$"PlayerSounds/Quack".play()
+			else:
+				$"PlayerSounds/Quack".stream = load("res://sounds/effects/duck/quack.ogg")
+				$"PlayerSounds/Quack".play()
+			
 			if subtitles == true:
 				var new_quack = quack_scene.instantiate()
 				new_quack.position -= Vector2(0, 8)

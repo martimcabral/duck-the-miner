@@ -524,7 +524,7 @@ func _on_time_to_start_timeout() -> void:
 	get_tree().current_scene = new_world
 
 func _on_back_to_lobby_button_pressed() -> void:
-	$MouseSoundEffects.stream = load("res://sounds/sound_effects/back.ogg")
+	$MouseSoundEffects.stream = load("res://sounds/effects/menus/back.ogg")
 	$MouseSoundEffects.play()
 	
 	selecting_mission = false

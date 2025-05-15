@@ -443,7 +443,6 @@ theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -829,6 +828,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
 text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1700,6 +1700,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
 
 [node name="AccessibilityPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
+visible = false
 layout_mode = 0
 offset_left = 304.0
 offset_top = 5.0
