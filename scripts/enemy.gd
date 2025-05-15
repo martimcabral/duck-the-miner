@@ -160,9 +160,10 @@ func _on_time_to_wander_timeout() -> void:
 	target_position = position + random_offset
 
 func _on_time_to_sound_effect_timeout() -> void:
-	match randi_range(1, 3):
-		1: $Sounds/Bat/Idle.pitch_scale = 0.95
-		2: $Sounds/Bat/Idle.pitch_scale = 1
-		3: $Sounds/Bat/Idle.pitch_scale = 1.05
-	$Sounds/Bat/Idle.play()
-	$TimeToSoundEffect.wait_time = randf_range(3,  7)
+	if $"../PauseMenu/GUI_Pause".visible == false:
+		match randi_range(1, 3):
+			1: $Sounds/Bat/Idle.pitch_scale = 0.95
+			2: $Sounds/Bat/Idle.pitch_scale = 1
+			3: $Sounds/Bat/Idle.pitch_scale = 1.05
+		$Sounds/Bat/Idle.play()
+		$TimeToSoundEffect.wait_time = randf_range(3, 8)

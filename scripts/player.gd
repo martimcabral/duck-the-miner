@@ -45,6 +45,7 @@ var highlighted_block_selection_out = preload("res://assets/textures/tilemaps/se
 @onready var MissionListAtWorld = $HUD/MissionList
 @onready var world = $".."
 @onready var hotbar = $Camera2D/HUD/Hotbar/TabBar
+@onready var block_range = $BlockRange
 
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
@@ -97,8 +98,6 @@ func _ready():
 	
 	collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 	radius = (collision_shape as CircleShape2D).radius
-	mouse_pos = get_global_mouse_position()
-	local_mouse_pos = $BlockRange.to_local(mouse_pos)
 	
 	var file_path = "user://game_settings.cfg"
 	var config = ConfigFile.new()
@@ -130,21 +129,20 @@ func _ready():
 		"Radioactive": $ChromaticAberration.visible = true
 
 func player_movement(input, delta):
-	if is_duck_dead == false:
-		if $"../PauseMenu/GUI_Pause".visible == false:
-			if input: 
-				if Input.is_action_pressed("Agachar"):
-					speed = 0
-					velocity = velocity.move_toward(input * speed , delta * accel)
-				elif Input.is_action_pressed("Run"):
-					speed = running_speed
-					velocity = velocity.move_toward(input * speed , delta * accel)
-				else:
-					speed = walking_speed
-					velocity = velocity.move_toward(input * speed , delta * accel)
-			else: 
-				velocity = velocity.move_toward(Vector2(0,0), delta * friction)
-			velocity.y += (falling_speed * delta) * 0.75
+	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
+		if input: 
+			if Input.is_action_pressed("Agachar"):
+				speed = 0
+				velocity = velocity.move_toward(input * speed , delta * accel)
+			elif Input.is_action_pressed("Run"):
+				speed = running_speed
+				velocity = velocity.move_toward(input * speed , delta * accel)
+			else:
+				speed = walking_speed
+				velocity = velocity.move_toward(input * speed , delta * accel)
+		else: 
+			velocity = velocity.move_toward(Vector2(0,0), delta * friction)
+		velocity.y += (falling_speed * delta) * 0.75
 
 func _process(delta):
 	do_bloddy_overlay()
@@ -166,7 +164,7 @@ func _process(delta):
 	elif current_health > 0:
 		is_duck_dead = false
 	
-	if is_duck_dead == true:
+	if is_duck_dead == true and $"../PauseMenu/GUI_Pause".visible == false:
 		Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 		$HUD/DeathLabel.visible = true
 		$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
@@ -195,13 +193,13 @@ func _process(delta):
 	if Input.is_action_just_pressed("Open_Feedback_Page"):
 		OS.shell_open("https://sr-patinho.itch.io/duck-the-miner")
 	
-	$Flashlight.look_at(get_global_mouse_position())
 	if current_battery <= 0:
 		is_flashlight_being_used = false
 		$HUD/RadarPanel.visible = false
 		$HUD/RadarPanelEnemies.visible = false
 		$Flashlight.energy = 0
 	elif $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
+		$Flashlight.look_at(get_global_mouse_position())
 		if Input.is_action_just_pressed("Use_Item") and current_item == "UV Flashlight":
 			print("[player.gd] UV Flashlight used!")
 			match is_flashlight_being_used:
@@ -271,16 +269,19 @@ func _process(delta):
 		elif $"../PauseMenu/GUI_Pause".visible == false:
 			$"../PauseMenu/GUI_Pause".visible = true
 			Input.set_custom_mouse_cursor(cursor_default)
-		
+	
 	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
 	var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
 	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/PlayerSounds".position = tile_pos
 	
-	var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
-	player_movement(input, delta)
-	move_and_slide()
-	$AnimatedSprite2D.play()
+	if $"../PauseMenu/GUI_Pause".visible == false:
+		var input = Input.get_vector("Walk_Left","Walk_Right","Fly_Up","Fly_Down")
+		player_movement(input, delta)
+		move_and_slide()
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.stop()
 	
 	if not is_on_floor() and is_duck_dead == false:
 		$AnimatedSprite2D.animation = str(skin_selected) + "_flying"
@@ -349,13 +350,14 @@ func _process(delta):
 		if local_mouse_pos.length() <= radius:
 			if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":
 				if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
-					var torch_scene : PackedScene = preload("res://scenes/misc/light.tscn")
+					var torch_scene : PackedScene = load("res://scenes/misc/light.tscn")
 					var torch = torch_scene.instantiate()
 				
 					torch.position = CaveSystem.map_to_local(tile_pos)
-					add_child(torch)
-					lights_used += 1
+					add_sibling(torch)
 					$"../Player/PlayerSounds/PlaceBlock".play()
+					print("Torch Placed: ", torch, "/", tile_pos)
+				
 			if Input.is_action_just_pressed("Place_Block") and current_item != "Light":
 					if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 						print(tile_data, " ", tile_id)

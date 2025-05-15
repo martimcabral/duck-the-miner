@@ -588,15 +588,16 @@ func create_radar_enemies_lines():
 		$Player/HUD/RadarPanelEnemies/RadarPanel.add_child(horizontal_line)
 
 func _on_spawn_enemies_timeout() -> void:
-	print("[world.gd] Enemy Spawned")
-	var EnemyScene = preload("res://scenes/misc/enemy.tscn")
-	var enemy = EnemyScene.instantiate()
-	enemy.set_meta("Enemy", "Enemy")
-	enemy.add_to_group("Enemy")
-	enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))
-	var scale_factor = randf_range(0.8, 1.2)
-	enemy.scale = Vector2(scale_factor, scale_factor)
-	add_child(enemy)
+	if $PauseMenu/GUI_Pause.visible == false:
+		print("[world.gd] Enemy Spawned")
+		var EnemyScene = preload("res://scenes/misc/enemy.tscn")
+		var enemy = EnemyScene.instantiate()
+		enemy.set_meta("Enemy", "Enemy")
+		enemy.add_to_group("Enemy")
+		enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))
+		var scale_factor = randf_range(0.8, 1.2)
+		enemy.scale = Vector2(scale_factor, scale_factor)
+		add_child(enemy)
 
 func update_radar_tool():
 	var radar_width : float = $Player/HUD/RadarPanel/WorldPanel.size.x - $Player/HUD/RadarPanel/WorldPanel/PatinhoEstaAqui.size.x

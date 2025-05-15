@@ -286,19 +286,19 @@ func update_field_ui(field_name: String, thumbnail: Texture, shadow_color: Color
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_delta_area_2d_mouse_entered() -> void:
-	$FieldNameLabel.text = "[center]%s[/center]" % "Delta Belt"
+	$FieldNameLabel.text = "Delta Belt"
 	$FieldNameLabel.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
 
 func _on_gamma_area_2d_mouse_entered() -> void:
-	$FieldNameLabel.text = "[center]%s[/center]" % "Gamma Field"
+	$FieldNameLabel.text = "Gamma Field"
 	$FieldNameLabel.add_theme_color_override("font_shadow_color", Color(0.157, 0.349, 0.788, 1))
 
 func _on_omega_area_2d_mouse_entered() -> void:
-	$FieldNameLabel.text = "[center]%s[/center]" % "Omega Field"
+	$FieldNameLabel.text = "Omega Field"
 	$FieldNameLabel.add_theme_color_override("font_shadow_color", Color(0.157, 0.788, 0.549, 1))
 
 func _on_yotta_area_2d_mouse_entered() -> void:
-	$FieldNameLabel.text = "[center]%s[/center]" % "Koppa Belt"
+	$FieldNameLabel.text = "Koppa Belt"
 	$FieldNameLabel.add_theme_color_override("font_shadow_color", Color(0.659, 0.157, 0.788, 1))
 
 func _on_delta_area_2d_mouse_exited() -> void:

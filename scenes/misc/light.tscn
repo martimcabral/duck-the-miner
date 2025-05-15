@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bjod08dslu63f" path="res://assets/textures/player/lights/point_light.png" id="2_ibwq3"]
 
 [node name="BulkheadLight" type="Node2D"]
+z_index = 1
 texture_filter = 1
 
 [node name="LightSprite" type="Sprite2D" parent="."]

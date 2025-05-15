@@ -1,29 +1,8 @@
 extends TileMap
 
 @onready var player = $"../Player"
-@onready var block_range = $"../Player/BlockRange"
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var world = $".."
-
-# TIRAR ISTO DAQUI NAO FAZ SENTIDO NENHUM E COMO E QUE AINDA ISTO TA AQUI ISSO DA TP PA AQUI DE NOVO
-# EU JA METI ESTE CODIGO NO PLAYER.GD 10 VEZES E COMO E QUE ISTO VEM PARA PRAQUI WTF
-func _process(_delta: float) -> void:
-		var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
-		var mouse_pos = get_global_mouse_position()
-		var local_mouse_pos = block_range.to_local(mouse_pos)
-		var collision_shape = block_range.get_node("CollisionShape2D").shape
-		var radius = (collision_shape as CircleShape2D).radius
-			
-		if local_mouse_pos.length() <= radius:
-			if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":
-				if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
-					var torch_scene : PackedScene = preload("res://scenes/misc/light.tscn")
-					var torch = torch_scene.instantiate()
-				
-					torch.position = CaveSystem.map_to_local(tile_pos)
-					add_child(torch)
-					$"../Player/PlayerSounds/PlaceBlock".play()
-					#print("Torch Placed: ", tile_pos)
 
 func drop_items():
 	var tile_pos = get_global_mouse_position() / 16
