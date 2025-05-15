@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Duck the Miner"
-config/version="2.12"
+config/version="2.13"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.0509804, 0, 0.109804, 1)
@@ -25,10 +25,10 @@ buses/channel_disable_threshold_db=-80.0
 
 [autoload]
 
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 DiscordRp="*res://scripts/Autoload/discordRP.gd"
 GameSettings="*res://scripts/Menus/Options/game_settings.gd"
 GetSaveFile="*res://scripts/Autoload/get_save_file.gd"
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
 

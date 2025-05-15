@@ -59,7 +59,7 @@ var current_build_future : int = 0
 var max_build_future : int = 1
 ###############################################################################################################################################################
 var primary_mission_completed : bool = false
-var second_mission_completed : bool = false
+var secondary_mission_completed : bool = false
 ###############################################################################################################################################################
 
 func _ready():
@@ -274,27 +274,27 @@ func _process(_delta: float) -> void:
 	
 	match secundary_objective:
 		"More Infrastructure":
-			if current_more_infrastructure >= max_more_infrastructure: second_mission_completed = true
+			if current_more_infrastructure >= max_more_infrastructure: secondary_mission_completed = true
 			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_more_infrastructure, "/", max_more_infrastructure))
 		"Power the Future":
-			if current_power_future >= max_power_future: second_mission_completed = true
+			if current_power_future >= max_power_future: secondary_mission_completed = true
 			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_power_future, "/", max_power_future))
 		"Heat Extraction":
-			if current_heat_extraction >= max_heat_extraction: second_mission_completed = true
+			if current_heat_extraction >= max_heat_extraction: secondary_mission_completed = true
 			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_heat_extraction, "/", max_heat_extraction))
 		"Cold Extraction":
-			if current_cold_extraction >= max_cold_extraction: second_mission_completed = true
+			if current_cold_extraction >= max_cold_extraction: secondary_mission_completed = true
 			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_cold_extraction, "/", max_cold_extraction))
 		"Fuel the Company":
-			if current_fuel_company >= max_fuel_company: second_mission_completed = true
+			if current_fuel_company >= max_fuel_company: secondary_mission_completed = true
 			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_fuel_company, "/", max_fuel_company))
 		"Build the Future":
-			if current_build_future >= max_build_future: second_mission_completed = true
+			if current_build_future >= max_build_future: secondary_mission_completed = true
 			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_build_future, "/", max_build_future))
 	
 	if primary_mission_completed == true:
 		$Player/HUD/MissionList.set_item_custom_fg_color(0, Color("00b54c"))
-	if second_mission_completed == true:
+	if secondary_mission_completed == true:
 		$Player/HUD/MissionList.set_item_custom_fg_color(1, Color("00b54c"))
 	
 	if $".".has_node("WorldMusic"):

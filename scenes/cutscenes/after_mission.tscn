@@ -184,7 +184,7 @@ offset_right = 1608.0
 offset_bottom = 1772.0
 theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
 theme_override_font_sizes/font_size = 92
-text = "ERROR 41"
+text = "ERROR:41"
 text_overrun_behavior = 3
 
 [node name="FeesValuesText" type="Label" parent="FyctionTax"]
@@ -195,7 +195,7 @@ offset_right = 1720.0
 offset_bottom = 1772.0
 theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
 theme_override_font_sizes/font_size = 92
-text = "ERROR 42"
+text = "ERROR:42"
 horizontal_alignment = 2
 text_overrun_behavior = 3
 
@@ -214,7 +214,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.0156863, 0.380392, 0.882353, 1)
 theme_override_font_sizes/font_size = 92
-text = "Fees Total:  - ERROR 43"
+text = "ERROR:43"
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3

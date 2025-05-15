@@ -12,6 +12,9 @@ func _ready():
 
 func create_config_file():
 	############# Default Settings ################
+	# Version
+	config.set_value("version", "current", str("beta." + ProjectSettings.get_setting("application/config/version")))
+	
 	# Display
 	config.set_value("display", "windows_size", 2)
 	config.set_value("display", "windows_type", 0)
@@ -53,8 +56,4 @@ func create_config_file():
 	config.set_value("accessibility", "highlight_block_selection", false)
 	
 	# Save the file
-	var save_error = config.save(file_path)
-	if save_error != OK:
-		print("[ERROR] Could not save the configuration file: ", save_error)
-	else:
-		print("Configuration file created successfully.")
+	config.save(file_path)

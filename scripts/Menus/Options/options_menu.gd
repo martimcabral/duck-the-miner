@@ -10,8 +10,10 @@ var change_keybind_of
 func _ready():
 	previous_keybutton = $ControlsPanel/NextKeyHandler
 	
-	var err = config.load(file_path)
-	if err == OK:
+	config.load(file_path)
+	if config.get_value("version", "current", "ERROR:384") != str("beta." + ProjectSettings.get_setting("application/config/version")):
+		GameSettings.create_config_file()
+	else:
 		############# Display #############
 		$DisplayPanel/WindowsTypeDropDown.selected = config.get_value("display", "windows_type")
 		if config.get_value("display", "windows_type") == 0:
@@ -84,8 +86,6 @@ func _ready():
 		$AccessibilityPanel/SubtitlesCheckButton.button_pressed = config.get_value("accessibility", "subtitles")
 		$"../../ColorblindFilter".material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness"))
 		$AccessibilityPanel/HighlightBlockSelectionCheckbox.button_pressed = config.get_value("accessibility", "highlight_block_selection")
-	else:
-		print("[options_menu.gd] ERROR: Failed to load config file. Error:", err)
 
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")

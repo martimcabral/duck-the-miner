@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b60lr0vkrkpse" path="res://assets/textures/universe/planets/mercury.png" id="6_kjeq0"]
 [ext_resource type="Texture2D" uid="uid://cmhkliq6pxmto" path="res://assets/textures/universe/orbits_and_fields/orbit.png" id="7_ub56o"]
 [ext_resource type="Script" uid="uid://ddebba1a64mjg" path="res://scripts/Menus/contract.gd" id="8_arjad"]
+[ext_resource type="AudioStream" uid="uid://cubwwxd0gkir7" path="res://sounds/effects/menus/cash.ogg" id="8_busoe"]
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Misc/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
 [ext_resource type="Texture2D" uid="uid://bh1dlvkx30f3a" path="res://assets/textures/equipment/swords/debug_sword.png" id="8_gufxi"]
@@ -696,10 +697,6 @@ corner_radius_bottom_left = 25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_30fw8"]
 
-[sub_resource type="Environment" id="Environment_8tmsf"]
-glow_enabled = true
-glow_bloom = 0.4
-
 [node name="Lobby" type="Node2D"]
 script = ExtResource("1_13iuh")
 
@@ -1278,6 +1275,11 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_4pkyx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rievh")
 theme_override_styles/normal = SubResource("StyleBoxFlat_olier")
 text = "Sell Item"
+
+[node name="SellSoundEffect" type="AudioStreamPlayer2D" parent="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/SellButton"]
+position = Vector2(45, 96)
+stream = ExtResource("8_busoe")
+bus = &"Menus"
 
 [node name="TabBar" type="OptionButton" parent="Camera2D/HUD/Lobby/LobbyPanel/StoragePanel" groups=["Buttons"]]
 layout_mode = 1
@@ -2694,27 +2696,25 @@ grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_k2cb4")
 
-[node name="FieldNameLabel" type="RichTextLabel" parent="."]
+[node name="FieldNameLabel" type="Label" parent="."]
 z_index = 4
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -287.0
-offset_top = 436.0
-offset_right = 42.0
-offset_bottom = 489.0
+offset_left = -495.0
+offset_top = 426.0
+offset_right = 72.0
+offset_bottom = 490.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.75, 1.75)
 theme_override_constants/shadow_outline_size = 4
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
+theme_override_font_sizes/font_size = 64
 text = "Field Name"
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_8tmsf")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FadeInLobby" type="Timer" parent="."]
 wait_time = 1.1

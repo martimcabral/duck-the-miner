@@ -12,6 +12,12 @@ var money_config : ConfigFile = ConfigFile.new()
 var stock_config : ConfigFile = ConfigFile.new()
 var statistics_config : ConfigFile = ConfigFile.new()
 
+var primary_mission_completed : bool = false
+var primary_mission_award : int = 14000
+var secondary_mission_completed : bool = false
+var secondary_mission_award : int = 9000
+var bonus : int = 0
+
 var fyction_tax : float = 0.0001
 var fyction_interest : int = 0
 
@@ -141,11 +147,28 @@ func _ready() -> void:
 		fees_values += str("[", light_price, "€, -", light_rental,"€]\n")
 		total += light_rental
 	
+	if primary_mission_completed == true:
+		fees_label += str("> Primary Mission\n")
+		match difficulty:
+			"easy": primary_mission_award = 16000
+			"normal": primary_mission_award = 14000
+			"hard": primary_mission_award = 12000
+		fees_values += str("[+", primary_mission_award,"€]\n")
+		bonus += primary_mission_award
+	if secondary_mission_completed == true:
+		fees_label += str("> Seconday Mission\n")
+		match difficulty:
+			"easy": secondary_mission_award = 10000
+			"normal": secondary_mission_award = 9000
+			"hard": secondary_mission_award = 8000
+		fees_values += str("[+", secondary_mission_award,"€]\n")
+		bonus += secondary_mission_award
 	$FyctionTax/FeesText.text = fees_label
 	$FyctionTax/FeesValuesText.text = fees_values
-	$FyctionTax/FeesTotal.text = str("Fees Total: -", total, "€")
+	$FyctionTax/FeesTotal.text = str("Fees Total: -", total, "€ ─ Bonus: ", bonus,"€")
 	
-	remove_money()
+	
+	adjust_money()
 
 func more_days():
 	var new_current_day = randi_range(1, 3) + statistics_config.get_value("statistics", "days")
@@ -180,9 +203,9 @@ func get_items():
 			"Radar the Enemies": has_radar_the_enemies = true
 	print("[after_mission.gd] Sword: ", has_sword, "; Pickaxe: ", has_pickaxe, "; Light: ", has_lights, "; UV Flashlight: ", has_uv_flashlight, "; Radar the Tool: ", has_radar_the_tool, "; Radar the Enemies: ", has_radar_the_enemies)
 
-func remove_money():
+func adjust_money():
 	var current_money = money_config.get_value("money", "current")
-	current_money -= total
+	current_money += (total * -1) + bonus
 	money_config.set_value("money", "current", current_money)
 	money_config.save(money_path)
 

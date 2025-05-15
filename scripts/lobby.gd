@@ -647,6 +647,7 @@ func _on_item_list_item_selected(index: int) -> void:
 
 func _on_sell_button_pressed() -> void:
 	if item_list.item_count > 0:
+		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/SellButton/SellSoundEffect.play()
 		item_list.remove_item(item_selected)
 		var price = get_price(selected_item_name)
 		remove_item_from_inventory(selected_item_name)
