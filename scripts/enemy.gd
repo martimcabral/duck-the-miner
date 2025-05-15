@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.play("bat_flying")
 		update_debug_info()
 		if current_health <= 0: # Enemy Death Sequence
+			$Sounds/Bat/Death.play()
 			for i in randi_range(1, 3):
 				var packed_scene = load("res://scenes/misc/items.tscn")
 				var instance = packed_scene.instantiate()
@@ -129,6 +130,11 @@ func _on_enemy_hitbox_input_event(_viewport: Node, event: InputEvent, _shape_idx
 
 func attacked():
 	if was_enemy_atacked == true:
+		match randi_range(1, 3):
+			1: $Sounds/Bat/Idle.pitch_scale = 0.95
+			2: $Sounds/Bat/Idle.pitch_scale = 1
+			3: $Sounds/Bat/Idle.pitch_scale = 1.05
+		$Sounds/Bat/Idle.play()
 		print(was_enemy_atacked)
 		print("Enemy Attacked")
 		var damage = 15
@@ -145,9 +151,18 @@ func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")
 
 func _on_time_to_wander_timeout() -> void:
+	
 	$TimeToWander.wait_time = randi_range(8, 25)
 	var random_offset = Vector2(
 		randf_range(-200, 200),
 		randf_range(-200, 200)
 	)
 	target_position = position + random_offset
+
+func _on_time_to_sound_effect_timeout() -> void:
+	match randi_range(1, 3):
+		1: $Sounds/Bat/Idle.pitch_scale = 0.95
+		2: $Sounds/Bat/Idle.pitch_scale = 1
+		3: $Sounds/Bat/Idle.pitch_scale = 1.05
+	$Sounds/Bat/Idle.play()
+	$TimeToSoundEffect.wait_time = randf_range(3,  7)

@@ -865,10 +865,10 @@ texture_filter = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -254.0
+offset_left = -293.0
 offset_top = 25.0
 offset_right = 1.0
-offset_bottom = 145.0
+offset_bottom = 141.0
 grow_horizontal = 0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -876,14 +876,12 @@ theme_override_font_sizes/font_size = 23
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ov3mw")
 theme_override_styles/panel = SubResource("StyleBoxFlat_3oei7")
 select_mode = 1
-allow_reselect = true
-allow_rmb_select = true
 allow_search = false
 auto_height = true
-item_count = 3
+item_count = 2
 icon_scale = 2.0
-item_0/text = "Collect Goods: 0/100"
-item_1/text = "Kill Enemies: 0/20"
+item_0/text = "ERROR:565"
+item_1/text = "ERROR:566"
 
 [node name="MissionListTitle" type="Label" parent="Player/HUD/MissionList"]
 z_index = 2
@@ -903,24 +901,24 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 32
-text = "Mission List:"
+text = "Missions:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Line2D" type="Line2D" parent="Player/HUD/MissionList"]
 position = Vector2(-1.13378, 33.5)
 scale = Vector2(1.6083, 0.260001)
-points = PackedVector2Array(2, 35, 160.501, 35)
+points = PackedVector2Array(2, 35, 184.128, 35)
 
 [node name="ItemList" type="ItemList" parent="Player/HUD"]
 texture_filter = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -254.0
-offset_top = 172.0
+offset_left = -293.0
+offset_top = 169.0
 offset_right = 1.0
-offset_bottom = 252.0
+offset_bottom = 249.0
 grow_horizontal = 0
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -959,7 +957,7 @@ vertical_alignment = 1
 [node name="Line2D" type="Line2D" parent="Player/HUD/ItemList"]
 position = Vector2(-1.13378, 33.5)
 scale = Vector2(1.6083, 0.260001)
-points = PackedVector2Array(2, 35, 160.501, 35)
+points = PackedVector2Array(2, 35, 183.507, 35)
 
 [node name="EmptyLabel" type="Label" parent="Player/HUD/ItemList"]
 z_index = 2
@@ -1009,7 +1007,7 @@ tile_map_data = PackedByteArray("AAAFAAAAAwADAAAAAAAGAAAAAwADAAAAAAAHAAAAAwADAAA
 tile_set = SubResource("TileSet_inx3v")
 
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
-color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="WorldMusic" type="Node2D" parent="."]
 

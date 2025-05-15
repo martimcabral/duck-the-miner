@@ -176,6 +176,8 @@ func _process(delta):
 		if do_death_once == false:
 			$HUD/BlackAndWhite/BaWFadeInTimer.start()
 			$AnimatedSprite2D.animation = str(skin_selected) + "_dead"
+			$PlayerSounds/Death.play()
+			$"../WorldMusic".queue_free()
 			do_death_once = true
 		$HUD/BlackAndWhite.material.set_shader_parameter("intensity", BaW_time_remaining)
 	else:
@@ -256,13 +258,7 @@ func _process(delta):
 				1: $"PlayerSounds/Quack".pitch_scale = 0.9
 				2: $"PlayerSounds/Quack".pitch_scale = 1
 				3: $"PlayerSounds/Quack".pitch_scale = 1.1
-			var easter_egg = randi_range(1, 10)
-			if easter_egg == 10:
-				$"PlayerSounds/Quack".stream = load("res://sounds/effects/duck/quack_easter_egg.ogg")
-				$"PlayerSounds/Quack".play()
-			else:
-				$"PlayerSounds/Quack".stream = load("res://sounds/effects/duck/quack.ogg")
-				$"PlayerSounds/Quack".play()
+			$"PlayerSounds/Quack".play()
 			
 			if subtitles == true:
 				var new_quack = quack_scene.instantiate()
@@ -418,14 +414,14 @@ func destroy_block():
 				
 				# Check for specific tile ID
 				if not (tile_id == Vector2i(0, 1)):
-					var mining_sound_effect = randi_range(1, 4)  # Adjusted range to match sound clips
-					if randi_range(0, 2) == 1:
-						match mining_sound_effect:
-							1: $"../Player/PlayerSounds/Mining1".play()
-							2: $"../Player/PlayerSounds/Mining2".play()
-							3: $"../Player/PlayerSounds/Mining3".play()
-							4: $"../Player/PlayerSounds/Mining4".play()
-						
+					if randi_range(1, 3) == 1:
+						match randi_range(1, 4):
+							1: $"../Player/PlayerSounds/Mining".pitch_scale = 0.9
+							2: $"../Player/PlayerSounds/Mining".pitch_scale = 0.95
+							3: $"../Player/PlayerSounds/Mining".pitch_scale = 1
+							3: $"../Player/PlayerSounds/Mining".pitch_scale = 1.1
+						$"../Player/PlayerSounds/Mining".play()
+					
 					# Reduce health of the tile
 					if used_tiles[tile_pos]["health"] > 0:
 						used_tiles[tile_pos]["health"] -= 125  # Reduce health here // Pickaxe Damage
@@ -557,6 +553,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_meta("Enemy") and ghost_mode == false:
 		$ResetModulateRedHit.start()
 		$AnimatedSprite2D.modulate = Color(1, 0, 0)
+		$PlayerSounds/Hit.play()
 		var damage : int = 0
 		match current_difficulty:
 			"easy": damage = randi_range(3, 6)
@@ -576,6 +573,10 @@ func _on_reset_modulate_red_hit_timeout() -> void:
 func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if current_item == "Sword":
+			$PlayerSounds/Sword.pitch_scale = 0.95
+			$PlayerSounds/Sword.pitch_scale = 1
+			$PlayerSounds/Sword.pitch_scale = 1.05
+			$PlayerSounds/Sword.play()
 			print("Player attacked Player's Attack Range")
 			if touched_enemy != null:
 				touched_enemy.attacked()

@@ -58,6 +58,7 @@ func get_save_files():
 		if directories.has(str(i)):
 			var SaveFileButton = Button.new()
 			var getday_file = ConfigFile.new()
+			var getdifficulty_config = ConfigFile.new()
 			
 			# Load the day config file from the user data save directory
 			getday_file.load(saves_path + str(i) + "/statistics.cfg")
@@ -66,6 +67,9 @@ func get_save_files():
 			# Load the money config file from the user data save directory
 			getmoney_config.load(saves_path + str(i) + "/money.cfg")
 			var current_money = str(getmoney_config.get_value("money", "current", 0))
+			
+			getdifficulty_config.load(saves_path + str(i) + "/difficulty.cfg")
+			var current_difficulty = str(getdifficulty_config.get_value("difficulty", "current", "normal"))
 			
 			# Format money with spaces
 			var number_str = str(current_money)
@@ -76,7 +80,7 @@ func get_save_files():
 				counter += 1
 				if counter % 3 == 0 and x != 0:
 					formatted_number = " " + formatted_number
-			SaveFileButton.text = "Save " + str(i) + " ─ " + str(formatted_number) + " € ─ Day: " + current_day 
+			SaveFileButton.text = str("Day: " + current_day + " ─ " + str(formatted_number), "€ ─ ", current_difficulty.capitalize())
 			
 			create_styleboxes()
 			
@@ -130,7 +134,7 @@ func _on_creator_button_pressed() -> void:
 	# Create SaveGame Button
 	saves_number += 1
 	var SaveFileButton = Button.new()
-	SaveFileButton.text = "Save " + str(saves_number) + " - New"
+	SaveFileButton.text = "--{- New Game -}--"
 	SaveFileButton.add_theme_color_override("font_color", Color.WHITE)
 	SaveFileButton.add_theme_font_size_override("font_size", 48)
 	

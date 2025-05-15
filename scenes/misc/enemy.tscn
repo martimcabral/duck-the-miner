@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1kqlqe1hger3"]
+[gd_scene load_steps=14 format=3 uid="uid://b1kqlqe1hger3"]
 
 [ext_resource type="Script" uid="uid://dvwc1smtvn27o" path="res://scripts/enemy.gd" id="1_q4yn1"]
 [ext_resource type="Texture2D" uid="uid://wyj0v68onqkk" path="res://assets/textures/enemies/bat_flying.png" id="2_ad2ka"]
+[ext_resource type="AudioStream" uid="uid://bb3x872rqwu1y" path="res://sounds/effects/enemy/bat/bat_death.ogg" id="3_snjdl"]
+[ext_resource type="AudioStream" uid="uid://8m2sna214y67" path="res://sounds/effects/enemy/bat/bat_idle.ogg" id="4_2d1qx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q4yn1"]
 radius = 8.0
@@ -72,6 +74,10 @@ autostart = true
 wait_time = 10.0
 one_shot = true
 
+[node name="TimeToSoundEffect" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_q4yn1")
 debug_color = Color(0, 0.472581, 0.7, 0.42)
@@ -113,8 +119,22 @@ AttackCooldown: ?
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Bat" type="Node2D" parent="Sounds"]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds/Bat"]
+stream = ExtResource("3_snjdl")
+bus = &"Ambient"
+
+[node name="Idle" type="AudioStreamPlayer2D" parent="Sounds/Bat"]
+stream = ExtResource("4_2d1qx")
+max_distance = 560.0
+bus = &"Ambient"
+
 [connection signal="timeout" from="TimeToWander" to="." method="_on_time_to_wander_timeout"]
 [connection signal="timeout" from="ResetModulateRedHit" to="." method="_on_reset_modulate_red_hit_timeout"]
+[connection signal="timeout" from="TimeToSoundEffect" to="." method="_on_time_to_sound_effect_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="input_event" from="EnemyHitbox" to="." method="_on_enemy_hitbox_input_event"]

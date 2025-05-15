@@ -316,6 +316,8 @@ func _on_yotta_area_2d_mouse_exited() -> void:
 func change_to_world(field):
 	var new_world = preload("res://scenes/world.tscn").instantiate()
 	new_world.asteroid_field = field
+	new_world.primary_objective = current_primary_objective
+	new_world.secundary_objective = current_secundary_objective
 	get_tree().root.add_child(new_world)
 	get_tree().current_scene.call_deferred("free")
 	get_tree().current_scene = new_world
@@ -360,10 +362,10 @@ func generate_asteroid_data() -> Dictionary:
 	var field_names : Array = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
 	var biomes : Array = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert", "Radioactive"]
 	var objectives_primary : Array = ["Get Goods", "Kill Enemies", "Fine Jewelry"]
-	var objectives_secondary_stony : Array = ["More Infrastructure", "Powering the Future"]
+	var objectives_secondary_stony : Array = ["More Infrastructure", "Power the Future"]
 	var objectives_secondary_vulcanic : Array = ["Heat Extraction", "More Infrastructure"]
-	var objectives_secondary_frozen : Array = ["Cold Extraction", "Powering the Future"]
-	var objectives_secondary_swamp : Array = ["Fuel the Company", "Powering the Future"]
+	var objectives_secondary_frozen : Array = ["Cold Extraction", "Power the Future"]
+	var objectives_secondary_swamp : Array = ["Fuel the Company", "Power the Future"]
 	var objectives_secondary_desert : Array = ["Fuel the Company", "Build the Future"]
 	var objectives_secondary_radioactive : Array = ["Fuel the Company", "Cold Extraction"]
 	

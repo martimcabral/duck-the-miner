@@ -1,105 +1,71 @@
 extends Node2D
-
+###############################################################################################################################################################
+@onready var CaveSystem = $WorldTileMap/CaveSystem
+###############################################################################################################################################################
 var register_logs = true
-
+###############################################################################################################################################################
 var world_width # Previous: 300
 var world_height # Previous: 1000
 var world_height_border # Always: world_height + 20
-
 var world_seed = randi_range(0, 2147483646)
-
+###############################################################################################################################################################
 const world_border_up_and_down = 10
 const world_border_sides = 12
-
+###############################################################################################################################################################
 var asteroid_name
 var asteroid_field
 var asteroid_biome
 var asteroid_temperature
-
+###############################################################################################################################################################
 var biome_id = 0
-
+###############################################################################################################################################################
 var time_remaining_Title_Timer
 var time_remaining_HUD_Fade_In
-
+###############################################################################################################################################################
 var fade_in : float = 0.0
 var fade_out : float = 0.0
-
-@onready var CaveSystem = $WorldTileMap/CaveSystem
-
+###############################################################################################################################################################
 var config_path : String = "user://game_settings.cfg"
 var config_file : ConfigFile = ConfigFile.new()
-
-var difficulty_path : String = "user://game_settings.cfg"
+###############################################################################################################################################################
+var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
 var difficulty_file : ConfigFile = ConfigFile.new()
-
+var difficulty : String = ""
+###############################################################################################################################################################
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var statistics_config : ConfigFile = ConfigFile.new()
-
+###############################################################################################################################################################
 var primary_objective : String = ""
 var secundary_objective : String = ""
-
-func _process(_delta: float) -> void:
-	$WorldMusic.position = $Player.position
-	update_radar_tool()
-	
-	time_remaining_Title_Timer = $TitleTimer.time_left
-	time_remaining_HUD_Fade_In = $HUDFadeIn.time_left
-	
-	fade_out = time_remaining_Title_Timer / 10
-	
-	if $HUDFadeIn.time_left <= 5:
-		fade_in += time_remaining_HUD_Fade_In
-	
-	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, fade_out))
-	$Player/HUD/FieldTitle.add_theme_color_override("default_color", Color(0.509, 0.509, 0.509, fade_out))
-	
-	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
-	
-	$Player/HUD/RadarPanel.modulate.a8 = fade_in
-	$Player/HUD/RadarPanelEnemies.modulate.a8 = fade_in
-	
-	$Player/HUD/MissionList.modulate.a8 = fade_in
-	$Player/HUD/ItemList.modulate.a8 = fade_in
-	
-	$Player/Camera2D/HUD/Stats/UI/HealthPanel.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/UI/OxygenPanel.modulate.a8 = fade_in
-	$Player/Camera2D/HUD/Stats/UI/BatteryPanel.modulate.a8 = fade_in
-	
-func start_music():
-	var random_music = randi_range(1, 3)
-	if asteroid_biome == "Stony":
-		match random_music:
-			1: $WorldMusic/Enter.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Void.play()
-	elif asteroid_biome == "Vulcanic":
-		match random_music:
-			1: $WorldMusic/Rift.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Void.play()
-	elif asteroid_biome == "Frozen":
-		match random_music:
-			1: $WorldMusic/Portal.play()
-			2: $WorldMusic/Enter.play()
-			3: $WorldMusic/Rift.play()
-	elif asteroid_biome == "Swamp":
-		match random_music:
-			1: $WorldMusic/Void.play()
-			2: $WorldMusic/Enter.play()
-			3: $WorldMusic/Wave.play()
-	elif asteroid_biome == "Desert":
-		match random_music:
-			1: $WorldMusic/Rift.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Portal.play()
-	elif asteroid_biome == "Radioactive":
-		match random_music:
-			1: $WorldMusic/Rift.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Void.play()
+###############################################################################################################################################################
+var current_goods_amount : int = 0
+var max_goods_amount : int = 1
+var current_kill_enemies_amount : int = 0
+var max_kill_enemies_amount : int = 1
+var current_fine_jewelry : int = 0
+var max_fine_jewelry : int = 1
+###############################################################################################################################################################
+var current_more_infrastructure : int = 0
+var max_more_infrastructure : int = 1
+var current_power_future : int = 0
+var max_power_future : int = 1
+var current_heat_extraction : int = 0
+var max_heat_extraction : int = 1
+var current_cold_extraction : int = 0
+var max_cold_extraction : int = 1
+var current_fuel_company : int = 0
+var max_fuel_company : int = 1
+var current_build_future : int = 0
+var max_build_future : int = 1
+###############################################################################################################################################################
+var primary_mission_completed : bool = false
+var second_mission_completed : bool = false
+###############################################################################################################################################################
 
 func _ready():
+	difficulty_file.load(difficulty_path)
+	difficulty = difficulty_file.get_value("difficulty", "current")
+	
 	match asteroid_biome:
 		"Stony": biome_id = 0
 		"Vulcanic": biome_id = 1
@@ -107,6 +73,55 @@ func _ready():
 		"Swamp": biome_id = 3
 		"Desert": biome_id = 4
 		"Radioactive": biome_id = 5
+	
+	match primary_objective:
+		"Get Goods":
+			match difficulty:
+				"easy": max_goods_amount = randi_range(500, 800)
+				"normal": max_goods_amount = randi_range(900, 1350)
+				"hard": max_goods_amount = randi_range(1500, 2000)
+		"Kill Enemies":
+			match difficulty:
+				"easy": max_kill_enemies_amount = randi_range(5, 12)
+				"normal": max_kill_enemies_amount = randi_range(12, 18)
+				"hard": max_kill_enemies_amount = randi_range(18, 22)
+		"Fine Jewelry":
+			match difficulty:
+				"easy": max_fine_jewelry = randi_range(4, 8)
+				"normal": max_fine_jewelry = randi_range(9, 12)
+				"hard": max_fine_jewelry = randi_range(13, 18)
+	
+	match secundary_objective:
+		"More Infrastructure":
+			match difficulty:
+				"easy": max_more_infrastructure = randi_range(35, 60)
+				"normal": max_more_infrastructure = randi_range(60, 85)
+				"hard": max_more_infrastructure = randi_range(85, 110)
+		"Power the Future":
+			match difficulty:
+				"easy": max_power_future = randi_range(25, 50)
+				"normal": max_power_future = randi_range(50, 75)
+				"hard": max_power_future = randi_range(75, 100)
+		"Heat Extraction":
+			match difficulty:
+				"easy": max_heat_extraction = randi_range(15, 25)
+				"normal": max_heat_extraction = randi_range(25, 45)
+				"hard": max_heat_extraction = randi_range(45, 60)
+		"Cold Extraction":
+			match difficulty:
+				"easy": max_cold_extraction = randi_range(15, 25)
+				"normal": max_cold_extraction = randi_range(25, 45)
+				"hard": max_cold_extraction = randi_range(45, 60)
+		"Fuel the Company":
+			match difficulty:
+				"easy": max_fuel_company = randi_range(25, 50)
+				"normal": max_fuel_company = randi_range(50, 75)
+				"hard": max_fuel_company = randi_range(75, 100)
+		"Build the Future":
+			match difficulty:
+				"easy": max_build_future = randi_range(150, 250)
+				"normal": max_build_future = randi_range(250, 400)
+				"hard": max_build_future = randi_range(400, 600)
 	
 	config_file.load(config_path)
 	$WorldEnvironment.environment.glow_enabled = config_file.get_value("display", "bloom")
@@ -244,6 +259,104 @@ func _ready():
 			put_gems()
 			
 	# Procedural code from: https://www.youtube.com/watch?v=MU3u00f3GqQ | SupercraftD | 04/10/2024
+
+func _process(_delta: float) -> void:
+	match primary_objective:
+		"Get Goods":
+			if current_goods_amount >= max_goods_amount: primary_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(0, str(primary_objective, ": ", current_goods_amount, "/", max_goods_amount))
+		"Kill Enemies":
+			if current_kill_enemies_amount >= max_kill_enemies_amount: primary_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(0, str(primary_objective, ": ", current_kill_enemies_amount, "/", max_kill_enemies_amount))
+		"Fine Jewelry":
+			if current_fine_jewelry >= max_fine_jewelry: primary_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(0, str(primary_objective, ": ", current_fine_jewelry, "/", max_fine_jewelry))
+	
+	match secundary_objective:
+		"More Infrastructure":
+			if current_more_infrastructure >= max_more_infrastructure: second_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_more_infrastructure, "/", max_more_infrastructure))
+		"Power the Future":
+			if current_power_future >= max_power_future: second_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_power_future, "/", max_power_future))
+		"Heat Extraction":
+			if current_heat_extraction >= max_heat_extraction: second_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_heat_extraction, "/", max_heat_extraction))
+		"Cold Extraction":
+			if current_cold_extraction >= max_cold_extraction: second_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_cold_extraction, "/", max_cold_extraction))
+		"Fuel the Company":
+			if current_fuel_company >= max_fuel_company: second_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_fuel_company, "/", max_fuel_company))
+		"Build the Future":
+			if current_build_future >= max_build_future: second_mission_completed = true
+			$Player/HUD/MissionList.set_item_text(1, str(secundary_objective, ": ", current_build_future, "/", max_build_future))
+	
+	if primary_mission_completed == true:
+		$Player/HUD/MissionList.set_item_custom_fg_color(0, Color("00b54c"))
+	if second_mission_completed == true:
+		$Player/HUD/MissionList.set_item_custom_fg_color(1, Color("00b54c"))
+	
+	if $".".has_node("WorldMusic"):
+		$WorldMusic.position = $Player.position
+	update_radar_tool()
+	
+	time_remaining_Title_Timer = $TitleTimer.time_left
+	time_remaining_HUD_Fade_In = $HUDFadeIn.time_left
+	
+	fade_out = time_remaining_Title_Timer / 10
+	
+	if $HUDFadeIn.time_left <= 5:
+		fade_in += time_remaining_HUD_Fade_In
+	
+	$Player/HUD/AsteroidTitle.add_theme_color_override("default_color", Color(1, 1, 1, fade_out))
+	$Player/HUD/FieldTitle.add_theme_color_override("default_color", Color(0.509, 0.509, 0.509, fade_out))
+	
+	$Player/Camera2D/HUD/FreezingOverlay.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Hotbar/TabBar.modulate.a8 = fade_in
+	
+	$Player/HUD/RadarPanel.modulate.a8 = fade_in
+	$Player/HUD/RadarPanelEnemies.modulate.a8 = fade_in
+	
+	$Player/HUD/MissionList.modulate.a8 = fade_in
+	$Player/HUD/ItemList.modulate.a8 = fade_in
+	
+	$Player/Camera2D/HUD/Stats/UI/HealthPanel.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/UI/OxygenPanel.modulate.a8 = fade_in
+	$Player/Camera2D/HUD/Stats/UI/BatteryPanel.modulate.a8 = fade_in
+
+func start_music():
+	var random_music = randi_range(1, 3)
+	if asteroid_biome == "Stony":
+		match random_music:
+			1: $WorldMusic/Enter.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Void.play()
+	elif asteroid_biome == "Vulcanic":
+		match random_music:
+			1: $WorldMusic/Rift.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Void.play()
+	elif asteroid_biome == "Frozen":
+		match random_music:
+			1: $WorldMusic/Portal.play()
+			2: $WorldMusic/Enter.play()
+			3: $WorldMusic/Rift.play()
+	elif asteroid_biome == "Swamp":
+		match random_music:
+			1: $WorldMusic/Void.play()
+			2: $WorldMusic/Enter.play()
+			3: $WorldMusic/Wave.play()
+	elif asteroid_biome == "Desert":
+		match random_music:
+			1: $WorldMusic/Rift.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Portal.play()
+	elif asteroid_biome == "Radioactive":
+		match random_music:
+			1: $WorldMusic/Rift.play()
+			2: $WorldMusic/Wave.play()
+			3: $WorldMusic/Void.play()
 
 func create_world_borders():
 	# Above Map Border

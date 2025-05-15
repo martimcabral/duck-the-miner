@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=117 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/player/skins/1/duck_walking.png" id="2_815s6"]
@@ -37,6 +37,8 @@
 [ext_resource type="Texture2D" uid="uid://qqq78gpdvgw0" path="res://assets/textures/player/status/icons/oxygen.png" id="32_cs1tg"]
 [ext_resource type="Texture2D" uid="uid://bv1bpwf18raeb" path="res://assets/textures/player/status/icons/battery_energy.png" id="32_j2b1d"]
 [ext_resource type="AudioStream" uid="uid://vcsr6uhohb12" path="res://sounds/effects/duck/duck_death.mp3" id="37_hax0n"]
+[ext_resource type="AudioStream" uid="uid://px012erwlxb1" path="res://sounds/effects/duck/hit.ogg" id="38_j2b1d"]
+[ext_resource type="AudioStream" uid="uid://f286eqaj0mc3" path="res://sounds/effects/duck/sword.ogg" id="39_cs1tg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
 atlas = ExtResource("2_gl8cc")
@@ -1040,6 +1042,16 @@ bus = &"Player"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("37_hax0n")
+bus = &"Player"
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("38_j2b1d")
+volume_db = -2.5
+bus = &"Player"
+
+[node name="Sword" type="AudioStreamPlayer2D" parent="PlayerSounds"]
+stream = ExtResource("39_cs1tg")
+bus = &"Player"
 
 [node name="uvBatteryConsumption" type="Timer" parent="."]
 wait_time = 0.5

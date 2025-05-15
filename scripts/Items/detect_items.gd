@@ -16,66 +16,88 @@ func _on_body_entered(body : Node2D):
 			"Coal":
 				var coalIcon = load("res://assets/textures/items/ores/coal.png")
 				add_item_to_inventory("Coal", coalIcon)
+				World.current_more_infrastructure += 1
+				World.current_power_future += 1
 			"RawCopper":
 				var copperIcon = load("res://assets/textures/items/ores/raw_copper.png")
 				add_item_to_inventory("Copper", copperIcon)
+				World.current_power_future += 1
 			"RawIron":
 				var ironIcon = load("res://assets/textures/items/ores/raw_iron.png")
 				add_item_to_inventory("Iron", ironIcon)
+				World.current_more_infrastructure += 1
 			"RawGold":
 				var goldIcon = load("res://assets/textures/items/ores/raw_gold.png")
 				add_item_to_inventory("Gold", goldIcon)
+				World.current_power_future += 1
 			"Emerald":
 				var emeraldIcon = load("res://assets/textures/items/gems/emerald.png")
 				add_item_to_inventory("Emerald", emeraldIcon)
+				World.current_fine_jewelry += 1
 			"Ruby":
 				var rubyIcon = load("res://assets/textures/items/gems/ruby.png")
 				add_item_to_inventory("Ruby", rubyIcon)
+				World.current_fine_jewelry += 1
 			"Sapphire":
 				var sapphireIcon = load("res://assets/textures/items/gems/sapphire.png")
 				add_item_to_inventory("Sapphire", sapphireIcon)
+				World.current_fine_jewelry += 1
 			"Diamond":
 				var diamondIcon = load("res://assets/textures/items/gems/diamond.png")
 				add_item_to_inventory("Diamond", diamondIcon)
+				World.current_fine_jewelry += 1
 			"Ice":
 				var iceIcon = load("res://assets/textures/items/ores/ice.png")
 				add_item_to_inventory("Ice", iceIcon)
+				World.current_cold_extraction += 1
 			"Magnetite":
 				var magnetiteIcon = load("res://assets/textures/items/ores/raw_magnetite.png")
 				add_item_to_inventory("Magnetite", magnetiteIcon)
+				World.current_more_infrastructure += 1
 			"Bauxite":
 				var bauxiteIcon = load("res://assets/textures/items/ores/raw_bauxite.png")
 				add_item_to_inventory("Bauxite", bauxiteIcon)
+				World.current_more_infrastructure += 1
 			"Topaz":
 				var topazIcon = load("res://assets/textures/items/gems/topaz.png")
 				add_item_to_inventory("Topaz", topazIcon)
+				World.current_fine_jewelry += 1
 			"Garnet":
 				var garnetIcon = load("res://assets/textures/items/gems/garnet.png")
 				add_item_to_inventory("Garnet", garnetIcon)
+				World.current_fine_jewelry += 1
 			"Tsavorite":
 				var tsavoriteIcon = load("res://assets/textures/items/gems/tsavorite.png")
 				add_item_to_inventory("Tsavorire", tsavoriteIcon)
+				World.current_fine_jewelry += 1
 			"LavaCluster":
 				var lavaClusterIcon = load("res://assets/textures/items/ores/lava_cluster.png")
 				add_item_to_inventory("Lava Cluster", lavaClusterIcon)
+				World.current_heat_extraction += 1
 			"DenseIce":
 				var denseIceIcon = load("res://assets/textures/items/ores/dense_ice.png")
 				add_item_to_inventory("Dense Ice", denseIceIcon)
+				World.current_cold_extraction += 1
 			"Amazonite":
 				var amazoniteIcon = load("res://assets/textures/items/gems/amazonite.png")
 				add_item_to_inventory("Amazonite", amazoniteIcon)
+				World.current_fine_jewelry += 1
 			"Ametrine":
 				var ametrineIcon = load("res://assets/textures/items/gems/ametrine.png")
 				add_item_to_inventory("Ametrine", ametrineIcon)
+				World.current_fine_jewelry += 1
 			"Apatite":
 				var apatiteIcon = load("res://assets/textures/items/gems/apatite.png")
 				add_item_to_inventory("Apatite", apatiteIcon)
+				World.current_fine_jewelry += 1
 			"FrozenDiamond":
 				var frozenDiamondIcon = load("res://assets/textures/items/gems/frozen_diamond.png")
 				add_item_to_inventory("Frozen Diamond", frozenDiamondIcon)
+				World.current_fine_jewelry += 1
 			"Galena":
 				var galenaIcon = load("res://assets/textures/items/ores/raw_galena.png")
 				add_item_to_inventory("Raw Galena", galenaIcon)
+				World.current_power_future += 1
 			"Silver":
 				var silverIcon = load("res://assets/textures/items/ores/raw_silver.png")
 				add_item_to_inventory("Raw Silver", silverIcon)
@@ -88,54 +110,70 @@ func _on_body_entered(body : Node2D):
 			"Nickel":
 				var nickelIcon = load("res://assets/textures/items/ores/raw_nickel.png")
 				add_item_to_inventory("Raw Nickel", nickelIcon)
+				World.current_power_future += 1
 			"Graphite":
 				var graphiteIcon = load("res://assets/textures/items/ores/graphite.png")
 				add_item_to_inventory("Graphite", graphiteIcon)
+				World.current_fuel_company += 1
+				World.current_power_future += 1
 			"RawCobalt":
 				var cobaltIcon = load("res://assets/textures/items/ores/raw_cobalt.png")
 				add_item_to_inventory("Raw Cobalt", cobaltIcon)
 			"RawUranium":
 				var uraniumIcon = load("res://assets/textures/items/ores/raw_uranium.png")
 				add_item_to_inventory("Raw Uranium", uraniumIcon)
+				World.current_fuel_company += 1
 			"Charoite":
 				var charoiteIcon = load("res://assets/textures/items/gems/charoite.png")
 				add_item_to_inventory("Charoite", charoiteIcon)
+				World.current_fine_jewelry += 1
 			"Sugilite":
 				var sugiliteIcon = load("res://assets/textures/items/gems/sugilite.png")
 				add_item_to_inventory("Sugilite", sugiliteIcon)
+				World.current_fine_jewelry += 1
 			"Peridot":
 				var peridotIcon = load("res://assets/textures/items/gems/peridot.png")
 				add_item_to_inventory("Peridot", peridotIcon)
+				World.current_fine_jewelry += 1
 			"Sulfur":
 				var sulfurIcon = load("res://assets/textures/items/ores/sulfur.png")
 				add_item_to_inventory("Sulfur", sulfurIcon)
+				World.current_power_future += 1
 			"RawZirconium":
 				var zirconiumIcon = load("res://assets/textures/items/ores/raw_zirconium.png")
 				add_item_to_inventory("Raw Zirconium", zirconiumIcon)
+				World.current_power_future += 1
 			"RawPlatinum":
 				var platinumIcon = load("res://assets/textures/items/ores/raw_platinum.png")
 				add_item_to_inventory("Raw Platinum", platinumIcon)
 			"Sandstone":
 				var sandstoneIcon = load("res://assets/textures/items/ores/sandstone.png")
 				add_item_to_inventory("Sandstone", sandstoneIcon)
+				World.current_build_future += 1
 			"Azurite":
 				var azuriteIcon = load("res://assets/textures/items/gems/azurite.png")
 				add_item_to_inventory("Azurite", azuriteIcon)
+				World.current_fine_jewelry += 1
 			"Bloodstone":
 				var bloodstoneIcon = load("res://assets/textures/items/gems/bloodstone.png")
 				add_item_to_inventory("Bloodstone", bloodstoneIcon)
+				World.current_fine_jewelry += 1
 			"Chalcedony":
 				var chalcedonyIcon = load("res://assets/textures/items/gems/chalcedony.png")
 				add_item_to_inventory("Chalcedony", chalcedonyIcon)
+				World.current_fine_jewelry += 1
 			"OilShale":
 				var oilshaleIcon = load("res://assets/textures/items/ores/oil_shale.png")
 				add_item_to_inventory("Oil Shale", oilshaleIcon)
+				World.current_fuel_company += 1
 			"Gypsum":
 				var gypsumIcon = load("res://assets/textures/items/ores/gypsum.png")
 				add_item_to_inventory("Gypsum", gypsumIcon)
+				World.current_build_future += 1
 			"Kaolinite":
 				var kaolitineIcon = load("res://assets/textures/items/ores/kaolinite.png")
 				add_item_to_inventory("Kaolinite", kaolitineIcon)
+				World.current_build_future += 1
 			"RawScheelite":
 				var scheeliteIcon = load("res://assets/textures/items/ores/raw_scheelite.png")
 				add_item_to_inventory("Raw Scheelite", scheeliteIcon)
@@ -145,24 +183,31 @@ func _on_body_entered(body : Node2D):
 			"Biomass":
 				var biomassIcon = load("res://assets/textures/items/misc/biomass.png")
 				add_item_to_inventory("Biomass", biomassIcon)
+				World.current_fuel_company += 1
 			"Jeremejevite":
 				var jeremejeviteIcon = load("res://assets/textures/items/gems/jeremejevite.png")
 				add_item_to_inventory("Jeremejevite", jeremejeviteIcon)
+				World.current_fine_jewelry += 1
 			"Chrysocolla":
 				var chrysocollaIcon = load("res://assets/textures/items/gems/chrysocolla.png")
 				add_item_to_inventory("Chrysocolla", chrysocollaIcon)
+				World.current_fine_jewelry += 1
 			"Pietersite":
 				var pietersiteIcon = load("res://assets/textures/items/gems/pietersite.png")
 				add_item_to_inventory("Pietersite", pietersiteIcon)
+				World.current_fine_jewelry += 1
 			"Labradorite":
 				var labradoriteIcon = load("res://assets/textures/items/gems/labradorite.png")
 				add_item_to_inventory("Labradorite", labradoriteIcon)
+				World.current_fine_jewelry += 1
 			"Phosphorite":
 				var phosphoriteIcon = load("res://assets/textures/items/ores/phosphorite.png")
 				add_item_to_inventory("Phosphorite", phosphoriteIcon)
+				World.current_fuel_company += 1
 			"Pitchblende":
 				var pitchblendeIcon = load("res://assets/textures/items/ores/pitchblende.png")
 				add_item_to_inventory("Pitchblende", pitchblendeIcon)
+				World.current_fuel_company += 1
 			"Hematite":
 				var hematiteIcon = load("res://assets/textures/items/ores/hematite.png")
 				add_item_to_inventory("Hematite", hematiteIcon)
@@ -170,6 +215,7 @@ func _on_body_entered(body : Node2D):
 		$PickupItem.play()
 
 func add_item_to_inventory(item_name: String, item_icon: Texture): # AI Generated
+	World.current_goods_amount += 1
 	# Check if the inventory is empty
 	if Inventory.get_item_count() == 0:
 		Inventory.add_item(item_name + " 1", item_icon)  # Add the first item

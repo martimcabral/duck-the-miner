@@ -1787,6 +1787,7 @@ scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="HighlightBlockSelectionLabel" type="Label" parent="GUI/Center/OptionsMenu/AccessibilityPanel"]
+layout_mode = 0
 offset_left = 11.0
 offset_top = 201.0
 offset_right = 197.0
@@ -1796,6 +1797,7 @@ text = "Highlight Block Selection"
 
 [node name="HighlightBlockSelectionCheckbox" type="CheckButton" parent="GUI/Center/OptionsMenu/AccessibilityPanel" groups=["Buttons"]]
 z_index = 1
+layout_mode = 0
 offset_left = 743.0
 offset_top = 201.0
 offset_right = 787.0
@@ -1917,7 +1919,7 @@ text = "Loading..."
 horizontal_alignment = 1
 
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(981, 577)
+position = Vector2(968, 575)
 stream = ExtResource("2_v23jq")
 volume_db = -5.0
 autoplay = true
@@ -1925,7 +1927,7 @@ bus = &"Music"
 parameters/looping = true
 
 [node name="MouseSoundEffects" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(976, 575)
+position = Vector2(968, 575)
 stream = ExtResource("5_08a1y")
 bus = &"Menus"
 
