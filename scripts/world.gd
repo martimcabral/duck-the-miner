@@ -324,6 +324,8 @@ func _process(_delta: float) -> void:
 	$Player/Camera2D/HUD/Stats/UI/HealthPanel.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/UI/OxygenPanel.modulate.a8 = fade_in
 	$Player/Camera2D/HUD/Stats/UI/BatteryPanel.modulate.a8 = fade_in
+	
+	$Player/Camera2D/HUD/ShowControls.modulate.a8 = fade_in
 
 func start_music():
 	var random_music = randi_range(1, 3)

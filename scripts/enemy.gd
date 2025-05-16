@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 		update_debug_info()
 		if current_health <= 0: # Enemy Death Sequence
 			$Sounds/Bat/Death.play()
+			world.current_kill_enemies_amount += 1
 			for i in randi_range(1, 3):
 				var packed_scene = load("res://scenes/misc/items.tscn")
 				var instance = packed_scene.instantiate()

@@ -49,12 +49,10 @@ func _ready():
 		var selected_monitor = config.get_value("display", "monitor", 0)
 		DisplayServer.window_set_current_screen(selected_monitor)
 		$DisplayPanel/MonitorSelectorDropdown.selected = selected_monitor
-		
-		if config.get_value("display", "bloom", true) == true:
-			$DisplayPanel/BloomCheckButton.button_pressed = true
-		else:
-			$DisplayPanel/BloomCheckButton.button_pressed = false
-		
+
+		$DisplayPanel/BloomCheckButton.button_pressed = config.get_value("display", "bloom", true)
+		$DisplayPanel/BiomeVisualEffectsCheckButton.button_pressed = config.get_value("display", "biome_visual_effects", true)
+
 		############# Audio #############
 		$AudioPanel/MasterVolumeSlider.value = config.get_value("audio", "master")
 		$AudioPanel/MusicVolumeSlider.value = config.get_value("audio", "music")
@@ -86,6 +84,8 @@ func _ready():
 		$AccessibilityPanel/SubtitlesCheckButton.button_pressed = config.get_value("accessibility", "subtitles")
 		$"../../ColorblindFilter".material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness"))
 		$AccessibilityPanel/HighlightBlockSelectionCheckbox.button_pressed = config.get_value("accessibility", "highlight_block_selection")
+		$AccessibilityPanel/ShowControlsCheckbox.button_pressed = config.get_value("accessibility", "show_controls")
+		$AccessibilityPanel/HideBloodCheckbox.button_pressed = config.get_value("accessibility", "hide_blood")
 
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
@@ -367,4 +367,16 @@ func _on_subtitles_check_button_toggled(toggled_on: bool) -> void:
 
 func _on_highlight_block_selection_checkbox_toggled(toggled_on: bool) -> void:
 	config.set_value("accessibility", "highlight_block_selection", toggled_on)
+	config.save(file_path)
+
+func _on_biome_visual_effects_check_button_toggled(toggled_on: bool) -> void:
+	config.set_value("display", "biome_visual_effects", toggled_on)
+	config.save(file_path)
+
+func _on_show_controls_checkbox_toggled(toggled_on: bool) -> void:
+	config.set_value("accessibility", "show_controls", toggled_on)
+	config.save(file_path)
+
+func _on_hide_blood_checkbox_toggled(toggled_on: bool) -> void:
+	config.set_value("accessibility", "hide_blood", toggled_on)
 	config.save(file_path)

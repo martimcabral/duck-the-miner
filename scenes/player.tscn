@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://c6nqv0wtxmg0g"]
+[gd_scene load_steps=118 format=3 uid="uid://c6nqv0wtxmg0g"]
 
 [ext_resource type="Script" uid="uid://bimsdgpf835r8" path="res://scripts/player.gd" id="1_ym5y2"]
 [ext_resource type="Texture2D" uid="uid://b037wcv03tjao" path="res://assets/textures/player/skins/1/duck_walking.png" id="2_815s6"]
@@ -724,6 +724,22 @@ expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cs1tg"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2b1d"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 8.0
+expand_margin_top = 4.0
+expand_margin_right = 8.0
+expand_margin_bottom = 4.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 texture_filter = 1
@@ -1005,10 +1021,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -558.0
-offset_top = -129.0
-offset_right = 559.0
-offset_bottom = -56.0
+offset_left = -557.0
+offset_top = -112.0
+offset_right = 560.0
+offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/outline_size = 6
@@ -1021,7 +1037,37 @@ current_tab = 0
 tab_alignment = 1
 scrolling_enabled = false
 tab_count = 1
-tab_0/title = "IF THIS APPEARS THAT THE HOTBAR HAS ERRORS"
+tab_0/title = "IF THIS APPEARS THAT THE HOTBAR HAS ERRORS // ERROR:2244"
+
+[node name="ShowControls" type="HBoxContainer" parent="Camera2D/HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -516.0
+offset_top = -80.0
+offset_right = -1.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="ItemKeyLabel" type="Label" parent="Camera2D/HUD/ShowControls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ERROR:2245   "
+
+[node name="Panel" type="PanelContainer" parent="Camera2D/HUD/ShowControls"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j2b1d")
+
+[node name="KeyLabel" type="Label" parent="Camera2D/HUD/ShowControls/Panel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ERROR:2246"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PlayerSounds" type="Node2D" parent="."]
 

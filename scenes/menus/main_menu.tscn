@@ -867,7 +867,7 @@ theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_ev00f")
-text = "Display"
+text = "Graphics"
 flat = true
 
 [node name="ControlsButton" type="Button" parent="GUI/Center/OptionsMenu" groups=["Buttons"]]
@@ -1159,9 +1159,28 @@ text = "Bloom"
 z_index = 1
 layout_mode = 0
 offset_left = 764.0
-offset_top = 303.0
+offset_top = 306.0
 offset_right = 808.0
-offset_bottom = 327.0
+offset_bottom = 330.0
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
+
+[node name="BiomeVisualEffectsLabel" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 352.0
+offset_right = 562.0
+offset_bottom = 407.0
+theme_override_font_sizes/normal_font_size = 48
+text = "Biome Visual Effects"
+
+[node name="BiomeVisualEffectsCheckButton" type="CheckButton" parent="GUI/Center/OptionsMenu/DisplayPanel" groups=["Buttons"]]
+z_index = 1
+layout_mode = 0
+offset_left = 764.0
+offset_top = 359.0
+offset_right = 808.0
+offset_bottom = 383.0
 scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
@@ -1805,6 +1824,42 @@ offset_bottom = 225.0
 scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
+[node name="ShowControlsLabel" type="Label" parent="GUI/Center/OptionsMenu/AccessibilityPanel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 257.0
+offset_right = 539.0
+offset_bottom = 305.0
+theme_override_font_sizes/font_size = 48
+text = "Show Controls"
+
+[node name="ShowControlsCheckbox" type="CheckButton" parent="GUI/Center/OptionsMenu/AccessibilityPanel" groups=["Buttons"]]
+z_index = 1
+layout_mode = 0
+offset_left = 743.0
+offset_top = 257.0
+offset_right = 787.0
+offset_bottom = 281.0
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
+
+[node name="HideBloodLabel" type="Label" parent="GUI/Center/OptionsMenu/AccessibilityPanel"]
+offset_left = 11.0
+offset_top = 313.0
+offset_right = 539.0
+offset_bottom = 361.0
+theme_override_font_sizes/font_size = 48
+text = "Hide Blood"
+
+[node name="HideBloodCheckbox" type="CheckButton" parent="GUI/Center/OptionsMenu/AccessibilityPanel" groups=["Buttons"]]
+z_index = 1
+offset_left = 743.0
+offset_top = 313.0
+offset_right = 787.0
+offset_bottom = 337.0
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
+
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
 visible = false
 texture_filter = 1
@@ -1960,6 +2015,7 @@ bus = &"Menus"
 [connection signal="item_selected" from="GUI/Center/OptionsMenu/DisplayPanel/MonitorSelectorDropdown" to="GUI/Center/OptionsMenu" method="_on_monitor_selector_dropdown_item_selected"]
 [connection signal="pressed" from="GUI/Center/OptionsMenu/DisplayPanel/BloomCheckButton" to="GUI/Center/OptionsMenu" method="_on_bloom_check_button_pressed"]
 [connection signal="toggled" from="GUI/Center/OptionsMenu/DisplayPanel/BloomCheckButton" to="GUI/Center/OptionsMenu" method="_on_bloom_check_button_toggled"]
+[connection signal="toggled" from="GUI/Center/OptionsMenu/DisplayPanel/BiomeVisualEffectsCheckButton" to="GUI/Center/OptionsMenu" method="_on_biome_visual_effects_check_button_toggled"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/MasterVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_master_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/MusicVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="GUI/Center/OptionsMenu/AudioPanel/AmbientVolumeSlider" to="GUI/Center/OptionsMenu" method="_on_ambient_volume_slider_value_changed"]
@@ -1986,4 +2042,6 @@ bus = &"Menus"
 [connection signal="pressed" from="GUI/Center/OptionsMenu/AccessibilityPanel/SubtitlesCheckButton" to="GUI/Center/OptionsMenu" method="_on_subtitles_check_button_pressed"]
 [connection signal="toggled" from="GUI/Center/OptionsMenu/AccessibilityPanel/SubtitlesCheckButton" to="GUI/Center/OptionsMenu" method="_on_subtitles_check_button_toggled"]
 [connection signal="toggled" from="GUI/Center/OptionsMenu/AccessibilityPanel/HighlightBlockSelectionCheckbox" to="GUI/Center/OptionsMenu" method="_on_highlight_block_selection_checkbox_toggled"]
+[connection signal="toggled" from="GUI/Center/OptionsMenu/AccessibilityPanel/ShowControlsCheckbox" to="GUI/Center/OptionsMenu" method="_on_show_controls_checkbox_toggled"]
+[connection signal="toggled" from="GUI/Center/OptionsMenu/AccessibilityPanel/HideBloodCheckbox" to="GUI/Center/OptionsMenu" method="_on_hide_blood_checkbox_toggled"]
 [connection signal="pressed" from="GUI/Center/CreditsMenu/BackButton" to="GUI/Center/StartMenu" method="_on_back_button_pressed"]

@@ -616,6 +616,7 @@ environment = SubResource("Environment_jiaeb")
 [node name="PauseMenu" parent="." instance=ExtResource("24_dvxve")]
 
 [node name="Player" parent="." instance=ExtResource("1_5mm4o")]
+z_index = 2
 position = Vector2(4, 27)
 
 [node name="ChromaticAberration" type="ColorRect" parent="Player"]

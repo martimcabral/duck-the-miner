@@ -4,7 +4,7 @@ var window_mode = 0
 var agachado = 0
 
 func _ready() -> void:
-	create_pricing_json()
+	create_pricing_config()
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
 	
@@ -87,69 +87,67 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
 
-func create_pricing_json():
+func create_pricing_config():
 	var pricing_path = "user://pricing.cfg"
-	if FileAccess.file_exists(pricing_path):
-		print("[start.gd] Checking pricing file!")
-		var pricing_file = ConfigFile.new()
-		pricing_file.load(pricing_path)
-		
-		var prices = {
-			"Stone": 50,
-			"Coal": 250,
-			"Dense Ice": 450,
-			"Graphite": 850,
-			"Gypsum": 175,
-			"Kaolinite": 175,
-			"Lava Cluster": 350,
-			"Oil Shale": 850,
-			"Gold": 3600,
-			"Iron": 800,
-			"Raw Bauxite": 800,
-			"Raw Cobalt": 800,
-			"Raw Copper": 800,
-			"Raw Galena": 800,
-			"Raw Magnetite": 800,
-			"Raw Nickel": 800,
-			"Raw Platinum": 800,
-			"Raw Pyrolusite": 800,
-			"Raw Scheelite": 800,
-			"Raw Silver": 800,
-			"Raw Uranium": 800,
-			"Raw Wolframite": 800,
-			"Raw Zirconium": 800,
-			"Sandstone": 60,
-			"Sulfur": 625,
-			"Vanadinite": 25000,
-			"Amazonite": 25000,
-			"Ametrine": 25000,
-			"Apatite": 25000,
-			"Azurite": 25000,
-			"Bloodstone": 25000,
-			"Chalcedony": 25000,
-			"Charoite": 25000,
-			"Diamond": 25000,
-			"Emerald": 25000,
-			"Frozen Diamond": 37500,
-			"Garnet": 25000,
-			"Peridot": 25000,
-			"Ruby": 25000,
-			"Sapphire": 25000,
-			"Sugilite": 25000,
-			"Topaz": 25000,
-			"Tsavorite": 25000,
-			"Biomass": 500,
-			"Ice": 150,
-			"Chrysocolla": 25000,
-			"Pietersite": 25000,
-			"Labradorite": 25000,
-			"Jeremejevite": 40000,
-			"Pitchblende": 800,
-			"Phosphorite": 800,
-			"Hematite": 800,
-		}
-		
-		for ore in prices:
-			if not pricing_file.has_section_key("pricing", ore):
-				pricing_file.set_value("pricing", ore, prices[ore])
-				pricing_file.save(pricing_path)
+	var pricing_file = ConfigFile.new()
+	
+	pricing_file.load(pricing_path)
+	var prices = {
+		"Stone": 50,
+		"Coal": 250,
+		"Dense Ice": 450,
+		"Graphite": 850,
+		"Gypsum": 175,
+		"Kaolinite": 175,
+		"Lava Cluster": 350,
+		"Oil Shale": 850,
+		"Gold": 3600,
+		"Iron": 800,
+		"Raw Bauxite": 800,
+		"Raw Cobalt": 800,
+		"Raw Copper": 800,
+		"Raw Galena": 800,
+		"Raw Magnetite": 800,
+		"Raw Nickel": 800,
+		"Raw Platinum": 800,
+		"Raw Pyrolusite": 800,
+		"Raw Scheelite": 800,
+		"Raw Silver": 800,
+		"Raw Uranium": 800,
+		"Raw Wolframite": 800,
+		"Raw Zirconium": 800,
+		"Sandstone": 60,
+		"Sulfur": 625,
+		"Vanadinite": 25000,
+		"Amazonite": 25000,
+		"Ametrine": 25000,
+		"Apatite": 25000,
+		"Azurite": 25000,
+		"Bloodstone": 25000,
+		"Chalcedony": 25000,
+		"Charoite": 25000,
+		"Diamond": 25000,
+		"Emerald": 25000,
+		"Frozen Diamond": 37500,
+		"Garnet": 25000,
+		"Peridot": 25000,
+		"Ruby": 25000,
+		"Sapphire": 25000,
+		"Sugilite": 25000,
+		"Topaz": 25000,
+		"Tsavorite": 25000,
+		"Biomass": 500,
+		"Ice": 150,
+		"Chrysocolla": 25000,
+		"Pietersite": 25000,
+		"Labradorite": 25000,
+		"Jeremejevite": 40000,
+		"Pitchblende": 800,
+		"Phosphorite": 800,
+		"Hematite": 800,
+	}
+	
+	for ore in prices:
+		if not pricing_file.has_section_key("pricing", ore):
+			pricing_file.set_value("pricing", ore, prices[ore])
+			pricing_file.save(pricing_path)

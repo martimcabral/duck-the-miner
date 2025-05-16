@@ -46,6 +46,8 @@ var highlighted_block_selection_out = preload("res://assets/textures/tilemaps/se
 @onready var world = $".."
 @onready var hotbar = $Camera2D/HUD/Hotbar/TabBar
 @onready var block_range = $BlockRange
+@onready var ItemKeyLabel = $Camera2D/HUD/ShowControls/ItemKeyLabel
+@onready var KeyLabel = $Camera2D/HUD/ShowControls/Panel/KeyLabel
 
 var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
 var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
@@ -81,6 +83,7 @@ var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
 
 var window_mode = 0
 var subtitles : bool
+var biome_visual_effects : bool
 
 var collision_shape
 var radius
@@ -96,6 +99,9 @@ func _ready():
 	$HUD/RadarPanel.visible = false
 	$HUD/RadarPanelEnemies.visible = false
 	
+	settings_config.load(settings_path)
+	$Camera2D/HUD/BloddyOverlay.visible = !settings_config.get_value("accessibility", "hide_blood")
+	
 	collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 	radius = (collision_shape as CircleShape2D).radius
 	
@@ -103,6 +109,7 @@ func _ready():
 	var config = ConfigFile.new()
 	config.load(file_path)
 	subtitles = config.get_value("accessibility", "subtitles", true)
+	biome_visual_effects = config.get_value("display", "biome_visual_effects", true)
 	
 	player_config.load(player_path)
 	max_health = player_config.get_value("status", "max_health", 100)
@@ -123,10 +130,11 @@ func _ready():
 	
 	load_skin()
 	
-	match world.asteroid_biome:
-		"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
-		"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
-		"Radioactive": $ChromaticAberration.visible = true
+	if biome_visual_effects == true:
+		match world.asteroid_biome:
+			"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
+			"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
+			"Radioactive": $ChromaticAberration.visible = true
 
 func player_movement(input, delta):
 	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
@@ -145,6 +153,7 @@ func player_movement(input, delta):
 		velocity.y += (falling_speed * delta) * 0.75
 
 func _process(delta):
+	get_control_to_labelization()
 	do_bloddy_overlay()
 	health_ratio = current_health / max_health
 	oxygen_ratio = current_oxygen / max_oxygen
@@ -615,3 +624,17 @@ func set_custom_cursor(hotbar_slot):
 		"UV Flashlight": return cursor_texture_flashlight
 		"Radar the Tool": return cursor_texture_radar_the_tool
 		"Radar the Enemies": return cursor_texture_radar_the_enemies
+
+func get_control_to_labelization():
+	settings_config.load(settings_path)
+	if settings_config.get_value("accessibility", "show_controls") == true:
+		match current_item:
+			"Sword": ItemKeyLabel.text = "Use Sword   "; KeyLabel.text = settings_config.get_value("controls", "Destroy_Block")
+			"Pickaxe": ItemKeyLabel.text = "Use Pickaxe   \nPlace Block   "; KeyLabel.text = str(settings_config.get_value("controls", "Destroy_Block"), "\n", settings_config.get_value("controls", "Place_Block"))
+			"Light": ItemKeyLabel.text = "Use Light   "; KeyLabel.text = settings_config.get_value("controls", "Place_Torch")
+			"UV Flashlight": ItemKeyLabel.text = "Use UV Flashlight   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
+			"Radar the Tool": ItemKeyLabel.text = "Use Radar the Tool   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
+			"Radar the Enemies": ItemKeyLabel.text = "Use Radar the Enemies   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
+	else:
+		$Camera2D/HUD/ShowControls.visible = false
+			

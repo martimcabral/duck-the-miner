@@ -22,6 +22,7 @@ func create_config_file():
 	config.set_value("display", "fps_limiter", 0)
 	config.set_value("display", "monitor", 0)
 	config.set_value("display", "bloom", true)
+	config.set_value("display", "biome_visual_effects", true)
 	
 	# Audio
 	config.set_value("audio", "master", 100)
@@ -54,6 +55,8 @@ func create_config_file():
 	config.set_value("accessibility", "language", 0)
 	config.set_value("accessibility", "subtitles", true)
 	config.set_value("accessibility", "highlight_block_selection", false)
+	config.set_value("accessibility", "show_controls", true)
+	config.set_value("accessibility", "hide_blood", false)
 	
 	# Save the file
 	config.save(file_path)
