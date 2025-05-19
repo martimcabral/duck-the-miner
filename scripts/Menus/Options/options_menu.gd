@@ -68,8 +68,6 @@ func _ready():
 		$ControlsPanel/RunButton.text = config.get_value("controls", "Run")
 		$ControlsPanel/AgacharButton.text = config.get_value("controls", "Agachar")
 		$ControlsPanel/DestroyBlockButton.text = config.get_value("controls", "Destroy_Block")
-		$ControlsPanel/PlaceTorchButton.text = config.get_value("controls", "Place_Torch")
-		$ControlsPanel/PlaceBlockButton.text = config.get_value("controls", "Place_Block")
 		$ControlsPanel/PauseMenuButton.text = config.get_value("controls", "PauseMenu")
 		$ControlsPanel/QuackButton.text = config.get_value("controls", "Quack")
 		$ControlsPanel/HideShowInventoryButton.text = config.get_value("controls", "Hide_Show_Inventory")

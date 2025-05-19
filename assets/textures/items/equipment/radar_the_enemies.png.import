@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2rtdv2taq7x6"
-path="res://.godot/imported/sword.png-fb21a86b7022e0f06a13593cffc494ee.ctex"
+uid="uid://cuoxvonybts8h"
+path="res://.godot/imported/radar_the_enemies.png-d32b1e71b22e34559342d3a6ef0b6463.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/sword.png"
-dest_files=["res://.godot/imported/sword.png-fb21a86b7022e0f06a13593cffc494ee.ctex"]
+source_file="res://assets/textures/items/equipment/radar_the_enemies.png"
+dest_files=["res://.godot/imported/radar_the_enemies.png-d32b1e71b22e34559342d3a6ef0b6463.ctex"]
 
 [params]
 

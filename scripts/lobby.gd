@@ -677,7 +677,7 @@ func _on_sell_button_pressed() -> void:
 		selected_item_quantity = 0
 		
 		var money_particle = money_scene.instantiate()
-		money_particle.position = Vector2(530, 20)
+		money_particle.position = Vector2(235, 20)
 		money_particle.get_child(0).text = str("+ ", update_money(str(money_earned)), " €")
 		money_particle.get_child(0).get_child(0).play("cashin")
 		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.add_child(money_particle)

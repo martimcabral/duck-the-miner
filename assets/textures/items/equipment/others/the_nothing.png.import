@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4omupwkl33t"
-path="res://.godot/imported/enemy_dot.png-2d770adee3ff17cb56dc16ef240a9a43.ctex"
+uid="uid://cybq3o6av3lft"
+path="res://.godot/imported/the_nothing.png-47a7a1d8dffad2d7455da83cb8611310.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/others/enemy_dot.png"
-dest_files=["res://.godot/imported/enemy_dot.png-2d770adee3ff17cb56dc16ef240a9a43.ctex"]
+source_file="res://assets/textures/items/equipment/others/the_nothing.png"
+dest_files=["res://.godot/imported/the_nothing.png-47a7a1d8dffad2d7455da83cb8611310.ctex"]
 
 [params]
 

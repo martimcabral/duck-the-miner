@@ -166,7 +166,7 @@ func _on_creator_button_pressed() -> void:
 	
 	var money_path = str(saves_path + str(saves_number) + "/money.cfg")
 	
-	var new_money = int(randf_range(-95_000_000, -98_999_999))
+	var new_money = int(randf_range(-9_700_000_000, -9_999_999_999))
 	money_config.set_value("money", "start", new_money)
 	money_config.set_value("money", "current", new_money)
 	money_config.save(money_path)

@@ -18,7 +18,7 @@ var secondary_mission_completed : bool = false
 var secondary_mission_award : int = 9000
 var bonus : int = 0
 
-var fyction_tax : float = 0.0001
+var fyction_tax : float = 0.000001
 var fyction_interest : int = 0
 
 var habitat_rental : int = 8500

@@ -49,15 +49,15 @@ var highlighted_block_selection_out = preload("res://assets/textures/tilemaps/se
 @onready var ItemKeyLabel = $Camera2D/HUD/ShowControls/ItemKeyLabel
 @onready var KeyLabel = $Camera2D/HUD/ShowControls/Panel/KeyLabel
 
-var cursor_texture_sword = preload("res://assets/textures/equipment/sword.png")
-var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxe.png")
-var cursor_texture_light = preload("res://assets/textures/equipment/bulkhead_light.png")
-var cursor_texture_flashlight = preload("res://assets/textures/equipment/flashlight_item.png")
-var cursor_texture_radar_the_tool = preload("res://assets/textures/equipment/radar_the_tool.png")
-var cursor_texture_radar_the_enemies = preload("res://assets/textures/equipment/radar_the_enemies.png")
+var cursor_texture_sword = preload("res://assets/textures/items/equipment/sword.png")
+var cursor_texture_pickaxe = preload("res://assets/textures/items/equipment/pickaxe.png")
+var cursor_texture_light = preload("res://assets/textures/items/equipment/bulkhead_light.png")
+var cursor_texture_flashlight = preload("res://assets/textures/items/equipment/flashlight_item.png")
+var cursor_texture_radar_the_tool = preload("res://assets/textures/items/equipment/radar_the_tool.png")
+var cursor_texture_radar_the_enemies = preload("res://assets/textures/items/equipment/radar_the_enemies.png")
 
 var cursor_default = preload("res://assets/textures/player/main_cursor.png")
-var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
+var the_nothing_texture = preload("res://assets/textures/items/equipment/others/the_nothing.png")
 
 var bloddy_overlay1 = preload("res://assets/textures/player/overlays/overlay_1.png")
 var bloddy_overlay2 = preload("res://assets/textures/player/overlays/overlay_2.png")
@@ -280,8 +280,6 @@ func _process(delta):
 			Input.set_custom_mouse_cursor(cursor_default)
 	
 	var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
-	var tile_data = CaveSystem.get_cell_tile_data(tile_pos)
-	var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 	$"../Player/PlayerSounds".position = tile_pos
 	
 	if $"../PauseMenu/GUI_Pause".visible == false:
@@ -357,7 +355,7 @@ func _process(delta):
 				$"../WorldTileMap/BlockSelection".texture = highlighted_block_selection_out
 			
 		if local_mouse_pos.length() <= radius:
-			if (Input.is_action_just_pressed("Place_Torch")) and player.current_item == "Light":
+			if (Input.is_action_just_pressed("Use_Item")) and player.current_item == "Light":
 				if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
 					var torch_scene : PackedScene = load("res://scenes/misc/light.tscn")
 					var torch = torch_scene.instantiate()
@@ -367,28 +365,6 @@ func _process(delta):
 					lights_used += 1
 					$"../Player/PlayerSounds/PlaceBlock".play()
 					#print("[player.gd] Torch Placed: ", torch, "/", tile_pos)
-				
-			if Input.is_action_just_pressed("Place_Block") and current_item != "Light":
-					if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):
-						print(tile_data, " ", tile_id)
-						if world.asteroid_biome == "Stony":
-							CaveSystem.set_cell(tile_pos, 0, Vector2i(0, 0))
-						elif world.asteroid_biome == "Vulcanic":
-							CaveSystem.set_cell(tile_pos, 1, Vector2i(0, 0))
-						elif world.asteroid_biome == "Frozen":
-							CaveSystem.set_cell(tile_pos, 2, Vector2i(0, 0))
-						elif world.asteroid_biome == "Swamp":
-							CaveSystem.set_cell(tile_pos, 3, Vector2i(0, 0))
-						elif world.asteroid_biome == "Desert":
-							CaveSystem.set_cell(tile_pos, 4, Vector2i(0, 0))
-						$"../Player/PlayerSounds/PlaceBlock".play()
-						print("Properties Changed on Tile: (x: ", tile_pos.x, ", y: ", tile_pos.y, ")")
-						
-						# Restart new Tile on Used Tiles Dictionary
-						var tile_health = 1000
-						used_tiles[tile_pos] = {"pos" : tile_pos}
-						used_tiles[tile_pos] = {"health": tile_health} 
-						used_tiles[tile_pos]["health"] = tile_health
 	
 	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):
@@ -631,8 +607,8 @@ func get_control_to_labelization():
 	if settings_config.get_value("accessibility", "show_controls") == true:
 		match current_item:
 			"Sword": ItemKeyLabel.text = "Use Sword   "; KeyLabel.text = settings_config.get_value("controls", "Destroy_Block")
-			"Pickaxe": ItemKeyLabel.text = "Use Pickaxe   \nPlace Block   "; KeyLabel.text = str(settings_config.get_value("controls", "Destroy_Block"), "\n", settings_config.get_value("controls", "Place_Block"))
-			"Light": ItemKeyLabel.text = "Use Light   "; KeyLabel.text = settings_config.get_value("controls", "Place_Torch")
+			"Pickaxe": ItemKeyLabel.text = "Use Pickaxe   "; KeyLabel.text = settings_config.get_value("controls", "Destroy_Block")
+			"Light": ItemKeyLabel.text = "Use Light   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
 			"UV Flashlight": ItemKeyLabel.text = "Use UV Flashlight   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
 			"Radar the Tool": ItemKeyLabel.text = "Use Radar the Tool   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
 			"Radar the Enemies": ItemKeyLabel.text = "Use Radar the Enemies   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")

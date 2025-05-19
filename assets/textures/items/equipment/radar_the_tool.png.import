@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wmyay6n05p4m"
-path="res://.godot/imported/radar_duck.png-a09fe8fa3a0edcd4622a1768da60e1ba.ctex"
+uid="uid://1u6ens7p4bdq"
+path="res://.godot/imported/radar_the_tool.png-354e8a7d64c1ad1423521133cb5aa331.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/others/radar_duck.png"
-dest_files=["res://.godot/imported/radar_duck.png-a09fe8fa3a0edcd4622a1768da60e1ba.ctex"]
+source_file="res://assets/textures/items/equipment/radar_the_tool.png"
+dest_files=["res://.godot/imported/radar_the_tool.png-354e8a7d64c1ad1423521133cb5aa331.ctex"]
 
 [params]
 

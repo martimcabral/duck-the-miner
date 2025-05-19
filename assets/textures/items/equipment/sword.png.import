@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccnl4eoru32e0"
-path="res://.godot/imported/bulkhead_light_wall.png-f5b372bc61d3710dcc33414d56731757.ctex"
+uid="uid://d2rtdv2taq7x6"
+path="res://.godot/imported/sword.png-67812c5f9241a7820ffaeffd774f1a60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/others/bulkhead_light_wall.png"
-dest_files=["res://.godot/imported/bulkhead_light_wall.png-f5b372bc61d3710dcc33414d56731757.ctex"]
+source_file="res://assets/textures/items/equipment/sword.png"
+dest_files=["res://.godot/imported/sword.png-67812c5f9241a7820ffaeffd774f1a60.ctex"]
 
 [params]
 

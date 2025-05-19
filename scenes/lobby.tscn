@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=134 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -17,13 +17,15 @@
 [ext_resource type="AudioStream" uid="uid://cubwwxd0gkir7" path="res://sounds/effects/menus/cash.ogg" id="8_busoe"]
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Misc/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
-[ext_resource type="Texture2D" uid="uid://cgum6gl0wbg1e" path="res://assets/textures/equipment/bulkhead_light.png" id="10_busoe"]
+[ext_resource type="Texture2D" uid="uid://cgum6gl0wbg1e" path="res://assets/textures/items/equipment/bulkhead_light.png" id="10_busoe"]
 [ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moons/moon.png" id="10_kuvf8"]
-[ext_resource type="Texture2D" uid="uid://coqirkcawixar" path="res://assets/textures/equipment/flashlight_item.png" id="11_8mpuv"]
+[ext_resource type="Texture2D" uid="uid://coqirkcawixar" path="res://assets/textures/items/equipment/flashlight_item.png" id="11_8mpuv"]
 [ext_resource type="Texture2D" uid="uid://dgr4m0cb5jal2" path="res://assets/textures/universe/planets/mars.png" id="11_d4ry4"]
+[ext_resource type="Texture2D" uid="uid://d2rtdv2taq7x6" path="res://assets/textures/items/equipment/sword.png" id="11_gd4oi"]
 [ext_resource type="Texture2D" uid="uid://bjbbbpyuplr0u" path="res://assets/textures/universe/moons/phobos.png" id="12_d28p1"]
-[ext_resource type="Texture2D" uid="uid://1u6ens7p4bdq" path="res://assets/textures/equipment/radar_the_tool.png" id="12_gd4oi"]
-[ext_resource type="Texture2D" uid="uid://cuoxvonybts8h" path="res://assets/textures/equipment/radar_the_enemies.png" id="13_u7tfn"]
+[ext_resource type="Texture2D" uid="uid://1u6ens7p4bdq" path="res://assets/textures/items/equipment/radar_the_tool.png" id="12_gd4oi"]
+[ext_resource type="Texture2D" uid="uid://0um0aqd5bjao" path="res://assets/textures/items/equipment/pickaxe.png" id="12_u7tfn"]
+[ext_resource type="Texture2D" uid="uid://cuoxvonybts8h" path="res://assets/textures/items/equipment/radar_the_enemies.png" id="13_u7tfn"]
 [ext_resource type="Texture2D" uid="uid://cmum2wfcr83m7" path="res://assets/textures/universe/moons/deimos.png" id="13_ydjex"]
 [ext_resource type="Texture2D" uid="uid://do0rardstouqs" path="res://assets/textures/universe/planets/jupiter.png" id="14_ky8ae"]
 [ext_resource type="Texture2D" uid="uid://cui82h30clygs" path="res://assets/textures/universe/planets/earth/earth1.png" id="14_tuh25"]
@@ -1694,7 +1696,6 @@ script = ExtResource("8_arjad")
 
 [node name="Whoosh" type="AudioStreamPlayer2D" parent="Camera2D/HUD/Contract"]
 stream = ExtResource("17_8mpuv")
-pitch_scale = 0.8
 bus = &"Menus"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/HUD/Contract"]
@@ -1797,8 +1798,10 @@ text_overrun_behavior = 3
 selected = 0
 item_count = 6
 popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("11_gd4oi")
 popup/item_0/id = 0
 popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
 popup/item_2/icon = ExtResource("10_busoe")
@@ -1839,8 +1842,10 @@ text_overrun_behavior = 3
 selected = 1
 item_count = 6
 popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("11_gd4oi")
 popup/item_0/id = 0
 popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
 popup/item_2/icon = ExtResource("10_busoe")
@@ -1881,8 +1886,10 @@ text_overrun_behavior = 3
 selected = 4
 item_count = 6
 popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("11_gd4oi")
 popup/item_0/id = 0
 popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
 popup/item_2/icon = ExtResource("10_busoe")
@@ -1923,8 +1930,10 @@ text_overrun_behavior = 3
 selected = 5
 item_count = 6
 popup/item_0/text = "Sword"
+popup/item_0/icon = ExtResource("11_gd4oi")
 popup/item_0/id = 0
 popup/item_1/text = " Pickaxe"
+popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
 popup/item_2/icon = ExtResource("10_busoe")

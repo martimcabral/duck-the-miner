@@ -39,8 +39,6 @@ func create_config_file():
 	config.set_value("controls", "Run", "Shift")
 	config.set_value("controls", "Agachar", "Crtl")
 	config.set_value("controls", "Destroy_Block", "LMB")
-	config.set_value("controls", "Place_Torch", "RMB")
-	config.set_value("controls", "Place_Block", "MMB")
 	config.set_value("controls", "Fullscreen", "F11")
 	config.set_value("controls", "PauseMenu", "Escape")
 	config.set_value("controls", "Quack", "E")

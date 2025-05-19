@@ -592,6 +592,10 @@ func create_radar_enemies_lines():
 func _on_spawn_enemies_timeout() -> void:
 	if $PauseMenu/GUI_Pause.visible == false:
 		print("[world.gd] Enemy Spawned")
+		match difficulty:
+			"easy": $SpawnEnemies.wait_time = randi_range(30, 40)
+			"normal": $SpawnEnemies.wait_time = randi_range(20, 30)
+			"hard": $SpawnEnemies.wait_time = randi_range(15, 25)
 		var EnemyScene = preload("res://scenes/misc/enemy.tscn")
 		var enemy = EnemyScene.instantiate()
 		enemy.set_meta("Enemy", "Enemy")
@@ -626,7 +630,7 @@ func update_enemies_radar_tool():
 			child.queue_free()
 	
 	# Load enemy radar dot texture
-	var enemy_dot_texture = preload("res://assets/textures/equipment/others/enemy_dot.png")
+	var enemy_dot_texture = preload("res://assets/textures/items/equipment/others/enemy_dot.png")
 	
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
 		var rel_pos = enemy.position - player_pos
