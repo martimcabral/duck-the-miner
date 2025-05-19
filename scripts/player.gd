@@ -49,12 +49,12 @@ var highlighted_block_selection_out = preload("res://assets/textures/tilemaps/se
 @onready var ItemKeyLabel = $Camera2D/HUD/ShowControls/ItemKeyLabel
 @onready var KeyLabel = $Camera2D/HUD/ShowControls/Panel/KeyLabel
 
-var cursor_texture_sword = preload("res://assets/textures/equipment/swords/debug_sword.png")
-var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxes/debug_pickaxe.png")
-var cursor_texture_light = preload("res://assets/textures/equipment/others/bulkhead_light.png")
-var cursor_texture_flashlight = preload("res://assets/textures/equipment/others/flashlight_item.png")
-var cursor_texture_radar_the_tool = preload("res://assets/textures/equipment/others/radar_the_tool.png")
-var cursor_texture_radar_the_enemies = preload("res://assets/textures/equipment/others/radar_the_enemies.png")
+var cursor_texture_sword = preload("res://assets/textures/equipment/sword.png")
+var cursor_texture_pickaxe = preload("res://assets/textures/equipment/pickaxe.png")
+var cursor_texture_light = preload("res://assets/textures/equipment/bulkhead_light.png")
+var cursor_texture_flashlight = preload("res://assets/textures/equipment/flashlight_item.png")
+var cursor_texture_radar_the_tool = preload("res://assets/textures/equipment/radar_the_tool.png")
+var cursor_texture_radar_the_enemies = preload("res://assets/textures/equipment/radar_the_enemies.png")
 
 var cursor_default = preload("res://assets/textures/player/main_cursor.png")
 var the_nothing_texture = preload("res://assets/textures/equipment/others/the_nothing.png")
@@ -364,8 +364,9 @@ func _process(delta):
 				
 					torch.position = CaveSystem.map_to_local(tile_pos)
 					add_sibling(torch)
+					lights_used += 1
 					$"../Player/PlayerSounds/PlaceBlock".play()
-					print("Torch Placed: ", torch, "/", tile_pos)
+					#print("[player.gd] Torch Placed: ", torch, "/", tile_pos)
 				
 			if Input.is_action_just_pressed("Place_Block") and current_item != "Light":
 					if (CaveSystem.get_cell_atlas_coords(tile_pos) == Vector2i(0, 1)):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuoxvonybts8h"
-path="res://.godot/imported/radar_the_enemies.png-3c6fd1e634593f9892614cdb9e881a3e.ctex"
+uid="uid://1u6ens7p4bdq"
+path="res://.godot/imported/radar_the_tool.png-bc77b16a759003bb0ef674c5a90f24d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/others/radar_the_enemies.png"
-dest_files=["res://.godot/imported/radar_the_enemies.png-3c6fd1e634593f9892614cdb9e881a3e.ctex"]
+source_file="res://assets/textures/equipment/radar_the_tool.png"
+dest_files=["res://.godot/imported/radar_the_tool.png-bc77b16a759003bb0ef674c5a90f24d1.ctex"]
 
 [params]
 

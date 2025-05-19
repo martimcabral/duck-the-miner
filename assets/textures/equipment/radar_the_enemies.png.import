@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgum6gl0wbg1e"
-path="res://.godot/imported/bulkhead_light.png-e72fb6aa4a37d6790b13459961f1aae4.ctex"
+uid="uid://cuoxvonybts8h"
+path="res://.godot/imported/radar_the_enemies.png-89d1d2b6f522cc0dec6bbdaac3990cdd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/others/bulkhead_light.png"
-dest_files=["res://.godot/imported/bulkhead_light.png-e72fb6aa4a37d6790b13459961f1aae4.ctex"]
+source_file="res://assets/textures/equipment/radar_the_enemies.png"
+dest_files=["res://.godot/imported/radar_the_enemies.png-89d1d2b6f522cc0dec6bbdaac3990cdd.ctex"]
 
 [params]
 

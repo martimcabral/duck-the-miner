@@ -4,6 +4,8 @@ extends TileMap
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var world = $".."
 
+var items_scene = preload("res://scenes/misc/items.tscn")
+
 func drop_items():
 	var tile_pos = get_global_mouse_position() / 16
 	var block = CaveSystem.get_cell_atlas_coords(tile_pos)
@@ -153,13 +155,20 @@ func drop_items():
 	
 	if item_name != "":
 		for i in range(randi_range(1, 3)):
-			var packed_scene = load("res://scenes/misc/items.tscn")
-			var instance = packed_scene.instantiate()
+			var instance = items_scene.instantiate()
+			
+			if not instance.has_node(item_name):
+				print("Warning: item_name '%s' not found in items.tscn" % item_name)
+				instance.free()
+				continue
+			
 			var target_node = instance.get_node(item_name)
-			target_node.get_parent().remove_child(target_node)
+			instance.remove_child(target_node)
+			instance.queue_free()  # or instance.free() if you're sure it's safe immediately
+			
 			target_node.owner = null
 			add_child(target_node)
 			target_node.position = CaveSystem.map_to_local(tile_pos)
-			target_node.rotation = randi_range(0, 360)
+			target_node.rotation_degrees = randi_range(0, 360)
 
 # © Sr. Patinho // 2007-2025 🦆

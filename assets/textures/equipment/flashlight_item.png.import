@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh1dlvkx30f3a"
-path="res://.godot/imported/debug_sword.png-869afb23281f2986213ad43f8ad528d3.ctex"
+uid="uid://coqirkcawixar"
+path="res://.godot/imported/flashlight_item.png-dfbfdd24ba1769f3c0535346c2fe5ec0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/equipment/swords/debug_sword.png"
-dest_files=["res://.godot/imported/debug_sword.png-869afb23281f2986213ad43f8ad528d3.ctex"]
+source_file="res://assets/textures/equipment/flashlight_item.png"
+dest_files=["res://.godot/imported/flashlight_item.png-dfbfdd24ba1769f3c0535346c2fe5ec0.ctex"]
 
 [params]
 

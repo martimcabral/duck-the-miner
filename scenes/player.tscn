@@ -766,7 +766,7 @@ shape = SubResource("CircleShape2D_ig4b6")
 debug_color = Color(1, 0, 0.986779, 0.203922)
 
 [node name="MiningCooldown" type="Timer" parent="BlockRange"]
-wait_time = 0.015
+wait_time = 0.001
 autostart = true
 
 [node name="ResetUsedTiles" type="Timer" parent="BlockRange"]
