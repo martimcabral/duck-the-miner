@@ -114,6 +114,7 @@ var gamma_ammount : int = 0
 var omega_ammount : int = 0
 var koppa_ammount : int = 0
 
+var money_scene : PackedScene = preload("res://scenes/misc/particles/money.tscn")
 @onready var item_list = $Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/ItemList
 var item_selected : int = -1
 var selected_inventory = 0
@@ -139,7 +140,7 @@ func _ready():
 	
 	money_config.load(money_path)
 	var current_money = str(money_config.get_value("money", "current", 0))
-	update_money(str(current_money))
+	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + update_money(str(current_money)) + " €"
 	
 	load_skin()
 	
@@ -669,10 +670,17 @@ func _on_sell_button_pressed() -> void:
 		money.set_value("money", "current", new_money)
 		money.save(money_path)
 		
-		update_money(str(new_money))
+		
+		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + update_money(str(new_money)) + " €"
 		item_selected = -1
 		selected_item_name = ""
 		selected_item_quantity = 0
+		
+		var money_particle = money_scene.instantiate()
+		money_particle.position = Vector2(530, 20)
+		money_particle.get_child(0).text = str("+ ", update_money(str(money_earned)), " €")
+		money_particle.get_child(0).get_child(0).play("cashin")
+		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.add_child(money_particle)
 
 func get_price(item_name):
 	pricing.load(pricing_path)
@@ -700,7 +708,6 @@ func update_money(strinfied_money):
 		if counter % 3 == 0 and i != 0:
 			formatted_number = " " + formatted_number
 		
-	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + formatted_number + " €"
 	return formatted_number
 
 func _on_company_liscence_pressed() -> void:

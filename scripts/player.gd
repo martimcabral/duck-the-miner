@@ -79,7 +79,7 @@ var current_difficulty : String = ""
 var settings_path : String = str("user://game_settings.cfg")
 var settings_config = ConfigFile.new()
 
-var quack_scene : PackedScene = preload("res://scenes/misc/quack.tscn")
+var quack_scene : PackedScene = preload("res://scenes/misc/particles/quack.tscn")
 
 var window_mode = 0
 var subtitles : bool
