@@ -93,6 +93,7 @@ func _on_back_button_pressed() -> void:
 	$DisplayPanel.visible = false
 	$"../StartMenu".visible = true
 	$".".visible = false
+	$"../SplashTitleLabel".visible = true
 
 func _on_windows_type_drop_down_item_selected(index: int) -> void:
 	config.set_value("display", "windows_type", index)

@@ -496,9 +496,13 @@ func _on_select_mission_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
-	var new_game_scene = load("res://scenes/menus/main_menu.tscn")
-	get_tree().change_scene_to_packed(new_game_scene)
-	new_game_scene.instantiate()
+	var main_menu = load("res://scenes/menus/main_menu.tscn")
+	var menu = main_menu.instantiate()
+	menu.started_from_exe = 0
+
+	get_tree().root.add_child(menu)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = menu
 
 func _on_start_button_pressed() -> void:
 	if mission_selected == true:

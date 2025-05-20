@@ -12,6 +12,7 @@ func _on_exit_button_pressed() -> void:
 func _on_options_button_pressed() -> void:
 	$".".visible = false
 	$"../OptionsMenu".visible = true
+	$"../SplashTitleLabel".visible = false
 
 func _on_new_game_button_pressed() -> void: 
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/play.ogg")
@@ -19,10 +20,12 @@ func _on_new_game_button_pressed() -> void:
 	$"../../../MouseSoundEffects".play()
 	$".".visible = false
 	$"../SaveFilesMenu".visible = true
+	$"../SplashTitleLabel".visible = false
 
 func _on_credits_button_pressed() -> void:
 	$".".visible = false
 	$"../CreditsMenu".visible = true
+	$"../SplashTitleLabel".visible = false
 
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
@@ -31,6 +34,7 @@ func _on_back_button_pressed() -> void:
 	
 	$".".visible = true
 	$"../CreditsMenu".visible = false
+	$"../SplashTitleLabel".visible = true
 
 func _on_play_button_pressed() -> void:
 	$".".visible = false 

@@ -124,6 +124,7 @@ func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".play()
 	$"../StartMenu".visible = true
 	$".".visible = false
+	$"../SplashTitleLabel".visible = true
 
 func _on_creator_button_pressed() -> void:
 	$SaveScreationPanel.visible = false
