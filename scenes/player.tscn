@@ -810,7 +810,6 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
-visible = false
 follow_viewport_scale = 0.5
 
 [node name="MirageOverlay" type="Sprite2D" parent="Camera2D/HUD"]
@@ -838,9 +837,13 @@ offset_bottom = 1079.0
 texture = ExtResource("7_i24mp")
 
 [node name="BloddyOverlay" type="TextureRect" parent="Camera2D/HUD"]
+visible = false
 texture_filter = 1
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
 visible = false

@@ -683,6 +683,8 @@ func _on_sell_button_pressed() -> void:
 		money_particle.get_child(0).text = str("+ ", update_money(str(money_earned)), " €")
 		money_particle.get_child(0).get_child(0).play("cashin")
 		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.add_child(money_particle)
+		if item_list.item_count <= 0:
+			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 
 func get_price(item_name):
 	pricing.load(pricing_path)

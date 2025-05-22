@@ -127,6 +127,7 @@ func _ready():
 	for i in range(0, hotbar_slots_number):
 		hotbar.add_tab(player_config.get_value("hotbar_slots", str(i)))
 		hotbar.set_tab_icon(i, set_custom_cursor(i))
+	current_item = hotbar.get_tab_title(hotbar.current_tab)
 	
 	load_skin()
 	
@@ -614,7 +615,6 @@ func get_control_to_labelization():
 			"Radar the Enemies": ItemKeyLabel.text = "Use Radar the Enemies   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
 	else:
 		$Camera2D/HUD/ShowControls.visible = false
-			
 
 func _on_timer_to_turn_hud_visible_timeout() -> void:
 	$Camera2D/HUD/Stats.visible = true
