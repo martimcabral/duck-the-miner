@@ -628,7 +628,6 @@ offset_right = 2331.0
 offset_bottom = 1328.0
 
 [node name="PickupItemsRange2" type="Area2D" parent="Player" groups=["Pickable"]]
-visible = false
 script = ExtResource("4_rt7d7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickupItemsRange2"]
@@ -667,6 +666,7 @@ mouse_filter = 2
 one_shot = true
 
 [node name="RadarPanel" type="Panel" parent="Player/HUD"]
+visible = false
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 352.0
@@ -782,6 +782,7 @@ offset_right = 7.0
 offset_bottom = 3.0
 
 [node name="DeathLabel" type="Label" parent="Player/HUD"]
+visible = false
 z_index = 300
 anchors_preset = 14
 anchor_top = 0.5
@@ -862,6 +863,7 @@ bbcode_enabled = true
 text = "FIELD NAME | BIOME NAME"
 
 [node name="MissionList" type="ItemList" parent="Player/HUD"]
+visible = false
 texture_filter = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -913,6 +915,7 @@ scale = Vector2(1.6083, 0.260001)
 points = PackedVector2Array(2, 35, 184.128, 35)
 
 [node name="ItemList" type="ItemList" parent="Player/HUD"]
+visible = false
 texture_filter = 1
 anchors_preset = 1
 anchor_left = 1.0

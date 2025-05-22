@@ -51,9 +51,9 @@ var item_icons = {
 	"Pietersite": "res://assets/textures/items/gems/pietersite.png",
 	"Labradorite": "res://assets/textures/items/gems/labradorite.png",
 	"Jeremejevite": "res://assets/textures/items/gems/jeremejevite.png",
-	"Hematite": "res://assets/textures/items/ores/hematite.png",
 	"Pitchblende": "res://assets/textures/items/ores/pitchblende.png",
-	"Phosphorite": "res://assets/textures/items/ores/phosphorite.png"
+	"Phosphorite": "res://assets/textures/items/ores/phosphorite.png",
+	"Hematite": "res://assets/textures/items/ores/hematite.png"
 }
 
 var selecting_mission : bool = false
@@ -93,11 +93,6 @@ var money_config = ConfigFile.new()
 var skin_file = ConfigFile.new()
 var pricing = ConfigFile.new()
 
-var raw_config = ConfigFile.new()
-var resources = ConfigFile.new()
-var crafted_config = ConfigFile.new()
-var crafted = ConfigFile.new()
-
 var selected_item_name : String = ""
 var selected_item_quantity : int = 0
 
@@ -125,8 +120,10 @@ func _ready():
 	config_file.load(config_path)
 	$CanvasLayer/ColorblindnessColorRect.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
 	
+	var raw_config = ConfigFile.new()
 	raw_config.load(str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg"))
 	populate_inventory_tab(raw_config)
+	raw_config.clear()
 	
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.visible = true
@@ -496,9 +493,13 @@ func _on_select_mission_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
-	var new_game_scene = load("res://scenes/menus/main_menu.tscn")
-	get_tree().change_scene_to_packed(new_game_scene)
-	new_game_scene.instantiate()
+	var main_menu = load("res://scenes/menus/main_menu.tscn")
+	var menu = main_menu.instantiate()
+	menu.started_from_exe = 0
+
+	get_tree().root.add_child(menu)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = menu
 
 func _on_start_button_pressed() -> void:
 	if mission_selected == true:
@@ -603,8 +604,10 @@ func _on_tab_bar_item_selected(index: int) -> void:
 	print("[lobby.gd] Inventory Selected: ", index)
 	selected_inventory = index
 	
-	var raw_load_result = raw_config.load(raw_inv_path)
+	var raw_config = ConfigFile.new()
+	var crafted_config = ConfigFile.new()
 	
+	var raw_load_result = raw_config.load(raw_inv_path)
 	var crafted_load_result = crafted_config.load(crafted_inv_path)
 	
 	if raw_load_result == OK and crafted_load_result == OK:
@@ -635,7 +638,7 @@ func populate_inventory_tab(config: ConfigFile) -> void:
 	else:
 		item_list.visible = false
 		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
-		print("[lobby.gd] Config: ", config, " does not have section Inventory.")
+		print("[lobby.gd] Config: ", config, " does not have an Inventory section.")
 
 func _on_item_list_item_selected(index: int) -> void:
 	item_selected = index
@@ -670,7 +673,6 @@ func _on_sell_button_pressed() -> void:
 		money.set_value("money", "current", new_money)
 		money.save(money_path)
 		
-		
 		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + update_money(str(new_money)) + " €"
 		item_selected = -1
 		selected_item_name = ""
@@ -681,6 +683,8 @@ func _on_sell_button_pressed() -> void:
 		money_particle.get_child(0).text = str("+ ", update_money(str(money_earned)), " €")
 		money_particle.get_child(0).get_child(0).play("cashin")
 		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.add_child(money_particle)
+		if item_list.item_count <= 0:
+			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 
 func get_price(item_name):
 	pricing.load(pricing_path)
@@ -689,10 +693,12 @@ func get_price(item_name):
 
 func remove_item_from_inventory(item_name):
 	if selected_inventory == 0:
+		var resources = ConfigFile.new()
 		resources.load(resources_path)
 		resources.erase_section_key("inventory", item_name)
 		resources.save(resources_path)
 	elif selected_inventory == 1:
+		var crafted = ConfigFile.new()
 		crafted.load(crafted_path)
 		crafted.erase_section_key("inventory", item_name)
 		crafted.save(crafted_path)

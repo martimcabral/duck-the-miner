@@ -837,11 +837,16 @@ offset_bottom = 1079.0
 texture = ExtResource("7_i24mp")
 
 [node name="BloddyOverlay" type="TextureRect" parent="Camera2D/HUD"]
+visible = false
 texture_filter = 1
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Stats" type="CanvasLayer" parent="Camera2D/HUD"]
+visible = false
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 follow_viewport_scale = 1.78
@@ -1014,6 +1019,7 @@ grow_vertical = 2
 texture = ExtResource("32_j2b1d")
 
 [node name="Hotbar" type="CanvasLayer" parent="Camera2D/HUD"]
+visible = false
 
 [node name="TabBar" type="TabBar" parent="Camera2D/HUD/Hotbar"]
 anchors_preset = 7
@@ -1113,6 +1119,10 @@ wait_time = 0.2
 wait_time = 0.5
 autostart = true
 
+[node name="TimerToTurnHUDVisible" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="BlockRange/MiningCooldown" to="." method="_on_minning_cooldown_timeout"]
 [connection signal="timeout" from="BlockRange/ResetUsedTiles" to="." method="_on_reset_used_tiles_timeout"]
@@ -1122,3 +1132,4 @@ autostart = true
 [connection signal="timeout" from="OxygenConsumption" to="." method="_on_oxygen_consumption_timeout"]
 [connection signal="timeout" from="ResetModulateRedHit" to="." method="_on_reset_modulate_red_hit_timeout"]
 [connection signal="timeout" from="TakeDamageFromOxygen" to="." method="_on_take_damage_from_oxygen_timeout"]
+[connection signal="timeout" from="TimerToTurnHUDVisible" to="." method="_on_timer_to_turn_hud_visible_timeout"]

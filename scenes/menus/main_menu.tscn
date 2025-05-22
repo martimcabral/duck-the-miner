@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=60 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/Misc/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
@@ -13,6 +13,163 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
 shader = ExtResource("8_tbmy8")
 shader_parameter/mode = 0
+
+[sub_resource type="Animation" id="Animation_euy4r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(773.5, 317.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Title:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Title:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(465, 105)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SplashTitleLabel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SplashTitleLabel:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(177, 238)]
+}
+
+[sub_resource type="Animation" id="Animation_50h1w"]
+resource_name = "start"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(773.5, 1100), Vector2(773.5, 317.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Title:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(465, -200), Vector2(465, 105)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Title:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../SplashTitleLabel:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(177, -67), Vector2(177, 238)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SplashTitleLabel:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bre17"]
+_data = {
+&"RESET": SubResource("Animation_euy4r"),
+&"start": SubResource("Animation_50h1w")
+}
 
 [sub_resource type="Shader" id="Shader_o5xol"]
 code = "shader_type canvas_item;
@@ -53,6 +210,43 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_846s3"]
 shader = SubResource("Shader_o5xol")
 shader_parameter/mode = 0
+
+[sub_resource type="Animation" id="Animation_88kup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_bre17"]
+resource_name = "uwuwuwuw"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bh4e2"]
+_data = {
+&"RESET": SubResource("Animation_88kup"),
+&"uwuwuwuw": SubResource("Animation_bre17")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
 bg_color = Color(0, 0, 0, 0.705882)
@@ -419,6 +613,14 @@ texture = ExtResource("7_jk1qb")
 
 [node name="Center" type="Node" parent="GUI"]
 
+[node name="FadeInStart" type="AnimationPlayer" parent="GUI/Center"]
+unique_name_in_owner = true
+root_node = NodePath("../StartMenu")
+libraries = {
+&"": SubResource("AnimationLibrary_bre17")
+}
+speed_scale = 2.25
+
 [node name="Background" type="TextureRect" parent="GUI/Center"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_846s3")
@@ -442,8 +644,36 @@ theme_override_constants/shadow_offset_y = 10
 theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
+[node name="SplashTitleLabel" type="Label" parent="GUI/Center"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -783.0
+offset_top = 238.0
+offset_right = 783.0
+offset_bottom = 287.0
+grow_horizontal = 2
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(781.858, 19.6335)
+theme_override_colors/font_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "ERROR:81"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GUI/Center/SplashTitleLabel"]
+libraries = {
+&"": SubResource("AnimationLibrary_bh4e2")
+}
+autoplay = "uwuwuwuw"
+speed_scale = 0.5
+
 [node name="StartMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -829,6 +1059,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
 text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1348,6 +1579,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_t6f36")
 step = 5.0
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
+visible = false
 layout_mode = 2
 offset_left = 304.0
 offset_top = 5.0
