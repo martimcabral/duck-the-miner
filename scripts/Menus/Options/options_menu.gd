@@ -54,11 +54,34 @@ func _ready():
 		$DisplayPanel/BiomeVisualEffectsCheckButton.button_pressed = config.get_value("display", "biome_visual_effects", true)
 
 		############# Audio #############
+		
 		$AudioPanel/MasterVolumeSlider.value = config.get_value("audio", "master")
 		$AudioPanel/MusicVolumeSlider.value = config.get_value("audio", "music")
 		$AudioPanel/AmbientVolumeSlider.value = config.get_value("audio", "ambient")
 		$AudioPanel/PlayerVolumeSlider.value = config.get_value("audio", "player")
 		$AudioPanel/MenusVolumeSlider.value = config.get_value("audio", "menus")
+		
+		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "master")))
+		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "music")))
+		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "ambient")))
+		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "player")))
+		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "menus")))
+		
+		if config.get_value("audio", "master") == 0.0:
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -80.0)
+			$AudioPanel/CurrentVolume.text = "0"
+		if config.get_value("audio", "music") == 0.0:
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -80.0)
+			$AudioPanel/CurrentMusicVolume.text = "0"
+		if config.get_value("audio", "ambient") == 0.0:
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient"), -80.0)
+			$AudioPanel/CurrentAmbientVolume.text = "0"
+		if config.get_value("audio", "player") == 0.0:
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Player"), -80.0)
+			$AudioPanel/CurrentPlayerVolume.text = "0"
+		if config.get_value("audio", "menus") == 0.0:
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Menus"), -80.0)
+			$AudioPanel/CurrentMenusVolume.text = "0"
 		
 		############# Controls #############
 		$ControlsPanel/FlyUpButton.text = config.get_value("controls", "Fly_Up")
@@ -188,9 +211,6 @@ func change_resolution(index):
 		11: DisplayServer.window_set_size(Vector2i(1280, 960))
 		12: DisplayServer.window_set_size(Vector2i(1024, 768))
 
-func convert_to_db(value: float) -> float:
-	return lerp(-50, 0, value / 100.0)
-
 func _on_master_volume_slider_value_changed(value: float) -> void:
 	var db_value = convert_to_db(value)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db_value)
@@ -225,6 +245,11 @@ func _on_menus_volume_slider_value_changed(value: float) -> void:
 	$AudioPanel/CurrentMenusVolume.text = str(int(value))
 	config.set_value("audio", "menus", value)
 	config.save(file_path)
+
+func convert_to_db(value: float) -> float:
+	if value <= 0.0:
+		return -80.0 # efetivamente silent
+	return 20.0 * (log(value / 100.0) / log(10.0))
 
 func _input(event):
 	if (event is InputEventKey or event is InputEventJoypadButton) and event.pressed:

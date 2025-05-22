@@ -615,3 +615,10 @@ func get_control_to_labelization():
 	else:
 		$Camera2D/HUD/ShowControls.visible = false
 			
+
+func _on_timer_to_turn_hud_visible_timeout() -> void:
+	$Camera2D/HUD/Stats.visible = true
+	$Camera2D/HUD/Hotbar.visible = true
+	$Camera2D/HUD.visible = true
+	$HUD/MissionList.visible = true
+	$HUD/ItemList.visible = true
