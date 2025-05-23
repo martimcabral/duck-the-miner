@@ -6,6 +6,12 @@ func _ready() -> void:
 	$"../OptionsMenu".visible = false
 	$"../CreditsMenu".visible = false
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed and (event.button_index == MOUSE_BUTTON_LEFT or event.button_index == MOUSE_BUTTON_RIGHT):
+			if $TutorialRichLabel.get_theme_color("default_color") == Color("f9b53f"):
+				print("a")
+
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
@@ -52,3 +58,9 @@ func _on_time_to_play_timeout() -> void:
 		get_tree().change_scene_to_packed(load("res://scenes/cutscenes/intro.tscn"))
 	else:
 		get_tree().change_scene_to_packed(load("res://scenes/lobby.tscn"))
+
+func _on_rich_text_label_mouse_entered() -> void:
+	$TutorialRichLabel.add_theme_color_override("default_color", Color("f9b53f"))
+
+func _on_rich_text_label_mouse_exited() -> void:
+	$TutorialRichLabel.add_theme_color_override("default_color", Color.WHITE)

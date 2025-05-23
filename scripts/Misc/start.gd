@@ -7,9 +7,15 @@ var started_from_exe : int = 1
 var username : String = ""
 
 func _ready() -> void:
+	if not FileAccess.file_exists("user://tutorial.cfg"):
+		var tutorial = ConfigFile.new()
+		tutorial.set_value("tutorial", "done", false)
+		tutorial.save("user://tutorial.cfg")
+	
 	match OS.get_name():
 		"Windows": username = OS.get_environment("USERNAME")
 		"Linux": username = OS.get_environment("USER")
+	
 	create_pricing_config()
 	create_splashes_file()
 	
@@ -74,7 +80,7 @@ func _ready() -> void:
 		$GUI/Center/Background.flip_v = true
 	
 	var easter_egg_title = randi_range(1, 100)
-	if easter_egg_title == 25:
+	if easter_egg_title == 1:
 		$GUI/Center/Title.text = "Miner the Duck"
 
 func _process(_delta: float) -> void:
@@ -175,6 +181,8 @@ func create_pricing_config():
 func create_splashes_file():
 	var splashes_file = FileAccess.open("user://splashes.txt", FileAccess.WRITE)
 	var splashes_text : String = ""
+	splashes_text += "Dan the Duckling then Dan the Duck\n"
+	splashes_text += "Dan the Duckling\n"
 	splashes_text += "Dan the Duck\n"
 	splashes_text += "Dan the Duck the Miner\n"
 	splashes_text += "by Sr. Patinho\n"
@@ -185,21 +193,20 @@ func create_splashes_file():
 	splashes_text += "Here be Dragons!\n"
 	splashes_text += "Keyboard compatible!\n"
 	splashes_text += "Fyction does not approve Ducks on planets!\n"
+	splashes_text += "What would you want to go to other planets?\n"
 	splashes_text += "Closed source!\n"
 	splashes_text += "Open source!\n"
 	splashes_text += "Exclusive Fyction Offer: 5 minutes lunch break!\n"
 	splashes_text += "Not on Steam!\n"
-	splashes_text += "Duck the Game\n"
-	splashes_text += "Tell your friends!\n"
+	splashes_text += "Duck the Splash Text\n"
+	splashes_text += "Share it with your friends!\n"
 	splashes_text += "https://sr-patinho.itch.io/duck-the-miner\n"
-	splashes_text += "Also try Terraria\n"
-	splashes_text += "Also try Minecraft\n"
-	splashes_text += "Also try Roblox\n"
-	splashes_text += "Also try Deep Rock Galactic\n"
-	splashes_text += "Also try Satisfactory\n"
-	splashes_text += "Also try Phasmophobia\n"
-	splashes_text += "Also try Teardown\n"
-	splashes_text += "Also try Outer Wilds\n"
+	splashes_text += "Also try Minecraft!\n"
+	splashes_text += "Also try Deep Rock Galactic!\n"
+	splashes_text += "Also try Satisfactory!\n"
+	splashes_text += "Also try Phasmophobia!\n"
+	splashes_text += "Also try Teardown!\n"
+	splashes_text += "Also try Outer Wilds!\n"
 	splashes_text += "Mining Away!\n"
 	splashes_text += "print(chr(sum(range(ord(min(str(not)))))))\n"
 	splashes_text += "Always with Rich Presence!\n"
@@ -208,10 +215,16 @@ func create_splashes_file():
 	splashes_text += "Godot 4.4.1 + 1.2.3 = 5.6.4!\n"
 	splashes_text += "/give @a ducks 64\n"
 	splashes_text += "Rule #1: it's never my fault\n"
-	splashes_text += "You've been ducked! 🦆\n"
-	splashes_text += "duck.exe\n"
+	splashes_text += "You've been ducked!\n"
 	splashes_text += str("Played by: ", username, "\n")
-	splashes_text += "F is for Fyction, not Flutter!"
+	splashes_text += "F is for Fyction, not Flutter!\n"
+	splashes_text += "This splash text is currently under construction!\n"
+	splashes_text += "Welcome aboard captain. All systems online!\n"
+	splashes_text += "ROCK AND STONE!"
 	
 	splashes_file.store_string(splashes_text)
 	splashes_file.close()
+
+func _on_splash_construction_timer_timeout() -> void:
+	if $GUI/Center/SplashTitleLabel.text == "This splash text is currently under construction!":
+		$GUI/Center/SplashTitleLabel.text = "This splash text is now complete!"

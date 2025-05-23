@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://hm7vdj2w6toj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ud7r1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afvru"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4tqpx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nf42y"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VLine2D" type="Line2D" parent="."]
+position = Vector2(528, 0)
+points = PackedVector2Array(0, 0, 0, 1080)
+
+[node name="MissionsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -532.0
+offset_right = 523.0
+offset_bottom = -452.0
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ud7r1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_afvru")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4tqpx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nf42y")
+text = "Missions"
+
+[node name="StockTheMarketButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -440.0
+offset_right = 523.0
+offset_bottom = -360.0
+grow_vertical = 2
+theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ud7r1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_afvru")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4tqpx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nf42y")
+text = "Stock Market"
+
+[node name="ToolsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -360.0
+offset_right = 523.0
+offset_bottom = -280.0
+grow_vertical = 2
+theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ud7r1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_afvru")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_4tqpx")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nf42y")
+text = "Tools"

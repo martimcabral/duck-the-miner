@@ -46,7 +46,6 @@ func _on_change_day_pressed() -> void:
 		var day_config = ConfigFile.new()
 		day_config.set_value("day", "current", int(new_day))
 		day_config.save(day_path)
-		$"../Lobby/LobbyPanel/MoneyPanel/DaysLabel".text = "Day: " + new_day
 		print("[cheat_menu.gd] Day changed to: ", new_day)
 
 func _on_change_money_pressed() -> void:

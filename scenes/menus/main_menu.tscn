@@ -250,10 +250,10 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
 bg_color = Color(0, 0, 0, 0.705882)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -599,6 +599,11 @@ script = ExtResource("1_0o5ht")
 [node name="TimeToPlay" type="Timer" parent="."]
 wait_time = 0.75
 
+[node name="SplashConstructionTimer" type="Timer" parent="."]
+wait_time = 510.0
+one_shot = true
+autostart = true
+
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="ColorblindFilter" type="TextureRect" parent="GUI"]
@@ -683,7 +688,7 @@ anchor_bottom = 0.5
 offset_left = -186.5
 offset_top = -222.5
 offset_right = 186.5
-offset_bottom = 222.5
+offset_bottom = 321.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -705,7 +710,7 @@ offset_bottom = 108.0
 grow_horizontal = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxFlat_r1li2")
 text = "Play"
 flat = true
@@ -724,15 +729,44 @@ offset_bottom = 190.0
 grow_horizontal = 2
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxFlat_y4du8")
 text = "Settings"
 flat = true
 
 [node name="Line2D" type="Line2D" parent="GUI/Center/StartMenu"]
-position = Vector2(59.108, 135.6)
+position = Vector2(59.108, 119.6)
 scale = Vector2(0.678663, 0.400002)
 points = PackedVector2Array(1, 236, 370, 236)
+width = 12.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="TutorialRichLabel" type="RichTextLabel" parent="GUI/Center/StartMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -36.5
+offset_right = 182.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[wave amp=35.0 freq=5.0 connected=1][center]Tutorial[/center]"
+scroll_active = false
+
+[node name="Line2D2" type="Line2D" parent="GUI/Center/StartMenu"]
+position = Vector2(59.108, 236.6)
+scale = Vector2(0.678663, 0.400002)
+points = PackedVector2Array(1, 236, 370, 236)
+width = 12.0
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -754,7 +788,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Credits"
 flat = true
@@ -776,7 +810,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Exit"
 flat = true
@@ -2176,8 +2210,12 @@ stream = ExtResource("5_08a1y")
 bus = &"Menus"
 
 [connection signal="timeout" from="TimeToPlay" to="GUI/Center/StartMenu" method="_on_time_to_play_timeout"]
+[connection signal="timeout" from="SplashConstructionTimer" to="." method="_on_splash_construction_timer_timeout"]
 [connection signal="pressed" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/OptionsButton" to="GUI/Center/StartMenu" method="_on_options_button_pressed"]
+[connection signal="meta_clicked" from="GUI/Center/StartMenu/TutorialRichLabel" to="GUI/Center/StartMenu" method="_on_tutorial_rich_label_meta_clicked"]
+[connection signal="mouse_entered" from="GUI/Center/StartMenu/TutorialRichLabel" to="GUI/Center/StartMenu" method="_on_rich_text_label_mouse_entered"]
+[connection signal="mouse_exited" from="GUI/Center/StartMenu/TutorialRichLabel" to="GUI/Center/StartMenu" method="_on_rich_text_label_mouse_exited"]
 [connection signal="pressed" from="GUI/Center/StartMenu/CreditsButton" to="GUI/Center/StartMenu" method="_on_credits_button_pressed"]
 [connection signal="pressed" from="GUI/Center/StartMenu/ExitButton" to="GUI/Center/StartMenu" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="GUI/Center/SaveFilesMenu/PlayButton" to="GUI/Center/StartMenu" method="_on_play_button_pressed"]

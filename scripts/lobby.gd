@@ -137,7 +137,6 @@ func _ready():
 	
 	money_config.load(money_path)
 	var current_money = str(money_config.get_value("money", "current", 0))
-	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + update_money(str(current_money)) + " €"
 	
 	load_skin()
 	
@@ -202,15 +201,22 @@ func _enter_tree() -> void:
 	target_zoom = $SolarSystem.scale.x
 
 func _process(delta: float) -> void:
+	money_config.load(money_path)
+	var current_money = money_config.get_value("money", "current", 0)
+	if current_money >= 0:
+		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Money: " + update_money(str(current_money)) + " €"
+	elif current_money < 0:
+		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + update_money(str(current_money)) + " €"
+	
 	if selecting_mission:
 		$UniverseBackground.position = get_global_mouse_position() * 0.01 - Vector2(1500, 1500)
 	
 	if selecting_mission:
 		$Camera2D/HUD/Lobby/ZoomRuler.visible = true
 		if Input.is_action_just_pressed("Universe_Zoom_In"):
-			target_zoom = clamp(target_zoom + 0.05, min_zoom, max_zoom)
+			target_zoom = clamp(target_zoom + 0.075, min_zoom, max_zoom)
 		if Input.is_action_just_pressed("Universe_Zoom_Out"):
-			target_zoom = clamp(target_zoom - 0.05, min_zoom, max_zoom)
+			target_zoom = clamp(target_zoom - 0.075, min_zoom, max_zoom)
 		$SolarSystem.scale = lerp($SolarSystem.scale, Vector2(target_zoom, target_zoom), 5 * delta)
 	$Camera2D/HUD/Lobby/ZoomRuler/ZoomLabel.text = "Zoom: " + str(snapped(target_zoom * ZOOM_FACTOR, 0) / 4) + "x"
 	
