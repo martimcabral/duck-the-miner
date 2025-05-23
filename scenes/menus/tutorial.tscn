@@ -1,10 +1,92 @@
-[gd_scene load_steps=5 format=3 uid="uid://hm7vdj2w6toj"]
+[gd_scene load_steps=7 format=3 uid="uid://hm7vdj2w6toj"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ud7r1"]
+[ext_resource type="Script" uid="uid://d37chluhpvfvx" path="res://scripts/Menus/tutorial.gd" id="1_4tqpx"]
+[ext_resource type="Texture2D" uid="uid://dqxpjcem2ojj0" path="res://assets/pattern.png" id="1_afvru"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_afvru"]
+[sub_resource type="Animation" id="Animation_afvru"]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MissionsButton:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(480, -136), Vector2(480, 24)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallPattern1-1:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-450, 0), Vector2(-32, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallPattern2-1:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2076, 0), Vector2(1628, 0)]
+}
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4tqpx"]
+[sub_resource type="Animation" id="Animation_4tqpx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WallPattern1-1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-450, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallPattern2-1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2076, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MissionsButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(480, -136)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nf42y"]
+_data = {
+&"RESET": SubResource("Animation_4tqpx"),
+&"start": SubResource("Animation_afvru")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nf42y"]
 
@@ -15,6 +97,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_4tqpx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nf42y")
+}
+autoplay = "start"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -25,60 +114,229 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="VLine2D" type="Line2D" parent="."]
-position = Vector2(528, 0)
-points = PackedVector2Array(0, 0, 0, 1080)
+[node name="MissionsButton" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = -136.0
+offset_right = 480.0
+offset_bottom = -56.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nf42y")
+text = "How to be a Fyction Miner:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MissionsButton" type="Button" parent="."]
+[node name="WallPattern1-1" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -532.0
-offset_right = 523.0
-offset_bottom = -452.0
+offset_left = -450.0
+offset_top = -540.0
+offset_right = -126.0
+offset_bottom = 540.0
 grow_vertical = 2
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ud7r1")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_afvru")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_4tqpx")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nf42y")
-text = "Missions"
+texture = ExtResource("1_afvru")
+expand_mode = 1
 
-[node name="StockTheMarketButton" type="Button" parent="."]
+[node name="WallPattern1-2" type="TextureRect" parent="WallPattern1-1"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -440.0
-offset_right = 523.0
-offset_bottom = -360.0
+offset_top = -1549.0
+offset_right = 324.0
+offset_bottom = -469.0
 grow_vertical = 2
-theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ud7r1")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_afvru")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_4tqpx")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nf42y")
-text = "Stock Market"
+texture = ExtResource("1_afvru")
+expand_mode = 1
 
-[node name="ToolsButton" type="Button" parent="."]
+[node name="WallPattern1-3" type="TextureRect" parent="WallPattern1-1"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -360.0
-offset_right = 523.0
-offset_bottom = -280.0
+offset_left = -0.156311
+offset_top = -2558.05
+offset_right = 323.844
+offset_bottom = -1478.05
 grow_vertical = 2
-theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ud7r1")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_afvru")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_4tqpx")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nf42y")
-text = "Tools"
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern1-4" type="TextureRect" parent="WallPattern1-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -0.156311
+offset_top = -3567.05
+offset_right = 323.844
+offset_bottom = -2487.05
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern1-5" type="TextureRect" parent="WallPattern1-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -0.156311
+offset_top = -4576.05
+offset_right = 323.844
+offset_bottom = -3496.05
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern1-6" type="TextureRect" parent="WallPattern1-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -0.156311
+offset_top = -5585.05
+offset_right = 323.844
+offset_bottom = -4505.05
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern1-7" type="TextureRect" parent="WallPattern1-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -0.156311
+offset_top = -6502.05
+offset_right = 323.844
+offset_bottom = -5422.05
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern2-1" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 156.0
+offset_top = -540.0
+offset_right = 480.0
+offset_bottom = 540.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern2-2" type="TextureRect" parent="WallPattern2-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -1550.0
+offset_bottom = -470.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern2-3" type="TextureRect" parent="WallPattern2-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -2559.0
+offset_bottom = -1479.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern2-4" type="TextureRect" parent="WallPattern2-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -3567.05
+offset_bottom = -2487.05
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern2-5" type="TextureRect" parent="WallPattern2-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -4576.05
+offset_bottom = -3496.05
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern2-6" type="TextureRect" parent="WallPattern2-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -5585.05
+offset_bottom = -4505.05
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
+
+[node name="WallPattern2-7" type="TextureRect" parent="WallPattern2-1"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -324.0
+offset_top = -6502.05
+offset_bottom = -5422.05
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_afvru")
+expand_mode = 1
