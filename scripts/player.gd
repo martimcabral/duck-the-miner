@@ -391,7 +391,7 @@ func destroy_block():
 		var tile_id = CaveSystem.get_cell_atlas_coords(tile_pos)
 		
 		if player.current_item == "Pickaxe":
-			#print("Data: ", used_tiles, " ", tile_id)
+			#print("[player.gd] Data: ", used_tiles, " ", tile_id)
 			if tile_data != null:
 				var tile_health = tile_data.get_custom_data("health")
 			
@@ -417,7 +417,7 @@ func destroy_block():
 					
 					# Detect percentage of the health of the Tile here:
 					var percentage = float(used_tiles[tile_pos]["health"]) / tile_health * 100
-					#print("Block Health: ", percentage, "%")
+					#print("[player.gd] Block Health: ", percentage, "%")
 					if (percentage >= 76 and percentage <= 100):
 						BreakingStages.set_cell(tile_pos, 0, Vector2i(0, 0))
 					elif (percentage >= 50 and percentage <= 75):

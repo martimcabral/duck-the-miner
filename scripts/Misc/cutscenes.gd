@@ -137,7 +137,7 @@ func _on_ready_button_pressed() -> void:
 	$GoToLobby.start()
 
 func _on_go_to_lobby_timeout() -> void:
-	print(terms)
+	print("[cutscenes.gd] ", terms)
 	match terms:
 		"Recusado": $".".get_tree().quit()
 		"Aceitado": get_tree().change_scene_to_packed(load("res://scenes/lobby.tscn"))

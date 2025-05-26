@@ -62,10 +62,10 @@ func _ready():
 		$AudioPanel/MenusVolumeSlider.value = config.get_value("audio", "menus")
 		
 		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "master")))
-		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "music")))
-		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "ambient")))
-		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "player")))
-		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "menus")))
+		$AudioPanel/CurrentMusicVolume.text = str(int(config.get_value("audio", "music")))
+		$AudioPanel/CurrentAmbientVolume.text = str(int(config.get_value("audio", "ambient")))
+		$AudioPanel/CurrentPlayerVolume.text = str(int(config.get_value("audio", "player")))
+		$AudioPanel/CurrentMenusVolume.text = str(int(config.get_value("audio", "menus")))
 		
 		if config.get_value("audio", "master") == 0.0:
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -80.0)
@@ -175,7 +175,7 @@ func _on_display_button_pressed() -> void:
 	$AudioPanel.visible = false
 	$ControlsPanel.visible = false
 	$AccessibilityPanel.visible = false
-	print(get_viewport().get_visible_rect().size)
+	print("[options_menu.gd] ", get_viewport().get_visible_rect().size)
 	if get_viewport().get_visible_rect().size == Vector2(1921, 1080):
 		$DisplayPanel/WindowsSizeDropDown.selected = 2
 

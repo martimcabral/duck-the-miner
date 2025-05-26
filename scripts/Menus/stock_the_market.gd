@@ -189,7 +189,7 @@ func get_companies_values():
 		stock_label_string += _colored(companies_comparisons["Octane"], "OCT")
 			
 		$CurrentStockLabel.text = stock_label_string
-		print(stock_label_string)
+		print("[stock_the_market.gd] Stock Label Full-String:", stock_label_string)
 		print("[stock_the_market.gd] Companie Stocks: ", companies_values)
 		print("[stock_the_market.gd] Companie Comparisons: ", companies_comparisons)
 

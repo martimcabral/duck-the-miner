@@ -31,7 +31,7 @@ func _ready() -> void:
 	$SaveScreationPanel.visible = false
 	# Check if the save directory exists, if not, create it
 	if not DirAccess.dir_exists_absolute(saves_path):
-		print("[save] Directory not found. Creating directory: ", saves_path)
+		print("[save_files_menu.gd] Directory not found. Creating directory: ", saves_path)
 		DirAccess.make_dir_absolute(saves_path)
 		savedir = DirAccess.open("user://save")
 	else: 
@@ -40,12 +40,12 @@ func _ready() -> void:
 	var config_path = saves_path + "saves.cfg"
 	# Check if the saves configuration file exists
 	if not FileAccess.file_exists(config_path):
-		print("[save/saves.cfg] not found. Creating a new one....")
+		print("[save_files_menu.gd] not found. Creating a new one....")
 		saves_config.set_value("saves", "ammount", 0)
 		saves_config.set_value("saves", "selected", 0)
 		saves_config.save(config_path)
 	else:
-		print("[save/saves.cfg] detected successfully")
+		print("[save_files_menu.gd] detected successfully")
 		saves_number = savedir.get_files().size()
 		saves_config.set_value("saves", "ammount", saves_number)
 		saves_config.save(config_path)
@@ -182,9 +182,9 @@ func _on_creator_button_pressed() -> void:
 	if file != null:
 		file.store_string(result)
 		file.close()
-		print("[start.gd/missions.json] Asteroid data emptied")
+		print("[save_files_menu.gd] Asteroid data emptied")
 	else:
-		print("Failed to open the file for writing: " + missions_path)
+		print("[save_files_menu.gd] Failed to open the file for writing: " + missions_path)
 	
 	################################################################################
 	
@@ -280,7 +280,7 @@ func _on_delete_game_pressed() -> void:
 		folder_save.list_dir_end()
 
 		DirAccess.remove_absolute(folder_path)
-		print("Removed Save: ", selected_save)
+		print("[save_files_menu.gd] Removed Save: ", selected_save)
 
 func find_button_by_save(save_id: int) -> Button:
 	for button in $ScrollContainer/SaveList.get_children():

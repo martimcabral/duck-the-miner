@@ -43,18 +43,18 @@ func keep_inventory():
 	if file:
 		file.store_string(result)
 		file.close()
-		print("[pause_menu.gd/missions.json] Asteroid data emptied")
+		print("[pause_menu.gd] Asteroid data emptied")
 	else:
-		print("[pause_menu.gd/missions.json] Failed to open file for emptying stage.")
+		print("[pause_menu.gd] Failed to open file for emptying stage.")
 	
 	var file_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	var current_inventory = load_inventory(file_path)
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	var updated_inventory = merge_items(current_inventory, new_items)
 	if save_inventory_to_cfg(file_path, updated_inventory):
-		print("Inventory saved successfully to", file_path)
+		print("[pause_menu.gd] Inventory saved successfully to", file_path)
 	else:
-		print("Failed to save inventory")
+		print("[pause_menu.gd] Failed to save inventory")
 
 # Function to retrieve items from the ItemList Node
 func get_items_from_itemlist(item_list_node):

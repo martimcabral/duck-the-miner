@@ -124,10 +124,10 @@ func run_away():
 
 func _on_enemy_hitbox_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print("Player attacked Enemie's Hitbox")
+		#print("[enemy.gd] Player attacked Enemie's Hitbox")
 		was_enemy_atacked = true
 		$"../Player".touched_enemy = self
-		print($"../Player".touched_enemy)
+		#print("enemy.gd] Did Player touched enemy?: ", $"../Player".touched_enemy)
 
 func attacked():
 	if was_enemy_atacked == true:
@@ -136,8 +136,8 @@ func attacked():
 			2: $Sounds/Bat/Idle.pitch_scale = 1
 			3: $Sounds/Bat/Idle.pitch_scale = 1.05
 		$Sounds/Bat/Idle.play()
-		print(was_enemy_atacked)
-		print("Enemy Attacked")
+		#print("[enemy.gd] Was enemy attacked?: ", was_enemy_atacked)
+		#print("[enemy.gd] Enemy Attacked")
 		var damage = 15
 		current_health -= damage
 		was_enemy_atacked = false

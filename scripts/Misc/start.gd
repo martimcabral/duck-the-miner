@@ -6,7 +6,12 @@ var agachado = 0
 var started_from_exe : int = 1
 var username : String = ""
 
+var date = Time.get_datetime_dict_from_system()
+var month_number = date["month"]
+
 func _ready() -> void:
+	print("[start.gd] Current Date Package: ", date)
+	print("[start.gd] Current Month: ", date["month"])
 	if not FileAccess.file_exists("user://tutorial.cfg"):
 		var tutorial = ConfigFile.new()
 		tutorial.set_value("tutorial", "done", false)
@@ -18,14 +23,6 @@ func _ready() -> void:
 	
 	create_pricing_config()
 	create_splashes_file()
-	
-	var file = FileAccess.open("user://splashes.txt", FileAccess.READ)
-	var lines = []
-	while not file.eof_reached():
-		lines.append(file.get_line().strip_edges())
-	file.close()
-	if lines.size() > 0:
-		$GUI/Center/SplashTitleLabel.text = lines[randi() % lines.size()]
 	
 	match started_from_exe:
 		0: %FadeInStart.play("RESET")
@@ -44,9 +41,9 @@ func _ready() -> void:
 		# Save the file
 		var save_error = config.save(file_path)
 		if save_error != OK:
-			print("[ERROR] Could not save the configuration file: ", save_error)
+			print("[start.cfg] error - Could not save the configuration file: ", save_error)
 		else:
-			print("Configuration file created successfully.")
+			print("[start.cfg] Configuration file created successfully.")
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.details = "🏘️ At the Main Menu"
@@ -179,51 +176,64 @@ func create_pricing_config():
 			pricing_file.save(pricing_path)
 
 func create_splashes_file():
-	var splashes_file = FileAccess.open("user://splashes.txt", FileAccess.WRITE)
-	var splashes_text : String = ""
-	splashes_text += "Dan the Duckling then Dan the Duck\n"
-	splashes_text += "Dan the Duckling\n"
-	splashes_text += "Dan the Duck\n"
-	splashes_text += "Dan the Duck the Miner\n"
-	splashes_text += "by Sr. Patinho\n"
-	splashes_text += "by Duck the Dev\n"
-	splashes_text += "Fyction loves you!\n"
-	splashes_text += "Bill Industries is always hiring!\n"
-	splashes_text += "100% Godot\n"
-	splashes_text += "Here be Dragons!\n"
-	splashes_text += "Keyboard compatible!\n"
-	splashes_text += "Fyction does not approve Ducks on planets!\n"
-	splashes_text += "What would you want to go to other planets?\n"
-	splashes_text += "Closed source!\n"
-	splashes_text += "Open source!\n"
-	splashes_text += "Exclusive Fyction Offer: 5 minutes lunch break!\n"
-	splashes_text += "Not on Steam!\n"
-	splashes_text += "Duck the Splash Text\n"
-	splashes_text += "Share it with your friends!\n"
-	splashes_text += "https://sr-patinho.itch.io/duck-the-miner\n"
-	splashes_text += "Also try Minecraft!\n"
-	splashes_text += "Also try Deep Rock Galactic!\n"
-	splashes_text += "Also try Satisfactory!\n"
-	splashes_text += "Also try Phasmophobia!\n"
-	splashes_text += "Also try Teardown!\n"
-	splashes_text += "Also try Outer Wilds!\n"
-	splashes_text += "Mining Away!\n"
-	splashes_text += "print(chr(sum(range(ord(min(str(not)))))))\n"
-	splashes_text += "Always with Rich Presence!\n"
-	splashes_text += "Shenanigans!\n"
-	splashes_text += "Lorem Ipsum\n"
-	splashes_text += "Godot 4.4.1 + 1.2.3 = 5.6.4!\n"
-	splashes_text += "/give @a ducks 64\n"
-	splashes_text += "Rule #1: it's never my fault\n"
-	splashes_text += "You've been ducked!\n"
-	splashes_text += str("Played by: ", username, "\n")
-	splashes_text += "F is for Fyction, not Flutter!\n"
-	splashes_text += "This splash text is currently under construction!\n"
-	splashes_text += "Welcome aboard captain. All systems online!\n"
-	splashes_text += "ROCK AND STONE!"
+	var splashes_text : Array = [ # NORMAIS
+		"Dan the Duckling then Dan the Duck",
+		"Dan the Duckling",
+		"Dan the Duck",
+		"Dan the Duck the Miner",
+		"by Sr. Patinho",
+		"by Duck the Dev",
+		"Fyction loves you!",
+		"Bill Industries is always hiring!",
+		"100% Godot",
+		"Here be Dragons!",
+		"Fyction does not approve Ducks on planets!",
+		"Why would you want to go to planets? There is absolutly nothing do to there.",
+		"Closed source!",
+		"Open source!",
+		"Exclusive Fyction Offer: 3 minutes lunch break!",
+		"Not on Steam!",
+		"Duck the Splash Text",
+		"Share it with your friends!",
+		"https://sr-patinho.itch.io/duck-the-miner",
+		"Also try Minecraft!",
+		"Also try Deep Rock Galactic!",
+		"Also try Satisfactory!",
+		"Also try Phasmophobia!",
+		"Also try Teardown!",
+		"Also try Outer Wilds!",
+		"Mining Away!",
+		"print(chr(sum(range(ord(min(str(not)))))))",
+		"Always with Rich Presence!",
+		"Shenanigans!",
+		"Lorem Ipsum",
+		"Godot 4.4.1 + 1.2.3 = 5.6.4!",
+		"/give @a ducks 64",
+		"You've been ducked!",
+		"F is for Fyction, not Flutter!",
+		"This splash text is currently under construction!",
+		"Welcome aboard captain. All systems online!",
+		"Have you even learned anything useful from the Tutorial?",
+		"ROCK AND STONE!"
+	]
 	
-	splashes_file.store_string(splashes_text)
-	splashes_file.close()
+	# ESPECIAS
+	splashes_text.append("Played by: " + username)
+	match date["month"]:
+		1: splashes_text.append("New year, same bugs. Time to blame the duck.")
+		2: splashes_text.append("Love is in the air. So is confusion and merge conflicts.")
+		3: splashes_text.append("March on, brave coder! Even if your code doesn’t compile.")
+		4: splashes_text.append("Beware of April Fools... and that one semicolon that ruins everything.")
+		5: splashes_text.append("Have you talked recently to your debugging duck?")
+		6: splashes_text.append("Happy Pride Month! Be proud of your code, even the spaghetti parts.")
+		7: splashes_text.append("Hot tip for July: Don’t grill your GPU.")
+		8: splashes_text.append("August is hot. Stay cool, stay hydrated, debug with a duck.")
+		9: splashes_text.append("Don't destroy yourself! Health Insurance is expensive!")
+		10: splashes_text.append("October is spooky. So is your untested code.")
+		11: splashes_text.append("Give thanks for version control. And ducks.")
+		12: splashes_text.append("Perfect time to gift yourself a working build!")
+	
+	$GUI/Center/SplashTitleLabel.text = splashes_text[randi_range(0, splashes_text.size())]
 
 func _on_splash_construction_timer_timeout() -> void:
 	if $GUI/Center/SplashTitleLabel.text == "This splash text is currently under construction!":

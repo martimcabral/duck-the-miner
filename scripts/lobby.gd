@@ -179,7 +179,9 @@ func _ready():
 	
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.small_image = "diamond-512"
-		DiscordRPC.small_image_text = "Debt: " + update_money(current_money) + " €" 
+		if money_config.get_value("money", "current", 0) >= 0: 
+			DiscordRPC.small_image_text = "Money: " + update_money(current_money) + " €" 
+		else: DiscordRPC.small_image_text = "Debt: " + update_money(current_money) + " €" 
 		var random = randi_range(1, 2)
 		match random:
 			1:
@@ -450,7 +452,7 @@ func get_asteroid_info():
 			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nMission Review:\n\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(current_primary_objective) +  "\n" + str(current_secundary_objective)
 			$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Name: " + str(current_asteroid_name) + "\nBiome: " + str(current_asteroid_biome) + "\nTemperature: " + str(temperature) + "°C\n\nObjectives:\n" + str(current_primary_objective) +  "\n" + str(current_secundary_objective)
 		else:
-			print("An error ocurred trying to parse asteroid content, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
+			print("[lobby.gd] An error ocurred trying to parse asteroid package, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
 
 func get_asteroids_per_field(field : String):
 	# This Code in the Second Half was completly remade due to a error of impossibility of reading the asteroid data on the JSON File
@@ -463,7 +465,7 @@ func get_asteroids_per_field(field : String):
 		var json_parser = JSON.new()
 		var error = json_parser.parse(json_string)
 		if error != OK:
-			print("Error parsing JSON: ", error)
+			print("[lobby.gd] Error parsing JSON: ", error)
 			return 0
 		
 		# Get the parsed data (should be a dictionary)
@@ -475,16 +477,16 @@ func get_asteroids_per_field(field : String):
 			if asteroid_data.has(field):
 				var field_data = asteroid_data[field]
 				var asteroid_count = field_data.keys().size()
-				print("[asteroid_selector.gd] ", field, " has ", asteroid_count, " Asteroids")
+				print("[lobby.gd] ", field, " has ", asteroid_count, " Asteroids")
 				return asteroid_count
 			else:
-				print("Field '", field, "' not found in asteroid data.")
+				print("[lobby.gd] Field '", field, "' not found in asteroid data.")
 				return 0
 		else:
-			print("Parsed data is not a dictionary!")
+			print("[lobby.gd] Parsed data is not a dictionary!")
 			return 0
 	else:
-		print("Failed to open file: ", missions_path)
+		print("[lobby.gd] Failed to open file: ", missions_path)
 		return 0
 
 func _on_select_mission_button_pressed() -> void:
@@ -569,7 +571,7 @@ func _on_skin_previous_button_pressed() -> void:
 	
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/player/skins/" + str(skin_selected) + "/duck.png")
 	DiscordRPC.large_image = str(skin_selected) + "duck"
-	print(DiscordRPC.large_image)
+	print("[lobby.gd] DiscordRPC.large_image: ", DiscordRPC.large_image)
 	DiscordRPC.refresh()
 	
 	if FileAccess.file_exists(skin_path):
@@ -617,7 +619,7 @@ func _on_tab_bar_item_selected(index: int) -> void:
 	var crafted_load_result = crafted_config.load(crafted_inv_path)
 	
 	if raw_load_result == OK and crafted_load_result == OK:
-		print("Detected both Inventories Successfully")
+		print("[lobby.gd] Detected both Inventories Successfully")
 		item_list.clear()
 		match index:
 			0: populate_inventory_tab(raw_config)
@@ -652,8 +654,8 @@ func _on_item_list_item_selected(index: int) -> void:
 	var parts = item_selected_string.split(":")
 	selected_item_name = parts[0].strip_edges()
 	selected_item_quantity = int(parts[1].strip_edges())
-	print("\nItem Name: ", selected_item_name)
-	print("Item Quantity: ", selected_item_quantity)
+	print("\n[lobby.gd] Item Name: ", selected_item_name)
+	print("[lobby.gd] Item Quantity: ", selected_item_quantity)
 
 func _on_sell_button_pressed() -> void:
 	if item_list.item_count > 0:
@@ -665,13 +667,13 @@ func _on_sell_button_pressed() -> void:
 		
 		difficulty_file.load(difficulty_path)
 		difficulty = difficulty_file.get_value("difficulty", "current")
-		print("[lobby.gd/_on_sell_button_pressed] Current Difficulty: ", difficulty)
+		print("\n[lobby.gd] Current Difficulty: ", difficulty)
 		match difficulty:
 			"easy": money_earned = round(money_earned * 1.10)
 			"hard": money_earned = round(money_earned * 0.9)
 		
-		print("Item Price: ", price)
-		print("Money Earned: ", money_earned)
+		print("[lobby.gd] Item Price: ", price)
+		print("[lobby.gd] Money Earned: ", money_earned)
 		
 		money.load(money_path)
 		var current_money = money.get_value("money", "current")

@@ -158,7 +158,7 @@ func drop_items():
 			var instance = items_scene.instantiate()
 			
 			if not instance.has_node(item_name):
-				print("Warning: item_name '%s' not found in items.tscn" % item_name)
+				print("[drop_item.gd] Warning: item_name '%s' not found in items.tscn" % item_name)
 				instance.free()
 				continue
 			

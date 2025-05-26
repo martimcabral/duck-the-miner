@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://ibqx3yfikbc2"]
+[gd_scene load_steps=69 format=3 uid="uid://ibqx3yfikbc2"]
 
 [ext_resource type="Script" uid="uid://x7nfl82ug8ti" path="res://scripts/Misc/start.gd" id="1_0o5ht"]
 [ext_resource type="AudioStream" uid="uid://dabsvdxbpqrqd" path="res://sounds/musics/general_store.ogg" id="2_v23jq"]
@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/menus/trash_can.png" id="4_oa1go"]
 [ext_resource type="AudioStream" uid="uid://dx8qvewqg7pwy" path="res://sounds/effects/menus/play.ogg" id="5_08a1y"]
 [ext_resource type="Texture2D" uid="uid://nilyubfe1cx1" path="res://rcedit/game_dependency.png" id="7_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://c4cjiuwmued02" path="res://assets/textures/menus/pattern.png" id="8_euy4r"]
 [ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="8_tbmy8"]
-[ext_resource type="Texture2D" uid="uid://dqxpjcem2ojj0" path="res://assets/pattern.png" id="10_euy4r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
 shader = ExtResource("8_tbmy8")
@@ -250,19 +250,16 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
-bg_color = Color(0, 0, 0, 0.705882)
+bg_color = Color(0, 0, 0, 0.823529)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1li2"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4du8"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -592,52 +589,12 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="Animation" id="Animation_afvru"]
-resource_name = "start"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MissionsButton:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(480, -136), Vector2(480, 24)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WallPattern1-1:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-450, 0), Vector2(-32, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WallPattern2-1:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2076, 0), Vector2(1628, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_4tqpx"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("WallPattern1-1:position")
+tracks/0/path = NodePath("GUI/Center/PatternParallax-1/Parallax2D/WallPattern-1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -649,7 +606,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("WallPattern2-1:position")
+tracks/1/path = NodePath("GUI/Center/PatternParallax-2/Parallax2D/WallPattern-2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -661,23 +618,580 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MissionsButton:position")
+tracks/2/path = NodePath("GUI/Center/StartMenu:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(480, -136)]
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GUI/Center/Title:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GUI/Center/SplashTitleLabel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GUI/Center/SplashTitleLabel:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GUI/Center/Title:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GUI/Center/StartMenu:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("GUI/Center/BackgroundBlack:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("GUI/Center/BackgroundBlack:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("GUI/Center/TutorialText:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("GUI/Center/TutorialText:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("GUI/Center/TutorialLabel:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("GUI/Center/TutorialLabel:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("GUI/Center/CloseTutorialButton:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("GUI/Center/CloseTutorialButton:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bh4e2"]
+resource_name = "go_away"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GUI/Center/PatternParallax-1/Parallax2D/WallPattern-1:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-450, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GUI/Center/PatternParallax-2/Parallax2D/WallPattern-2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1625, 0), Vector2(2076, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GUI/Center/StartMenu:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GUI/Center/Title:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GUI/Center/SplashTitleLabel:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GUI/Center/SplashTitleLabel:visible")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GUI/Center/Title:visible")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GUI/Center/StartMenu:visible")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("GUI/Center/BackgroundBlack:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("GUI/Center/BackgroundBlack:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("GUI/Center/TutorialText:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("GUI/Center/TutorialText:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("GUI/Center/TutorialLabel:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("GUI/Center/TutorialLabel:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("GUI/Center/CloseTutorialButton:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("GUI/Center/CloseTutorialButton:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_afvru"]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GUI/Center/PatternParallax-1/Parallax2D/WallPattern-1:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-450, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GUI/Center/PatternParallax-2/Parallax2D/WallPattern-2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2000, 0), Vector2(1625, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GUI/Center/StartMenu:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GUI/Center/Title:modulate")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GUI/Center/SplashTitleLabel:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GUI/Center/SplashTitleLabel:visible")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("GUI/Center/Title:visible")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GUI/Center/StartMenu:visible")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("GUI/Center/BackgroundBlack:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("GUI/Center/BackgroundBlack:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("GUI/Center/TutorialText:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("GUI/Center/TutorialText:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("GUI/Center/TutorialLabel:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("GUI/Center/TutorialLabel:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("GUI/Center/CloseTutorialButton:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("GUI/Center/CloseTutorialButton:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nf42y"]
 _data = {
 &"RESET": SubResource("Animation_4tqpx"),
+&"go_away": SubResource("Animation_bh4e2"),
 &"start": SubResource("Animation_afvru")
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bre17"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3w8rc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxao6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr0hv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a3hrp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25m6f"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -717,9 +1231,22 @@ speed_scale = 2.25
 [node name="Background" type="TextureRect" parent="GUI/Center"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_846s3")
-offset_right = 72.0
-offset_bottom = 77.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
+
+[node name="BackgroundBlack" type="ColorRect" parent="GUI/Center"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Title" type="RichTextLabel" parent="GUI/Center"]
 anchors_preset = 5
@@ -737,7 +1264,7 @@ theme_override_constants/shadow_offset_y = 10
 theme_override_font_sizes/normal_font_size = 150
 text = "Duck the Miner"
 
-[node name="SplashTitleLabel" type="Label" parent="GUI/Center"]
+[node name="SplashTitleLabel" type="RichTextLabel" parent="GUI/Center"]
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -749,12 +1276,13 @@ offset_bottom = 287.0
 grow_horizontal = 2
 scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(781.858, 19.6335)
-theme_override_colors/font_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/default_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_outline_size = 3
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 text = "ERROR:81"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -784,7 +1312,7 @@ size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
 script = ExtResource("2_y368m")
 
-[node name="NewGameButton" type="Button" parent="GUI/Center/StartMenu" groups=["Buttons"]]
+[node name="NewGameButton" type="RichTextLabel" parent="GUI/Center/StartMenu" groups=["Buttons"]]
 z_index = 1
 texture_filter = 1
 layout_mode = 1
@@ -794,14 +1322,12 @@ anchor_right = 0.5
 offset_left = -87.0
 offset_top = 28.0
 offset_right = 87.0
-offset_bottom = 108.0
+offset_bottom = 116.0
 grow_horizontal = 2
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/focus = SubResource("StyleBoxFlat_r1li2")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
 text = "Play"
-flat = true
 
 [node name="OptionsButton" type="Button" parent="GUI/Center/StartMenu" groups=["Buttons"]]
 z_index = 1
@@ -831,7 +1357,7 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="TutorialRichLabel" type="RichTextLabel" parent="GUI/Center/StartMenu"]
+[node name="TutorialRichLabel" type="RichTextLabel" parent="GUI/Center/StartMenu" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -847,7 +1373,7 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
-text = "[wave amp=35.0 freq=5.0 connected=1][center]Tutorial[/center]"
+text = "[center]Tutorial[/center]"
 scroll_active = false
 
 [node name="Line2D2" type="Line2D" parent="GUI/Center/StartMenu"]
@@ -2284,6 +2810,158 @@ theme_override_font_sizes/font_size = 64
 text = "Loading..."
 horizontal_alignment = 1
 
+[node name="TutorialPlayer" type="AnimationPlayer" parent="GUI/Center"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_nf42y")
+}
+
+[node name="TutorialLabel" type="Label" parent="GUI/Center"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -104.0
+offset_top = 48.0
+offset_right = 104.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "NON-BORING FYCTION MANUAL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseTutorialButton" type="Button" parent="GUI/Center" groups=["Buttons"]]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 561.0
+offset_top = 47.0
+offset_right = 633.0
+offset_bottom = 127.0
+grow_horizontal = 2
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3w8rc")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uxao6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vr0hv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_a3hrp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_25m6f")
+text = "X"
+
+[node name="PatternParallax-1" type="ParallaxBackground" parent="GUI/Center"]
+layer = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="GUI/Center/PatternParallax-1"]
+repeat_size = Vector2(0, 1009)
+autoscroll = Vector2(0, 45)
+
+[node name="WallPattern-1" type="TextureRect" parent="GUI/Center/PatternParallax-1/Parallax2D"]
+texture_filter = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_right = -155.0
+offset_bottom = 1080.0
+grow_vertical = 2
+texture = ExtResource("8_euy4r")
+expand_mode = 1
+
+[node name="PatternParallax-2" type="ParallaxBackground" parent="GUI/Center"]
+layer = 1
+
+[node name="Parallax2D" type="Parallax2D" parent="GUI/Center/PatternParallax-2"]
+repeat_size = Vector2(0, 1009)
+autoscroll = Vector2(0, 45)
+
+[node name="WallPattern-2" type="TextureRect" parent="GUI/Center/PatternParallax-2/Parallax2D"]
+texture_filter = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 2076.0
+offset_right = 2371.0
+offset_bottom = 1080.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_euy4r")
+expand_mode = 1
+
+[node name="TutorialText" type="RichTextLabel" parent="GUI/Center"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -613.0
+offset_top = -376.0
+offset_right = 599.0
+offset_bottom = 497.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 48
+theme_override_styles/focus = SubResource("StyleBoxFlat_hgts2")
+bbcode_enabled = true
+text = "1 DEBT:
+Oh dang it, you are in debt! How much? Enough that “vacation” is now a myth. Work hard, pay it off, and [i]maybe[/i] earn a 3-minute lunch break someday.
+
+2 STOCK THE MARKET:
+Shows the selling interest of each Company. The bigger the demand of items the more that Company will pay, meaning more profit.
+
+3 CONTRACT:
+Your go-to terminal for:
+> Viewing your oh-so-impressive statistics
+> Swapping tools on your Mission Hotbar
+> Upgrading your Licenses (new gear, recipes, and fresh places to risk your life!)
+Basically, if it helps us make more money, it’s in here.
+
+4. EMAIL INBOX:
+Check this often! This is where you get our magnificient company messages!
+Yes, you can read them. No, you can’t replyc that would imply we care what you think.
+
+5. SKIN SELECTION:
+Customize your appearance to look better, of course—branding is everything.
+Management Note: Someone keeps picking purple. We’re watching you.
+
+6. CRAFTING STATION:
+Turn boring rocks into proftyble things! (yuppie)
+
+7. STORAGE:
+Has all your stored items owned by Fyction Enterprise. It is possible to switch between the natural and crafted resources. A selling button can also be located somewhere arround, to create something called 'profit'.
+
+8. MISSION SELECTOR:
+When selecting a mission, you must ONLY select the asteroids fields and belts. Then use the Asteroid Inspector™ to check each rock’s stats:  Name, Biome, Temperature, Depth and Objectives.
+Pick wisely. Or recklessly. Either way, someone’s getting promoted (not you).
+
+9. OBJECTIVES:
+Get Goods - Get any type of any thing.
+Kill Enemies -  Aniquilate non-aly unproftable lifeforms.
+Fine Jewelry - Mine fancy gems. More Sparkly = no bonus pay.
+Cold Extraction - Mine items really lower than average tempeture items.
+Heat Extraction - Gather hot stuff for reasons we legally can’t disclose.
+Fuel the Company - Gather energy-rich materials to keep our reactors humming and our accountants happy.
+Power the Future - Get items that are useful for Power Generation, so your night light might work.
+More Infrastructure - Get like..., um, metal stuff, smelty stuff, industrial-things like stuff.
+Build the Future: Get construction materials. For building. The future. Obviously.
+
+Good luck out there, and remember:
+We track you.
+
+Signed,
+A Clearly Not Bored Employe that does not want any raise at all."
+
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(968, 575)
 stream = ExtResource("2_v23jq")
@@ -2297,239 +2975,10 @@ position = Vector2(968, 575)
 stream = ExtResource("5_08a1y")
 bus = &"Menus"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_nf42y")
-}
-
-[node name="MissionsButton" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 480.0
-offset_top = -136.0
-offset_right = 1440.0
-offset_bottom = -56.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/normal = SubResource("StyleBoxEmpty_bre17")
-text = "How to be a Fyction Miner:"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WallPattern1-1" type="TextureRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -450.0
-offset_right = -126.0
-offset_bottom = 1080.0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern1-2" type="TextureRect" parent="WallPattern1-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -1549.0
-offset_right = 324.0
-offset_bottom = -469.0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern1-3" type="TextureRect" parent="WallPattern1-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -0.156311
-offset_top = -2558.05
-offset_right = 323.844
-offset_bottom = -1478.05
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern1-4" type="TextureRect" parent="WallPattern1-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -0.156311
-offset_top = -3567.05
-offset_right = 323.844
-offset_bottom = -2487.05
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern1-5" type="TextureRect" parent="WallPattern1-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -0.156311
-offset_top = -4576.05
-offset_right = 323.844
-offset_bottom = -3496.05
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern1-6" type="TextureRect" parent="WallPattern1-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -0.156311
-offset_top = -5585.05
-offset_right = 323.844
-offset_bottom = -4505.05
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern1-7" type="TextureRect" parent="WallPattern1-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -0.156311
-offset_top = -6502.05
-offset_right = 323.844
-offset_bottom = -5422.05
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern2-1" type="TextureRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 2076.0
-offset_right = 2400.0
-offset_bottom = 1080.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern2-2" type="TextureRect" parent="WallPattern2-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -1550.0
-offset_bottom = -470.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern2-3" type="TextureRect" parent="WallPattern2-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -2559.0
-offset_bottom = -1479.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern2-4" type="TextureRect" parent="WallPattern2-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -3567.05
-offset_bottom = -2487.05
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern2-5" type="TextureRect" parent="WallPattern2-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -4576.05
-offset_bottom = -3496.05
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern2-6" type="TextureRect" parent="WallPattern2-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -5585.05
-offset_bottom = -4505.05
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
-[node name="WallPattern2-7" type="TextureRect" parent="WallPattern2-1"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -324.0
-offset_top = -6502.05
-offset_bottom = -5422.05
-grow_horizontal = 0
-grow_vertical = 2
-texture = ExtResource("10_euy4r")
-expand_mode = 1
-
 [connection signal="timeout" from="TimeToPlay" to="GUI/Center/StartMenu" method="_on_time_to_play_timeout"]
 [connection signal="timeout" from="SplashConstructionTimer" to="." method="_on_splash_construction_timer_timeout"]
-[connection signal="pressed" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_pressed"]
+[connection signal="mouse_entered" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_mouse_entered"]
+[connection signal="mouse_exited" from="GUI/Center/StartMenu/NewGameButton" to="GUI/Center/StartMenu" method="_on_new_game_button_mouse_exited"]
 [connection signal="pressed" from="GUI/Center/StartMenu/OptionsButton" to="GUI/Center/StartMenu" method="_on_options_button_pressed"]
 [connection signal="meta_clicked" from="GUI/Center/StartMenu/TutorialRichLabel" to="GUI/Center/StartMenu" method="_on_tutorial_rich_label_meta_clicked"]
 [connection signal="mouse_entered" from="GUI/Center/StartMenu/TutorialRichLabel" to="GUI/Center/StartMenu" method="_on_rich_text_label_mouse_entered"]
@@ -2588,3 +3037,4 @@ expand_mode = 1
 [connection signal="toggled" from="GUI/Center/OptionsMenu/AccessibilityPanel/ShowControlsCheckbox" to="GUI/Center/OptionsMenu" method="_on_show_controls_checkbox_toggled"]
 [connection signal="toggled" from="GUI/Center/OptionsMenu/AccessibilityPanel/HideBloodCheckbox" to="GUI/Center/OptionsMenu" method="_on_hide_blood_checkbox_toggled"]
 [connection signal="pressed" from="GUI/Center/CreditsMenu/BackButton" to="GUI/Center/StartMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="GUI/Center/CloseTutorialButton" to="GUI/Center/StartMenu" method="_on_button_pressed"]
