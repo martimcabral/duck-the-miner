@@ -962,8 +962,8 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
-theme_override_font_sizes/font_size = 52
-text = "Unavailable"
+theme_override_font_sizes/font_size = 48
+text = "Coming Soon"
 
 [node name="UniverseMapPanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 0
@@ -1154,7 +1154,7 @@ offset_right = 160.5
 offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
-text = "Crafting Station"
+text = "Crafting Station™"
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel"]
 layout_mode = 1
@@ -1170,8 +1170,8 @@ offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
-theme_override_font_sizes/font_size = 52
-text = "Unavailable"
+theme_override_font_sizes/font_size = 48
+text = "Coming Soon"
 
 [node name="SkinSelectionPanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 1

@@ -2816,19 +2816,20 @@ libraries = {
 &"": SubResource("AnimationLibrary_nf42y")
 }
 
-[node name="TutorialLabel" type="Label" parent="GUI/Center"]
+[node name="TutorialLabel" type="RichTextLabel" parent="GUI/Center"]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -104.0
-offset_top = 48.0
-offset_right = 104.0
-offset_bottom = 64.0
+offset_left = -507.0
+offset_top = 40.0
+offset_right = 521.0
+offset_bottom = 120.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 80
-text = "NON-BORING FYCTION MANUAL"
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center]NON-BORING [color=0461E1]FYCTION[/color] MANUAL[/center]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2906,7 +2907,7 @@ anchor_bottom = 0.5
 offset_left = -613.0
 offset_top = -376.0
 offset_right = 599.0
-offset_bottom = 497.0
+offset_bottom = 520.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/italics_font_size = 32
@@ -2914,38 +2915,66 @@ theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_hgts2")
 bbcode_enabled = true
-text = "1 DEBT:
+text = "[color=#05DFE3]READ THIS IF YOU DON'T WANT TO WASTE YOUR TIME:[/color]
+Debt: You're broke. Work hard to maybe get a break someday.
+Stock the Market: See which items are in demand for max profit.
+Contract: Manage stats, tools, upgrades, and licenses.
+Email Inbox: Read severely important messages.
+Skin Selection: Customize your look.
+Crafting Station™: Turn unprofitable rocks into profitable goods.
+Storage: Access and sell your items for profit.
+Mission Selector:  Inspect asteroids to choose it's missions and stats.
+Objectives: Complete tasks like resource collection and killing enemies.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[color=#05DFE3]BUT IF YOU WANT, HERE YOU GO:[/color]
+[color=#05DFE3]1 - DEBT:[/color]
 Oh dang it, you are in debt! How much? Enough that “vacation” is now a myth. Work hard, pay it off, and [i]maybe[/i] earn a 3-minute lunch break someday.
 
-2 STOCK THE MARKET:
+[color=#05DFE3]2 - STOCK THE MARKET:[/color]
 Shows the selling interest of each Company. The bigger the demand of items the more that Company will pay, meaning more profit.
 
-3 CONTRACT:
+[color=#05DFE3]3 - CONTRACT:[/color]
 Your go-to terminal for:
 > Viewing your oh-so-impressive statistics
 > Swapping tools on your Mission Hotbar
 > Upgrading your Licenses (new gear, recipes, and fresh places to risk your life!)
 Basically, if it helps us make more money, it’s in here.
 
-4. EMAIL INBOX:
+[color=#05DFE3]4 - EMAIL INBOX:[/color]
 Check this often! This is where you get our magnificient company messages!
-Yes, you can read them. No, you can’t replyc that would imply we care what you think.
+Yes, you can read them. No, you can’t reply that would imply we care what you think.
 
-5. SKIN SELECTION:
-Customize your appearance to look better, of course—branding is everything.
+[color=#05DFE3]5 - SKIN SELECTION:[/color]
+Customize your appearance to look better, and of course, branding is everything.
 Management Note: Someone keeps picking purple. We’re watching you.
 
-6. CRAFTING STATION:
-Turn boring rocks into proftyble things! (yuppie)
+[color=#05DFE3]6 - CRAFTING STATION™:[/color]
+Turn boring rocks into profitable things! (yuppie)
 
-7. STORAGE:
+[color=#05DFE3]7 - STORAGE:[/color]
 Has all your stored items owned by Fyction Enterprise. It is possible to switch between the natural and crafted resources. A selling button can also be located somewhere arround, to create something called 'profit'.
 
-8. MISSION SELECTOR:
-When selecting a mission, you must ONLY select the asteroids fields and belts. Then use the Asteroid Inspector™ to check each rock’s stats:  Name, Biome, Temperature, Depth and Objectives.
+[color=#05DFE3]8 - MISSION SELECTOR:[/color]
+When selecting a mission, you must ONLY select the asteroids fields and belts. Then use the Asteroid Inspector to check each rock’s stats:  Name, Biome, Temperature, Depth and Objectives.
 Pick wisely. Or recklessly. Either way, someone’s getting promoted (not you).
 
-9. OBJECTIVES:
+[color=#05DFE3]9 - OBJECTIVES:[/color]
 Get Goods - Get any type of any thing.
 Kill Enemies -  Aniquilate non-aly unproftable lifeforms.
 Fine Jewelry - Mine fancy gems. More Sparkly = no bonus pay.
@@ -2956,11 +2985,11 @@ Power the Future - Get items that are useful for Power Generation, so your night
 More Infrastructure - Get like..., um, metal stuff, smelty stuff, industrial-things like stuff.
 Build the Future: Get construction materials. For building. The future. Obviously.
 
-Good luck out there, and remember:
+[color=#0461E1]Good luck out there, and remember:
 We track you.
 
 Signed,
-A Clearly Not Bored Employe that does not want any raise at all."
+A Clearly Not Bored Employe that does not want any raise at all.[/color]"
 
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(968, 575)
