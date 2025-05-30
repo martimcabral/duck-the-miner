@@ -1439,7 +1439,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -403.0
 offset_top = -283.0
-offset_right = 404.0
+offset_right = 416.0
 offset_bottom = 426.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1450,7 +1450,7 @@ script = ExtResource("3_rtw2f")
 
 [node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu"]
 position = Vector2(0, 94)
-points = PackedVector2Array(806.5, 520.5, 3.5, 520.5)
+points = PackedVector2Array(816, 520.5, 3.5, 520.5)
 width = 4.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/Center/SaveFilesMenu"]
@@ -1459,7 +1459,7 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -398.5
-offset_top = 21.0
+offset_top = 29.0
 offset_right = 399.5
 offset_bottom = 587.0
 grow_horizontal = 2
@@ -2698,7 +2698,6 @@ scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="CreditsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2729,32 +2728,51 @@ offset_right = 489.5
 offset_bottom = 312.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_hgts2")
 bbcode_enabled = true
-text = "[center]TEXTURES:
+text = "[center][color=#f9b53f]TEXTURES:[/color]
 Sr. Patinho
 Split
 Portato
 Elthen
 
-PROGRAMMING:
+[color=f9b53f]PROGRAMMING:[/color]
 Sr. Patinho
 
-FONTS:
+[color=#f9b53f]FONTS:[/color]
 Digital Disco - From: fontenddev.com
 Venice Classic - By: soixantedeux
 liner-BMP14 - By: BRIDGEco
 
-MUSIC:
+[color=#f9b53f]MUSIC:[/color]
+\"Aside\"
 \"Enter\"
+\"Journal\"
+\"Play\"
+\"Portal\"
+\"Puzzle\"
 \"Wave\"
 \"Void\"
 \"Rift\"
-\"Portal\"
+\"Trace\"
 By: Gravity Sound
 
-"
+\"Adrift\"
+By: Hayden Folker
+
+\"A few jumps away\"
+By: Arthur Vyncke
+
+\"Under the Stars\"
+By: Rexlambo
+
+\"Space Mystery\"
+By: Ambient Feelings
+
+[color=#f9b53f]Discord RPC:[/color]
+vaporvee"
 
 [node name="BackButton" type="Button" parent="GUI/Center/CreditsMenu" groups=["Buttons"]]
 z_index = 1

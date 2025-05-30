@@ -18,6 +18,10 @@ var hotbar_slots_number : int = 4
 var oxygen_used : int = 0
 var lights_used : int = 0
 
+var mining_speed : int = 0
+var mining_fortune : int = 0 
+var sword_damage : int = 0
+
 var speed : int
 var walking_speed : int
 var running_speed : int 
@@ -72,6 +76,9 @@ var hotbar_config = ConfigFile.new()
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var statistics_config = ConfigFile.new()
 
+var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
+var license_config = ConfigFile.new()
+
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
 var difficulty_config = ConfigFile.new()
 var current_difficulty : String = ""
@@ -111,18 +118,22 @@ func _ready():
 	subtitles = config.get_value("accessibility", "subtitles", true)
 	biome_visual_effects = config.get_value("display", "biome_visual_effects", true)
 	
-	hotbar_config.load(hotbar_path)
-	max_health = hotbar_config.get_value("status", "max_health", 100)
-	max_oxygen = hotbar_config.get_value("status", "max_oxygen", 480)
-	max_battery = hotbar_config.get_value("status", "max_battery_battery", 200)
-	walking_speed = hotbar_config.get_value("status", "walking_speed", 55)
-	running_speed = hotbar_config.get_value("status", "running_speed", 90)
+	license_config.load(license_path)
+	max_health = license_config.get_value("player", "health")
+	max_oxygen = license_config.get_value("player", "oxygen")
+	max_battery = license_config.get_value("player", "battery")
+	walking_speed = license_config.get_value("player", "walking_speed")
+	running_speed = license_config.get_value("player", "running_speed")
+	mining_speed = license_config.get_value("player", "mining_speed")
+	mining_fortune = license_config.get_value("player", "mining_fortune")
+	sword_damage = license_config.get_value("player", "sword_damage")
 	
 	current_health = max_health
 	current_oxygen = max_oxygen
 	current_battery = max_battery
 	
 	hotbar.remove_tab(0)
+	hotbar_config.load(hotbar_path)
 	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
 		hotbar.add_tab(hotbar_config.get_value("hotbar_slots", str(i)))

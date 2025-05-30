@@ -285,6 +285,11 @@ func _on_creator_button_pressed() -> void:
 	license_config.set_value("biomes", "swamp", false)
 	license_config.set_value("biomes", "desert", false)
 	license_config.set_value("biomes", "radioactive", false)
+	
+	license_config.set_value("zones", "delta", true)
+	license_config.set_value("zones", "gamma", false)
+	license_config.set_value("zones", "omega", false)
+	license_config.set_value("zones", "koppa", false)
 	license_config.save(license_path)
 	
 	################################################################################
@@ -334,14 +339,14 @@ func _on_delete_game_mouse_exited() -> void:
 func create_styleboxes():
 	var StyleBoxes : Array = [normal_stylebox, focus_stylebox, hover_stylebox]
 	for s in StyleBoxes.size():
-		StyleBoxes[s].border_width_bottom = 3
-		StyleBoxes[s].border_width_top = 3
-		StyleBoxes[s].border_width_left = 3
-		StyleBoxes[s].border_width_right = 3
-		StyleBoxes[s].corner_radius_bottom_left = 4
-		StyleBoxes[s].corner_radius_bottom_right = 4
-		StyleBoxes[s].corner_radius_top_left = 4
-		StyleBoxes[s].corner_radius_top_right = 4
+		StyleBoxes[s].border_width_bottom = 5
+		StyleBoxes[s].border_width_top = 5
+		StyleBoxes[s].border_width_left = 5
+		StyleBoxes[s].border_width_right = 5
+		StyleBoxes[s].corner_radius_bottom_left = 12
+		StyleBoxes[s].corner_radius_bottom_right = 12
+		StyleBoxes[s].corner_radius_top_left = 12
+		StyleBoxes[s].corner_radius_top_right = 12
 		StyleBoxes[s].content_margin_bottom = 10
 		StyleBoxes[s].content_margin_top = 10
 		StyleBoxes[s].content_margin_left = 20

@@ -142,7 +142,6 @@ func _ready():
 	else:
 		print("[world_generation.gd] Discord isn't running or wasn't detected properly, skipping rich presence.")
 	
-	start_music()
 	create_radar_lines()
 	create_radar_enemies_lines()
 	
@@ -327,39 +326,6 @@ func _process(_delta: float) -> void:
 	
 	$Player/Camera2D/HUD/ShowControls.modulate.a8 = fade_in
 
-func start_music():
-	var random_music = randi_range(1, 3)
-	if asteroid_biome == "Stony":
-		match random_music:
-			1: $WorldMusic/Enter.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Void.play()
-	elif asteroid_biome == "Vulcanic":
-		match random_music:
-			1: $WorldMusic/Rift.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Void.play()
-	elif asteroid_biome == "Frozen":
-		match random_music:
-			1: $WorldMusic/Portal.play()
-			2: $WorldMusic/Enter.play()
-			3: $WorldMusic/Rift.play()
-	elif asteroid_biome == "Swamp":
-		match random_music:
-			1: $WorldMusic/Void.play()
-			2: $WorldMusic/Enter.play()
-			3: $WorldMusic/Wave.play()
-	elif asteroid_biome == "Desert":
-		match random_music:
-			1: $WorldMusic/Rift.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Portal.play()
-	elif asteroid_biome == "Radioactive":
-		match random_music:
-			1: $WorldMusic/Rift.play()
-			2: $WorldMusic/Wave.play()
-			3: $WorldMusic/Void.play()
-
 func create_world_borders():
 	# Above Map Border
 	for y in range(world_border_up_and_down):
@@ -524,9 +490,6 @@ func put_gems():
 						2: CaveSystem.set_cell(tile_pos, biome_id, Vector2i(2, 1))
 						3: CaveSystem.set_cell(tile_pos, biome_id, Vector2i(3, 1))
 
-func _on_music_timer_timeout() -> void:
-	start_music()
-
 func start_position():
 	var spawn_cube_size = 3
 	
@@ -667,3 +630,23 @@ func _on_more_working_time_timeout() -> void:
 	statistics_config.set_value("statistics", "time_working", \
 	statistics_config.get_value("statistics", "time_working") + 1)
 	statistics_config.save(statistics_path)
+
+func _on_world_music_finished() -> void:
+	$WorldMusic/MusicCooldown.wait_time = 20
+	$WorldMusic/MusicCooldown.start()
+
+func _on_music_timer_timeout() -> void:
+	match randi_range(1, 14):
+		1: $WorldMusic.stream = load("res://sounds/musics/aside.ogg"); $WorldMusic.play()
+		2: $WorldMusic.stream = load("res://sounds/musics/enter.ogg"); $WorldMusic.play()
+		4: $WorldMusic.stream = load("res://sounds/musics/play.ogg"); $WorldMusic.play()
+		5: $WorldMusic.stream = load("res://sounds/musics/portal.ogg"); $WorldMusic.play()
+		6: $WorldMusic.stream = load("res://sounds/musics/puzzle.ogg"); $WorldMusic.play()
+		7: $WorldMusic.stream = load("res://sounds/musics/rift.ogg"); $WorldMusic.play()
+		8: $WorldMusic.stream = load("res://sounds/musics/trace.ogg"); $WorldMusic.play()
+		9: $WorldMusic.stream = load("res://sounds/musics/void.ogg"); $WorldMusic.play()
+		10: $WorldMusic.stream = load("res://sounds/musics/wave.ogg"); $WorldMusic.play()
+		11: $WorldMusic.stream = load("res://sounds/musics/few_jumps_away.ogg"); $WorldMusic.play()
+		12: $WorldMusic.stream = load("res://sounds/musics/adrift.ogg"); $WorldMusic.play()
+		13: $WorldMusic.stream = load("res://sounds/musics/space_mystery.ogg"); $WorldMusic.play()
+		14: $WorldMusic.stream = load("res://sounds/musics/under_the_stars.ogg"); $WorldMusic.play()

@@ -1,4 +1,4 @@
-## Duck the Miner 🦆🦆🦆🦆⛏️⛏️⛏️⛏️⛏
+## Duck the Source 🦆⛏️
 
 ![image](https://github.com/user-attachments/assets/7b1df6e4-c63c-465d-85be-b15cf1ed0150)
 

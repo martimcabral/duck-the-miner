@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://ur4yarmj6ihc"]
+[gd_scene load_steps=95 format=4 uid="uid://ur4yarmj6ihc"]
 
 [ext_resource type="PackedScene" uid="uid://c6nqv0wtxmg0g" path="res://scenes/player.tscn" id="1_5mm4o"]
 [ext_resource type="Script" uid="uid://dioj2q65coldg" path="res://scripts/world.gd" id="1_nmwod"]
@@ -12,13 +12,8 @@
 [ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="6_jiuwp"]
 [ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/menus/cheat_menu.tscn" id="7_7iits"]
 [ext_resource type="Texture2D" uid="uid://cufhaafrsv6og" path="res://assets/textures/tilemaps/frozen_ore_tilemap.png" id="8_4k1tf"]
-[ext_resource type="AudioStream" uid="uid://ddw2qlonthtr" path="res://sounds/musics/enter.ogg" id="8_imyl6"]
-[ext_resource type="AudioStream" uid="uid://dho2rcdc7tiba" path="res://sounds/musics/wave.ogg" id="9_ctjxb"]
 [ext_resource type="Texture2D" uid="uid://bul8s2s88364n" path="res://assets/textures/tilemaps/swamp_ore_tilemap.png" id="9_tjyv6"]
-[ext_resource type="AudioStream" uid="uid://m7sw4erxvo0x" path="res://sounds/musics/void.ogg" id="10_7k7pq"]
 [ext_resource type="Texture2D" uid="uid://c736px1d5bkxg" path="res://assets/textures/tilemaps/desert_ore_tilemap.png" id="12_2lf6f"]
-[ext_resource type="AudioStream" uid="uid://di8ns3ivp328a" path="res://sounds/musics/rift.ogg" id="15_yypcq"]
-[ext_resource type="AudioStream" uid="uid://coohqku5qidbg" path="res://sounds/musics/portal.ogg" id="16_0g3fi"]
 [ext_resource type="Texture2D" uid="uid://c2kvctgth5w1m" path="res://assets/textures/tilemaps/radioactive_ore_tilemap.png" id="16_ctatt"]
 [ext_resource type="Texture2D" uid="uid://bl5abihwkrfiu" path="res://assets/textures/tilemaps/destroy_stages/new_stages.png" id="17_oo54l"]
 [ext_resource type="Texture2D" uid="uid://4cnr4s1c3kmj" path="res://assets/textures/tilemaps/vulcanic_ore_tilemap.png" id="18_bpr86"]
@@ -1015,36 +1010,13 @@ tile_set = SubResource("TileSet_inx3v")
 [node name="GlobalShadow" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
-[node name="WorldMusic" type="Node2D" parent="."]
-
-[node name="Enter" type="AudioStreamPlayer2D" parent="WorldMusic"]
-stream = ExtResource("8_imyl6")
-volume_db = -15.0
+[node name="WorldMusic" type="AudioStreamPlayer2D" parent="."]
 bus = &"Music"
 
-[node name="Wave" type="AudioStreamPlayer2D" parent="WorldMusic"]
-stream = ExtResource("9_ctjxb")
-volume_db = -15.0
-bus = &"Music"
-
-[node name="Void" type="AudioStreamPlayer2D" parent="WorldMusic"]
-stream = ExtResource("10_7k7pq")
-volume_db = -15.0
-bus = &"Music"
-
-[node name="Rift" type="AudioStreamPlayer2D" parent="WorldMusic"]
-stream = ExtResource("15_yypcq")
-volume_db = -15.0
-bus = &"Music"
-
-[node name="Portal" type="AudioStreamPlayer2D" parent="WorldMusic"]
-stream = ExtResource("16_0g3fi")
-volume_db = -15.0
-bus = &"Music"
-
-[node name="MusicTimer" type="Timer" parent="WorldMusic"]
+[node name="MusicCooldown" type="Timer" parent="WorldMusic"]
 process_callback = 0
-wait_time = 180.0
+wait_time = 2.0
+one_shot = true
 autostart = true
 
 [node name="TitleTimer" type="Timer" parent="."]
@@ -1067,6 +1039,7 @@ autostart = true
 [connection signal="body_entered" from="Player/PickupItemsRange2" to="Player/PickupItemsRange2" method="_on_body_entered"]
 [connection signal="timeout" from="Player/HUD/RadarPanelEnemies/UpdateEnemyRadarTimer" to="." method="_on_update_enemy_radar_timer_timeout"]
 [connection signal="timeout" from="Player/HUD/DeathLabel/GoToMenuTimer" to="Player" method="_on_go_to_menu_timer_timeout"]
-[connection signal="timeout" from="WorldMusic/MusicTimer" to="." method="_on_music_timer_timeout"]
+[connection signal="finished" from="WorldMusic" to="." method="_on_world_music_finished"]
+[connection signal="timeout" from="WorldMusic/MusicCooldown" to="." method="_on_music_timer_timeout"]
 [connection signal="timeout" from="SpawnEnemies" to="." method="_on_spawn_enemies_timeout"]
 [connection signal="timeout" from="MoreWorkingTime" to="." method="_on_more_working_time_timeout"]
