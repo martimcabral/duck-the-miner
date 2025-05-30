@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=135 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Misc/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
 [ext_resource type="Texture2D" uid="uid://cgum6gl0wbg1e" path="res://assets/textures/items/equipment/bulkhead_light.png" id="10_busoe"]
+[ext_resource type="Texture2D" uid="uid://baewcsl6hvfn8" path="res://assets/textures/companies/fyction_experience.png" id="10_gd4oi"]
 [ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moons/moon.png" id="10_kuvf8"]
 [ext_resource type="Texture2D" uid="uid://coqirkcawixar" path="res://assets/textures/items/equipment/flashlight_item.png" id="11_8mpuv"]
 [ext_resource type="Texture2D" uid="uid://dgr4m0cb5jal2" path="res://assets/textures/universe/planets/mars.png" id="11_d4ry4"]
@@ -876,7 +877,7 @@ grow_horizontal = 2
 tooltip_text = "Your Debt"
 mouse_filter = 0
 theme_override_font_sizes/font_size = 48
-text = "Debt: -99 999 999 €"
+text = "Debt: -9 999 999 999 €"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1148,13 +1149,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -160.5
+offset_left = -241.0
 offset_top = 24.0
-offset_right = 160.5
+offset_right = 241.0
 offset_bottom = 72.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 48
 text = "Crafting Station™"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel"]
 layout_mode = 1
@@ -1171,7 +1174,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
-text = "Coming Soon"
+text = "Work in Progress"
 
 [node name="SkinSelectionPanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 1
@@ -1691,6 +1694,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_u7tfn")
 }
 
+[node name="TextureRect" type="TextureRect" parent="Camera2D/HUD/Contract"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 145.0
+offset_right = 128.0
+offset_bottom = 258.0
+texture = ExtResource("10_gd4oi")
+expand_mode = 2
+
 [node name="LicenseUpgrading" type="Label" parent="Camera2D/HUD/Contract"]
 layout_mode = 1
 anchors_preset = 5
@@ -1748,6 +1760,10 @@ points = PackedVector2Array(122, 2, 2042, 2)
 position = Vector2(-122, 136)
 points = PackedVector2Array(131, 2, 2042, 2)
 
+[node name="HoriLine2D3" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+position = Vector2(-122, 264)
+points = PackedVector2Array(131, 2, 1081, 2)
+
 [node name="VertiLine2D" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(159, 0)
 points = PackedVector2Array(801, 1080, 801, 0)
@@ -1759,6 +1775,10 @@ points = PackedVector2Array(801, 1080, 801, 958)
 [node name="VertiLine2D3" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(640, 0)
 points = PackedVector2Array(801, 1080, 801, 956)
+
+[node name="VertiLine2D4" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+position = Vector2(-665, 0)
+points = PackedVector2Array(801, 265, 801, 141)
 
 [node name="FirstHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1968,7 +1988,7 @@ offset_bottom = 38.0
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
 theme_override_font_sizes/font_size = 76
-text = "Unavailable"
+text = "Help me"
 
 [node name="StockTheMarket" type="Panel" parent="Camera2D/HUD"]
 visible = false
@@ -2266,6 +2286,7 @@ parameters/looping = true
 bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
+visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
@@ -2785,6 +2806,7 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
+visible = false
 z_index = -2
 material = SubResource("ShaderMaterial_30fw8")
 anchors_preset = 8

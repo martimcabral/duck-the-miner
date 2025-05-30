@@ -1,13 +1,13 @@
 extends Node2D
 
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
-var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
+var hotbar_path : String = str("user://save/", GetSaveFile.save_being_used, "/hotbar.cfg")
 var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
 var stock_path : String = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 
 var difficulty_config : ConfigFile = ConfigFile.new()
-var player_config : ConfigFile = ConfigFile.new()
+var hotbar_config : ConfigFile = ConfigFile.new()
 var money_config : ConfigFile = ConfigFile.new()
 var stock_config : ConfigFile = ConfigFile.new()
 var statistics_config : ConfigFile = ConfigFile.new()
@@ -63,7 +63,7 @@ func _ready() -> void:
 	$FyctionTax/WhooshSoundEffect.play()
 	
 	difficulty_config.load(difficulty_path)
-	player_config.load(player_path)
+	hotbar_config.load(hotbar_path)
 	money_config.load(money_path)
 	stock_config.load(stock_path)
 	statistics_config.load(statistics_path)
@@ -192,9 +192,9 @@ func forward_stock():
 	stock_config.save(stock_path)
 
 func get_items():
-	var hotbar_slots_number = player_config.get_value("hotbar_slots", "number")
+	var hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
-		match player_config.get_value("hotbar_slots", str(i)):
+		match hotbar_config.get_value("hotbar_slots", str(i)):
 			"Sword": has_sword = true
 			"Pickaxe": has_pickaxe = true
 			"Light": has_lights = true

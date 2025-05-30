@@ -242,7 +242,7 @@ func create_splashes_file():
 		11: splashes_text.append("Give thanks for version control. And ducks.")
 		12: splashes_text.append("Perfect time to gift yourself a working build!")
 	
-	$GUI/Center/SplashTitleLabel.text = splashes_text[randi_range(0, splashes_text.size())]
+	$GUI/Center/SplashTitleLabel.text = splashes_text[randi_range(0, splashes_text.size()-1)]
 
 func _on_splash_construction_timer_timeout() -> void:
 	if $GUI/Center/SplashTitleLabel.text == "This splash text is currently under construction!":

@@ -19,20 +19,20 @@ func _input(_event):
 		match get_tree().current_scene.name:
 			"Lobby":
 				position = Vector2(960, 600)
-				$Container/WorldLabel/GiveItems.disabled = true
-				$Container/WorldLabel/ChangePosition.disabled = true
-				$Container/WorldLabel/ChangeOxygen.disabled = true
-				$Container/WorldLabel/ChangeHealth.disabled = true
-				$Container/WorldLabel/ChangeUVBattery.disabled = true
+				$Container/WorldLabel/GiveItems.visible = false
+				$Container/WorldLabel/ChangePosition.visible = false
+				$Container/WorldLabel/ChangeOxygen.visible = false
+				$Container/WorldLabel/ChangeHealth.visible = false
+				$Container/WorldLabel/ChangeUVBattery.visible = false
 				$Container/WorldLabel/DuckTheDeath/DeathToggler.visible = false
 				$"Container/WorldLabel/Duck the Ghost/GhostToggler".visible = false
 				$Container/WorldLabel/GlobalShadow/ShadowToggler.visible = false
 			"World":
 				position = Vector2(0, 0)
-				$Container/LobbyLabel/ChangeDay.disabled = true
-				$Container/LobbyLabel/ChangeMoney.disabled = true
-				$Container/LobbyLabel/AdvanceStockMartket.disabled = true
-				$Container/LobbyLabel/RerollMissions.disabled = true
+				$Container/LobbyLabel/ChangeDay.visible = false
+				$Container/LobbyLabel/ChangeMoney.visible = false
+				$Container/LobbyLabel/AdvanceStockMartket.visible = false
+				$Container/LobbyLabel/RerollMissions.visible = false
 		
 		if visible == true:
 			visible = false

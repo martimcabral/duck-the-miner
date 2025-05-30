@@ -7,7 +7,8 @@ var version_path : String = str("user://version.cfg")
 var version_config := ConfigFile.new()
 
 func _ready():
-	if version_config.get_value("version", "version", "") != ProjectSettings.get_setting("application/config/version"):
+	version_config.load(version_path)
+	if version_config.get_value("version", "current") != str("release." + ProjectSettings.get_setting("application/config/version")):
 		print("[game_settings] Settings Config file updated!")
 		create_config_file()
 	else:

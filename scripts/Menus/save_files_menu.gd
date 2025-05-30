@@ -255,8 +255,13 @@ func _on_creator_button_pressed() -> void:
 	################################################################################
 	
 	var license_path = str(saves_path + str(saves_number) + "/license.cfg")
-	license_config.set_value("fyction", "experience", 0)
-	license_config.set_value("fyction", "level", 0)
+	license_config.set_value("license", "experience", 0)
+	license_config.set_value("license", "current_level", 1)
+	match choosen_difficulty:
+		"easy": license_config.set_value("license", "available_levels", 3)
+		"normal": license_config.set_value("license", "available_levels", 2)
+		"hard": license_config.set_value("license", "available_levels", 1)
+	license_config.set_value("license", "used_levels", 0)
 	
 	license_config.set_value("player", "health", 1000)
 	license_config.set_value("player", "oxygen", 360)
@@ -275,8 +280,8 @@ func _on_creator_button_pressed() -> void:
 	license_config.set_value("tools", "radar_the_enemies", false)
 	
 	license_config.set_value("biomes", "stony", true)
-	license_config.set_value("biomes", "vulcanic", true)
-	license_config.set_value("biomes", "frozen", true)
+	license_config.set_value("biomes", "vulcanic", false)
+	license_config.set_value("biomes", "frozen", false)
 	license_config.set_value("biomes", "swamp", false)
 	license_config.set_value("biomes", "desert", false)
 	license_config.set_value("biomes", "radioactive", false)
