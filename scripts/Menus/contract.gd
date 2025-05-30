@@ -1,16 +1,27 @@
 extends Panel
 
-var hotbar_path : String = str("user://save/", GetSaveFile.save_being_used, "/hotbar.cfg")
-var hotbar_config : ConfigFile = ConfigFile.new()
+var license_config := ConfigFile.new()
+var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
 
+var hotbar_config := ConfigFile.new()
+var hotbar_path : String = str("user://save/", GetSaveFile.save_being_used, "/hotbar.cfg")
+
+var statistics_config := ConfigFile.new()
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
-var statistics_config : ConfigFile = ConfigFile.new()
 var statistics_text : String = ""
 
 var hotbar_slots : Array = []
 var hotbar_slots_number : int = 0
 
 func _ready() -> void:
+	license_config.load(license_path)
+	var available_levels = license_config.get_value("license", "available_levels")
+	$FyctionPointsSprite/PointsAvailableLabel.text = str(available_levels)
+	
+	var experience = license_config.get_value("license", "experience")
+	var level = license_config.get_value("license", "current_level")
+	$FyctionLevelProgress.text = str("Level: ", str(level)," | ", str(experience)," / 100 XP")
+	
 	hotbar_config.load(hotbar_path)
 	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
@@ -32,13 +43,15 @@ func _ready() -> void:
 	var current_day : String = str(statistics_config.get_value("statistics", "days", "ERROR:396"))
 	
 	statistics_text += str("Oxygen Consumed: ", oxygen_used,"u\n")
-	statistics_text += str("Energy Battery Used: ", battery_used,"W\n")
+	statistics_text += str("Energy Consumed: ", battery_used,"W\n")
 	statistics_text += str("Damage Received: ", damage_received, "\n")
 	statistics_text += str("Damage Dealt: ", damage_dealt, "\n")
 	statistics_text += str("Enemies Killed: ", enemies_killed, "\n")
 	statistics_text += str("Blocks Mined: ", blocks_mined,"\n")
 	statistics_text += str("Time Working: ", time_working, "s\n")
 	statistics_text += str("Time Resting: ", time_resting, "s\n")
+	# Add Concluded Missions
+	# Add Fyction Points Used
 	statistics_text += str("Days at Fyction: ", current_day)
 	$StatisticsLabel.text = statistics_text
 	
@@ -83,4 +96,3 @@ func _on_more_resting_time_timeout() -> void:
 	var new_time_resting = 1 + statistics_config.get_value("statistics", "time_resting")
 	statistics_config.set_value("statistics", "time_resting", new_time_resting)
 	statistics_config.save(statistics_path)
-	
