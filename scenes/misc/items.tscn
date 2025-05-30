@@ -113,9 +113,11 @@ radius = 4.0
 radius = 2.82843
 
 [node name="Items" type="Node2D"]
+z_index = 2
 
 [node name="Stone" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Stone"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -131,6 +133,7 @@ shape = SubResource("RectangleShape2D_5sde2")
 
 [node name="Coal" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Coal"
+z_index = 2
 disable_mode = 2
 gravity_scale = 0.05
 can_sleep = false
@@ -145,6 +148,7 @@ shape = SubResource("CircleShape2D_s40fl")
 
 [node name="RawCopper" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawCopper"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -159,6 +163,7 @@ shape = SubResource("RectangleShape2D_5sde2")
 
 [node name="RawIron" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawIron"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -173,6 +178,7 @@ shape = SubResource("RectangleShape2D_5sde2")
 
 [node name="RawGold" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawGold"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -187,6 +193,7 @@ shape = SubResource("RectangleShape2D_5sde2")
 
 [node name="Emerald" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Emerald"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -205,6 +212,7 @@ script = ExtResource("3_reukg")
 
 [node name="Ruby" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Ruby"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -223,6 +231,7 @@ script = ExtResource("3_reukg")
 
 [node name="Sapphire" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Sapphire"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -241,6 +250,7 @@ script = ExtResource("3_reukg")
 
 [node name="Diamond" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Diamond"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -262,6 +272,7 @@ script = ExtResource("3_reukg")
 
 [node name="RawMagnetite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Magnetite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -277,6 +288,7 @@ shape = SubResource("RectangleShape2D_bx5wy")
 
 [node name="RawBauxite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Bauxite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -292,6 +304,7 @@ shape = SubResource("RectangleShape2D_bx5wy")
 
 [node name="Topaz" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Topaz"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -313,6 +326,7 @@ script = ExtResource("3_reukg")
 
 [node name="Garnet" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Garnet"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -333,6 +347,7 @@ script = ExtResource("3_reukg")
 
 [node name="Tsavorite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Tsavorite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -353,6 +368,7 @@ script = ExtResource("3_reukg")
 
 [node name="LavaCluster" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "LavaCluster"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -370,6 +386,7 @@ shape = SubResource("RectangleShape2D_fg2kt")
 
 [node name="DenseIce" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "DenseIce"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -387,6 +404,7 @@ shape = SubResource("RectangleShape2D_fg2kt")
 
 [node name="Amazonite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Amazonite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -406,6 +424,7 @@ script = ExtResource("3_reukg")
 
 [node name="Ametrine" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Ametrine"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -425,6 +444,7 @@ script = ExtResource("3_reukg")
 
 [node name="Apatite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Apatite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -444,6 +464,7 @@ script = ExtResource("3_reukg")
 
 [node name="FrozenDiamond" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "FrozenDiamond"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -465,6 +486,7 @@ script = ExtResource("3_reukg")
 
 [node name="Galena" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Galena"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -479,6 +501,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Silver" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Silver"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -493,6 +516,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Wolframite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Wolframite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -507,6 +531,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Pyrolusite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Pyrolusite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -521,6 +546,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Nickel" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Nickel"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -535,6 +561,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Graphite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Graphite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -549,6 +576,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Charoite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Charoite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -567,6 +595,7 @@ script = ExtResource("3_reukg")
 
 [node name="Sugilite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Sugilite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -586,6 +615,7 @@ script = ExtResource("3_reukg")
 
 [node name="Peridot" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Peridot"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -605,6 +635,7 @@ script = ExtResource("3_reukg")
 
 [node name="Sulfur" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Sulfur"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -618,6 +649,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="RawCobalt" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawCobalt"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -632,6 +664,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="RawUranium" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawUranium"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -646,6 +679,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="RawZirconium" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawZirconium"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -659,6 +693,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="RawPlatinum" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawPlatinum"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -672,6 +707,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Sandstone" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Sandstone"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -685,6 +721,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="OilShale" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "OilShale"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -698,6 +735,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Gypsum" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Gypsum"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -711,6 +749,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Kaolinite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Kaolinite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -724,6 +763,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="RawScheelite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "RawScheelite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -737,6 +777,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Vanadinite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Vanadinite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -750,6 +791,7 @@ shape = SubResource("CircleShape2D_y5rc7")
 
 [node name="Azurite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Azurite"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -769,6 +811,7 @@ script = ExtResource("3_reukg")
 
 [node name="Bloodstone" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Bloodstone"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -788,6 +831,7 @@ script = ExtResource("3_reukg")
 
 [node name="Chalcedony" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Chalcedony"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -807,6 +851,7 @@ script = ExtResource("3_reukg")
 
 [node name="Biomass" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Biomass"
+z_index = 2
 gravity_scale = 0.05
 can_sleep = false
 
@@ -821,6 +866,7 @@ shape = SubResource("CircleShape2D_03jck")
 
 [node name="Ice" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Ice"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -837,6 +883,7 @@ shape = SubResource("CircleShape2D_ropjv")
 
 [node name="Pitchblende" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Pitchblende"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -853,6 +900,7 @@ shape = SubResource("CircleShape2D_ropjv")
 
 [node name="Phosphorite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Phosphorite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -869,6 +917,7 @@ shape = SubResource("CircleShape2D_ropjv")
 
 [node name="Hematite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Hematite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -885,6 +934,7 @@ shape = SubResource("CircleShape2D_ropjv")
 
 [node name="Chrysocolla" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Chrysocolla"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -906,6 +956,7 @@ script = ExtResource("3_reukg")
 
 [node name="Pietersite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Pietersite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -927,6 +978,7 @@ script = ExtResource("3_reukg")
 
 [node name="Labradorite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Labradorite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false
@@ -948,6 +1000,7 @@ script = ExtResource("3_reukg")
 
 [node name="Jeremejevite" type="RigidBody2D" parent="." groups=["Pickable"]]
 editor_description = "Jeremejevite"
+z_index = 2
 gravity_scale = 0.05
 center_of_mass_mode = 1
 can_sleep = false

@@ -88,7 +88,7 @@ func get_save_files():
 			var focus = focus_stylebox.duplicate()
 			var hover = hover_stylebox.duplicate()
 		
-			var version_trajectory = "user://save/%d/version-beta%s" % [i, ProjectSettings.get_setting("application/config/version")]
+			var version_trajectory = "user://save/%d/version-release%s" % [i, ProjectSettings.get_setting("application/config/version")]
 			if FileAccess.file_exists(version_trajectory):
 				normal.border_color = Color("555555")
 				focus.border_color = Color.WHITE
@@ -239,7 +239,7 @@ func _on_creator_button_pressed() -> void:
 	
 	################################################################################
 	
-	FileAccess.open(str("user://save/", str(saves_number) ,"/version-beta", ProjectSettings.get_setting("application/config/version")), FileAccess.WRITE) # Open file in write mode
+	FileAccess.open(str("user://save/", str(saves_number) ,"/version-release", ProjectSettings.get_setting("application/config/version")), FileAccess.WRITE) # Open file in write mode
 	
 	################################################################################
 	

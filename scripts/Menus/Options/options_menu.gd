@@ -11,7 +11,7 @@ func _ready():
 	previous_keybutton = $ControlsPanel/NextKeyHandler
 	
 	config.load(file_path)
-	if config.get_value("version", "current", "ERROR:384") != str("beta." + ProjectSettings.get_setting("application/config/version")):
+	if config.get_value("version", "current", "ERROR:384") != str("release." + ProjectSettings.get_setting("application/config/version")):
 		GameSettings.create_config_file()
 	else:
 		############# Display #############

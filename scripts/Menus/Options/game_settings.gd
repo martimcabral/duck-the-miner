@@ -13,7 +13,7 @@ func _ready():
 func create_config_file():
 	############# Default Settings ################
 	# Version
-	config.set_value("version", "current", str("beta." + ProjectSettings.get_setting("application/config/version")))
+	config.set_value("version", "current", str("release." + ProjectSettings.get_setting("application/config/version")))
 	
 	# Display
 	config.set_value("display", "windows_size", 2)

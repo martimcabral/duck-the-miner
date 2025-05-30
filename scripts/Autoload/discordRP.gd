@@ -14,7 +14,7 @@ func _ready() -> void:
 	DiscordRPC.app_id = 1306635163265929327
 	if DiscordRPC.get_is_discord_working():
 		DiscordRPC.details = "🎮 Just started playing!"
-		DiscordRPC.state = "beta." + str(ProjectSettings.get_setting("application/config/version"))
+		DiscordRPC.state = "Release " + str(ProjectSettings.get_setting("application/config/version"))
 		DiscordRPC.large_image = str(skin_selected) + "duck"
 		DiscordRPC.large_image_text = "Get Duck the Miner at itch.io"
 		DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
