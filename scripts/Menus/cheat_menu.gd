@@ -24,9 +24,9 @@ func _input(_event):
 				$Container/WorldLabel/ChangeOxygen.disabled = true
 				$Container/WorldLabel/ChangeHealth.disabled = true
 				$Container/WorldLabel/ChangeUVBattery.disabled = true
-				$Container/WorldLabel/DuckTheDeath/DeathToggler.disabled = true
-				$"Container/WorldLabel/Duck the Ghost/GhostToggler".disabled = true
-				$Container/WorldLabel/GlobalShadow/ShadowToggler.disabled = true
+				$Container/WorldLabel/DuckTheDeath/DeathToggler.visible = false
+				$"Container/WorldLabel/Duck the Ghost/GhostToggler".visible = false
+				$Container/WorldLabel/GlobalShadow/ShadowToggler.visible = false
 			"World":
 				position = Vector2(0, 0)
 				$Container/LobbyLabel/ChangeDay.disabled = true

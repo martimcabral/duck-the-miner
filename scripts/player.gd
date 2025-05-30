@@ -66,13 +66,13 @@ var bloddy_overlay3 = preload("res://assets/textures/player/overlays/overlay_3.p
 var skin_selected : int
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
 
-var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
-var player_config = ConfigFile.new()
+var hotbar_path : String = str("user://save/", GetSaveFile.save_being_used, "/hotbar.cfg")
+var hotbar_config = ConfigFile.new()
 
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var statistics_config = ConfigFile.new()
 
-var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
+var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
 var difficulty_config = ConfigFile.new()
 var current_difficulty : String = ""
 
@@ -111,21 +111,21 @@ func _ready():
 	subtitles = config.get_value("accessibility", "subtitles", true)
 	biome_visual_effects = config.get_value("display", "biome_visual_effects", true)
 	
-	player_config.load(player_path)
-	max_health = player_config.get_value("status", "max_health", 100)
-	max_oxygen = player_config.get_value("status", "max_oxygen", 480)
-	max_battery = player_config.get_value("status", "max_battery_battery", 200)
-	walking_speed = player_config.get_value("status", "walking_speed", 55)
-	running_speed = player_config.get_value("status", "running_speed", 90)
+	hotbar_config.load(hotbar_path)
+	max_health = hotbar_config.get_value("status", "max_health", 100)
+	max_oxygen = hotbar_config.get_value("status", "max_oxygen", 480)
+	max_battery = hotbar_config.get_value("status", "max_battery_battery", 200)
+	walking_speed = hotbar_config.get_value("status", "walking_speed", 55)
+	running_speed = hotbar_config.get_value("status", "running_speed", 90)
 	
 	current_health = max_health
 	current_oxygen = max_oxygen
 	current_battery = max_battery
 	
 	hotbar.remove_tab(0)
-	hotbar_slots_number = player_config.get_value("hotbar_slots", "number")
+	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
-		hotbar.add_tab(player_config.get_value("hotbar_slots", str(i)))
+		hotbar.add_tab(hotbar_config.get_value("hotbar_slots", str(i)))
 		hotbar.set_tab_icon(i, set_custom_cursor(i))
 	current_item = hotbar.get_tab_title(hotbar.current_tab)
 	
@@ -316,19 +316,19 @@ func _process(delta):
 	# Mudar o Cursor dependendo do Item selecinado da Hotbar
 	if Input.is_action_just_pressed("Hotbar_1") and hotbar_slots_number >= 1:
 		hotbar.current_tab = 0
-		current_item = player_config.get_value("hotbar_slots", "0")
+		current_item = hotbar_config.get_value("hotbar_slots", "0")
 		Input.set_custom_mouse_cursor(set_custom_cursor(0))
 	if Input.is_action_just_pressed("Hotbar_2") and hotbar_slots_number >= 2:
 		hotbar.current_tab = 1
-		current_item = player_config.get_value("hotbar_slots", "1")
+		current_item = hotbar_config.get_value("hotbar_slots", "1")
 		Input.set_custom_mouse_cursor(set_custom_cursor(1))
 	if Input.is_action_just_pressed("Hotbar_3") and hotbar_slots_number >= 3:
 		hotbar.current_tab = 2
-		current_item = player_config.get_value("hotbar_slots", "2")
+		current_item = hotbar_config.get_value("hotbar_slots", "2")
 		Input.set_custom_mouse_cursor(set_custom_cursor(2))
 	if Input.is_action_just_pressed("Hotbar_4") and hotbar_slots_number >= 4:
 		hotbar.current_tab = 3
-		current_item = player_config.get_value("hotbar_slots", "3")
+		current_item = hotbar_config.get_value("hotbar_slots", "3")
 		Input.set_custom_mouse_cursor(set_custom_cursor(3))
 	
 	if is_duck_dead == false and $"../PauseMenu/GUI_Pause".visible == false:
@@ -509,19 +509,19 @@ func _on_tab_bar_tab_clicked(tab: int) -> void:
 		match tab:
 			0:
 				hotbar.current_tab = tab
-				current_item = player_config.get_value("hotbar_slots", str(tab))
+				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
 				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 			1: 
 				hotbar.current_tab = tab
-				current_item = player_config.get_value("hotbar_slots", str(tab))
+				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
 				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 			2:
 				hotbar.current_tab = tab
-				current_item = player_config.get_value("hotbar_slots", str(tab))
+				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
 				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 			3: 
 				hotbar.current_tab = tab
-				current_item = player_config.get_value("hotbar_slots", str(tab))
+				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
 				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
 
 func load_skin():
@@ -594,7 +594,7 @@ func _on_take_damage_from_oxygen_timeout() -> void:
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
 
 func set_custom_cursor(hotbar_slot):
-	var hotbar_slot_name = player_config.get_value("hotbar_slots", str(hotbar_slot))
+	var hotbar_slot_name = hotbar_config.get_value("hotbar_slots", str(hotbar_slot))
 	match hotbar_slot_name:
 		"Sword": return cursor_texture_sword
 		"Pickaxe": return cursor_texture_pickaxe

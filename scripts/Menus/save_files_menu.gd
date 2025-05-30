@@ -3,25 +3,26 @@ extends Panel
 var saves_number : int = 1
 var selected_save : int = 0
 
-var saves_path = "user://save/"
+var saves_path : String = str("user://save/")
 var savedir
 
-var saves_config = ConfigFile.new()
-var getmoney_config = ConfigFile.new()
-var raw_inv_config = ConfigFile.new()
-var crafted_inv_config = ConfigFile.new()
-var money_config = ConfigFile.new()
-var skin_config = ConfigFile.new()
-var day_config = ConfigFile.new()
-var difficulty_config = ConfigFile.new()
-var cheating_config = ConfigFile.new()
-var stock_config = ConfigFile.new()
-var player_config = ConfigFile.new()
-var statistics_config = ConfigFile.new()
+var saves_config := ConfigFile.new()
+var getmoney_config := ConfigFile.new()
+var raw_inv_config := ConfigFile.new()
+var crafted_inv_config := ConfigFile.new()
+var money_config := ConfigFile.new()
+var skin_config := ConfigFile.new()
+var day_config := ConfigFile.new()
+var difficulty_config := ConfigFile.new()
+var cheating_config := ConfigFile.new()
+var stock_config := ConfigFile.new()
+var hotbar_config := ConfigFile.new()
+var statistics_config := ConfigFile.new()
+var license_config := ConfigFile.new()
 
-var normal_stylebox = StyleBoxFlat.new()
-var focus_stylebox = StyleBoxFlat.new()
-var hover_stylebox = StyleBoxFlat.new()
+var normal_stylebox := StyleBoxFlat.new()
+var focus_stylebox := StyleBoxFlat.new()
+var hover_stylebox := StyleBoxFlat.new()
 
 var choosen_difficulty : String = "normal"
 var choosen_cheating : bool = false
@@ -243,21 +244,46 @@ func _on_creator_button_pressed() -> void:
 	
 	################################################################################
 	
-	var player_path = str(saves_path + str(saves_number) + "/player.cfg")
-	player_config.set_value("status", "max_health", 100)
-	player_config.set_value("status", "max_oxygen", 480)
-	player_config.set_value("status", "max_uv_battery", 200)
-	player_config.set_value("status", "walking_speed", 55)
-	player_config.set_value("status", "running_speed", 90)
-	
-	player_config.set_value("hotbar_slots", "number", 4)
-	player_config.set_value("hotbar_slots", "0", "Sword")
-	player_config.set_value("hotbar_slots", "1", "Pickaxe")
-	player_config.set_value("hotbar_slots", "2", "Light")
-	player_config.set_value("hotbar_slots", "3", "UV Flashlight")
-	player_config.save(player_path)
+	var player_path = str(saves_path + str(saves_number) + "/hotbar.cfg")
+	hotbar_config.set_value("hotbar_slots", "number", 4)
+	hotbar_config.set_value("hotbar_slots", "0", "Sword")
+	hotbar_config.set_value("hotbar_slots", "1", "Pickaxe")
+	hotbar_config.set_value("hotbar_slots", "2", "Light")
+	hotbar_config.set_value("hotbar_slots", "3", "UV Flashlight")
+	hotbar_config.save(player_path)
 	
 	################################################################################
+	
+	var license_path = str(saves_path + str(saves_number) + "/license.cfg")
+	license_config.set_value("fyction", "experience", 0)
+	license_config.set_value("fyction", "level", 0)
+	
+	license_config.set_value("player", "health", 1000)
+	license_config.set_value("player", "oxygen", 360)
+	license_config.set_value("player", "battery", 200)
+	license_config.set_value("player", "mining_speed", 0)
+	license_config.set_value("player", "mining_fortune", 0)
+	license_config.set_value("player", "sword_damage", 0)
+	license_config.set_value("player", "walking_speed", 55)
+	license_config.set_value("player", "running_speed", 90)
+	
+	license_config.set_value("tools", "sword", true)
+	license_config.set_value("tools", "pickaxe", true)
+	license_config.set_value("tools", "light", true)
+	license_config.set_value("tools", "uv_flashlight", false)
+	license_config.set_value("tools", "radar_the_tool", false)
+	license_config.set_value("tools", "radar_the_enemies", false)
+	
+	license_config.set_value("biomes", "stony", true)
+	license_config.set_value("biomes", "vulcanic", true)
+	license_config.set_value("biomes", "frozen", true)
+	license_config.set_value("biomes", "swamp", false)
+	license_config.set_value("biomes", "desert", false)
+	license_config.set_value("biomes", "radioactive", false)
+	license_config.save(license_path)
+	
+	################################################################################
+
 
 func _on_delete_game_pressed() -> void:
 	$PlayButton.disabled = true

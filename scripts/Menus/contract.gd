@@ -1,7 +1,7 @@
 extends Panel
 
-var player_path : String = str("user://save/", GetSaveFile.save_being_used, "/player.cfg")
-var player_config : ConfigFile = ConfigFile.new()
+var hotbar_path : String = str("user://save/", GetSaveFile.save_being_used, "/hotbar.cfg")
+var hotbar_config : ConfigFile = ConfigFile.new()
 
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var statistics_config : ConfigFile = ConfigFile.new()
@@ -11,10 +11,10 @@ var hotbar_slots : Array = []
 var hotbar_slots_number : int = 0
 
 func _ready() -> void:
-	player_config.load(player_path)
-	hotbar_slots_number = player_config.get_value("hotbar_slots", "number")
+	hotbar_config.load(hotbar_path)
+	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
-		hotbar_slots.append(player_config.get_value("hotbar_slots", str(i)))
+		hotbar_slots.append(hotbar_config.get_value("hotbar_slots", str(i)))
 	$FirstHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[0])
 	$SecondHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[1])
 	$ThirdHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[2])
@@ -57,14 +57,14 @@ func _on_fourth_hotbar_dropdown_item_selected(index: int) -> void:
 
 func change_hotbar_slot(item_index, slot_number):
 	match item_index:
-		0: player_config.set_value("hotbar_slots", str(slot_number), "Sword")
-		1: player_config.set_value("hotbar_slots", str(slot_number), "Pickaxe")
-		2: player_config.set_value("hotbar_slots", str(slot_number), "Light")
-		3: player_config.set_value("hotbar_slots", str(slot_number), "UV Flashlight")
-		4: player_config.set_value("hotbar_slots", str(slot_number), "Radar the Tool")
-		5: player_config.set_value("hotbar_slots", str(slot_number), "Radar the Enemies")
-	player_config.save(player_path)
-	print("[contract.gd] Changed Slot [", str(slot_number), "] to: ", player_config.get_value("hotbar_slots", str(slot_number)))
+		0: hotbar_config.set_value("hotbar_slots", str(slot_number), "Sword")
+		1: hotbar_config.set_value("hotbar_slots", str(slot_number), "Pickaxe")
+		2: hotbar_config.set_value("hotbar_slots", str(slot_number), "Light")
+		3: hotbar_config.set_value("hotbar_slots", str(slot_number), "UV Flashlight")
+		4: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Tool")
+		5: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Enemies")
+	hotbar_config.save(hotbar_path)
+	print("[contract.gd] Changed Slot [", str(slot_number), "] to: ", hotbar_config.get_value("hotbar_slots", str(slot_number)))
 
 func select_hotbar_slot(hotbar_slot):
 	match hotbar_slot:

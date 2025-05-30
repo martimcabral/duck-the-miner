@@ -1,7 +1,7 @@
 extends Panel
 
-var config = ConfigFile.new()
-var file_path = "user://game_settings.cfg"
+var config := ConfigFile.new()
+var file_path : String = str("user://game_settings.cfg")
 
 var key_name
 var previous_keybutton
@@ -11,102 +11,100 @@ func _ready():
 	previous_keybutton = $ControlsPanel/NextKeyHandler
 	
 	config.load(file_path)
-	if config.get_value("version", "current", "ERROR:384") != str("release." + ProjectSettings.get_setting("application/config/version")):
-		GameSettings.create_config_file()
+	
+	############# Display #############
+	$DisplayPanel/WindowsTypeDropDown.selected = config.get_value("display", "windows_type")
+	if config.get_value("display", "windows_type") == 0:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
+		print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
+	
+	else: # Bordeless
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+		print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
+	
+	$DisplayPanel/WindowsSizeDropDown.selected = config.get_value("display", "windows_size")
+	change_resolution(config.get_value("display", "windows_size"))
+	
+	if config.get_value("display", "vsync") == false:
+		$DisplayPanel/VsyncCheckButton.button_pressed = false
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		print("[options_menu.gd] Vsync Disabled")
 	else:
-		############# Display #############
-		$DisplayPanel/WindowsTypeDropDown.selected = config.get_value("display", "windows_type")
-		if config.get_value("display", "windows_type") == 0:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, true)
-			print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
-		
-		else: # Bordeless
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
-			print("[options_menu.gd] Window Mode changed to: ", DisplayServer.window_get_mode())
-		
-		$DisplayPanel/WindowsSizeDropDown.selected = config.get_value("display", "windows_size")
-		change_resolution(config.get_value("display", "windows_size"))
-		
-		if config.get_value("display", "vsync") == false:
-			$DisplayPanel/VsyncCheckButton.button_pressed = false
-			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-			print("[options_menu.gd] Vsync Disabled")
-		else:
-			$DisplayPanel/VsyncCheckButton.button_pressed = true
-			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-			print("[options_menu.gd] Vsync Enabled")
-		
-		$DisplayPanel/FPSType.selected = config.get_value("display", "fps_limiter")
-		
-		var monitors = DisplayServer.get_screen_count()
-		print("[options_menu.gd] Number of screens found: ", monitors)
-		
-		for monitor in monitors:
-			$DisplayPanel/MonitorSelectorDropdown.add_item(str("Monitor: ", monitor), monitor)
-		
-		var selected_monitor = config.get_value("display", "monitor", 0)
-		DisplayServer.window_set_current_screen(selected_monitor)
-		$DisplayPanel/MonitorSelectorDropdown.selected = selected_monitor
+		$DisplayPanel/VsyncCheckButton.button_pressed = true
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+		print("[options_menu.gd] Vsync Enabled")
+	
+	$DisplayPanel/FPSType.selected = config.get_value("display", "fps_limiter")
+	
+	var monitors = DisplayServer.get_screen_count()
+	print("[options_menu.gd] Number of screens found: ", monitors)
+	
+	for monitor in monitors:
+		$DisplayPanel/MonitorSelectorDropdown.add_item(str("Monitor: ", monitor), monitor)
+	
+	var selected_monitor = config.get_value("display", "monitor", 0)
+	DisplayServer.window_set_current_screen(selected_monitor)
+	$DisplayPanel/MonitorSelectorDropdown.selected = selected_monitor
 
-		$DisplayPanel/BloomCheckButton.button_pressed = config.get_value("display", "bloom", true)
-		$DisplayPanel/BiomeVisualEffectsCheckButton.button_pressed = config.get_value("display", "biome_visual_effects", true)
+	$DisplayPanel/BloomCheckButton.button_pressed = config.get_value("display", "bloom", true)
+	$DisplayPanel/BiomeVisualEffectsCheckButton.button_pressed = config.get_value("display", "biome_visual_effects", true)
 
-		############# Audio #############
-		
-		$AudioPanel/MasterVolumeSlider.value = config.get_value("audio", "master")
-		$AudioPanel/MusicVolumeSlider.value = config.get_value("audio", "music")
-		$AudioPanel/AmbientVolumeSlider.value = config.get_value("audio", "ambient")
-		$AudioPanel/PlayerVolumeSlider.value = config.get_value("audio", "player")
-		$AudioPanel/MenusVolumeSlider.value = config.get_value("audio", "menus")
-		
-		$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "master")))
-		$AudioPanel/CurrentMusicVolume.text = str(int(config.get_value("audio", "music")))
-		$AudioPanel/CurrentAmbientVolume.text = str(int(config.get_value("audio", "ambient")))
-		$AudioPanel/CurrentPlayerVolume.text = str(int(config.get_value("audio", "player")))
-		$AudioPanel/CurrentMenusVolume.text = str(int(config.get_value("audio", "menus")))
-		
-		if config.get_value("audio", "master") == 0.0:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -80.0)
-			$AudioPanel/CurrentVolume.text = "0"
-		if config.get_value("audio", "music") == 0.0:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -80.0)
-			$AudioPanel/CurrentMusicVolume.text = "0"
-		if config.get_value("audio", "ambient") == 0.0:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient"), -80.0)
-			$AudioPanel/CurrentAmbientVolume.text = "0"
-		if config.get_value("audio", "player") == 0.0:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Player"), -80.0)
-			$AudioPanel/CurrentPlayerVolume.text = "0"
-		if config.get_value("audio", "menus") == 0.0:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Menus"), -80.0)
-			$AudioPanel/CurrentMenusVolume.text = "0"
-		
-		############# Controls #############
-		$ControlsPanel/FlyUpButton.text = config.get_value("controls", "Fly_Up")
-		$ControlsPanel/FlyDownButton.text = config.get_value("controls", "Fly_Down")
-		$ControlsPanel/WalkLeftButton.text = config.get_value("controls", "Walk_Left") 
-		$ControlsPanel/WalkRightButton.text = config.get_value("controls", "Walk_Right")
-		$ControlsPanel/RunButton.text = config.get_value("controls", "Run")
-		$ControlsPanel/AgacharButton.text = config.get_value("controls", "Agachar")
-		$ControlsPanel/DestroyBlockButton.text = config.get_value("controls", "Destroy_Block")
-		$ControlsPanel/PauseMenuButton.text = config.get_value("controls", "PauseMenu")
-		$ControlsPanel/QuackButton.text = config.get_value("controls", "Quack")
-		$ControlsPanel/HideShowInventoryButton.text = config.get_value("controls", "Hide_Show_Inventory")
-		$ControlsPanel/OpenFeedbackButton.text = config.get_value("controls", "Open_Feedback_Page")
-		$ControlsPanel/UniverseZoomInButton.text = config.get_value("controls", "Universe_Zoom_In")
-		$ControlsPanel/UniverseZoomOutButton.text = config.get_value("controls", "Universe_Zoom_Out")
-		$ControlsPanel/UseFlashlightButton.text = config.get_value("controls", "Use_Item")
-		
-		############# Accessibility #############
-		$AccessibilityPanel/ColorblindnessDropDown.selected = config.get_value("accessibility", "colorblindness")
-		$AccessibilityPanel/LanguageDropDown.selected = config.get_value("accessibility", "language")
-		$AccessibilityPanel/SubtitlesCheckButton.button_pressed = config.get_value("accessibility", "subtitles")
-		$"../../ColorblindFilter".material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness"))
-		$AccessibilityPanel/HighlightBlockSelectionCheckbox.button_pressed = config.get_value("accessibility", "highlight_block_selection")
-		$AccessibilityPanel/ShowControlsCheckbox.button_pressed = config.get_value("accessibility", "show_controls")
-		$AccessibilityPanel/HideBloodCheckbox.button_pressed = config.get_value("accessibility", "hide_blood")
+	############# Audio #############
+	
+	$AudioPanel/MasterVolumeSlider.value = config.get_value("audio", "master")
+	$AudioPanel/MusicVolumeSlider.value = config.get_value("audio", "music")
+	$AudioPanel/AmbientVolumeSlider.value = config.get_value("audio", "ambient")
+	$AudioPanel/PlayerVolumeSlider.value = config.get_value("audio", "player")
+	$AudioPanel/MenusVolumeSlider.value = config.get_value("audio", "menus")
+	
+	$AudioPanel/CurrentVolume.text = str(int(config.get_value("audio", "master")))
+	$AudioPanel/CurrentMusicVolume.text = str(int(config.get_value("audio", "music")))
+	$AudioPanel/CurrentAmbientVolume.text = str(int(config.get_value("audio", "ambient")))
+	$AudioPanel/CurrentPlayerVolume.text = str(int(config.get_value("audio", "player")))
+	$AudioPanel/CurrentMenusVolume.text = str(int(config.get_value("audio", "menus")))
+	
+	if config.get_value("audio", "master") == 0.0:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), -80.0)
+		$AudioPanel/CurrentVolume.text = "0"
+	if config.get_value("audio", "music") == 0.0:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -80.0)
+		$AudioPanel/CurrentMusicVolume.text = "0"
+	if config.get_value("audio", "ambient") == 0.0:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Ambient"), -80.0)
+		$AudioPanel/CurrentAmbientVolume.text = "0"
+	if config.get_value("audio", "player") == 0.0:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Player"), -80.0)
+		$AudioPanel/CurrentPlayerVolume.text = "0"
+	if config.get_value("audio", "menus") == 0.0:
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Menus"), -80.0)
+		$AudioPanel/CurrentMenusVolume.text = "0"
+	
+	############# Controls #############
+	$ControlsPanel/FlyUpButton.text = config.get_value("controls", "Fly_Up")
+	$ControlsPanel/FlyDownButton.text = config.get_value("controls", "Fly_Down")
+	$ControlsPanel/WalkLeftButton.text = config.get_value("controls", "Walk_Left") 
+	$ControlsPanel/WalkRightButton.text = config.get_value("controls", "Walk_Right")
+	$ControlsPanel/RunButton.text = config.get_value("controls", "Run")
+	$ControlsPanel/AgacharButton.text = config.get_value("controls", "Agachar")
+	$ControlsPanel/DestroyBlockButton.text = config.get_value("controls", "Destroy_Block")
+	$ControlsPanel/PauseMenuButton.text = config.get_value("controls", "PauseMenu")
+	$ControlsPanel/QuackButton.text = config.get_value("controls", "Quack")
+	$ControlsPanel/HideShowInventoryButton.text = config.get_value("controls", "Hide_Show_Inventory")
+	$ControlsPanel/OpenFeedbackButton.text = config.get_value("controls", "Open_Feedback_Page")
+	$ControlsPanel/UniverseZoomInButton.text = config.get_value("controls", "Universe_Zoom_In")
+	$ControlsPanel/UniverseZoomOutButton.text = config.get_value("controls", "Universe_Zoom_Out")
+	$ControlsPanel/UseFlashlightButton.text = config.get_value("controls", "Use_Item")
+	
+	############# Accessibility #############
+	$AccessibilityPanel/ColorblindnessDropDown.selected = config.get_value("accessibility", "colorblindness")
+	$AccessibilityPanel/LanguageDropDown.selected = config.get_value("accessibility", "language")
+	$AccessibilityPanel/SubtitlesCheckButton.button_pressed = config.get_value("accessibility", "subtitles")
+	$"../../ColorblindFilter".material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness"))
+	$AccessibilityPanel/HighlightBlockSelectionCheckbox.button_pressed = config.get_value("accessibility", "highlight_block_selection")
+	$AccessibilityPanel/ShowControlsCheckbox.button_pressed = config.get_value("accessibility", "show_controls")
+	$AccessibilityPanel/HideBloodCheckbox.button_pressed = config.get_value("accessibility", "hide_blood")
 
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")

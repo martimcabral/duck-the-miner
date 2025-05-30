@@ -9,13 +9,22 @@ var username : String = ""
 var date = Time.get_datetime_dict_from_system()
 var month_number = date["month"]
 
+var version_config := ConfigFile.new()
+var version_path : String = str("user://version.cfg")
+
+var tutorial_config := ConfigFile.new()
+var tutorial_path : String = str("user://tutorial.cfg")
+
 func _ready() -> void:
 	print("[start.gd] Current Date Package: ", date)
 	print("[start.gd] Current Month: ", date["month"])
-	if not FileAccess.file_exists("user://tutorial.cfg"):
-		var tutorial = ConfigFile.new()
-		tutorial.set_value("tutorial", "done", false)
-		tutorial.save("user://tutorial.cfg")
+	
+	version_config.set_value("version", "current", str("release." + ProjectSettings.get_setting("application/config/version")))
+	version_config.save(version_path)
+	
+	if not FileAccess.file_exists(tutorial_path):
+		tutorial_config.set_value("tutorial", "done", false)
+		tutorial_config.save(tutorial_path)
 	
 	match OS.get_name():
 		"Windows": username = OS.get_environment("USERNAME")
