@@ -263,7 +263,7 @@ func _on_creator_button_pressed() -> void:
 		"hard": license_config.set_value("license", "available_levels", 1)
 	license_config.set_value("license", "used_levels", 0)
 	
-	license_config.set_value("player", "health", 1000)
+	license_config.set_value("player", "health", 100)
 	license_config.set_value("player", "oxygen", 360)
 	license_config.set_value("player", "battery", 200)
 	license_config.set_value("player", "mining_speed", 0)

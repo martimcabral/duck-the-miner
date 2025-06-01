@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=143 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -17,7 +17,6 @@
 [ext_resource type="AudioStream" uid="uid://cubwwxd0gkir7" path="res://sounds/effects/menus/cash.ogg" id="8_busoe"]
 [ext_resource type="Script" uid="uid://cq4gqpmooyb22" path="res://scripts/Misc/Systems/solar_system.gd" id="8_dovll"]
 [ext_resource type="Texture2D" uid="uid://cekskf35oa0yx" path="res://assets/textures/universe/planets/venus.png" id="8_exyxi"]
-[ext_resource type="Texture2D" uid="uid://cgum6gl0wbg1e" path="res://assets/textures/items/equipment/bulkhead_light.png" id="10_busoe"]
 [ext_resource type="Texture2D" uid="uid://4yelkrskiohw" path="res://assets/textures/companies/fyction_points.png" id="10_gd4oi"]
 [ext_resource type="Texture2D" uid="uid://git2r6icj0io" path="res://assets/textures/universe/moons/moon.png" id="10_kuvf8"]
 [ext_resource type="Texture2D" uid="uid://coqirkcawixar" path="res://assets/textures/items/equipment/flashlight_item.png" id="11_8mpuv"]
@@ -26,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bjbbbpyuplr0u" path="res://assets/textures/universe/moons/phobos.png" id="12_d28p1"]
 [ext_resource type="Texture2D" uid="uid://1u6ens7p4bdq" path="res://assets/textures/items/equipment/radar_the_tool.png" id="12_gd4oi"]
 [ext_resource type="Texture2D" uid="uid://0um0aqd5bjao" path="res://assets/textures/items/equipment/pickaxe.png" id="12_u7tfn"]
+[ext_resource type="Texture2D" uid="uid://cpna26rv62xu5" path="res://assets/textures/items/equipment/bulkhead_light_centered.png" id="13_2630d"]
 [ext_resource type="Texture2D" uid="uid://cuoxvonybts8h" path="res://assets/textures/items/equipment/radar_the_enemies.png" id="13_u7tfn"]
 [ext_resource type="Texture2D" uid="uid://cmum2wfcr83m7" path="res://assets/textures/universe/moons/deimos.png" id="13_ydjex"]
 [ext_resource type="Texture2D" uid="uid://do0rardstouqs" path="res://assets/textures/universe/planets/jupiter.png" id="14_ky8ae"]
@@ -33,9 +33,13 @@
 [ext_resource type="Texture2D" uid="uid://i7q6fayubeqv" path="res://assets/textures/universe/moons/io.png" id="15_cuebt"]
 [ext_resource type="Texture2D" uid="uid://dmfbgkg6pvpn2" path="res://assets/textures/universe/moons/europa.png" id="16_j2t8x"]
 [ext_resource type="AudioStream" uid="uid://dwbbwpto5nca0" path="res://sounds/effects/menus/whoosh.ogg" id="17_8mpuv"]
+[ext_resource type="Texture2D" uid="uid://egjw7bnmoby6" path="res://assets/textures/menus/on.png" id="17_2630d"]
 [ext_resource type="Texture2D" uid="uid://b0tu3gvsthbh5" path="res://assets/textures/universe/moons/ganymede.png" id="17_no1l0"]
 [ext_resource type="Texture2D" uid="uid://bqrbruiu5lla3" path="res://assets/textures/universe/orbits_and_fields/orbit_big.png" id="18_0m4te"]
+[ext_resource type="Texture2D" uid="uid://dy0oitwfo6rg5" path="res://assets/textures/menus/off.png" id="18_835bk"]
 [ext_resource type="Texture2D" uid="uid://cyqfy26jjfek8" path="res://assets/textures/universe/planets/saturn.png" id="19_12kdj"]
+[ext_resource type="Texture2D" uid="uid://cgukd0s6bgki3" path="res://assets/textures/menus/yes.png" id="19_ucbax"]
+[ext_resource type="Texture2D" uid="uid://ypdc370ct4jt" path="res://assets/textures/menus/no.png" id="20_1x1aw"]
 [ext_resource type="Texture2D" uid="uid://bi551tm5ywo" path="res://assets/textures/universe/moons/mimas.png" id="20_a7sir"]
 [ext_resource type="Texture2D" uid="uid://co35yul4p3c0i" path="res://assets/textures/universe/moons/rhea.png" id="21_0ubea"]
 [ext_resource type="Texture2D" uid="uid://xhn5o7vq6yq5" path="res://assets/textures/universe/moons/titan.png" id="22_qs1ri"]
@@ -362,10 +366,6 @@ border_width_top = 12
 border_width_right = 12
 border_width_bottom = 12
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
 
 [sub_resource type="Animation" id="Animation_8mpuv"]
 length = 0.001
@@ -558,6 +558,14 @@ OptionButton/colors/font_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l7nca"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vfec7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yf42k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v63ud"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sy4be"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0nf8f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mpuv"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -1720,7 +1728,7 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "9"
+text = "9999999999999"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1731,7 +1739,7 @@ offset_top = 142.0
 offset_right = 954.0
 offset_bottom = 261.0
 theme_override_font_sizes/font_size = 48
-text = "ERROR:9090"
+text = "Level: 1 | 0 / 100 XP"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
@@ -1774,7 +1782,7 @@ anchor_bottom = 0.5
 offset_left = -954.0
 offset_top = -398.0
 offset_right = -12.0
-offset_bottom = 407.0
+offset_bottom = 298.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -1786,8 +1794,8 @@ vertical_alignment = 1
 [node name="Lines" type="Node2D" parent="Camera2D/HUD/Contract"]
 
 [node name="HoriLine2D" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
-position = Vector2(-122, 952)
-points = PackedVector2Array(122, 2, 2042, 2)
+position = Vector2(838, 952)
+points = PackedVector2Array(122, 2, 1074, 2)
 
 [node name="HoriLine2D2" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
 position = Vector2(-122, 136)
@@ -1802,7 +1810,7 @@ position = Vector2(159, 0)
 points = PackedVector2Array(801, 1080, 801, 0)
 
 [node name="VertiLine2D2" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
-position = Vector2(-320, 0)
+position = Vector2(640, -120)
 points = PackedVector2Array(801, 1080, 801, 958)
 
 [node name="VertiLine2D3" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
@@ -1813,6 +1821,10 @@ points = PackedVector2Array(801, 1080, 801, 956)
 position = Vector2(-666, 0)
 points = PackedVector2Array(801, 265, 801, 141)
 
+[node name="HoriLine2D4" type="Line2D" parent="Camera2D/HUD/Contract/Lines"]
+position = Vector2(838, 840)
+points = PackedVector2Array(122, 2, 1074, 2)
+
 [node name="FirstHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
 anchors_preset = 7
@@ -1820,10 +1832,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -944.0
-offset_top = -99.0
-offset_right = -487.0
-offset_bottom = -27.0
+offset_left = 16.0
+offset_top = -219.0
+offset_right = 473.0
+offset_bottom = -147.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_gufxi")
@@ -1845,7 +1857,7 @@ popup/item_1/text = " Pickaxe"
 popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/icon = ExtResource("13_2630d")
 popup/item_2/id = 2
 popup/item_3/text = " UV Flashlight"
 popup/item_3/icon = ExtResource("11_8mpuv")
@@ -1864,10 +1876,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -460.0
-offset_top = -97.0
-offset_right = -15.0
-offset_bottom = -25.0
+offset_left = 500.0
+offset_top = -217.0
+offset_right = 945.0
+offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_gufxi")
@@ -1889,7 +1901,7 @@ popup/item_1/text = " Pickaxe"
 popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/icon = ExtResource("13_2630d")
 popup/item_2/id = 2
 popup/item_3/text = " UV Flashlight"
 popup/item_3/icon = ExtResource("11_8mpuv")
@@ -1933,7 +1945,7 @@ popup/item_1/text = " Pickaxe"
 popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/icon = ExtResource("13_2630d")
 popup/item_2/id = 2
 popup/item_3/text = " UV Flashlight"
 popup/item_3/icon = ExtResource("11_8mpuv")
@@ -1977,7 +1989,7 @@ popup/item_1/text = " Pickaxe"
 popup/item_1/icon = ExtResource("12_u7tfn")
 popup/item_1/id = 1
 popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("10_busoe")
+popup/item_2/icon = ExtResource("13_2630d")
 popup/item_2/id = 2
 popup/item_3/text = " UV Flashlight"
 popup/item_3/icon = ExtResource("11_8mpuv")
@@ -2008,6 +2020,405 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_agxrn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_l7nca")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vfec7")
 text = "X"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Camera2D/HUD/Contract"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 271.0
+offset_right = 955.0
+offset_bottom = 1068.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D/HUD/Contract/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="LicenseTree" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="LeftSide" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="DuckLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "--- Duck ---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tools" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 40
+
+[node name="ToolsLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "--- Tools ---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sword" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemIcon" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword"]
+layout_mode = 2
+texture = ExtResource("11_gd4oi")
+expand_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword"]
+layout_mode = 2
+
+[node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Sword"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeSlots" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("17_2630d")
+
+[node name="TextureRect2" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("17_2630d")
+
+[node name="TextureRect3" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("17_2630d")
+
+[node name="TextureRect4" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect5" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect6" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect7" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect8" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect9" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yf42k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v63ud")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sy4be")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0nf8f")
+text = "+"
+
+[node name="Pickaxe" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemIcon" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe"]
+layout_mode = 2
+texture = ExtResource("12_u7tfn")
+expand_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe"]
+layout_mode = 2
+
+[node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Pickaxe"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeSlots" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("17_2630d")
+
+[node name="TextureRect2" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("17_2630d")
+
+[node name="TextureRect3" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("17_2630d")
+
+[node name="TextureRect4" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect5" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect6" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect7" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect8" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="TextureRect9" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots"]
+layout_mode = 2
+texture = ExtResource("18_835bk")
+
+[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yf42k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_v63ud")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_sy4be")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0nf8f")
+text = "+"
+
+[node name="Light" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemIcon" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light"]
+layout_mode = 2
+texture = ExtResource("13_2630d")
+expand_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light"]
+layout_mode = 2
+
+[node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Light"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Unlocked"
+
+[node name="Flashlight" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ItemIcon" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight"]
+layout_mode = 2
+texture = ExtResource("11_8mpuv")
+expand_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight"]
+layout_mode = 2
+
+[node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Flashlight "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Unlocked"
+
+[node name="RightSide" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree"]
+layout_mode = 2
+
+[node name="Biomes" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide"]
+layout_mode = 2
+
+[node name="BiomesLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "--- Biomes ---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stony" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Stony"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Stony"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Stony"]
+layout_mode = 2
+texture = ExtResource("19_ucbax")
+
+[node name="Vulcanic" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Vulcanic"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic"]
+layout_mode = 2
+texture = ExtResource("19_ucbax")
+
+[node name="Frozen" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Frozen"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen"]
+layout_mode = 2
+texture = ExtResource("20_1x1aw")
+
+[node name="Swamp" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Swamp"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp"]
+layout_mode = 2
+texture = ExtResource("20_1x1aw")
+
+[node name="Desert" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Desert"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert"]
+layout_mode = 2
+texture = ExtResource("19_ucbax")
+
+[node name="Radiactive" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Radiactive"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive"]
+layout_mode = 2
+texture = ExtResource("20_1x1aw")
+
+[node name="Zones" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide"]
+layout_mode = 2
+
+[node name="ZonesLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "--- Zones ---"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Delta" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ZoneLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Delta"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta"]
+layout_mode = 2
+texture = ExtResource("20_1x1aw")
+
+[node name="Gamma" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ZoneLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Gamma"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma"]
+layout_mode = 2
+texture = ExtResource("19_ucbax")
+
+[node name="Omega" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ZoneLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Omega"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega"]
+layout_mode = 2
+texture = ExtResource("20_1x1aw")
+
+[node name="Koppa" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="ZoneLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Koppa"
+
+[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa"]
+layout_mode = 2
+texture = ExtResource("19_ucbax")
 
 [node name="StockTheMarket" type="Panel" parent="Camera2D/HUD"]
 visible = false
@@ -2305,6 +2716,7 @@ parameters/looping = true
 bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
+visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
@@ -2824,6 +3236,7 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
+visible = false
 z_index = -2
 material = SubResource("ShaderMaterial_30fw8")
 anchors_preset = 8
