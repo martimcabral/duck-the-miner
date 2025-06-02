@@ -217,6 +217,7 @@ func _on_creator_button_pressed() -> void:
 	statistics_config.set_value("statistics", "time_working", 0)
 	statistics_config.set_value("statistics", "time_resting", 0)
 	statistics_config.set_value("statistics", "days", 0)
+	statistics_config.set_value("statistics", "missions_finished", 0)
 	statistics_config.save(statistics_path)
 	
 	################################################################################
@@ -263,18 +264,20 @@ func _on_creator_button_pressed() -> void:
 		"hard": license_config.set_value("license", "available_levels", 1)
 	license_config.set_value("license", "used_levels", 0)
 	
-	license_config.set_value("player", "health", 100)
-	license_config.set_value("player", "oxygen", 360)
-	license_config.set_value("player", "battery", 200)
-	license_config.set_value("player", "mining_speed", 0)
-	license_config.set_value("player", "mining_fortune", 0)
-	license_config.set_value("player", "sword_damage", 0)
-	license_config.set_value("player", "walking_speed", 55)
-	license_config.set_value("player", "running_speed", 90)
+	license_config.set_value("duck", "health_level", 0)
+	license_config.set_value("duck", "max_health_levels", 10)
+	license_config.set_value("duck", "oxygen_level", 0)
+	license_config.set_value("duck", "max_oxygen_levels", 12)
+	license_config.set_value("duck", "battery_level", 0)
+	license_config.set_value("duck", "max_battery_levels", 8)
+	license_config.set_value("duck", "speed_level", 0)
+	license_config.set_value("duck", "max_speed_levels", 6)
 	
-	license_config.set_value("tools", "sword", true)
-	license_config.set_value("tools", "pickaxe", true)
-	license_config.set_value("tools", "light", true)
+	license_config.set_value("tools", "sword_level", 0)
+	license_config.set_value("tools", "max_sword_levels", 4)
+	license_config.set_value("tools", "pickaxe_level", 0)
+	license_config.set_value("tools", "max_pickaxe_levels", 6)
+	license_config.set_value("tools", "light", false)
 	license_config.set_value("tools", "uv_flashlight", false)
 	license_config.set_value("tools", "radar_the_tool", false)
 	license_config.set_value("tools", "radar_the_enemies", false)
@@ -293,7 +296,6 @@ func _on_creator_button_pressed() -> void:
 	license_config.save(license_path)
 	
 	################################################################################
-
 
 func _on_delete_game_pressed() -> void:
 	$PlayButton.disabled = true

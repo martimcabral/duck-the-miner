@@ -484,26 +484,20 @@ func _on_minning_cooldown_timeout() -> void:
 			destroy_block()
 
 func _on_uv_battery_consumption_timeout() -> void:
+	if is_flashlight_being_used == true:
+		reduce_battery(0.75)
+	if is_radar_the_tool_being_used == true:
+		reduce_battery(1.25)
+	if is_radar_the_enemies_being_used == true:
+		reduce_battery(2.0)
+
+func reduce_battery(value):
 	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
-		if is_flashlight_being_used == true:
-			current_battery -= 0.75
-			statistics_config.load(statistics_path)
-			statistics_config.set_value("statistics", "battery", \
-			statistics_config.get_value("statistics", "battery") + 0.75)
-			statistics_config.save(statistics_path)
-		if is_radar_the_tool_being_used == true:
-			current_battery -= 1.25
-			statistics_config.load(statistics_path)
-			statistics_config.set_value("statistics", "battery", \
-			statistics_config.get_value("statistics", "battery") + 1.25)
-			statistics_config.save(statistics_path)
-		if is_radar_the_enemies_being_used == true:
-			current_battery -= 2
-			statistics_config.load(statistics_path)
-			statistics_config.set_value("statistics", "battery", \
-			statistics_config.get_value("statistics", "battery") + 2)
-			statistics_config.save(statistics_path)
-			
+		current_battery -= value
+		statistics_config.load(statistics_path)
+		statistics_config.set_value("statistics", "battery", \
+		statistics_config.get_value("statistics", "battery") + value)
+		statistics_config.save(statistics_path)
 
 func _on_oxygen_consumption_timeout() -> void:
 	if $"../PauseMenu/GUI_Pause".visible == false:

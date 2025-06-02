@@ -13,6 +13,13 @@ var statistics_text : String = ""
 var hotbar_slots : Array = []
 var hotbar_slots_number : int = 0
 
+@onready var HealthUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/HBoxContainer/UpgradeSlots
+@onready var OxygenUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/HBoxContainer/UpgradeSlots
+@onready var BatteryUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery/HBoxContainer/UpgradeSlots
+@onready var SpeedUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Speed/HBoxContainer/UpgradeSlots
+@onready var SwordUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots
+@onready var PickaxeUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots
+
 func _ready() -> void:
 	license_config.load(license_path)
 	var available_levels = license_config.get_value("license", "available_levels")
@@ -41,6 +48,7 @@ func _ready() -> void:
 	var time_working : String = str(statistics_config.get_value("statistics", "time_working"))
 	var time_resting : String = str(statistics_config.get_value("statistics", "time_resting"))
 	var current_day : String = str(statistics_config.get_value("statistics", "days", "ERROR:396"))
+	var finished_missions : String = str(statistics_config.get_value("statistics", "missions_finished"))
 	
 	statistics_text += str("Oxygen Consumed: ", oxygen_used,"u\n")
 	statistics_text += str("Energy Consumed: ", battery_used,"W\n")
@@ -50,11 +58,71 @@ func _ready() -> void:
 	statistics_text += str("Blocks Mined: ", blocks_mined,"\n")
 	statistics_text += str("Time Working: ", time_working, "s\n")
 	statistics_text += str("Time Resting: ", time_resting, "s\n")
-	# Add Concluded Missions
-	# Add Fyction Points Used
-	statistics_text += str("Days at Fyction: ", current_day)
+	statistics_text += str("Days at Fyction: ", current_day ,"\n")
+	statistics_text += str("Finished Missions: ", finished_missions)
 	$StatisticsLabel.text = statistics_text
 	
+	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
+	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
+	var maximum_battery_levels = license_config.get_value("duck", "max_battery_levels")
+	var maximum_speed_levels = license_config.get_value("duck", "max_speed_levels")
+	var maximum_sword_levels = license_config.get_value("tools", "max_sword_levels")
+	var maximum_pickaxe_levels = license_config.get_value("tools", "max_pickaxe_levels")
+	
+	var current_health_levels = license_config.get_value("duck", "health_level")
+	var current_oxygen_levels = license_config.get_value("duck", "oxygen_level")
+	var current_battery_levels = license_config.get_value("duck", "battery_level")
+	var current_speed_levels = license_config.get_value("duck", "speed_level")
+	var current_sword_levels = license_config.get_value("tools", "sword_level")
+	var current_pickaxe_levels = license_config.get_value("tools", "pickaxe_level")
+	
+	for levels in maximum_health_levels:
+		var new_slot := TextureRect.new()
+		new_slot.texture = load("res://assets/textures/menus/off.png")
+		HealthUpgradeSlots.add_child(new_slot)
+	
+	for levels in maximum_oxygen_levels:
+		var new_slot := TextureRect.new()
+		new_slot.texture = load("res://assets/textures/menus/off.png")
+		OxygenUpgradeSlots.add_child(new_slot)
+	
+	for levels in maximum_battery_levels:
+		var new_slot := TextureRect.new()
+		new_slot.texture = load("res://assets/textures/menus/off.png")
+		BatteryUpgradeSlots.add_child(new_slot)
+	
+	for levels in maximum_speed_levels:
+		var new_slot := TextureRect.new()
+		new_slot.texture = load("res://assets/textures/menus/off.png")
+		SpeedUpgradeSlots.add_child(new_slot)
+		
+	for levels in maximum_sword_levels:
+		var new_slot := TextureRect.new()
+		new_slot.texture = load("res://assets/textures/menus/off.png")
+		SwordUpgradeSlots.add_child(new_slot)
+		
+	for levels in maximum_pickaxe_levels:
+		var new_slot := TextureRect.new()
+		new_slot.texture = load("res://assets/textures/menus/off.png")
+		PickaxeUpgradeSlots.add_child(new_slot)
+		
+	for i in range(0, current_health_levels):
+		HealthUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_oxygen_levels):
+		OxygenUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_battery_levels):
+		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+		
+	for i in range(0, current_speed_levels):
+		SpeedUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_sword_levels):
+		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_pickaxe_levels):
+		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
 
 func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
 	change_hotbar_slot(index, 0)

@@ -1,6 +1,5 @@
 extends TileMap
 
-@onready var player = $"../Player"
 @onready var CaveSystem = $"../WorldTileMap/CaveSystem"
 @onready var world = $".."
 
@@ -8,150 +7,87 @@ var items_scene = preload("res://scenes/misc/items.tscn")
 
 func drop_items():
 	var tile_pos = get_global_mouse_position() / 16
-	var block = CaveSystem.get_cell_atlas_coords(tile_pos)
+	var block_atlas = CaveSystem.get_cell_atlas_coords(tile_pos)
 	
 	var item_name = ""
 	if world.asteroid_biome == "Stony":
-		match block:
-			Vector2i(0, 0):
-				item_name = "Stone"
-			Vector2i(3, 0):
-				item_name = "Diamond"
-			Vector2i(3, 2):
-				item_name = "Ice"
-			Vector2i(1, 1):
-				item_name = "Emerald"
-			Vector2i(2, 1):
-				item_name = "Ruby"
-			Vector2i(3, 1):
-				item_name = "Sapphire"
-			Vector2i(1, 0):
-				item_name = "Coal"
-			Vector2i(2, 0):
-				item_name = "RawIron"
-			Vector2i(0, 2):
-				item_name = "RawGold"
-			Vector2i(1, 2):
-				item_name = "RawCopper"
-				
+		match block_atlas:
+			Vector2i(0, 0): item_name = "Stone"
+			Vector2i(3, 0): item_name = "Diamond"
+			Vector2i(3, 2): item_name = "Ice"
+			Vector2i(1, 1): item_name = "Emerald"
+			Vector2i(2, 1): item_name = "Ruby"
+			Vector2i(3, 1): item_name = "Sapphire"
+			Vector2i(1, 0): item_name = "Coal"
+			Vector2i(2, 0): item_name = "RawIron"
+			Vector2i(0, 2): item_name = "RawGold"
+			Vector2i(1, 2): item_name = "RawCopper"
 	elif world.asteroid_biome == "Vulcanic":
-		match block:
-			Vector2i(0, 0):
-				item_name = "Stone"
-			Vector2i(1, 0):
-				item_name = "Coal"
-			Vector2i(2, 0):
-				item_name = "RawIron"
-			Vector2i(3, 0):
-				item_name = "Diamond"
-			Vector2i(1, 1):
-				item_name = "Topaz"
-			Vector2i(2, 1):
-				item_name = "Tsavorite"
-			Vector2i(3, 1):
-				item_name = "Garnet"
-			Vector2i(0, 2):
-				item_name = "RawGold"
-			Vector2i(1, 2):
-				item_name = "RawMagnetite"
-			Vector2i(3, 2):
-				item_name = "LavaCluster"
-			Vector2i(0, 3):
-				item_name = "RawBauxite"
-				
+		match block_atlas:
+			Vector2i(0, 0): item_name = "Stone"
+			Vector2i(1, 0): item_name = "Coal"
+			Vector2i(2, 0): item_name = "RawIron"
+			Vector2i(3, 0): item_name = "Diamond"
+			Vector2i(1, 1): item_name = "Topaz"
+			Vector2i(2, 1): item_name = "Tsavorite"
+			Vector2i(3, 1): item_name = "Garnet"
+			Vector2i(0, 2): item_name = "RawGold"
+			Vector2i(1, 2): item_name = "RawMagnetite"
+			Vector2i(3, 2): item_name = "LavaCluster"
+			Vector2i(0, 3): item_name = "RawBauxite"
+			
 	elif world.asteroid_biome == "Frozen":
-		match block:
-			Vector2i(0, 0):
-				item_name = "Stone"
-			Vector2i(3, 0):
-				item_name = "FrozenDiamond"
-			Vector2i(3, 2):
-				item_name = "DenseIce"
-			Vector2i(1, 1):
-				item_name = "Ametrine"
-			Vector2i(2, 1):
-				item_name = "Apatite"
-			Vector2i(3, 1):
-				item_name = "Amazonite"
-			Vector2i(1, 0):
-				item_name = "Galena"
-			Vector2i(2, 0):
-				item_name = "Silver"
-			Vector2i(0, 2):
-				item_name = "Wolframite"
-			Vector2i(1, 2):
-				item_name = "Pyrolusite"
-			Vector2i(0, 3):
-				item_name = "Nickel"
+		match block_atlas:
+			Vector2i(0, 0): item_name = "Stone"
+			Vector2i(3, 0): item_name = "FrozenDiamond"
+			Vector2i(3, 2): item_name = "DenseIce"
+			Vector2i(1, 1): item_name = "Ametrine"
+			Vector2i(2, 1): item_name = "Apatite"
+			Vector2i(3, 1): item_name = "Amazonite"
+			Vector2i(1, 0): item_name = "Galena"
+			Vector2i(2, 0): item_name = "Silver"
+			Vector2i(0, 2): item_name = "Wolframite"
+			Vector2i(1, 2): item_name = "Pyrolusite"
+			Vector2i(0, 3): item_name = "Nickel"
 		
 	elif world.asteroid_biome == "Swamp":
-		match block:
-			Vector2i(0, 0):
-				item_name = "Stone"
-			Vector2i(1, 0):
-				item_name = "Graphite"
-			Vector2i(2, 0):
-				item_name = "RawCobalt"
-			Vector2i(3, 0):
-				item_name = "RawUranium"
-			Vector2i(0, 2):
-				item_name = "RawPlatinum"
-			Vector2i(1, 2):
-				item_name = "RawZirconium"
-			Vector2i(3, 2):
-				item_name = "Sulfur"
-			Vector2i(1, 1):
-				item_name = "Charoite"
-			Vector2i(2, 1):
-				item_name = "Sugilite"
-			Vector2i(3, 1):
-				item_name = "Peridot"
+		match block_atlas:
+			Vector2i(0, 0): item_name = "Stone"
+			Vector2i(1, 0): item_name = "Graphite"
+			Vector2i(2, 0): item_name = "RawCobalt"
+			Vector2i(3, 0): item_name = "RawUranium"
+			Vector2i(0, 2): item_name = "RawPlatinum"
+			Vector2i(1, 2): item_name = "RawZirconium"
+			Vector2i(3, 2): item_name = "Sulfur"
+			Vector2i(1, 1): item_name = "Charoite"
+			Vector2i(2, 1): item_name = "Sugilite"
+			Vector2i(3, 1): item_name = "Peridot"
 	
 	elif world.asteroid_biome == "Desert":
-		match block:
-			Vector2i(0, 0):
-				item_name = "Sandstone"
-			Vector2i(3, 1):
-				item_name = "Azurite"
-			Vector2i(1, 1):
-				item_name = "Bloodstone"
-			Vector2i(2, 1):
-				item_name = "Chalcedony"
-			Vector2i(1, 0):
-				item_name = "OilShale"
-			Vector2i(0, 2):
-				item_name = "Gypsum"
-			Vector2i(1, 2):
-				item_name = "Kaolinite"
-			Vector2i(2, 0):
-				item_name = "RawScheelite"
-			Vector2i(3, 0):
-				item_name = "Vanadinite"
+		match block_atlas:
+			Vector2i(0, 0): item_name = "Sandstone"
+			Vector2i(3, 1): item_name = "Azurite"
+			Vector2i(1, 1): item_name = "Bloodstone"
+			Vector2i(2, 1): item_name = "Chalcedony"
+			Vector2i(1, 0): item_name = "OilShale"
+			Vector2i(0, 2): item_name = "Gypsum"
+			Vector2i(1, 2): item_name = "Kaolinite"
+			Vector2i(2, 0): item_name = "RawScheelite"
+			Vector2i(3, 0): item_name = "Vanadinite"
 	
 	elif world.asteroid_biome == "Radioactive":
-		match block:
-			Vector2i(0, 0):
-				item_name = "Stone"
-			Vector2i(1, 0):
-				item_name = "RawCopper"
-			Vector2i(2, 0):
-				item_name = "RawIron"
-			Vector2i(3, 0):
-				item_name = "Jeremejevite"
-			Vector2i(1, 1):
-				item_name = "Chrysocolla"
-			Vector2i(2, 1):
-				item_name = "Labradorite"
-			Vector2i(3, 1):
-				item_name = "Pietersite"
-			Vector2i(0, 2):
-				item_name = "Phosphorite"
-			Vector2i(1, 2):
-				item_name = "Pitchblende"
-			Vector2i(3, 2):
-				item_name = "Ice"
-			Vector2i(0, 3):
-				item_name = "Hematite"
+		match block_atlas:
+			Vector2i(0, 0): item_name = "Stone"
+			Vector2i(1, 0): item_name = "RawCopper"
+			Vector2i(2, 0): item_name = "RawIron"
+			Vector2i(3, 0): item_name = "Jeremejevite"
+			Vector2i(1, 1): item_name = "Chrysocolla"
+			Vector2i(2, 1): item_name = "Labradorite"
+			Vector2i(3, 1): item_name = "Pietersite"
+			Vector2i(0, 2): item_name = "Phosphorite"
+			Vector2i(1, 2): item_name = "Pitchblende"
+			Vector2i(3, 2): item_name = "Ice"
+			Vector2i(0, 3): item_name = "Hematite"
 	
 	if item_name != "":
 		for i in range(randi_range(1, 3)):
@@ -164,7 +100,7 @@ func drop_items():
 			
 			var target_node = instance.get_node(item_name)
 			instance.remove_child(target_node)
-			instance.queue_free()  # or instance.free() if you're sure it's safe immediately
+			instance.queue_free()  
 			
 			target_node.owner = null
 			add_child(target_node)

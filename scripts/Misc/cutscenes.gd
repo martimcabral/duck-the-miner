@@ -8,6 +8,7 @@ var year = Time.get_datetime_dict_from_system().year
 var above_sign : bool = false
 var lines_number : int = 0
 var terms : String = "NaoRespondido"
+var cutscene_finished : bool = false
 
 var _is_drawing := false 
 var _current_line : Line2D = null
@@ -48,6 +49,7 @@ func fyction_contract():
 	$FyctionContract/PrintingAnimation.play("go_up")
 	$TextTimer.stop()
 	$FyctionContract/PrintingSoundEffect.play()
+	cutscene_finished = true
 
 func _on_accept_button_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
@@ -109,17 +111,18 @@ func _on_rubber_button_mouse_entered() -> void:
 	$ReadyButton/MouseEffectButton.play()
 
 func _process(delta: float) -> void:
-	if $SkipProgressLine.points[1].x >= 1:
-		$SkipProgressLine.points[1].x -= delta * 700
-	if Input.is_action_pressed("PauseMenu"):
-		$SkipProgressLine.points[1].x += delta * 1500
-	if $SkipProgressLine.points[1].x >= 1930:
-		$TextDisplay.visible = false
-		$SkipProgressLine.visible = false
-		$FyctionContract/PrintingAnimation.play("go_up")
-		$FyctionContract/PrintingSoundEffect.play()
-		$TextTimer.stop()
-		$FadeTimer.stop()
+	if cutscene_finished == false:
+		if $SkipProgressLine.points[1].x >= 1:
+			$SkipProgressLine.points[1].x -= delta * 700
+		if Input.is_action_pressed("PauseMenu"):
+			$SkipProgressLine.points[1].x += delta * 1500
+		if $SkipProgressLine.points[1].x >= 1930:
+			$TextDisplay.visible = false
+			$SkipProgressLine.visible = false
+			$FyctionContract/PrintingAnimation.play("go_up")
+			$FyctionContract/PrintingSoundEffect.play()
+			$TextTimer.stop()
+			$FadeTimer.stop()
 	
 	if terms == "Aceitado" or terms == "Recusado":
 		if $FyctionContract/AcceptButton.button_pressed == true or $FyctionContract/RefuseButton.button_pressed == true:
