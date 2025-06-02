@@ -39,12 +39,12 @@
 [ext_resource type="Texture2D" uid="uid://qqq78gpdvgw0" path="res://assets/textures/player/status/icons/oxygen.png" id="18_ixomp"]
 [ext_resource type="Texture2D" uid="uid://bv1bpwf18raeb" path="res://assets/textures/player/status/icons/battery_energy.png" id="19_8kv63"]
 [ext_resource type="Texture2D" uid="uid://cyqfy26jjfek8" path="res://assets/textures/universe/planets/saturn.png" id="19_12kdj"]
-[ext_resource type="Texture2D" uid="uid://cgukd0s6bgki3" path="res://assets/textures/menus/yes.png" id="19_ucbax"]
 [ext_resource type="Texture2D" uid="uid://ypdc370ct4jt" path="res://assets/textures/menus/no.png" id="20_1x1aw"]
 [ext_resource type="Texture2D" uid="uid://bi551tm5ywo" path="res://assets/textures/universe/moons/mimas.png" id="20_a7sir"]
 [ext_resource type="Texture2D" uid="uid://b8y3txwbomtce" path="res://assets/textures/items/misc/no_texture.png" id="20_y8bta"]
 [ext_resource type="Texture2D" uid="uid://co35yul4p3c0i" path="res://assets/textures/universe/moons/rhea.png" id="21_0ubea"]
 [ext_resource type="Texture2D" uid="uid://xhn5o7vq6yq5" path="res://assets/textures/universe/moons/titan.png" id="22_qs1ri"]
+[ext_resource type="Texture2D" uid="uid://e6h0nycb644p" path="res://assets/textures/menus/unlocker.png" id="22_twy5w"]
 [ext_resource type="Texture2D" uid="uid://bsluqf5p8m0yi" path="res://assets/textures/universe/planets/uranos.png" id="23_dm4ru"]
 [ext_resource type="Texture2D" uid="uid://dpm8dw5ikgfkr" path="res://assets/textures/universe/moons/miranda.png" id="24_oiisp"]
 [ext_resource type="Texture2D" uid="uid://bmhnbabjlwgvn" path="res://assets/textures/universe/moons/titania.png" id="25_3fxc7"]
@@ -2321,6 +2321,8 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Unlocked"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Flashlight" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
 layout_mode = 2
@@ -2346,6 +2348,62 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Unlocked"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RadarTheTool" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool"]
+layout_mode = 2
+texture = ExtResource("12_gd4oi")
+expand_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool"]
+layout_mode = 2
+
+[node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Radar the Tool"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Unlocked"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RadarTheEnemies" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies"]
+layout_mode = 2
+texture = ExtResource("13_u7tfn")
+expand_mode = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies"]
+layout_mode = 2
+
+[node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Radar the Enemies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Unlocked"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RightSide" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree"]
 layout_mode = 2
@@ -2372,10 +2430,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Stony       "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Stony"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Stony"]
 layout_mode = 2
 size_flags_horizontal = 8
-texture = ExtResource("19_ucbax")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Vulcanic" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2386,9 +2444,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Vulcanic   "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic"]
 layout_mode = 2
-texture = ExtResource("19_ucbax")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Frozen" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2399,9 +2457,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Frozen     "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen"]
 layout_mode = 2
-texture = ExtResource("20_1x1aw")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Swamp" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2412,9 +2470,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Swamp    "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp"]
 layout_mode = 2
-texture = ExtResource("20_1x1aw")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Desert" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2425,9 +2483,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Desert      "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert"]
 layout_mode = 2
-texture = ExtResource("19_ucbax")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Radiactive" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2438,9 +2496,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Radiactive"
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive"]
 layout_mode = 2
-texture = ExtResource("20_1x1aw")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Seperator" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide"]
 layout_mode = 2
@@ -2466,9 +2524,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Delta       "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta"]
 layout_mode = 2
-texture = ExtResource("20_1x1aw")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Gamma" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
 layout_mode = 2
@@ -2479,9 +2537,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Gamma    "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma"]
 layout_mode = 2
-texture = ExtResource("19_ucbax")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Omega" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
 layout_mode = 2
@@ -2492,9 +2550,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Omega     "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega"]
 layout_mode = 2
-texture = ExtResource("20_1x1aw")
+texture_normal = ExtResource("20_1x1aw")
 
 [node name="Koppa" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
 layout_mode = 2
@@ -2505,9 +2563,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Koppa      "
 
-[node name="Status" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa"]
 layout_mode = 2
-texture = ExtResource("19_ucbax")
+texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="StockTheMarket" type="Panel" parent="Camera2D/HUD"]
 visible = false

@@ -20,15 +20,21 @@ var hotbar_slots_number : int = 0
 @onready var SwordUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots
 @onready var PickaxeUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots
 
+@onready var StonyStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Stony/Status
+@onready var VulcanicStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic/Status
+@onready var FrozenStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen/Status
+@onready var SwampStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp/Status
+@onready var DesertStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert/Status
+@onready var RadioactiveStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive/Status
+
+@onready var DeltaStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta/Status
+@onready var GammaStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma/Status
+@onready var OmegaStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega/Status
+@onready var KoppaStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa/Status
+
+@onready var yes_sign = preload("res://assets/textures/menus/yes.png")
+
 func _ready() -> void:
-	license_config.load(license_path)
-	var available_levels = license_config.get_value("license", "available_levels")
-	$FyctionPointsSprite/PointsAvailableLabel.text = str(available_levels)
-	
-	var experience = license_config.get_value("license", "experience")
-	var level = license_config.get_value("license", "current_level")
-	$FyctionLevelProgress.text = str("Level: ", str(level)," | ", str(experience)," / 100 XP")
-	
 	hotbar_config.load(hotbar_path)
 	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
@@ -37,6 +43,8 @@ func _ready() -> void:
 	$SecondHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[1])
 	$ThirdHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[2])
 	$FourthHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[3])
+	
+	################################################################################################
 	
 	statistics_config.load(statistics_path)
 	var oxygen_used : String = str(statistics_config.get_value("statistics", "oxygen"))
@@ -61,6 +69,15 @@ func _ready() -> void:
 	statistics_text += str("Days at Fyction: ", current_day ,"\n")
 	statistics_text += str("Finished Missions: ", finished_missions)
 	$StatisticsLabel.text = statistics_text
+	
+	################################################################################################
+	
+	license_config.load(license_path)
+	var experience = license_config.get_value("license", "experience")
+	var level = license_config.get_value("license", "current_level")
+	$FyctionLevelProgress.text = str("Level: ", str(level)," | ", str(experience)," / 100 XP")
+	var available_levels = license_config.get_value("license", "available_levels")
+	$FyctionPointsSprite/PointsAvailableLabel.text = str(available_levels)
 	
 	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
 	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
@@ -123,6 +140,32 @@ func _ready() -> void:
 	
 	for i in range(0, current_pickaxe_levels):
 		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+		
+	################################################################################################
+	
+	var stony_unlocked : bool = license_config.get_value("biomes", "stony")
+	var vulcanic_unlocked : bool = license_config.get_value("biomes", "vulcanic")
+	var frozen_unlocked : bool = license_config.get_value("biomes", "frozen")
+	var swamp_unlocked : bool = license_config.get_value("biomes", "swamp")
+	var desert_unlocked : bool = license_config.get_value("biomes", "desert")
+	var radioactive_unlocked : bool = license_config.get_value("biomes", "radioactive")
+	
+	var delta_unlocked : bool = license_config.get_value("zones", "delta")
+	var gamma_unlocked : bool = license_config.get_value("zones", "gamma")
+	var omega_unlocked : bool = license_config.get_value("zones", "omega")
+	var koppa_unlocked : bool = license_config.get_value("zones", "koppa")
+	
+	if stony_unlocked == true: StonyStatus.texture_normal = yes_sign
+	if vulcanic_unlocked == true: VulcanicStatus.texture_normal = yes_sign
+	if frozen_unlocked == true: FrozenStatus.texture_normal = yes_sign
+	if swamp_unlocked == true: SwampStatus.texture_normal = yes_sign
+	if desert_unlocked == true: DesertStatus.texture_normal = yes_sign
+	if radioactive_unlocked == true: RadioactiveStatus.texture_normal = yes_sign
+	
+	if delta_unlocked == true: DeltaStatus.texture_normal = yes_sign
+	if gamma_unlocked == true: GammaStatus.texture_normal = yes_sign
+	if omega_unlocked == true: OmegaStatus.texture_normal = yes_sign
+	if koppa_unlocked == true: KoppaStatus.texture_normal = yes_sign
 
 func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
 	change_hotbar_slot(index, 0)
