@@ -13,6 +13,8 @@ var statistics_text : String = ""
 var hotbar_slots : Array = []
 var hotbar_slots_number : int = 0
 
+var fyction_points : int = 0
+
 @onready var HealthUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/HBoxContainer/UpgradeSlots
 @onready var OxygenUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/HBoxContainer/UpgradeSlots
 @onready var BatteryUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery/HBoxContainer/UpgradeSlots
@@ -33,6 +35,7 @@ var hotbar_slots_number : int = 0
 @onready var KoppaStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa/Status
 
 @onready var yes_sign = preload("res://assets/textures/menus/yes.png")
+@onready var blocked_sign = preload("res://assets/textures/menus/blocked.png")
 
 func _ready() -> void:
 	hotbar_config.load(hotbar_path)
@@ -76,8 +79,8 @@ func _ready() -> void:
 	var experience = license_config.get_value("license", "experience")
 	var level = license_config.get_value("license", "current_level")
 	$FyctionLevelProgress.text = str("Level: ", str(level)," | ", str(experience)," / 100 XP")
-	var available_levels = license_config.get_value("license", "available_levels")
-	$FyctionPointsSprite/PointsAvailableLabel.text = str(available_levels)
+	fyction_points = license_config.get_value("license", "fyction_points")
+	$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
 	
 	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
 	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
@@ -155,17 +158,42 @@ func _ready() -> void:
 	var omega_unlocked : bool = license_config.get_value("zones", "omega")
 	var koppa_unlocked : bool = license_config.get_value("zones", "koppa")
 	
-	if stony_unlocked == true: StonyStatus.texture_normal = yes_sign
-	if vulcanic_unlocked == true: VulcanicStatus.texture_normal = yes_sign
-	if frozen_unlocked == true: FrozenStatus.texture_normal = yes_sign
-	if swamp_unlocked == true: SwampStatus.texture_normal = yes_sign
-	if desert_unlocked == true: DesertStatus.texture_normal = yes_sign
-	if radioactive_unlocked == true: RadioactiveStatus.texture_normal = yes_sign
+	if fyction_points == 0:
+		StonyStatus.texture_hover = null
+		VulcanicStatus.texture_hover = null
+		FrozenStatus.texture_hover = null
+		SwampStatus.texture_hover = null
+		DesertStatus.texture_hover = null
+		RadioactiveStatus.texture_hover = null
+		DeltaStatus.texture_hover = null
+		GammaStatus.texture_hover = null
+		OmegaStatus.texture_hover = null
+		KoppaStatus.texture_hover = null
+		
+		StonyStatus.texture_normal = blocked_sign
+		VulcanicStatus.texture_normal = blocked_sign
+		FrozenStatus.texture_normal = blocked_sign
+		SwampStatus.texture_normal = blocked_sign
+		DesertStatus.texture_normal = blocked_sign
+		RadioactiveStatus.texture_normal = blocked_sign
+		DeltaStatus.texture_normal = blocked_sign
+		GammaStatus.texture_normal = blocked_sign
+		OmegaStatus.texture_normal = blocked_sign
+		KoppaStatus.texture_normal = blocked_sign
 	
-	if delta_unlocked == true: DeltaStatus.texture_normal = yes_sign
-	if gamma_unlocked == true: GammaStatus.texture_normal = yes_sign
-	if omega_unlocked == true: OmegaStatus.texture_normal = yes_sign
-	if koppa_unlocked == true: KoppaStatus.texture_normal = yes_sign
+	if stony_unlocked == true: StonyStatus.texture_normal = yes_sign; StonyStatus.texture_hover = null
+	if vulcanic_unlocked == true: VulcanicStatus.texture_normal = yes_sign; VulcanicStatus.texture_hover = null
+	if frozen_unlocked == true: FrozenStatus.texture_normal = yes_sign; FrozenStatus.texture_hover = null
+	if swamp_unlocked == true: SwampStatus.texture_normal = yes_sign; SwampStatus.texture_hover = null
+	if desert_unlocked == true: DesertStatus.texture_normal = yes_sign; DesertStatus.texture_hover = null
+	if radioactive_unlocked == true: RadioactiveStatus.texture_normal = yes_sign; RadioactiveStatus.texture_hover = null
+	
+	if delta_unlocked == true: DeltaStatus.texture_normal = yes_sign; DeltaStatus.texture_hover = null
+	if gamma_unlocked == true: GammaStatus.texture_normal = yes_sign; GammaStatus.texture_hover = null
+	if omega_unlocked == true: OmegaStatus.texture_normal = yes_sign; OmegaStatus.texture_hover = null
+	if koppa_unlocked == true: KoppaStatus.texture_normal = yes_sign; KoppaStatus.texture_hover = null
+	
+	################################################################################################
 
 func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
 	change_hotbar_slot(index, 0)
@@ -207,3 +235,42 @@ func _on_more_resting_time_timeout() -> void:
 	var new_time_resting = 1 + statistics_config.get_value("statistics", "time_resting")
 	statistics_config.set_value("statistics", "time_resting", new_time_resting)
 	statistics_config.save(statistics_path)
+
+func unlock_region(RegionStatus : TextureButton, region : String, type : String):
+	if fyction_points >= 1:
+		fyction_points -= 1
+		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+		RegionStatus.texture_normal = yes_sign
+		RegionStatus.texture_hover = null
+		license_config.load(license_path)
+		license_config.set_value("license", "fyction_points", fyction_points)
+		license_config.set_value(region, type, true)
+		license_config.save(license_path)
+		$"../../..".reroll_missions()
+
+func _on_vulcanic_status_pressed() -> void:
+	unlock_region(VulcanicStatus, "biomes", "vulcanic")
+
+func _on_frozen_status_pressed() -> void:
+	unlock_region(FrozenStatus, "biomes", "frozen")
+
+func _on_swamp_status_pressed() -> void:
+	unlock_region(SwampStatus, "biomes", "swamp")
+
+func _on_desert_status_pressed() -> void:
+	unlock_region(DesertStatus, "biomes", "desert")
+
+func _on_radioactive_status_pressed() -> void:
+	unlock_region(RadioactiveStatus, "biomes", "radioactive")
+
+func _on_delta_status_pressed() -> void:
+	unlock_region(DeltaStatus, "zones", "delta")
+
+func _on_gamma_status_pressed() -> void:
+	unlock_region(GammaStatus, "zones", "gamma")
+
+func _on_omega_status_pressed() -> void:
+	unlock_region(OmegaStatus, "zones", "omega")
+
+func _on_koppa_status_pressed() -> void:
+	unlock_region(KoppaStatus, "zones", "koppa")

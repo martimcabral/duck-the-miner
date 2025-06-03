@@ -1578,17 +1578,17 @@ text = "Select"
 
 [node name="Description" type="Label" parent="Camera2D/HUD/Lobby/InfoPanel"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -168.5
-offset_top = -381.0
-offset_right = 165.5
-offset_bottom = -127.0
+anchor_bottom = 0.5
+offset_left = -167.0
+offset_top = 9.0
+offset_right = 167.0
+offset_bottom = 263.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_font_sizes/font_size = 32
 text = "Name: Xuuseeygo
 Biome: Vulcanic
@@ -2424,6 +2424,7 @@ vertical_alignment = 1
 [node name="Stony" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
 theme_override_constants/separation = 15
+alignment = 1
 
 [node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Stony"]
 layout_mode = 2
@@ -2434,10 +2435,12 @@ text = "Stony       "
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Vulcanic" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
 theme_override_constants/separation = 15
+alignment = 1
 
 [node name="BiomeLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic"]
 layout_mode = 2
@@ -2447,6 +2450,7 @@ text = "Vulcanic   "
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Frozen" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2460,6 +2464,7 @@ text = "Frozen     "
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Swamp" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2473,6 +2478,7 @@ text = "Swamp    "
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Desert" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2486,6 +2492,7 @@ text = "Desert      "
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Radiactive" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
@@ -2499,6 +2506,7 @@ text = "Radiactive"
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Seperator" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide"]
 layout_mode = 2
@@ -2527,6 +2535,7 @@ text = "Delta       "
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Gamma" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
 layout_mode = 2
@@ -2540,6 +2549,7 @@ text = "Gamma    "
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Omega" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
 layout_mode = 2
@@ -2553,6 +2563,7 @@ text = "Omega     "
 [node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega"]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
 
 [node name="Koppa" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
 layout_mode = 2
@@ -2864,7 +2875,6 @@ parameters/looping = true
 bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
-visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
@@ -3384,7 +3394,6 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
-visible = false
 z_index = -2
 material = SubResource("ShaderMaterial_30fw8")
 anchors_preset = 8
@@ -3453,6 +3462,15 @@ autostart = true
 [connection signal="item_selected" from="Camera2D/HUD/Contract/ThirdHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_third_hotbar_dropdown_item_selected"]
 [connection signal="item_selected" from="Camera2D/HUD/Contract/FourthHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_fourth_hotbar_dropdown_item_selected"]
 [connection signal="pressed" from="Camera2D/HUD/Contract/ExitButton" to="Camera2D/HUD/Contract" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic/Status" to="Camera2D/HUD/Contract" method="_on_vulcanic_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen/Status" to="Camera2D/HUD/Contract" method="_on_frozen_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp/Status" to="Camera2D/HUD/Contract" method="_on_swamp_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert/Status" to="Camera2D/HUD/Contract" method="_on_desert_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive/Status" to="Camera2D/HUD/Contract" method="_on_radioactive_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta/Status" to="Camera2D/HUD/Contract" method="_on_delta_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma/Status" to="Camera2D/HUD/Contract" method="_on_gamma_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega/Status" to="Camera2D/HUD/Contract" method="_on_omega_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa/Status" to="Camera2D/HUD/Contract" method="_on_koppa_status_pressed"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/FyctionButton" to="Camera2D/HUD/StockTheMarket" method="_on_fyction_button_toggled"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/HaznuclearButton" to="Camera2D/HUD/StockTheMarket" method="_on_haznuclear_button_toggled"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/OwlwingButton" to="Camera2D/HUD/StockTheMarket" method="_on_owlwing_button_toggled"]

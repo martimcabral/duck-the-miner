@@ -85,10 +85,7 @@ func _on_advance_stock_martket_pressed() -> void:
 
 func _on_reroll_missions_pressed() -> void:
 	if get_tree().current_scene.name == "Lobby":
-		$"../../..".current_page = 1
-		$"../../..".save_asteroid_data()
-		$"../../..".get_asteroid_info()
-		$"../../..".get_pages()
+		$"../../..".reroll_missions()
 		print("[cheat_menu.gd] Rerolled Missions")
 
 ####################################################################################################

@@ -259,10 +259,10 @@ func _on_creator_button_pressed() -> void:
 	license_config.set_value("license", "experience", 0)
 	license_config.set_value("license", "current_level", 1)
 	match choosen_difficulty:
-		"easy": license_config.set_value("license", "available_levels", 3)
-		"normal": license_config.set_value("license", "available_levels", 2)
-		"hard": license_config.set_value("license", "available_levels", 1)
-	license_config.set_value("license", "used_levels", 0)
+		"easy": license_config.set_value("license", "fyction_points", 30)
+		"normal": license_config.set_value("license", "fyction_points", 20)
+		"hard": license_config.set_value("license", "fyction_points", 10)
+	license_config.set_value("license", "used_points", 0)
 	
 	license_config.set_value("duck", "health_level", 0)
 	license_config.set_value("duck", "max_health_levels", 10)
@@ -341,10 +341,10 @@ func _on_delete_game_mouse_exited() -> void:
 func create_styleboxes():
 	var StyleBoxes : Array = [normal_stylebox, focus_stylebox, hover_stylebox]
 	for s in StyleBoxes.size():
-		StyleBoxes[s].border_width_bottom = 5
-		StyleBoxes[s].border_width_top = 5
-		StyleBoxes[s].border_width_left = 5
-		StyleBoxes[s].border_width_right = 5
+		StyleBoxes[s].border_width_bottom = 4
+		StyleBoxes[s].border_width_top = 4
+		StyleBoxes[s].border_width_left = 4
+		StyleBoxes[s].border_width_right = 4
 		StyleBoxes[s].corner_radius_bottom_left = 12
 		StyleBoxes[s].corner_radius_bottom_right = 12
 		StyleBoxes[s].corner_radius_top_left = 12

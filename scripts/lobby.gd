@@ -81,17 +81,11 @@ var missions_path : String = str("user://save/", GetSaveFile.save_being_used, "/
 var resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
+var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
 var pricing_path : String = "user://pricing.cfg"
 var config_path : String = "user://game_settings.cfg"
 var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 var crafted_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
-
-var difficulty_file = ConfigFile.new()
-var money = ConfigFile.new()
-var config_file = ConfigFile.new()
-var money_config = ConfigFile.new()
-var skin_file = ConfigFile.new()
-var pricing = ConfigFile.new()
 
 var selected_item_name : String = ""
 var selected_item_quantity : int = 0
@@ -117,6 +111,7 @@ var selected_inventory = 0
 var difficulty : String
 
 func _ready():
+	var config_file := ConfigFile.new()
 	config_file.load(config_path)
 	$CanvasLayer/ColorblindnessColorRect.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
 	
@@ -135,6 +130,7 @@ func _ready():
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
 	
+	var money_config := ConfigFile.new()
 	money_config.load(money_path)
 	var current_money = str(money_config.get_value("money", "current", 0))
 	
@@ -203,6 +199,7 @@ func _enter_tree() -> void:
 	target_zoom = $SolarSystem.scale.x
 
 func _process(delta: float) -> void:
+	var money_config := ConfigFile.new()
 	money_config.load(money_path)
 	var current_money = money_config.get_value("money", "current", 0)
 	if current_money >= 0:
@@ -256,40 +253,68 @@ func _process(delta: float) -> void:
 # Event functions for each area
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		update_field_ui("Delta Belt", delta_thumbnail, Color(0.788, 0.161, 0.161, 1))
+		update_field_ui("Delta Belt", delta_thumbnail, Color(0.788, 0.161, 0.161, 1), "delta")
 
 func _on_gamma_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		update_field_ui("Gamma Field", gamma_thumbnail, Color(0.157, 0.349, 0.788, 1))
+		update_field_ui("Gamma Field", gamma_thumbnail, Color(0.157, 0.349, 0.788, 1), "gamma")
 
 func _on_omega_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		update_field_ui("Omega Field", omega_thumbnail, Color(0.157, 0.788, 0.549, 1))
+		update_field_ui("Omega Field", omega_thumbnail, Color(0.157, 0.788, 0.549, 1), "omega")
 
 func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		update_field_ui("Koppa Belt", koppa_thumbnail, Color(0.659, 0.157, 0.788, 1))
+		update_field_ui("Koppa Belt", koppa_thumbnail, Color(0.659, 0.157, 0.788, 1), "koppa")
 
-func update_field_ui(field_name: String, thumbnail: Texture, shadow_color: Color) -> void:
+func update_field_ui(field_name: String, thumbnail: Texture, shadow_color: Color, license_name : String) -> void:
 	current_page = 1
 	current_field = field_name
-	get_asteroid_info()
 	
-	# Mostrar toda a info:
-	$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder.visible = true
-	$Camera2D/HUD/Lobby/InfoPanel/FieldImage.visible = true
-	$Camera2D/HUD/Lobby/InfoPanel/FieldImage/ImageBorders.visible = true
-	$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = true
-
-	# Atualizar Imagem, Texto, Cores e o InfoPanel
-	$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = thumbnail
-	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = thumbnail
-	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = field_name
-	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", shadow_color)
-	$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % field_name
-	$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", shadow_color)
-	$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 770)
-	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+	var license_config := ConfigFile.new()
+	license_config.load(license_path)
+	if license_config.get_value("zones", license_name) == false:
+		mission_selected = false
+		$Camera2D/HUD/Lobby/InfoPanel/Description.text = "Your License does not \n authorize your precense \n in this Region!"
+		$Camera2D/HUD/Lobby/InfoPanel/Description.add_theme_color_override("font_color", Color("#ea0000"))
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.text = "\nYour License does \n not authorize your \n precense in \n this Region!"
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.add_theme_color_override("font_color", Color("#ea0000"))
+		
+		$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = false
+		$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder.visible = false
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.visible = false
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage/ImageBorders.visible = false
+		$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = false
+		
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = field_name
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", shadow_color)
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % field_name
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", shadow_color)
+		
+		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 240)
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = true
+	else:
+		mission_selected = true
+		get_asteroid_info()
+		$Camera2D/HUD/Lobby/InfoPanel/Description.add_theme_color_override("font_color", Color.WHITE)
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/AsteroidDescription.add_theme_color_override("font_color", Color.WHITE)
+		
+		# Mostrar toda a info:
+		$Camera2D/HUD/Lobby/InfoPanel/AsteroidGUIder.visible = true
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.visible = true
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage/ImageBorders.visible = true
+		$Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel/SelectMissionButton.visible = true
+		
+		# Atualizar Imagem, Texto, Cores e o InfoPanel
+		$Camera2D/HUD/Lobby/InfoPanel/FieldImage.texture = thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FieldLobbyThumbnail.texture = thumbnail
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.text = field_name
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/FielName.add_theme_color_override("font_shadow_color", shadow_color)
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.text = "[center]%s[/center]" % field_name
+		$Camera2D/HUD/Lobby/InfoPanel/FieldBeltName.add_theme_color_override("font_shadow_color", shadow_color)
+		
+		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 770)
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
 func _on_delta_area_2d_mouse_entered() -> void:
 	$FieldNameLabel.text = "Delta Belt"
@@ -362,11 +387,24 @@ func create_asteroid_name():
 		9:
 			return consoante1.to_upper() + vogal1 + consoante2 + consoante3 + vogal2 + consoante4
 
+func get_available_biomes():
+	var biomes : Array = []
+	var license_config := ConfigFile.new()
+	license_config.load(license_path)
+	if license_config.get_value("biomes", "stony") == true: biomes.append("Stony")
+	if license_config.get_value("biomes", "vulcanic") == true: biomes.append("Vulcanic")
+	if license_config.get_value("biomes", "frozen") == true: biomes.append("Frozen")
+	if license_config.get_value("biomes", "swamp") == true: biomes.append("Swamp")
+	if license_config.get_value("biomes", "desert") == true: biomes.append("Desert")
+	if license_config.get_value("biomes", "radioactive") == true: biomes.append("Radioactive")
+	print("[lobby.gd] Available Biomes: ", biomes)
+	return biomes
+
 # Function to generate asteroid data
 func generate_asteroid_data() -> Dictionary:
 	var fields : Dictionary = {}  # Dictionary to store asteroid fields
 	var field_names : Array = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
-	var biomes : Array = ["Stony", "Vulcanic", "Frozen", "Swamp", "Desert", "Radioactive"]
+	var biomes : Array = get_available_biomes()
 	var objectives_primary : Array = ["Get Goods", "Kill Enemies", "Fine Jewelry"]
 	var objectives_secondary_stony : Array = ["More Infrastructure", "Power the Future"]
 	var objectives_secondary_vulcanic : Array = ["Heat Extraction", "More Infrastructure"]
@@ -379,7 +417,7 @@ func generate_asteroid_data() -> Dictionary:
 		var asteroids : Dictionary = {}  # Dictionary to store asteroids in the current field
 		var asteroid_id : int = 1  # Reset asteroid ID counter for each field
 			
-		for asteroid_num in range(1, randi_range(4, 10) + 1):
+		for asteroid_num in range(1, randi_range(4, 5 + biomes.size())):
 			var as_name : String = create_asteroid_name()
 			var biome : String = biomes[randi() % biomes.size()]
 			var primary_objective : String = objectives_primary[randi() % objectives_primary.size()]
@@ -558,6 +596,7 @@ func _select_mission_button_info_panel_pressed() -> void:
 
 func load_skin():
 	if FileAccess.file_exists(skin_path):
+		var skin_file := ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel/SkinDisplay.texture = load("res://assets/textures/player/skins/" + str(skin_selected) + "/duck.png")
@@ -575,6 +614,7 @@ func _on_skin_previous_button_pressed() -> void:
 	DiscordRPC.refresh()
 	
 	if FileAccess.file_exists(skin_path):
+		var skin_file := ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_file.set_value("skin", "selected", skin_selected)
 		skin_file.save(skin_path)
@@ -588,6 +628,7 @@ func _on_skin_next_button_pressed() -> void:
 	DiscordRPC.refresh()
 	
 	if FileAccess.file_exists(skin_path):
+		var skin_file := ConfigFile.new()
 		skin_file.load(skin_path)
 		skin_file.set_value("skin", "selected", skin_selected)
 		skin_file.save(skin_path)
@@ -665,6 +706,7 @@ func _on_sell_button_pressed() -> void:
 		remove_item_from_inventory(selected_item_name)
 		var money_earned : int = price * selected_item_quantity
 		
+		var difficulty_file := ConfigFile.new()
 		difficulty_file.load(difficulty_path)
 		difficulty = difficulty_file.get_value("difficulty", "current")
 		print("\n[lobby.gd] Current Difficulty: ", difficulty)
@@ -675,6 +717,7 @@ func _on_sell_button_pressed() -> void:
 		print("[lobby.gd] Item Price: ", price)
 		print("[lobby.gd] Money Earned: ", money_earned)
 		
+		var money := ConfigFile.new()
 		money.load(money_path)
 		var current_money = money.get_value("money", "current")
 		var new_money = current_money + money_earned
@@ -695,6 +738,7 @@ func _on_sell_button_pressed() -> void:
 			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 
 func get_price(item_name):
+	var pricing := ConfigFile.new()
 	pricing.load(pricing_path)
 	var price = pricing.get_value("pricing", item_name, 1)
 	return price
@@ -726,5 +770,12 @@ func update_money(strinfied_money):
 
 func _on_company_liscence_pressed() -> void:
 	$Camera2D/HUD/Contract/AnimationPlayer.play("appear")
+
+func reroll_missions():
+	current_page = 1
+	save_asteroid_data()
+	get_asteroid_info()
+	get_pages()
+	print("[lobby.gd] Rerolled Missions")
 
 # © Martim Cabral 🦆⛏️
