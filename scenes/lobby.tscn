@@ -1849,7 +1849,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
-selected = 0
 
 [node name="SecondHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1874,7 +1873,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
-selected = 1
 
 [node name="ThirdHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1899,7 +1897,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
-selected = 4
 
 [node name="FourthHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1924,7 +1921,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_5jb2g")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
-selected = 5
 
 [node name="ExitButton" type="Button" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 z_index = 30

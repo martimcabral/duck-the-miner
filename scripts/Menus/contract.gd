@@ -105,12 +105,6 @@ func _ready() -> void:
 	var maximum_sword_levels = license_config.get_value("tools", "max_sword_levels")
 	var maximum_pickaxe_levels = license_config.get_value("tools", "max_pickaxe_levels")
 	
-	var current_health_levels = license_config.get_value("duck", "health_level")
-	var current_oxygen_levels = license_config.get_value("duck", "oxygen_level")
-	var current_battery_levels = license_config.get_value("duck", "battery_level")
-	var current_sword_levels = license_config.get_value("tools", "sword_level")
-	var current_pickaxe_levels = license_config.get_value("tools", "pickaxe_level")
-	
 	for levels in maximum_health_levels:
 		var new_slot := TextureRect.new()
 		new_slot.texture = load("res://assets/textures/menus/off.png")
@@ -135,22 +129,9 @@ func _ready() -> void:
 		var new_slot := TextureRect.new()
 		new_slot.texture = load("res://assets/textures/menus/off.png")
 		PickaxeUpgradeSlots.add_child(new_slot)
-		
-	for i in range(0, current_health_levels):
-		HealthUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
 	
-	for i in range(0, current_oxygen_levels):
-		OxygenUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	update_status_pips()
 	
-	for i in range(0, current_battery_levels):
-		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-	
-	for i in range(0, current_sword_levels):
-		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-	
-	for i in range(0, current_pickaxe_levels):
-		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-		
 	################################################################################################
 	
 	var stony_unlocked : bool = license_config.get_value("biomes", "stony")
@@ -264,6 +245,40 @@ func _on_more_resting_time_timeout() -> void:
 	statistics_config.set_value("statistics", "time_resting", new_time_resting)
 	statistics_config.save(statistics_path)
 
+func update_status_pips():
+	var current_health_levels = license_config.get_value("duck", "health_level")
+	var current_oxygen_levels = license_config.get_value("duck", "oxygen_level")
+	var current_battery_levels = license_config.get_value("duck", "battery_level")
+	var current_sword_levels = license_config.get_value("tools", "sword_level")
+	var current_pickaxe_levels = license_config.get_value("tools", "pickaxe_level")
+	
+	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
+	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
+	var maximum_battery_levels = license_config.get_value("duck", "max_battery_levels")
+	var maximum_sword_levels = license_config.get_value("tools", "max_sword_levels")
+	var maximum_pickaxe_levels = license_config.get_value("tools", "max_pickaxe_levels")
+	
+	if current_health_levels >= maximum_health_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/UpgradeButton.visible = false
+	if current_oxygen_levels >= maximum_oxygen_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/UpgradeButton.visible = false
+	if current_battery_levels >= maximum_battery_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery/UpgradeButton.visible = false
+	if current_sword_levels >= maximum_sword_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/UpgradeButton.visible = false
+	if current_pickaxe_levels >= maximum_pickaxe_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/UpgradeButton.visible = false
+	
+	for i in range(0, current_health_levels):
+		HealthUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_oxygen_levels):
+		OxygenUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_battery_levels):
+		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_sword_levels):
+		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_pickaxe_levels):
+		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+
 func unlock_region(RegionStatus : TextureButton, region : String, type : String):
 	if fyction_points >= 1:
 		fyction_points -= 1
@@ -357,16 +372,29 @@ func add_items_to_dropdowns(ItemTexture, item_name):
 	index_hotbar_dropdown += 1
 
 func _on_health_upgrade_button_pressed() -> void:
-	pass # Replace with function body.
+	update_thing_with_pips("duck", "health_level")
 
 func _on_oxygen_upgrade_button_pressed() -> void:
-	pass # Replace with function body.
+	update_thing_with_pips("duck", "oxygen_level")
 
 func _on_battery_upgrade_button_pressed() -> void:
-	pass # Replace with function body.
+	update_thing_with_pips("duck", "battery_level")
 
 func _on_sword_upgrade_button_pressed() -> void:
-	pass # Replace with function body.
+	update_thing_with_pips("tools", "sword_level")
 
 func _on_pickaxe_upgrade_button_pressed() -> void:
-	pass # Replace with function body.
+	update_thing_with_pips("tools", "pickaxe_level")
+
+func update_thing_with_pips(ThingType : String, WhatThing : String):
+	if fyction_points >= 1:
+		fyction_points -= 1
+		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+		license_config.load(license_path)
+		license_config.set_value("license", "fyction_points", fyction_points)
+		
+		var new_value = license_config.get_value(ThingType, WhatThing)
+		license_config.set_value(ThingType, WhatThing, new_value + 1)
+		
+		license_config.save(license_path)
+	update_status_pips()
