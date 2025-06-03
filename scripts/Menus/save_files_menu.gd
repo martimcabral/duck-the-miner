@@ -245,13 +245,13 @@ func _on_creator_button_pressed() -> void:
 	
 	################################################################################
 	
-	var player_path = str(saves_path + str(saves_number) + "/hotbar.cfg")
+	var hotbar_path = str(saves_path + str(saves_number) + "/hotbar.cfg")
 	hotbar_config.set_value("hotbar_slots", "number", 4)
 	hotbar_config.set_value("hotbar_slots", "0", "Sword")
 	hotbar_config.set_value("hotbar_slots", "1", "Pickaxe")
 	hotbar_config.set_value("hotbar_slots", "2", "Light")
 	hotbar_config.set_value("hotbar_slots", "3", "UV Flashlight")
-	hotbar_config.save(player_path)
+	hotbar_config.save(hotbar_path)
 	
 	################################################################################
 	
@@ -270,8 +270,6 @@ func _on_creator_button_pressed() -> void:
 	license_config.set_value("duck", "max_oxygen_levels", 12)
 	license_config.set_value("duck", "battery_level", 0)
 	license_config.set_value("duck", "max_battery_levels", 8)
-	license_config.set_value("duck", "speed_level", 0)
-	license_config.set_value("duck", "max_speed_levels", 6)
 	
 	license_config.set_value("tools", "sword_level", 0)
 	license_config.set_value("tools", "max_sword_levels", 4)

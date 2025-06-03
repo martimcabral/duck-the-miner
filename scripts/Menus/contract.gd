@@ -12,13 +12,13 @@ var statistics_text : String = ""
 
 var hotbar_slots : Array = []
 var hotbar_slots_number : int = 0
+var index_hotbar_dropdown : int = 0
 
 var fyction_points : int = 0
 
 @onready var HealthUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/HBoxContainer/UpgradeSlots
 @onready var OxygenUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/HBoxContainer/UpgradeSlots
 @onready var BatteryUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery/HBoxContainer/UpgradeSlots
-@onready var SpeedUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Speed/HBoxContainer/UpgradeSlots
 @onready var SwordUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/HBoxContainer/UpgradeSlots
 @onready var PickaxeUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/HBoxContainer/UpgradeSlots
 
@@ -34,10 +34,27 @@ var fyction_points : int = 0
 @onready var OmegaStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega/Status
 @onready var KoppaStatus = $ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa/Status
 
-@onready var yes_sign = preload("res://assets/textures/menus/yes.png")
-@onready var blocked_sign = preload("res://assets/textures/menus/blocked.png")
+@onready var LightStatus = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light/HBoxContainer/Status
+@onready var FlashlightStatus = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight/HBoxContainer/Status
+@onready var RadarTheToolStatus = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool/HBoxContainer/Status
+@onready var RadarTheEnemiesStatus = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies/HBoxContainer/Status
+
+var NothingTexture : Texture = load("res://assets/textures/items/equipment/others/big_cross.png")
+var SwordTexture : Texture = load("res://assets/textures/items/equipment/sword.png")
+var PickaxeTexture : Texture = load("res://assets/textures/items/equipment/pickaxe.png")
+var LightTexture : Texture = load("res://assets/textures/items/equipment/bulkhead_light_centered.png")
+var FlashlightTexture : Texture = load("res://assets/textures/items/equipment/flashlight_item.png")
+var RadarTheToolTexture : Texture = load("res://assets/textures/items/equipment/radar_the_tool.png")
+var RadarTheEnemiesTexture : Texture = load("res://assets/textures/items/equipment/radar_the_enemies.png")
+
+@onready var yes_sign : Texture = preload("res://assets/textures/menus/yes.png")
+@onready var blocked_sign : Texture = preload("res://assets/textures/menus/blocked.png")
 
 func _ready() -> void:
+	$ScrollContainer.scroll_vertical = 0
+	
+	set_hotbar_unlocked_items()
+	
 	hotbar_config.load(hotbar_path)
 	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
@@ -85,14 +102,12 @@ func _ready() -> void:
 	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
 	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
 	var maximum_battery_levels = license_config.get_value("duck", "max_battery_levels")
-	var maximum_speed_levels = license_config.get_value("duck", "max_speed_levels")
 	var maximum_sword_levels = license_config.get_value("tools", "max_sword_levels")
 	var maximum_pickaxe_levels = license_config.get_value("tools", "max_pickaxe_levels")
 	
 	var current_health_levels = license_config.get_value("duck", "health_level")
 	var current_oxygen_levels = license_config.get_value("duck", "oxygen_level")
 	var current_battery_levels = license_config.get_value("duck", "battery_level")
-	var current_speed_levels = license_config.get_value("duck", "speed_level")
 	var current_sword_levels = license_config.get_value("tools", "sword_level")
 	var current_pickaxe_levels = license_config.get_value("tools", "pickaxe_level")
 	
@@ -111,11 +126,6 @@ func _ready() -> void:
 		new_slot.texture = load("res://assets/textures/menus/off.png")
 		BatteryUpgradeSlots.add_child(new_slot)
 	
-	for levels in maximum_speed_levels:
-		var new_slot := TextureRect.new()
-		new_slot.texture = load("res://assets/textures/menus/off.png")
-		SpeedUpgradeSlots.add_child(new_slot)
-		
 	for levels in maximum_sword_levels:
 		var new_slot := TextureRect.new()
 		new_slot.texture = load("res://assets/textures/menus/off.png")
@@ -134,9 +144,6 @@ func _ready() -> void:
 	
 	for i in range(0, current_battery_levels):
 		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-		
-	for i in range(0, current_speed_levels):
-		SpeedUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
 	
 	for i in range(0, current_sword_levels):
 		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
@@ -194,6 +201,27 @@ func _ready() -> void:
 	if koppa_unlocked == true: KoppaStatus.texture_normal = yes_sign; KoppaStatus.texture_hover = null
 	
 	################################################################################################
+	
+	var light_unlocked : bool = license_config.get_value("tools", "light")
+	var flashlight_unlocked : bool = license_config.get_value("tools", "uv_flashlight")
+	var radar_the_tool_unlocked : bool = license_config.get_value("tools", "radar_the_tool")
+	var radar_the_enemies_unlocked : bool = license_config.get_value("tools", "radar_the_enemies")
+	
+	if light_unlocked == true: LightStatus.texture_normal = yes_sign; LightStatus.texture_hover = null
+	if flashlight_unlocked == true: FlashlightStatus.texture_normal = yes_sign; FlashlightStatus.texture_hover = null
+	if radar_the_tool_unlocked == true: RadarTheToolStatus.texture_normal = yes_sign; RadarTheToolStatus.texture_hover = null
+	if radar_the_enemies_unlocked == true: RadarTheEnemiesStatus.texture_normal = yes_sign; RadarTheEnemiesStatus.texture_hover = null
+	
+	if fyction_points == 0:
+		LightStatus.texture_hover = null
+		FlashlightStatus.texture_hover = null
+		RadarTheToolStatus.texture_hover = null
+		RadarTheEnemiesStatus.texture_hover = null
+		
+		LightStatus.texture_normal = blocked_sign
+		FlashlightStatus.texture_normal = blocked_sign
+		RadarTheToolStatus.texture_normal = blocked_sign
+		RadarTheEnemiesStatus.texture_normal = blocked_sign
 
 func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
 	change_hotbar_slot(index, 0)
@@ -274,3 +302,71 @@ func _on_omega_status_pressed() -> void:
 
 func _on_koppa_status_pressed() -> void:
 	unlock_region(KoppaStatus, "zones", "koppa")
+
+################################################################################
+
+func unlock_tool(ToolStatus : TextureButton, ToolType : String):
+	if fyction_points >= 1:
+		fyction_points -= 1
+		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+		ToolStatus.texture_normal = yes_sign
+		ToolStatus.texture_hover = null
+		license_config.load(license_path)
+		license_config.set_value("license", "fyction_points", fyction_points)
+		license_config.set_value("tools", ToolType, true)
+		license_config.save(license_path)
+		set_hotbar_unlocked_items()
+
+func _on_light_status_pressed() -> void:
+	unlock_tool(LightStatus, "light")
+
+func _on_flashlight_status_pressed() -> void:
+	unlock_tool(FlashlightStatus, "uv_flashlight")
+
+func _on_radarthetool_status_pressed() -> void:
+	unlock_tool(RadarTheToolStatus, "radar_the_tool")
+
+func _on_radartheenemies_status_pressed() -> void:
+	unlock_tool(RadarTheEnemiesStatus, "radar_the_enemies")
+
+func set_hotbar_unlocked_items():
+	$FirstHotbarDropdown.clear()
+	$SecondHotbarDropdown.clear()
+	$ThirdHotbarDropdown.clear()
+	$FourthHotbarDropdown.clear()
+	
+	license_config.load(license_path)
+	var is_light_unlocked = license_config.get_value("tools", "light")
+	var is_flashlight_unlocked = license_config.get_value("tools", "uv_flashlight")
+	var is_radar_the_tool = license_config.get_value("tools", "radar_the_tool")
+	var is_radar_the_enemies = license_config.get_value("tools", "radar_the_enemies")
+	
+	add_items_to_dropdowns(SwordTexture, "Sword")
+	add_items_to_dropdowns(PickaxeTexture, "Pickaxe")
+	if is_light_unlocked == true: add_items_to_dropdowns(LightTexture, "Light")
+	if is_flashlight_unlocked == true: add_items_to_dropdowns(FlashlightTexture, "UV Flashlight")
+	if is_radar_the_tool == true: add_items_to_dropdowns(RadarTheToolTexture, "Radar the Tool")
+	if is_radar_the_enemies == true: add_items_to_dropdowns(RadarTheEnemiesTexture, "Radar the Enemies")
+	add_items_to_dropdowns(NothingTexture, "Nothing")
+
+func add_items_to_dropdowns(ItemTexture, item_name):
+	$FirstHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	$SecondHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	$ThirdHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	$FourthHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	index_hotbar_dropdown += 1
+
+func _on_health_upgrade_button_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_oxygen_upgrade_button_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_battery_upgrade_button_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_sword_upgrade_button_pressed() -> void:
+	pass # Replace with function body.
+
+func _on_pickaxe_upgrade_button_pressed() -> void:
+	pass # Replace with function body.

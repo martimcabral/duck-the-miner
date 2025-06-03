@@ -138,7 +138,7 @@ func attacked():
 		$Sounds/Bat/Idle.play()
 		#print("[enemy.gd] Was enemy attacked?: ", was_enemy_atacked)
 		#print("[enemy.gd] Enemy Attacked")
-		var damage = 15
+		var damage = $"../Player".sword_damage
 		current_health -= damage
 		was_enemy_atacked = false
 		$AnimatedSprite2D.modulate = Color(2, 0, 0)
@@ -152,7 +152,6 @@ func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")
 
 func _on_time_to_wander_timeout() -> void:
-	
 	$TimeToWander.wait_time = randi_range(8, 25)
 	var random_offset = Vector2(
 		randf_range(-200, 200),

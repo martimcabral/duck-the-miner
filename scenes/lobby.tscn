@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=144 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -41,7 +41,6 @@
 [ext_resource type="Texture2D" uid="uid://cyqfy26jjfek8" path="res://assets/textures/universe/planets/saturn.png" id="19_12kdj"]
 [ext_resource type="Texture2D" uid="uid://ypdc370ct4jt" path="res://assets/textures/menus/no.png" id="20_1x1aw"]
 [ext_resource type="Texture2D" uid="uid://bi551tm5ywo" path="res://assets/textures/universe/moons/mimas.png" id="20_a7sir"]
-[ext_resource type="Texture2D" uid="uid://b8y3txwbomtce" path="res://assets/textures/items/misc/no_texture.png" id="20_y8bta"]
 [ext_resource type="Texture2D" uid="uid://co35yul4p3c0i" path="res://assets/textures/universe/moons/rhea.png" id="21_0ubea"]
 [ext_resource type="Texture2D" uid="uid://xhn5o7vq6yq5" path="res://assets/textures/universe/moons/titan.png" id="22_qs1ri"]
 [ext_resource type="Texture2D" uid="uid://e6h0nycb644p" path="res://assets/textures/menus/unlocker.png" id="22_twy5w"]
@@ -1851,25 +1850,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
 selected = 0
-item_count = 6
-popup/item_0/text = "Sword"
-popup/item_0/icon = ExtResource("11_gd4oi")
-popup/item_0/id = 0
-popup/item_1/text = " Pickaxe"
-popup/item_1/icon = ExtResource("12_u7tfn")
-popup/item_1/id = 1
-popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("13_2630d")
-popup/item_2/id = 2
-popup/item_3/text = " UV Flashlight"
-popup/item_3/icon = ExtResource("11_8mpuv")
-popup/item_3/id = 3
-popup/item_4/text = "Radar the Tool"
-popup/item_4/icon = ExtResource("12_gd4oi")
-popup/item_4/id = 4
-popup/item_5/text = " Radar the Enemies"
-popup/item_5/icon = ExtResource("13_u7tfn")
-popup/item_5/id = 5
 
 [node name="SecondHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1895,25 +1875,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
 selected = 1
-item_count = 6
-popup/item_0/text = "Sword"
-popup/item_0/icon = ExtResource("11_gd4oi")
-popup/item_0/id = 0
-popup/item_1/text = " Pickaxe"
-popup/item_1/icon = ExtResource("12_u7tfn")
-popup/item_1/id = 1
-popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("13_2630d")
-popup/item_2/id = 2
-popup/item_3/text = " UV Flashlight"
-popup/item_3/icon = ExtResource("11_8mpuv")
-popup/item_3/id = 3
-popup/item_4/text = "Radar the Tool"
-popup/item_4/icon = ExtResource("12_gd4oi")
-popup/item_4/id = 4
-popup/item_5/text = " Radar the Enemies"
-popup/item_5/icon = ExtResource("13_u7tfn")
-popup/item_5/id = 5
 
 [node name="ThirdHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1939,25 +1900,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
 selected = 4
-item_count = 6
-popup/item_0/text = "Sword"
-popup/item_0/icon = ExtResource("11_gd4oi")
-popup/item_0/id = 0
-popup/item_1/text = " Pickaxe"
-popup/item_1/icon = ExtResource("12_u7tfn")
-popup/item_1/id = 1
-popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("13_2630d")
-popup/item_2/id = 2
-popup/item_3/text = " UV Flashlight"
-popup/item_3/icon = ExtResource("11_8mpuv")
-popup/item_3/id = 3
-popup/item_4/text = "Radar the Tool"
-popup/item_4/icon = ExtResource("12_gd4oi")
-popup/item_4/id = 4
-popup/item_5/text = " Radar the Enemies"
-popup/item_5/icon = ExtResource("13_u7tfn")
-popup/item_5/id = 5
 
 [node name="FourthHotbarDropdown" type="OptionButton" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 layout_mode = 1
@@ -1983,25 +1925,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_s0n6j")
 alignment = 1
 text_overrun_behavior = 3
 selected = 5
-item_count = 6
-popup/item_0/text = "Sword"
-popup/item_0/icon = ExtResource("11_gd4oi")
-popup/item_0/id = 0
-popup/item_1/text = " Pickaxe"
-popup/item_1/icon = ExtResource("12_u7tfn")
-popup/item_1/id = 1
-popup/item_2/text = "Light"
-popup/item_2/icon = ExtResource("13_2630d")
-popup/item_2/id = 2
-popup/item_3/text = " UV Flashlight"
-popup/item_3/icon = ExtResource("11_8mpuv")
-popup/item_3/id = 3
-popup/item_4/text = "Radar the Tool"
-popup/item_4/icon = ExtResource("12_gd4oi")
-popup/item_4/id = 4
-popup/item_5/text = " Radar the Enemies"
-popup/item_5/icon = ExtResource("13_u7tfn")
-popup/item_5/id = 5
 
 [node name="ExitButton" type="Button" parent="Camera2D/HUD/Contract" groups=["Buttons"]]
 z_index = 30
@@ -2055,7 +1978,7 @@ alignment = 1
 [node name="DuckLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "    --- Duck ---"
+text = "    --- DUCK ---"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2084,7 +2007,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 alignment = 1
 
-[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health"]
+[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health" groups=["Buttons"]]
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -2121,7 +2044,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 alignment = 1
 
-[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen"]
+[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen" groups=["Buttons"]]
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -2158,45 +2081,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 alignment = 1
 
-[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery"]
-layout_mode = 2
-theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yf42k")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_v63ud")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_sy4be")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_0nf8f")
-text = "+"
-
-[node name="Speed" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="ItemIcon" type="TextureRect" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Speed"]
-layout_mode = 2
-texture = ExtResource("20_y8bta")
-expand_mode = 2
-
-[node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Speed"]
-layout_mode = 2
-alignment = 1
-
-[node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Speed/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Speed"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UpgradeSlots" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Speed/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = -1
-alignment = 1
-
-[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Speed"]
+[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery" groups=["Buttons"]]
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -2219,7 +2104,7 @@ theme_override_constants/separation = 40
 [node name="ToolsLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "    --- Tools ---"
+text = "    --- TOOLS ---"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2248,7 +2133,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 alignment = 1
 
-[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword"]
+[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword" groups=["Buttons"]]
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -2285,7 +2170,7 @@ layout_mode = 2
 theme_override_constants/separation = -1
 alignment = 1
 
-[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe"]
+[node name="UpgradeButton" type="Button" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe" groups=["Buttons"]]
 layout_mode = 2
 theme_override_colors/font_hover_pressed_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
@@ -2309,6 +2194,7 @@ expand_mode = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light"]
 layout_mode = 2
+alignment = 1
 
 [node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light/HBoxContainer"]
 layout_mode = 2
@@ -2317,12 +2203,11 @@ text = "Light"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light/HBoxContainer"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light/HBoxContainer" groups=["Buttons"]]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Unlocked"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
+stretch_mode = 3
 
 [node name="Flashlight" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
 layout_mode = 2
@@ -2336,6 +2221,7 @@ expand_mode = 2
 
 [node name="HBoxContainer" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight"]
 layout_mode = 2
+alignment = 1
 
 [node name="ItemNameLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight/HBoxContainer"]
 layout_mode = 2
@@ -2344,12 +2230,11 @@ text = "Flashlight "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight/HBoxContainer"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight/HBoxContainer" groups=["Buttons"]]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Unlocked"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
+stretch_mode = 3
 
 [node name="RadarTheTool" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
 layout_mode = 2
@@ -2371,12 +2256,11 @@ text = "Radar the Tool"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool/HBoxContainer"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool/HBoxContainer" groups=["Buttons"]]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Unlocked"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
+stretch_mode = 3
 
 [node name="RadarTheEnemies" type="HBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools"]
 layout_mode = 2
@@ -2398,12 +2282,11 @@ text = "Radar the Enemies"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnlockedLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies/HBoxContainer"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies/HBoxContainer" groups=["Buttons"]]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Unlocked"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture_normal = ExtResource("20_1x1aw")
+texture_hover = ExtResource("22_twy5w")
+stretch_mode = 3
 
 [node name="RightSide" type="VBoxContainer" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree"]
 layout_mode = 2
@@ -2417,7 +2300,7 @@ alignment = 1
 [node name="BiomesLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "--- Biomes ---"
+text = "--- BIOMES ---"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2447,7 +2330,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Vulcanic   "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2461,7 +2344,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Frozen     "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2475,7 +2358,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Swamp    "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2489,7 +2372,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Desert      "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Desert" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2503,7 +2386,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Radiactive"
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Radiactive" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2519,7 +2402,7 @@ theme_override_constants/separation = 30
 [node name="ZonesLabel" type="Label" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
-text = "--- Zones ---"
+text = "--- ZONES ---"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2532,7 +2415,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Delta       "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Delta" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2546,7 +2429,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Gamma    "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Gamma" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2560,7 +2443,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Omega     "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Omega" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -2574,7 +2457,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Koppa      "
 
-[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa"]
+[node name="Status" type="TextureButton" parent="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Zones/Koppa" groups=["Buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("20_1x1aw")
 texture_hover = ExtResource("22_twy5w")
@@ -3462,6 +3345,15 @@ autostart = true
 [connection signal="item_selected" from="Camera2D/HUD/Contract/ThirdHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_third_hotbar_dropdown_item_selected"]
 [connection signal="item_selected" from="Camera2D/HUD/Contract/FourthHotbarDropdown" to="Camera2D/HUD/Contract" method="_on_fourth_hotbar_dropdown_item_selected"]
 [connection signal="pressed" from="Camera2D/HUD/Contract/ExitButton" to="Camera2D/HUD/Contract" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/UpgradeButton" to="Camera2D/HUD/Contract" method="_on_health_upgrade_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/UpgradeButton" to="Camera2D/HUD/Contract" method="_on_oxygen_upgrade_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery/UpgradeButton" to="Camera2D/HUD/Contract" method="_on_battery_upgrade_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/UpgradeButton" to="Camera2D/HUD/Contract" method="_on_sword_upgrade_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/UpgradeButton" to="Camera2D/HUD/Contract" method="_on_pickaxe_upgrade_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Light/HBoxContainer/Status" to="Camera2D/HUD/Contract" method="_on_light_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Flashlight/HBoxContainer/Status" to="Camera2D/HUD/Contract" method="_on_flashlight_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheTool/HBoxContainer/Status" to="Camera2D/HUD/Contract" method="_on_radarthetool_status_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/RadarTheEnemies/HBoxContainer/Status" to="Camera2D/HUD/Contract" method="_on_radartheenemies_status_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Vulcanic/Status" to="Camera2D/HUD/Contract" method="_on_vulcanic_status_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Frozen/Status" to="Camera2D/HUD/Contract" method="_on_frozen_status_pressed"]
 [connection signal="pressed" from="Camera2D/HUD/Contract/ScrollContainer/MarginContainer/LicenseTree/RightSide/Biomes/Swamp/Status" to="Camera2D/HUD/Contract" method="_on_swamp_status_pressed"]

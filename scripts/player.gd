@@ -18,13 +18,12 @@ var hotbar_slots_number : int = 4
 var oxygen_used : int = 0
 var lights_used : int = 0
 
-var mining_speed : int = 0
-var mining_fortune : int = 0 
 var sword_damage : int = 0
+var pickaxe_damage : int = 0
 
-var speed : int
-var walking_speed : int
-var running_speed : int 
+var speed : int = 1
+var walking_speed : int = 55
+var running_speed : int = 85
 const accel : int = 400
 const friction : int = 375
 const falling_speed : int = 250
@@ -119,14 +118,19 @@ func _ready():
 	biome_visual_effects = config.get_value("display", "biome_visual_effects", true)
 	
 	license_config.load(license_path)
-	max_health = license_config.get_value("player", "health")
-	max_oxygen = license_config.get_value("player", "oxygen")
-	max_battery = license_config.get_value("player", "battery")
-	walking_speed = license_config.get_value("player", "walking_speed")
-	running_speed = license_config.get_value("player", "running_speed")
-	mining_speed = license_config.get_value("player", "mining_speed")
-	mining_fortune = license_config.get_value("player", "mining_fortune")
-	sword_damage = license_config.get_value("player", "sword_damage")
+	
+	var health_level = license_config.get_value("duck", "health_level")
+	var oxygen_level = license_config.get_value("duck", "oxygen_level")
+	var battery_level = license_config.get_value("duck", "battery_level")
+	var sword_level = license_config.get_value("tools", "sword_level")
+	var pickaxe_level = license_config.get_value("tools", "pickaxe_level")
+	
+	max_health = 100 + 20 * health_level # L: 10; Max: 300
+	max_oxygen = 240 + 40 * oxygen_level # L: 12; Max: 720
+	max_battery = 120 + 40 * battery_level # L: 8; Max: 440
+	sword_damage = 10 + 10 * sword_level # L: 4 ; Max: 50
+	pickaxe_damage = 100 + 40 * pickaxe_level # L: 6 ; Max: 400
+	print("[player.gd] C-Max Health: ", max_health, "; C-Max Oxygen: ", max_oxygen, "; C-Max Battery: ", max_battery, "; Sword Damage: ", sword_damage, "; Pickaxe Battery: ", pickaxe_damage)
 	
 	current_health = max_health
 	current_oxygen = max_oxygen
@@ -424,7 +428,7 @@ func destroy_block():
 					
 					# Reduce health of the tile
 					if used_tiles[tile_pos]["health"] > 0:
-						used_tiles[tile_pos]["health"] -= 125  # Reduce health here // Pickaxe Damage
+						used_tiles[tile_pos]["health"] -= pickaxe_damage  # Reduce health here // Pickaxe Damage
 					
 					# Detect percentage of the health of the Tile here:
 					var percentage = float(used_tiles[tile_pos]["health"]) / tile_health * 100
@@ -551,8 +555,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		var damage : int = 0
 		match current_difficulty:
 			"easy": damage = randi_range(3, 6)
-			"normal": damage = randi_range(5, 9)
-			"hard": damage = randi_range(7, 11)
+			"normal": damage = randi_range(5, 8)
+			"hard": damage = randi_range(7, 10)
 		current_health -= damage
 		body.run_away()
 		
