@@ -246,11 +246,10 @@ func _on_creator_button_pressed() -> void:
 	################################################################################
 	
 	var hotbar_path = str(saves_path + str(saves_number) + "/hotbar.cfg")
-	hotbar_config.set_value("hotbar_slots", "number", 4)
-	hotbar_config.set_value("hotbar_slots", "0", "Sword")
-	hotbar_config.set_value("hotbar_slots", "1", "Pickaxe")
-	hotbar_config.set_value("hotbar_slots", "2", "Light")
-	hotbar_config.set_value("hotbar_slots", "3", "UV Flashlight")
+	hotbar_config.set_value("hotbar", "0", "Nothing")
+	hotbar_config.set_value("hotbar", "1", "Nothing")
+	hotbar_config.set_value("hotbar", "2", "Nothing")
+	hotbar_config.set_value("hotbar", "3", "Nothing")
 	hotbar_config.save(hotbar_path)
 	
 	################################################################################

@@ -61,6 +61,8 @@ var max_build_future : int = 1
 var primary_mission_completed : bool = false
 var secondary_mission_completed : bool = false
 
+
+
 func _ready():
 	difficulty_file.load(difficulty_path)
 	difficulty = difficulty_file.get_value("difficulty", "current")

@@ -562,16 +562,20 @@ func _on_start_button_pressed() -> void:
 		$TimeToStart.start()
 
 func _on_time_to_start_timeout() -> void:
-	var new_world = preload("res://scenes/world.tscn").instantiate()
-	new_world.asteroid_field = current_field
-	new_world.asteroid_name = current_asteroid_name
-	new_world.asteroid_biome = current_asteroid_biome
-	new_world.asteroid_temperature = asteroid_temperature
-	new_world.primary_objective = current_primary_objective
-	new_world.secundary_objective = current_secundary_objective
-	get_tree().root.add_child(new_world)
+	var world = load("res://scenes/world.tscn").instantiate()
+	world.asteroid_field = current_field
+	world.asteroid_name = current_asteroid_name
+	world.asteroid_biome = current_asteroid_biome
+	world.asteroid_temperature = asteroid_temperature
+	world.primary_objective = current_primary_objective
+	world.secundary_objective = current_secundary_objective
+	world.get_child(2).hotbar_0 = Contract(Hotbar0)
+	world.get_child(2).hotbar_1 = Contract(Hotbar1)
+	world.get_child(2).hotbar_2 = Contract(Hotbar2)
+	world.get_child(2).hotbar_3 = Contract(Hotbar3)
+	get_tree().root.add_child(world)
 	get_tree().current_scene.call_deferred("free")
-	get_tree().current_scene = new_world
+	get_tree().current_scene = world
 
 func _on_back_to_lobby_button_pressed() -> void:
 	$MouseSoundEffects.stream = load("res://sounds/effects/menus/back.ogg")

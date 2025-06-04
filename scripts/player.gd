@@ -1,6 +1,11 @@
 extends CharacterBody2D
 
 var current_item = ""
+var hotbar_0 : String = ""
+var hotbar_1 : String = ""
+var hotbar_2 : String = ""
+var hotbar_3 : String = ""
+
 var current_health : float
 var current_oxygen : float
 var current_battery : float
@@ -13,7 +18,6 @@ var battery_ratio : float
 var is_flashlight_being_used : bool = false
 var is_radar_the_tool_being_used : bool = false
 var is_radar_the_enemies_being_used : bool = false
-var hotbar_slots_number : int = 4
 
 var oxygen_used : int = 0
 var lights_used : int = 0
@@ -136,13 +140,6 @@ func _ready():
 	current_oxygen = max_oxygen
 	current_battery = max_battery
 	
-	hotbar.remove_tab(0)
-	hotbar_config.load(hotbar_path)
-	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
-	for i in range(0, hotbar_slots_number):
-		hotbar.add_tab(hotbar_config.get_value("hotbar_slots", str(i)))
-		hotbar.set_tab_icon(i, set_custom_cursor(i))
-	current_item = hotbar.get_tab_title(hotbar.current_tab)
 	
 	load_skin()
 	
@@ -226,13 +223,13 @@ func _process(delta):
 	elif $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
 		$Flashlight.look_at(get_global_mouse_position())
 		if Input.is_action_just_pressed("Use_Item") and current_item == "UV Flashlight":
-			print("[player.gd] UV Flashlight used!")
+			#print("[player.gd] UV Flashlight used!")
 			match is_flashlight_being_used:
 				true: $Flashlight.energy = 0; is_flashlight_being_used = false
 				false: $Flashlight.energy = 2; is_flashlight_being_used = true
 		
 		if Input.is_action_just_pressed("Use_Item") and current_item == "Radar the Tool":
-			print("[player.gd] Radar the Tool used!")
+			#print("[player.gd] Radar the Tool used!")
 			match is_radar_the_tool_being_used:
 				false: 
 					$HUD/RadarPanel.visible = true
@@ -246,7 +243,7 @@ func _process(delta):
 					is_radar_the_enemies_being_used = false
 		
 		if Input.is_action_just_pressed("Use_Item") and current_item == "Radar the Enemies":
-			print("[player.gd] Radar the Enemies used!")
+			#4print("[player.gd] Radar the Enemies used!")
 			match is_radar_the_enemies_being_used:
 				false: 
 					$HUD/RadarPanel.visible = false
@@ -327,24 +324,6 @@ func _process(delta):
 			$AnimatedSprite2D.flip_h = false
 		else:
 			$AnimatedSprite2D.stop()
-	
-	# Mudar o Cursor dependendo do Item selecinado da Hotbar
-	if Input.is_action_just_pressed("Hotbar_1") and hotbar_slots_number >= 1:
-		hotbar.current_tab = 0
-		current_item = hotbar_config.get_value("hotbar_slots", "0")
-		Input.set_custom_mouse_cursor(set_custom_cursor(0))
-	if Input.is_action_just_pressed("Hotbar_2") and hotbar_slots_number >= 2:
-		hotbar.current_tab = 1
-		current_item = hotbar_config.get_value("hotbar_slots", "1")
-		Input.set_custom_mouse_cursor(set_custom_cursor(1))
-	if Input.is_action_just_pressed("Hotbar_3") and hotbar_slots_number >= 3:
-		hotbar.current_tab = 2
-		current_item = hotbar_config.get_value("hotbar_slots", "2")
-		Input.set_custom_mouse_cursor(set_custom_cursor(2))
-	if Input.is_action_just_pressed("Hotbar_4") and hotbar_slots_number >= 4:
-		hotbar.current_tab = 3
-		current_item = hotbar_config.get_value("hotbar_slots", "3")
-		Input.set_custom_mouse_cursor(set_custom_cursor(3))
 	
 	if is_duck_dead == false and $"../PauseMenu/GUI_Pause".visible == false:
 		mouse_pos = get_global_mouse_position()
@@ -513,26 +492,6 @@ func _on_oxygen_consumption_timeout() -> void:
 			statistics_config.get_value("statistics", "oxygen") + 1)
 			statistics_config.save(statistics_path)
 
-func _on_tab_bar_tab_clicked(tab: int) -> void:
-	if $"../PauseMenu/GUI_Pause".visible == false:
-		match tab:
-			0:
-				hotbar.current_tab = tab
-				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
-				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
-			1: 
-				hotbar.current_tab = tab
-				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
-				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
-			2:
-				hotbar.current_tab = tab
-				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
-				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
-			3: 
-				hotbar.current_tab = tab
-				current_item = hotbar_config.get_value("hotbar_slots", str(tab))
-				Input.set_custom_mouse_cursor(set_custom_cursor(tab))
-
 func load_skin():
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
@@ -601,16 +560,6 @@ func _on_take_damage_from_oxygen_timeout() -> void:
 			statistics_config.save(statistics_path)
 			$ResetModulateRedHit.start()
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
-
-func set_custom_cursor(hotbar_slot):
-	var hotbar_slot_name = hotbar_config.get_value("hotbar_slots", str(hotbar_slot))
-	match hotbar_slot_name:
-		"Sword": return cursor_texture_sword
-		"Pickaxe": return cursor_texture_pickaxe
-		"Light": return cursor_texture_light
-		"UV Flashlight": return cursor_texture_flashlight
-		"Radar the Tool": return cursor_texture_radar_the_tool
-		"Radar the Enemies": return cursor_texture_radar_the_enemies
 
 func get_control_to_labelization():
 	settings_config.load(settings_path)

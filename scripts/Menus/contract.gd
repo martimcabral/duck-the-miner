@@ -2,16 +2,11 @@ extends Panel
 
 var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
 
-var hotbar_config := ConfigFile.new()
 var hotbar_path : String = str("user://save/", GetSaveFile.save_being_used, "/hotbar.cfg")
+var hotbar_dropdowns : Array = []
 
-var statistics_config := ConfigFile.new()
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var statistics_text : String = ""
-
-var hotbar_slots : Array = []
-var hotbar_slots_number : int = 0
-var index_hotbar_dropdown : int = 0
 
 var fyction_points : int = 0
 
@@ -52,17 +47,18 @@ var RadarTheEnemiesTexture : Texture = load("res://assets/textures/items/equipme
 func _ready() -> void:
 	$ScrollContainer.scroll_vertical = 0
 	
-	hotbar_config.load(hotbar_path)
-	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
-	for i in range(0, hotbar_slots_number):
-		hotbar_slots.append(hotbar_config.get_value("hotbar_slots", str(i)))
-	$FirstHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[0])
-	$SecondHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[1])
-	$ThirdHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[2])
-	$FourthHotbarDropdown.selected = select_hotbar_slot(hotbar_slots[3])
+	hotbar_dropdowns = [
+		$FirstHotbarDropdown,
+		$SecondHotbarDropdown,
+		$ThirdHotbarDropdown,
+		$FourthHotbarDropdown
+	]
+	
+	start_hotbar()
 	
 	################################################################################################
 	
+	var statistics_config := ConfigFile.new()
 	statistics_config.load(statistics_path)
 	var oxygen_used : String = str(statistics_config.get_value("statistics", "oxygen"))
 	var battery_used : String = str(statistics_config.get_value("statistics", "battery"))
@@ -94,7 +90,6 @@ func _ready() -> void:
 	
 	fyction_points = license_config.get_value("license", "fyction_points")
 	update_levels()
-	set_hotbar_unlocked_items()
 	
 	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
 	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
@@ -130,42 +125,11 @@ func _ready() -> void:
 	update_status_pips()
 	update_blocked_content()
 
-func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 0)
-
-func _on_second_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 1)
-
-func _on_third_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 2)
-
-func _on_fourth_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 3)
-
-func change_hotbar_slot(item_index, slot_number):
-	match item_index:
-		0: hotbar_config.set_value("hotbar_slots", str(slot_number), "Sword")
-		1: hotbar_config.set_value("hotbar_slots", str(slot_number), "Pickaxe")
-		2: hotbar_config.set_value("hotbar_slots", str(slot_number), "Light")
-		3: hotbar_config.set_value("hotbar_slots", str(slot_number), "UV Flashlight")
-		4: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Tool")
-		5: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Enemies")
-	hotbar_config.save(hotbar_path)
-	print("[contract.gd] Changed Slot [", str(slot_number), "] to: ", hotbar_config.get_value("hotbar_slots", str(slot_number)))
-
-func select_hotbar_slot(hotbar_slot):
-	match hotbar_slot:
-		"Sword": return 0
-		"Pickaxe": return 1
-		"Light": return 2
-		"UV Flashlight": return 3
-		"Radar the Tool": return 4
-		"Radar the Enemies": return 5
-
 func _on_exit_button_pressed() -> void:
 	$AnimationPlayer.play("bread")
 
 func _on_more_resting_time_timeout() -> void:
+	var statistics_config := ConfigFile.new()
 	statistics_config.load(statistics_path)
 	var new_time_resting = 1 + statistics_config.get_value("statistics", "time_resting")
 	statistics_config.set_value("statistics", "time_resting", new_time_resting)
@@ -208,19 +172,7 @@ func update_status_pips():
 	for i in range(0, current_pickaxe_levels):
 		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
 
-func unlock_region(RegionStatus : TextureButton, region : String, type : String):
-	if fyction_points >= 1:
-		fyction_points -= 1
-		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
-		RegionStatus.texture_normal = yes_sign
-		RegionStatus.texture_hover = null
-		var license_config := ConfigFile.new()
-		license_config.load(license_path)
-		
-		license_config.set_value("license", "fyction_points", fyction_points)
-		license_config.set_value(region, type, true)
-		license_config.save(license_path)
-		$"../../..".reroll_missions()
+################################################################################
 
 func _on_vulcanic_status_pressed() -> void:
 	unlock_region(VulcanicStatus, "biomes", "vulcanic")
@@ -249,9 +201,35 @@ func _on_omega_status_pressed() -> void:
 func _on_koppa_status_pressed() -> void:
 	unlock_region(KoppaStatus, "zones", "koppa")
 
+func unlock_region(RegionStatus : TextureButton, region : String, type : String):
+	if fyction_points >= 1:
+		fyction_points -= 1
+		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+		RegionStatus.texture_normal = yes_sign
+		RegionStatus.texture_hover = null
+		
+		var license_config := ConfigFile.new()
+		license_config.load(license_path)
+		license_config.set_value("license", "fyction_points", fyction_points)
+		license_config.set_value(region, type, true)
+		license_config.save(license_path)
+		$"../../..".reroll_missions()
+
 ################################################################################
 
-func unlock_tool(ToolStatus : TextureButton, ToolType : String):
+func _on_light_status_pressed() -> void:
+	unlock_tool(LightStatus, "light", LightTexture, "Light")
+
+func _on_flashlight_status_pressed() -> void:
+	unlock_tool(FlashlightStatus, "uv_flashlight", FlashlightTexture, "UV Flashlight")
+
+func _on_radarthetool_status_pressed() -> void:
+	unlock_tool(RadarTheToolStatus, "radar_the_tool", RadarTheToolTexture, "Radar the Tool")
+
+func _on_radartheenemies_status_pressed() -> void:
+	unlock_tool(RadarTheEnemiesStatus, "radar_the_enemies", RadarTheEnemiesTexture, "Radar the Enemies")
+
+func unlock_tool(ToolStatus : TextureButton, ToolType : String, texture : Texture, Name : String):
 	if fyction_points >= 1:
 		fyction_points -= 1
 		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
@@ -263,49 +241,10 @@ func unlock_tool(ToolStatus : TextureButton, ToolType : String):
 		license_config.set_value("license", "fyction_points", fyction_points)
 		license_config.set_value("tools", ToolType, true)
 		license_config.save(license_path)
-		set_hotbar_unlocked_items()
 		update_blocked_content()
+		add_item_to_all_dropdowns(texture, Name)
 
-func _on_light_status_pressed() -> void:
-	unlock_tool(LightStatus, "light")
-
-func _on_flashlight_status_pressed() -> void:
-	unlock_tool(FlashlightStatus, "uv_flashlight")
-
-func _on_radarthetool_status_pressed() -> void:
-	unlock_tool(RadarTheToolStatus, "radar_the_tool")
-
-func _on_radartheenemies_status_pressed() -> void:
-	unlock_tool(RadarTheEnemiesStatus, "radar_the_enemies")
-
-func set_hotbar_unlocked_items():
-	$FirstHotbarDropdown.clear()
-	$SecondHotbarDropdown.clear()
-	$ThirdHotbarDropdown.clear()
-	$FourthHotbarDropdown.clear()
-	
-	var license_config := ConfigFile.new()
-	license_config.load(license_path)
-	
-	var is_light_unlocked = license_config.get_value("tools", "light")
-	var is_flashlight_unlocked = license_config.get_value("tools", "uv_flashlight")
-	var is_radar_the_tool = license_config.get_value("tools", "radar_the_tool")
-	var is_radar_the_enemies = license_config.get_value("tools", "radar_the_enemies")
-	
-	add_items_to_dropdowns(SwordTexture, "Sword")
-	add_items_to_dropdowns(PickaxeTexture, "Pickaxe")
-	if is_light_unlocked == true: add_items_to_dropdowns(LightTexture, "Light")
-	if is_flashlight_unlocked == true: add_items_to_dropdowns(FlashlightTexture, "UV Flashlight")
-	if is_radar_the_tool == true: add_items_to_dropdowns(RadarTheToolTexture, "Radar the Tool")
-	if is_radar_the_enemies == true: add_items_to_dropdowns(RadarTheEnemiesTexture, "Radar the Enemies")
-	add_items_to_dropdowns(NothingTexture, "Nothing")
-
-func add_items_to_dropdowns(ItemTexture, item_name):
-	$FirstHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	$SecondHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	$ThirdHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	$FourthHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	index_hotbar_dropdown += 1
+################################################################################
 
 func _on_health_upgrade_button_pressed() -> void:
 	update_thing_with_pips("duck", "health_level")
@@ -398,11 +337,6 @@ func update_blocked_content():
 	var radar_the_tool_unlocked : bool = license_config.get_value("tools", "radar_the_tool")
 	var radar_the_enemies_unlocked : bool = license_config.get_value("tools", "radar_the_enemies")
 	
-	if light_unlocked == true: LightStatus.texture_normal = yes_sign; LightStatus.texture_hover = null
-	if flashlight_unlocked == true: FlashlightStatus.texture_normal = yes_sign; FlashlightStatus.texture_hover = null
-	if radar_the_tool_unlocked == true: RadarTheToolStatus.texture_normal = yes_sign; RadarTheToolStatus.texture_hover = null
-	if radar_the_enemies_unlocked == true: RadarTheEnemiesStatus.texture_normal = yes_sign; RadarTheEnemiesStatus.texture_hover = null
-	
 	if fyction_points == 0:
 		LightStatus.texture_hover = null
 		FlashlightStatus.texture_hover = null
@@ -413,6 +347,12 @@ func update_blocked_content():
 		FlashlightStatus.texture_normal = blocked_sign
 		RadarTheToolStatus.texture_normal = blocked_sign
 		RadarTheEnemiesStatus.texture_normal = blocked_sign
+	
+	if light_unlocked == true: LightStatus.texture_normal = yes_sign; LightStatus.texture_hover = null
+	if flashlight_unlocked == true: FlashlightStatus.texture_normal = yes_sign; FlashlightStatus.texture_hover = null
+	if radar_the_tool_unlocked == true: RadarTheToolStatus.texture_normal = yes_sign; RadarTheToolStatus.texture_hover = null
+	if radar_the_enemies_unlocked == true: RadarTheEnemiesStatus.texture_normal = yes_sign; RadarTheEnemiesStatus.texture_hover = null
+	
 
 func update_levels():
 	var license_config := ConfigFile.new()
@@ -444,3 +384,59 @@ func update_levels():
 	$FyctionLevelProgress.text = \
 		str("Level: ", str(current_level)," | ", str(current_experience)," / ", experience_required ,"XP")
 	$FyctionPointsSprite/PointsAvailableLabel.text = str(current_fyction_points)
+
+func start_hotbar():
+	add_stater_pack()
+	get_selected_hotbar_items()
+
+func add_stater_pack():
+	var license_config := ConfigFile.new()
+	license_config.load(license_path)
+	
+	add_item_to_all_dropdowns(NothingTexture, "Nothing")
+	add_item_to_all_dropdowns(SwordTexture, "Sword")
+	add_item_to_all_dropdowns(PickaxeTexture, "Pickaxe")
+	
+	if license_config.get_value("tools", "light") == true: add_item_to_all_dropdowns(LightTexture, "Light")
+	if license_config.get_value("tools", "uv_flashlight") == true: add_item_to_all_dropdowns(FlashlightTexture, "UV Flaslight")
+	if license_config.get_value("tools", "radar_the_tool") == true: add_item_to_all_dropdowns(RadarTheToolTexture, "Radar the Tool")
+	if license_config.get_value("tools", "radar_the_enemies") == true: add_item_to_all_dropdowns(RadarTheEnemiesTexture, "Radar the Enemies")
+
+func add_item_to_all_dropdowns(texture : Texture, Name : String):
+	for dropdown in hotbar_dropdowns:
+		dropdown.add_icon_item(texture, Name)
+
+func get_selected_hotbar_items():
+	var hotbar_config := ConfigFile.new()
+	hotbar_config.load(hotbar_path)
+	
+	for i in range(hotbar_dropdowns.size()):
+		var item_name = hotbar_config.get_value("hotbar", str(i))
+		var dropdown = hotbar_dropdowns[i]
+		var index = get_item_index_by_text(dropdown, item_name)
+		if index != -1:
+			dropdown.select(index)
+
+func get_item_index_by_text(dropdown: OptionButton, text: String) -> int:
+	for i in range(dropdown.item_count):
+		if dropdown.get_item_text(i) == text:
+			return i
+	return -1  # Not found
+
+func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
+	set_hotbar_item(0, $FirstHotbarDropdown.get_item_text(index))
+
+func _on_second_hotbar_dropdown_item_selected(index: int) -> void:
+	set_hotbar_item(1, $SecondHotbarDropdown.get_item_text(index))
+
+func _on_third_hotbar_dropdown_item_selected(index: int) -> void:
+	set_hotbar_item(2, $ThirdHotbarDropdown.get_item_text(index))
+
+func _on_fourth_hotbar_dropdown_item_selected(index: int) -> void:
+	set_hotbar_item(3, $FourthHotbarDropdown.get_item_text(index))
+
+func set_hotbar_item(index : int, Name : String):
+	var hotbar_config := ConfigFile.new()
+	hotbar_config.load(hotbar_path)
+	hotbar_config.set_value("hotbar", str(index), Name)
+	hotbar_config.save(hotbar_path)
