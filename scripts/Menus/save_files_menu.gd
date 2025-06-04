@@ -259,9 +259,9 @@ func _on_creator_button_pressed() -> void:
 	license_config.set_value("license", "experience", 0)
 	license_config.set_value("license", "current_level", 1)
 	match choosen_difficulty:
-		"easy": license_config.set_value("license", "fyction_points", 30)
-		"normal": license_config.set_value("license", "fyction_points", 20)
-		"hard": license_config.set_value("license", "fyction_points", 10)
+		"easy": license_config.set_value("license", "fyction_points", 3)
+		"normal": license_config.set_value("license", "fyction_points", 2)
+		"hard": license_config.set_value("license", "fyction_points", 1)
 	license_config.set_value("license", "used_points", 0)
 	
 	license_config.set_value("duck", "health_level", 0)

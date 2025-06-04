@@ -161,6 +161,7 @@ func go_to_after_mission():
 	after_mission.did_player_died = player.is_duck_dead
 	after_mission.primary_mission_completed = world.primary_mission_completed
 	after_mission.secondary_mission_completed = world.secondary_mission_completed
+	after_mission.goods_amount = world.current_goods_amount
 	
 	get_tree().root.add_child(after_mission)
 	get_tree().current_scene.call_deferred("free")

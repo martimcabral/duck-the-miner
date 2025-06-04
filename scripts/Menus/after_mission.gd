@@ -5,17 +5,13 @@ var hotbar_path : String = str("user://save/", GetSaveFile.save_being_used, "/ho
 var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
 var stock_path : String = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
-
-var difficulty_config : ConfigFile = ConfigFile.new()
-var hotbar_config : ConfigFile = ConfigFile.new()
-var money_config : ConfigFile = ConfigFile.new()
-var stock_config : ConfigFile = ConfigFile.new()
-var statistics_config : ConfigFile = ConfigFile.new()
+var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
 
 var primary_mission_completed : bool = false
 var primary_mission_award : int = 14000
 var secondary_mission_completed : bool = false
 var secondary_mission_award : int = 9000
+var goods_amount : int = 0
 var bonus : int = 0
 
 var fyction_tax : float = 0.000001
@@ -54,6 +50,12 @@ var light_rental : int = 0
 
 var has_lights : bool = false
 
+var total_experince_gained : int = 0
+var experience_from_goods : int = 0
+var experience_from_primary : int = 0
+var experience_from_secundary : int = 0
+
+
 var total : int = 0
 var fees_label : String = ""
 var fees_values : String = ""
@@ -62,11 +64,19 @@ func _ready() -> void:
 	$FyctionTax/PrintingAnimation.play("appear")
 	$FyctionTax/WhooshSoundEffect.play()
 	
+	var difficulty_config := ConfigFile.new()
+	var hotbar_config := ConfigFile.new()
+	var money_config := ConfigFile.new()
+	var stock_config := ConfigFile.new()
+	var statistics_config := ConfigFile.new()
+	var license_config := ConfigFile.new()
+	
 	difficulty_config.load(difficulty_path)
 	hotbar_config.load(hotbar_path)
 	money_config.load(money_path)
 	stock_config.load(stock_path)
 	statistics_config.load(statistics_path)
+	license_config.load(license_path)
 	
 	var current_money = money_config.get_value("money", "current")
 	fyction_interest = (current_money * fyction_tax) * -1
@@ -121,22 +131,27 @@ func _ready() -> void:
 		fees_label += "> Sword Rental\n"
 		fees_values += str("[-", sword_rental,"€]\n")
 		total += sword_rental
+		
 	if has_pickaxe == true:
 		fees_label += "> Pickaxe Rental\n"
 		fees_values += str("[-", pickaxe_rental,"€]\n")
 		total += sword_rental
+		
 	if has_uv_flashlight == true:
 		fees_label += "> UV Flashlight Rental\n"
 		fees_values += str("[-", uv_flashlight_rental,"€]\n")
 		total += uv_flashlight_rental
+		
 	if has_radar_the_tool == true:
 		fees_label += "> Radar the Tool Rental\n"
 		fees_values += str("[-", radar_the_tool_rental,"€]\n")
 		total += radar_the_tool_rental
+		
 	if has_radar_the_enemies == true:
 		fees_label += "> Radar the Enemies Rental\n"
 		fees_values += str("[-", radar_the_enemies_rental,"€]\n")
 		total += radar_the_enemies_rental
+		
 	if has_lights == true:
 		match difficulty:
 			"easy": light_price = 115
@@ -148,34 +163,57 @@ func _ready() -> void:
 		total += light_rental
 	
 	if primary_mission_completed == true:
+		statistics_config.set_value("statistics", "missions_finished", \
+			statistics_config.get_value("statistics", "missions_finished") + 1)
+		statistics_config.save(statistics_path)
 		fees_label += str("> Primary Mission\n")
 		match difficulty:
-			"easy": primary_mission_award = 16000
-			"normal": primary_mission_award = 14000
-			"hard": primary_mission_award = 12000
+			"easy": primary_mission_award = 16000; experience_from_primary = 25
+			"normal": primary_mission_award = 14000; experience_from_primary = 20
+			"hard": primary_mission_award = 12000; experience_from_primary = 15
 		fees_values += str("[+", primary_mission_award,"€]\n")
 		bonus += primary_mission_award
+		
 	if secondary_mission_completed == true:
+		statistics_config.set_value("statistics", "missions_finished", \
+			statistics_config.get_value("statistics", "missions_finished") + 1)
+		statistics_config.save(statistics_path)
 		fees_label += str("> Seconday Mission\n")
 		match difficulty:
-			"easy": secondary_mission_award = 10000
-			"normal": secondary_mission_award = 9000
-			"hard": secondary_mission_award = 8000
+			"easy": secondary_mission_award = 10000; experience_from_secundary = 15
+			"normal": secondary_mission_award = 9000; experience_from_secundary = 10
+			"hard": secondary_mission_award = 8000; experience_from_secundary = 5
 		fees_values += str("[+", secondary_mission_award,"€]\n")
 		bonus += secondary_mission_award
+	
+	experience_from_goods = int(floor(goods_amount / 200.0))
+	total_experince_gained = experience_from_goods + experience_from_primary + experience_from_secundary
+	license_config.load(license_path)
+	license_config.set_value("license", "experience", \
+		license_config.get_value("license", "experience") + total_experince_gained)
+	license_config.save(license_path)
+	
+	fees_label += str("> Experience Gained\n")
+	fees_values += str("[+", total_experince_gained,"XP]\n")
+	
 	$FyctionTax/FeesText.text = fees_label
 	$FyctionTax/FeesValuesText.text = fees_values
 	$FyctionTax/FeesTotal.text = str("Fees Total: -", total, "€ ─ Bonus: ", bonus,"€")
 	
-	
 	adjust_money()
 
 func more_days():
+	var statistics_config := ConfigFile.new()
+	statistics_config.load(statistics_path)
+	
 	var new_current_day = randi_range(1, 3) + statistics_config.get_value("statistics", "days")
 	statistics_config.set_value("statistics", "days", new_current_day)
 	statistics_config.save(statistics_path)
 
 func forward_stock():
+	var stock_config := ConfigFile.new()
+	stock_config.load(stock_path)
+	
 	var companies_names : Array = ["Fyction", "Haznuclear", "Owlwing", "Bill", "Interstellar", "Anura", "Octane"]
 	var vlines : Array = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100]
 	var new_market : Dictionary = {}
@@ -192,6 +230,8 @@ func forward_stock():
 	stock_config.save(stock_path)
 
 func get_items():
+	var hotbar_config := ConfigFile.new()
+	hotbar_config.load(hotbar_path)
 	var hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
 		match hotbar_config.get_value("hotbar_slots", str(i)):
@@ -204,6 +244,8 @@ func get_items():
 	print("[after_mission.gd] Sword: ", has_sword, "; Pickaxe: ", has_pickaxe, "; Light: ", has_lights, "; UV Flashlight: ", has_uv_flashlight, "; Radar the Tool: ", has_radar_the_tool, "; Radar the Enemies: ", has_radar_the_enemies)
 
 func adjust_money():
+	var money_config := ConfigFile.new()
+	money_config.load(money_path)
 	var current_money = money_config.get_value("money", "current")
 	current_money += (total * -1) + bonus
 	money_config.set_value("money", "current", current_money)

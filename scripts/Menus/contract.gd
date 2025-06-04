@@ -1,6 +1,5 @@
 extends Panel
 
-var license_config := ConfigFile.new()
 var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
 
 var hotbar_config := ConfigFile.new()
@@ -53,8 +52,6 @@ var RadarTheEnemiesTexture : Texture = load("res://assets/textures/items/equipme
 func _ready() -> void:
 	$ScrollContainer.scroll_vertical = 0
 	
-	set_hotbar_unlocked_items()
-	
 	hotbar_config.load(hotbar_path)
 	hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
 	for i in range(0, hotbar_slots_number):
@@ -92,12 +89,12 @@ func _ready() -> void:
 	
 	################################################################################################
 	
+	var license_config := ConfigFile.new()
 	license_config.load(license_path)
-	var experience = license_config.get_value("license", "experience")
-	var level = license_config.get_value("license", "current_level")
-	$FyctionLevelProgress.text = str("Level: ", str(level)," | ", str(experience)," / 100 XP")
+	
 	fyction_points = license_config.get_value("license", "fyction_points")
-	$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+	update_levels()
+	set_hotbar_unlocked_items()
 	
 	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
 	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
@@ -131,8 +128,221 @@ func _ready() -> void:
 		PickaxeUpgradeSlots.add_child(new_slot)
 	
 	update_status_pips()
+	update_blocked_content()
+
+func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
+	change_hotbar_slot(index, 0)
+
+func _on_second_hotbar_dropdown_item_selected(index: int) -> void:
+	change_hotbar_slot(index, 1)
+
+func _on_third_hotbar_dropdown_item_selected(index: int) -> void:
+	change_hotbar_slot(index, 2)
+
+func _on_fourth_hotbar_dropdown_item_selected(index: int) -> void:
+	change_hotbar_slot(index, 3)
+
+func change_hotbar_slot(item_index, slot_number):
+	match item_index:
+		0: hotbar_config.set_value("hotbar_slots", str(slot_number), "Sword")
+		1: hotbar_config.set_value("hotbar_slots", str(slot_number), "Pickaxe")
+		2: hotbar_config.set_value("hotbar_slots", str(slot_number), "Light")
+		3: hotbar_config.set_value("hotbar_slots", str(slot_number), "UV Flashlight")
+		4: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Tool")
+		5: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Enemies")
+	hotbar_config.save(hotbar_path)
+	print("[contract.gd] Changed Slot [", str(slot_number), "] to: ", hotbar_config.get_value("hotbar_slots", str(slot_number)))
+
+func select_hotbar_slot(hotbar_slot):
+	match hotbar_slot:
+		"Sword": return 0
+		"Pickaxe": return 1
+		"Light": return 2
+		"UV Flashlight": return 3
+		"Radar the Tool": return 4
+		"Radar the Enemies": return 5
+
+func _on_exit_button_pressed() -> void:
+	$AnimationPlayer.play("bread")
+
+func _on_more_resting_time_timeout() -> void:
+	statistics_config.load(statistics_path)
+	var new_time_resting = 1 + statistics_config.get_value("statistics", "time_resting")
+	statistics_config.set_value("statistics", "time_resting", new_time_resting)
+	statistics_config.save(statistics_path)
+
+func update_status_pips():
+	var license_config := ConfigFile.new()
+	license_config.load(license_path)
 	
-	################################################################################################
+	var current_health_levels = license_config.get_value("duck", "health_level")
+	var current_oxygen_levels = license_config.get_value("duck", "oxygen_level")
+	var current_battery_levels = license_config.get_value("duck", "battery_level")
+	var current_sword_levels = license_config.get_value("tools", "sword_level")
+	var current_pickaxe_levels = license_config.get_value("tools", "pickaxe_level")
+	
+	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
+	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
+	var maximum_battery_levels = license_config.get_value("duck", "max_battery_levels")
+	var maximum_sword_levels = license_config.get_value("tools", "max_sword_levels")
+	var maximum_pickaxe_levels = license_config.get_value("tools", "max_pickaxe_levels")
+	
+	if current_health_levels >= maximum_health_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/UpgradeButton.visible = false
+	if current_oxygen_levels >= maximum_oxygen_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/UpgradeButton.visible = false
+	if current_battery_levels >= maximum_battery_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery/UpgradeButton.visible = false
+	if current_sword_levels >= maximum_sword_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/UpgradeButton.visible = false
+	if current_pickaxe_levels >= maximum_pickaxe_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/UpgradeButton.visible = false
+	
+	for i in range(0, current_health_levels):
+		HealthUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_oxygen_levels):
+		OxygenUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_battery_levels):
+		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_sword_levels):
+		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+	
+	for i in range(0, current_pickaxe_levels):
+		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+
+func unlock_region(RegionStatus : TextureButton, region : String, type : String):
+	if fyction_points >= 1:
+		fyction_points -= 1
+		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+		RegionStatus.texture_normal = yes_sign
+		RegionStatus.texture_hover = null
+		var license_config := ConfigFile.new()
+		license_config.load(license_path)
+		
+		license_config.set_value("license", "fyction_points", fyction_points)
+		license_config.set_value(region, type, true)
+		license_config.save(license_path)
+		$"../../..".reroll_missions()
+
+func _on_vulcanic_status_pressed() -> void:
+	unlock_region(VulcanicStatus, "biomes", "vulcanic")
+
+func _on_frozen_status_pressed() -> void:
+	unlock_region(FrozenStatus, "biomes", "frozen")
+
+func _on_swamp_status_pressed() -> void:
+	unlock_region(SwampStatus, "biomes", "swamp")
+
+func _on_desert_status_pressed() -> void:
+	unlock_region(DesertStatus, "biomes", "desert")
+
+func _on_radioactive_status_pressed() -> void:
+	unlock_region(RadioactiveStatus, "biomes", "radioactive")
+
+func _on_delta_status_pressed() -> void:
+	unlock_region(DeltaStatus, "zones", "delta")
+
+func _on_gamma_status_pressed() -> void:
+	unlock_region(GammaStatus, "zones", "gamma")
+
+func _on_omega_status_pressed() -> void:
+	unlock_region(OmegaStatus, "zones", "omega")
+
+func _on_koppa_status_pressed() -> void:
+	unlock_region(KoppaStatus, "zones", "koppa")
+
+################################################################################
+
+func unlock_tool(ToolStatus : TextureButton, ToolType : String):
+	if fyction_points >= 1:
+		fyction_points -= 1
+		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+		ToolStatus.texture_normal = yes_sign
+		ToolStatus.texture_hover = null
+		var license_config := ConfigFile.new()
+		license_config.load(license_path)
+		
+		license_config.set_value("license", "fyction_points", fyction_points)
+		license_config.set_value("tools", ToolType, true)
+		license_config.save(license_path)
+		set_hotbar_unlocked_items()
+		update_blocked_content()
+
+func _on_light_status_pressed() -> void:
+	unlock_tool(LightStatus, "light")
+
+func _on_flashlight_status_pressed() -> void:
+	unlock_tool(FlashlightStatus, "uv_flashlight")
+
+func _on_radarthetool_status_pressed() -> void:
+	unlock_tool(RadarTheToolStatus, "radar_the_tool")
+
+func _on_radartheenemies_status_pressed() -> void:
+	unlock_tool(RadarTheEnemiesStatus, "radar_the_enemies")
+
+func set_hotbar_unlocked_items():
+	$FirstHotbarDropdown.clear()
+	$SecondHotbarDropdown.clear()
+	$ThirdHotbarDropdown.clear()
+	$FourthHotbarDropdown.clear()
+	
+	var license_config := ConfigFile.new()
+	license_config.load(license_path)
+	
+	var is_light_unlocked = license_config.get_value("tools", "light")
+	var is_flashlight_unlocked = license_config.get_value("tools", "uv_flashlight")
+	var is_radar_the_tool = license_config.get_value("tools", "radar_the_tool")
+	var is_radar_the_enemies = license_config.get_value("tools", "radar_the_enemies")
+	
+	add_items_to_dropdowns(SwordTexture, "Sword")
+	add_items_to_dropdowns(PickaxeTexture, "Pickaxe")
+	if is_light_unlocked == true: add_items_to_dropdowns(LightTexture, "Light")
+	if is_flashlight_unlocked == true: add_items_to_dropdowns(FlashlightTexture, "UV Flashlight")
+	if is_radar_the_tool == true: add_items_to_dropdowns(RadarTheToolTexture, "Radar the Tool")
+	if is_radar_the_enemies == true: add_items_to_dropdowns(RadarTheEnemiesTexture, "Radar the Enemies")
+	add_items_to_dropdowns(NothingTexture, "Nothing")
+
+func add_items_to_dropdowns(ItemTexture, item_name):
+	$FirstHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	$SecondHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	$ThirdHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	$FourthHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
+	index_hotbar_dropdown += 1
+
+func _on_health_upgrade_button_pressed() -> void:
+	update_thing_with_pips("duck", "health_level")
+
+func _on_oxygen_upgrade_button_pressed() -> void:
+	update_thing_with_pips("duck", "oxygen_level")
+
+func _on_battery_upgrade_button_pressed() -> void:
+	update_thing_with_pips("duck", "battery_level")
+
+func _on_sword_upgrade_button_pressed() -> void:
+	update_thing_with_pips("tools", "sword_level")
+
+func _on_pickaxe_upgrade_button_pressed() -> void:
+	update_thing_with_pips("tools", "pickaxe_level")
+
+func update_thing_with_pips(ThingType : String, WhatThing : String):
+	if fyction_points >= 1:
+		fyction_points -= 1
+		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
+		var license_config := ConfigFile.new()
+		license_config.load(license_path)
+		
+		license_config.set_value("license", "fyction_points", fyction_points)
+		
+		var new_value = license_config.get_value(ThingType, WhatThing)
+		license_config.set_value(ThingType, WhatThing, new_value + 1)
+		
+		license_config.save(license_path)
+	update_status_pips()
+	update_blocked_content()
+
+func update_blocked_content():
+	var license_config := ConfigFile.new()
+	license_config.load(license_path)
+	
+	fyction_points = license_config.get_value("license", "fyction_points")
 	
 	var stony_unlocked : bool = license_config.get_value("biomes", "stony")
 	var vulcanic_unlocked : bool = license_config.get_value("biomes", "vulcanic")
@@ -204,197 +414,33 @@ func _ready() -> void:
 		RadarTheToolStatus.texture_normal = blocked_sign
 		RadarTheEnemiesStatus.texture_normal = blocked_sign
 
-func _on_first_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 0)
-
-func _on_second_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 1)
-
-func _on_third_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 2)
-
-func _on_fourth_hotbar_dropdown_item_selected(index: int) -> void:
-	change_hotbar_slot(index, 3)
-
-func change_hotbar_slot(item_index, slot_number):
-	match item_index:
-		0: hotbar_config.set_value("hotbar_slots", str(slot_number), "Sword")
-		1: hotbar_config.set_value("hotbar_slots", str(slot_number), "Pickaxe")
-		2: hotbar_config.set_value("hotbar_slots", str(slot_number), "Light")
-		3: hotbar_config.set_value("hotbar_slots", str(slot_number), "UV Flashlight")
-		4: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Tool")
-		5: hotbar_config.set_value("hotbar_slots", str(slot_number), "Radar the Enemies")
-	hotbar_config.save(hotbar_path)
-	print("[contract.gd] Changed Slot [", str(slot_number), "] to: ", hotbar_config.get_value("hotbar_slots", str(slot_number)))
-
-func select_hotbar_slot(hotbar_slot):
-	match hotbar_slot:
-		"Sword": return 0
-		"Pickaxe": return 1
-		"Light": return 2
-		"UV Flashlight": return 3
-		"Radar the Tool": return 4
-		"Radar the Enemies": return 5
-
-func _on_exit_button_pressed() -> void:
-	$AnimationPlayer.play("bread")
-
-func _on_more_resting_time_timeout() -> void:
-	statistics_config.load(statistics_path)
-	var new_time_resting = 1 + statistics_config.get_value("statistics", "time_resting")
-	statistics_config.set_value("statistics", "time_resting", new_time_resting)
-	statistics_config.save(statistics_path)
-
-func update_status_pips():
-	var current_health_levels = license_config.get_value("duck", "health_level")
-	var current_oxygen_levels = license_config.get_value("duck", "oxygen_level")
-	var current_battery_levels = license_config.get_value("duck", "battery_level")
-	var current_sword_levels = license_config.get_value("tools", "sword_level")
-	var current_pickaxe_levels = license_config.get_value("tools", "pickaxe_level")
-	
-	var maximum_health_levels = license_config.get_value("duck", "max_health_levels")
-	var maximum_oxygen_levels = license_config.get_value("duck", "max_oxygen_levels")
-	var maximum_battery_levels = license_config.get_value("duck", "max_battery_levels")
-	var maximum_sword_levels = license_config.get_value("tools", "max_sword_levels")
-	var maximum_pickaxe_levels = license_config.get_value("tools", "max_pickaxe_levels")
-	
-	if current_health_levels >= maximum_health_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/UpgradeButton.visible = false
-	if current_oxygen_levels >= maximum_oxygen_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/UpgradeButton.visible = false
-	if current_battery_levels >= maximum_battery_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Battery/UpgradeButton.visible = false
-	if current_sword_levels >= maximum_sword_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Sword/UpgradeButton.visible = false
-	if current_pickaxe_levels >= maximum_pickaxe_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/UpgradeButton.visible = false
-	
-	for i in range(0, current_health_levels):
-		HealthUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-	
-	for i in range(0, current_oxygen_levels):
-		OxygenUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-	
-	for i in range(0, current_battery_levels):
-		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-	
-	for i in range(0, current_sword_levels):
-		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-	
-	for i in range(0, current_pickaxe_levels):
-		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
-
-func unlock_region(RegionStatus : TextureButton, region : String, type : String):
-	if fyction_points >= 1:
-		fyction_points -= 1
-		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
-		RegionStatus.texture_normal = yes_sign
-		RegionStatus.texture_hover = null
-		license_config.load(license_path)
-		license_config.set_value("license", "fyction_points", fyction_points)
-		license_config.set_value(region, type, true)
-		license_config.save(license_path)
-		$"../../..".reroll_missions()
-
-func _on_vulcanic_status_pressed() -> void:
-	unlock_region(VulcanicStatus, "biomes", "vulcanic")
-
-func _on_frozen_status_pressed() -> void:
-	unlock_region(FrozenStatus, "biomes", "frozen")
-
-func _on_swamp_status_pressed() -> void:
-	unlock_region(SwampStatus, "biomes", "swamp")
-
-func _on_desert_status_pressed() -> void:
-	unlock_region(DesertStatus, "biomes", "desert")
-
-func _on_radioactive_status_pressed() -> void:
-	unlock_region(RadioactiveStatus, "biomes", "radioactive")
-
-func _on_delta_status_pressed() -> void:
-	unlock_region(DeltaStatus, "zones", "delta")
-
-func _on_gamma_status_pressed() -> void:
-	unlock_region(GammaStatus, "zones", "gamma")
-
-func _on_omega_status_pressed() -> void:
-	unlock_region(OmegaStatus, "zones", "omega")
-
-func _on_koppa_status_pressed() -> void:
-	unlock_region(KoppaStatus, "zones", "koppa")
-
-################################################################################
-
-func unlock_tool(ToolStatus : TextureButton, ToolType : String):
-	if fyction_points >= 1:
-		fyction_points -= 1
-		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
-		ToolStatus.texture_normal = yes_sign
-		ToolStatus.texture_hover = null
-		license_config.load(license_path)
-		license_config.set_value("license", "fyction_points", fyction_points)
-		license_config.set_value("tools", ToolType, true)
-		license_config.save(license_path)
-		set_hotbar_unlocked_items()
-
-func _on_light_status_pressed() -> void:
-	unlock_tool(LightStatus, "light")
-
-func _on_flashlight_status_pressed() -> void:
-	unlock_tool(FlashlightStatus, "uv_flashlight")
-
-func _on_radarthetool_status_pressed() -> void:
-	unlock_tool(RadarTheToolStatus, "radar_the_tool")
-
-func _on_radartheenemies_status_pressed() -> void:
-	unlock_tool(RadarTheEnemiesStatus, "radar_the_enemies")
-
-func set_hotbar_unlocked_items():
-	$FirstHotbarDropdown.clear()
-	$SecondHotbarDropdown.clear()
-	$ThirdHotbarDropdown.clear()
-	$FourthHotbarDropdown.clear()
-	
+func update_levels():
+	var license_config := ConfigFile.new()
 	license_config.load(license_path)
-	var is_light_unlocked = license_config.get_value("tools", "light")
-	var is_flashlight_unlocked = license_config.get_value("tools", "uv_flashlight")
-	var is_radar_the_tool = license_config.get_value("tools", "radar_the_tool")
-	var is_radar_the_enemies = license_config.get_value("tools", "radar_the_enemies")
 	
-	add_items_to_dropdowns(SwordTexture, "Sword")
-	add_items_to_dropdowns(PickaxeTexture, "Pickaxe")
-	if is_light_unlocked == true: add_items_to_dropdowns(LightTexture, "Light")
-	if is_flashlight_unlocked == true: add_items_to_dropdowns(FlashlightTexture, "UV Flashlight")
-	if is_radar_the_tool == true: add_items_to_dropdowns(RadarTheToolTexture, "Radar the Tool")
-	if is_radar_the_enemies == true: add_items_to_dropdowns(RadarTheEnemiesTexture, "Radar the Enemies")
-	add_items_to_dropdowns(NothingTexture, "Nothing")
-
-func add_items_to_dropdowns(ItemTexture, item_name):
-	$FirstHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	$SecondHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	$ThirdHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	$FourthHotbarDropdown.add_icon_item(ItemTexture, item_name, index_hotbar_dropdown)
-	index_hotbar_dropdown += 1
-
-func _on_health_upgrade_button_pressed() -> void:
-	update_thing_with_pips("duck", "health_level")
-
-func _on_oxygen_upgrade_button_pressed() -> void:
-	update_thing_with_pips("duck", "oxygen_level")
-
-func _on_battery_upgrade_button_pressed() -> void:
-	update_thing_with_pips("duck", "battery_level")
-
-func _on_sword_upgrade_button_pressed() -> void:
-	update_thing_with_pips("tools", "sword_level")
-
-func _on_pickaxe_upgrade_button_pressed() -> void:
-	update_thing_with_pips("tools", "pickaxe_level")
-
-func update_thing_with_pips(ThingType : String, WhatThing : String):
-	if fyction_points >= 1:
-		fyction_points -= 1
-		$FyctionPointsSprite/PointsAvailableLabel.text = str(fyction_points)
-		license_config.load(license_path)
-		license_config.set_value("license", "fyction_points", fyction_points)
+	var current_experience = license_config.get_value("license", "experience")
+	var current_level = license_config.get_value("license", "current_level")
+	var current_fyction_points = license_config.get_value("license", "fyction_points")
+	
+	var experience_required = 60 + current_level * 15
+	
+	while current_experience >= experience_required:
+		current_experience -= experience_required
+		current_level += 1
+		current_fyction_points += 1
 		
-		var new_value = license_config.get_value(ThingType, WhatThing)
-		license_config.set_value(ThingType, WhatThing, new_value + 1)
-		
-		license_config.save(license_path)
-	update_status_pips()
+		experience_required = 75 + current_level * 25
+	
+	# Update values only once after the loop
+	license_config.set_value("license", "experience", current_experience)
+	license_config.set_value("license", "current_level", current_level)
+	license_config.set_value("license", "fyction_points", current_fyction_points)
+	
+	fyction_points = current_fyction_points
+	
+	license_config.save(license_path)
+	update_blocked_content()
+	
+	$FyctionLevelProgress.text = \
+		str("Level: ", str(current_level)," | ", str(current_experience)," / ", experience_required ,"XP")
+	$FyctionPointsSprite/PointsAvailableLabel.text = str(current_fyction_points)
