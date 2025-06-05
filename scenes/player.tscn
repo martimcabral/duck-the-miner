@@ -1021,7 +1021,7 @@ texture = ExtResource("32_j2b1d")
 [node name="Hotbar" type="CanvasLayer" parent="Camera2D/HUD"]
 visible = false
 
-[node name="TabBar" type="TabBar" parent="Camera2D/HUD/Hotbar"]
+[node name="TabBar" type="TabBar" parent="Camera2D/HUD/Hotbar" groups=["Buttons"]]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

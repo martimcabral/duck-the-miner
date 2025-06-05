@@ -569,10 +569,10 @@ func _on_time_to_start_timeout() -> void:
 	world.asteroid_temperature = asteroid_temperature
 	world.primary_objective = current_primary_objective
 	world.secundary_objective = current_secundary_objective
-	world.get_child(2).hotbar_0 = Contract(Hotbar0)
-	world.get_child(2).hotbar_1 = Contract(Hotbar1)
-	world.get_child(2).hotbar_2 = Contract(Hotbar2)
-	world.get_child(2).hotbar_3 = Contract(Hotbar3)
+	world.get_child(2).hotbar_items.append($Camera2D/HUD/Contract.return_selected_item(0))
+	world.get_child(2).hotbar_items.append($Camera2D/HUD/Contract.return_selected_item(1))
+	world.get_child(2).hotbar_items.append($Camera2D/HUD/Contract.return_selected_item(2))
+	world.get_child(2).hotbar_items.append($Camera2D/HUD/Contract.return_selected_item(3))
 	get_tree().root.add_child(world)
 	get_tree().current_scene.call_deferred("free")
 	get_tree().current_scene = world

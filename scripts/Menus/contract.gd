@@ -440,3 +440,10 @@ func set_hotbar_item(index : int, Name : String):
 	hotbar_config.load(hotbar_path)
 	hotbar_config.set_value("hotbar", str(index), Name)
 	hotbar_config.save(hotbar_path)
+
+func return_selected_item(dropdown : int):
+	match dropdown:
+		0: return $FirstHotbarDropdown.get_item_text($FirstHotbarDropdown.get_selected_id())
+		1: return $SecondHotbarDropdown.get_item_text($SecondHotbarDropdown.get_selected_id())
+		2: return $ThirdHotbarDropdown.get_item_text($ThirdHotbarDropdown.get_selected_id())
+		3: return $FourthHotbarDropdown.get_item_text($FourthHotbarDropdown.get_selected_id())

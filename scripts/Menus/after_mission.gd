@@ -232,9 +232,9 @@ func forward_stock():
 func get_items():
 	var hotbar_config := ConfigFile.new()
 	hotbar_config.load(hotbar_path)
-	var hotbar_slots_number = hotbar_config.get_value("hotbar_slots", "number")
-	for i in range(0, hotbar_slots_number):
-		match hotbar_config.get_value("hotbar_slots", str(i)):
+	
+	for i in range(4):
+		match hotbar_config.get_value("hotbar", str(i)):
 			"Sword": has_sword = true
 			"Pickaxe": has_pickaxe = true
 			"Light": has_lights = true

@@ -1707,7 +1707,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
 text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1839,7 +1838,6 @@ text = "Back"
 flat = true
 
 [node name="DisplayPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -1935,9 +1933,9 @@ popup/item_1/id = 1
 [node name="Vsync" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 130.0
+offset_top = 128.0
 offset_right = 343.0
-offset_bottom = 185.0
+offset_bottom = 183.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Vsync
 "
@@ -1946,18 +1944,18 @@ text = "Vsync
 z_index = 1
 layout_mode = 0
 offset_left = 765.0
-offset_top = 132.0
+offset_top = 130.0
 offset_right = 809.0
-offset_bottom = 156.0
+offset_bottom = 154.0
 scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="FPSLimiter" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 184.0
+offset_top = 182.0
 offset_right = 308.0
-offset_bottom = 239.0
+offset_bottom = 237.0
 theme_override_font_sizes/normal_font_size = 48
 text = "FPS Limiter"
 
@@ -1965,9 +1963,9 @@ text = "FPS Limiter"
 z_index = 1
 layout_mode = 0
 offset_left = 718.0
-offset_top = 184.0
+offset_top = 182.0
 offset_right = 894.0
-offset_bottom = 235.0
+offset_bottom = 233.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
@@ -2005,9 +2003,9 @@ popup/item_12/id = 12
 [node name="MonitorSelectorLabel" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 240.0
+offset_top = 238.0
 offset_right = 308.0
-offset_bottom = 295.0
+offset_bottom = 293.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Monitor"
 
@@ -2015,9 +2013,9 @@ text = "Monitor"
 z_index = 1
 layout_mode = 0
 offset_left = 718.0
-offset_top = 248.0
+offset_top = 246.0
 offset_right = 894.0
-offset_bottom = 299.0
+offset_bottom = 297.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
@@ -2028,9 +2026,9 @@ alignment = 1
 [node name="Bloom" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 296.0
+offset_top = 294.0
 offset_right = 343.0
-offset_bottom = 351.0
+offset_bottom = 349.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Bloom"
 
@@ -2038,18 +2036,18 @@ text = "Bloom"
 z_index = 1
 layout_mode = 0
 offset_left = 764.0
-offset_top = 306.0
+offset_top = 304.0
 offset_right = 808.0
-offset_bottom = 330.0
+offset_bottom = 328.0
 scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 
 [node name="BiomeVisualEffectsLabel" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 352.0
+offset_top = 350.0
 offset_right = 562.0
-offset_bottom = 407.0
+offset_bottom = 405.0
 theme_override_font_sizes/normal_font_size = 48
 text = "Biome Visual Effects"
 
@@ -2057,9 +2055,9 @@ text = "Biome Visual Effects"
 z_index = 1
 layout_mode = 0
 offset_left = 764.0
-offset_top = 359.0
+offset_top = 357.0
 offset_right = 808.0
-offset_bottom = 383.0
+offset_bottom = 381.0
 scale = Vector2(2, 2)
 theme_override_styles/focus = SubResource("StyleBoxFlat_iyawk")
 

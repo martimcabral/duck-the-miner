@@ -1,10 +1,7 @@
 extends CharacterBody2D
 
 var current_item = ""
-var hotbar_0 : String = ""
-var hotbar_1 : String = ""
-var hotbar_2 : String = ""
-var hotbar_3 : String = ""
+var hotbar_items : Array = []
 
 var current_health : float
 var current_oxygen : float
@@ -102,6 +99,8 @@ var local_mouse_pos
 
 func _ready():
 	Input.set_custom_mouse_cursor(cursor_default)
+	
+	put_items_on_hotbar()
 	
 	difficulty_config.load(difficulty_path)
 	current_difficulty = difficulty_config.get_value("difficulty", "current", "normal")
@@ -255,14 +254,8 @@ func _process(delta):
 					is_radar_the_tool_being_used = false
 					$HUD/RadarPanelEnemies.visible = false
 					is_radar_the_enemies_being_used = false
-			
-		match current_item: # Set cursor after after despausing the game
-			"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
-			"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
-			"Light": Input.set_custom_mouse_cursor(cursor_texture_light)
-			"UV Flashlight": Input.set_custom_mouse_cursor(cursor_texture_flashlight)
-			"Radar the Tool": Input.set_custom_mouse_cursor(cursor_texture_radar_the_tool)
-			"Radar the Enemies": Input.set_custom_mouse_cursor(cursor_texture_radar_the_enemies)
+		
+		set_custom_cursor() # After despausing the Game
 		
 		if Input.is_action_just_pressed("Hide_Show_Inventory"):
 			if InventoryAtWorld.visible == true: 
@@ -326,6 +319,19 @@ func _process(delta):
 			$AnimatedSprite2D.stop()
 	
 	if is_duck_dead == false and $"../PauseMenu/GUI_Pause".visible == false:
+		if Input.is_action_just_pressed("Hotbar_1"):
+			hotbar.current_tab = 0; set_custom_cursor()
+			current_item = hotbar.get_tab_title(hotbar.current_tab)
+		if Input.is_action_just_pressed("Hotbar_2"):
+			hotbar.current_tab = 1; set_custom_cursor()
+			current_item = hotbar.get_tab_title(hotbar.current_tab)
+		if Input.is_action_just_pressed("Hotbar_3"):
+			hotbar.current_tab = 2; set_custom_cursor()
+			current_item = hotbar.get_tab_title(hotbar.current_tab)
+		if Input.is_action_just_pressed("Hotbar_4"):
+			hotbar.current_tab = 3; set_custom_cursor()
+			current_item = hotbar.get_tab_title(hotbar.current_tab)
+		
 		mouse_pos = get_global_mouse_position()
 		local_mouse_pos = $BlockRange.to_local(mouse_pos)
 		
@@ -580,3 +586,31 @@ func _on_timer_to_turn_hud_visible_timeout() -> void:
 	$Camera2D/HUD.visible = true
 	$HUD/MissionList.visible = true
 	$HUD/ItemList.visible = true
+
+func put_items_on_hotbar():
+	hotbar.clear_tabs()
+	for i in range(4):
+		if hotbar_items[i] != "Nothing":
+			hotbar.add_tab(hotbar_items[i], return_hotbar_icon(i))
+
+func return_hotbar_icon(slot):
+	match hotbar_items[slot]:
+		"Sword": return cursor_texture_sword
+		"Pickaxe": return cursor_texture_pickaxe
+		"Light": return cursor_texture_light
+		"UV Flaslight": return cursor_texture_flashlight
+		"Radar the Tool": return cursor_texture_radar_the_tool
+		"Radar the Enemies": return cursor_texture_radar_the_enemies
+
+func _on_tab_bar_tab_clicked(tab: int) -> void:
+	current_item = hotbar.get_tab_title(tab)
+	print("[player.gd] Current Item: ", current_item)
+
+func set_custom_cursor():
+	match current_item: # Set cursor after after despausing the game
+		"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
+		"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
+		"Light": Input.set_custom_mouse_cursor(cursor_texture_light)
+		"UV Flashlight": Input.set_custom_mouse_cursor(cursor_texture_flashlight)
+		"Radar the Tool": Input.set_custom_mouse_cursor(cursor_texture_radar_the_tool)
+		"Radar the Enemies": Input.set_custom_mouse_cursor(cursor_texture_radar_the_enemies)
