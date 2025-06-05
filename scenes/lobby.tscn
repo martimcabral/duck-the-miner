@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=158 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -45,14 +45,24 @@
 [ext_resource type="Texture2D" uid="uid://xhn5o7vq6yq5" path="res://assets/textures/universe/moons/titan.png" id="22_qs1ri"]
 [ext_resource type="Texture2D" uid="uid://e6h0nycb644p" path="res://assets/textures/menus/unlocker.png" id="22_twy5w"]
 [ext_resource type="Texture2D" uid="uid://bsluqf5p8m0yi" path="res://assets/textures/universe/planets/uranos.png" id="23_dm4ru"]
+[ext_resource type="Texture2D" uid="uid://pxn7lq44sxty" path="res://assets/textures/menus/crafting_off.png" id="24_jkgfa"]
 [ext_resource type="Texture2D" uid="uid://dpm8dw5ikgfkr" path="res://assets/textures/universe/moons/miranda.png" id="24_oiisp"]
+[ext_resource type="Script" uid="uid://cuby3mmkdn5yv" path="res://scripts/Menus/crafting_panel.gd" id="24_ph747"]
 [ext_resource type="Texture2D" uid="uid://bmhnbabjlwgvn" path="res://assets/textures/universe/moons/titania.png" id="25_3fxc7"]
+[ext_resource type="Texture2D" uid="uid://dk6uh5hhjh6en" path="res://assets/textures/menus/crafting_on.png" id="25_ph747"]
 [ext_resource type="Texture2D" uid="uid://fn5sc5am4djd" path="res://assets/textures/universe/planets/neptune.png" id="26_bcmos"]
 [ext_resource type="Texture2D" uid="uid://bymbebohlaom2" path="res://assets/textures/universe/moons/proteus.png" id="27_pcqty"]
+[ext_resource type="Texture2D" uid="uid://dwgdysy23qudh" path="res://assets/textures/menus/warning_pattern.png" id="27_yb58j"]
+[ext_resource type="Texture2D" uid="uid://boy2en5ieldqf" path="res://assets/textures/menus/crafting/crafting.png" id="28_oysm8"]
 [ext_resource type="Texture2D" uid="uid://r001vncv380d" path="res://assets/textures/universe/moons/tritan.png" id="28_s2snw"]
+[ext_resource type="Texture2D" uid="uid://cp37qm0jqukwm" path="res://assets/textures/menus/crafting/alloying.png" id="29_4pkyx"]
 [ext_resource type="Texture2D" uid="uid://5nkccdnb1caq" path="res://assets/textures/universe/orbits_and_fields/delta_field.png" id="29_xssx6"]
 [ext_resource type="Texture2D" uid="uid://jmvxxfp8t62v" path="res://assets/textures/universe/orbits_and_fields/gamma_field.png" id="30_e4ddj"]
+[ext_resource type="Texture2D" uid="uid://b8xblmj5ikfvv" path="res://assets/textures/menus/crafting/mettalurgic.png" id="30_rievh"]
 [ext_resource type="Texture2D" uid="uid://6hh31hvrlif1" path="res://assets/textures/universe/orbits_and_fields/omega_field.png" id="31_832n6"]
+[ext_resource type="Texture2D" uid="uid://jpso7114bjcv" path="res://assets/textures/menus/crafting/fluids_refining.png" id="31_olier"]
+[ext_resource type="Texture2D" uid="uid://chnbutj6hhuqx" path="res://assets/textures/menus/crafting/advanced_crafting.png" id="32_5jb2g"]
+[ext_resource type="Texture2D" uid="uid://cfx0wv46xknvr" path="res://assets/textures/menus/crafting/gem.png" id="33_oysm8"]
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/koppa_belt.png" id="34_qqdto"]
 [ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/menus/cheat_menu.tscn" id="39_8tmsf"]
 
@@ -802,6 +812,199 @@ corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pkyx"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ph747"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Animation" id="Animation_1x1aw"]
+resource_name = "grow"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(490, 320), Vector2(1920, 1080)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(849, 34), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0705882, 0.0705882, 0.0705882, 1), Color(0.162, 0, 0.36, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CraftingIconTextureButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CraftingIconTextureButton:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Navbar:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Navbar:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_twy5w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(490, 320)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(849, 34)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0705882, 0.0705882, 0.0705882, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CraftingIconTextureButton:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CraftingIconTextureButton:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Navbar:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Navbar:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jkgfa"]
+_data = {
+&"RESET": SubResource("Animation_twy5w"),
+&"grow": SubResource("Animation_1x1aw")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_30fw8"]
 
 [node name="Lobby" type="Node2D"]
@@ -1145,50 +1348,6 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_gufxi")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_arjad")
 disabled = true
 text = "Start"
-
-[node name="CraftingPanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1071.0
-offset_top = 34.0
-offset_right = -581.0
-offset_bottom = 354.0
-grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_3adby")
-
-[node name="CraftingLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -241.0
-offset_top = 24.0
-offset_right = 241.0
-offset_bottom = 72.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "Crafting Station™"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UnavailableLabel" type="Label" parent="Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -136.5
-offset_top = -26.0
-offset_right = 136.5
-offset_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.917647, 0, 0, 1)
-theme_override_font_sizes/font_size = 48
-text = "Work in Progress"
 
 [node name="SkinSelectionPanel" type="Panel" parent="Camera2D/HUD/Lobby/LobbyPanel"]
 layout_mode = 1
@@ -2731,6 +2890,216 @@ scroll_following = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CraftingPanel" type="Panel" parent="Camera2D/HUD"]
+z_index = 5
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1071.0
+offset_top = 34.0
+offset_right = -581.0
+offset_bottom = 354.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ph747")
+script = ExtResource("24_ph747")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera2D/HUD/CraftingPanel"]
+libraries = {
+&"": SubResource("AnimationLibrary_jkgfa")
+}
+
+[node name="CraftingLabel" type="Label" parent="Camera2D/HUD/CraftingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -241.0
+offset_top = 24.0
+offset_right = 241.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Crafting Station™"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CraftingIconTextureButton" type="TextureButton" parent="Camera2D/HUD/CraftingPanel" groups=["Buttons"]]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.0
+offset_top = 112.0
+offset_right = 72.0
+offset_bottom = 248.0
+grow_horizontal = 2
+texture_normal = ExtResource("24_jkgfa")
+texture_hover = ExtResource("25_ph747")
+stretch_mode = 0
+
+[node name="Navbar" type="Control" parent="Camera2D/HUD/CraftingPanel"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WarningPattern" type="TextureRect" parent="Camera2D/HUD/CraftingPanel/Navbar"]
+offset_left = 302.0
+offset_top = -6.0
+offset_right = 330.0
+offset_bottom = 1084.0
+texture = ExtResource("27_yb58j")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/HUD/CraftingPanel/Navbar"]
+layout_mode = 0
+offset_right = 302.0
+offset_bottom = 1076.0
+
+[node name="Icons" type="Control" parent="Camera2D/HUD/CraftingPanel/Navbar"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CraftingButton" type="TextureButton" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons"]
+layout_mode = 0
+offset_right = 302.0
+offset_bottom = 128.0
+texture_normal = ExtResource("28_oysm8")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons/CraftingButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_right = 58.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Crafting"
+
+[node name="AlloyingButton" type="TextureButton" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons"]
+offset_top = 171.0
+offset_right = 302.0
+offset_bottom = 299.0
+texture_normal = ExtResource("29_4pkyx")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons/AlloyingButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_right = 58.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Alloying"
+
+[node name="MettalurgicButton" type="TextureButton" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons"]
+offset_top = 349.0
+offset_right = 302.0
+offset_bottom = 477.0
+texture_normal = ExtResource("30_rievh")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons/MettalurgicButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_right = 58.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Mettalurgic"
+
+[node name="FluidsRefiningButton" type="TextureButton" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons"]
+offset_top = 531.0
+offset_right = 302.0
+offset_bottom = 659.0
+texture_normal = ExtResource("31_olier")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons/FluidsRefiningButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_right = 58.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Fluid Refining"
+
+[node name="AdvancedCraftingButton" type="TextureButton" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons"]
+offset_top = 715.0
+offset_right = 302.0
+offset_bottom = 843.0
+texture_normal = ExtResource("32_5jb2g")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons/AdvancedCraftingButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_right = 58.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Advanced Crafting"
+
+[node name="GemPolishingButton" type="TextureButton" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons"]
+offset_top = 883.0
+offset_right = 302.0
+offset_bottom = 1011.0
+texture_normal = ExtResource("33_oysm8")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Camera2D/HUD/CraftingPanel/Navbar/Icons/GemPolishingButton"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_right = 58.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Gem Polishing"
+
 [node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
 visible = false
 anchors_preset = 8
@@ -2754,6 +3123,7 @@ parameters/looping = true
 bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
+visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
@@ -3273,6 +3643,7 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
+visible = false
 z_index = -2
 material = SubResource("ShaderMaterial_30fw8")
 anchors_preset = 8
@@ -3367,6 +3738,7 @@ autostart = true
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/AnuraButton" to="Camera2D/HUD/StockTheMarket" method="_on_anura_button_toggled"]
 [connection signal="toggled" from="Camera2D/HUD/StockTheMarket/Companies/OctaneButton" to="Camera2D/HUD/StockTheMarket" method="_on_octane_button_toggled"]
 [connection signal="pressed" from="Camera2D/HUD/StockTheMarket/Companies/CloseMarketButton" to="Camera2D/HUD/StockTheMarket" method="_on_close_market_button_pressed"]
+[connection signal="pressed" from="Camera2D/HUD/CraftingPanel/CraftingIconTextureButton" to="Camera2D/HUD/CraftingPanel" method="_on_crafting_icon_texture_button_pressed"]
 [connection signal="input_event" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_input_event"]
 [connection signal="mouse_entered" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="SolarSystem/DeltaBelt/DeltaArea2D" to="." method="_on_delta_area_2d_mouse_exited"]

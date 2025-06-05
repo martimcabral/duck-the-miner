@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/menus/trash_can.png" id="4_oa1go"]
 [ext_resource type="AudioStream" uid="uid://dx8qvewqg7pwy" path="res://sounds/effects/menus/play.ogg" id="5_08a1y"]
 [ext_resource type="Texture2D" uid="uid://nilyubfe1cx1" path="res://rcedit/game_dependency.png" id="7_jk1qb"]
-[ext_resource type="Texture2D" uid="uid://c4cjiuwmued02" path="res://assets/textures/menus/pattern.png" id="8_euy4r"]
+[ext_resource type="Texture2D" uid="uid://c4cjiuwmued02" path="res://assets/textures/menus/fyction_pattern.png" id="8_euy4r"]
 [ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="8_tbmy8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]
@@ -250,7 +250,7 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0blla"]
-bg_color = Color(0, 0, 0, 0.823529)
+bg_color = Color(0, 0, 0, 0.705882)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -273,11 +273,11 @@ bg_color = Color(0.59, 0.59, 0.59, 0)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_50h1w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
-bg_color = Color(0, 0, 0, 0.705882)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+bg_color = Color(0, 0, 0, 0.823529)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
@@ -1449,9 +1449,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_0blla")
 script = ExtResource("3_rtw2f")
 
 [node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu"]
-position = Vector2(0, 94)
+position = Vector2(0, 109.5)
 points = PackedVector2Array(816, 520.5, 3.5, 520.5)
-width = 4.0
+width = 5.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GUI/Center/SaveFilesMenu"]
 layout_mode = 1
@@ -1479,16 +1479,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -58.5
-offset_top = -77.0
+offset_top = -73.0
 offset_right = 89.5
-offset_bottom = 3.0
+offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
 theme_override_colors/font_disabled_color = Color(0.35, 0.35, 0.35, 1)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 disabled = true
 text = "Play"
@@ -1503,10 +1503,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -127.5
-offset_top = -76.5
-offset_right = -52.5
-offset_bottom = 3.5
+offset_left = -127.0
+offset_top = -76.0
+offset_right = -51.9999
+offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
@@ -1526,10 +1526,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -75.5
-offset_top = -80.4999
-offset_right = -58.5
-offset_bottom = -61.4999
+offset_left = -75.0
+offset_top = -77.0001
+offset_right = -58.0
+offset_bottom = -56.0001
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(3.5, 3.5)
@@ -1548,14 +1548,14 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -77.0
+offset_top = -73.0
 offset_right = 211.0
-offset_bottom = 3.0
+offset_bottom = 17.0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
 theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"
 flat = true
@@ -1565,7 +1565,6 @@ wait_time = 0.25
 autostart = true
 
 [node name="SaveScreationPanel" type="Panel" parent="GUI/Center/SaveFilesMenu"]
-visible = false
 layout_mode = 0
 offset_left = 842.0
 offset_top = 173.0
@@ -1681,7 +1680,7 @@ tab_1/title = "Enabled"
 [node name="Line2D" type="Line2D" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
 position = Vector2(-31, 459)
 points = PackedVector2Array(33, -2, 508, -2)
-width = 4.0
+width = 5.0
 
 [node name="CreatorButton" type="Button" parent="GUI/Center/SaveFilesMenu/SaveScreationPanel"]
 layout_mode = 1
@@ -1707,6 +1706,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
 text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
+visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5

@@ -123,9 +123,9 @@ func _ready():
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.visible = true
-	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.visible = true
+	$Camera2D/HUD/CraftingPanel.visible = true
 	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
@@ -193,9 +193,9 @@ func _enter_tree() -> void:
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.modulate.a8 = 0
-	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.modulate.a8 = 0
+	$Camera2D/HUD/CraftingPanel.modulate.a8 = 0
 	target_zoom = $SolarSystem.scale.x
 
 func _process(delta: float) -> void:
@@ -223,9 +223,9 @@ func _process(delta: float) -> void:
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.modulate.a8 = lobby_fade_in
-	$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.modulate.a8 = lobby_fade_in
 	$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.modulate.a8 = lobby_fade_in
+	$Camera2D/HUD/CraftingPanel.modulate.a8 = lobby_fade_in
 	
 	if mission_selected : $Camera2D/HUD/Lobby/InfoPanel/SelectMissionPanel.visible = true
 	
@@ -536,6 +536,7 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
 	$Camera2D/HUD/Lobby/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+	$Camera2D/HUD/CraftingPanel.visible = false
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
@@ -552,7 +553,7 @@ func _on_start_button_pressed() -> void:
 		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = false
 		$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.visible = false
 		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel.visible = false
-		$Camera2D/HUD/Lobby/LobbyPanel/CraftingPanel.visible = false
+		$Camera2D/HUD/CraftingPanel.visible = false
 		$Camera2D/HUD/Lobby/LobbyPanel/SkinSelectionPanel.visible = false
 		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel.visible = false
 		$Camera2D/HUD/Lobby/LoadingPanel.visible = true
@@ -583,6 +584,7 @@ func _on_back_to_lobby_button_pressed() -> void:
 	
 	selecting_mission = false
 	$Camera2D/HUD/Lobby/LobbyPanel.visible = true
+	$Camera2D/HUD/CraftingPanel.visible = true
 	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = false
 	$Camera2D/HUD/Lobby/InfoPanel.visible = false
 	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false
