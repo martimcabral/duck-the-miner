@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m2504lntgh3j"
-path="res://.godot/imported/trash_can_hover.png-093fa13186e5c116651a9726fad3e1da.ctex"
+uid="uid://crh0uu4rkdipy"
+path="res://.godot/imported/trans.png-7ccbf87224ad34a43bcb4533f38e3c9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/menus/trash_can_hover.png"
-dest_files=["res://.godot/imported/trash_can_hover.png-093fa13186e5c116651a9726fad3e1da.ctex"]
+source_file="res://assets/textures/menus/crafting/trans.png"
+dest_files=["res://.godot/imported/trans.png-7ccbf87224ad34a43bcb4533f38e3c9d.ctex"]
 
 [params]
 

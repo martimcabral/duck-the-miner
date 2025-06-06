@@ -207,6 +207,16 @@ func _process(delta: float) -> void:
 	elif current_money < 0:
 		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel/MoneyLabel.text = "Debt: " + update_money(str(current_money)) + " €"
 	
+	if $Camera2D/HUD/Contract/FirstHotbarDropdown.get_item_text($Camera2D/HUD/Contract/FirstHotbarDropdown.selected) == "Nothing" \
+		and $Camera2D/HUD/Contract/SecondHotbarDropdown.get_item_text($Camera2D/HUD/Contract/SecondHotbarDropdown.selected) == "Nothing" \
+		and $Camera2D/HUD/Contract/ThirdHotbarDropdown.get_item_text($Camera2D/HUD/Contract/ThirdHotbarDropdown.selected) == "Nothing" \
+		and $Camera2D/HUD/Contract/FourthHotbarDropdown.get_item_text($Camera2D/HUD/Contract/FourthHotbarDropdown.selected) == "Nothing":
+			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = true
+			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.tooltip_text = "No Item selected"
+	else:
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
+		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.tooltip_text = ""
+	
 	if selecting_mission:
 		$UniverseBackground.position = get_global_mouse_position() * 0.01 - Vector2(1500, 1500)
 	
@@ -533,10 +543,10 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = true
 	$Camera2D/HUD/Lobby/InfoPanel.visible = true
 	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = true
+	$Camera2D/HUD/CraftingPanel.visible = false
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
 	$Camera2D/HUD/Lobby/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
-	$Camera2D/HUD/CraftingPanel.visible = false
 
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
@@ -593,6 +603,7 @@ func _on_back_to_lobby_button_pressed() -> void:
 func _select_mission_button_info_panel_pressed() -> void:
 	selecting_mission = false
 	$Camera2D/HUD/Lobby/LobbyPanel.visible = true
+	$Camera2D/HUD/CraftingPanel.visible = true
 	$Camera2D/HUD/Lobby/BackToLobbyButton.visible = false
 	$Camera2D/HUD/Lobby/InfoPanel.visible = false
 	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false

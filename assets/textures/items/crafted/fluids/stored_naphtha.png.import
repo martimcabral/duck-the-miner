@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pxn7lq44sxty"
-path="res://.godot/imported/crafting_off.png-5b65a86f8d986d305cf4758fe3372225.ctex"
+uid="uid://bb1i1em8dxw2v"
+path="res://.godot/imported/stored_naphtha.png-d8d7d386f805f80d32949df151f1017c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/menus/crafting_off.png"
-dest_files=["res://.godot/imported/crafting_off.png-5b65a86f8d986d305cf4758fe3372225.ctex"]
+source_file="res://assets/textures/items/crafted/fluids/stored_naphtha.png"
+dest_files=["res://.godot/imported/stored_naphtha.png-d8d7d386f805f80d32949df151f1017c.ctex"]
 
 [params]
 

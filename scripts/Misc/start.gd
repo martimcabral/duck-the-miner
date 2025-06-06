@@ -73,9 +73,9 @@ func _ready() -> void:
 	var random_player = randi_range(1, 2)
 	match random_player:
 		1:
-			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/menus/main_menu_up.png")
+			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/menus/main_menu/main_menu_up.png")
 		2:
-			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/menus/main_menu_down.png")
+			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/menus/main_menu/main_menu_down.png")
 	
 	var random_side = randi_range(1, 2)
 	if random_side == 1:

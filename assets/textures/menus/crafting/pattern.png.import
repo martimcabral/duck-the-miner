@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4cjiuwmued02"
-path="res://.godot/imported/fyction_pattern.png-e8f693722b01d54da5b5c5bd1f4866d4.ctex"
+uid="uid://c6141pkc0mr67"
+path="res://.godot/imported/pattern.png-8b129ecd671be5d2061308edeef76e29.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/menus/fyction_pattern.png"
-dest_files=["res://.godot/imported/fyction_pattern.png-e8f693722b01d54da5b5c5bd1f4866d4.ctex"]
+source_file="res://assets/textures/menus/crafting/pattern.png"
+dest_files=["res://.godot/imported/pattern.png-8b129ecd671be5d2061308edeef76e29.ctex"]
 
 [params]
 

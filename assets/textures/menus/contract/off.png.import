@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccovw7201b8cq"
-path="res://.godot/imported/rubber.png-c1c765d5c2b61ba94cf7ee0605a74fe8.ctex"
+uid="uid://dy0oitwfo6rg5"
+path="res://.godot/imported/off.png-0becf166c084c96fc9e6193d9a0a008b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/menus/rubber.png"
-dest_files=["res://.godot/imported/rubber.png-c1c765d5c2b61ba94cf7ee0605a74fe8.ctex"]
+source_file="res://assets/textures/menus/contract/off.png"
+dest_files=["res://.godot/imported/off.png-0becf166c084c96fc9e6193d9a0a008b.ctex"]
 
 [params]
 

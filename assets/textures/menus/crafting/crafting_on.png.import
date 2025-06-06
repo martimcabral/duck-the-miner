@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgukd0s6bgki3"
-path="res://.godot/imported/yes.png-b8cb6f0b828b4aff4a5a380275693add.ctex"
+uid="uid://dk6uh5hhjh6en"
+path="res://.godot/imported/crafting_on.png-a44f75c124f1d6cc54eec6a5e1f2487c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/menus/yes.png"
-dest_files=["res://.godot/imported/yes.png-b8cb6f0b828b4aff4a5a380275693add.ctex"]
+source_file="res://assets/textures/menus/crafting/crafting_on.png"
+dest_files=["res://.godot/imported/crafting_on.png-a44f75c124f1d6cc54eec6a5e1f2487c.ctex"]
 
 [params]
 

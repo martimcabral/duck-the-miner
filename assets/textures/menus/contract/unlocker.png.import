@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy0oitwfo6rg5"
-path="res://.godot/imported/off.png-fae389f1fb7172b3ed75699244ccb8c0.ctex"
+uid="uid://e6h0nycb644p"
+path="res://.godot/imported/unlocker.png-c5ccd8cdce94b12418d6bda406fec047.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/menus/off.png"
-dest_files=["res://.godot/imported/off.png-fae389f1fb7172b3ed75699244ccb8c0.ctex"]
+source_file="res://assets/textures/menus/contract/unlocker.png"
+dest_files=["res://.godot/imported/unlocker.png-c5ccd8cdce94b12418d6bda406fec047.ctex"]
 
 [params]
 

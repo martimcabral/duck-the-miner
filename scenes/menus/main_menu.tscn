@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://bsjsgdqygu8x5" path="res://scripts/Menus/main_menu_panel.gd" id="2_y368m"]
 [ext_resource type="Script" uid="uid://bbygtdu0v3de8" path="res://scripts/Menus/save_files_menu.gd" id="3_rtw2f"]
 [ext_resource type="Script" uid="uid://dt2nt4vg6abkt" path="res://scripts/Menus/Options/options_menu.gd" id="3_vt73r"]
-[ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/menus/trash_can.png" id="4_oa1go"]
+[ext_resource type="Texture2D" uid="uid://xf3xo3m4uk3c" path="res://assets/textures/menus/main_menu/trash_can.png" id="4_oa1go"]
 [ext_resource type="AudioStream" uid="uid://dx8qvewqg7pwy" path="res://sounds/effects/menus/play.ogg" id="5_08a1y"]
 [ext_resource type="Texture2D" uid="uid://nilyubfe1cx1" path="res://rcedit/game_dependency.png" id="7_jk1qb"]
-[ext_resource type="Texture2D" uid="uid://c4cjiuwmued02" path="res://assets/textures/menus/fyction_pattern.png" id="8_euy4r"]
+[ext_resource type="Texture2D" uid="uid://c4cjiuwmued02" path="res://assets/textures/menus/main_menu/fyction_pattern.png" id="8_euy4r"]
 [ext_resource type="Shader" uid="uid://bbb6cu3c00o7i" path="res://scripts/Shaders/colorblindness.gdshader" id="8_tbmy8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jk1qb"]

@@ -41,8 +41,8 @@ var FlashlightTexture : Texture = load("res://assets/textures/items/equipment/fl
 var RadarTheToolTexture : Texture = load("res://assets/textures/items/equipment/radar_the_tool.png")
 var RadarTheEnemiesTexture : Texture = load("res://assets/textures/items/equipment/radar_the_enemies.png")
 
-@onready var yes_sign : Texture = preload("res://assets/textures/menus/yes.png")
-@onready var blocked_sign : Texture = preload("res://assets/textures/menus/blocked.png")
+@onready var yes_sign : Texture = preload("res://assets/textures/menus/contract/yes.png")
+@onready var blocked_sign : Texture = preload("res://assets/textures/menus/contract/blocked.png")
 
 func _ready() -> void:
 	$ScrollContainer.scroll_vertical = 0
@@ -99,27 +99,27 @@ func _ready() -> void:
 	
 	for levels in maximum_health_levels:
 		var new_slot := TextureRect.new()
-		new_slot.texture = load("res://assets/textures/menus/off.png")
+		new_slot.texture = load("res://assets/textures/menus/contract/off.png")
 		HealthUpgradeSlots.add_child(new_slot)
 	
 	for levels in maximum_oxygen_levels:
 		var new_slot := TextureRect.new()
-		new_slot.texture = load("res://assets/textures/menus/off.png")
+		new_slot.texture = load("res://assets/textures/menus/contract/off.png")
 		OxygenUpgradeSlots.add_child(new_slot)
 	
 	for levels in maximum_battery_levels:
 		var new_slot := TextureRect.new()
-		new_slot.texture = load("res://assets/textures/menus/off.png")
+		new_slot.texture = load("res://assets/textures/menus/contract/off.png")
 		BatteryUpgradeSlots.add_child(new_slot)
 	
 	for levels in maximum_sword_levels:
 		var new_slot := TextureRect.new()
-		new_slot.texture = load("res://assets/textures/menus/off.png")
+		new_slot.texture = load("res://assets/textures/menus/contract/off.png")
 		SwordUpgradeSlots.add_child(new_slot)
 		
 	for levels in maximum_pickaxe_levels:
 		var new_slot := TextureRect.new()
-		new_slot.texture = load("res://assets/textures/menus/off.png")
+		new_slot.texture = load("res://assets/textures/menus/contract/off.png")
 		PickaxeUpgradeSlots.add_child(new_slot)
 	
 	update_status_pips()
@@ -158,19 +158,19 @@ func update_status_pips():
 	if current_pickaxe_levels >= maximum_pickaxe_levels: $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Tools/Pickaxe/UpgradeButton.visible = false
 	
 	for i in range(0, current_health_levels):
-		HealthUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+		HealthUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/contract/on.png")
 	
 	for i in range(0, current_oxygen_levels):
-		OxygenUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+		OxygenUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/contract/on.png")
 	
 	for i in range(0, current_battery_levels):
-		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+		BatteryUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/contract/on.png")
 	
 	for i in range(0, current_sword_levels):
-		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+		SwordUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/contract/on.png")
 	
 	for i in range(0, current_pickaxe_levels):
-		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/on.png")
+		PickaxeUpgradeSlots.get_child(i).texture = load("res://assets/textures/menus/contract/on.png")
 
 ################################################################################
 
