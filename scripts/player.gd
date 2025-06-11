@@ -571,12 +571,12 @@ func get_control_to_labelization():
 	settings_config.load(settings_path)
 	if settings_config.get_value("accessibility", "show_controls") == true:
 		match current_item:
-			"Sword": ItemKeyLabel.text = "Use Sword   "; KeyLabel.text = settings_config.get_value("controls", "Destroy_Block")
-			"Pickaxe": ItemKeyLabel.text = "Use Pickaxe   "; KeyLabel.text = settings_config.get_value("controls", "Destroy_Block")
-			"Light": ItemKeyLabel.text = "Use Light   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
-			"UV Flashlight": ItemKeyLabel.text = "Use UV Flashlight   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
-			"Radar the Tool": ItemKeyLabel.text = "Use Radar the Tool   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
-			"Radar the Enemies": ItemKeyLabel.text = "Use Radar the Enemies   "; KeyLabel.text = settings_config.get_value("controls", "Use_Item")
+			"Sword": ItemKeyLabel.text = "Use Sword   \nWalk/Fly"; KeyLabel.text = str(settings_config.get_value("controls", "Destroy_Block"), "\nW, A, S, D")
+			"Pickaxe": ItemKeyLabel.text = "Use Pickaxe   \nWalk/Fly"; KeyLabel.text = str(settings_config.get_value("controls", "Destroy_Block"), "\nW, A, S, D")
+			"Light": ItemKeyLabel.text = "Use Light   \nWalk/Fly"; KeyLabel.text = str(settings_config.get_value("controls", "Use_Item"), "\nW, A, S, D")
+			"UV Flashlight": ItemKeyLabel.text = "Use UV Flashlight   \nWalk/Fly"; KeyLabel.text = str(settings_config.get_value("controls", "Use_Item"), "\nW, A, S, D")
+			"Radar the Tool": ItemKeyLabel.text = "Use Radar the Tool   \nWalk/Fly"; KeyLabel.text = str(settings_config.get_value("controls", "Use_Item"), "\nW, A, S, D")
+			"Radar the Enemies": ItemKeyLabel.text = "Use Radar the Enemies   \nWalk/Fly"; KeyLabel.text = str(settings_config.get_value("controls", "Use_Item"), "\nW, A, S, D")
 	else:
 		$Camera2D/HUD/ShowControls.visible = false
 

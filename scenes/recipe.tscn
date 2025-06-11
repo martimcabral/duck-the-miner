@@ -1,14 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://jp5w8jprwi0p"]
+[gd_scene load_steps=10 format=3 uid="uid://jp5w8jprwi0p"]
 
+[ext_resource type="Texture2D" uid="uid://cy0rye4s2lu4y" path="res://assets/textures/menus/null.png" id="1_hjd8l"]
 [ext_resource type="Script" uid="uid://bn2vv3v8yn5x2" path="res://scripts/recipe.gd" id="2_5noku"]
+[ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="3_6pfy3"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5noku"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_onnga"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4eax"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjd8l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pfy3"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.698039, 0.133333, 0.133333, 1)
+corner_radius_top_left = 38
+corner_radius_top_right = 38
+corner_radius_bottom_right = 38
+corner_radius_bottom_left = 38
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmifw"]
 bg_color = Color(0, 0, 0, 0.564706)
@@ -22,29 +28,81 @@ corner_radius_top_right = 38
 corner_radius_bottom_right = 38
 corner_radius_bottom_left = 38
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5noku"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 38
+corner_radius_top_right = 38
+corner_radius_bottom_right = 38
+corner_radius_bottom_left = 38
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onnga"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.698039, 0.133333, 0.133333, 1)
+corner_radius_top_left = 38
+corner_radius_top_right = 38
+corner_radius_bottom_right = 38
+corner_radius_bottom_left = 38
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hjd8l"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.698039, 0.133333, 0.133333, 1)
+corner_radius_top_left = 38
+corner_radius_top_right = 38
+corner_radius_bottom_right = 38
+corner_radius_bottom_left = 38
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4eax"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
 bg_color = Color(0, 0, 0, 0.784314)
 border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
 border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="RecipeButton" type="Button" groups=["Buttons", "Recipe"]]
-offset_right = 80.0
-offset_bottom = 80.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_5noku")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_onnga")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_d4eax")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_hjd8l")
-theme_override_styles/normal = SubResource("StyleBoxFlat_pmifw")
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_styles/focus = SubResource("StyleBoxFlat_6pfy3")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pmifw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5noku")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_onnga")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hjd8l")
+icon = ExtResource("1_hjd8l")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_5noku")
+drag_on_editor = null
+new_resource_texture = ExtResource("1_hjd8l")
+alt_resource_texture = ExtResource("1_hjd8l")
+ingredient_1 = null
+texture_1 = ExtResource("1_hjd8l")
+ingredient_2 = null
+texture_2 = ExtResource("1_hjd8l")
+ingredient_3 = null
+texture_3 = ExtResource("1_hjd8l")
+ingredient_4 = null
+texture_4 = ExtResource("1_hjd8l")
 
 [node name="AlternativeResource" type="TextureRect" parent="."]
 layout_mode = 1
@@ -59,8 +117,9 @@ offset_right = -7.0
 offset_bottom = -4.0
 grow_horizontal = 0
 grow_vertical = 0
+texture = ExtResource("1_hjd8l")
 
-[node name="RecipeTooltip" type="Panel" parent="."]
+[node name="RecipeTooltip" type="PanelContainer" parent="."]
 z_index = 200
 layout_mode = 1
 anchors_preset = 7
@@ -68,48 +127,120 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -259.0
-offset_top = 14.0
-offset_right = 260.0
-offset_bottom = 327.0
+offset_left = 432.0
+offset_top = 273.0
+offset_right = 872.0
+offset_bottom = 544.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_d4eax")
 
 [node name="Label" type="Label" parent="RecipeTooltip"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -168.5
-offset_top = 16.0
-offset_right = 168.5
-offset_bottom = 48.0
-grow_horizontal = 2
+layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 32
-text = "aaaaaaaaaaaaaaa"
+text = "Ice"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RecipeTooltip"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="RecipeList" type="VBoxContainer" parent="RecipeTooltip"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RecipeTooltip/VBoxContainer"]
+[node name="TopGap" type="Label" parent="RecipeTooltip/RecipeList"]
+layout_mode = 2
+text = "
+"
+
+[node name="ItemsDeCima" type="HBoxContainer" parent="RecipeTooltip/RecipeList"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Item1" type="VBoxContainer" parent="RecipeTooltip/RecipeList/ItemsDeCima"]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="RecipeTooltip/VBoxContainer"]
+[node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item1"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_6pfy3")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item1"]
+z_index = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Ice x10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Item2" type="VBoxContainer" parent="RecipeTooltip/RecipeList/ItemsDeCima"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_6pfy3")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item2"]
+z_index = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Ice x10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ItemsDeBaixo" type="HBoxContainer" parent="RecipeTooltip/RecipeList"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Item1" type="VBoxContainer" parent="RecipeTooltip/RecipeList/ItemsDeBaixo"]
+layout_mode = 2
+
+[node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item1"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_6pfy3")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item1"]
+z_index = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Ice x10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Item2" type="VBoxContainer" parent="RecipeTooltip/RecipeList/ItemsDeBaixo"]
+layout_mode = 2
+
+[node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_6pfy3")
+stretch_mode = 5
+
+[node name="label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item2"]
+z_index = 1
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Ice x10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BottomGap" type="Label" parent="RecipeTooltip/RecipeList"]
 layout_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
