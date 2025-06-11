@@ -1,10 +1,6 @@
 @tool
 extends Button
 
-
-@export_category("Button Status")
-@export var drag_on_editor : bool = true
-
 enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem}
 @export_category("Button Status")
 @export var button_status : bool = false
@@ -54,6 +50,8 @@ func _ready() -> void:
 	self.icon = new_resource_texture
 	$AlternativeResource.texture = alt_resource_texture
 	$RecipeTooltip/Label.text = str(new_resource_name, " x", new_resource_amount, " ", alt_resource_name)
+	$RecipeTooltip.visible = false
+	
 	if ingredient_1 == true: add_item(1, "Top")
 	else: remove_item(1)
 	if ingredient_2 == true: add_item(2, "Top")
@@ -71,12 +69,13 @@ func add_item(SlotNumber, SlotDirection):
 		"Bottom": match SlotNumber:
 			1: Ingredient_3_Texture.texture = texture_3; Ingredient_3_Label.text = str(name_3, " (x", amount_3, ")")
 			2: Ingredient_4_Texture.texture = texture_4; Ingredient_4_Label.text = str(name_4, " (x", amount_4, ")")
+
 func remove_item(SlotNumber):
 	match SlotNumber:
-		1: $RecipeTooltip/RecipeList/ItemsDeCima.remove_child(Ingredient_1_Texture)
-		2: $RecipeTooltip/RecipeList/ItemsDeCima.remove_child(Ingredient_2_Texture)
-		3: $RecipeTooltip/RecipeList/ItemsDeBaixo.remove_child(Ingredient_3_Texture)
-		4: $RecipeTooltip/RecipeList/ItemsDeBaixo.remove_child(Ingredient_4_Texture)
+		1: $RecipeTooltip/RecipeList/ItemsDeCima/Item1.queue_free()
+		2: $RecipeTooltip/RecipeList/ItemsDeCima/Item2.queue_free()
+		3: $RecipeTooltip/RecipeList/ItemsDeBaixo/Item1.queue_free()
+		4: $RecipeTooltip/RecipeList/ItemsDeBaixo/Item2.queue_free()
 
 func _process(delta):
 	$RecipeTooltip.position = get_local_mouse_position() + Vector2(15, 35) 

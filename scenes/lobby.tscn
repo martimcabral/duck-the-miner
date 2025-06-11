@@ -3373,7 +3373,6 @@ offset_right = 96.0
 offset_bottom = 96.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_s0n6j")
 icon = ExtResource("34_4pkyx")
-drag_on_editor = true
 button_type = 3
 new_resource_texture = ExtResource("34_4pkyx")
 new_resource_name = "Water"
@@ -3384,9 +3383,6 @@ ingredient_1 = true
 name_1 = "Ice"
 amount_1 = 5
 texture_1 = ExtResource("35_rievh")
-ingredient_2 = false
-ingredient_3 = false
-ingredient_4 = false
 
 [node name="WaterCondensedIceRecipe2" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
@@ -3395,7 +3391,6 @@ offset_top = 120.0
 offset_right = 96.0
 offset_bottom = 200.0
 icon = ExtResource("34_4pkyx")
-drag_on_editor = true
 button_type = 3
 new_resource_texture = ExtResource("34_4pkyx")
 new_resource_name = "Water"
@@ -3406,9 +3401,6 @@ ingredient_1 = true
 name_1 = "Condensed Ice"
 amount_1 = 5
 texture_1 = ExtResource("36_olier")
-ingredient_2 = false
-ingredient_3 = false
-ingredient_4 = false
 
 [node name="Teste" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
@@ -3417,7 +3409,6 @@ offset_top = 224.0
 offset_right = 96.0
 offset_bottom = 304.0
 icon = ExtResource("37_l7nca")
-drag_on_editor = true
 button_type = 3
 new_resource_texture = ExtResource("37_l7nca")
 new_resource_name = "Uranio Gostoso"
