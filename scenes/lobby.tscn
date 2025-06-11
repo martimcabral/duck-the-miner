@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=168 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -61,8 +61,12 @@
 [ext_resource type="Texture2D" uid="uid://6hh31hvrlif1" path="res://assets/textures/universe/orbits_and_fields/omega_field.png" id="31_832n6"]
 [ext_resource type="Texture2D" uid="uid://jpso7114bjcv" path="res://assets/textures/menus/crafting/fluids_refining.png" id="31_olier"]
 [ext_resource type="Texture2D" uid="uid://chnbutj6hhuqx" path="res://assets/textures/menus/crafting/advanced_crafting.png" id="32_5jb2g"]
+[ext_resource type="PackedScene" uid="uid://jp5w8jprwi0p" path="res://scenes/recipe.tscn" id="33_4pkyx"]
 [ext_resource type="Texture2D" uid="uid://cfx0wv46xknvr" path="res://assets/textures/menus/crafting/gem.png" id="33_oysm8"]
+[ext_resource type="Texture2D" uid="uid://gqnojqvdm4h3" path="res://assets/textures/items/crafted/fluids/water.png" id="34_4pkyx"]
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/koppa_belt.png" id="34_qqdto"]
+[ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="35_rievh"]
+[ext_resource type="Texture2D" uid="uid://xna5mu6wa3xh" path="res://assets/textures/items/ores/dense_ice.png" id="36_olier"]
 [ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/menus/cheat_menu.tscn" id="39_8tmsf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7rn74"]
@@ -1118,6 +1122,8 @@ border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 24
 corner_radius_bottom_left = 24
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3y5sy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_30fw8"]
 
@@ -3009,10 +3015,8 @@ z_index = 5
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1071.0
-offset_top = 34.0
-offset_right = -581.0
-offset_bottom = 354.0
+offset_left = -1920.0
+offset_bottom = 1080.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ph747")
 script = ExtResource("24_ph747")
@@ -3077,15 +3081,14 @@ text = "X"
 visible = false
 layout_mode = 2
 anchors_preset = 0
-offset_left = -1920.0
-offset_right = -1438.0
+offset_right = 482.0
 offset_bottom = 312.0
 
 [node name="WarningPattern" type="TextureRect" parent="Camera2D/HUD/CraftingPanel/Navbar"]
 layout_mode = 0
-offset_left = 302.0
+offset_left = 301.0
 offset_top = 4.0
-offset_right = 330.0
+offset_right = 329.0
 offset_bottom = 1076.0
 texture = ExtResource("27_yb58j")
 expand_mode = 1
@@ -3258,6 +3261,44 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Gem Polishing"
 
+[node name="Recipes" type="Control" parent="Camera2D/HUD/CraftingPanel"]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 77.0
+offset_right = 400.0
+offset_bottom = 117.0
+
+[node name="RecipePanel" type="Panel" parent="Camera2D/HUD/CraftingPanel/Recipes"]
+layout_mode = 0
+offset_right = 433.0
+offset_bottom = 377.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3y5sy")
+
+[node name="WaterIceRecipe" parent="Camera2D/HUD/CraftingPanel/Recipes/RecipePanel" instance=ExtResource("33_4pkyx")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 96.0
+offset_bottom = 96.0
+icon = ExtResource("34_4pkyx")
+new_resource_texture = ExtResource("34_4pkyx")
+new_resource_name = "Water"
+new_resource_amount = 10
+alt_resource_texture = ExtResource("35_rievh")
+alt_resource_name = "(Ice)"
+
+[node name="WaterCondensedIceRecipe2" parent="Camera2D/HUD/CraftingPanel/Recipes/RecipePanel" instance=ExtResource("33_4pkyx")]
+offset_left = 16.0
+offset_top = 120.0
+offset_right = 96.0
+offset_bottom = 200.0
+icon = ExtResource("34_4pkyx")
+new_resource_texture = ExtResource("34_4pkyx")
+new_resource_name = "Water"
+new_resource_amount = 40
+alt_resource_texture = ExtResource("36_olier")
+alt_resource_name = "(Condensed Ice)"
+
 [node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
 visible = false
 anchors_preset = 8
@@ -3281,6 +3322,7 @@ parameters/looping = true
 bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
+visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
@@ -3800,6 +3842,7 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
+visible = false
 z_index = -2
 material = SubResource("ShaderMaterial_30fw8")
 anchors_preset = 8

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb1i1em8dxw2v"
-path="res://.godot/imported/stored_naphtha.png-d8d7d386f805f80d32949df151f1017c.ctex"
+uid="uid://dppvwjrb305e3"
+path="res://.godot/imported/engine_fuel.png-d796a5a8342ced640503583e2d0ff7ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/stored_naphtha.png"
-dest_files=["res://.godot/imported/stored_naphtha.png-d8d7d386f805f80d32949df151f1017c.ctex"]
+source_file="res://assets/textures/items/crafted/fluids/engine_fuel.png"
+dest_files=["res://.godot/imported/engine_fuel.png-d796a5a8342ced640503583e2d0ff7ef.ctex"]
 
 [params]
 

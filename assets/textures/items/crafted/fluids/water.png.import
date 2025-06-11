@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dypokuju0igqj"
-path="res://.godot/imported/stored_sulfuric_acid.png-a615b6519b28c9eea575b25c32c98567.ctex"
+uid="uid://gqnojqvdm4h3"
+path="res://.godot/imported/water.png-bbfa079831cb551fbe767c6f74766377.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/stored_sulfuric_acid.png"
-dest_files=["res://.godot/imported/stored_sulfuric_acid.png-a615b6519b28c9eea575b25c32c98567.ctex"]
+source_file="res://assets/textures/items/crafted/fluids/water.png"
+dest_files=["res://.godot/imported/water.png-bbfa079831cb551fbe767c6f74766377.ctex"]
 
 [params]
 

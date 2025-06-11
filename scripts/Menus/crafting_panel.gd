@@ -45,3 +45,9 @@ func make_other_buttons_label_black():
 	$Navbar/Icons/FluidsRefiningButton/Label.add_theme_color_override("font_color", Color.BLACK)
 	$Navbar/Icons/AdvancedCraftingButton/Label.add_theme_color_override("font_color", Color.BLACK)
 	$Navbar/Icons/GemPolishingButton/Label.add_theme_color_override("font_color", Color.BLACK)
+
+func hide_all_recipes():
+	for recipe in get_children():
+		if recipe.is_in_group("Recipe"):
+			print("a")
+		

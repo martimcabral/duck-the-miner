@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://jp5w8jprwi0p"]
+
+[ext_resource type="Script" uid="uid://bn2vv3v8yn5x2" path="res://scripts/recipe.gd" id="2_5noku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5noku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_onnga"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4eax"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjd8l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmifw"]
+bg_color = Color(0, 0, 0, 0.564706)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.698039, 0.133333, 0.133333, 1)
+corner_radius_top_left = 38
+corner_radius_top_right = 38
+corner_radius_bottom_right = 38
+corner_radius_bottom_left = 38
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4eax"]
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[node name="RecipeButton" type="Button" groups=["Buttons", "Recipe"]]
+offset_right = 80.0
+offset_bottom = 80.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5noku")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_onnga")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_d4eax")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hjd8l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_pmifw")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_5noku")
+
+[node name="AlternativeResource" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = -36.0
+offset_right = -7.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RecipeTooltip" type="Panel" parent="."]
+z_index = 200
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -259.0
+offset_top = 14.0
+offset_right = 260.0
+offset_bottom = 327.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_d4eax")
+
+[node name="Label" type="Label" parent="RecipeTooltip"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.5
+offset_top = 16.0
+offset_right = 168.5
+offset_bottom = 48.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "aaaaaaaaaaaaaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RecipeTooltip"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RecipeTooltip/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RecipeTooltip/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

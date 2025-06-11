@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gqnojqvdm4h3"
-path="res://.godot/imported/stored_water.png-bf3414332bd16699cbeac8a1bd73ae53.ctex"
+uid="uid://b33ahyjt8e5wq"
+path="res://.godot/imported/nitric_acid.png-a5289f1e908d54e277165fccb76e38a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/stored_water.png"
-dest_files=["res://.godot/imported/stored_water.png-bf3414332bd16699cbeac8a1bd73ae53.ctex"]
+source_file="res://assets/textures/items/crafted/fluids/nitric_acid.png"
+dest_files=["res://.godot/imported/nitric_acid.png-a5289f1e908d54e277165fccb76e38a9.ctex"]
 
 [params]
 

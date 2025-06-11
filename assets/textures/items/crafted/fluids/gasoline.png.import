@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dppvwjrb305e3"
-path="res://.godot/imported/stored_fuel.png-b8483b595b63ddf223dd684ac8dd58da.ctex"
+uid="uid://byh6kamsva4cf"
+path="res://.godot/imported/gasoline.png-b31317d69c469e0803328e07cef92913.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/stored_fuel.png"
-dest_files=["res://.godot/imported/stored_fuel.png-b8483b595b63ddf223dd684ac8dd58da.ctex"]
+source_file="res://assets/textures/items/crafted/fluids/gasoline.png"
+dest_files=["res://.godot/imported/gasoline.png-b31317d69c469e0803328e07cef92913.ctex"]
 
 [params]
 
