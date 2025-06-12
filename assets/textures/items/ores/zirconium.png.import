@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g4baqgfsmkv6"
-path="res://.godot/imported/raw_iron.png-662f70b08bbe6348d183f3cd80f7cd05.ctex"
+uid="uid://cu3ctfwj0wblm"
+path="res://.godot/imported/zirconium.png-d9d6289124497dd041ecf9899d252f06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_iron.png"
-dest_files=["res://.godot/imported/raw_iron.png-662f70b08bbe6348d183f3cd80f7cd05.ctex"]
+source_file="res://assets/textures/items/ores/zirconium.png"
+dest_files=["res://.godot/imported/zirconium.png-d9d6289124497dd041ecf9899d252f06.ctex"]
 
 [params]
 

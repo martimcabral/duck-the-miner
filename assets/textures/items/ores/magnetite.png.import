@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gmv7crja63oe"
-path="res://.godot/imported/raw_scheelite.png-29896e9885875647096a6233e5084bdc.ctex"
+uid="uid://irl63q53jknh"
+path="res://.godot/imported/magnetite.png-bc739807e4e60e13b918fdda2959d196.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_scheelite.png"
-dest_files=["res://.godot/imported/raw_scheelite.png-29896e9885875647096a6233e5084bdc.ctex"]
+source_file="res://assets/textures/items/ores/magnetite.png"
+dest_files=["res://.godot/imported/magnetite.png-bc739807e4e60e13b918fdda2959d196.ctex"]
 
 [params]
 

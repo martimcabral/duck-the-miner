@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmyqahldyiwyf"
-path="res://.godot/imported/raw_nickel.png-07a22608424985f5b91d4f4f21f51215.ctex"
+uid="uid://dah8stcbfbhmp"
+path="res://.godot/imported/cobalt.png-656915ef63309b7d01af9c78eb57d60a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_nickel.png"
-dest_files=["res://.godot/imported/raw_nickel.png-07a22608424985f5b91d4f4f21f51215.ctex"]
+source_file="res://assets/textures/items/ores/cobalt.png"
+dest_files=["res://.godot/imported/cobalt.png-656915ef63309b7d01af9c78eb57d60a.ctex"]
 
 [params]
 

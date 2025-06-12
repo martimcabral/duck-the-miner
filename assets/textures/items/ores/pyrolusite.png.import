@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d255msdu3whk6"
-path="res://.godot/imported/raw_pyrolusite.png-c177c9dba3864f5addf533d33b4c1a3e.ctex"
+path="res://.godot/imported/pyrolusite.png-f9c8612530caf95efc9d229e6c94702d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_pyrolusite.png"
-dest_files=["res://.godot/imported/raw_pyrolusite.png-c177c9dba3864f5addf533d33b4c1a3e.ctex"]
+source_file="res://assets/textures/items/ores/pyrolusite.png"
+dest_files=["res://.godot/imported/pyrolusite.png-f9c8612530caf95efc9d229e6c94702d.ctex"]
 
 [params]
 

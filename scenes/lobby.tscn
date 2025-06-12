@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=171 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -67,12 +67,9 @@
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/koppa_belt.png" id="34_qqdto"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="35_rievh"]
 [ext_resource type="Texture2D" uid="uid://xna5mu6wa3xh" path="res://assets/textures/items/ores/dense_ice.png" id="36_olier"]
-[ext_resource type="Texture2D" uid="uid://dfsvjw62rapgp" path="res://assets/textures/items/ores/raw_uranium.png" id="37_l7nca"]
-[ext_resource type="Texture2D" uid="uid://b0c60vx8tpgu5" path="res://assets/textures/items/ores/hematite.png" id="38_vfec7"]
 [ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/menus/cheat_menu.tscn" id="39_8tmsf"]
-[ext_resource type="Texture2D" uid="uid://w0jorqmk5pnh" path="res://assets/textures/items/ores/raw_gold.png" id="39_yf42k"]
-[ext_resource type="Texture2D" uid="uid://g4baqgfsmkv6" path="res://assets/textures/items/ores/raw_iron.png" id="40_v63ud"]
-[ext_resource type="Texture2D" uid="uid://d255msdu3whk6" path="res://assets/textures/items/ores/raw_pyrolusite.png" id="41_sy4be"]
+[ext_resource type="Texture2D" uid="uid://dypokuju0igqj" path="res://assets/textures/items/crafted/fluids/sulfuric_acid.png" id="42_yf42k"]
+[ext_resource type="Texture2D" uid="uid://bnpcuukfkoims" path="res://assets/textures/items/ores/sulfur.png" id="43_v63ud"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7rn74"]
 shader = ExtResource("2_gxh4y")
@@ -3104,8 +3101,10 @@ z_index = 5
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1920.0
-offset_bottom = 1080.0
+offset_left = -1071.0
+offset_top = 34.0
+offset_right = -581.0
+offset_bottom = 354.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ph747")
 script = ExtResource("24_ph747")
@@ -3170,7 +3169,8 @@ text = "X"
 visible = false
 layout_mode = 2
 anchors_preset = 0
-offset_right = 482.0
+offset_left = -1920.0
+offset_right = -1438.0
 offset_bottom = 312.0
 
 [node name="WarningPattern" type="TextureRect" parent="Camera2D/HUD/CraftingPanel/Navbar"]
@@ -3365,12 +3365,22 @@ offset_right = 1510.0
 offset_bottom = 961.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y5sy")
 
+[node name="WaterLabel" type="Label" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes"]
+editor_description = "3"
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 32
+text = "Water"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="WaterIceRecipe" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_left = 8.0
+offset_top = 35.0
+offset_right = 88.0
+offset_bottom = 115.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_s0n6j")
 icon = ExtResource("34_4pkyx")
 button_type = 3
@@ -3386,10 +3396,10 @@ texture_1 = ExtResource("35_rievh")
 
 [node name="WaterCondensedIceRecipe2" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 120.0
-offset_right = 96.0
-offset_bottom = 200.0
+offset_left = 8.0
+offset_top = 123.0
+offset_right = 88.0
+offset_bottom = 203.0
 icon = ExtResource("34_4pkyx")
 button_type = 3
 new_resource_texture = ExtResource("34_4pkyx")
@@ -3402,33 +3412,36 @@ name_1 = "Condensed Ice"
 amount_1 = 5
 texture_1 = ExtResource("36_olier")
 
-[node name="Teste" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
+[node name="Sulfur" type="Label" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes"]
+editor_description = "3"
 layout_mode = 0
-offset_left = 16.0
-offset_top = 224.0
-offset_right = 96.0
-offset_bottom = 304.0
-icon = ExtResource("37_l7nca")
+offset_top = 219.0
+offset_right = 104.0
+offset_bottom = 251.0
+theme_override_font_sizes/font_size = 32
+text = "Sulfur"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SulfuricAcid" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 254.0
+offset_right = 88.0
+offset_bottom = 334.0
+icon = ExtResource("42_yf42k")
 button_type = 3
-new_resource_texture = ExtResource("37_l7nca")
-new_resource_name = "Uranio Gostoso"
-new_resource_amount = 20
+new_resource_texture = ExtResource("42_yf42k")
+new_resource_name = "Sulfuric Acid"
+new_resource_amount = 10
 ingredient_1 = true
-name_1 = "Hematite"
-amount_1 = 20
-texture_1 = ExtResource("38_vfec7")
+name_1 = "Water"
+amount_1 = 15
+texture_1 = ExtResource("34_4pkyx")
 ingredient_2 = true
-name_2 = "Raw Gold"
-amount_2 = 30
-texture_2 = ExtResource("39_yf42k")
-ingredient_3 = true
-name_3 = "Raw Iron"
-amount_3 = 40
-texture_3 = ExtResource("40_v63ud")
-ingredient_4 = true
-name_4 = "Raw Pyrolusite with Peperoni"
-amount_4 = 900
-texture_4 = ExtResource("41_sy4be")
+name_2 = "Sulfur"
+amount_2 = 5
+texture_2 = ExtResource("43_v63ud")
 
 [node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
 visible = false

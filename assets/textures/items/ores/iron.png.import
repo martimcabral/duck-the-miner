@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3kjafhmywx3s"
-path="res://.godot/imported/raw_bauxite.png-2b6b7faa5ba043b889ecadd30ac93b2b.ctex"
+uid="uid://g4baqgfsmkv6"
+path="res://.godot/imported/iron.png-8cd744fac0b1a73994c81da9dcf4cf4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_bauxite.png"
-dest_files=["res://.godot/imported/raw_bauxite.png-2b6b7faa5ba043b889ecadd30ac93b2b.ctex"]
+source_file="res://assets/textures/items/ores/iron.png"
+dest_files=["res://.godot/imported/iron.png-8cd744fac0b1a73994c81da9dcf4cf4e.ctex"]
 
 [params]
 

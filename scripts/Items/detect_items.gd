@@ -18,16 +18,16 @@ func _on_body_entered(body : Node2D):
 				add_item_to_inventory("Coal", coalIcon)
 				World.current_more_infrastructure += 1
 				World.current_power_future += 1
-			"RawCopper":
-				var copperIcon = load("res://assets/textures/items/ores/raw_copper.png")
+			"Copper":
+				var copperIcon = load("res://assets/textures/items/ores/copper.png")
 				add_item_to_inventory("Copper", copperIcon)
 				World.current_power_future += 1
-			"RawIron":
-				var ironIcon = load("res://assets/textures/items/ores/raw_iron.png")
+			"Iron":
+				var ironIcon = load("res://assets/textures/items/ores/iron.png")
 				add_item_to_inventory("Iron", ironIcon)
 				World.current_more_infrastructure += 1
-			"RawGold":
-				var goldIcon = load("res://assets/textures/items/ores/raw_gold.png")
+			"Gold":
+				var goldIcon = load("res://assets/textures/items/ores/gold.png")
 				add_item_to_inventory("Gold", goldIcon)
 				World.current_power_future += 1
 			"Emerald":
@@ -51,11 +51,11 @@ func _on_body_entered(body : Node2D):
 				add_item_to_inventory("Ice", iceIcon)
 				World.current_cold_extraction += 1
 			"Magnetite":
-				var magnetiteIcon = load("res://assets/textures/items/ores/raw_magnetite.png")
+				var magnetiteIcon = load("res://assets/textures/items/ores/magnetite.png")
 				add_item_to_inventory("Magnetite", magnetiteIcon)
 				World.current_more_infrastructure += 1
 			"Bauxite":
-				var bauxiteIcon = load("res://assets/textures/items/ores/raw_bauxite.png")
+				var bauxiteIcon = load("res://assets/textures/items/ores/bauxite.png")
 				add_item_to_inventory("Bauxite", bauxiteIcon)
 				World.current_more_infrastructure += 1
 			"Topaz":
@@ -95,33 +95,33 @@ func _on_body_entered(body : Node2D):
 				add_item_to_inventory("Frozen Diamond", frozenDiamondIcon)
 				World.current_fine_jewelry += 1
 			"Galena":
-				var galenaIcon = load("res://assets/textures/items/ores/raw_galena.png")
-				add_item_to_inventory("Raw Galena", galenaIcon)
+				var galenaIcon = load("res://assets/textures/items/ores/galena.png")
+				add_item_to_inventory("Galena", galenaIcon)
 				World.current_power_future += 1
 			"Silver":
-				var silverIcon = load("res://assets/textures/items/ores/raw_silver.png")
-				add_item_to_inventory("Raw Silver", silverIcon)
+				var silverIcon = load("res://assets/textures/items/ores/silver.png")
+				add_item_to_inventory("Silver", silverIcon)
 			"Wolframite":
-				var wolframiteIcon = load("res://assets/textures/items/ores/raw_wolframite.png")
-				add_item_to_inventory("Raw Wolframite", wolframiteIcon)
+				var wolframiteIcon = load("res://assets/textures/items/ores/wolframite.png")
+				add_item_to_inventory("Wolframite", wolframiteIcon)
 			"Pyrolusite":
-				var pyrolusiteIcon = load("res://assets/textures/items/ores/raw_pyrolusite.png")
-				add_item_to_inventory("Raw Pyrolusite", pyrolusiteIcon)
+				var pyrolusiteIcon = load("res://assets/textures/items/ores/pyrolusite.png")
+				add_item_to_inventory("Pyrolusite", pyrolusiteIcon)
 			"Nickel":
-				var nickelIcon = load("res://assets/textures/items/ores/raw_nickel.png")
-				add_item_to_inventory("Raw Nickel", nickelIcon)
+				var nickelIcon = load("res://assets/textures/items/ores/nickel.png")
+				add_item_to_inventory("Nickel", nickelIcon)
 				World.current_power_future += 1
 			"Graphite":
 				var graphiteIcon = load("res://assets/textures/items/ores/graphite.png")
 				add_item_to_inventory("Graphite", graphiteIcon)
 				World.current_fuel_company += 1
 				World.current_power_future += 1
-			"RawCobalt":
-				var cobaltIcon = load("res://assets/textures/items/ores/raw_cobalt.png")
-				add_item_to_inventory("Raw Cobalt", cobaltIcon)
-			"RawUranium":
-				var uraniumIcon = load("res://assets/textures/items/ores/raw_uranium.png")
-				add_item_to_inventory("Raw Uranium", uraniumIcon)
+			"Cobalt":
+				var cobaltIcon = load("res://assets/textures/items/ores/cobalt.png")
+				add_item_to_inventory("Cobalt", cobaltIcon)
+			"Uranium":
+				var uraniumIcon = load("res://assets/textures/items/ores/uranium.png")
+				add_item_to_inventory("Uranium", uraniumIcon)
 				World.current_fuel_company += 1
 			"Charoite":
 				var charoiteIcon = load("res://assets/textures/items/gems/charoite.png")
@@ -139,13 +139,13 @@ func _on_body_entered(body : Node2D):
 				var sulfurIcon = load("res://assets/textures/items/ores/sulfur.png")
 				add_item_to_inventory("Sulfur", sulfurIcon)
 				World.current_power_future += 1
-			"RawZirconium":
-				var zirconiumIcon = load("res://assets/textures/items/ores/raw_zirconium.png")
-				add_item_to_inventory("Raw Zirconium", zirconiumIcon)
+			"Zirconium":
+				var zirconiumIcon = load("res://assets/textures/items/ores/zirconium.png")
+				add_item_to_inventory("Zirconium", zirconiumIcon)
 				World.current_power_future += 1
-			"RawPlatinum":
-				var platinumIcon = load("res://assets/textures/items/ores/raw_platinum.png")
-				add_item_to_inventory("Raw Platinum", platinumIcon)
+			"Platinum":
+				var platinumIcon = load("res://assets/textures/items/ores/platinum.png")
+				add_item_to_inventory("Platinum", platinumIcon)
 			"Sandstone":
 				var sandstoneIcon = load("res://assets/textures/items/ores/sandstone.png")
 				add_item_to_inventory("Sandstone", sandstoneIcon)
@@ -174,9 +174,9 @@ func _on_body_entered(body : Node2D):
 				var kaolitineIcon = load("res://assets/textures/items/ores/kaolinite.png")
 				add_item_to_inventory("Kaolinite", kaolitineIcon)
 				World.current_build_future += 1
-			"RawScheelite":
-				var scheeliteIcon = load("res://assets/textures/items/ores/raw_scheelite.png")
-				add_item_to_inventory("Raw Scheelite", scheeliteIcon)
+			"Scheelite":
+				var scheeliteIcon = load("res://assets/textures/items/ores/scheelite.png")
+				add_item_to_inventory("Scheelite", scheeliteIcon)
 			"Vanadinite":
 				var vanadiniteIcon = load("res://assets/textures/items/ores/vanadinite.png")
 				add_item_to_inventory("Vanadinite", vanadiniteIcon)

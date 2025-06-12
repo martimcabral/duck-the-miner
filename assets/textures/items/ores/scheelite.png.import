@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfyndhyjsae6s"
-path="res://.godot/imported/raw_platinum.png-292dfc170d67a53f1b27da75c5b00e37.ctex"
+uid="uid://gmv7crja63oe"
+path="res://.godot/imported/scheelite.png-a9831aaee7f9c98a74bd818728ed2d3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_platinum.png"
-dest_files=["res://.godot/imported/raw_platinum.png-292dfc170d67a53f1b27da75c5b00e37.ctex"]
+source_file="res://assets/textures/items/ores/scheelite.png"
+dest_files=["res://.godot/imported/scheelite.png-a9831aaee7f9c98a74bd818728ed2d3d.ctex"]
 
 [params]
 

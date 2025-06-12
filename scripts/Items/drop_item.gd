@@ -19,22 +19,22 @@ func drop_items():
 			Vector2i(2, 1): item_name = "Ruby"
 			Vector2i(3, 1): item_name = "Sapphire"
 			Vector2i(1, 0): item_name = "Coal"
-			Vector2i(2, 0): item_name = "RawIron"
-			Vector2i(0, 2): item_name = "RawGold"
-			Vector2i(1, 2): item_name = "RawCopper"
+			Vector2i(2, 0): item_name = "Iron"
+			Vector2i(0, 2): item_name = "Gold"
+			Vector2i(1, 2): item_name = "Copper"
 	elif world.asteroid_biome == "Vulcanic":
 		match block_atlas:
 			Vector2i(0, 0): item_name = "Stone"
 			Vector2i(1, 0): item_name = "Coal"
-			Vector2i(2, 0): item_name = "RawIron"
+			Vector2i(2, 0): item_name = "Iron"
 			Vector2i(3, 0): item_name = "Diamond"
 			Vector2i(1, 1): item_name = "Topaz"
 			Vector2i(2, 1): item_name = "Tsavorite"
 			Vector2i(3, 1): item_name = "Garnet"
-			Vector2i(0, 2): item_name = "RawGold"
-			Vector2i(1, 2): item_name = "RawMagnetite"
+			Vector2i(0, 2): item_name = "Gold"
+			Vector2i(1, 2): item_name = "Magnetite"
 			Vector2i(3, 2): item_name = "LavaCluster"
-			Vector2i(0, 3): item_name = "RawBauxite"
+			Vector2i(0, 3): item_name = "Bauxite"
 			
 	elif world.asteroid_biome == "Frozen":
 		match block_atlas:
@@ -54,10 +54,10 @@ func drop_items():
 		match block_atlas:
 			Vector2i(0, 0): item_name = "Stone"
 			Vector2i(1, 0): item_name = "Graphite"
-			Vector2i(2, 0): item_name = "RawCobalt"
-			Vector2i(3, 0): item_name = "RawUranium"
-			Vector2i(0, 2): item_name = "RawPlatinum"
-			Vector2i(1, 2): item_name = "RawZirconium"
+			Vector2i(2, 0): item_name = "Cobalt"
+			Vector2i(3, 0): item_name = "Uranium"
+			Vector2i(0, 2): item_name = "Platinum"
+			Vector2i(1, 2): item_name = "Zirconium"
 			Vector2i(3, 2): item_name = "Sulfur"
 			Vector2i(1, 1): item_name = "Charoite"
 			Vector2i(2, 1): item_name = "Sugilite"
@@ -72,14 +72,14 @@ func drop_items():
 			Vector2i(1, 0): item_name = "OilShale"
 			Vector2i(0, 2): item_name = "Gypsum"
 			Vector2i(1, 2): item_name = "Kaolinite"
-			Vector2i(2, 0): item_name = "RawScheelite"
+			Vector2i(2, 0): item_name = "Scheelite"
 			Vector2i(3, 0): item_name = "Vanadinite"
 	
 	elif world.asteroid_biome == "Radioactive":
 		match block_atlas:
 			Vector2i(0, 0): item_name = "Stone"
-			Vector2i(1, 0): item_name = "RawCopper"
-			Vector2i(2, 0): item_name = "RawIron"
+			Vector2i(1, 0): item_name = "Copper"
+			Vector2i(2, 0): item_name = "Iron"
 			Vector2i(3, 0): item_name = "Jeremejevite"
 			Vector2i(1, 1): item_name = "Chrysocolla"
 			Vector2i(2, 1): item_name = "Labradorite"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq0lyrld8ya3j"
-path="res://.godot/imported/raw_wolframite.png-229f918aa267a5c61eadad830955ad51.ctex"
+uid="uid://c5a0cdedwujld"
+path="res://.godot/imported/copper.png-62b38c702c886f61cacd8405623f2e44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_wolframite.png"
-dest_files=["res://.godot/imported/raw_wolframite.png-229f918aa267a5c61eadad830955ad51.ctex"]
+source_file="res://assets/textures/items/ores/copper.png"
+dest_files=["res://.godot/imported/copper.png-62b38c702c886f61cacd8405623f2e44.ctex"]
 
 [params]
 

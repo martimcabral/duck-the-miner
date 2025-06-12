@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://irl63q53jknh"
-path="res://.godot/imported/raw_magnetite.png-90e5881c4d0d3d1c1cbf50345c840cf3.ctex"
+uid="uid://bfyndhyjsae6s"
+path="res://.godot/imported/platinum.png-c1ede3b41b5886522eda5e9155c7827c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_magnetite.png"
-dest_files=["res://.godot/imported/raw_magnetite.png-90e5881c4d0d3d1c1cbf50345c840cf3.ctex"]
+source_file="res://assets/textures/items/ores/platinum.png"
+dest_files=["res://.godot/imported/platinum.png-c1ede3b41b5886522eda5e9155c7827c.ctex"]
 
 [params]
 

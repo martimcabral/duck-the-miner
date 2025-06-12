@@ -1,22 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://jp5w8jprwi0p"]
+[gd_scene load_steps=8 format=3 uid="uid://jp5w8jprwi0p"]
 
 [ext_resource type="Texture2D" uid="uid://cy0rye4s2lu4y" path="res://assets/textures/menus/null.png" id="1_hjd8l"]
 [ext_resource type="Script" uid="uid://bn2vv3v8yn5x2" path="res://scripts/recipe.gd" id="2_5noku"]
-[ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="3_6pfy3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pfy3"]
-bg_color = Color(0, 0, 0, 0.564706)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.698039, 0.133333, 0.133333, 1)
-corner_radius_top_left = 38
-corner_radius_top_right = 38
-corner_radius_bottom_right = 38
-corner_radius_bottom_left = 38
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmifw"]
 bg_color = Color(0, 0, 0, 0.564706)
 border_width_left = 6
 border_width_top = 6
@@ -34,7 +21,7 @@ border_width_left = 6
 border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
 corner_radius_top_left = 38
 corner_radius_top_right = 38
 corner_radius_bottom_right = 38
@@ -84,7 +71,6 @@ corner_radius_bottom_left = 16
 offset_right = 80.0
 offset_bottom = 80.0
 theme_override_styles/focus = SubResource("StyleBoxFlat_6pfy3")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_pmifw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_5noku")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_onnga")
 theme_override_styles/normal = SubResource("StyleBoxFlat_hjd8l")
@@ -116,18 +102,16 @@ texture = ExtResource("1_hjd8l")
 
 [node name="RecipeTooltip" type="PanelContainer" parent="."]
 z_index = 200
+custom_minimum_size = Vector2(250, 175)
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 1056.9
-offset_top = -511.3
-offset_right = 1496.9
-offset_bottom = -240.3
+offset_left = -200.0
+offset_top = 104.0
+offset_right = 200.0
+offset_bottom = 375.0
 grow_horizontal = 2
-grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_d4eax")
 
 [node name="Label" type="Label" parent="RecipeTooltip"]
@@ -147,8 +131,11 @@ alignment = 1
 layout_mode = 2
 text = "
 "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ItemsDeCima" type="HBoxContainer" parent="RecipeTooltip/RecipeList"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
@@ -159,40 +146,32 @@ layout_mode = 2
 [node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item1"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_6pfy3")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item1"]
-z_index = 1
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Ice x10"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="Item2" type="VBoxContainer" parent="RecipeTooltip/RecipeList/ItemsDeCima"]
-custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
 [node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item2"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_6pfy3")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeCima/Item2"]
-z_index = 1
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Ice x10"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="ItemsDeBaixo" type="HBoxContainer" parent="RecipeTooltip/RecipeList"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
@@ -203,18 +182,14 @@ layout_mode = 2
 [node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item1"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_6pfy3")
 stretch_mode = 5
 
 [node name="Label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item1"]
-z_index = 1
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Ice x10"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
 
 [node name="Item2" type="VBoxContainer" parent="RecipeTooltip/RecipeList/ItemsDeBaixo"]
 layout_mode = 2
@@ -222,21 +197,20 @@ layout_mode = 2
 [node name="Texture" type="TextureRect" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item2"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = ExtResource("3_6pfy3")
 stretch_mode = 5
 
-[node name="label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item2"]
-z_index = 1
-custom_minimum_size = Vector2(200, 0)
+[node name="Label" type="Label" parent="RecipeTooltip/RecipeList/ItemsDeBaixo/Item2"]
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Ice x10"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="BottomGap" type="Label" parent="RecipeTooltip/RecipeList"]
 layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

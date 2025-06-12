@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://21n8jxp1x6ku"
-path="res://.godot/imported/raw_silver.png-b049f9b02b8e91b0b25b12e2acd2c635.ctex"
+uid="uid://dfsvjw62rapgp"
+path="res://.godot/imported/uranium.png-3d758590bd83f9dd52749c83b0105865.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/ores/raw_silver.png"
-dest_files=["res://.godot/imported/raw_silver.png-b049f9b02b8e91b0b25b12e2acd2c635.ctex"]
+source_file="res://assets/textures/items/ores/uranium.png"
+dest_files=["res://.godot/imported/uranium.png-3d758590bd83f9dd52749c83b0105865.ctex"]
 
 [params]
 
