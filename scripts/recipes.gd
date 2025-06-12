@@ -167,8 +167,8 @@ func start_crafing():
 
 func end_crafting():
 	raw_resources.save(raw_resources_path)
-	raw_resources.clear()
 	crafted_resources.save(crafted_resources_path)
+	raw_resources.clear()
 	crafted_resources.clear()
 	CraftingPanel.update_current_resources_amount()
 	print("Recipe Done: ", recipe_function)

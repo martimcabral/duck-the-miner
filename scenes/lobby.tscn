@@ -1145,7 +1145,7 @@ tracks/11/path = NodePath("Recipes:visible")
 tracks/11/interp = 2
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0.0333333, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -1157,7 +1157,7 @@ tracks/12/path = NodePath("Recipes:modulate")
 tracks/12/interp = 2
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0.266667, 0.5),
+"times": PackedFloat32Array(0.166667, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -3105,10 +3105,8 @@ z_index = 5
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1071.0
-offset_top = 34.0
-offset_right = -581.0
-offset_bottom = 354.0
+offset_left = -1920.0
+offset_bottom = 1080.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ph747")
 script = ExtResource("24_ph747")
@@ -3173,8 +3171,7 @@ text = "X"
 visible = false
 layout_mode = 2
 anchors_preset = 0
-offset_left = -1920.0
-offset_right = -1438.0
+offset_right = 482.0
 offset_bottom = 312.0
 
 [node name="WarningPattern" type="TextureRect" parent="Camera2D/HUD/CraftingPanel/Navbar"]
@@ -3369,16 +3366,6 @@ offset_right = 1510.0
 offset_bottom = 961.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_3y5sy")
 
-[node name="WaterLabel" type="Label" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes"]
-editor_description = "3"
-layout_mode = 0
-offset_right = 104.0
-offset_bottom = 32.0
-theme_override_font_sizes/font_size = 32
-text = "Water"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="WaterIceRecipe" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
 offset_left = 8.0
@@ -3436,17 +3423,6 @@ byproduct_name_2 = ""
 byproduct_amount_2 = 0
 byproduct_texture_2 = ExtResource("36_vfec7")
 
-[node name="SulfurLabel" type="Label" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes"]
-editor_description = "3"
-layout_mode = 0
-offset_top = 219.0
-offset_right = 104.0
-offset_bottom = 251.0
-theme_override_font_sizes/font_size = 32
-text = "Sulfur"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="SulfuricAcid" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
 offset_left = 8.0
@@ -3476,18 +3452,6 @@ byproduct_2 = false
 byproduct_name_2 = ""
 byproduct_amount_2 = 0
 byproduct_texture_2 = ExtResource("36_vfec7")
-
-[node name="Gases" type="Label" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes"]
-editor_description = "3"
-layout_mode = 0
-offset_left = 136.0
-offset_top = 3.0
-offset_right = 240.0
-offset_bottom = 35.0
-theme_override_font_sizes/font_size = 32
-text = "Gases"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="OxygenRecipe" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
@@ -3565,7 +3529,6 @@ parameters/looping = true
 bus = &"Menus"
 
 [node name="SolarSystem" type="Node2D" parent="."]
-visible = false
 script = ExtResource("8_dovll")
 
 [node name="Sun" type="TextureRect" parent="SolarSystem"]
@@ -4085,7 +4048,6 @@ texture = ExtResource("34_qqdto")
 polygon = PackedVector2Array(156.555, 62.9464, 31.7335, 168.089, -17.7665, 372.589, 27.0549, 579.625, 175.983, 718.875, 428.733, 752.446, 554.412, 688.018, 686.591, 590.804, 728.376, 484.161, 754.876, 359.125, 675.055, 132.839, 503.126, -1.83929, 346.841, -11.5893, 260.376, 2.125, 179.948, 44.0179, 157.341, 62.1964, 205.519, 141.839, 305.591, 96.9464, 455.662, 103.339, 590.376, 204.696, 639.126, 331.696, 640.412, 431.768, 586.519, 529.232, 498.019, 615.196, 381.269, 634.446, 259.412, 608.768, 138.841, 507.446, 93.912, 370.161, 118.305, 244.446, 205.269, 142.196)
 
 [node name="UniverseBackground" type="TextureRect" parent="."]
-visible = false
 z_index = -2
 material = SubResource("ShaderMaterial_30fw8")
 anchors_preset = 8

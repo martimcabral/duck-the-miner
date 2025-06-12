@@ -125,8 +125,12 @@ func create_pricing_config():
 	
 	pricing_file.load(pricing_path)
 	var prices = {
+		"Oxygen": 1,
+		"Hydrogen": 1,
+		"Water": 10,
 		"Stone": 50,
 		"Sandstone": 60,
+		"Sulfuric Acid": 100,
 		"Gypsum": 175,
 		"Kaolinite": 175,
 		"Ice": 150,
