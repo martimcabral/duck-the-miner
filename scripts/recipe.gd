@@ -2,9 +2,10 @@
 extends Button
 
 enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem}
-@export_category("Button Status")
+@export_category("Button Info")
 @export var button_status : bool = false
 @export var button_type : CraftingButtonTypes
+@export var recipe_function : String = ""
 
 @export_category("Button Textures")
 @export var new_resource_texture : Texture = load("res://assets/textures/menus/null.png")
@@ -48,7 +49,11 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 
 @onready var CraftingPanel = $"../../.."
 
-var raw_resources_path = 
+var raw_resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
+var raw_resources := ConfigFile.new()
+
+var crafted_resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
+var crafted_resources := ConfigFile.new()
 
 func _ready() -> void:
 	self.icon = new_resource_texture
@@ -119,13 +124,25 @@ func detect_status():
 
 func _on_pressed() -> void:
 	self.set_focus_mode(FOCUS_NONE)
-	print(CraftingPanel.amount_Amazonite)
+	call_deferred(str(recipe_function))
 
 func recipe_ice_to_water():
-	
+	print(CraftingPanel.amount_Ice)
+	if CraftingPanel.amount_Ice >= amount_1:
+		raw_resources.load(raw_resources_path)
+		crafted_resources.load(crafted_resources_path)
+		
+		raw_resources.set_value("inventory", name_1, CraftingPanel.amount_Ice - amount_1)
+		crafted_resources.set_value("inventory", new_resource_name, CraftingPanel.amount_Water + new_resource_amount)
+		
+		raw_resources.save(raw_resources_path)
+		crafted_resources.save(crafted_resources_path)
+		CraftingPanel.update_current_resources_amount()
 
 func recipe_condensed_ice_to_water():
-	
+	raw_resources.load(raw_resources_path)
+	crafted_resources.load(crafted_resources_path)
 
 func recipe_sulfuric_acid():
-	
+	raw_resources.load(raw_resources_path)
+	crafted_resources.load(crafted_resources_path)

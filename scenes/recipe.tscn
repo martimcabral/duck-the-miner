@@ -101,6 +101,7 @@ grow_vertical = 0
 texture = ExtResource("1_hjd8l")
 
 [node name="RecipeTooltip" type="PanelContainer" parent="."]
+visible = false
 z_index = 200
 custom_minimum_size = Vector2(250, 175)
 layout_mode = 1
