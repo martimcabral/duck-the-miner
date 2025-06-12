@@ -154,9 +154,9 @@ func _ready() -> void:
 		
 	if has_lights == true:
 		match difficulty:
-			"easy": light_price = 115
-			"normal": light_price = 125
-			"hard": light_price = 135
+			"easy": light_price = 60
+			"normal": light_price = 70
+			"hard": light_price = 80
 		light_rental = lights_used * light_price
 		fees_label += str("> ", lights_used, " * Lights Cost\n")
 		fees_values += str("[", light_price, "€, -", light_rental,"€]\n")

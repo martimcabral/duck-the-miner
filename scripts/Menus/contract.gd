@@ -9,6 +9,9 @@ var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, 
 var statistics_text : String = ""
 
 var fyction_points : int = 0
+var current_experience : int = 0
+var current_level : int = 0
+var current_fyction_points : int = 0
 
 @onready var HealthUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Health/HBoxContainer/UpgradeSlots
 @onready var OxygenUpgradeSlots = $ScrollContainer/MarginContainer/LicenseTree/LeftSide/Duck/Oxygen/HBoxContainer/UpgradeSlots
@@ -358,9 +361,9 @@ func update_levels():
 	var license_config := ConfigFile.new()
 	license_config.load(license_path)
 	
-	var current_experience = license_config.get_value("license", "experience")
-	var current_level = license_config.get_value("license", "current_level")
-	var current_fyction_points = license_config.get_value("license", "fyction_points")
+	current_experience = license_config.get_value("license", "experience")
+	current_level = license_config.get_value("license", "current_level")
+	current_fyction_points = license_config.get_value("license", "fyction_points")
 	
 	var experience_required = 60 + current_level * 15
 	

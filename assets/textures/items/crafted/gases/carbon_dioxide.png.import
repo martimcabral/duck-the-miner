@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b33ahyjt8e5wq"
-path="res://.godot/imported/nitric_acid.png-a5289f1e908d54e277165fccb76e38a9.ctex"
+uid="uid://bsx1pjxc154mh"
+path="res://.godot/imported/carbon_dioxide.png-db309fe2eba694840fcb7a69dfaeb515.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/nitric_acid.png"
-dest_files=["res://.godot/imported/nitric_acid.png-a5289f1e908d54e277165fccb76e38a9.ctex"]
+source_file="res://assets/textures/items/crafted/gases/carbon_dioxide.png"
+dest_files=["res://.godot/imported/carbon_dioxide.png-db309fe2eba694840fcb7a69dfaeb515.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 @export_category("Button Info")
 @export var button_status : bool = false
 @export var button_type : CraftingButtonTypes
+@export var level_required : int = 1
 @export var recipe_function : String = ""
 
 @export_category("Button Textures")
@@ -38,6 +39,18 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 @export var amount_4 : int = 0
 @export var texture_4 : Texture = load("res://assets/textures/menus/null.png")
 
+@export_category("Byproduct 1")
+@export var byproduct_1 : bool = false
+@export var byproduct_name_1 : String = ""
+@export var byproduct_amount_1 : int = 0
+@export var byproduct_texture_1 : Texture = load("res://assets/textures/menus/null.png")
+
+@export_category("Byproduct 2")
+@export var byproduct_2 : bool = false
+@export var byproduct_name_2 : String = ""
+@export var byproduct_amount_2 : int = 0
+@export var byproduct_texture_2 : Texture = load("res://assets/textures/menus/null.png")
+
 @onready var Ingredient_1_Texture = $RecipeTooltip/RecipeList/ItemsDeCima/Item1/Texture
 @onready var Ingredient_1_Label = $RecipeTooltip/RecipeList/ItemsDeCima/Item1/Label
 @onready var Ingredient_2_Texture = $RecipeTooltip/RecipeList/ItemsDeCima/Item2/Texture
@@ -47,7 +60,14 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 @onready var Ingredient_4_Texture = $RecipeTooltip/RecipeList/ItemsDeBaixo/Item2/Texture
 @onready var Ingredient_4_Label = $RecipeTooltip/RecipeList/ItemsDeBaixo/Item2/Label
 
+@onready var Byproduct_1_Texture = $RecipeTooltip/RecipeList/ItemsByproduct/Item1/Texture
+@onready var Byproduct_1_Label = $RecipeTooltip/RecipeList/ItemsByproduct/Item1/Label
+@onready var Byproduct_2_Texture = $RecipeTooltip/RecipeList/ItemsByproduct/Item2/Texture
+@onready var Byproduct_2_Label = $RecipeTooltip/RecipeList/ItemsByproduct/Item2/Label
+
 @onready var CraftingPanel = $"../../.."
+@onready var Lobby = $"../../../../../.."
+@onready var Contract = $"../../../../Contract"
 
 var raw_resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 var raw_resources := ConfigFile.new()
@@ -56,6 +76,9 @@ var crafted_resources_path : String = str("user://save/", GetSaveFile.save_being
 var crafted_resources := ConfigFile.new()
 
 func _ready() -> void:
+	if Contract.current_level < level_required:
+		self.queue_free()
+	
 	self.icon = new_resource_texture
 	$AlternativeResource.texture = alt_resource_texture
 	$RecipeTooltip/Label.text = str(new_resource_name, " x", new_resource_amount, " ", alt_resource_name)
@@ -73,6 +96,16 @@ func _ready() -> void:
 	if ingredient_4 == true:
 		Ingredient_4_Texture.texture = texture_4; Ingredient_4_Label.text = str(name_4, " (x", amount_4, ")")
 	else: remove_item(4)
+	
+	if byproduct_1 == true:
+		Byproduct_1_Texture.texture = byproduct_texture_1; Byproduct_1_Label.text = str(byproduct_name_1, " (x", byproduct_amount_1, ")")
+	else: remove_item(5)
+	if byproduct_2 == true:
+		Byproduct_2_Texture.texture = byproduct_texture_2; Byproduct_2_Label.text = str(byproduct_name_2, " (x", byproduct_amount_2, ")")
+	else: remove_item(6)
+	
+	if byproduct_1 == false and byproduct_2 == false:
+		$RecipeTooltip/RecipeList/ByproductLabel.queue_free()
 
 func remove_item(SlotNumber):
 	match SlotNumber:
@@ -80,6 +113,8 @@ func remove_item(SlotNumber):
 		2: $RecipeTooltip/RecipeList/ItemsDeCima/Item2.queue_free()
 		3: $RecipeTooltip/RecipeList/ItemsDeBaixo/Item1.queue_free()
 		4: $RecipeTooltip/RecipeList/ItemsDeBaixo/Item2.queue_free()
+		5: $RecipeTooltip/RecipeList/ItemsByproduct/Item1.queue_free()
+		6: $RecipeTooltip/RecipeList/ItemsByproduct/Item2.queue_free()
 
 func _process(_delta):
 	detect_status()
@@ -126,23 +161,56 @@ func _on_pressed() -> void:
 	self.set_focus_mode(FOCUS_NONE)
 	call_deferred(str(recipe_function))
 
-func recipe_ice_to_water():
-	print(CraftingPanel.amount_Ice)
-	if CraftingPanel.amount_Ice >= amount_1:
-		raw_resources.load(raw_resources_path)
-		crafted_resources.load(crafted_resources_path)
-		
-		raw_resources.set_value("inventory", name_1, CraftingPanel.amount_Ice - amount_1)
-		crafted_resources.set_value("inventory", new_resource_name, CraftingPanel.amount_Water + new_resource_amount)
-		
-		raw_resources.save(raw_resources_path)
-		crafted_resources.save(crafted_resources_path)
-		CraftingPanel.update_current_resources_amount()
-
-func recipe_condensed_ice_to_water():
+func start_crafing():
 	raw_resources.load(raw_resources_path)
 	crafted_resources.load(crafted_resources_path)
+
+func end_crafting():
+	raw_resources.save(raw_resources_path)
+	raw_resources.clear()
+	crafted_resources.save(crafted_resources_path)
+	crafted_resources.clear()
+	CraftingPanel.update_current_resources_amount()
+	print("Recipe Done: ", recipe_function)
+	match Lobby.selected_inventory:
+		0: Lobby._on_tab_bar_item_selected(0)
+		1: Lobby._on_tab_bar_item_selected(1)
+
+func recipe_ice_to_water():
+	if CraftingPanel.amount_Ice >= amount_1:
+		start_crafing()
+		raw_resources.set_value("inventory", "Ice", CraftingPanel.amount_Ice - amount_1)
+		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water + new_resource_amount)
+		end_crafting()
+
+func recipe_dense_ice_to_water():
+	if CraftingPanel.amount_Dense_Ice >= amount_1:
+		start_crafing()
+		raw_resources.set_value("inventory", "Dense Ice", CraftingPanel.amount_Dense_Ice - amount_1)
+		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water + new_resource_amount)
+		end_crafting()
 
 func recipe_sulfuric_acid():
-	raw_resources.load(raw_resources_path)
-	crafted_resources.load(crafted_resources_path)
+	if CraftingPanel.amount_Water >= amount_1:
+		if CraftingPanel.amount_Sulfur >= amount_2:
+			start_crafing()
+			crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water - amount_1)
+			raw_resources.set_value("inventory", "Sulfur", CraftingPanel.amount_Sulfur - amount_2)
+			crafted_resources.set_value("inventory", "Sulfuric Acid", CraftingPanel.amount_Sulfuric_Acid + new_resource_amount)
+			end_crafting()
+
+func recipe_water_to_oxygen():
+	if CraftingPanel.amount_Water >= amount_1:
+		start_crafing()
+		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water - amount_1)
+		crafted_resources.set_value("inventory", "Oxygen", CraftingPanel.amount_Oxygen + new_resource_amount)
+		crafted_resources.set_value("inventory", "Hydrogen", CraftingPanel.amount_Hydrogen + byproduct_amount_1)
+		end_crafting()
+
+func recipe_water_to_hydrogen():
+	if CraftingPanel.amount_Water >= amount_1:
+		start_crafing()
+		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water - amount_1)
+		crafted_resources.set_value("inventory", "Hydrogen", CraftingPanel.amount_Hydrogen + new_resource_amount)
+		crafted_resources.set_value("inventory", "Oxygen", CraftingPanel.amount_Oxygen + byproduct_amount_1)
+		end_crafting()

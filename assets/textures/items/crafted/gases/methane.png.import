@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1y422o03sew"
-path="res://.godot/imported/crude_oil.png-78840f6b829bcd865365a86d542ed11f.ctex"
+uid="uid://2jixjfsphdel"
+path="res://.godot/imported/methane.png-dc986a4133bfee162402eb371bef6547.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/crude_oil.png"
-dest_files=["res://.godot/imported/crude_oil.png-78840f6b829bcd865365a86d542ed11f.ctex"]
+source_file="res://assets/textures/items/crafted/gases/methane.png"
+dest_files=["res://.godot/imported/methane.png-dc986a4133bfee162402eb371bef6547.ctex"]
 
 [params]
 

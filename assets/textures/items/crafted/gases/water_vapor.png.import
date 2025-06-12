@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhgewqu06pebo"
-path="res://.godot/imported/lava.png-d1753e6a3820572dec81bd559e5a3faf.ctex"
+uid="uid://cnh55p34wymsy"
+path="res://.godot/imported/water_vapor.png-03ac050ce882e9ee9ec9615e18b09ece.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/lava.png"
-dest_files=["res://.godot/imported/lava.png-d1753e6a3820572dec81bd559e5a3faf.ctex"]
+source_file="res://assets/textures/items/crafted/gases/water_vapor.png"
+dest_files=["res://.godot/imported/water_vapor.png-03ac050ce882e9ee9ec9615e18b09ece.ctex"]
 
 [params]
 

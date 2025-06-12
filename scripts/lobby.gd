@@ -54,8 +54,10 @@ var item_icons = {
 	"Pitchblende": "res://assets/textures/items/ores/pitchblende.png",
 	"Phosphorite": "res://assets/textures/items/ores/phosphorite.png",
 	"Hematite": "res://assets/textures/items/ores/hematite.png",
-	"Water": "res://assets/textures/items/crafted/fluids/water.png",
-	"Sulfuric Acid": "res://assets/textures/items/crafted/fluids/sulfuric_acid.png"
+	"Water": "res://assets/textures/items/crafted/liquids/water.png",
+	"Sulfuric Acid": "res://assets/textures/items/crafted/liquids/sulfuric_acid.png",
+	"Oxygen": "res://assets/textures/items/crafted/gases/oxygen.png",
+	"Hydrogen": "res://assets/textures/items/crafted/gases/hydrogen.png",
 }
 
 var selecting_mission : bool = false
@@ -668,8 +670,8 @@ func _on_button_mouse_entered() -> void:
 func _on_stock_market_label_pressed() -> void:
 	$Camera2D/HUD/StockTheMarket/AnimationPlayer.play("stock_the_up")
 
-func _on_tab_bar_item_selected(index: int) -> void:
-	print("[lobby.gd] Inventory Selected: ", index)
+func _on_tab_bar_item_selected(index: int):
+	#print("[lobby.gd] Inventory Selected: ", index)
 	selected_inventory = index
 	
 	var raw_config = ConfigFile.new()
@@ -679,7 +681,7 @@ func _on_tab_bar_item_selected(index: int) -> void:
 	var crafted_load_result = crafted_config.load(crafted_inv_path)
 	
 	if raw_load_result == OK and crafted_load_result == OK:
-		print("[lobby.gd] Detected both Inventories Successfully")
+		#print("[lobby.gd] Detected both Inventories Successfully")
 		item_list.clear()
 		match index:
 			0: populate_inventory_tab(raw_config)

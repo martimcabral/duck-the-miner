@@ -55,6 +55,9 @@ var amount_Jeremejevite : int = 0
 var amount_Water : int = 0
 var amount_Sulfuric_Acid : int = 0
 
+var amount_Oxygen : int = 0
+var amount_Hydrogen : int = 0
+
 var CurrentPanel : int = 0
 
 func _ready() -> void:
@@ -122,6 +125,12 @@ func show_recipes():
 			if int(recipe.editor_description) == CurrentPanel: recipe.visible = true
 			else: recipe.visible = false
 
+func update_currrent_labels_with_current_level():
+	if $"../Contract".current_level == 1:
+		$Recipes/FluidRefiningRecipes/WaterLabel.visible = true
+	if $"../Contract".current_level == 2:
+		$Recipes/FluidRefiningRecipes/SulfurLabel.visible = true
+
 func update_current_resources_amount():
 	var raw_resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
 	var raw_resources := ConfigFile.new()
@@ -133,8 +142,8 @@ func update_current_resources_amount():
 	amount_Kaolinite = raw_resources.get_value("inventory", "Kaolinite", 0)
 	amount_Ice = raw_resources.get_value("inventory", "Ice")
 	amount_Coal = raw_resources.get_value("inventory", "Coal", 0)
-	amount_Lava_Cluster = raw_resources.get_value("inventory", "Lava_Cluster", 0)
-	amount_Dense_Ice = raw_resources.get_value("inventory", "Dense_Ice", 0)
+	amount_Lava_Cluster = raw_resources.get_value("inventory", "Lava Cluster", 0)
+	amount_Dense_Ice = raw_resources.get_value("inventory", "Dense Ice", 0)
 	amount_Sulfur = raw_resources.get_value("inventory", "Sulfur", 0)
 	amount_Biomass = raw_resources.get_value("inventory", "Biomass", 0)
 	amount_Copper = raw_resources.get_value("inventory", "Copper", 0) 
@@ -177,7 +186,7 @@ func update_current_resources_amount():
 	amount_Chrysocolla = raw_resources.get_value("inventory", "Chrysocolla", 0)
 	amount_Pietersite = raw_resources.get_value("inventory", "Pietersite", 0)
 	amount_Labradorite = raw_resources.get_value("inventory", "Labradorite", 0)
-	amount_Frozen_Diamond = raw_resources.get_value("inventory", "Frozen_Diamond", 0)
+	amount_Frozen_Diamond = raw_resources.get_value("inventory", "Frozen Diamond", 0)
 	amount_Jeremejevite = raw_resources.get_value("inventory", "Jeremejevite", 0)
 	
 	var crafted_resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
@@ -186,3 +195,5 @@ func update_current_resources_amount():
 	
 	amount_Water = crafted_resources.get_value("inventory", "Water", 0)
 	amount_Sulfuric_Acid = crafted_resources.get_value("inventory", "Sulfuric Acid", 0)
+	amount_Oxygen = crafted_resources.get_value("inventory", "Oxygen", 0)
+	amount_Hydrogen = crafted_resources.get_value("inventory", "Oxygen", 0)

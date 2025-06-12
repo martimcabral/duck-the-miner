@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byh6kamsva4cf"
-path="res://.godot/imported/gasoline.png-b31317d69c469e0803328e07cef92913.ctex"
+uid="uid://dhgewqu06pebo"
+path="res://.godot/imported/lava.png-4502ddd07c3943f5a91ad2b6179fd867.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/gasoline.png"
-dest_files=["res://.godot/imported/gasoline.png-b31317d69c469e0803328e07cef92913.ctex"]
+source_file="res://assets/textures/items/crafted/liquids/lava.png"
+dest_files=["res://.godot/imported/lava.png-4502ddd07c3943f5a91ad2b6179fd867.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dypokuju0igqj"
-path="res://.godot/imported/sulfuric_acid.png-323f3e12aefa7b809218f9bbd53bfb90.ctex"
+uid="uid://c77jcpern0u26"
+path="res://.godot/imported/butane.png-4b719d43a6d2e5321de21fb180a81e6a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/sulfuric_acid.png"
-dest_files=["res://.godot/imported/sulfuric_acid.png-323f3e12aefa7b809218f9bbd53bfb90.ctex"]
+source_file="res://assets/textures/items/crafted/gases/butane.png"
+dest_files=["res://.godot/imported/butane.png-4b719d43a6d2e5321de21fb180a81e6a.ctex"]
 
 [params]
 

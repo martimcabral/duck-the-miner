@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gqnojqvdm4h3"
-path="res://.godot/imported/water.png-bbfa079831cb551fbe767c6f74766377.ctex"
+uid="uid://bf4m4i3us32jv"
+path="res://.godot/imported/propane.png-4e5c0b4863e41d02ae5436ef8198da3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/items/crafted/fluids/water.png"
-dest_files=["res://.godot/imported/water.png-bbfa079831cb551fbe767c6f74766377.ctex"]
+source_file="res://assets/textures/items/crafted/gases/propane.png"
+dest_files=["res://.godot/imported/propane.png-4e5c0b4863e41d02ae5436ef8198da3d.ctex"]
 
 [params]
 

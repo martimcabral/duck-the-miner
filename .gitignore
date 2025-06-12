@@ -6,5 +6,4 @@
 *.tmp
 
 # Ignore save Files
-save/
 addons/discord-rpc-gd/bin/windows/~discord_game_sdk_binding_debug.dll
