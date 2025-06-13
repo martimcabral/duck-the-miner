@@ -8,8 +8,7 @@ var savedir
 
 var saves_config := ConfigFile.new()
 var getmoney_config := ConfigFile.new()
-var raw_inv_config := ConfigFile.new()
-var crafted_inv_config := ConfigFile.new()
+var inventory_config := ConfigFile.new()
 var money_config := ConfigFile.new()
 var skin_config := ConfigFile.new()
 var day_config := ConfigFile.new()
@@ -156,13 +155,11 @@ func _on_creator_button_pressed() -> void:
 	
 	################################################################################
 	
-	var raw_inv_path = str(saves_path + str(saves_number) + "/inventory_resources.cfg")
-	raw_inv_config.set_value("inventory", "new_file", null)
-	raw_inv_config.save(raw_inv_path)
+	var inventory_path = str(saves_path + str(saves_number) + "/inventory.cfg")
+	inventory_config.set_value("raw", "", null)
+	inventory_config.set_value("crafted", "null", null)
+	inventory_config.save(inventory_path)
 	
-	var crafted_inv_path = str(saves_path + str(saves_number) + "/inventory_crafted.cfg")
-	crafted_inv_config.set_value("inventory", "new_file", null)
-	crafted_inv_config.save(crafted_inv_path)
 
 	################################################################################
 	

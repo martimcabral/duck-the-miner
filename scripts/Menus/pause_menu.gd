@@ -6,6 +6,8 @@ var saved_states = {}
 @onready var player = $"../Player"
 @onready var world = $".."
 
+var inventory_path = str("user://save/", GetSaveFile.save_being_used, "/inventory.json")
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("PauseMenu"):
 		match pause_menu_visible:
@@ -47,12 +49,12 @@ func keep_inventory():
 	else:
 		print("[pause_menu.gd] Failed to open file for emptying stage.")
 	
-	var file_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
-	var current_inventory = load_inventory(file_path)
+
+	var current_inventory = load_inventory(inventory_path)
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	var updated_inventory = merge_items(current_inventory, new_items)
-	if save_inventory_to_cfg(file_path, updated_inventory):
-		print("[pause_menu.gd] Inventory saved successfully to", file_path)
+	if save_inventory_to_cfg(inventory_path, updated_inventory):
+		print("[pause_menu.gd] Inventory saved successfully to", inventory_path)
 	else:
 		print("[pause_menu.gd] Failed to save inventory")
 
@@ -95,23 +97,23 @@ func merge_items(current_inventory, new_items):
 	return inventory_dict
 
 # Function to load inventory from a CFG file
-func load_inventory(file_path):
+func load_inventory(inventory_cfg):
 	var config = ConfigFile.new()
-	if config.load(file_path) == OK:
+	if config.load(inventory_cfg) == OK:
 		var inventory_data = {}
-		if config.has_section("inventory"):
-			for item_name in config.get_section_keys("inventory"):
-				inventory_data[item_name] = config.get_value("inventory", item_name, 0)  # Default to 0 if not found
+		if config.has_section("raw"):
+			for item_name in config.get_section_keys("raw"):
+				inventory_data[item_name] = config.get_value("raw", item_name, 0)  # Default to 0 if not found
 			return inventory_data
 		else: print("[pause_menu.gd] Config: ", config," does not have section Inventory.")
 	return {}
 
 # Function to save inventory to a CFG file
-func save_inventory_to_cfg(file_path, inventory):
+func save_inventory_to_cfg(inventory_cfg, inventory):
 	var config = ConfigFile.new()
 	for item_name in inventory.keys():
-		config.set_value("inventory", item_name, inventory[item_name])
-	return config.save(file_path) == OK
+		config.set_value("raw", item_name, inventory[item_name])
+	return config.save(inventory_cfg) == OK
 
 func disable_all_rigid_body_physics():
 	saved_states.clear()  # Reset previous states
@@ -140,9 +142,9 @@ func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
 	
-	var file_path = "user://game_settings.cfg"
+	var settings_path = "user://game_settings.cfg"
 	var config = ConfigFile.new()
-	config.load(file_path)
+	config.load(settings_path)
 	$GUI_Pause/Colorblindness.material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness", 4))
 
 func _on_button_mouse_entered() -> void:

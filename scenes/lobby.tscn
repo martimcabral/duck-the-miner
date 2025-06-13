@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=3 uid="uid://c4ub8dctj6n1f"]
+[gd_scene load_steps=173 format=3 uid="uid://c4ub8dctj6n1f"]
 
 [ext_resource type="Script" uid="uid://t6k45b4t6c4w" path="res://scripts/lobby.gd" id="1_13iuh"]
 [ext_resource type="Shader" uid="uid://dt2jen53r0b3" path="res://scripts/Shaders/lobby_blur.gdshader" id="2_3a20b"]
@@ -67,7 +67,6 @@
 [ext_resource type="Texture2D" uid="uid://da0c4dgxgc03m" path="res://assets/textures/universe/orbits_and_fields/koppa_belt.png" id="34_qqdto"]
 [ext_resource type="Texture2D" uid="uid://cirskxa8itacu" path="res://assets/textures/items/ores/ice.png" id="35_rievh"]
 [ext_resource type="Texture2D" uid="uid://xna5mu6wa3xh" path="res://assets/textures/items/ores/dense_ice.png" id="36_olier"]
-[ext_resource type="Texture2D" uid="uid://cy0rye4s2lu4y" path="res://assets/textures/menus/null.png" id="36_vfec7"]
 [ext_resource type="PackedScene" uid="uid://cff2dwgei60p0" path="res://scenes/menus/cheat_menu.tscn" id="39_8tmsf"]
 [ext_resource type="Texture2D" uid="uid://dkgv5pi5g5e3h" path="res://assets/textures/items/crafted/gases/oxygen.png" id="40_l7nca"]
 [ext_resource type="Texture2D" uid="uid://co1lctn8sy6ko" path="res://assets/textures/items/crafted/gases/hydrogen.png" id="41_vfec7"]
@@ -3105,8 +3104,10 @@ z_index = 5
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1920.0
-offset_bottom = 1080.0
+offset_left = -1071.0
+offset_top = 34.0
+offset_right = -581.0
+offset_bottom = 354.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ph747")
 script = ExtResource("24_ph747")
@@ -3171,7 +3172,8 @@ text = "X"
 visible = false
 layout_mode = 2
 anchors_preset = 0
-offset_right = 482.0
+offset_left = -1920.0
+offset_right = -1438.0
 offset_bottom = 312.0
 
 [node name="WarningPattern" type="TextureRect" parent="Camera2D/HUD/CraftingPanel/Navbar"]
@@ -3375,8 +3377,6 @@ offset_bottom = 115.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_s0n6j")
 icon = ExtResource("34_4pkyx")
 button_type = 3
-level_required = 1
-recipe_function = "recipe_ice_to_water"
 new_resource_texture = ExtResource("34_4pkyx")
 new_resource_name = "Water"
 new_resource_amount = 10
@@ -3386,14 +3386,6 @@ ingredient_1 = true
 name_1 = "Ice"
 amount_1 = 5
 texture_1 = ExtResource("35_rievh")
-byproduct_1 = false
-byproduct_name_1 = ""
-byproduct_amount_1 = 0
-byproduct_texture_1 = ExtResource("36_vfec7")
-byproduct_2 = false
-byproduct_name_2 = ""
-byproduct_amount_2 = 0
-byproduct_texture_2 = ExtResource("36_vfec7")
 
 [node name="WaterCondensedIceRecipe2" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
@@ -3403,25 +3395,15 @@ offset_right = 88.0
 offset_bottom = 203.0
 icon = ExtResource("34_4pkyx")
 button_type = 3
-level_required = 1
-recipe_function = "recipe_dense_ice_to_water"
 new_resource_texture = ExtResource("34_4pkyx")
 new_resource_name = "Water"
 new_resource_amount = 40
 alt_resource_texture = ExtResource("36_olier")
-alt_resource_name = "(Dence Ice)"
+alt_resource_name = "(Dense Ice)"
 ingredient_1 = true
-name_1 = "Dence Ice"
+name_1 = "Dense Ice"
 amount_1 = 5
 texture_1 = ExtResource("36_olier")
-byproduct_1 = false
-byproduct_name_1 = ""
-byproduct_amount_1 = 0
-byproduct_texture_1 = ExtResource("36_vfec7")
-byproduct_2 = false
-byproduct_name_2 = ""
-byproduct_amount_2 = 0
-byproduct_texture_2 = ExtResource("36_vfec7")
 
 [node name="SulfuricAcid" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
@@ -3432,7 +3414,6 @@ offset_bottom = 334.0
 icon = ExtResource("42_yf42k")
 button_type = 3
 level_required = 2
-recipe_function = "recipe_sulfuric_acid"
 new_resource_texture = ExtResource("42_yf42k")
 new_resource_name = "Sulfuric Acid"
 new_resource_amount = 10
@@ -3444,14 +3425,6 @@ ingredient_2 = true
 name_2 = "Sulfur"
 amount_2 = 5
 texture_2 = ExtResource("43_v63ud")
-byproduct_1 = false
-byproduct_name_1 = ""
-byproduct_amount_1 = 0
-byproduct_texture_1 = ExtResource("36_vfec7")
-byproduct_2 = false
-byproduct_name_2 = ""
-byproduct_amount_2 = 0
-byproduct_texture_2 = ExtResource("36_vfec7")
 
 [node name="OxygenRecipe" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
@@ -3462,8 +3435,6 @@ offset_bottom = 115.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_s0n6j")
 icon = ExtResource("40_l7nca")
 button_type = 3
-level_required = 1
-recipe_function = "recipe_water_to_oxygen"
 new_resource_texture = ExtResource("40_l7nca")
 new_resource_name = "Oxygen"
 new_resource_amount = 100
@@ -3475,10 +3446,6 @@ byproduct_1 = true
 byproduct_name_1 = "Hydrogen"
 byproduct_amount_1 = 100
 byproduct_texture_1 = ExtResource("41_vfec7")
-byproduct_2 = false
-byproduct_name_2 = ""
-byproduct_amount_2 = 0
-byproduct_texture_2 = ExtResource("36_vfec7")
 
 [node name="HydrogenRecipe" parent="Camera2D/HUD/CraftingPanel/Recipes/FluidRefiningRecipes" instance=ExtResource("33_4pkyx")]
 layout_mode = 0
@@ -3488,8 +3455,6 @@ offset_right = 224.0
 offset_bottom = 203.0
 icon = ExtResource("41_vfec7")
 button_type = 3
-level_required = 1
-recipe_function = "recipe_water_to_hydrogen"
 new_resource_texture = ExtResource("41_vfec7")
 new_resource_name = "Hydrogen"
 new_resource_amount = 100
@@ -3501,10 +3466,6 @@ byproduct_1 = true
 byproduct_name_1 = "Oxygen"
 byproduct_amount_1 = 100
 byproduct_texture_1 = ExtResource("40_l7nca")
-byproduct_2 = false
-byproduct_name_2 = ""
-byproduct_amount_2 = 0
-byproduct_texture_2 = ExtResource("36_vfec7")
 
 [node name="CheatMenu" parent="Camera2D/HUD" instance=ExtResource("39_8tmsf")]
 visible = false

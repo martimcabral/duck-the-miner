@@ -6,7 +6,6 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 @export var button_status : bool = false
 @export var button_type : CraftingButtonTypes
 @export var level_required : int = 1
-@export var recipe_function : String = ""
 
 @export_category("Button Textures")
 @export var new_resource_texture : Texture = load("res://assets/textures/menus/null.png")
@@ -69,11 +68,8 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 @onready var Lobby = $"../../../../../.."
 @onready var Contract = $"../../../../Contract"
 
-var raw_resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
-var raw_resources := ConfigFile.new()
-
-var crafted_resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
-var crafted_resources := ConfigFile.new()
+var inventory_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory.cfg")
+var inventory_config := ConfigFile.new()
 
 func _ready() -> void:
 	if Contract.current_level < level_required:
@@ -159,58 +155,66 @@ func detect_status():
 
 func _on_pressed() -> void:
 	self.set_focus_mode(FOCUS_NONE)
-	call_deferred(str(recipe_function))
+	do_recipe()
 
-func start_crafing():
-	raw_resources.load(raw_resources_path)
-	crafted_resources.load(crafted_resources_path)
+func do_recipe():
+	$"../../..".update_current_resources_amount()
+	inventory_config.load(inventory_path)
+	
+	var has_ingredients : bool = true
+	if ingredient_1 == true:
+		has_ingredients = true && CraftingPanel.get(name_1.replace(" ", "")) >= amount_1
+	if ingredient_2 == true:
+		has_ingredients = true && CraftingPanel.get(name_2.replace(" ", "")) >= amount_2
+	if ingredient_3 == true:
+		has_ingredients = true && CraftingPanel.get(name_3.replace(" ", "")) >= amount_3
+	if ingredient_4 == true: 
+		has_ingredients = true && CraftingPanel.get(name_4.replace(" ", "")) >= amount_4
+	
+	# Remove ingredients
+	if has_ingredients == true:
+		if ingredient_1:
+			var section = find_section_for_item(name_1)
+			inventory_config.set_value(section, name_1, int(CraftingPanel.get(sanitize(name_1)) - amount_1))
+		if ingredient_2:
+			var section = find_section_for_item(name_2)
+			inventory_config.set_value(section, name_2, int(CraftingPanel.get(sanitize(name_2)) - amount_2))
+		if ingredient_3:
+			var section = find_section_for_item(name_3)
+			inventory_config.set_value(section, name_3, int(CraftingPanel.get(sanitize(name_3)) - amount_3))
+		if ingredient_4:
+			var section = find_section_for_item(name_4)
+			inventory_config.set_value(section, name_4, int(CraftingPanel.get(sanitize(name_4)) - amount_4))
+		
+		# Add main product
+		var main_section = find_section_for_item(new_resource_name)
+		inventory_config.set_value(main_section, new_resource_name, CraftingPanel.get(sanitize(new_resource_name)) + new_resource_amount)
+		
+		# Add byproducts
+		if byproduct_1:
+			var section = find_section_for_item(byproduct_name_1)
+			inventory_config.set_value(section, byproduct_name_1, CraftingPanel.get(sanitize(byproduct_name_1)) + byproduct_amount_1)
+		
+		if byproduct_2:
+			var section = find_section_for_item(byproduct_name_2)
+			inventory_config.set_value(section, byproduct_name_2, CraftingPanel.get(sanitize(byproduct_name_2)) + byproduct_amount_2)
+			
+		inventory_config.save(inventory_path)
+		inventory_config.clear()
+		CraftingPanel.update_current_resources_amount()
+		
+		match Lobby.selected_inventory:
+			0: Lobby._on_tab_bar_item_selected(0)
+			1: Lobby._on_tab_bar_item_selected(1)
 
-func end_crafting():
-	raw_resources.save(raw_resources_path)
-	crafted_resources.save(crafted_resources_path)
-	raw_resources.clear()
-	crafted_resources.clear()
-	CraftingPanel.update_current_resources_amount()
-	print("Recipe Done: ", recipe_function)
-	match Lobby.selected_inventory:
-		0: Lobby._on_tab_bar_item_selected(0)
-		1: Lobby._on_tab_bar_item_selected(1)
+func sanitize(ItemName: String) -> String:
+	return ItemName.replace(" ", "")
 
-func recipe_ice_to_water():
-	if CraftingPanel.amount_Ice >= amount_1:
-		start_crafing()
-		raw_resources.set_value("inventory", "Ice", CraftingPanel.amount_Ice - amount_1)
-		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water + new_resource_amount)
-		end_crafting()
-
-func recipe_dense_ice_to_water():
-	if CraftingPanel.amount_Dense_Ice >= amount_1:
-		start_crafing()
-		raw_resources.set_value("inventory", "Dense Ice", CraftingPanel.amount_Dense_Ice - amount_1)
-		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water + new_resource_amount)
-		end_crafting()
-
-func recipe_sulfuric_acid():
-	if CraftingPanel.amount_Water >= amount_1:
-		if CraftingPanel.amount_Sulfur >= amount_2:
-			start_crafing()
-			crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water - amount_1)
-			raw_resources.set_value("inventory", "Sulfur", CraftingPanel.amount_Sulfur - amount_2)
-			crafted_resources.set_value("inventory", "Sulfuric Acid", CraftingPanel.amount_Sulfuric_Acid + new_resource_amount)
-			end_crafting()
-
-func recipe_water_to_oxygen():
-	if CraftingPanel.amount_Water >= amount_1:
-		start_crafing()
-		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water - amount_1)
-		crafted_resources.set_value("inventory", "Oxygen", CraftingPanel.amount_Oxygen + new_resource_amount)
-		crafted_resources.set_value("inventory", "Hydrogen", CraftingPanel.amount_Hydrogen + byproduct_amount_1)
-		end_crafting()
-
-func recipe_water_to_hydrogen():
-	if CraftingPanel.amount_Water >= amount_1:
-		start_crafing()
-		crafted_resources.set_value("inventory", "Water", CraftingPanel.amount_Water - amount_1)
-		crafted_resources.set_value("inventory", "Hydrogen", CraftingPanel.amount_Hydrogen + new_resource_amount)
-		crafted_resources.set_value("inventory", "Oxygen", CraftingPanel.amount_Oxygen + byproduct_amount_1)
-		end_crafting()
+# Helper function to determine the correct section (raw or crafted)
+func find_section_for_item(key: String) -> String:
+	var sanitized = sanitize(key)
+	if inventory_config.has_section_key("raw", sanitized):
+		return "raw"
+	elif inventory_config.has_section_key("crafted", sanitized):
+		return "crafted"
+	return "raw"

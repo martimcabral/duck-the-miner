@@ -82,8 +82,7 @@ var koppa_thumbnail = preload("res://assets/textures/universe/orbits_and_fields/
 var skin_path : String = str("user://save/", GetSaveFile.save_being_used, "/skin.cfg")
 var money_path : String = str("user://save/", GetSaveFile.save_being_used, "/money.cfg")
 var missions_path : String = str("user://save/", GetSaveFile.save_being_used, "/missions.json")
-var resources_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
-var crafted_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
+var inventory_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory.cfg")
 var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, "/difficulty.cfg")
 var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
 var pricing_path : String = "user://pricing.cfg"
@@ -119,10 +118,10 @@ func _ready():
 	config_file.load(config_path)
 	$CanvasLayer/ColorblindnessColorRect.material.set_shader_parameter("mode", config_file.get_value("accessibility", "colorblindness", 0))
 	
-	var raw_config = ConfigFile.new()
-	raw_config.load(str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg"))
-	populate_inventory_tab(raw_config)
-	raw_config.clear()
+	var inventory_config = ConfigFile.new()
+	inventory_config.load(inventory_path)
+	populate_inventory_tab("raw", inventory_config)
+	inventory_config.clear()
 	
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = true
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.visible = true
@@ -674,41 +673,55 @@ func _on_tab_bar_item_selected(index: int):
 	#print("[lobby.gd] Inventory Selected: ", index)
 	selected_inventory = index
 	
-	var raw_config = ConfigFile.new()
-	var crafted_config = ConfigFile.new()
+	var inventory_config = ConfigFile.new()
 	
-	var raw_load_result = raw_config.load(raw_inv_path)
-	var crafted_load_result = crafted_config.load(crafted_inv_path)
-	
-	if raw_load_result == OK and crafted_load_result == OK:
-		#print("[lobby.gd] Detected both Inventories Successfully")
+	if inventory_config.load(inventory_path) == OK:
+		#print("[lobby.gd] Detected Inventory Successfully")
 		item_list.clear()
 		match index:
-			0: populate_inventory_tab(raw_config)
-			1: populate_inventory_tab(crafted_config)
+			0: populate_inventory_tab("raw", inventory_config)
+			1: populate_inventory_tab("crafted", inventory_config)
 	else:
-		print("[lobby.gd] Failed to load CFG file: ", raw_inv_path)
-		print("[lobby.gd] or")
-		print("[lobby.gd] Failed to load CFG file: ", crafted_inv_path)
+		print("[lobby.gd] Failed to load CFG file: ", inventory_config)
 
-func populate_inventory_tab(config: ConfigFile) -> void:
-	if config.has_section("inventory"):
-		var inventory_data = config.get_section_keys("inventory")
-		if inventory_data and inventory_data.size() > 0:
-			for item_name in inventory_data:
-				var quantity = config.get_value("inventory", item_name, 0)
-				var item_text = "%s: %d" % [item_name, quantity]
+func populate_inventory_tab(tab : String, inventory_config : ConfigFile) -> void:
+	match tab:
+		"raw":
+			if inventory_config.has_section("raw"):
+				var inventory_data = inventory_config.get_section_keys("raw")
+				if inventory_data and inventory_data.size() > 0:
+					for item_name in inventory_data:
+						var quantity = inventory_config.get_value("raw", item_name, 0)
+						var item_text = "%s: %d" % [item_name, quantity]
+						
+						var icon = load(item_icons.get(item_name, "res://assets/textures/items/misc/no_texture.png"))
+						var item_index = item_list.add_item(item_text)
+						item_list.set_item_icon(item_index, icon)
+
+				item_list.visible = true
+				$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
+			else:
+				item_list.visible = false
+				$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
+				print("[lobby.gd] Config: ", inventory_config, " does not have an Inventory section.")
+		"crafted":
+			if inventory_config.has_section("crafted"):
+				var inventory_data = inventory_config.get_section_keys("crafted")
+				if inventory_data and inventory_data.size() > 0:
+					for item_name in inventory_data:
+						var quantity = inventory_config.get_value("crafted", item_name, 0)
+						var item_text = "%s: %d" % [item_name, quantity]
+						
+						var icon = load(item_icons.get(item_name, "res://assets/textures/items/misc/no_texture.png"))
+						var item_index = item_list.add_item(item_text)
+						item_list.set_item_icon(item_index, icon)
 				
-				var icon = load(item_icons.get(item_name, "res://assets/textures/items/misc/no_texture.png"))
-				var item_index = item_list.add_item(item_text)
-				item_list.set_item_icon(item_index, icon)
-			
-			item_list.visible = true
-			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
-	else:
-		item_list.visible = false
-		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
-		print("[lobby.gd] Config: ", config, " does not have an Inventory section.")
+				item_list.visible = true
+				$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = false
+			else:
+				item_list.visible = false
+				$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
+				print("[lobby.gd] Config: ", inventory_config, " does not have an Inventory section.")
 
 func _on_item_list_item_selected(index: int) -> void:
 	item_selected = index
@@ -720,6 +733,7 @@ func _on_item_list_item_selected(index: int) -> void:
 	print("[lobby.gd] Item Quantity: ", selected_item_quantity)
 
 func _on_sell_button_pressed() -> void:
+	$Camera2D/HUD/CraftingPanel.update_current_resources_amount()
 	if item_list.item_count > 0:
 		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/SellButton/SellSoundEffect.play()
 		item_list.remove_item(item_selected)
@@ -765,16 +779,14 @@ func get_price(item_name):
 	return price
 
 func remove_item_from_inventory(item_name):
-	if selected_inventory == 0:
-		var resources = ConfigFile.new()
-		resources.load(resources_path)
-		resources.erase_section_key("inventory", item_name)
-		resources.save(resources_path)
-	elif selected_inventory == 1:
-		var crafted = ConfigFile.new()
-		crafted.load(crafted_path)
-		crafted.erase_section_key("inventory", item_name)
-		crafted.save(crafted_path)
+	var inventory = ConfigFile.new()
+	inventory.load(inventory_path)
+
+	match selected_inventory:
+		0: inventory.erase_section_key("raw", item_name)
+		1: inventory.erase_section_key("crafted", item_name)
+
+	inventory.save(inventory_path)
 
 func update_money(strinfied_money):
 	var formatted_number = ""
