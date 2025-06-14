@@ -186,7 +186,7 @@ func _ready() -> void:
 		fees_values += str("[+", secondary_mission_award,"€]\n")
 		bonus += secondary_mission_award
 	
-	experience_from_goods = int(floor(goods_amount / 200.0))
+	experience_from_goods = int(floor(goods_amount / 150.0))
 	total_experince_gained = experience_from_goods + experience_from_primary + experience_from_secundary
 	license_config.load(license_path)
 	license_config.set_value("license", "experience", \

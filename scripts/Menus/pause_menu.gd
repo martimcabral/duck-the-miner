@@ -6,7 +6,18 @@ var saved_states = {}
 @onready var player = $"../Player"
 @onready var world = $".."
 
-var inventory_path = str("user://save/", GetSaveFile.save_being_used, "/inventory.json")
+var inventory_path = str("user://save/", GetSaveFile.save_being_used, "/inventory.cfg")
+
+func _ready() -> void:
+	$GUI_Pause/VersionDisplay.text = "Version: release." + str(ProjectSettings.get_setting("application/config/version"))
+	
+	for button in get_tree().get_nodes_in_group("Buttons"):
+		button.mouse_entered.connect(func(): _on_button_mouse_entered())
+	
+	var settings_path = "user://game_settings.cfg"
+	var config = ConfigFile.new()
+	config.load(settings_path)
+	$GUI_Pause/Colorblindness.material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness", 4))
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("PauseMenu"):
@@ -54,7 +65,7 @@ func keep_inventory():
 	var new_items = get_items_from_itemlist($"../Player/HUD/ItemList")
 	var updated_inventory = merge_items(current_inventory, new_items)
 	if save_inventory_to_cfg(inventory_path, updated_inventory):
-		print("[pause_menu.gd] Inventory saved successfully to", inventory_path)
+		print("[pause_menu.gd] Inventory saved successfully to: ", inventory_path)
 	else:
 		print("[pause_menu.gd] Failed to save inventory")
 
@@ -105,7 +116,7 @@ func load_inventory(inventory_cfg):
 			for item_name in config.get_section_keys("raw"):
 				inventory_data[item_name] = config.get_value("raw", item_name, 0)  # Default to 0 if not found
 			return inventory_data
-		else: print("[pause_menu.gd] Config: ", config," does not have section Inventory.")
+		else: print("[pause_menu.gd] Config: ", config," does not have section raw.")
 	return {}
 
 # Function to save inventory to a CFG file
@@ -135,17 +146,6 @@ func enable_all_rigid_body_physics():
 			body.angular_velocity = state["angular_velocity"]
 			body.freeze = false
 	saved_states.clear()  # Clear stored states
-
-func _ready() -> void:
-	$GUI_Pause/VersionDisplay.text = "Version: release." + str(ProjectSettings.get_setting("application/config/version"))
-	
-	for button in get_tree().get_nodes_in_group("Buttons"):
-		button.mouse_entered.connect(func(): _on_button_mouse_entered())
-	
-	var settings_path = "user://game_settings.cfg"
-	var config = ConfigFile.new()
-	config.load(settings_path)
-	$GUI_Pause/Colorblindness.material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness", 4))
 
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects

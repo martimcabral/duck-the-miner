@@ -1,6 +1,7 @@
 @tool
 extends Button
 
+enum ItemCategory {Raw, Crafted}
 enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem}
 @export_category("Button Info")
 @export var button_status : bool = false
@@ -11,6 +12,7 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 @export var new_resource_texture : Texture = load("res://assets/textures/menus/null.png")
 @export var new_resource_name : String = ""
 @export var new_resource_amount : int = 0
+@export var new_resource_category : ItemCategory 
 @export var alt_resource_texture: Texture = load("res://assets/textures/menus/null.png")
 @export var alt_resource_name : String = ""
 
@@ -19,36 +21,42 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 @export var name_1 : String = ""
 @export var amount_1 : int = 0
 @export var texture_1 : Texture = load("res://assets/textures/menus/null.png")
+@export var category_1 : ItemCategory 
 
 @export_category("Ingredient 2")
 @export var ingredient_2 : bool = false
 @export var name_2 : String = ""
 @export var amount_2 : int = 0
 @export var texture_2 : Texture = load("res://assets/textures/menus/null.png")
+@export var category_2 : ItemCategory 
 
 @export_category("Ingredient 3")
 @export var ingredient_3 : bool = false
 @export var name_3 : String = ""
 @export var amount_3 : int = 0
 @export var texture_3 : Texture = load("res://assets/textures/menus/null.png")
+@export var category_3 : ItemCategory 
 
 @export_category("Ingredient 4")
 @export var ingredient_4 : bool = false
 @export var name_4 : String = ""
 @export var amount_4 : int = 0
 @export var texture_4 : Texture = load("res://assets/textures/menus/null.png")
+@export var category_4 : ItemCategory 
 
 @export_category("Byproduct 1")
 @export var byproduct_1 : bool = false
 @export var byproduct_name_1 : String = ""
 @export var byproduct_amount_1 : int = 0
 @export var byproduct_texture_1 : Texture = load("res://assets/textures/menus/null.png")
+@export var byproduct_category_1 : ItemCategory 
 
 @export_category("Byproduct 2")
 @export var byproduct_2 : bool = false
 @export var byproduct_name_2 : String = ""
 @export var byproduct_amount_2 : int = 0
 @export var byproduct_texture_2 : Texture = load("res://assets/textures/menus/null.png")
+@export var byproduct_category_2 : ItemCategory 
 
 @onready var Ingredient_1_Texture = $RecipeTooltip/RecipeList/ItemsDeCima/Item1/Texture
 @onready var Ingredient_1_Label = $RecipeTooltip/RecipeList/ItemsDeCima/Item1/Label
@@ -113,8 +121,6 @@ func remove_item(SlotNumber):
 		6: $RecipeTooltip/RecipeList/ItemsByproduct/Item2.queue_free()
 
 func _process(_delta):
-	detect_status()
-	
 	if not Engine.is_editor_hint():
 		var tooltip_size = $RecipeTooltip.size
 		var mouse_pos = get_local_mouse_position()
@@ -147,12 +153,6 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	$RecipeTooltip.visible = false
 
-func detect_status():
-	var stylebox := self.get_theme_stylebox("normal")
-	if stylebox is StyleBoxFlat:
-		if button_status: stylebox.border_color = Color("00b54c")
-		else: stylebox.border_color = Color.FIREBRICK
-
 func _on_pressed() -> void:
 	self.set_focus_mode(FOCUS_NONE)
 	do_recipe()
@@ -161,44 +161,48 @@ func do_recipe():
 	$"../../..".update_current_resources_amount()
 	inventory_config.load(inventory_path)
 	
-	var has_ingredients : bool = true
-	if ingredient_1 == true:
-		has_ingredients = true && CraftingPanel.get(name_1.replace(" ", "")) >= amount_1
-	if ingredient_2 == true:
-		has_ingredients = true && CraftingPanel.get(name_2.replace(" ", "")) >= amount_2
-	if ingredient_3 == true:
-		has_ingredients = true && CraftingPanel.get(name_3.replace(" ", "")) >= amount_3
-	if ingredient_4 == true: 
-		has_ingredients = true && CraftingPanel.get(name_4.replace(" ", "")) >= amount_4
+	var has_ingredients : bool = false
+	
+	if ingredient_1 == true: has_ingredients = true && CraftingPanel.get(name_1.replace(" ", "")) >= amount_1
+	if ingredient_2 == true: has_ingredients = true && CraftingPanel.get(name_2.replace(" ", "")) >= amount_2
+	if ingredient_3 == true: has_ingredients = true && CraftingPanel.get(name_3.replace(" ", "")) >= amount_3
+	if ingredient_4 == true: has_ingredients = true && CraftingPanel.get(name_4.replace(" ", "")) >= amount_4
 	
 	# Remove ingredients
 	if has_ingredients == true:
-		if ingredient_1:
-			var section = find_section_for_item(name_1)
-			inventory_config.set_value(section, name_1, int(CraftingPanel.get(sanitize(name_1)) - amount_1))
-		if ingredient_2:
-			var section = find_section_for_item(name_2)
-			inventory_config.set_value(section, name_2, int(CraftingPanel.get(sanitize(name_2)) - amount_2))
-		if ingredient_3:
-			var section = find_section_for_item(name_3)
-			inventory_config.set_value(section, name_3, int(CraftingPanel.get(sanitize(name_3)) - amount_3))
-		if ingredient_4:
-			var section = find_section_for_item(name_4)
-			inventory_config.set_value(section, name_4, int(CraftingPanel.get(sanitize(name_4)) - amount_4))
+		if ingredient_1 == true:
+			match category_1:
+				0: inventory_config.set_value("raw", name_1.replace(" ", " "), int(CraftingPanel.get(name_1.replace(" ", "")) - amount_1))
+				1: inventory_config.set_value("crafted", name_1.replace(" ", " "), int(CraftingPanel.get(name_1.replace(" ", "")) - amount_1))
+		if ingredient_2 == true:
+			match category_2:
+				0: inventory_config.set_value("raw", name_2.replace(" ", " "), int(CraftingPanel.get(name_2.replace(" ", "")) - amount_2))
+				1: inventory_config.set_value("crafted", name_2.replace(" ", " "), int(CraftingPanel.get(name_2.replace(" ", "")) - amount_2))
+		if ingredient_3 == true:
+			match category_3:
+				0: inventory_config.set_value("raw", name_3.replace(" ", " "), int(CraftingPanel.get(name_3.replace(" ", "")) - amount_3))
+				1: inventory_config.set_value("crafted", name_3.replace(" ", " "), int(CraftingPanel.get(name_3.replace(" ", "")) - amount_3))
+		if ingredient_4 == true:
+			match category_4:
+				0: inventory_config.set_value("raw", name_4.replace(" ", " "), int(CraftingPanel.get(name_4.replace(" ", "")) - amount_4))
+				1: inventory_config.set_value("crafted", name_4.replace(" ", " "), int(CraftingPanel.get(name_4.replace(" ", "")) - amount_4))
 		
 		# Add main product
-		var main_section = find_section_for_item(new_resource_name)
-		inventory_config.set_value(main_section, new_resource_name, CraftingPanel.get(sanitize(new_resource_name)) + new_resource_amount)
+		match new_resource_category:
+			0: inventory_config.set_value("raw", new_resource_name.replace(" ", " "), CraftingPanel.get(new_resource_name.replace(" ", "")) + new_resource_amount)
+			1: inventory_config.set_value("crafted", new_resource_name.replace(" ", " "), CraftingPanel.get(new_resource_name.replace(" ", "")) + new_resource_amount)
 		
 		# Add byproducts
-		if byproduct_1:
-			var section = find_section_for_item(byproduct_name_1)
-			inventory_config.set_value(section, byproduct_name_1, CraftingPanel.get(sanitize(byproduct_name_1)) + byproduct_amount_1)
+		if byproduct_1 == true:
+			match byproduct_category_1:
+				0: inventory_config.set_value("raw", byproduct_name_1.replace(" ", " "), CraftingPanel.get(byproduct_name_1.replace(" ", "")) + byproduct_amount_1)
+				1: inventory_config.set_value("crafted", byproduct_name_1.replace(" ", " "), CraftingPanel.get(byproduct_name_1.replace(" ", "")) + byproduct_amount_1)
 		
-		if byproduct_2:
-			var section = find_section_for_item(byproduct_name_2)
-			inventory_config.set_value(section, byproduct_name_2, CraftingPanel.get(sanitize(byproduct_name_2)) + byproduct_amount_2)
-			
+		if byproduct_2 == true:
+			match byproduct_category_2:
+				0: inventory_config.set_value("raw", byproduct_name_2.replace(" ", " "), CraftingPanel.get(byproduct_name_2.replace(" ", "")) + byproduct_amount_2)
+				1: inventory_config.set_value("crafted", byproduct_name_2.replace(" ", " "), CraftingPanel.get(byproduct_name_2.replace(" ", "")) + byproduct_amount_2)
+		
 		inventory_config.save(inventory_path)
 		inventory_config.clear()
 		CraftingPanel.update_current_resources_amount()
@@ -206,15 +210,3 @@ func do_recipe():
 		match Lobby.selected_inventory:
 			0: Lobby._on_tab_bar_item_selected(0)
 			1: Lobby._on_tab_bar_item_selected(1)
-
-func sanitize(ItemName: String) -> String:
-	return ItemName.replace(" ", "")
-
-# Helper function to determine the correct section (raw or crafted)
-func find_section_for_item(key: String) -> String:
-	var sanitized = sanitize(key)
-	if inventory_config.has_section_key("raw", sanitized):
-		return "raw"
-	elif inventory_config.has_section_key("crafted", sanitized):
-		return "crafted"
-	return "raw"

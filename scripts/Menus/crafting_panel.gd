@@ -60,8 +60,6 @@ var Hydrogen : int = 0
 
 var CurrentPanel : int = 0
 
-#@onready var Contract = $"../Contract"
-
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	hide_all_recipes()
@@ -186,6 +184,7 @@ func update_current_resources_amount():
 		Labradorite = inventory.get_value("raw", "Labradorite", 0)
 		FrozenDiamond = inventory.get_value("raw", "Frozen Diamond", 0)
 		Jeremejevite = inventory.get_value("raw", "Jeremejevite", 0)
+		
 		# Crafted Resources:
 		Water = inventory.get_value("crafted", "Water", 0)
 		SulfuricAcid = inventory.get_value("crafted", "Sulfuric Acid", 0)

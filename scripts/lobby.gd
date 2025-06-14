@@ -87,8 +87,6 @@ var difficulty_path : String = str("user://save/", GetSaveFile.save_being_used, 
 var license_path : String = str("user://save/", GetSaveFile.save_being_used, "/license.cfg")
 var pricing_path : String = "user://pricing.cfg"
 var config_path : String = "user://game_settings.cfg"
-var raw_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_resources.cfg")
-var crafted_inv_path = str("user://save/", GetSaveFile.save_being_used, "/inventory_crafted.cfg")
 
 var selected_item_name : String = ""
 var selected_item_quantity : int = 0
@@ -215,7 +213,7 @@ func _process(delta: float) -> void:
 		and $Camera2D/HUD/Contract/ThirdHotbarDropdown.get_item_text($Camera2D/HUD/Contract/ThirdHotbarDropdown.selected) == "Nothing" \
 		and $Camera2D/HUD/Contract/FourthHotbarDropdown.get_item_text($Camera2D/HUD/Contract/FourthHotbarDropdown.selected) == "Nothing":
 			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = true
-			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.tooltip_text = "No Item selected"
+			$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.tooltip_text = "     No tool selected, check Contract panel!"
 	else:
 		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.tooltip_text = ""
@@ -468,9 +466,9 @@ func save_asteroid_data():
 	if file:
 		file.store_string(result)
 		file.close()
-		print("[asteroid_selector.gd/missions.json] Asteroid data saved")
+		print("[lobby.gd/missions.json] Asteroid data saved")
 	else:
-		print("[asteroid_selector.gd/missions.json] Failed to open file for saving.")
+		print("[lobby.gd/missions.json] Failed to open file for saving.")
 
 func _on_next_button_pressed() -> void:
 	current_page += 1
@@ -734,7 +732,8 @@ func _on_item_list_item_selected(index: int) -> void:
 
 func _on_sell_button_pressed() -> void:
 	$Camera2D/HUD/CraftingPanel.update_current_resources_amount()
-	if item_list.item_count > 0:
+	
+	if item_list.item_count > 0 and item_selected != -1:
 		$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/SellButton/SellSoundEffect.play()
 		item_list.remove_item(item_selected)
 		var price = get_price(selected_item_name)
