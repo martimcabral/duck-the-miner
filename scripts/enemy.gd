@@ -25,12 +25,17 @@ var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, 
 var statistics_config = ConfigFile.new()
 
 func _ready() -> void:
+	var scale_factor = randf_range(0.8, 1.2)
+	self.scale = Vector2(scale_factor, scale_factor)
+	
 	difficulty_config.load(difficulty_path)
 	current_difficulty = difficulty_config.get_value("difficulty", "current", "normal")
 	match current_difficulty:
 		"easy": max_health = 80
 		"normal": max_health = 100
 		"hard": max_health = 120
+	@warning_ignore("narrowing_conversion")
+	max_health *= scale.x
 	current_health = max_health
 	
 	$AnimatedSprite2D.play("bat_flying")

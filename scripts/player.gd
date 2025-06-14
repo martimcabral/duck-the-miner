@@ -139,7 +139,6 @@ func _ready():
 	current_oxygen = max_oxygen
 	current_battery = max_battery
 	
-	
 	load_skin()
 	
 	if biome_visual_effects == true:
@@ -147,6 +146,11 @@ func _ready():
 			"Frozen": $Camera2D/HUD/FreezingOverlay.visible = true
 			"Vulcanic": $Camera2D/HUD/MirageOverlay.visible = true
 			"Radioactive": $ChromaticAberration.visible = true
+	
+	$Camera2D/HUD/Stats/UI/BatteryPanel.visible = false
+	for i in range(hotbar.get_tab_count()):
+		if hotbar.get_tab_title(i) == "UV Flashlight" or hotbar.get_tab_title(i) == "Radar the Tool" or hotbar.get_tab_title(i) == "Radar the Enemies":
+			$Camera2D/HUD/Stats/UI/BatteryPanel.visible = true
 
 func player_movement(input, delta):
 	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:

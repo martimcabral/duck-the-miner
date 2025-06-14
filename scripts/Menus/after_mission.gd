@@ -61,6 +61,8 @@ var fees_label : String = ""
 var fees_values : String = ""
 
 func _ready() -> void:
+	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
+	
 	$FyctionTax/PrintingAnimation.play("appear")
 	$FyctionTax/WhooshSoundEffect.play()
 	

@@ -61,8 +61,6 @@ var max_build_future : int = 1
 var primary_mission_completed : bool = false
 var secondary_mission_completed : bool = false
 
-
-
 func _ready():
 	difficulty_file.load(difficulty_path)
 	difficulty = difficulty_file.get_value("difficulty", "current")
@@ -294,8 +292,12 @@ func _process(_delta: float) -> void:
 	
 	if primary_mission_completed == true:
 		$Player/HUD/MissionList.set_item_custom_fg_color(0, Color("00b54c"))
+		$Player/Camera2D/HUD/Hotbar/TabBar/EndMissionLabel.visible = true
 	if secondary_mission_completed == true:
 		$Player/HUD/MissionList.set_item_custom_fg_color(1, Color("00b54c"))
+	
+	if Input.is_action_pressed("End_Mission") and primary_mission_completed == true:
+		$PauseMenu._on_abort_mission_button_pressed()
 	
 	if $".".has_node("WorldMusic"):
 		$WorldMusic.position = $Player.position
@@ -565,8 +567,6 @@ func _on_spawn_enemies_timeout() -> void:
 		enemy.set_meta("Enemy", "Enemy")
 		enemy.add_to_group("Enemy")
 		enemy.position = Vector2($Player.position.x + randi_range(-240, 240), $Player.position.y + randi_range(-240, 240))
-		var scale_factor = randf_range(0.8, 1.2)
-		enemy.scale = Vector2(scale_factor, scale_factor)
 		add_child(enemy)
 
 func update_radar_tool():
