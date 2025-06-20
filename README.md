@@ -2,6 +2,9 @@
 
 ![image](https://github.com/user-attachments/assets/34deeaee-70f2-4628-832c-8d091a4ad827)
 
+Tutorial de como executar este código no Godot!
+1. Transferir o Código
+
 
 Trello: https://trello.com/b/oDFcr4Q6/pap-duck-the-miner-maquete \
 Changelog: https://docs.google.com/document/d/1cK5sCYLZ4w3ySDin0bDzxlL4MMs5bKy3flPUTVJtiZ0/edit \
