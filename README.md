@@ -10,7 +10,7 @@
 **Tutorial de como executar este código no Godot!**
 1. Transferir o Código
 2. No Godot, importar o projeto na pasta duck-the-miner-main
-3. Após abrir o Editor no porjeto do Duck the Miner usar F5 para executar
+3. Após abrir o Editor no projeto do Duck the Miner usar F5 para executar
 
 **Tour do Source Code do Duck the Miner:** \
 *addons/discord-rpc-gd*: É so o addon que foi preciso para conectar e usar o Discord e o Godot \
