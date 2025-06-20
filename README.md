@@ -19,6 +19,6 @@ assets/textures: É onde tão todas as texturas \
 rcedit: É só uma configuração específica para exportar o jogo para Windows \
 scenes: É onde estão localizados os game levels do jogo \
 scripts: É o cógido todos do jogo \
-sounds: É onde está todos os efeitos sonoros e músicas do jogo \
+sounds: É onde está todos os efeitos sonoros e músicas do jogo
 
 © Martim Cabral 2007-2025
