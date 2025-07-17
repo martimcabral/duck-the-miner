@@ -15,6 +15,10 @@ var version_path : String = str("user://version.cfg")
 var tutorial_config := ConfigFile.new()
 var tutorial_path : String = str("user://tutorial.cfg")
 
+# Este script é responsável por iniciar o jogo, configurar o ambiente e carregar as configurações iniciais.
+# Ele também lida com a lógica de exibição do menu principal, incluindo a configuração de
+# imagens de fundo aleatórias, a configuração de preços de recursos e a exibição de mensagens
+# de presença no Discord, se disponível.
 func _ready() -> void:
 	print("[start.gd] Current Date Package: ", date)
 	print("[start.gd] Current Month: ", date["month"])
@@ -47,7 +51,7 @@ func _ready() -> void:
 		print("[start.cfg] was detected successfully")
 	else:
 		print("[start.cfg] not found. Creating a new one...")
-		# Save the file
+	
 		var save_error = config.save(file_path)
 		if save_error != OK:
 			print("[start.cfg] error - Could not save the configuration file: ", save_error)
@@ -89,12 +93,14 @@ func _ready() -> void:
 	if easter_egg_title == 1:
 		$GUI/Center/Title.text = "Miner the Duck"
 
+# Função chamada a cada frame para atualizar o estado do jogo e lidar com entradas do usuário.
+# Ela também ajusta o tamanho do fundo do menu principal e lida com ações de agachar e alternar entre modos de tela cheia e janela.
+# Além disso, executa callbacks do DiscordRPC para manter a presença do usuário atualizada.
 func _process(_delta: float) -> void:
 	DiscordRPC.run_callbacks()
 	
 	$GUI/Center/Background.size = get_viewport_rect().size
 	
-	# Agachar no Menu
 	if Input.is_action_just_pressed("Agachar"):
 		if agachado == 0:
 			agachado = 1
@@ -103,7 +109,6 @@ func _process(_delta: float) -> void:
 			agachado = 0
 			$GUI/Center/Background.texture = ResourceLoader.load("res://assets/textures/menus/main_menu_up.png")
 	
-	# Fullscreen
 	if Input.is_action_just_pressed("Fullscreen"):
 		if window_mode == 0:
 			window_mode = 1
@@ -112,6 +117,7 @@ func _process(_delta: float) -> void:
 			window_mode = 0
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
+# Função chamada quando o mouse entra em um botão
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects
 	if mouse_sound:
@@ -119,6 +125,10 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
 
+# Função para criar o arquivo de configuração de preços dos recursos
+# Ela verifica se o arquivo já existe e, se não, cria um novo com os preços
+# definidos para cada recurso. Os preços são armazenados em um dicionário e salvos
+# no arquivo de configuração.
 func create_pricing_config():
 	var pricing_path = "user://pricing.cfg"
 	var pricing_file = ConfigFile.new()
@@ -188,6 +198,9 @@ func create_pricing_config():
 			pricing_file.set_value("pricing", ore, prices[ore])
 			pricing_file.save(pricing_path)
 
+# Função para criar o arquivo de mensagens de splash
+# Ela gera uma lista de mensagens de splash que serão exibidas aleatoriamente no menu principal
+# As mensagens incluem referências a eventos sazonais, piadas internas e links para o jogo
 func create_splashes_file():
 	var splashes_text : Array = [ # NORMAIS
 		"Dan the Duckling then Dan the Duck",

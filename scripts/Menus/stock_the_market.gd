@@ -43,6 +43,7 @@ func _process(_delta):
 			else:
 				linha.visible = false
 
+# Funções para os botões de toggle
 func _on_fyction_button_toggled(toggled_on: bool) -> void:
 	check_graph(toggled_on, "Fyction")
 
@@ -67,6 +68,7 @@ func _on_octane_button_toggled(toggled_on: bool) -> void:
 func _on_close_market_button_pressed() -> void:
 	$AnimationPlayer.play("stock_the_down")
 
+# Função chamada quando o botão de fechar o painel de ações é pressionado
 func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())
@@ -99,6 +101,7 @@ func _ready() -> void:
 	create_all_charts()
 	get_companies_values()
 
+# Função para criar o gráfico de ações de uma empresa
 func create_chart(cor : Color, nome : String):
 	var stored_chart_points : Array = []
 	
@@ -127,6 +130,7 @@ func create_chart(cor : Color, nome : String):
 	
 	$Background/StockPanel.add_child(line)
 
+# Função para verificar se o gráfico de uma empresa está ativo ou não
 func check_graph(toggled_on : bool, nome : String):
 	$CompanyLogo.texture = load(companies_logos[nome])
 	if toggled_on == true:
@@ -140,6 +144,7 @@ func check_graph(toggled_on : bool, nome : String):
 				if linha.get_meta("linename") == nome:
 					linha.remove_from_group("PressedStock")
 
+# Função chamada quando o mouse entra no botão
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $Companies/MouseSoundEffects
 	if mouse_sound:
@@ -147,6 +152,7 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.pitch_scale = 5
 		mouse_sound.play()
 
+# Função para criar todos os gráficos de ações das empresas
 func create_all_charts():
 	if GetSaveFile.save_being_used != 0:
 		create_chart("00CFFF", "Fyction")
@@ -157,6 +163,7 @@ func create_all_charts():
 		create_chart("14c020", "Anura")
 		create_chart("e0d5d5", "Octane")
 
+# Função para deletar os gráficos mais antigos, caso o jogador tenha mais de 13 dias de jogo
 func delete_older_graph():
 	if GetSaveFile.save_being_used != 0:
 		for linha in $Background/StockPanel.get_children():
@@ -165,6 +172,7 @@ func delete_older_graph():
 					if linha.get_meta("linename") == nome:
 						linha.queue_free()
 
+# Função para obter os valores das ações das empresas do arquivo de configuração
 func get_companies_values():
 	if GetSaveFile.save_being_used != 0:
 		var get_stock_path = str("user://save/", GetSaveFile.save_being_used, "/stock.cfg")
@@ -193,10 +201,12 @@ func get_companies_values():
 		print("[stock_the_market.gd] Companie Stocks: ", companies_values)
 		print("[stock_the_market.gd] Companie Comparisons: ", companies_comparisons)
 
+# Função para clamar os valores das ações, para que fiquem dentro de um intervalo específico
 func clamp_stock(value: float, to_min : float, to_max : float, from_min : float, from_max):
 	var new_value = (value - from_min) / (from_max - from_min) * (to_max - to_min) + to_min
 	return clamp(new_value, to_min, to_max)
 
+# Função para formatar o valor das ações com cores e sinal de mais, se necessário
 func _colored(value: float, ticker: String) -> String: 
 	var color := "#00b54c" if value >= 0 else "#ff3737"
 	var plus_sign := "+" if value > 0 else ""

@@ -60,18 +60,32 @@ var Hydrogen : int = 0
 
 var CurrentPanel : int = 0
 
+# Este script é responsável por controlar o painel de crafting do jogo.
+# Ele gerencia a exibição de receitas de crafting, atualiza os recursos do jogador e
+# permite a navegação entre diferentes tipos de crafting, como alloying, metallurgic,
+# fluids refining, advanced crafting e gem polishing.
 func _ready() -> void:
 	$AnimationPlayer.play("RESET")
 	hide_all_recipes()
 	show_recipes()
 	update_current_resources_amount()
 
+# Funções que são chamadas quando os botões do painel de crafting são pressionados.
 func _on_crafting_icon_texture_button_pressed() -> void:
 	$AnimationPlayer.play("grow")
 
 func _on_close_crafting_tab_pressed() -> void:
 	$AnimationPlayer.play_backwards("grow")
 
+# Funções que são chamadas quando os botões do Navbar são pressionados.
+# Cada função reseta o terminal de crafting, atualiza a posição do background do botão
+# e chama a função show_recipes() para exibir as receitas correspondentes ao painel selecionado.
+# Além disso, cada função também altera a cor do texto do botão selecionado para branco
+# e redefine a cor dos outros botões para preto.
+# As funções correspondem aos diferentes tipos de crafting disponíveis no jogo.
+# 0 - Crafting, 1 - Alloying, 2 - Metallurgic
+# 3 - Fluids Refining, 4 - Advanced Crafting, 5 - Gem Polishing
+# 6 - Crafting Terminal
 func _on_crafting_button_pressed() -> void:
 	$Navbar/ButtonBackground.position = $Navbar/Icons/CraftingButton.position - Vector2(0, 9)
 	reset_crafting_terminal(); CurrentPanel = 0; show_recipes()
@@ -111,11 +125,13 @@ func reset_crafting_terminal():
 	$Navbar/Icons/GemPolishingButton/Label.add_theme_color_override("font_color", Color.BLACK)
 	hide_all_recipes()
 
+# Esconde todas as receitas do painel de crafting.
 func hide_all_recipes():
 	for recipe in get_children():
 		if recipe.is_in_group("Recipe"):
-			print("a")
+			print("debug::abc")
 
+# Mostrar as receitas disponíveis com base no painel atual.
 func show_recipes():
 	for recipe in $Recipes/FluidRefiningRecipes.get_children():
 		if recipe is Button:
@@ -125,6 +141,7 @@ func show_recipes():
 			if int(recipe.editor_description) == CurrentPanel: recipe.visible = true
 			else: recipe.visible = false
 
+# Atualiza a quantidade de recursos atuais do jogador, usando do arquivo de inventário.
 func update_current_resources_amount():
 	var inventory_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory.cfg")
 	var inventory := ConfigFile.new()

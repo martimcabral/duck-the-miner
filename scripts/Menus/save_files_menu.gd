@@ -29,7 +29,7 @@ var choosen_intro : bool = true
 
 func _ready() -> void:
 	$SaveScreationPanel.visible = false
-	# Check if the save directory exists, if not, create it
+	# Verifica se o diretório de salvamento existe, caso contrário, cria-o
 	if not DirAccess.dir_exists_absolute(saves_path):
 		print("[save_files_menu.gd] Directory not found. Creating directory: ", saves_path)
 		DirAccess.make_dir_absolute(saves_path)
@@ -38,7 +38,7 @@ func _ready() -> void:
 		savedir = DirAccess.open("user://save")
 	
 	var config_path = saves_path + "saves.cfg"
-	# Check if the saves configuration file exists
+	# Verifica se o arquivo de configuração existe, caso contrário, cria um novo
 	if not FileAccess.file_exists(config_path):
 		print("[save_files_menu.gd] not found. Creating a new one....")
 		saves_config.set_value("saves", "ammount", 0)
@@ -60,18 +60,18 @@ func get_save_files():
 			var getday_file = ConfigFile.new()
 			var getdifficulty_config = ConfigFile.new()
 			
-			# Load the day config file from the user data save directory
+			# Carrega o arquivo de configuração de inventário do diretório de salvamento do usuário
 			getday_file.load(saves_path + str(i) + "/statistics.cfg")
 			var current_day = str(getday_file.get_value("statistics", "days", "ERROR:728"))
-			
-			# Load the money config file from the user data save directory
+
+			# Carrega o arquivo de configuração de dinheiro do diretório de salvamento do usuário
 			getmoney_config.load(saves_path + str(i) + "/money.cfg")
 			var current_money = str(getmoney_config.get_value("money", "current", 0))
 			
 			getdifficulty_config.load(saves_path + str(i) + "/difficulty.cfg")
 			var current_difficulty = str(getdifficulty_config.get_value("difficulty", "current", "normal"))
 			
-			# Format money with spaces
+			# Formata o texto do diinheiro a cada 3 dígitos para ter um espaço para melhor visualização
 			var number_str = str(current_money)
 			var formatted_number = ""
 			var counter = 0
@@ -110,6 +110,7 @@ func get_save_files():
 			$ScrollContainer/SaveList.add_child(SaveFileButton)
 			SaveFileButton.add_to_group("Buttons")
 
+# Verifica os arquivos de salvamento a cada vez que o timer acaba
 func _on_verify_files_timeout() -> void:
 	var directories = savedir.get_directories()
 	directories.sort()
@@ -119,6 +120,7 @@ func _on_verify_files_timeout() -> void:
 	saves_config.set_value("saves", "ammount", saves_number)
 	saves_config.save(saves_path)
 
+# Função chamada quando o botão é pressionado
 func _on_back_button_pressed() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
 	$"../../../MouseSoundEffects".play()
@@ -126,13 +128,14 @@ func _on_back_button_pressed() -> void:
 	$".".visible = false
 	$"../SplashTitleLabel".visible = true
 
+# Função chamada quando o botão é pressionado
 func _on_creator_button_pressed() -> void:
 	$SaveScreationPanel.visible = false
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/play.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 1.25
 	$"../../../MouseSoundEffects".play()
 	
-	# Create SaveGame Button
+	# Criar os Botões dos saves
 	saves_number += 1
 	var SaveFileButton = Button.new()
 	SaveFileButton.text = "--{- New Game -}--"
@@ -150,7 +153,7 @@ func _on_creator_button_pressed() -> void:
 	$ScrollContainer/SaveList.add_child(SaveFileButton)
 	SaveFileButton.add_to_group("Buttons")
 	
-	# Create the actual file
+	# Crar todas as confirgurações necessárias para um novo save
 	DirAccess.make_dir_absolute("user://save/" + str(saves_number))
 	
 	################################################################################
@@ -291,6 +294,7 @@ func _on_creator_button_pressed() -> void:
 	
 	################################################################################
 
+# Função chamada quando o botão de deletar é pressionado
 func _on_delete_game_pressed() -> void:
 	$PlayButton.disabled = true
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
@@ -314,12 +318,14 @@ func _on_delete_game_pressed() -> void:
 		DirAccess.remove_absolute(folder_path)
 		print("[save_files_menu.gd] Removed Save: ", selected_save)
 
+# Função para encontrar o botão correspondente a um save
 func find_button_by_save(save_id: int) -> Button:
 	for button in $ScrollContainer/SaveList.get_children():
 		if button.get_meta("save") == save_id:
 			return button
 	return null
 
+# Função para definir o save selecionado
 func set_selected_save(button: Button):
 	$PlayButton.disabled = false
 	selected_save = button.get_meta("save")
@@ -327,11 +333,13 @@ func set_selected_save(button: Button):
 	saves_config.save("user://save/saves.cfg")
 	print("[save_files_menu.gd] Selected Save: ", selected_save)
 
+# Função chamada quando o mouse entra no botão de deletar
 func _on_delete_game_mouse_entered() -> void:
 	$DeleteGame.icon = preload("res://assets/textures/menus/main_menu/trash_can_hover.png")
 func _on_delete_game_mouse_exited() -> void:
 	$DeleteGame.icon = preload("res://assets/textures/menus/main_menu/trash_can.png")
 
+# Função para criar os StyleBoxes para os botões
 func create_styleboxes():
 	var StyleBoxes : Array = [normal_stylebox, focus_stylebox, hover_stylebox]
 	for s in StyleBoxes.size():
@@ -351,13 +359,15 @@ func create_styleboxes():
 	
 	normal_stylebox = StyleBoxes[0]
 	focus_stylebox = StyleBoxes[1]
-	focus_stylebox = StyleBoxes[2]
+	hover_stylebox = StyleBoxes[2]
 
+# Função chamada quando o botão de jogar é pressionado
 func _on_play_button_mouse_entered() -> void:
 	$"../../../MouseSoundEffects".stream = load("res://sounds/effects/menus/back.ogg")
 	$"../../../MouseSoundEffects".pitch_scale = 1
 	$"../../../MouseSoundEffects".play()
 
+# Função chamada quando o botão é pressionado
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $"../../../MouseSoundEffects"
 	if mouse_sound:
@@ -365,23 +375,27 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
 
+# Função chamada quando o botão de criar jogo é pressionado
 func _on_create_game_pressed() -> void:
 	$SaveScreationPanel/DifficultyTabBar.current_tab = 1
 	$SaveScreationPanel/CheatingTabBar.current_tab = 0
 	$SaveScreationPanel/IntroTabBar.current_tab = 1
 	$SaveScreationPanel.visible = true
 
+# Função chamada quando o botão de criar jogo é pressionado
 func _on_difficulty_tab_bar_tab_selected(tab: int) -> void:
 	match tab:
 		0: choosen_difficulty = "easy"
 		1: choosen_difficulty = "normal"
 		2: choosen_difficulty = "hard"
 
+# Função chamada quando o botão de cheats é pressionado
 func _on_cheating_tab_bar_tab_selected(tab: int) -> void:
 	match tab:
 		0: choosen_cheating = false
 		1: choosen_cheating = true
 
+# Função chamada quando o botão de intro é pressionado
 func _on_intro_tab_bar_tab_selected(tab: int) -> void:
 	match tab:
 		0: choosen_intro = false

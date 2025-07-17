@@ -131,6 +131,7 @@ func _ready() -> void:
 func _on_exit_button_pressed() -> void:
 	$AnimationPlayer.play("bread")
 
+# Quando timer de descanso acabar aumenta o tempo de descanso no arquivo de estatísticas.
 func _on_more_resting_time_timeout() -> void:
 	var statistics_config := ConfigFile.new()
 	statistics_config.load(statistics_path)
@@ -138,6 +139,7 @@ func _on_more_resting_time_timeout() -> void:
 	statistics_config.set_value("statistics", "time_resting", new_time_resting)
 	statistics_config.save(statistics_path)
 
+# Atualiza os pips de status na interface do usuário.
 func update_status_pips():
 	var license_config := ConfigFile.new()
 	license_config.load(license_path)
@@ -177,6 +179,7 @@ func update_status_pips():
 
 ################################################################################
 
+# Funções para desbloquear regiões e zonas.
 func _on_vulcanic_status_pressed() -> void:
 	unlock_region(VulcanicStatus, "biomes", "vulcanic")
 
@@ -220,6 +223,7 @@ func unlock_region(RegionStatus : TextureButton, region : String, type : String)
 
 ################################################################################
 
+# Funções para desbloquear ferramentas.
 func _on_light_status_pressed() -> void:
 	unlock_tool(LightStatus, "light", LightTexture, "Light")
 
@@ -249,6 +253,7 @@ func unlock_tool(ToolStatus : TextureButton, ToolType : String, texture : Textur
 
 ################################################################################
 
+# Funções para atualizar níveis de saúde, oxigénio, bateria e ferramentas.
 func _on_health_upgrade_button_pressed() -> void:
 	update_thing_with_pips("duck", "health_level")
 
@@ -264,6 +269,7 @@ func _on_sword_upgrade_button_pressed() -> void:
 func _on_pickaxe_upgrade_button_pressed() -> void:
 	update_thing_with_pips("tools", "pickaxe_level")
 
+# Função para atualizar os pips de uma coisa específica.
 func update_thing_with_pips(ThingType : String, WhatThing : String):
 	if fyction_points >= 1:
 		fyction_points -= 1
@@ -280,6 +286,7 @@ func update_thing_with_pips(ThingType : String, WhatThing : String):
 	update_status_pips()
 	update_blocked_content()
 
+# Atualiza o conteúdo bloqueado com base nas permissões do jogador.
 func update_blocked_content():
 	var license_config := ConfigFile.new()
 	license_config.load(license_path)
@@ -356,7 +363,10 @@ func update_blocked_content():
 	if radar_the_tool_unlocked == true: RadarTheToolStatus.texture_normal = yes_sign; RadarTheToolStatus.texture_hover = null
 	if radar_the_enemies_unlocked == true: RadarTheEnemiesStatus.texture_normal = yes_sign; RadarTheEnemiesStatus.texture_hover = null
 	
-
+# Atualiza os níveis de experiência e nível do jogador.
+# Aumenta o nível e os pontos de ficção do jogador com base na experiência acumulada.
+# A experiência é reduzida após cada nível alcançado, e os pontos de ficção são incrementados.
+# A experiência necessária para o próximo nível aumenta com o nível atual.
 func update_levels():
 	var license_config := ConfigFile.new()
 	license_config.load(license_path)
@@ -388,10 +398,12 @@ func update_levels():
 		str("Level: ", str(current_level)," | ", str(current_experience)," / ", experience_required ,"XP")
 	$FyctionPointsSprite/PointsAvailableLabel.text = str(current_fyction_points)
 
+# Inicia a barra de ferramentas e adiciona os itens padrão.
 func start_hotbar():
 	add_stater_pack()
 	get_selected_hotbar_items()
 
+# Adiciona o pacote inicial à barra de ferramentas.
 func add_stater_pack():
 	var license_config := ConfigFile.new()
 	license_config.load(license_path)
@@ -405,10 +417,14 @@ func add_stater_pack():
 	if license_config.get_value("tools", "radar_the_tool") == true: add_item_to_all_dropdowns(RadarTheToolTexture, "Radar the Tool")
 	if license_config.get_value("tools", "radar_the_enemies") == true: add_item_to_all_dropdowns(RadarTheEnemiesTexture, "Radar the Enemies")
 
+# Adiciona um item a todos os dropdowns da barra de ferramentas.
+# Este método é usado para adicionar ícones de itens aos dropdowns da barra de ferramentas.
 func add_item_to_all_dropdowns(texture : Texture, Name : String):
 	for dropdown in hotbar_dropdowns:
 		dropdown.add_icon_item(texture, Name)
 
+# Obtém os itens selecionados da barra de ferramentas a partir do arquivo de configuração.
+# Carrega os itens da barra de ferramentas do arquivo de configuração e seleciona os itens correspond
 func get_selected_hotbar_items():
 	var hotbar_config := ConfigFile.new()
 	hotbar_config.load(hotbar_path)
@@ -420,6 +436,8 @@ func get_selected_hotbar_items():
 		if index != -1:
 			dropdown.select(index)
 
+# Obtém o índice do item pelo texto no dropdown.
+# Este método é usado para encontrar o índice de um item específico no dropdown da barra de ferramentas
 func get_item_index_by_text(dropdown: OptionButton, text: String) -> int:
 	for i in range(dropdown.item_count):
 		if dropdown.get_item_text(i) == text:
@@ -444,6 +462,8 @@ func set_hotbar_item(index : int, Name : String):
 	hotbar_config.set_value("hotbar", str(index), Name)
 	hotbar_config.save(hotbar_path)
 
+# Retorna o item selecionado do dropdown da barra de ferramentas.
+# Este método é usado para obter o texto do item selecionado no dropdown da barra de ferramentas
 func return_selected_item(dropdown : int):
 	match dropdown:
 		0: return $FirstHotbarDropdown.get_item_text($FirstHotbarDropdown.get_selected_id())

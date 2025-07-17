@@ -1,5 +1,6 @@
 extends Node2D
 
+# Este script é responsável por rotacionar todos os corpos celestes do sistema solar no jogo.
 func _process(delta: float) -> void:
 	rotate_solar_system(delta)
 

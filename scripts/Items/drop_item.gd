@@ -5,6 +5,7 @@ extends TileMap
 
 var items_scene = preload("res://scenes/misc/items.tscn")
 
+# Este script é responsável por dropar os itens no mundo, após quebrar um bloco.
 func drop_items():
 	var tile_pos = get_global_mouse_position() / 16
 	var block_atlas = CaveSystem.get_cell_atlas_coords(tile_pos)
@@ -89,6 +90,7 @@ func drop_items():
 			Vector2i(3, 2): item_name = "Ice"
 			Vector2i(0, 3): item_name = "Hematite"
 	
+	# Se o nome do item não for nada, cria o item e o adiciona no mundo.
 	if item_name != "":
 		for i in range(randi_range(1, 3)):
 			var instance = items_scene.instantiate()
@@ -106,5 +108,3 @@ func drop_items():
 			add_child(target_node)
 			target_node.position = CaveSystem.map_to_local(tile_pos)
 			target_node.rotation_degrees = randi_range(0, 360)
-
-# © Sr. Patinho // 2007-2025 🦆

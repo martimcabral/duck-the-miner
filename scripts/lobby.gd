@@ -1,6 +1,6 @@
 extends Node2D
 
-# Dictionary to item names to their corresponding texture paths - Fake Atlas
+# Dicionário de ícones de todos os itens
 var item_icons = {
 	"Stone": "res://assets/textures/items/ores/rock_and_stone.png",
 	"Coal": "res://assets/textures/items/ores/coal.png",
@@ -111,6 +111,12 @@ var selected_inventory = 0
 
 var difficulty : String
 
+# Atualiza o RPC do Discord
+# Função para atualizar o dinheiro com formatação
+# Torna os menus visiveis
+# Pega a skin do jogador
+# Adiciona os sons dos botões aos botões
+# Pegar as missões
 func _ready():
 	var config_file := ConfigFile.new()
 	config_file.load(config_path)
@@ -190,6 +196,7 @@ func _ready():
 	else:
 		print("[discordRP.gd] Discord isn't running or wasn't detected properly, skipping rich presence.") 
 
+# Função para iniciar o fade in do lobby 
 func _enter_tree() -> void:
 	$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.modulate.a8 = 0
 	$Camera2D/HUD/Lobby/LobbyPanel/CompanyLicensePanel.modulate.a8 = 0
@@ -199,6 +206,7 @@ func _enter_tree() -> void:
 	$Camera2D/HUD/CraftingPanel.modulate.a8 = 0
 	target_zoom = $SolarSystem.scale.x
 
+# Atualiza o dinheiro, verifica se as missões estão selecionadas, atualiza o zoom do mapa e a visibilidade dos painéis
 func _process(delta: float) -> void:
 	var money_config := ConfigFile.new()
 	money_config.load(money_path)
@@ -261,7 +269,7 @@ func _process(delta: float) -> void:
 	else: 
 		current_page = 1
 
-# Event functions for each area
+# Funções de evento para cada área
 func _on_delta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		update_field_ui("Delta Belt", delta_thumbnail, Color(0.788, 0.161, 0.161, 1), "delta")
@@ -278,6 +286,16 @@ func _on_yotta_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_id
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		update_field_ui("Koppa Belt", koppa_thumbnail, Color(0.659, 0.157, 0.788, 1), "koppa")
 
+# Atualiza a UI do campo selecionado
+# Verifica se a licença do jogador permite a presença no campo
+# Atualiza a imagem, texto, cores e o InfoPanel
+# Mostra ou esconde os elementos da UI dependendo da licença
+# Atualiza o botão de início do painel de controle do mapa
+# Atualiza o nome do campo no painel de controle do mapa
+# Atualiza o nome do campo no painel de informações
+# Atualiza o painel de informações do campo
+# Atualiza o painel de descrição do campo no mapa
+# Atualiza o painel de descrição do campo no InfoPanel
 func update_field_ui(field_name: String, thumbnail: Texture, shadow_color: Color, license_name : String) -> void:
 	current_page = 1
 	current_field = field_name
@@ -327,6 +345,10 @@ func update_field_ui(field_name: String, thumbnail: Texture, shadow_color: Color
 		$Camera2D/HUD/Lobby/InfoPanel.size = Vector2i(387, 770)
 		$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
+# Pega as informações do asteroide selecionado
+# Atualiza o nome do asteroide, a temperatura, o objetivo primário e secundário
+# Atualiza a descrição do asteroide no InfoPanel e no painel de controle do mapa
+# Atualiza o número de asteroides no InfoPanel
 func _on_delta_area_2d_mouse_entered() -> void:
 	$FieldNameLabel.text = "Delta Belt"
 	$FieldNameLabel.add_theme_color_override("font_shadow_color", Color(0.788, 0.161, 0.161, 1))
@@ -355,6 +377,11 @@ func _on_omega_area_2d_mouse_exited() -> void:
 func _on_yotta_area_2d_mouse_exited() -> void:
 	$FieldNameLabel.text = ""
 
+# Muda para o mundo selecionado
+# Carrega o mundo a partir do campo de asteroides selecionado
+# Define os objetivos primário e secundário do mundo
+# Adiciona o novo mundo à árvore de cena e remove o lobby atual
+# E atualiza a cena atual para o novo mundo
 func change_to_world(field):
 	var new_world = preload("res://scenes/world.tscn").instantiate()
 	new_world.asteroid_field = field
@@ -364,6 +391,7 @@ func change_to_world(field):
 	get_tree().current_scene.call_deferred("free")
 	get_tree().current_scene = new_world
 
+# Cria um nome de asteroide aleatório
 func create_asteroid_name():
 	var consoante1 = consoantes[randi() % consoantes.size()]
 	var consoante2 = consoantes[randi() % consoantes.size()]
@@ -398,6 +426,7 @@ func create_asteroid_name():
 		9:
 			return consoante1.to_upper() + vogal1 + consoante2 + consoante3 + vogal2 + consoante4
 
+# Função para pegar as biomas desbloqueados
 func get_available_biomes():
 	var biomes : Array = []
 	var license_config := ConfigFile.new()
@@ -411,9 +440,9 @@ func get_available_biomes():
 	print("[lobby.gd] Available Biomes: ", biomes)
 	return biomes
 
-# Function to generate asteroid data
+# Função para gerar dados de asteroides e os gurar em um arquivo JSON
 func generate_asteroid_data() -> Dictionary:
-	var fields : Dictionary = {}  # Dictionary to store asteroid fields
+	var fields : Dictionary = {}
 	var field_names : Array = ["Delta Belt", "Gamma Field", "Omega Field", "Koppa Belt"]
 	var biomes : Array = get_available_biomes()
 	var objectives_primary : Array = ["Get Goods", "Kill Enemies", "Fine Jewelry"]
@@ -425,8 +454,8 @@ func generate_asteroid_data() -> Dictionary:
 	var objectives_secondary_radioactive : Array = ["Fuel the Company", "Cold Extraction"]
 	
 	for field_name in field_names:
-		var asteroids : Dictionary = {}  # Dictionary to store asteroids in the current field
-		var asteroid_id : int = 1  # Reset asteroid ID counter for each field
+		var asteroids : Dictionary = {} 
+		var asteroid_id : int = 1 
 			
 		for asteroid_num in range(1, randi_range(4, 5 + biomes.size())):
 			var as_name : String = create_asteroid_name()
@@ -440,8 +469,7 @@ func generate_asteroid_data() -> Dictionary:
 				"Swamp": asteroid_temperature = randi_range(-5, 12); secondary_objective = objectives_secondary_swamp[randi() % objectives_secondary_swamp.size()]
 				"Desert": asteroid_temperature = randi_range(50, 65); secondary_objective = objectives_secondary_desert[randi() % objectives_secondary_desert.size()]
 				"Radioactive": asteroid_temperature = randi_range(-25, -10); secondary_objective = objectives_secondary_radioactive[randi() % objectives_secondary_radioactive.size()]
-			
-			# Create asteroid entry
+		
 			asteroids[asteroid_id] = {
 				"Name": as_name,
 				"Biome": biome,
@@ -451,12 +479,12 @@ func generate_asteroid_data() -> Dictionary:
 					"Secondary": secondary_objective
 				}
 			}
-			asteroid_id += 1  # Increment the ID for the next asteroid
+			asteroid_id += 1
 		
-		fields[field_name] = asteroids  # Add the field with its asteroids to the fields dictionary
+		fields[field_name] = asteroids 
 	return fields
 
-# Save data to a JSON file
+# Salva os dados dos asteroides gerados em um arquivo JSON
 func save_asteroid_data():
 	var asteroid_data = generate_asteroid_data()
 	
@@ -478,6 +506,7 @@ func _on_previous_button_pressed() -> void:
 	current_page -= 1
 	get_asteroid_info()
 
+# Pega as páginas de asteroides por campo
 func get_asteroid_info():
 	if current_page >= 1:
 		mission_selected = true
@@ -503,9 +532,8 @@ func get_asteroid_info():
 		else:
 			print("[lobby.gd] An error ocurred trying to parse asteroid package, if early pages of the asteroid content appeared, it's all ok, maybe the issue it's because you haven't drinked enough water, you never know.")
 
+# Pega a quantidade de asteroides por campo
 func get_asteroids_per_field(field : String):
-	# This Code in the Second Half was completly remade due to a error of impossibility of reading the asteroid data on the JSON File
-	# Ensure the file is opened and read correctly
 	var file = FileAccess.open(missions_path, FileAccess.READ)
 	if file:
 		var json_string = file.get_as_text()
@@ -517,12 +545,9 @@ func get_asteroids_per_field(field : String):
 			print("[lobby.gd] Error parsing JSON: ", error)
 			return 0
 		
-		# Get the parsed data (should be a dictionary)
 		var asteroid_data = json_parser.get_data()
 		
-		# Ensure asteroid_data is a dictionary
 		if typeof(asteroid_data) == TYPE_DICTIONARY:
-			# Check if the field exists in asteroid_data
 			if asteroid_data.has(field):
 				var field_data = asteroid_data[field]
 				var asteroid_count = field_data.keys().size()
@@ -538,6 +563,7 @@ func get_asteroids_per_field(field : String):
 		print("[lobby.gd] Failed to open file: ", missions_path)
 		return 0
 
+# Pega as páginas de asteroides por campo e atualiza as variáveis de ammount
 func _on_select_mission_button_pressed() -> void:
 	selecting_mission = true
 	$Camera2D/HUD/Lobby/LobbyPanel.visible = false
@@ -549,6 +575,7 @@ func _on_select_mission_button_pressed() -> void:
 	$Camera2D/HUD/Lobby/SystemInfoPanel/SystemName.text = "[center]%s[/center]" % "Solar System"
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
+# Função para pegar as páginas de asteroides por campo e atualizar as variáveis de ammount
 func _on_back_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 	var main_menu = load("res://scenes/menus/main_menu.tscn")
@@ -559,6 +586,7 @@ func _on_back_button_pressed() -> void:
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = menu
 
+# Função para iniciar a missão selecionada
 func _on_start_button_pressed() -> void:
 	if mission_selected == true:
 		$Camera2D/HUD/Lobby/LobbyPanel/MoneyPanel.visible = false
@@ -573,6 +601,7 @@ func _on_start_button_pressed() -> void:
 		$Camera2D/HUD/Lobby/BackToLobbyButton.scale = Vector2(1.5, 1.5)
 		$TimeToStart.start()
 
+# Função para iniciar a missão, após o tempo de espera
 func _on_time_to_start_timeout() -> void:
 	var world = load("res://scenes/world.tscn").instantiate()
 	world.asteroid_field = current_field
@@ -589,6 +618,7 @@ func _on_time_to_start_timeout() -> void:
 	get_tree().current_scene.call_deferred("free")
 	get_tree().current_scene = world
 
+# Função para voltar ao lobby
 func _on_back_to_lobby_button_pressed() -> void:
 	$MouseSoundEffects.stream = load("res://sounds/effects/menus/back.ogg")
 	$MouseSoundEffects.play()
@@ -601,6 +631,7 @@ func _on_back_to_lobby_button_pressed() -> void:
 	$Camera2D/HUD/Lobby/SystemInfoPanel.visible = false
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
 
+# Função para voltar ao painel de informações da missão
 func _select_mission_button_info_panel_pressed() -> void:
 	selecting_mission = false
 	$Camera2D/HUD/Lobby/LobbyPanel.visible = true
@@ -612,6 +643,7 @@ func _select_mission_button_info_panel_pressed() -> void:
 	$Camera2D/HUD/Lobby/ZoomRuler.visible = false
 	$Camera2D/HUD/Lobby/LobbyPanel/UniverseMapPanel/ControlPanel/StartButton.disabled = false
 
+# Função para atalizar a skin selecionada no lobby e no Discord RPC
 func load_skin():
 	if FileAccess.file_exists(skin_path):
 		var skin_file := ConfigFile.new()
@@ -622,6 +654,7 @@ func load_skin():
 	print("[lobby.gd] Changed Discord Large Image to: ", DiscordRPC.large_image)
 	DiscordRPC.refresh()
 
+# Função para pegar a skin anterior
 func _on_skin_previous_button_pressed() -> void:
 	skin_selected -= 1
 	if skin_selected < 1 : skin_selected = 1
@@ -637,6 +670,7 @@ func _on_skin_previous_button_pressed() -> void:
 		skin_file.set_value("skin", "selected", skin_selected)
 		skin_file.save(skin_path)
 
+# Função para pegar a skin seguinte
 func _on_skin_next_button_pressed() -> void:
 	skin_selected += 1
 	if skin_selected >= 6 : skin_selected = 6
@@ -651,12 +685,14 @@ func _on_skin_next_button_pressed() -> void:
 		skin_file.set_value("skin", "selected", skin_selected)
 		skin_file.save(skin_path)
 
+# Pegar a quantidade de asteroides por campo
 func get_pages():
 	delta_ammount =  get_asteroids_per_field("Delta Belt")
 	gamma_ammount =  get_asteroids_per_field("Gamma Field")
 	omega_ammount =  get_asteroids_per_field("Omega Field")
 	koppa_ammount =  get_asteroids_per_field("Koppa Belt")
 
+# Função para emitir um som quando o mouse entra no botão
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects
 	if mouse_sound:
@@ -664,17 +700,17 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.pitch_scale = 1
 		mouse_sound.play()
 
+# Inicar o StockTheMarket Animation
 func _on_stock_market_label_pressed() -> void:
 	$Camera2D/HUD/StockTheMarket/AnimationPlayer.play("stock_the_up")
 
+# Função para selecionar a aba de inventário
 func _on_tab_bar_item_selected(index: int):
-	#print("[lobby.gd] Inventory Selected: ", index)
 	selected_inventory = index
 	
 	var inventory_config = ConfigFile.new()
 	
 	if inventory_config.load(inventory_path) == OK:
-		#print("[lobby.gd] Detected Inventory Successfully")
 		item_list.clear()
 		match index:
 			0: populate_inventory_tab("raw", inventory_config)
@@ -682,6 +718,7 @@ func _on_tab_bar_item_selected(index: int):
 	else:
 		print("[lobby.gd] Failed to load CFG file: ", inventory_config)
 
+# Função para popular a aba de inventário com os itens
 func populate_inventory_tab(tab : String, inventory_config : ConfigFile) -> void:
 	match tab:
 		"raw":
@@ -721,6 +758,7 @@ func populate_inventory_tab(tab : String, inventory_config : ConfigFile) -> void
 				$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 				print("[lobby.gd] Config: ", inventory_config, " does not have an Inventory section.")
 
+# Função para inicializar o painel de inventário
 func _on_item_list_item_selected(index: int) -> void:
 	item_selected = index
 	var item_selected_string = item_list.get_item_text(index)
@@ -730,6 +768,7 @@ func _on_item_list_item_selected(index: int) -> void:
 	print("\n[lobby.gd] Item Name: ", selected_item_name)
 	print("[lobby.gd] Item Quantity: ", selected_item_quantity)
 
+# Função para vender o item selecionado
 func _on_sell_button_pressed() -> void:
 	$Camera2D/HUD/CraftingPanel.update_current_resources_amount()
 	
@@ -771,12 +810,14 @@ func _on_sell_button_pressed() -> void:
 		if item_list.item_count <= 0:
 			$Camera2D/HUD/Lobby/LobbyPanel/StoragePanel/UnavailableLabel.visible = true
 
+# Função para obter o preço do item selecionado
 func get_price(item_name):
 	var pricing := ConfigFile.new()
 	pricing.load(pricing_path)
 	var price = pricing.get_value("pricing", item_name, 1)
 	return price
 
+# Função para remover o item selecionado do inventário
 func remove_item_from_inventory(item_name):
 	var inventory = ConfigFile.new()
 	inventory.load(inventory_path)
@@ -787,6 +828,7 @@ func remove_item_from_inventory(item_name):
 
 	inventory.save(inventory_path)
 
+# Função para atualizar o dinheiro no painel, após vender um item
 func update_money(strinfied_money):
 	var formatted_number = ""
 	var counter = 0
@@ -800,14 +842,14 @@ func update_money(strinfied_money):
 		
 	return formatted_number
 
+# Função para abrir a aba do Contrato
 func _on_company_liscence_pressed() -> void:
 	$Camera2D/HUD/Contract/AnimationPlayer.play("appear")
 
+# Função para atualizar as missões e os campos de asteroides
 func reroll_missions():
 	current_page = 1
 	save_asteroid_data()
 	get_asteroid_info()
 	get_pages()
 	print("[lobby.gd] Rerolled Missions")
-
-# © Martim Cabral 🦆⛏️

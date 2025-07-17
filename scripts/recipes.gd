@@ -79,6 +79,12 @@ enum CraftingButtonTypes {Crafting, Alloying, Mettalurgic, Fluids, Advanced, Gem
 var inventory_path : String = str("user://save/", GetSaveFile.save_being_used, "/inventory.cfg")
 var inventory_config := ConfigFile.new()
 
+# Este script é responsável por gerenciar os botões de receitas no painel de crafting.
+# Ele exibe as informações da receita, verifica os requisitos de nível e ingredientes,
+# e executa a receita quando o botão é pressionado.
+# Ele também lida com a exibição de dicas de ferramentas e a atualização dos recursos do jogador.
+# As receitas são definidas por meio de variáveis exportadas, permitindo fácil configuração no editor,
+# e o script garante que os recursos necessários estejam disponíveis antes de permitir a execução da receita.
 func _ready() -> void:
 	if Contract.current_level < level_required:
 		self.queue_free()

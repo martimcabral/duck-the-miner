@@ -97,6 +97,7 @@ var radius
 var mouse_pos
 var local_mouse_pos
 
+# Função para iniciar o player com as configurações iniciais
 func _ready():
 	Input.set_custom_mouse_cursor(cursor_default)
 	
@@ -152,6 +153,7 @@ func _ready():
 		if hotbar.get_tab_title(i) == "UV Flashlight" or hotbar.get_tab_title(i) == "Radar the Tool" or hotbar.get_tab_title(i) == "Radar the Enemies":
 			$Camera2D/HUD/Stats/UI/BatteryPanel.visible = true
 
+# Movimentação do Player, usando o Input do Teclado
 func player_movement(input, delta):
 	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
 		if input: 
@@ -168,6 +170,20 @@ func player_movement(input, delta):
 			velocity = velocity.move_toward(Vector2(0,0), delta * friction)
 		velocity.y += (falling_speed * delta) * 0.75
 
+# - Atualiza os valores de saúde, oxigênio e bateria, refletindo-os nas barras de status do HUD.
+# - Controla a lógica de morte do jogador, incluindo animações, efeitos visuais (preto e branco), sons e transição para o menu após a morte.
+# - Gerencia o uso de itens como lanterna UV, radar de ferramentas e radar de inimigos, alternando visibilidade e energia conforme necessário.
+# - Permite abrir a página de feedback do jogo.
+# - Controla a exibição do inventário e da lista de missões.
+# - Permite ao jogador "quackar", tocando um som e exibindo legendas se ativadas.
+# - Gerencia a pausa do jogo e alterna o cursor do mouse.
+# - Calcula a posição do jogador para efeitos sonoros e seleção de blocos no mapa.
+# - Controla o movimento do jogador, animações de voo, agachamento e caminhada, além de inverter o sprite conforme a direção.
+# - Permite alternar rapidamente entre itens da hotbar e atualiza o item selecionado.
+# - Gerencia a seleção e destaque de blocos no mundo, considerando configurações de acessibilidade.
+# - Permite colocar tochas no mundo se o item correto estiver selecionado e o bloco for válido.
+# - Permite alternar entre modo janela e tela cheia.
+# - Atualiza a posição do jogador no HUD para fins de debug ou trapaça.
 func _process(delta):
 	get_control_to_labelization()
 	do_bloddy_overlay()
@@ -384,10 +400,7 @@ func _process(delta):
 	$"HUD/CheatMenu/Container/WorldLabel/PlayerPosition".text = "X: " + str(int($".".position.x / 16)) + \
 	"\nY: " + str(int($".".position.y / 16))
 
-####################################################################################################################################################
-####################################################################################################################################################
-####################################################################################################################################################
-
+# Função para destruir blocos no mundo quando o jogador usa a picareta.
 func destroy_block():
 	if $"../PauseMenu/GUI_Pause".visible == false and is_duck_dead == false:
 		var tile_pos = CaveSystem.local_to_map(CaveSystem.get_global_mouse_position())
@@ -456,26 +469,24 @@ func destroy_block():
 							elif world.asteroid_biome == "Radioactive":
 								CaveSystem.set_cell(tile_pos, 5, Vector2i(0, 1))
 
-##################################################################################################################################################
-##################################################################################################################################################
-##################################################################################################################################################
-
+# Função para saber se o cursor esta dentro da área de seleção do bloco.
 func _on_minning_cooldown_timeout() -> void:
 	if Input.is_action_pressed("Destroy_Block"):
-		# 1. Get the global position of the mouse
+		# 1. Obtém a posição global do mouse
 		mouse_pos = get_global_mouse_position()
-		# 2. Convert the global mouse position to the local position of the Area2D
+		# 2. Converte a posição global do mouse para a posição local da Area2D
 		local_mouse_pos = $BlockRange.to_local(mouse_pos)
-		# 3. Get the CollisionShape2D's shape
+		# 3. Obtém o shape do CollisionShape2D
 		collision_shape = $BlockRange.get_node("CollisionShape2D").shape
 		
-		# 4. Get CollisionShape2D's size
+		# 4. Obtém o tamanho do CollisionShape2D
 		radius = (collision_shape as CircleShape2D).radius
 		
-		# 5. If the mouse is within the Area2D/BlockRange than start to destroy EVERYTHING
+		# 5. Se o mouse estiver dentro da Area2D/BlockRange, começa a destruir qualquer coisa
 		if local_mouse_pos.length() <= radius:
 			destroy_block()
 
+# Funções para gastar a bateria e oxigênio do jogador.
 func _on_uv_battery_consumption_timeout() -> void:
 	if is_flashlight_being_used == true:
 		reduce_battery(0.75)
@@ -502,6 +513,7 @@ func _on_oxygen_consumption_timeout() -> void:
 			statistics_config.get_value("statistics", "oxygen") + 1)
 			statistics_config.save(statistics_path)
 
+# Carregar a skin do jogador a partir do arquivo de configuração.
 func load_skin():
 	if FileAccess.file_exists(skin_path):
 		var skin_file = ConfigFile.new()
@@ -509,6 +521,7 @@ func load_skin():
 		skin_selected = int(skin_file.get_value("skin", "selected", 1))
 		print("[player.gd] Current Skin: " + str(skin_selected))
 
+# Função de abortar a missão atual, reiniciando o jogo e retornando ao lobby.
 func _on_go_to_menu_timer_timeout() -> void:
 	$"../PauseMenu".go_to_after_mission()
 
@@ -516,6 +529,7 @@ func _on_reset_used_tiles_timeout() -> void:
 	print("[player.gd] Used Tiles Reseted")
 	used_tiles = {}
 
+# Função ao detectar colisão com o hitbox do inimigo ao jogador.
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_meta("Enemy") and ghost_mode == false:
 		$ResetModulateRedHit.start()
@@ -534,9 +548,11 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		statistics_config.get_value("statistics", "damage_received") + damage)
 		statistics_config.save(statistics_path)
 
+# Meter o jogador vermelho de forma a saber que levou dano.
 func _on_reset_modulate_red_hit_timeout() -> void:
 	$AnimatedSprite2D.modulate = Color("ffffff")
 
+# Função para atacar inimigos com a espada do jogador, dentro da área de ataque.
 func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		if current_item == "Sword":
@@ -548,6 +564,7 @@ func _on_attack_area_input_event(_viewport: Node, event: InputEvent, _shape_idx:
 			if touched_enemy != null:
 				touched_enemy.attacked()
 
+# Função para aplicar o efeito de tela vermelha ao jogador quando ele leva dano.
 func do_bloddy_overlay():
 	if health_ratio >= 0.11 and health_ratio <= 0.2:
 		$Camera2D/HUD/BloddyOverlay.texture = bloddy_overlay1
@@ -558,6 +575,7 @@ func do_bloddy_overlay():
 	else: 
 		$Camera2D/HUD/BloddyOverlay.texture = null
 
+# Função para aplicar dano ao jogador quando o oxigênio chega a 0.
 func _on_take_damage_from_oxygen_timeout() -> void:
 	if current_oxygen <= 0:
 		if is_duck_dead == false:
@@ -571,6 +589,7 @@ func _on_take_damage_from_oxygen_timeout() -> void:
 			$ResetModulateRedHit.start()
 			$AnimatedSprite2D.modulate = Color(1, 0, 0)
 
+# Função para atualizar o texto dos controlos e item selecionado no HUD.
 func get_control_to_labelization():
 	settings_config.load(settings_path)
 	if settings_config.get_value("accessibility", "show_controls") == true:
@@ -584,6 +603,7 @@ func get_control_to_labelization():
 	else:
 		$Camera2D/HUD/ShowControls.visible = false
 
+# Função para tornar o HUD visível após um tempo determinado.
 func _on_timer_to_turn_hud_visible_timeout() -> void:
 	$Camera2D/HUD/Stats.visible = true
 	$Camera2D/HUD/Hotbar.visible = true
@@ -591,12 +611,14 @@ func _on_timer_to_turn_hud_visible_timeout() -> void:
 	$HUD/MissionList.visible = true
 	$HUD/ItemList.visible = true
 
+# Função para colocar os itens na hotbar do jogador.
 func put_items_on_hotbar():
 	hotbar.clear_tabs()
 	for i in range(4):
 		if hotbar_items[i] != "Nothing":
 			hotbar.add_tab(hotbar_items[i], return_hotbar_icon(i))
 
+# Função para retornar o ícone do item da hotbar com base no slot.
 func return_hotbar_icon(slot):
 	match hotbar_items[slot]:
 		"Sword": return cursor_texture_sword
@@ -606,12 +628,14 @@ func return_hotbar_icon(slot):
 		"Radar the Tool": return cursor_texture_radar_the_tool
 		"Radar the Enemies": return cursor_texture_radar_the_enemies
 
+# Função chamada quando o jogador clica em uma aba da hotbar.
 func _on_tab_bar_tab_clicked(tab: int) -> void:
 	current_item = hotbar.get_tab_title(tab)
 	print("[player.gd] Current Item: ", current_item)
 
+# Define o cursor após despausar o jogo
 func set_custom_cursor():
-	match current_item: # Set cursor after after despausing the game
+	match current_item: 
 		"Sword": Input.set_custom_mouse_cursor(cursor_texture_sword)
 		"Pickaxe": Input.set_custom_mouse_cursor(cursor_texture_pickaxe)
 		"Light": Input.set_custom_mouse_cursor(cursor_texture_light)

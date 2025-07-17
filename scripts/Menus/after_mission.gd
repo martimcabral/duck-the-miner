@@ -60,7 +60,8 @@ var total : int = 0
 var fees_label : String = ""
 var fees_values : String = ""
 
-func _ready() -> void:
+# Inicia a tela de resumo após uma missão, aplicando todas as taxas, bônus e experiência para subir de nível.
+func _ready() -> void: 
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 	
 	$FyctionTax/PrintingAnimation.play("appear")
@@ -204,6 +205,7 @@ func _ready() -> void:
 	
 	adjust_money()
 
+# Adiciona dias ao progresso do jogo, aumentando o contador de dias no arquivo de estatísticas.
 func more_days():
 	var statistics_config := ConfigFile.new()
 	statistics_config.load(statistics_path)
@@ -212,6 +214,7 @@ func more_days():
 	statistics_config.set_value("statistics", "days", new_current_day)
 	statistics_config.save(statistics_path)
 
+# Atualiza o arquivo de ações, ajustando os valores das ações de cada empresa para o próxima linha do gráfico.
 func forward_stock():
 	var stock_config := ConfigFile.new()
 	stock_config.load(stock_path)
@@ -231,6 +234,7 @@ func forward_stock():
 		stock_config.set_value("stock", key, new_market[key])
 	stock_config.save(stock_path)
 
+# Pega quais os itens que o jogador possui na barra de ferramentas, para aplicar as taxas das ferramentas.
 func get_items():
 	var hotbar_config := ConfigFile.new()
 	hotbar_config.load(hotbar_path)
@@ -245,6 +249,7 @@ func get_items():
 			"Radar the Enemies": has_radar_the_enemies = true
 	print("[after_mission.gd] Sword: ", has_sword, "; Pickaxe: ", has_pickaxe, "; Light: ", has_lights, "; UV Flashlight: ", has_uv_flashlight, "; Radar the Tool: ", has_radar_the_tool, "; Radar the Enemies: ", has_radar_the_enemies)
 
+# Ajusta o dinheiro do jogador, subtraindo as taxas e adicionando o bônus.
 func adjust_money():
 	var money_config := ConfigFile.new()
 	money_config.load(money_path)
@@ -253,18 +258,21 @@ func adjust_money():
 	money_config.set_value("money", "current", current_money)
 	money_config.save(money_path)
 
+# Redireciona o jogador para a tela do lobby.
 func go_to_lobby():
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 	var new_game_scene = load("res://scenes/lobby.tscn")
 	get_tree().change_scene_to_packed(new_game_scene)
 	new_game_scene.instantiate()
 
+# Evento que é chamado quando a animação de impressão termina, mostrando o botão de ir para o lobby.
 func _on_printing_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "appear":
 		$ColorBackground/GoToLobby.visible = true
 	elif anim_name == "bye_bye":
 		go_to_lobby()
 
+# O Evento que é chamado quando o botão de ir para o lobby é pressionado.
 func _on_go_to_lobby_pressed() -> void:
 	$ColorBackground/GoToLobby.visible = false
 	$FyctionTax/PrintingAnimation.play("bye_bye")

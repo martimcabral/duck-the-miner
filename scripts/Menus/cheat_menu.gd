@@ -6,6 +6,7 @@ var cheated_item_icon = preload("res://assets/textures/items/misc/cheated_item.p
 @onready var player = $"../.."
 @onready var world = $"../../.."
 
+# Este script é responsável por gerenciar o menu de cheats do jogo.
 func _ready():
 	visible = false
 	var cheats_path = str("user://save/", GetSaveFile.save_being_used, "/cheats.cfg")
@@ -14,6 +15,7 @@ func _ready():
 	cheats = cheats_config.get_value("cheating", "enabled", false)
 	print("[cheat_menu.gd] Current Cheats Config: ", cheats)
 
+# Processa o input para alternar a visibilidade do menu de cheats, dependendo da cena atual.
 func _input(_event):
 	if Input.is_action_just_pressed("Cheat_Menu") and cheats == true:
 		match get_tree().current_scene.name:
@@ -39,6 +41,8 @@ func _input(_event):
 		elif visible == false:
 			visible = true
 
+# Funções que são chamadas quando os botões do menu de cheats são pressionados.
+# 1. Muda o dia atual do jogo.
 func _on_change_day_pressed() -> void:
 	if get_tree().current_scene.name == "Lobby":
 		var new_day = $Container/LobbyLabel/ChangeDay/DayTextEdit.text
@@ -48,6 +52,7 @@ func _on_change_day_pressed() -> void:
 		day_config.save(day_path)
 		print("[cheat_menu.gd] Day changed to: ", new_day)
 
+# 2. Muda a quantidade de dinheiro do jogador.
 func _on_change_money_pressed() -> void:
 	if get_tree().current_scene.name == "Lobby":
 		var new_money = $Container/LobbyLabel/ChangeMoney/MoneyTextEdit.text
@@ -58,6 +63,7 @@ func _on_change_money_pressed() -> void:
 		$"../Lobby/LobbyPanel/MoneyPanel/MoneyLabel".text = "Money: " + new_money + " €"
 		print("[cheat_menu.gd] Money changed to: ", new_money)
 
+# 3. Avança o mercado de ações, atualizando os valores das ações de cada empresa.
 func _on_advance_stock_martket_pressed() -> void:
 	if get_tree().current_scene.name == "Lobby":
 		# This code is from pause_menu.gd
@@ -83,15 +89,13 @@ func _on_advance_stock_martket_pressed() -> void:
 		$"../StockTheMarket".create_all_charts()
 		$"../StockTheMarket".get_companies_values()
 
+# 4. Atualiza a lista de missões.
 func _on_reroll_missions_pressed() -> void:
 	if get_tree().current_scene.name == "Lobby":
 		$"../../..".reroll_missions()
 		print("[cheat_menu.gd] Rerolled Missions")
 
-####################################################################################################
-####################################################################################################
-####################################################################################################
-
+# 5. Adiciona itens ao inventário do jogador.
 func _on_give_items_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_item = $Container/WorldLabel/GiveItems/ItemTextEdit.text
@@ -99,30 +103,35 @@ func _on_give_items_pressed() -> void:
 		$"../ItemList".add_item(str(new_item, " ", new_amount), cheated_item_icon)
 		print("[cheat_menu.gd] Gave ", new_amount, " of ", new_item, "to Inventory")
 
+# 6. Muda a posição do jogador no mapa.
 func _on_change_position_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_position = Vector2(float($Container/WorldLabel/ChangePosition/X_PositionTextEdit.text) * 16, float($Container/WorldLabel/ChangePosition/Y_PositionTextEdit.text) * 16)
 		player.position = new_position
 		print("[cheat_menu.gd] Position changed to: ", new_position)
 
+# 7. Muda a quantidade de oxigênio do jogador.
 func _on_change_oxygen_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_oxygen = $Container/WorldLabel/ChangeOxygen/OxygenTextEdit.text
 		player.current_oxygen = int(new_oxygen) 
 		print("[cheat_menu.gd] Oxygen changed to: ", new_oxygen)
 
+# 8. Muda a quantidade de saúde do jogador.
 func _on_change_health_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_health = $Container/WorldLabel/ChangeHealth/HealthTextEdit.text
 		player.current_health = int(new_health)
 		print("[cheat_menu.gd] Health changed to: ", new_health)
 
+# 9. Muda a quantidade de bateria do jogador.
 func _on_change_uv_battery_pressed() -> void:
 	if get_tree().current_scene.name == "World":
 		var new_battery = $Container/WorldLabel/ChangeUVBattery/uvBatteryTextEdit.text
 		player.current_battery= int(new_battery)
 		print("[cheat_menu.gd] UV Battery changed to: ", new_battery)
 
+# 10. Alterna o estado da morte do jogador.
 func _on_death_toggler_toggled(toggled_on: bool) -> void:
 	if get_tree().current_scene.name == "World":
 		print("[cheat_menu.gd] Duck the Death changed to: ", toggled_on)
@@ -134,6 +143,8 @@ func _on_death_toggler_toggled(toggled_on: bool) -> void:
 				player.is_duck_dead = false
 				player.current_health = player.max_health
 
+# 11.1 Alterna o modo fantasma do jogador.
+# 11.2 O modo fantasma permite que o jogador torna-se indetectável a inimigos.
 func _on_ghost_toggler_toggled(toggled_on: bool) -> void:
 	if get_tree().current_scene.name == "World":
 		match toggled_on:
@@ -144,6 +155,7 @@ func _on_ghost_toggler_toggled(toggled_on: bool) -> void:
 				player.ghost_mode = false
 				player.modulate = Color("ffffffff")
 
+# 12.1 Alterna a visibilidade da sombra global.
 func _on_shadow_toggler_toggled(toggled_on: bool) -> void:
 	if get_tree().current_scene.name == "World":
 		match toggled_on:

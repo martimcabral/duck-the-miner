@@ -7,6 +7,9 @@ var key_name
 var previous_keybutton
 var change_keybind_of
 
+# Este script inteiro é responsável por gerenciar o menu de opções do jogo.
+# Ele lida com a configuração de exibição, áudio, controles e acessibilidade, ao usar as suas opções.
+
 func _ready():
 	previous_keybutton = $ControlsPanel/NextKeyHandler
 	

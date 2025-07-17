@@ -19,6 +19,7 @@ func _ready() -> void:
 	config.load(settings_path)
 	$GUI_Pause/Colorblindness.material.set_shader_parameter("mode", config.get_value("accessibility", "colorblindness", 4))
 
+# Função para saber se o menu de pausa está visível
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("PauseMenu"):
 		match pause_menu_visible:
@@ -30,8 +31,8 @@ func _process(_delta: float) -> void:
 				pause_menu_visible = false
 				$GUI_Pause.visible = pause_menu_visible
 				disable_all_rigid_body_physics()
-				
 
+# Funções para quando os botões de continuar são pressionados
 func _on_continue_pressed() -> void:
 	$GUI_Pause.visible = false
 	pause_menu_visible = false
@@ -47,6 +48,7 @@ func _on_abort_mission_button_pressed() -> void:
 	Input.set_custom_mouse_cursor(load("res://assets/textures/player/main_cursor.png"))
 	go_to_after_mission()
 
+# Função para manter o inventário do jogador ao abortar a missão
 func keep_inventory():
 	var empty_file = 0
 	var result = JSON.stringify(empty_file)
@@ -68,7 +70,7 @@ func keep_inventory():
 	else:
 		print("[pause_menu.gd] Failed to save inventory")
 
-# Function to retrieve items from the ItemList Node
+# Função para recuperar itens do Node ItemList
 func get_items_from_itemlist(item_list_node):
 	var items = []
 	for i in range(item_list_node.get_item_count()):
@@ -76,11 +78,11 @@ func get_items_from_itemlist(item_list_node):
 		var item_name = item_text
 		var quantity = 1
 		
-		# Split the item text into parts
+		# Dividir o texto do item em partes para extrair o nome e a quantidade
 		var parts = item_text.split(" ")
 		if parts.size() > 1:
-			item_name = " ".join(parts.slice(0, parts.size() - 1))  # Join all except the last part
-			quantity = int(parts[-1])  # Get the last part as a number
+			item_name = " ".join(parts.slice(0, parts.size() - 1))  # Excluir a última parte como nome do item
+			quantity = int(parts[-1])  # Pegar a última parte como quantidade
 		
 		items.append({
 			"name": item_name,
@@ -91,13 +93,12 @@ func get_items_from_itemlist(item_list_node):
 func merge_items(current_inventory, new_items):
 	var inventory_dict = {}
 
-	# Convert current_inventory into a usable dictionary
+	# Converter current_inventory em um dicionário utilizável
 	for item_name in current_inventory:
-		# Assuming current_inventory is a dictionary-like structure with keys as item names
 		var quantity = current_inventory.get(item_name, 0)
 		inventory_dict[item_name] = quantity
 
-	# Add or update items from the new inventory
+	# Adicionar ou atualizar os itens do novo inventário
 	for item in new_items:
 		if inventory_dict.has(item["name"]):
 			inventory_dict[item["name"]] += item["quantity"]
@@ -118,34 +119,37 @@ func load_inventory(inventory_cfg):
 		else: print("[pause_menu.gd] Config: ", config," does not have section raw.")
 	return {}
 
-# Function to save inventory to a CFG file
+# Função para salvar o inventário em um arquivo CFG
 func save_inventory_to_cfg(inventory_cfg, inventory):
 	var config = ConfigFile.new()
 	for item_name in inventory.keys():
 		config.set_value("raw", item_name, inventory[item_name])
 	return config.save(inventory_cfg) == OK
 
+# Função para desativar a física de todos os RigidBody2D no jogo
 func disable_all_rigid_body_physics():
-	saved_states.clear()  # Reset previous states
+	saved_states.clear()  # Resetar os estados salvos
 	for body in get_tree().get_nodes_in_group("Pickable"):
 		if body is RigidBody2D:
-			# Store linear and angular velocities
+			# Guardas as velocidades
 			saved_states[body] = {
 				"linear_velocity": body.linear_velocity,
 				"angular_velocity": body.angular_velocity
 			}
 			body.freeze = true
 
+# Função para reativar a física de todos os RigidBody2D no jogo
 func enable_all_rigid_body_physics():
 	for body in saved_states.keys():
 		if body and body is RigidBody2D:
 			var state = saved_states[body]
-			# Unfreeze and restore velocities
+			# Restaura as velocidades guardadas
 			body.linear_velocity = state["linear_velocity"]
 			body.angular_velocity = state["angular_velocity"]
 			body.freeze = false
-	saved_states.clear()  # Clear stored states
+	saved_states.clear()  # Limpar os estados salvos
 
+# Função chamada quando o mouse entra no botão, para tocar um som de efeito
 func _on_button_mouse_entered() -> void:
 	var mouse_sound = $MouseSoundEffects
 	if mouse_sound:
@@ -153,6 +157,8 @@ func _on_button_mouse_entered() -> void:
 		mouse_sound.pitch_scale = 0.75
 		mouse_sound.play()
 
+# Função para ir para a cena de "after mission"
+# Ela instancia a cena de "after mission" e passa as informações necessárias
 func go_to_after_mission():
 	var after_mission = load("res://scenes/cutscenes/after_mission.tscn").instantiate()
 	

@@ -79,20 +79,13 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_5noku")
 new_resource_texture = ExtResource("1_hjd8l")
-new_resource_category = null
 alt_resource_texture = ExtResource("1_hjd8l")
 texture_1 = ExtResource("1_hjd8l")
-category_1 = null
 texture_2 = ExtResource("1_hjd8l")
-category_2 = null
 texture_3 = ExtResource("1_hjd8l")
-category_3 = null
 texture_4 = ExtResource("1_hjd8l")
-category_4 = null
 byproduct_texture_1 = ExtResource("1_hjd8l")
-byproduct_category_1 = null
 byproduct_texture_2 = ExtResource("1_hjd8l")
-byproduct_category_2 = null
 
 [node name="AlternativeResource" type="TextureRect" parent="."]
 layout_mode = 1

@@ -24,6 +24,10 @@ var current_difficulty : String = ""
 var statistics_path : String = str("user://save/", GetSaveFile.save_being_used, "/statistics.cfg")
 var statistics_config = ConfigFile.new()
 
+# Este script inteiro é responsável por gerenciar o comportamento de um inimigo no jogo, especificamente um morcego.
+# Ele lida com a detecção do jogador, movimento, ataque, saúde e efeitos sonoros.
+# O morcego persegue o jogador quando este entra em sua área de detecção,
+# e se o jogador atacar, o morcego recebe dano e pode morrer e dropar os seus itens.
 func _ready() -> void:
 	var scale_factor = randf_range(0.8, 1.2)
 	self.scale = Vector2(scale_factor, scale_factor)

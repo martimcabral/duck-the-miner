@@ -6,6 +6,8 @@ var settings_config := ConfigFile.new()
 var version_path : String = str("user://version.cfg")
 var version_config := ConfigFile.new()
 
+# Este script serve para ler as configurações do jogo e usa-las ao abrir o jogo
+# e garantir que o arquivo de configuração esteja atualizado com a versão atual do jogo.
 func _ready():
 	version_config.load(version_path)
 	if version_config.get_value("version", "current") != str("release." + ProjectSettings.get_setting("application/config/version")):

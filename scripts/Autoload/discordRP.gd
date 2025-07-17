@@ -2,6 +2,7 @@ extends Node
 
 var skin_selected = get_skin()
 
+# Obtém a skin atual selecionada do arquivo de configuração.
 func get_skin(): # GetSaveFile.save_being_used
 	var skin_path = str("user://save/1/skin.cfg")
 	if FileAccess.file_exists(skin_path):
@@ -10,6 +11,7 @@ func get_skin(): # GetSaveFile.save_being_used
 		skin_selected = int(skin_file.get_value("skin", "selected", 0))
 		return skin_selected
 
+# Atualiza a presença do Discord quando o jogo é iniciado.
 func _ready() -> void:
 	DiscordRPC.app_id = 1306635163265929327
 	if DiscordRPC.get_is_discord_working():

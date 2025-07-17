@@ -7,6 +7,7 @@ func _process(_delta: float) -> void:
 	if Inventory.get_item_count() > 0:
 		$"../HUD/ItemList/EmptyLabel".visible = false
 
+# Detetar qual o item que o jogador apanhou e adicioná-lo ao inventário.
 func _on_body_entered(body : Node2D):
 	if body.is_in_group("Pickable"):
 		match body.editor_description:
@@ -214,20 +215,22 @@ func _on_body_entered(body : Node2D):
 		body.queue_free()
 		$PickupItem.play()
 
-func add_item_to_inventory(item_name: String, item_icon: Texture): # AI Generated
+# Adicionar um item ao inventário.
+func add_item_to_inventory(item_name: String, item_icon: Texture):
 	World.current_goods_amount += 1
-	# Check if the inventory is empty
+
+	# Verifica se o inventário está vazio
 	if Inventory.get_item_count() == 0:
-		Inventory.add_item(item_name + " 1", item_icon)  # Add the first item
+		Inventory.add_item(item_name + " 1", item_icon)  # Adiciona o primeiro item
 	else:
-		# Loop through the inventory to check for existing items
+		# Percorre o inventário para verificar se o item já existe
 		for i in range(Inventory.get_item_count()):
 			if Inventory.get_item_text(i).begins_with(item_name):
-				# If the item is found, increment the count
-				var current_count = int(Inventory.get_item_text(i).split(" ")[1])  # Assumes format "Item X"
-				current_count += 1  # Increment the count
-				Inventory.set_item_text(i, item_name + " " + str(current_count))  # Update the item text
-				return  # Exit the function after updating the count
+				# Se o item for encontrado, incrementa a quantidade
+				var current_count = int(Inventory.get_item_text(i).split(" ")[1])  # Assume o formato "Item X"
+				current_count += 1  # Incrementa a quantidade
+				Inventory.set_item_text(i, item_name + " " + str(current_count))  # Atualiza o texto do item
+				return  # Sai da função após atualizar a quantidade
 		
-		# If no item was found after the loop, add a new one
-		Inventory.add_item(item_name + " 1", item_icon)  # Add as "Item 1"
+		# Se nenhum item foi encontrado após o loop, adiciona um novo
+		Inventory.add_item(item_name + " 1", item_icon)  # Adiciona como "Item 1"

@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @onready var TextDisplay = $TextDisplay
 var current_text : String = "T1"
 var fadein = -20
@@ -27,6 +26,7 @@ var IntroCusceneTexts : Dictionary = {
 	"EMPTY": "",
 }
 
+# Esta função é chamada quando o nó é adicionado à cena.
 func _on_timer_timeout() -> void:
 	match current_text:
 		"T1": TextDisplay.text = IntroCusceneTexts["T2"]; current_text = "T2"
@@ -37,13 +37,16 @@ func _on_timer_timeout() -> void:
 	fadein = -20
 	update_bbcode()
 
+# Esta função atualiza o texto exibido no TextDisplay com o texto atual e aplica o efeito de fade-in.
 func update_bbcode() -> void:
 	TextDisplay.bbcode_text = "[fade lenght=10 start=" + str(fadein) + "]" + IntroCusceneTexts[current_text] + "[/fade]"
 
+# Esta função é chamada quando o temporizador de fade termina
 func _on_fade_timer_timeout() -> void:
 	fadein += 1
 	update_bbcode()
 
+# Esta função é chamada quando o botão de contrato da Fyction é pressionado
 func fyction_contract():
 	$TextDisplay.visible = false
 	$FyctionContract/PrintingAnimation.play("go_up")
@@ -51,18 +54,21 @@ func fyction_contract():
 	$FyctionContract/PrintingSoundEffect.play()
 	cutscene_finished = true
 
+# Esta função é chamada quando o botão de aceitação é pressionado
 func _on_accept_button_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		terms = "Aceitado"
 		$FyctionContract/AcceptButton.button_pressed = true
 		$FyctionContract/RefuseButton.button_pressed = false
 
+# Esta função é chamada quando o botão de recusa é pressionado
 func _on_refuse_button_toggled(toggled_on: bool) -> void:
 	if toggled_on == true:
 		terms = "Recusado"
 		$FyctionContract/AcceptButton.button_pressed = false
 		$FyctionContract/RefuseButton.button_pressed = true 
 
+# Esta função é chamada quando o mouse entra na área de assinatura do contrato
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and above_sign == true:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -86,18 +92,22 @@ func _input(event: InputEvent) -> void:
 		if _is_drawing and _current_line != null:
 			_current_line.add_point(get_local_mouse_position())
 
+# Esta função é chamada quando o mouse entra na área de assinatura do contrato
 func _on_block_range_mouse_entered() -> void:
 	above_sign = true
 
+# Esta função é chamada quando o mouse sai da área de assinatura do contrato
 func _on_block_range_mouse_exited() -> void:
 	above_sign = false
 	_is_drawing = false
 
+# Esta função é chamada quando a animação de impressão do contrato termina
 func _on_printing_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "go_up":
 		$ReadyButton.visible = true
 		$RubberButton.visible = true
 
+# Funções para lidar com os eventos de mouse nos botões do contrato
 func _on_ready_button_mouse_entered() -> void:
 	$ReadyButton/MouseEffectButton.play()
 
@@ -110,6 +120,9 @@ func _on_refuse_button_mouse_entered() -> void:
 func _on_rubber_button_mouse_entered() -> void:
 	$ReadyButton/MouseEffectButton.play()
 
+# Função chamada a cada frame para atualizar o estado do cutscene
+# Serve para pular a cutscene se o jogador pressionar o botão de pausa
+# e para verificar se o contrato foi aceito ou recusado.
 func _process(delta: float) -> void:
 	if cutscene_finished == false:
 		if $SkipProgressLine.points[1].x >= 1:
@@ -132,6 +145,7 @@ func _process(delta: float) -> void:
 		else:
 			$ReadyButton.disabled = true
 
+# Função chamada quando o botão de pronto é pressionado
 func _on_ready_button_pressed() -> void:
 	$ReadyButton.visible = false
 	$RubberButton.visible = false
@@ -139,12 +153,14 @@ func _on_ready_button_pressed() -> void:
 	$FyctionContract/WhooshSoundEffect.play()
 	$GoToLobby.start()
 
+# Função chamada quando o temporizador de ir para o lobby termina
 func _on_go_to_lobby_timeout() -> void:
 	print("[cutscenes.gd] ", terms)
 	match terms:
 		"Recusado": $".".get_tree().quit()
 		"Aceitado": get_tree().change_scene_to_packed(load("res://scenes/lobby.tscn"))
 
+# Função chamada quando o botão de apagar a assinatura é pressionado
 func _on_rubber_button_pressed() -> void:
 	$ReadyButton.disabled = true
 	for child in $FyctionContract/Lines.get_children():
