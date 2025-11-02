@@ -10,7 +10,7 @@ var version_config := ConfigFile.new()
 # e garantir que o arquivo de configuração esteja atualizado com a versão atual do jogo.
 func _ready():
 	version_config.load(version_path)
-	if version_config.get_value("version", "current") != str("release." + ProjectSettings.get_setting("application/config/version")):
+	if version_config.get_value("version", "current") != str("beta." + ProjectSettings.get_setting("application/config/version")):
 		print("[game_settings] Settings Config file updated!")
 		create_config_file()
 	else:

@@ -605,12 +605,12 @@ fractal_gain = 1.5
 fractal_weighted_strength = 1.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gl8cc"]
-invert = true
-seamless = true
-seamless_blend_skirt = 0.65
-as_normal_map = true
-bump_strength = 1.4
 noise = SubResource("FastNoiseLite_mngom")
+seamless = true
+invert = true
+as_normal_map = true
+seamless_blend_skirt = 0.65
+bump_strength = 1.4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7yboj"]
 shader = ExtResource("7_0l1qt")
@@ -627,9 +627,9 @@ fractal_gain = 1.0
 fractal_weighted_strength = 0.75
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_487ah"]
+noise = SubResource("FastNoiseLite_xk1yn")
 seamless = true
 seamless_blend_skirt = 0.65
-noise = SubResource("FastNoiseLite_xk1yn")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gkgns"]
 shader = ExtResource("7_0l1qt")
@@ -815,7 +815,7 @@ offset = Vector2(116, 0)
 texture_scale = 0.66
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4.25, 4.25)
+zoom = Vector2(4.5, 4.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
 drag_horizontal_enabled = true
@@ -1123,7 +1123,7 @@ bus = &"Ambient"
 [node name="Quack" type="AudioStreamPlayer2D" parent="PlayerSounds"]
 stream = ExtResource("13_2b2kh")
 volume_db = -5.0
-max_distance = 2e+06
+max_distance = 2000000.0
 bus = &"Player"
 
 [node name="Death" type="AudioStreamPlayer2D" parent="PlayerSounds"]

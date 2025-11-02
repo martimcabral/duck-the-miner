@@ -368,15 +368,15 @@ expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dd4i"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dd4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev00f"]
 bg_color = Color(0.6, 0.6, 1, 0)
@@ -387,13 +387,13 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qy33"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgfrk"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnwve"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -411,7 +411,19 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dnwve"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgfrk"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yobxf"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 border_width_left = 3
 border_width_top = 3
@@ -435,32 +447,8 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yobxf"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyawk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mivfx"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a3wfw"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
@@ -469,6 +457,18 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mivfx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -514,13 +514,13 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvjna"]
-bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75a85"]
+bg_color = Color(0.07, 0.07, 0.07, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
-border_color = Color(0.976471, 0.709804, 0.247059, 1)
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
@@ -538,19 +538,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_75a85"]
-bg_color = Color(0.07, 0.07, 0.07, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kr2bc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvjna"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 border_width_left = 3
 border_width_top = 3
@@ -563,6 +551,18 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pqgk"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.976471, 0.709804, 0.247059, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kr2bc"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 border_width_left = 3
 border_width_top = 3
@@ -1183,15 +1183,15 @@ _data = {
 &"start": SubResource("Animation_afvru")
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3w8rc"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxao6"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr0hv"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25m6f"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a3hrp"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25m6f"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vr0hv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxao6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3w8rc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -1278,9 +1278,9 @@ scale = Vector2(1.1, 1.1)
 pivot_offset = Vector2(781.858, 19.6335)
 theme_override_colors/default_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_outline_size = 3
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "ERROR:81"
@@ -1341,8 +1341,8 @@ offset_top = 110.0
 offset_right = 138.5
 offset_bottom = 190.0
 grow_horizontal = 2
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxFlat_y4du8")
 text = "Settings"
@@ -1400,8 +1400,8 @@ offset_right = 121.0
 offset_bottom = -93.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Credits"
@@ -1422,8 +1422,8 @@ offset_right = 63.5
 offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 80
 theme_override_styles/focus = SubResource("StyleBoxFlat_40bhi")
 text = "Exit"
@@ -1485,9 +1485,9 @@ offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
-theme_override_colors/font_disabled_color = Color(0.35, 0.35, 0.35, 1)
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
+theme_override_colors/font_disabled_color = Color(0.35, 0.35, 0.35, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 disabled = true
@@ -1510,8 +1510,8 @@ offset_bottom = 14.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "+"
@@ -1533,8 +1533,8 @@ offset_bottom = -56.0001
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(3.5, 3.5)
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxEmpty_50h1w")
 icon = ExtResource("4_oa1go")
@@ -1553,8 +1553,8 @@ offset_right = 211.0
 offset_bottom = 17.0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"
@@ -1628,8 +1628,8 @@ offset_left = 8.0
 offset_top = 222.0
 offset_right = 480.0
 offset_bottom = 286.0
-theme_override_colors/font_unselected_color = Color(0.299266, 0.299266, 0.299266, 1)
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_unselected_color = Color(0.299266, 0.299266, 0.299266, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_jk1qb")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_1ajci")
@@ -1663,8 +1663,8 @@ offset_left = 4.5
 offset_top = 364.0
 offset_right = 476.5
 offset_bottom = 428.0
-theme_override_colors/font_unselected_color = Color(0.299266, 0.299266, 0.299266, 1)
 theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_unselected_color = Color(0.299266, 0.299266, 0.299266, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_jk1qb")
 theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_1ajci")
@@ -1695,18 +1695,17 @@ offset_right = 72.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 48
-theme_override_styles/focus = SubResource("StyleBoxEmpty_tbmy8")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_jk1qb")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_5dd4i")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_lgwnu")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_flqon")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5dd4i")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jk1qb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tbmy8")
 text = "Create"
 
 [node name="OptionsMenu" type="Panel" parent="GUI/Center"]
-visible = false
 texture_filter = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -1741,8 +1740,8 @@ offset_right = -341.0
 offset_bottom = -578.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_ev00f")
 text = "Graphics"
@@ -1763,8 +1762,8 @@ offset_right = -336.0
 offset_bottom = -502.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_8l6o4")
 text = "Controls"
@@ -1785,8 +1784,8 @@ offset_right = -341.0
 offset_bottom = -430.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 64
 theme_override_styles/focus = SubResource("StyleBoxFlat_8qy33")
 text = "Audio"
@@ -1807,8 +1806,8 @@ offset_right = -334.0
 offset_bottom = -367.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_8qy33")
 text = "Accessibility
@@ -1830,14 +1829,15 @@ offset_right = -338.0
 offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 72
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"
 flat = true
 
 [node name="DisplayPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -1867,9 +1867,9 @@ offset_right = 938.0
 offset_bottom = 67.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dnwve")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
 alignment = 1
 item_count = 13
 popup/item_0/text = "(16:9)"
@@ -1920,9 +1920,9 @@ offset_right = 939.0
 offset_bottom = 125.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_pjk3e")
 theme_override_styles/normal = SubResource("StyleBoxFlat_yobxf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pjk3e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
 alignment = 1
 item_count = 2
 popup/item_0/text = "Fullscreen"
@@ -1968,9 +1968,9 @@ offset_right = 894.0
 offset_bottom = 233.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mivfx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_a3wfw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mivfx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
 alignment = 1
 item_count = 13
 popup/item_0/text = "Disabled"
@@ -2018,9 +2018,9 @@ offset_right = 894.0
 offset_bottom = 297.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mivfx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_a3wfw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mivfx")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
 alignment = 1
 
 [node name="Bloom" type="RichTextLabel" parent="GUI/Center/OptionsMenu/DisplayPanel"]
@@ -2226,21 +2226,21 @@ step = 5.0
 
 [node name="ControlsPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
 visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = 304.0
 offset_top = 5.0
 offset_right = 304.0
 offset_bottom = 5.0
 
 [node name="NextKeyHandler" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 56.0
 offset_right = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="FlyUp" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 49.0
 offset_right = 334.0
@@ -2258,13 +2258,13 @@ offset_top = 51.0
 offset_right = 430.0
 offset_bottom = 98.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_tvjna")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5lxlq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5lxlq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tvjna")
 toggle_mode = true
 
 [node name="FlyDown" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 113.0
 offset_right = 330.0
@@ -2281,12 +2281,12 @@ offset_top = 115.0
 offset_right = 430.0
 offset_bottom = 162.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="WalkLeft" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 178.0
 offset_right = 334.0
@@ -2303,12 +2303,12 @@ offset_top = 180.0
 offset_right = 430.0
 offset_bottom = 227.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="WalkRight" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 243.0
 offset_right = 328.0
@@ -2325,12 +2325,12 @@ offset_top = 245.0
 offset_right = 430.0
 offset_bottom = 292.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="Run" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 307.0
 offset_right = 324.0
@@ -2347,12 +2347,12 @@ offset_top = 309.0
 offset_right = 430.0
 offset_bottom = 356.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="Agachar" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 371.0
 offset_right = 330.0
@@ -2369,12 +2369,12 @@ offset_top = 373.0
 offset_right = 430.0
 offset_bottom = 420.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="DestroyBlock" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 72.0
 offset_top = 435.0
 offset_right = 337.0
@@ -2391,12 +2391,12 @@ offset_top = 437.0
 offset_right = 430.0
 offset_bottom = 484.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="PauseMenu" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 496.0
 offset_top = 49.0
 offset_right = 760.0
@@ -2414,13 +2414,13 @@ offset_top = 51.0
 offset_right = 854.0
 offset_bottom = 98.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_tvjna")
-theme_override_styles/hover = SubResource("StyleBoxFlat_5lxlq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5lxlq")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tvjna")
 toggle_mode = true
 
 [node name="Quack" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 496.0
 offset_top = 113.0
 offset_right = 758.0
@@ -2437,12 +2437,12 @@ offset_top = 115.0
 offset_right = 854.0
 offset_bottom = 162.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="HideShowInventory" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 496.0
 offset_top = 178.0
 offset_right = 758.0
@@ -2459,12 +2459,12 @@ offset_top = 180.0
 offset_right = 854.0
 offset_bottom = 227.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="OpenFeedback" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 496.0
 offset_top = 243.0
 offset_right = 757.0
@@ -2481,12 +2481,12 @@ offset_top = 245.0
 offset_right = 854.0
 offset_bottom = 292.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="UniverseZoomIn" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 496.0
 offset_top = 307.0
 offset_right = 759.0
@@ -2503,12 +2503,12 @@ offset_top = 309.0
 offset_right = 854.0
 offset_bottom = 356.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="UniverseZoomOut" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 496.0
 offset_top = 371.0
 offset_right = 747.0
@@ -2525,12 +2525,12 @@ offset_top = 373.0
 offset_right = 854.0
 offset_bottom = 420.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="UseFlashlight" type="RichTextLabel" parent="GUI/Center/OptionsMenu/ControlsPanel"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 496.0
 offset_top = 435.0
 offset_right = 755.0
@@ -2547,12 +2547,11 @@ offset_top = 437.0
 offset_right = 854.0
 offset_bottom = 484.0
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
-theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_75a85")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0pqgk")
+theme_override_styles/focus = SubResource("StyleBoxFlat_kr2bc")
 
 [node name="AccessibilityPanel" type="Panel" parent="GUI/Center/OptionsMenu"]
-visible = false
 layout_mode = 0
 offset_left = 304.0
 offset_top = 5.0
@@ -2577,9 +2576,9 @@ offset_right = 928.0
 offset_bottom = 64.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dnwve")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
 alignment = 1
 item_count = 5
 popup/item_0/text = "Disabled"
@@ -2611,9 +2610,9 @@ offset_right = 928.0
 offset_bottom = 127.0
 mouse_default_cursor_shape = 7
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dnwve")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kp2r0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fgfrk")
 alignment = 1
 item_count = 1
 popup/item_0/text = "English"
@@ -2626,7 +2625,7 @@ offset_top = 142.0
 offset_right = 197.0
 offset_bottom = 190.0
 theme_override_font_sizes/font_size = 48
-text = "Subtitles"
+text = "Subtitle"
 
 [node name="SubtitlesCheckButton" type="CheckButton" parent="GUI/Center/OptionsMenu/AccessibilityPanel" groups=["Buttons"]]
 z_index = 1
@@ -2785,8 +2784,8 @@ offset_top = -56.0
 offset_right = 128.0
 grow_vertical = 0
 scale = Vector2(0.8, 0.8)
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(0.629675, 0.629675, 0.629675, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxFlat_eeob8")
 text = "Back"
@@ -2861,14 +2860,14 @@ offset_top = 47.0
 offset_right = 633.0
 offset_bottom = 127.0
 grow_horizontal = 2
-theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.976471, 0.709804, 0.247059, 1)
 theme_override_font_sizes/font_size = 80
-theme_override_styles/focus = SubResource("StyleBoxEmpty_3w8rc")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_uxao6")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vr0hv")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_a3hrp")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_25m6f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_a3hrp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vr0hv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uxao6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3w8rc")
 text = "X"
 
 [node name="PatternParallax-1" type="ParallaxBackground" parent="GUI/Center"]
@@ -2927,9 +2926,9 @@ offset_right = 599.0
 offset_bottom = 520.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/italics_font_size = 32
 theme_override_font_sizes/normal_font_size = 32
 theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/italics_font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxFlat_hgts2")
 bbcode_enabled = true
 text = "[color=#05DFE3]READ THIS IF YOU DON'T WANT TO WASTE YOUR TIME:[/color]

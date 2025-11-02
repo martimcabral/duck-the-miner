@@ -9,7 +9,7 @@ var saved_states = {}
 var inventory_path = str("user://save/", GetSaveFile.save_being_used, "/inventory.cfg")
 
 func _ready() -> void:
-	$GUI_Pause/VersionDisplay.text = "Version: release." + str(ProjectSettings.get_setting("application/config/version"))
+	$GUI_Pause/VersionDisplay.text = "Version: beta." + str(ProjectSettings.get_setting("application/config/version"))
 	
 	for button in get_tree().get_nodes_in_group("Buttons"):
 		button.mouse_entered.connect(func(): _on_button_mouse_entered())

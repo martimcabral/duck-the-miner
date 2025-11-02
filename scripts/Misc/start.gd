@@ -23,7 +23,7 @@ func _ready() -> void:
 	print("[start.gd] Current Date Package: ", date)
 	print("[start.gd] Current Month: ", date["month"])
 	
-	version_config.set_value("version", "current", str("release." + ProjectSettings.get_setting("application/config/version")))
+	version_config.set_value("version", "current", str("beta." + ProjectSettings.get_setting("application/config/version")))
 	version_config.save(version_path)
 	
 	if not FileAccess.file_exists(tutorial_path):
